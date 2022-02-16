@@ -4,6 +4,8 @@ import java.math.BigDecimal;
 import java.sql.Date;
 import java.util.List;
 
+import ezs.ser_dmd.model.SerDmdVO;
+
 
 public class SerQuoService {
 	private SerQuoDAO_interface dao;
@@ -50,6 +52,9 @@ public class SerQuoService {
 		return dao.findByPrimaryKey(quoID);
 	}
 
+	public List<SerQuoVO> findByVdrID(Integer quoVdrID) {
+		return dao.findByVdrID(quoVdrID);
+	}
 	public List<SerQuoVO> getAll() {
 		return dao.getAll();
 	}

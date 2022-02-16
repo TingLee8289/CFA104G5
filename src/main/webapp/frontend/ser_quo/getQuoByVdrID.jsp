@@ -2,14 +2,14 @@
 	pageEncoding="UTF-8"%>
 	<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ page import="java.util.*"%>
-<%@ page import="ezs.ser_dmd.model.*"%>
-<% session.setAttribute("mdmID", 3);%>
+<%@ page import="ezs.ser_quo.model.*"%>
+<% session.setAttribute("memID", 3);%>
 <%
     Integer memID = (Integer)session.getAttribute("memID");
-    SerDmdService serDmdSvc = new SerDmdService();
-    List<SerDmdVO> list = serDmdSvc.findByMemID(memID);
+    SerQuoService serQuoSvc = new SerQuoService();
+    List<SerQuoVO> vdrQuoList = serQuoSvc.findByVdrID(memID);
      									//如何動態取值
-    pageContext.setAttribute("list",list);
+    pageContext.setAttribute("vdrQuoList",vdrQuoList);
 %>
 <!DOCTYPE html>
 <html>
@@ -43,8 +43,8 @@
 <h4>此頁練習採用 EL 的寫法取值:</h4>
 <table id="table-1">
 	<tr><td>
-		 <h3>所有需求單資料 - listAllSerDmd.jsp</h3>
-		 <h4><a href="<%=request.getContextPath()%>/frontend/ser_dmd/serDmdHome.jsp">回首頁</a></h4>
+		 <h3>廠商檢視估價單資料 - listAllSerDmd.jsp</h3>
+		 <h4><a href="<%=request.getContextPath()%>/frontend/ser_quo/serQuoHome.jsp">回首頁</a></h4>
 	</td></tr>
 </table>
 
@@ -60,53 +60,39 @@
 
 <table>
 	<tr>
-		<th>需求單ID</th>
-		<th>需求單狀態</th>
-		<th>會員ID</th>
-		<th>服務類別ID</th>
-		<th>需求人姓名</th>
-		<th>需求人電話</th>
-		<th>需求人信箱</th>
-		<th>案場縣市</th>
-		<th>案場地區</th>
-		<th>案場詳細地址</th>
-		<th>空間類別</th>
-		<th>坪數</th>
-		<th>預算</th>
-		<th>需求簡介</th>
-		<th>照片</th>
-		<th>修改</th>
-		<th>刪除</th>
+		<th>估價單ID</th>
+			<th>估價單狀態</th>
+			<th>需求單ID</th>
+			<th>廠商ID</th>
+			<th>估價日期</th>
+			<th>有效限期</th>
+			<th>估價項目</th>
+			<th>估價總價</th>
+			<th>修改</th>
+			<th>刪除</th>
 	</tr>
 	
-	<c:forEach var="serDmdVO" items="${list}" >
+	<c:forEach var="serQuoVO" items="${vdrQuoList}" >
 		
 		<tr>
-			<td>${serDmdVO.dmdID}</td>
-			<td>${serDmdVO.dmdStatus}</td>
-			<td>${serDmdVO.dmdMemID}</td>
-			<td>${serDmdVO.dmdSerClaID}</td>
-			<td>${serDmdVO.dmdName}</td>
-			<td>${serDmdVO.dmdTel}</td>
-			<td>${serDmdVO.dmdMail}</td>
-			<td>${serDmdVO.dmdCounty}</td>
-			<td>${serDmdVO.dmdRegion}</td>
-			<td>${serDmdVO.dmdAddress}</td>
-			<td>${serDmdVO.dmdSpaceClass}</td>
-			<td>${serDmdVO.dmdSquare}</td>
-			<td>${serDmdVO.dmdBudget}</td>
-			<td>${serDmdVO.dmdIntro}</td>
-			<td><img src="<%=request.getContextPath()%>/ser_dmd/DBGifReader4?dmd_id=${serDmdVO.dmdID}" width = 200px></td>
+			<td>${serQuoVO.quoID}</td>
+				<td>${serQuoVO.quoStatus}</td>
+				<td>${serQuoVO.quoDmdID}</td>
+				<td>${serQuoVO.quoVdrID}</td>
+				<td>${serQuoVO.quoDate}</td>
+				<td>${serQuoVO.quoExpiryDate}</td>
+				<td>${serQuoVO.quoItem}</td>
+				<td>${serQuoVO.quoTotalPrice}</td>
 			<td>
-			  <FORM METHOD="post" ACTION="<%=request.getContextPath()%>/ser_dmd/SerDmdServlet.do" style="margin-bottom: 0px;">
+			  <FORM METHOD="post" ACTION="<%=request.getContextPath()%>/ser_quo/UpdateQuoServlet.do" style="margin-bottom: 0px;">
 			     <input type="submit" value="修改">
-			     <input type="hidden" name="dmdID"  value="${serDmdVO.dmdID}">
-			     <input type="hidden" name="action"	value="getOne_For_Update"></FORM>
+			     <input type="hidden" name="quoID"  value="${serQuoVO.quoID}">
+			     <input type="hidden" name="action"	value="updateOneQuo"></FORM>
 			</td>
 			<td>
-			  <FORM METHOD="post" ACTION="<%=request.getContextPath()%>/ser_dmd/SerDmdServlet.do" style="margin-bottom: 0px;">
+			  <FORM METHOD="post" ACTION="<%=request.getContextPath()%>/ser_quo/DeleteOrdServlet.do" style="margin-bottom: 0px;">
 			     <input type="submit" value="刪除">
-			     <input type="hidden" name="dmdID"  value="${serDmdVO.dmdID}">
+			     <input type="hidden" name="quoID"  value="${serQuoVO.quoID}">
 			     <input type="hidden" name="action" value="delete"></FORM>
 			</td>
 		</tr>

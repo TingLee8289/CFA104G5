@@ -10,7 +10,7 @@ SerQuoVO serQuoVO = (SerQuoVO) request.getAttribute("serQuoVO");
 <html>
 <head>
 <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
-<title>會員新增估價單 - addQuoDmd.jsp</title>
+<title>會員新增估價單(投遞需求單) - addQuoDmd.jsp</title>
 
 <style>
 table#table-1 {
@@ -107,12 +107,12 @@ th, td {
 			<tr>
 				<td>估價項目:</td>
 				<td><input type="TEXT" name="quoItem" size="8"
-					value="<%=(serQuoVO == null) ? "青仔500" : serQuoVO.getQuoItem()%>" /></td>
+					value="<%=(serQuoVO == null) ? "" : serQuoVO.getQuoItem()%>" /></td>
 			</tr>
 			<tr>
 				<td>估價總金額:</td>
 				<td><input type="TEXT" name="quoTotalPrice"
-					value="<%=(serQuoVO == null) ? "500" : serQuoVO.getQuoTotalPrice()%>" /></td>
+					value="<%=(serQuoVO == null) ? "" : serQuoVO.getQuoTotalPrice()%>" /></td>
 			</tr>
 
 
