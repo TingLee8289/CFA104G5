@@ -9,8 +9,8 @@ public class RenLeaseVO  implements Serializable  {
 	private Integer lseId; 
 	private Integer	lseMemId;  
 	private Integer	lseLisId;  
-	private Integer LseLddId;
-	private Integer LseLddScore;
+	private Integer lseLddId;
+	private Integer lseLddScore;
 	private String lseLddTxt;
 	private Integer lseTntScore;
 	private String lseTntTxt;
@@ -18,7 +18,7 @@ public class RenLeaseVO  implements Serializable  {
 	private Timestamp lseTimestamp;
 	private Date lseStart;
 	private Date lseEnd;
-	
+
 	public RenLeaseVO() {
 		super();
 	}
@@ -48,19 +48,19 @@ public class RenLeaseVO  implements Serializable  {
 	}
 
 	public Integer getLseLddId() {
-		return LseLddId;
+		return lseLddId;
 	}
 
 	public void setLseLddId(Integer lseLddId) {
-		LseLddId = lseLddId;
+		this.lseLddId = lseLddId;
 	}
 
 	public Integer getLseLddScore() {
-		return LseLddScore;
+		return lseLddScore;
 	}
 
 	public void setLseLddScore(Integer lseLddScore) {
-		LseLddScore = lseLddScore;
+		this.lseLddScore = lseLddScore;
 	}
 
 	public String getLseLddTxt() {
