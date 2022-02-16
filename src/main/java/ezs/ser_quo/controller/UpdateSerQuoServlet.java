@@ -35,14 +35,14 @@ public class UpdateSerQuoServlet extends HttpServlet {
 				SerQuoVO serQuoVO = serQuoSvc.getOneSerQuo(quoID);
 				// 查詢完成，準備轉交
 				req.setAttribute("serQuoVO", serQuoVO);
-				String url = "/backend/serQuo/updateSerQuo.jsp";
+				String url = "/backend/ser/serQuo/updateSerQuo.jsp";
 				RequestDispatcher successView = req.getRequestDispatcher(url);
 				successView.forward(req, res);
 
 				// 其他錯誤處理
 			} catch (Exception e) {
 				errorMsgs.add("無法取得要修改的資料:" + e.getMessage());
-				RequestDispatcher failureView = req.getRequestDispatcher("/backend/serQuo/listOneSerQuo.jsp");
+				RequestDispatcher failureView = req.getRequestDispatcher("/backend/ser/serQuo/listOneSerQuo.jsp");
 				failureView.forward(req, res);
 			}
 		}
@@ -85,7 +85,7 @@ public class UpdateSerQuoServlet extends HttpServlet {
 				
 				if (!errorMsgs.isEmpty()) {
 					req.setAttribute("serQuoVO", serQuoVO); // 含有輸入格式錯誤的empVO物件,也存入req
-					RequestDispatcher failureView = req.getRequestDispatcher("/backend/serQuo/updateSerQuo.jsp");
+					RequestDispatcher failureView = req.getRequestDispatcher("/backend/ser/serQuo/updateSerQuo.jsp");
 					failureView.forward(req, res);
 					return;
 				}
@@ -93,13 +93,13 @@ public class UpdateSerQuoServlet extends HttpServlet {
 				SerQuoService serQuoSvc = new SerQuoService();
 				serQuoVO = serQuoSvc.updateSerQuo(quoID, quoStatus, quoDmdID, quoVdrID, quoDate, quoExpiryDate, quoItem, quoTotalPrice);
 				// 3.新增完成，轉交
-				String url = "/backend/serQuo/listAllSerQuo.jsp";
+				String url = "/backend/ser/serQuo/listAllSerQuo.jsp";
 				RequestDispatcher successView = req.getRequestDispatcher(url); // 新增成功後轉交listAllEmp.jsp
 				successView.forward(req, res);
 
 			} catch (Exception e) {
 				errorMsgs.add("修改資料失敗:" + e.getMessage());
-				RequestDispatcher failureView = req.getRequestDispatcher("/backend/serQuo/updateSerQuo.jsp");
+				RequestDispatcher failureView = req.getRequestDispatcher("/backend/ser/serQuo/updateSerQuo.jsp");
 				failureView.forward(req, res);
 			}
 		}

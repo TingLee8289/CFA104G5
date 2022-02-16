@@ -31,13 +31,13 @@ public class DeleteOrdServlet extends HttpServlet{
 				SerOrdService serOrdSvc = new SerOrdService();
 				serOrdSvc.deleteSerOrd(ordID);
 				//刪除完成轉交頁面
-				String url = "/backend/serOrd/listAllSerOrd.jsp";
+				String url = "/backend/ser/serOrd/listAllSerOrd.jsp";
 				RequestDispatcher successView = req.getRequestDispatcher(url); 
 				successView.forward(req, res);
 			} 
 			 catch (Exception e) {
 				 errorMsgs.add("資料失敗:" + e.getMessage());
-					RequestDispatcher failureView = req.getRequestDispatcher("/backend/serQuo/listAllSerOrd.jsp");
+					RequestDispatcher failureView = req.getRequestDispatcher("/backend/ser/serOrd/listAllSerOrd.jsp");
 					failureView.forward(req, res);
 			}
 		}
