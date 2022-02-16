@@ -1,0 +1,16 @@
+2022/01/29
+	Major changes:
+	1. Integrate VO/Interface/JDBCDAO/Test of all tables
+	2. Align variable declaration of con, pstmt, rs as instance variables
+	3. All VOs implement Serializable
+	4. Create organized images folder for further use
+
+2022/02/12
+	Major changes:
+	1. Integrate all members progress to date.
+	
+	
+Issue Unsolved/Unchecked:
+	1. Test picture-related functions
+	2. All DAO should use connection pool
+	
