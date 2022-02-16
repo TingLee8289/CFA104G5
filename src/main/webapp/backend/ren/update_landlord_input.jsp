@@ -1,4 +1,4 @@
-<%@ page contentType="text/html; charset=UTF-8" pageEncoding="Big5"%>
+<%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ page import="ezs.ren_landlord.model.*"%>
 
@@ -9,7 +9,7 @@ RenLandlordVO renLandlordVO = (RenLandlordVO) request.getAttribute("renLandlordV
 <html>
 <head>
 <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
-<title>©ĞªF¸ê®Æ­×§ï - update_landlord_input.jsp</title>
+<title>æˆ¿æ±è³‡æ–™ä¿®æ”¹ - update_landlord_input.jsp</title>
 
 </head>
 <body bgcolor='white'>
@@ -17,21 +17,21 @@ RenLandlordVO renLandlordVO = (RenLandlordVO) request.getAttribute("renLandlordV
 	<table id="table-1">
 		<tr>
 			<td>
-				<h3>­û¤u¸ê®Æ­×§ï - update_landlord_input.jsp</h3>
+				<h3>å“¡å·¥è³‡æ–™ä¿®æ”¹ - update_landlord_input.jsp</h3>
 				<h4>
-					<a href="select.jsp"><img
-						src="<%=request.getContextPath()%>/images/ren/back1.gif" width="100"
-						height="32" border="0">¦^­º­¶</a>
+					<a href="<%=request.getContextPath()%>/backend/ren/select.jsp"><img
+						src="<%=request.getContextPath()%>/images/ren/back_icon.png"
+						width="60" height="60" border="0">å›é¦–é </a>
 				</h4>
 			</td>
 		</tr>
 	</table>
 
-	<h3>¸ê®Æ­×§ï:</h3>
+	<h3>è³‡æ–™ä¿®æ”¹:</h3>
 
-	<%-- ¿ù»~ªí¦C --%>
+	<%-- éŒ¯èª¤è¡¨åˆ— --%>
 	<c:if test="${not empty errorMsgs}">
-		<font style="color: red">½Ğ­×¥¿¥H¤U¿ù»~:</font>
+		<font style="color: red">è«‹ä¿®æ­£ä»¥ä¸‹éŒ¯èª¤:</font>
 		<ul>
 			<c:forEach var="message" items="${errorMsgs}">
 				<li style="color: red">${message}</li>
@@ -40,27 +40,35 @@ RenLandlordVO renLandlordVO = (RenLandlordVO) request.getAttribute("renLandlordV
 	</c:if>
 
 	<FORM METHOD="post"
-		ACTION="<%=request.getContextPath()%>/backend/ren/renlandlord.do"
+		ACTION="<%=request.getContextPath()%>/ren_landlord/RenLandlordServlet.do"
 		name="form1">
 		<table>
 			<tr>
-				<td>©ĞªF½s¸¹:<font color=red><b>*</b></font></td>
+				<td>æˆ¿æ±ç·¨è™Ÿ:<font color=red><b>*</b></font></td>
 				<td><%=renLandlordVO.getLddId()%></td>
 			</tr>
 			<tr>
-				<td>·|­û½s¸¹:</td>
+				<td>æœƒå“¡ç·¨è™Ÿ:</td>
 				<td><input type="TEXT" name="lddMemId" size="45"
 					value="<%=renLandlordVO.getLddMemId()%>" /></td>
 			</tr>
-			<tr>
-				<td>¼f®Öª¬ºA:</td>
-				<td><input type="TEXT" name="lddApproval" size="45"
-					value="<%=renLandlordVO.getLddApproval()%>" /></td>
-			</tr>
+ 			<tr>
+				<td>å¯©æ ¸ç‹€æ…‹:</td>
+				<td><select name="lddApproval">
+						<option value="0"
+							<c:if test="${renLandlordVO.lddApproval == 0}">selected</c:if>>å¯©æ ¸ä¸­</option>
+						<option value="1"
+							<c:if test="${renLandlordVO.lddApproval == 1}">selected</c:if>>å¯©æ ¸æœªé</option>
+						<option value="2"
+							<c:if test="${renLandlordVO.lddApproval == 2}">selected</c:if>>å¯©æ ¸å·²é</option>
+				</select></td>
+			</tr> 
 		</table>
-		<br> <input type="hidden" name="action" value="update"> <input
-			type="hidden" name="lddId" value="<%=renLandlordVO.getLddId()%>">
-		<input type="submit" value="°e¥X­×§ï">
+
+		<br> 
+		<input type="hidden" name="action" value="update"> 
+		<input type="hidden" name="lddId" value="<%=renLandlordVO.getLddId()%>">
+		<input type="submit" value="é€å‡ºä¿®æ”¹">
 	</FORM>
 </body>
 </html>

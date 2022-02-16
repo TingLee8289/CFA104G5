@@ -120,7 +120,7 @@ public class RenLandlordDAO implements RenLandlordDAO_interface {
 				renLandlordVO.setLddId(rs.getInt("ldd_id"));
 				renLandlordVO.setLddMemId(rs.getInt("ldd_mem_Id"));
 				renLandlordVO.setLddApproval(rs.getInt("ldd_approval"));
-				list.add(renLandlordVO); // Store the row in the list
+				list.add(renLandlordVO);
 			}
 		} catch (SQLException se) {
 			se.printStackTrace();

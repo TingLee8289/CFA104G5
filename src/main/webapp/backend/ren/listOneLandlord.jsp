@@ -1,37 +1,48 @@
-<%@ page contentType="text/html; charset=UTF-8" pageEncoding="Big5"%>
+<%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ page import="ezs.ren_landlord.model.*"%>
-<%-- ¦¹­¶¼È½m²ß±Ä¥Î Script ªº¼gªk¨ú­È --%>
+<%-- æ­¤é æš«ç·´ç¿’æ¡ç”¨ Script çš„å¯«æ³•å–å€¼ --%>
 
 <%
-RenLandlordVO renLandlordVO = (RenLandlordVO) request.getAttribute("renLandlordVO"); //EmpServlet.java(Concroller), ¦s¤JreqªºempVOª«¥ó
+RenLandlordVO renLandlordVO = (RenLandlordVO) request.getAttribute("renLandlordVO");
 %>
 
 <html>
 
 <head>
-<title>©ĞªF¸ê®Æ - listOneLandlord.jsp</title>
+<title>æˆ¿æ±è³‡æ–™ - listOneLandlord.jsp</title>
 </head>
 
 <body bgcolor='white'>
 
-<table id="table-1">
-	<tr><td>
-		 <h3>­û¤u¸ê®Æ - ListOneLandlord.jsp</h3>
-		 <h4><a href="select.jsp"><img src="<%=request.getContextPath() %>/images/ren/back1.gif" width="100" height="32" border="0">¦^­º­¶</a></h4>
-	</td></tr>
-</table>
+	<table id="table-1">
+		<tr>
+			<td>
+				<h3>å“¡å·¥è³‡æ–™ - ListOneLandlord.jsp</h3>
+				<h4>
+					<a href="<%=request.getContextPath()%>/backend/ren/select.jsp"><img
+						src="<%=request.getContextPath()%>/images/ren/back_icon.png"
+						width="60" height="60" border="0">å›é¦–é </a>
+				</h4>
+			</td>
+		</tr>
+	</table>
 
-<table>
-	<tr>
-		<th>©ĞªF½s¸¹</th>
-		<th>·|­û½s¸¹</th>
-		<th>¼f®Öª¬ºA</th>
-	</tr>
-	<tr>
-		<td><%=renLandlordVO.getLddId()%></td>
-		<td><%=renLandlordVO.getLddMemId()%></td>
-		<td><%=renLandlordVO.getLddApproval()%></td>
-</table>
+	<table>
+		<tr>
+			<th>æˆ¿æ±ç·¨è™Ÿ</th>
+			<th>æœƒå“¡ç·¨è™Ÿ</th>
+			<th>å¯©æ ¸ç‹€æ…‹</th>
+		</tr>
+		<tr>
+			<td><%=renLandlordVO.getLddId()%></td>
+			<td><%=renLandlordVO.getLddMemId()%></td>
+			<td><c:if test="${renLandlordVO.lddApproval == 0}"><c:out value="å¯©æ ¸ä¸­"/></c:if>
+			<c:if test="${renLandlordVO.lddApproval == 1}"><c:out value="å¯©æ ¸æœªé"/></c:if>
+			<c:if test="${renLandlordVO.lddApproval == 2}"><c:out value="å¯©æ ¸å·²é"/></c:if>
+			</td>
+
+	</table>
 
 </body>
 </html>
