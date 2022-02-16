@@ -59,13 +59,7 @@
     </FORM>
   </li>
 </ul>  
-  
 
-<h3>會員管理</h3>
-
-<ul>
-  <li><a href='addMember.jsp'>Add</a> a new Member.</li>
-</ul>
 
 </body>
 </html>
