@@ -38,6 +38,99 @@ public class RenLocationJNDIDAO implements RenLocationDAO_interface {
 	ResultSet rs = null;
 
 	@Override
+<<<<<<< HEAD
+	public void insert(RenLocationVO renLocationVO) {
+		try {
+			con = ds.getConnection();
+			pstmt = con.prepareStatement(INSERT_STMT);
+
+			pstmt.setString(1, renLocationVO.getLocCity());
+			pstmt.setString(2, renLocationVO.getLocDist());
+
+			pstmt.executeUpdate();
+		} catch (SQLException se) {
+			se.printStackTrace();
+		} finally {
+			Util.closeResource(con, pstmt, rs);
+		}
+	}
+
+	@Override
+	public void update(RenLocationVO renLocationVO) {
+		try {
+			con = DriverManager.getConnection(Util.URL, Util.USER, Util.PASSWORD);
+			pstmt = con.prepareStatement(UPDATE);
+
+			pstmt.setString(1, renLocationVO.getLocCity());
+			pstmt.setString(2, renLocationVO.getLocDist());
+			pstmt.setInt(3, renLocationVO.getLocID());
+			pstmt.executeUpdate();
+		} catch (SQLException se) {
+			se.printStackTrace();
+		} finally {
+			Util.closeResource(con, pstmt, rs);
+		}
+	}
+
+	@Override
+	public void delete(Integer locID) {
+		try {
+			con = ds.getConnection();
+			pstmt = con.prepareStatement(DELETE);
+
+			pstmt.setInt(1, locID);
+
+			pstmt.executeUpdate();
+		} catch (SQLException se) {
+			se.printStackTrace();
+		} finally {
+			Util.closeResource(con, pstmt, rs);
+		}
+	}
+
+	@Override
+	public RenLocationVO findByPrimaryKey(Integer locID) {
+		RenLocationVO renLocationVO = null;
+
+		try {
+			con = ds.getConnection();
+			pstmt = con.prepareStatement(GET_ONE_STMT);
+
+			pstmt.setInt(1, locID);
+
+			rs = pstmt.executeQuery();
+
+			while (rs.next()) {
+				renLocationVO = new RenLocationVO();
+				renLocationVO.setLocID(rs.getInt("LOC_ID"));
+				renLocationVO.setLocCity(rs.getString("LOC_CITY"));
+				renLocationVO.setLocDist(rs.getString("LOC_DIST"));
+			}
+		} catch (SQLException se) {
+			se.printStackTrace();
+		} finally {
+			Util.closeResource(con, pstmt, rs);
+		}
+		return renLocationVO;
+	}
+
+	@Override
+	public List<RenLocationVO> getAll() {
+		List<RenLocationVO> list = new ArrayList<RenLocationVO>();
+		RenLocationVO renLocationVO = null;
+
+		try {
+			con = ds.getConnection();
+			pstmt = con.prepareStatement(GET_ALL_STMT);
+			rs = pstmt.executeQuery();
+
+			while (rs.next()) {
+				renLocationVO = new RenLocationVO();
+				renLocationVO.setLocID(rs.getInt("LOC_ID"));
+				renLocationVO.setLocCity(rs.getString("LOC_CITY"));
+				renLocationVO.setLocDist(rs.getString("LOC_DIST"));
+				list.add(renLocationVO); // Store the row in the list
+=======
 	public void insert(RenLocationVO locationVO) {
 		try {
 			con = ds.getConnection();
@@ -129,6 +222,7 @@ public class RenLocationJNDIDAO implements RenLocationDAO_interface {
 				locationVO.setLocCity(rs.getString("LOC_CITY"));
 				locationVO.setLocDist(rs.getString("LOC_DIST"));
 				list.add(locationVO); // Store the row in the list
+>>>>>>> refs/heads/master
 			}
 		} catch (SQLException se) {
 			se.printStackTrace();
