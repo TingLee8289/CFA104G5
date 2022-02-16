@@ -3,12 +3,15 @@
 <%@ page import="java.util.*"%>
 <%@ page import="ezs.member.model.*"%>
 
+
 <%
     MemberService memberSvc = new MemberService();
     List<MemberVO> list = memberSvc.getAll();
     pageContext.setAttribute("list",list);
 %>
-
+<%
+	MemberVO memberVO = (MemberVO) request.getAttribute("memberVO");
+%>
 
 <html>
 <head>
@@ -52,8 +55,8 @@
 
 <table id="table-1">
 	<tr><td>
-		 <h3>所有會員資料</h3>
-<!-- 		 <h4><a href="select_page.jsp">回首頁</a></h4> -->
+		 <h3>所有會員資料 - listAllMember.jsp</h3>
+		 <h4><a href="select_page.jsp">回首頁</a></h4>
 	</td></tr>
 </table>
 
@@ -71,16 +74,26 @@
 	<tr>
 		<th>會員ID</th>
 		<th>帳號</th>
-		<th>姓名</th>
-		<th>會員狀態</th>
+		<th>密碼</th>
+		<th>會員名稱</th>
 		<th>房東身份</th>
 		<th>廠商身份</th>
 		<th>賣家身份</th>
-		<th>被檢舉數</th>
+		<th>電話</th>
+		<th>地址</th>
+		<th>會員Email帳號</th>
+		<th>身分證字號</th>
+		<th>會員狀態</th>
+		<th>個人頭像</th>
+		<th>評價總數</th>
+		<th>評價總分</th>
+		<th>被評價總數</th>
+		<th>被評價總分</th>
+		<th>被被檢舉數</th>
 		<th>房東被檢舉數</th>
 		<th>廠商被檢舉數</th>
 		<th>賣家被檢舉數</th>
-		
+		<th>會員統一編號</th>
 	</tr>
 	<%@ include file="page1.file" %> 
 	<c:forEach var="memberVO" items="${list}" begin="<%=pageIndex%>" end="<%=pageIndex+rowsPerPage-1%>">
@@ -88,36 +101,29 @@
 		<tr>
 			<td>${memberVO.memID}</td>
 			<td>${memberVO.memUsername}</td>
+			<td>${memberVO.memPassword}</td>
 			<td>${memberVO.memName}</td>
-			<td>	
-				<c:if test="${memberVO.memStatus == 0}">Email未驗證</c:if>
-				<c:if test="${memberVO.memStatus == 1}">Email已驗證</c:if>
-				<c:if test="${memberVO.memStatus == 2}">停權</c:if></td>
-			<td>
-				<c:if test="${memberVO.memLandlord == 0}">未驗證</c:if>
-				<c:if test="${memberVO.memLandlord == 1}">已驗證</c:if>
-				<c:if test="${memberVO.memLandlord == 2}">停權</c:if></td>   
-			<td>
-				<c:if test="${memberVO.memSupplier == 0}">停權</c:if>
-				<c:if test="${memberVO.memSupplier == 1}">啟用</c:if></td> 
-			<td>
-				<c:if test="${memberVO.memSeller == 0}">停權</c:if>
-				<c:if test="${memberVO.memSeller == 1}">啟用</c:if></td>
+			<td>${memberVO.memLandlord}</td>
+			<td>${memberVO.memSupplier}</td> 
+			<td>${memberVO.memSeller}</td>
+			<td>${memberVO.memPhone}</td>
+			<td>${memberVO.memAddress}</td>
+			<td>${memberVO.memEmail}</td>
+			<td>${memberVO.memPID}</td>
+			<td><input type="TEXT" name="memStatus" size="1"	value="<%=memberVO.getMemStatus()%>" /></td>
+			<td>${memberVO.memHeadshot}</td> 
+			<td>${memberVO.memRevCount}</td>
+			<td>${memberVO.memRevScore}</td>
+			<td>${memberVO.memRedCount}</td>
+			<td>${memberVO.memRedScore}</td>
 			<td>${memberVO.memReported}</td>
 			<td>${memberVO.memLddReported}</td>
 			<td>${memberVO.memSupReported}</td>
 			<td>${memberVO.memSelReported}</td>
-			<td>
-			  <FORM METHOD="post" ACTION="<%=request.getContextPath()%>/member/MemberServletUpdate.do" style="margin-bottom: 0px;">
-			     <input type="submit" value="查看詳細資料">
-			     <input type="hidden" name="memID"  value="${memberVO.memID}">
-			     <input type="hidden" name="action"	value="getOneMem_Display"> </FORM>
-			</td>
+			<td>${memberVO.memVatno}</td>
 		</tr>
 	</c:forEach>
 </table>
-
-
 <%@ include file="page2.file" %>
 
 </body>
