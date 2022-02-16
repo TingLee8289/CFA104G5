@@ -34,6 +34,9 @@ public class TestDataSource測試連線池 extends HttpServlet {
 					conn.close();
 				}
 			}
+			
+			
+			
 		} catch (NamingException e) {
 			e.printStackTrace();
 		} catch (SQLException e) {
