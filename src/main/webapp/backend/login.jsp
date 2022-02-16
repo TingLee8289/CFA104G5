@@ -13,7 +13,7 @@
 
 
 	<form METHOD="post"
-		ACTION="<%=request.getContextPath()%>/AdminEmpServlet">
+		ACTION="<%=request.getContextPath()%>/admin_emp/AdminEmpServlet.do">
 		<b>帳號:</b> <input type="text" name="admUsername"> 
 		<b>密碼:</b> <input type="password" name="admPassword"> 
 		<input type="hidden" name="action" value="getOne_For_Display"> 
