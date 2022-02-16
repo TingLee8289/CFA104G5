@@ -6,6 +6,10 @@
 <%
 RenAppointmentVO renAppointmentVO = (RenAppointmentVO) request.getAttribute("renAppointmentVO");
 %>
+<jsp:useBean id="memSvc" scope="page" class="ezs.member.model.MemberService" />
+<jsp:useBean id="renLDDSvc" scope="page" class="ezs.ren_landlord.model.RenLandlordService" />
+<jsp:useBean id="renLisSvc" scope="page" class="ezs.ren_listing.model.RenListingService" />
+
 
 <html>
 <head>
@@ -60,51 +64,60 @@ th, td {
 		</td></tr>
 	</table>
 
-	<table>
+	<table>	
 		<tr>
-			<th>預約訂單編號</th>
-			<th>會員編號</th>
-			<th>房東編號</th>
-			<th>房源編號</th>
-			<th>預約單狀態</th>
-			<th>預約時間</th>
-			<th>修改</th>
-			<th>刪除</th>
-			<!-- 		<th>預約訂單成立時間</th> -->
+			<td>預約訂單編號:</td>
+			<td><%=renAppointmentVO.getAptId()%></td>
+		</tr>
+		<tr>	
+			<td>預約會員:</td>
+			<td><c:forEach var="memVO" items="${memSvc.all}">
+					<c:if test="${renAppointmentVO.aptMemId==memVO.memID}">
+	                    【${memVO.memID}】 - ${memVO.memUsername}
+                    </c:if></c:forEach></td>
 		</tr>
 		<tr>
-			<td>${renAppointmentVO.aptId}</td>
+			<td>房東:</td>
+			<td><c:forEach var="renLDDVO" items="${renLDDSvc.all}">
+					<c:if test="${renAppointmentVO.aptLddId==renLDDVO.lddId}">
+						<c:forEach var="memVO" items="${memSvc.all}">
+							<c:if test="${memVO.memID==renLDDVO.lddMemId}">
+		                    【${memVO.memID}】 - ${memVO.memUsername}
+	                    </c:if></c:forEach></c:if></c:forEach></td>
+		</tr>
+		<tr>
+			<td>房源:</td>
 			<td><c:forEach var="renLisVO" items="${renLisSvc.all}">
-                    <c:if test="${renFavoritesVO.favLisId==renLisVO.lisID}">
-	                    ${renLisVO.lisTitle}
-                    </c:if>
-                </c:forEach>
-			</td>
-			<td>${renAppointmentVO.aptMemId}</td>
-			<td>${renAppointmentVO.aptLddId}</td>
-			<td>${renAppointmentVO.aptLisId}</td>
-			<td>
-				<c:if test="${renAppointmentVO.aptStatus == 0}">待確認預約</c:if>
-				<c:if test="${renAppointmentVO.aptStatus == 1}">已確認預約</c:if>
-				<c:if test="${renAppointmentVO.aptStatus == 2}">已取消</c:if>
-			</td>
-			<td>${renAppointmentVO.aptTime}</td>
-			<td>
-				<FORM METHOD="post" ACTION="<%=request.getContextPath()%>/RenAppointmentServlet.do" style="margin-bottom: 0px;">
-					<input type="submit" value="修改"> 
-					<input type="hidden" name="aptId" value="${renAppointmentVO.aptId}"> 
-					<input type="hidden" name="action" value="getOne_For_Update">
-				</FORM>
-			</td>
-			<td>
-				<FORM METHOD="post" ACTION="<%=request.getContextPath()%>/RenAppointmentServlet.do" style="margin-bottom: 0px;">
-					<input type="submit" value="刪除"> 
-					<input type="hidden" name="aptId" value="${renAppointmentVO.aptId}"> 
-					<input type="hidden" name="action" value="delete">
-				</FORM>
-			</td>
-			<%-- 		<td>${renAppointmentVO.aptTimestamp}</td> --%>
+					<c:if test="${renAppointmentVO.aptLisId==renLisVO.lisID}">
+	                    【${renLisVO.lisID}】 - ${renLisVO.lisTitle}
+                    </c:if></c:forEach></td>
 		</tr>
+		<tr>
+			<td>預約單狀態:</td>
+			<td><c:if test="${renAppointmentVO.aptStatus == 0}">待確認預約</c:if>
+				<c:if test="${renAppointmentVO.aptStatus == 1}">已確認預約</c:if> 
+				<c:if test="${renAppointmentVO.aptStatus == 2}">已取消</c:if>
+				<c:if test="${renAppointmentVO.aptStatus == 3}">預約時間已變更</c:if></td>
+		</tr>
+		<tr>
+			<td>預約時間:</td>
+			<td>${renAppointmentVO.aptTime}</td>
+		</tr>
+		<td>
+			<FORM METHOD="post" ACTION="<%=request.getContextPath()%>/RenAppointmentServlet.do" style="margin-bottom: 0px;">
+				<input type="submit" value="修改"> 
+				<input type="hidden" name="aptId" value="${renAppointmentVO.aptId}"> 
+				<input type="hidden" name="action" value="getOne_For_Update">
+			</FORM>
+		</td>
+		<td>
+			<FORM METHOD="post" ACTION="<%=request.getContextPath()%>/RenAppointmentServlet.do" style="margin-bottom: 0px;">
+				<input type="submit" value="刪除"> 
+				<input type="hidden" name="aptId" value="${renAppointmentVO.aptId}"> 
+				<input type="hidden" name="action" value="delete">
+			</FORM>
+		</td>
+			
 	</table>
 <jsp:include page="/frontend/EZ_footer.jsp"></jsp:include>
 </body>
