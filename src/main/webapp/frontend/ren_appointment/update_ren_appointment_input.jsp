@@ -111,8 +111,9 @@ th, td {
 			<tr>
 				<td>預約單狀態:</td>
 				<td><c:if test="${renAppointmentVO.aptStatus == 0}">待確認預約</c:if>
-					<c:if test="${renAppointmentVO.aptStatus == 1}">已確認預約</c:if> <c:if
-						test="${renAppointmentVO.aptStatus == 2}">已取消</c:if></td>
+					<c:if test="${renAppointmentVO.aptStatus == 1}">已確認預約</c:if> 
+					<c:if test="${renAppointmentVO.aptStatus == 2}">已取消</c:if>
+					<c:if test="${renAppointmentVO.aptStatus == 3}">預約時間已變更</c:if></td>
 			</tr>
 			<tr>
 				<td>預約時間:</td>
@@ -122,6 +123,9 @@ th, td {
 		<br> 
 		<input type="hidden" name="action" value="update"> 
 		<input type="hidden" name="aptId" value="<%=renAppointmentVO.getAptId()%>">
+		<input type="hidden" name="aptMemId" value="<%=renAppointmentVO.getAptMemId()%>">
+		<input type="hidden" name="aptLddId" value="<%=renAppointmentVO.getAptLddId()%>">
+		<input type="hidden" name="aptLisId" value="<%=renAppointmentVO.getAptLisId()%>">
 		<input type="submit" value="送出修改">
 	</FORM>
 	
