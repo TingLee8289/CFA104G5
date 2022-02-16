@@ -32,7 +32,7 @@ public class GetOneQuoServlet extends HttpServlet{
 			errorMsgs.add("請輸入估價單編號");
 		}
 		if (!errorMsgs.isEmpty()) {
-			RequestDispatcher failureView = req.getRequestDispatcher("/backend/serQuo/quoBackend.jsp");
+			RequestDispatcher failureView = req.getRequestDispatcher("/backend/ser/serQuo/quoBackend.jsp");
 			failureView.forward(req, res);
 			return;// 中斷程式
 		}
@@ -45,7 +45,7 @@ public class GetOneQuoServlet extends HttpServlet{
 		}
 		// Send the use back to the form, if there were errors
 		if (!errorMsgs.isEmpty()) {
-			RequestDispatcher failureView = req.getRequestDispatcher("/backend/serQuo/quoBackend.jsp");
+			RequestDispatcher failureView = req.getRequestDispatcher("/backend/ser/serQuo/quoBackend.jsp");
 			failureView.forward(req, res);
 			return;
 		}
@@ -56,13 +56,13 @@ public class GetOneQuoServlet extends HttpServlet{
 			errorMsgs.add("查無資料");
 		}
 		if (!errorMsgs.isEmpty()) {
-			RequestDispatcher failureView = req.getRequestDispatcher("/backend/serQuo/quoBackend.jsp");
+			RequestDispatcher failureView = req.getRequestDispatcher("/backend/ser/serQuo/quoBackend.jsp");
 			failureView.forward(req, res);
 			return;
 		}
 		// 3.查詢完成,準備轉交(Send the Success view)
 		req.setAttribute("serQuoVO", serQuoVO);// 資料庫取出的empVO物件,存入req
-		String url = "/backend/serQuo/listOneSerQuo.jsp";
+		String url = "/backend/ser/serQuo/listOneSerQuo.jsp";
 		RequestDispatcher successView = req.getRequestDispatcher(url);// 成功轉交 listOneEmp.jsp
 		successView.forward(req, res);
 	}

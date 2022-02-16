@@ -34,14 +34,14 @@ public class UpdateOrdServlet extends HttpServlet {
 				SerOrdVO serOrdVO = serOrdSvc.getOneSerOrd(ordID);
 				// 查詢完成，準備轉交
 				req.setAttribute("serOrdVO", serOrdVO);
-				String url = "/backend/serOrd/updateSerOrd.jsp";
+				String url = "/backend/ser/serOrd/updateSerOrd.jsp";
 				RequestDispatcher successView = req.getRequestDispatcher(url);
 				successView.forward(req, res);
 
 				// 其他錯誤處理
 			} catch (Exception e) {
 				errorMsgs.add("無法取得要修改的資料:" + e.getMessage());
-				RequestDispatcher failureView = req.getRequestDispatcher("/backend/serOrd/listOneSerOrd.jsp");
+				RequestDispatcher failureView = req.getRequestDispatcher("/backend/ser/serOrd/listOneSerOrd.jsp");
 				failureView.forward(req, res);
 			}
 		}
@@ -135,7 +135,7 @@ public class UpdateOrdServlet extends HttpServlet {
 				serOrdVO.setOrdID(ordID);
 				if (!errorMsgs.isEmpty()) {
 					req.setAttribute("serOrdVO", serOrdVO); // 含有輸入格式錯誤的empVO物件,也存入req
-					RequestDispatcher failureView = req.getRequestDispatcher("/backend/serOrd/updateSerOrd.jsp");
+					RequestDispatcher failureView = req.getRequestDispatcher("/backend/ser/serOrd/updateSerOrd.jsp");
 					failureView.forward(req, res);
 					return;
 				}
@@ -147,12 +147,12 @@ public class UpdateOrdServlet extends HttpServlet {
 						ordFpayDate, ordBuyerScore, ordBuyerTxt, ordVdrScore, ordVdrTxt, ordNote, ordID);
 
 				// 3.修改完成，轉交
-				String url = "/backend/serOrd/listAllSerOrd.jsp";
+				String url = "/backend/ser/serOrd/listAllSerOrd.jsp";
 				RequestDispatcher successView = req.getRequestDispatcher(url); // 新增成功後轉交listAllEmp.jsp
 				successView.forward(req, res);
 			} catch (Exception e) {
 				errorMsgs.add("無法取得資料:" + e.getMessage());
-				RequestDispatcher failureView = req.getRequestDispatcher("/backend/serOrd/ordBackend.jsp");
+				RequestDispatcher failureView = req.getRequestDispatcher("/backend/ser/serOrd/ordBackend.jsp");
 				failureView.forward(req, res);
 			}
 		}

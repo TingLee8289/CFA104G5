@@ -149,6 +149,7 @@
 			<td>${renListingVO.lisStatus}</td>
 			<td>${renListingVO.lisApproval}</td>
 			<td>
+<<<<<<< HEAD
 				<FORM METHOD="post" ACTION="<%=request.getContextPath()%>/frontend/ren_listing/RenListingServlet.do" style="margin-bottom: 0px;">
 					<input type="submit" value="修改">
 					<input type="hidden" name="lisID" value="${renListingVO.lisID}">
@@ -157,6 +158,16 @@
 			</td>
 			<td>
 				<FORM METHOD="post" ACTION="<%=request.getContextPath()%>/frontend/ren_listing/RenListingServlet.do" style="margin-bottom: 0px;">
+=======
+				<FORM METHOD="post" ACTION="<%=request.getContextPath()%>/frontend/ren_listing/renlisting.do" style="margin-bottom: 0px;">
+					<input type="submit" value="修改">
+					<input type="hidden" name="lisID" value="${renListingVO.lisID}">
+					<input type="hidden" name="action" value="delete">
+				</FORM>
+			</td>
+			<td>
+				<FORM METHOD="post" ACTION="<%=request.getContextPath()%>/frontend/ren_listing/renlisting.do" style="margin-bottom: 0px;">
+>>>>>>> refs/heads/master
 			     	<input type="submit" value="刪除">
 			     	<input type="hidden" name="lisID"  value="${renListingVO.lisID}">
 			     	<input type="hidden" name="action" value="delete">
