@@ -266,6 +266,10 @@ body {
 						<input type="text" name="memAddress" id="memAddress"
 							placeholder="請輸入地址" class="form-control "
 							value="<%=(memberVO == null) ? "" : memberVO.getMemAddress()%>">
+							
+							
+							
+							
 					</div>
 				</div>
 			</div>
