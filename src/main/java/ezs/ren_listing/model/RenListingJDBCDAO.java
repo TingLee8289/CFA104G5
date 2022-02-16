@@ -507,7 +507,7 @@ public class RenListingJDBCDAO implements RenListingDAO_interface {
 			se.printStackTrace();
 		} finally {
 			Util.closeResource(con, pstmt, rs);
-		}
+		}//test
 		return list;
 	}
 
