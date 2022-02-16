@@ -3,13 +3,31 @@ package ezs.sec_items.model;
 import java.math.BigDecimal;
 import java.util.List;
 
+import ezs.sec_pics.model.SecPicsDAO_interface;
+import ezs.sec_pics.model.SecPicsJDBCDAO;
+import ezs.sec_pics.model.SecPicsVO;
+
 public class SecItemsService {
 	private SecItemsDAO_interface dao;
+	private SecPicsDAO_interface daosecpic;
 	
 	public SecItemsService() {
-		dao = new SecItemsDAO();
+		dao = new SecItemsJNDIDAO();
+		daosecpic = new SecPicsJDBCDAO();
+		
 	}
+	//
+	public SecItemsVO addSecItems(SecItemsVO secItemsVO, SecPicsVO secPicsVO) {
+		Integer id = dao.insert(secItemsVO);
+//		DAO新增出來才會產生的ShID 讓它對應Pics
+		secPicsVO.setShID(id);
+		//picDao 傳到關聯表格
+		daosecpic.insert(secPicsVO);
+		return secItemsVO;
 
+	}                
+	
+	
 	public SecItemsVO addSecItems(Integer shCateID, 
 			Integer shSellerID, 
 			String shName, 
@@ -46,11 +64,20 @@ public class SecItemsService {
 
 		return secItemsVO;
 	}
+	
+	public SecItemsVO updateSecItems(SecItemsVO secItemsVO, SecPicsVO secPicsVO) {
+		Integer id = dao.insert(secItemsVO);
+//		DAO新增出來才會產生的ShID 讓它對應Pics
+		secPicsVO.setShID(id);
+		//picDao 傳到關聯表格
+		daosecpic.update(secPicsVO);
+		return secItemsVO;
 
+	}     
 	public SecItemsVO updateSecItems(Integer shID, 
 			Integer shCateID, 
 			Integer shSellerID, 
-			String shName,
+			String shName, 
 			BigDecimal shPrice, 
 			Integer shQTY,
 			String shSize,
@@ -60,7 +87,8 @@ public class SecItemsService {
 			String shGuarantee,
 			Integer shStatus,
 			String shCounty,
-			String shDist) {
+			String shDist
+			) {
 
 		SecItemsVO secItemsVO = new SecItemsVO();
 		
@@ -78,12 +106,15 @@ public class SecItemsService {
 		secItemsVO.setShStatus(shStatus);
 		secItemsVO.setShCounty(shCounty);
 		secItemsVO.setShDist(shDist);
-
+		secItemsVO.setShID(shID);
 		dao.update(secItemsVO);
+
 		return secItemsVO;
 	}
-
+	
+	
 	public void deleteSecItems(Integer shID) {
+
 		dao.delete(shID);
 	}
 
@@ -94,9 +125,8 @@ public class SecItemsService {
 	public List<SecItemsVO> getAll() {
 		return dao.getAll();
 	}
-
+	
 	public List<SecItemsVO> getByCategory(Integer shCateID) {
 		return dao.findByShCategory(shCateID);
-	}	
-
+	}
 }

@@ -15,16 +15,16 @@ public class SecPicsService {
 
 		secPicsVO.setShID(shID);
 		secPicsVO.setShPic(shPic);
-
+		
 		dao.insert(secPicsVO);
 
 		return secPicsVO;
 	}
 
-	public SecPicsVO updateSecPics(Integer shPicID, Integer shID, byte[] shPic) {
+	public SecPicsVO updateSecPics(Integer shID, byte[] shPic) {
 
 		SecPicsVO secPicsVO = new SecPicsVO();
-		secPicsVO.setShPicID(shPicID);
+		
 		secPicsVO.setShID(shID);
 		secPicsVO.setShPic(shPic);
 		dao.update(secPicsVO);
@@ -36,8 +36,8 @@ public class SecPicsService {
 		dao.delete(shPicID);
 	}
 
-	public SecPicsVO getOneSecPics(Integer shPicID) {
-		return dao.findByPrimaryKey(shPicID);
+	public SecPicsVO getOneSecPics(Integer shID) {
+		return dao.findByPrimaryKey(shID);
 	}
 
 	public List<SecPicsVO> getAll() {

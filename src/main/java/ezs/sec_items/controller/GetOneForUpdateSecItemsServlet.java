@@ -1,8 +1,8 @@
 package ezs.sec_items.controller;
 
-import java.io.*;
-import java.math.BigDecimal;
-import java.util.*;
+import java.io.IOException;
+import java.util.LinkedList;
+import java.util.List;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -14,11 +14,14 @@ import javax.servlet.http.HttpServletResponse;
 
 import ezs.sec_items.model.SecItemsService;
 import ezs.sec_items.model.SecItemsVO;
-import ezs.sec_pics.model.SecPicsService;
 
-@WebServlet("/sec_items/DeleteSecItemsServlet.do")
+/**
+ * Servlet implementation class GetOneForUpdateSecItemsServlet
+ */
+@WebServlet("/sec_items/GetOneForUpdateSecItemsServlet.do")
 @MultipartConfig(fileSizeThreshold = 1024 * 1024, maxFileSize = 5 * 1024 * 1024, maxRequestSize = 5 * 5 * 1024 * 1024)
-public class DeleteSecItemsServlet extends HttpServlet {
+
+public class GetOneForUpdateSecItemsServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
 
@@ -32,37 +35,37 @@ public class DeleteSecItemsServlet extends HttpServlet {
 
 		req.setCharacterEncoding("UTF-8");
 		String action = req.getParameter("action");
-
-		if ("delete".equals(action)) { // 來自listAllEmp.jsp
+		if ("getOne_For_Update".equals(action)) { // 來自listAllSecItems.jsp的請求
 
 			List<String> errorMsgs = new LinkedList<String>();
-
+			// Store this set in the request scope, in case we need to
+			// send the ErrorPage view.
 			req.setAttribute("errorMsgs", errorMsgs);
 
 			try {
-				/*************************** 1.接收請求參數 ***************************************/
+				/*************************** 1.接收請求參數 ****************************************/
 				Integer shID = Integer.valueOf(req.getParameter("shID"));
-
-
-				/*************************** 2.開始刪除資料 ***************************************/
+//				System.out.println(shID);
+				/*************************** 2.開始查詢資料 ****************************************/
 				SecItemsService secItemsSvc = new SecItemsService();
-				SecPicsService secPicsSvc = new SecPicsService();
-				
-				secItemsSvc.deleteSecItems(shID);
-				secPicsSvc.deleteSecPics(shID);
-				
-				/*************************** 3.刪除完成,準備轉交(Send the Success view) ***********/
-				String url = "/frontend/sec_items/listAllSecItems.jsp";
-				RequestDispatcher successView = req.getRequestDispatcher(url);// 刪除成功後,轉交回送出刪除的來源網頁
+				SecItemsVO secItemsVO = secItemsSvc.getOneSecItems(shID);
+
+				/*************************** 3.查詢完成,準備轉交(Send the Success view) ************/
+				req.setAttribute("secItemsVO", secItemsVO); // 資料庫取出的secItems物件,存入req
+				String url = "/frontend/sec_items/update_secItems_input.jsp";
+				RequestDispatcher successView = req.getRequestDispatcher(url);// 成功轉交 update_emp_input.jsp
 				successView.forward(req, res);
 
 				/*************************** 其他可能的錯誤處理 **********************************/
 			} catch (Exception e) {
 				e.printStackTrace();
-				errorMsgs.add("刪除資料失敗:" + e.getMessage());
+				errorMsgs.add("無法取得要修改的資料:" + e.getMessage());
 				RequestDispatcher failureView = req.getRequestDispatcher("/frontend/sec_items/listAllSecItems.jsp");
 				failureView.forward(req, res);
 			}
 		}
+		
+		
 	}
+
 }
