@@ -32,7 +32,7 @@ public class GetOneOrdServlet extends HttpServlet{
 			errorMsgs.add("請輸入估價單編號");
 		}
 		if (!errorMsgs.isEmpty()) {
-			RequestDispatcher failureView = req.getRequestDispatcher("/backend/serOrd/quoBackend.jsp");
+			RequestDispatcher failureView = req.getRequestDispatcher("/backend/ser/serOrd/ordBackend.jsp");
 			failureView.forward(req, res);
 			return;// 中斷程式
 		}
@@ -45,7 +45,7 @@ public class GetOneOrdServlet extends HttpServlet{
 		}
 		// Send the use back to the form, if there were errors
 		if (!errorMsgs.isEmpty()) {
-			RequestDispatcher failureView = req.getRequestDispatcher("/backend/serOrd/ordBackend.jsp");
+			RequestDispatcher failureView = req.getRequestDispatcher("/backend/ser/serOrd/ordBackend.jsp");
 			failureView.forward(req, res);
 			return;
 		}
@@ -56,13 +56,13 @@ public class GetOneOrdServlet extends HttpServlet{
 			errorMsgs.add("查無資料");
 		}
 		if (!errorMsgs.isEmpty()) {
-			RequestDispatcher failureView = req.getRequestDispatcher("/backend/serOrd/ordBackend.jsp");
+			RequestDispatcher failureView = req.getRequestDispatcher("/backend/ser/serOrd/ordBackend.jsp");
 			failureView.forward(req, res);
 			return;
 		}
 		// 3.查詢完成,準備轉交(Send the Success view)
 		req.setAttribute("serOrdVO", serOrdVO);// 資料庫取出的empVO物件,存入req
-		String url = "/backend/serOrd/listOneSerOrd.jsp";
+		String url = "/backend/ser/serOrd/listOneSerOrd.jsp";
 		RequestDispatcher successView = req.getRequestDispatcher(url);// 成功轉交 listOneEmp.jsp
 		successView.forward(req, res);
 	}

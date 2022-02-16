@@ -31,13 +31,13 @@ public class DeleteQuoServlet extends HttpServlet{
 				SerQuoService serQuoSvc = new SerQuoService();
 				serQuoSvc.deleteSerQuo(quoID);
 				//刪除完成轉交頁面
-				String url = "/backend/serQuo/listAllSerQuo.jsp";
+				String url = "/backend/ser/serQuo/listAllSerQuo.jsp";
 				RequestDispatcher successView = req.getRequestDispatcher(url); 
 				successView.forward(req, res);
 			} 
 			 catch (Exception e) {
 				 errorMsgs.add("資料失敗:" + e.getMessage());
-					RequestDispatcher failureView = req.getRequestDispatcher("/backend/serQuo/listAllSerQuo.jsp");
+					RequestDispatcher failureView = req.getRequestDispatcher("/backend/ser/serQuo/listAllSerQuo.jsp");
 					failureView.forward(req, res);
 			}
 		}
