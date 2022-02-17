@@ -11,6 +11,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import ezs.sec_ord.model.SecOrdService;
 import ezs.sec_ord.model.SecOrdVO;
@@ -43,7 +44,8 @@ public class SecOrdServlet extends HttpServlet {
 				Set<SecOrdVO> set = secOrdSvc.getSecOrdByShBuyerID(shBuyerID);
 
 				/*************************** 3.查詢完成,準備轉交(Send the Success view) ************/
-				req.setAttribute("listSecOrds_ByShBuyerID", set); // 資料庫取出的list物件,存入request
+				HttpSession session = req.getSession();
+				session.setAttribute("listSecOrds_ByShBuyerID", set); // 資料庫取出的list物件,存入request
 
 				String url = "/frontend/sec_ord/listSecOrds_ByShBuyerID.jsp";
 				RequestDispatcher successView = req.getRequestDispatcher(url);
@@ -55,8 +57,8 @@ public class SecOrdServlet extends HttpServlet {
 			}
 		}
 
-// 買家會員完成訂單
-		if ("completeOrder".equals(action)) {
+// 買家會員完成訂單或申請退款
+		if ("completeOrder".equals(action) || "refundOrder".equals(action)) {
 
 			List<String> errorMsgs = new LinkedList<String>();
 			req.setAttribute("errorMsgs", errorMsgs);
@@ -66,9 +68,15 @@ public class SecOrdServlet extends HttpServlet {
 				Integer secOrdID = Integer.valueOf(req.getParameter("secOrdID"));
 
 				/*************************** 2.開始修改資料 ****************************************/
-				SecOrdService secOrdSvc = new SecOrdService();
-				secOrdSvc.updateCompleteOrder(secOrdID);
-
+				
+				if("completeOrder".equals(action)) {
+					SecOrdService secOrdSvc = new SecOrdService();
+					secOrdSvc.updateCompleteOrder(secOrdID);
+				} else if ("refundOrder".equals(action)) {
+					SecOrdService secOrdSvc = new SecOrdService();
+					secOrdSvc.refundOrder(secOrdID);
+				}
+				
 				/*************************** 3.修改完成,準備轉交(Send the Success view) ************/
 
 				String url = "/frontend/sec_ord/listSecOrds_ByShBuyerID.jsp";

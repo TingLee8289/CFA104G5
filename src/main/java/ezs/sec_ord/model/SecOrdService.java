@@ -116,4 +116,9 @@ public class SecOrdService {
 	public void updateCompleteOrder(Integer shOrdID) {
 		dao.updateCompleteOrder(shOrdID);
 	}
+
+	public void refundOrder(Integer shOrdID) {
+		dao.refundOrder(shOrdID);
+		
+	}
 }

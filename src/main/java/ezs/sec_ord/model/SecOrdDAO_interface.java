@@ -11,5 +11,6 @@ public interface SecOrdDAO_interface {
     public List<SecOrdVO> getAll();
     public Set<SecOrdVO> getSecOrdByShBuyerID(Integer shBuyerID);
     public void updateCompleteOrder(Integer shOrdID);
+	public void refundOrder(Integer shOrdID);
     
 }
