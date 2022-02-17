@@ -58,11 +58,11 @@ public class RenLeaseServlet extends HttpServlet {
 				}
 				
 				/***************************2.開始查詢資料*****************************************/
-				EmpService empSvc = new EmpService();
-				EmpVO empVO = empSvc.getOneEmp(empno);
-				if (empVO == null) {
+//				EmpService empSvc = new EmpService();
+//				EmpVO empVO = empSvc.getOneEmp(empno);
+//				if (empVO == null) {
 					errorMsgs.add("查無資料");
-				}
+//				}
 				// Send the use back to the form, if there were errors
 				if (!errorMsgs.isEmpty()) {
 					RequestDispatcher failureView = req
@@ -72,7 +72,7 @@ public class RenLeaseServlet extends HttpServlet {
 				}
 				
 				/***************************3.查詢完成,準備轉交(Send the Success view)*************/
-				req.setAttribute("empVO", empVO); // 資料庫取出的empVO物件,存入req
+//				req.setAttribute("empVO", empVO); // 資料庫取出的empVO物件,存入req
 				String url = "/emp/listOneEmp.jsp";
 				RequestDispatcher successView = req.getRequestDispatcher(url); // 成功轉交 listOneEmp.jsp
 				successView.forward(req, res);
@@ -99,11 +99,11 @@ public class RenLeaseServlet extends HttpServlet {
 				Integer empno = new Integer(req.getParameter("empno"));
 				
 				/***************************2.開始查詢資料****************************************/
-				EmpService empSvc = new EmpService();
-				EmpVO empVO = empSvc.getOneEmp(empno);
+//				EmpService empSvc = new EmpService();
+//				EmpVO empVO = empSvc.getOneEmp(empno);
 								
 				/***************************3.查詢完成,準備轉交(Send the Success view)************/
-				req.setAttribute("empVO", empVO);         // 資料庫取出的empVO物件,存入req
+//				req.setAttribute("empVO", empVO);         // 資料庫取出的empVO物件,存入req
 				String url = "/emp/update_emp_input.jsp";
 				RequestDispatcher successView = req.getRequestDispatcher(url);// 成功轉交 update_emp_input.jsp
 				successView.forward(req, res);
@@ -168,18 +168,18 @@ public class RenLeaseServlet extends HttpServlet {
 
 				Integer deptno = new Integer(req.getParameter("deptno").trim());
 
-				EmpVO empVO = new EmpVO();
-				empVO.setEmpno(empno);
-				empVO.setEname(ename);
-				empVO.setJob(job);
-				empVO.setHiredate(hiredate);
-				empVO.setSal(sal);
-				empVO.setComm(comm);
-				empVO.setDeptno(deptno);
+//				EmpVO empVO = new EmpVO();
+//				empVO.setEmpno(empno);
+//				empVO.setEname(ename);
+//				empVO.setJob(job);
+//				empVO.setHiredate(hiredate);
+//				empVO.setSal(sal);
+//				empVO.setComm(comm);
+//				empVO.setDeptno(deptno);
 
 				// Send the use back to the form, if there were errors
 				if (!errorMsgs.isEmpty()) {
-					req.setAttribute("empVO", empVO); // 含有輸入格式錯誤的empVO物件,也存入req
+//					req.setAttribute("empVO", empVO); // 含有輸入格式錯誤的empVO物件,也存入req
 					RequestDispatcher failureView = req
 							.getRequestDispatcher("/emp/update_emp_input.jsp");
 					failureView.forward(req, res);
@@ -187,11 +187,11 @@ public class RenLeaseServlet extends HttpServlet {
 				}
 				
 				/***************************2.開始修改資料*****************************************/
-				EmpService empSvc = new EmpService();
-				empVO = empSvc.updateEmp(empno, ename, job, hiredate, sal,comm, deptno);
+//				EmpService empSvc = new EmpService();
+//				empVO = empSvc.updateEmp(empno, ename, job, hiredate, sal,comm, deptno);
 				
 				/***************************3.修改完成,準備轉交(Send the Success view)*************/
-				req.setAttribute("empVO", empVO); // 資料庫update成功後,正確的的empVO物件,存入req
+//				req.setAttribute("empVO", empVO); // 資料庫update成功後,正確的的empVO物件,存入req
 				String url = "/emp/listOneEmp.jsp";
 				RequestDispatcher successView = req.getRequestDispatcher(url); // 修改成功後,轉交listOneEmp.jsp
 				successView.forward(req, res);
@@ -253,17 +253,17 @@ public class RenLeaseServlet extends HttpServlet {
 				
 				Integer deptno = new Integer(req.getParameter("deptno").trim());
 
-				EmpVO empVO = new EmpVO();
-				empVO.setEname(ename);
-				empVO.setJob(job);
-				empVO.setHiredate(hiredate);
-				empVO.setSal(sal);
-				empVO.setComm(comm);
-				empVO.setDeptno(deptno);
+//				EmpVO empVO = new EmpVO();
+//				empVO.setEname(ename);
+//				empVO.setJob(job);
+//				empVO.setHiredate(hiredate);
+//				empVO.setSal(sal);
+//				empVO.setComm(comm);
+//				empVO.setDeptno(deptno);
 
 				// Send the use back to the form, if there were errors
 				if (!errorMsgs.isEmpty()) {
-					req.setAttribute("empVO", empVO); // 含有輸入格式錯誤的empVO物件,也存入req
+//					req.setAttribute("empVO", empVO); // 含有輸入格式錯誤的empVO物件,也存入req
 					RequestDispatcher failureView = req
 							.getRequestDispatcher("/emp/addEmp.jsp");
 					failureView.forward(req, res);
@@ -271,8 +271,8 @@ public class RenLeaseServlet extends HttpServlet {
 				}
 				
 				/***************************2.開始新增資料***************************************/
-				EmpService empSvc = new EmpService();
-				empVO = empSvc.addEmp(ename, job, hiredate, sal, comm, deptno);
+//				EmpService empSvc = new EmpService();
+//				empVO = empSvc.addEmp(ename, job, hiredate, sal, comm, deptno);
 				
 				/***************************3.新增完成,準備轉交(Send the Success view)***********/
 				String url = "/emp/listAllEmp.jsp";
@@ -301,8 +301,8 @@ public class RenLeaseServlet extends HttpServlet {
 				Integer empno = new Integer(req.getParameter("empno"));
 				
 				/***************************2.開始刪除資料***************************************/
-				EmpService empSvc = new EmpService();
-				empSvc.deleteEmp(empno);
+//				EmpService empSvc = new EmpService();
+//				empSvc.deleteEmp(empno);
 				
 				/***************************3.刪除完成,準備轉交(Send the Success view)***********/								
 				String url = "/emp/listAllEmp.jsp";

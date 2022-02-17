@@ -1,9 +1,8 @@
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="Big5"%>
-<%@ page import="com.emp.model.*"%>
 <%-- 此頁暫練習採用 Script 的寫法取值 --%>
 
 <%
-  EmpVO empVO = (EmpVO) request.getAttribute("empVO"); //EmpServlet.java(Concroller), 存入req的empVO物件
+  //EmpVO empVO = (EmpVO) request.getAttribute("empVO"); //EmpServlet.java(Concroller), 存入req的empVO物件
 %>
 
 <html>
@@ -65,13 +64,13 @@
 		<th>部門</th>
 	</tr>
 	<tr>
-		<td><%=empVO.getEmpno()%></td>
-		<td><%=empVO.getEname()%></td>
-		<td><%=empVO.getJob()%></td>
-		<td><%=empVO.getHiredate()%></td>
-		<td><%=empVO.getSal()%></td>
-		<td><%=empVO.getComm()%></td>
-		<td><%=empVO.getDeptno()%></td>
+<%-- 		<td><%=empVO.getEmpno()%></td> --%>
+<%-- 		<td><%=empVO.getEname()%></td> --%>
+<%-- 		<td><%=empVO.getJob()%></td> --%>
+<%-- 		<td><%=empVO.getHiredate()%></td> --%>
+<%-- 		<td><%=empVO.getSal()%></td> --%>
+<%-- 		<td><%=empVO.getComm()%></td> --%>
+<%-- 		<td><%=empVO.getDeptno()%></td> --%>
 	</tr>
 </table>
 
