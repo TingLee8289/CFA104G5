@@ -31,7 +31,7 @@
 
 		<ul>
 			<li><a
-				href="<%=request.getContextPath()%>/frontend/ser_quo/getQuoByMemID.jsp">會員檢視估價單</a>
+				href="<%=request.getContextPath()%>/frontend/ser_quo/findByQuoDmdID.jsp">會員檢視估價單</a>
 			</li>
 		</ul>
 		<ul>

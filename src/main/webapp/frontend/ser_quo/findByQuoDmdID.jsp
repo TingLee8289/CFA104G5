@@ -17,7 +17,7 @@ SerQuoVO serQuoVO = (SerQuoVO) request.getAttribute("serQuoVO");
 <html>
 <head>
 <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
-<title>會員新增估價單(投遞需求單) - addQuoDmd.jsp</title>
+<title>會員檢視估價單 - findByDmdID.jsp</title>
 
 <style>
 table#table-1 {
@@ -61,7 +61,7 @@ th, td {
 	<table id="table-1">
 		<tr>
 			<td>
-				<h3>新增估價單 - addSerDmd.jsp</h3>
+				<h3>會員檢視估價單 - findByDmdID.jsp</h3>
 			</td>
 			<td style="text-align: center">
 				<h4>
@@ -72,7 +72,7 @@ th, td {
 		</tr>
 	</table>
 
-	<h3>新增估價單(投遞需求單):</h3>
+	<h3>會員檢視估價單:</h3>
 
 	<%-- 錯誤表列 --%>
 	<c:if test="${not empty errorMsgs}">
@@ -85,13 +85,10 @@ th, td {
 	</c:if>
 
 	<FORM METHOD="post"
-		ACTION="<%=request.getContextPath()%>/ser_quo/AddQuoServlet.do"
-		name="form1">
+		ACTION="<%=request.getContextPath()%>/ser_quo/FindByQuoDmdIDServlet.do"
+		name="form1"><!-- 尚未修改 -->
 		<table>
-			<tr>
-				<td><input type="hidden" type="TEXT" name="quoStatus" size="8"
-					value=0 /></td>
-			</tr>
+			
 			
 			<tr>
 				<td>需求單ID:<font color=red><b>*</b></font></td>
@@ -104,34 +101,12 @@ th, td {
 
 
 
-			<tr>
-				<td>廠商編號:</td>
-				<td><input type="TEXT" name="quoVdrID" size="50"
-					value="<%=(serQuoVO == null) ? "3" : serQuoVO.getQuoVdrID()%>" /></td>
-			</tr>
-			<tr>
-
-				<td><input type="hidden" name="quoDate" id="quoDate1"
-					type="text"></td>
-			</tr>
-			<tr>
-				<td><input type="hidden" name="quoExpiryDate"
-					id="quoExpiryDate1" type="text"></td>
-			</tr>
-			<tr>
-				<td><input type="hidden" type="TEXT" name="quoItem" size="8"
-					value="" /></td>
-			</tr>
-			<tr>
-				<td><input type="hidden" type="TEXT" name="quoTotalPrice"
-					value="0" /></td>
-			</tr>
-
+			
 
 
 
 		</table>
-		<br> <input type="hidden" name="action" value="insert"> <input
+		<br> <input type="hidden" name="action" value="findByDmdID"> <input
 			type="submit" value="送出新增">
 	</FORM>
 </body>
