@@ -188,8 +188,8 @@ pageContext.setAttribute("secItemslist", secItemslist);
 		<ul class="item_list" id="item_list">
 
 			<c:forEach var="secPicsVO" items="${secPicslist}">
-				<li><a
-					href="<%=request.getContextPath()%>/sec_items/GetSecItemsServlet.do?shID=${secPicsVO.shID}&action=getOne_For_Display">
+				<li>
+					<a href="<%=request.getContextPath()%>/sec_items/GetSecItemsServlet.do?shID=${secPicsVO.shID}&action=getOne_For_Display">
 						<div class="img_block">
 							<img
 								src="<%= request.getContextPath()%>/sec_pics/SecPicsReader.do?sh_id=${secPicsVO.shID}">
@@ -199,12 +199,14 @@ pageContext.setAttribute("secItemslist", secItemslist);
 								<span class="item_price">$${secItemsVO.shPrice}</span>
 							</c:if>
 						</c:forEach>
-				</a> <c:forEach var="secItemsVO" items="${secItemslist}">
+					</a> 
+					<c:forEach var="secItemsVO" items="${secItemslist}">
 						<c:if test="${secItemsVO.shID==secPicsVO.shID}">
 							<a class="btn btn-buy"
 								href="<%=request.getContextPath()%>/sec_items/ShoppingServlet.do?shID=${secItemsVO.shID}&shName=${secItemsVO.shName}&shPrice=${secItemsVO.shPrice}&shQTY=1&action=ADD">加入購物車</a>
 						</c:if>
-					</c:forEach></li>
+					</c:forEach>
+				</li>
 			</c:forEach>
 
 		</ul>
