@@ -6,7 +6,7 @@ public class SerClaService {
 	private SerClaDAO_interface dao;
 
 	public SerClaService() {
-		dao = new SerClaJNDIDAO();
+		dao = new SerClaDAO();
 	}
 
 	public SerClaVO addSerCla(Integer serClaID, String serClaName) {
