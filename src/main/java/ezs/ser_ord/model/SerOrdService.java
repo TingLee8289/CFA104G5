@@ -106,4 +106,11 @@ public class SerOrdService {
 	public List<SerOrdVO> getAll() {
 		return dao.getAll();
 	}
+	
+	public List<SerOrdVO> findOrdByVdrID(Integer ordVdrID){
+		return dao.findOrdByVdrID(ordVdrID);
+	}
+	public List<SerOrdVO> findOrdByMemID(Integer ordMemID){
+		return dao.findOrdByVdrID(ordMemID);
+	}
 }
