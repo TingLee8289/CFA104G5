@@ -21,7 +21,7 @@ public class SerClaTest {
 //        dao.update(ser2);
 
 		// 刪除 -測試OK
-        dao.delete(18);
+        dao.delete(2);
 
 		// 查詢 -測試OK
 //        SerClaVO ser4 = dao.findByPrimaryKey(2);
@@ -29,11 +29,11 @@ public class SerClaTest {
 //        System.out.print(ser4.getSerClaName());
 
 		// 查詢2 -測試OK
-		List<SerClaVO> list = dao.getAll();
-		for (SerClaVO ser5 : list) {
-			System.out.print(ser5.getSerClaID());
-			System.out.print(ser5.getSerClaName() + " ");
-		}
+//		List<SerClaVO> list = dao.getAll();
+//		for (SerClaVO ser5 : list) {
+//			System.out.print(ser5.getSerClaID());
+//			System.out.print(ser5.getSerClaName() + " ");
+//		}
 
 	}
 
