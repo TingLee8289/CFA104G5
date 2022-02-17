@@ -8,7 +8,8 @@
 <meta charset="UTF-8">
 <title>EASY SPACE</title>
 <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
-<script src="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+<script
+	src="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
 
 <link
 	href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
@@ -100,7 +101,8 @@ body {
 	<div class="main">
 		<div class="col-md-6 col-sm-12">
 			<div class="login-form">
-				<form method="post" action="<%=request.getContextPath()%>/member/MemberServlet.do">
+				<form method="post"
+					action="<%=request.getContextPath()%>/member/MemberServlet.do">
 					<div class="form-group">
 						<label>User Name Gwen02</label> <input type="text" name="name"
 							class="form-control" placeholder="User Name">
@@ -110,17 +112,24 @@ body {
 							class="form-control" placeholder="Password">
 					</div>
 
-			
-				<%-- 錯誤表列 --%>
-				<c:if test="${not empty errorMsgs}">
-					<font style="color: red">請修正以下錯誤:</font>
-					<ul>
-						<c:forEach var="message" items="${errorMsgs}">
-							<p style="color: red">${message}</p>
-						</c:forEach>
-					</ul>
-				</c:if>
-				
+					<div>
+						<%
+						Object memusername = session.getAttribute("memUsername");
+						out.println("getAttribute :" + memusername);
+						%>
+					</div>
+
+
+					<%-- 錯誤表列 --%>
+					<c:if test="${not empty errorMsgs}">
+						<font style="color: red">請修正以下錯誤:</font>
+						<ul>
+							<c:forEach var="message" items="${errorMsgs}">
+								<p style="color: red">${message}</p>
+							</c:forEach>
+						</ul>
+					</c:if>
+
 					<input type="hidden" name="action" value="getOne_For_Display">
 					<input type="submit" class="btn btn-black" value="登入">
 				</form>
