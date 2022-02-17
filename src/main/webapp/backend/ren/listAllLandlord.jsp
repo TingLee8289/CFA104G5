@@ -1,8 +1,7 @@
-<%@ page contentType="text/html; charset=UTF-8" pageEncoding="Big5"%>
+<%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ page import="java.util.*"%>
 <%@ page import="ezs.ren_landlord.model.*"%>
-<%-- ¦¹­¶½m²ß±Ä¥Î EL ªº¼gªk¨ú­È --%>
 
 <%
 RenLandlordService renlandlordSvc = new RenLandlordService();
@@ -13,7 +12,7 @@ pageContext.setAttribute("list", list);
 
 <html>
 <head>
-<title>©Ò¦³¥Ó½Ğ©ĞªF¸ê®Æ - listAllLandlord.jsp</title>
+<title>æ‰€æœ‰ç”³è«‹æˆ¿æ±è³‡æ–™ - listAllLandlord.jsp</title>
 
 </head>
 <body bgcolor='white'>
@@ -21,19 +20,19 @@ pageContext.setAttribute("list", list);
 	<table id="table-1">
 		<tr>
 			<td>
-				<h3>©Ò¦³©ĞªF¸ê®Æ - listAllLandlord.jsp</h3>
+				<h3>æ‰€æœ‰æˆ¿æ±è³‡æ–™ - listAllLandlord.jsp</h3>
 				<h4>
 					<a href="select.jsp"><img
-						src="<%=request.getContextPath()%>/images/ren/back1.gif"
-						width="100" height="32" border="0">¦^­º­¶</a>
+						src="<%=request.getContextPath()%>/images/ren/back_icon.png"
+						width="60" height="60" border="0">å›é¦–é </a>
 				</h4>
 			</td>
 		</tr>
 	</table>
 
-	<%-- ¿ù»~ªí¦C --%>
+	<%-- éŒ¯èª¤è¡¨åˆ— --%>
 	<c:if test="${not empty errorMsgs}">
-		<font style="color: red">½Ğ­×¥¿¥H¤U¿ù»~:</font>
+		<font style="color: red">è«‹ä¿®æ­£ä»¥ä¸‹éŒ¯èª¤:</font>
 		<ul>
 			<c:forEach var="message" items="${errorMsgs}">
 				<li style="color: red">${message}</li>
@@ -43,12 +42,12 @@ pageContext.setAttribute("list", list);
 
 	<table>
 		<tr>
-			<th>©ĞªF½s¸¹</th>
-			<th>·|­û½s¸¹</th>
-			<th>·|­û¦WºÙ</th>
-			<th>¼f®Öª¬ºA</th>
-			<th>­×§ï</th>
-			<th>§R°£</th>
+			<th>æˆ¿æ±ç·¨è™Ÿ</th>
+			<th>æœƒå“¡ç·¨è™Ÿ</th>
+			<th>æœƒå“¡åç¨±</th>
+			<th>å¯©æ ¸ç‹€æ…‹</th>
+			<th>ä¿®æ”¹</th>
+			<th>åˆªé™¤</th>
 		</tr>
 		<%@ include file="page1.file"%>
 		<c:forEach var="renLandlordVO" items="${list}" begin="<%=pageIndex%>"
@@ -57,42 +56,26 @@ pageContext.setAttribute("list", list);
 				<td>${renLandlordVO.lddId}</td>
 				<td>${renLandlordVO.lddMemId}</td>
 				<td></td>
-				<%-- 	¤Ş¥Î¨ä¥L±iªí®æªº¤º®e
-<jsp:useBean id="deptSvc" scope="page" class="com.dept.model.DeptService" />
-	<tr>
-		<td>³¡ªù:<font color=red><b>*</b></font></td>
-		<td><select size="1" name="deptno">
-			<c:forEach var="deptVO" items="${deptSvc.all}">
-				<option value="${deptVO.deptno}" ${(empVO.deptno==deptVO.deptno)?'selected':'' } >${deptVO.dname}
-			</c:forEach>
-		</select></td>
-	</tr> --%>
-				<td>${renLandlordVO.lddApproval}</td>
-<%-- 				<select data-v-2449cb06="" tabindex="0"
-					class="shopee-selector shopee-selector--normal shopee-select__options"
-					name="acc_state"
-					style="background: #eff9ec 0px 0px; color: #ffffff; font-size: 14px; padding: 0; width: 88px; height: 32px; color: rgb(128, 140, 153);">
-					<!-- ¦W¦r¦b³o -->
-					<option class="shopee-option" value="0">¥¼ÅçÃÒ</option>
-					<option class="shopee-option" value="1"
-						<c:if test="${memVO.acc_state == 1}">selected</c:if>>¤wÅçÃÒ</option>
-					<option class="shopee-option" value="2"
-						<c:if test="${memVO.acc_state == 2}">selected</c:if>>°±Åv</option>
-				</select> --%>
+				<td>
+					<c:if test="${renLandlordVO.lddApproval == 0}">å¯©æ ¸ä¸­</c:if>
+					<c:if test="${renLandlordVO.lddApproval == 1}">å¯©æ ¸æœªé</c:if> 
+					<c:if test="${renLandlordVO.lddApproval == 2}">å¯©æ ¸å·²é</c:if>
+				</td>
+
 				<td>
 					<FORM METHOD="post"
-						ACTION="<%=request.getContextPath()%>/backend/ren/renlandlord.do"
+						ACTION="<%=request.getContextPath()%>/ren_landlord/RenLandlordServlet.do"
 						style="margin-bottom: 0px;">
-						<input type="submit" value="­×§ï"> <input type="hidden"
+						<input type="submit" value="ä¿®æ”¹"> <input type="hidden"
 							name="lddId" value="${renLandlordVO.lddId}"> <input
 							type="hidden" name="action" value="getOne_For_Update">
 					</FORM>
 				</td>
 				<td>
 					<FORM METHOD="post"
-						ACTION="<%=request.getContextPath()%>/backend/ren/renlandlord.do"
+						ACTION="<%=request.getContextPath()%>/ren_landlord/RenLandlordServlet.do"
 						style="margin-bottom: 0px;">
-						<input type="submit" value="§R°£"> <input type="hidden"
+						<input type="submit" value="åˆªé™¤"> <input type="hidden"
 							name="lddId" value="${renLandlordVO.lddId}"> <input
 							type="hidden" name="action" value="delete">
 					</FORM>

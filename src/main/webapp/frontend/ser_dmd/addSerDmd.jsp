@@ -78,11 +78,31 @@
 			 value="<%= (serDmdVO==null)? "2" : serDmdVO.getDmdMemID() %>"/></td>
 	</tr>
 	
+<!-- 	<tr> -->
+<!-- 		<td>服務類別ID:</td> -->
+<!-- 		<td><input type="TEXT" name="dmdSerClaID" size="8" -->
+<%-- 			 value="<%= (serDmdVO==null)? "2" : serDmdVO.getDmdSerClaID() %>"/></td> --%>
+<!-- 	</tr> -->
+	
+	
+	
+	<jsp:useBean id="serCla" scope="page" class="ezs.ser_cla.model.SerClaService" />
 	<tr>
-		<td>服務類別ID:</td>
-		<td><input type="TEXT" name="dmdSerClaID" size="8"
-			 value="<%= (serDmdVO==null)? "2" : serDmdVO.getDmdSerClaID() %>"/></td>
+		<td>服務類別:<font color=red><b>*</b></font></td>
+		<td><select size="1" name="dmdSerClaID">
+			<c:forEach var="serClaVO" items="${serCla.all}">
+				<option value="${serClaVO.serClaID}" ${(serDmdVO.dmdSerClaID==serClaVO.serClaID)? 'selected':'' } >${serClaVO.serClaName}
+			</c:forEach>
+		</select></td>
 	</tr>
+	
+	
+	
+	
+	
+	
+	
+	
 	<tr>
 		<td>需求人姓名:</td>
 		<td><input type="TEXT" name="dmdName" 
