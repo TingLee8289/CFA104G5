@@ -2,7 +2,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ page import="ezs.sec_ord.model.*"%>
 
-<jsp:useBean id="listSecOrds_ByShBuyerID" scope="request" type="java.util.Set<SecOrdVO>" /> <!-- 於EL此行可省略 -->
+<jsp:useBean id="listSecOrds_ByShBuyerID" scope="session" type="java.util.Set<SecOrdVO>" /> <!-- 於EL此行可省略 -->
 <jsp:useBean id="MemberSvc" scope="page" class="ezs.member.model.MemberService" />
 
 
@@ -121,14 +121,10 @@ th, td {
 					</FORM>
 				</td>
 				<td>
-					<FORM METHOD="post"
-						ACTION="<%=request.getContextPath()%>/emp/emp.do"
-						style="margin-bottom: 0px;">
-						<input type="submit" value="申請退款"> <input type="hidden"
-							name="empno" value="${empVO.empno}"> <input type="hidden"
-							name="requestURL" value="<%=request.getServletPath()%>">
-						<!--送出本網頁的路徑給Controller-->
-						<input type="hidden" name="action" value="delete">
+					<FORM METHOD="post"	ACTION="<%=request.getContextPath()%>/sec_ord/SecOrdServlet.do" style="margin-bottom: 0px;">
+						<input type="submit" value="申請退款"> 
+						<input type="hidden" name="secOrdID" value="${secOrdVO.shOrdID}"> 
+						<input type="hidden" name="action" value="refundOrder">
 					</FORM>
 				</td>
 			</tr>

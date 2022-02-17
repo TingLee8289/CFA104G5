@@ -33,6 +33,7 @@ public class SecOrdDAO implements SecOrdDAO_interface {
 	private static final String GET_ALL_STMT = "SELECT * FROM `CFA104G5`.`SEC_ORD` ORDER BY sh_ord_id";
 	private static final String GET_ALL_BY_MEMID_STMT = "SELECT * FROM `CFA104G5`.`SEC_ORD` WHERE sh_buyerid = ? ORDER BY sh_date desc;";
 	private static final String UPDATE_COMPLETE_ORDER_STMT = "UPDATE `CFA104G5`.`SEC_ORD` SET sh_ord_status = 7 WHERE sh_ord_id = ?; ";
+	private static final String UPDATE_REFUND_ORDER_STMT = "UPDATE `CFA104G5`.`SEC_ORD` SET sh_ord_status = 6 WHERE sh_ord_id = ?; ";
 
 	private static DataSource ds = null;
 	static {
@@ -256,6 +257,21 @@ public class SecOrdDAO implements SecOrdDAO_interface {
 		} finally {
 			Util.closeResource(con, pstmt, rs);
 		}
+	}
+
+	@Override
+	public void refundOrder(Integer shOrdID) {
+		try {
+			con = ds.getConnection();
+			pstmt = con.prepareStatement(UPDATE_REFUND_ORDER_STMT);
+			pstmt.setInt(1, shOrdID);
+			pstmt.executeUpdate();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			Util.closeResource(con, pstmt, rs);
+		}
+
 	}
 
 }
