@@ -10,19 +10,24 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.activation.DataSource;
+import javax.naming.Context;
+import javax.naming.InitialContext;
+import javax.naming.NamingException;
+import javax.servlet.annotation.WebServlet;
+
 import util.Util;
 
 public class SecPicsJDBCDAO implements SecPicsDAO_interface {
 
 	private static final String INSERT_STMT = "INSERT INTO "
-			+ "`CFA104G5`.`SEC_PICS` (sh_pic_id, sh_id, sh_pic) VALUES (?, ?, ?)";
-	private static final String DELETE_STMT = "DELETE FROM `CFA104G5`.`SEC_PICS` WHERE sh_pic_id = ?";
-	private static final String UPDATE_STMT = "UPDATE `CFA104G5`.`SEC_PICS` SET  sh_id=?, sh_pic=? WHERE sh_pic_id = ?";
+			+ "`CFA104G5`.`SEC_PICS` (sh_id, sh_pic) VALUES (?, ?)";
+	private static final String DELETE_STMT = "DELETE FROM `CFA104G5`.`SEC_PICS` WHERE sh_id = ?";
+	private static final String UPDATE_STMT = "UPDATE `CFA104G5`.`SEC_PICS` SET  sh_id=?, sh_pic=? WHERE sh_id = ?";
 	private static final String GET_ONE_STMT = "SELECT * FROM `CFA104G5`.`SEC_PICS` WHERE sh_pic_id = ?";
 	private static final String GET_ALL_STMT = "SELECT * FROM `CFA104G5`.`SEC_PICS` ORDER BY sh_pic_id";
 	private static final String GET_EACH_FIRST_STMT ="SELECT * FROM (select *, row_number() over (partition by sh_id order by sh_pic_id asc) sn from sec_pics) r where r.sn=1";
 	private static final String GET_BY_SHID_STMT = "SELECT * FROM `CFA104G5`.`SEC_PICS` WHERE sh_id = ?";
-	
 	
 	
 	static {
@@ -41,11 +46,18 @@ public class SecPicsJDBCDAO implements SecPicsDAO_interface {
 	public void insert(SecPicsVO secPicsVO) {
 		try {
 			con = DriverManager.getConnection(Util.URL, Util.USER, Util.PASSWORD);
-			pstmt = con.prepareStatement(INSERT_STMT);
-			pstmt.setInt(1, secPicsVO.getShPicID());
-			pstmt.setInt(2, secPicsVO.getShID());
-			pstmt.setBytes(3, secPicsVO.getShPic());
+//			宣告要綁定的欄位  綁定對應到的商品ID  SecItemsService INSERT進來
+			String[] cols = { "ShID" };
+			
+//			陣列跟著敘述綁定給資料庫   PreparedStatement 執行前就要預先給資料庫SQL指令 所以連同版為綁定資訊一起給資料庫
+//			可以不用透過SQL指令執行了
+			pstmt = con.prepareStatement(INSERT_STMT, cols);
+		
+			pstmt.setInt(1, secPicsVO.getShID());
+			pstmt.setBytes(2, secPicsVO.getShPic());
 			pstmt.executeUpdate();
+			
+	
 
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -56,11 +68,11 @@ public class SecPicsJDBCDAO implements SecPicsDAO_interface {
 	}
 
 	@Override
-	public void delete(Integer shPicID) {
+	public void delete(Integer shID) {
 		try {
 			con = DriverManager.getConnection(Util.URL, Util.USER, Util.PASSWORD);
 			pstmt = con.prepareStatement(DELETE_STMT);
-			pstmt.setInt(1, shPicID);
+			pstmt.setInt(1, shID);
 			pstmt.executeUpdate();
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -74,7 +86,10 @@ public class SecPicsJDBCDAO implements SecPicsDAO_interface {
 	public void update(SecPicsVO secPicsVO) {
 		try {
 			con = DriverManager.getConnection(Util.URL, Util.USER, Util.PASSWORD);
-			pstmt = con.prepareStatement(UPDATE_STMT);
+//			宣告要綁定的欄位  綁定對應到的商品ID  SecItemsService INSERT進來
+			String[] cols = { "ShID" };
+			
+			pstmt = con.prepareStatement(UPDATE_STMT, cols);
 			pstmt.setInt(1, secPicsVO.getShID());
 			pstmt.setBytes(2, secPicsVO.getShPic());
 			pstmt.setInt(3, secPicsVO.getShPicID());

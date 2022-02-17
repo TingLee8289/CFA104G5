@@ -1,8 +1,8 @@
 package ezs.sec_items.controller;
 
-import java.io.*;
-import java.math.BigDecimal;
-import java.util.*;
+import java.io.IOException;
+import java.util.LinkedList;
+import java.util.List;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -15,9 +15,9 @@ import javax.servlet.http.HttpServletResponse;
 import ezs.sec_items.model.SecItemsService;
 import ezs.sec_items.model.SecItemsVO;
 
-@WebServlet("/sec_items/GetSecItemsServlet.do")
+@WebServlet("/sec_items/GetSecItemsStatusServlet.do")
 @MultipartConfig(fileSizeThreshold = 1024 * 1024, maxFileSize = 5 * 1024 * 1024, maxRequestSize = 5 * 5 * 1024 * 1024)
-public class GetSecItemsServlet extends HttpServlet {
+public class GetSecItemsStatusServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
 	synchronized public void doGet(HttpServletRequest req, HttpServletResponse res)
@@ -31,7 +31,7 @@ public class GetSecItemsServlet extends HttpServlet {
 		req.setCharacterEncoding("UTF-8");
 		String action = req.getParameter("action");
 
-		if ("getOne_For_Display".equals(action)) { // 來自select_page.jsp的請求
+		if ("getOneStatus_For_Display".equals(action)) { // 來自select_page.jsp的請求
 
 			List<String> errorMsgs = new LinkedList<String>();
 			// Store this set in the request scope, in case we need to
@@ -40,9 +40,9 @@ public class GetSecItemsServlet extends HttpServlet {
 			try {
 
 				/*************************** 1.接收請求參數 - 輸入格式的錯誤處理 **********************/
-				String str = req.getParameter("shID");
+				String str = req.getParameter("shStatus");
 				if (str == null || (str.trim()).length() == 0) {
-					errorMsgs.add("請輸入商品名稱");
+					errorMsgs.add("請輸入商品狀態");
 				}
 				// Send the use back to the form, if there were errors
 				if (!errorMsgs.isEmpty()) {
@@ -51,9 +51,9 @@ public class GetSecItemsServlet extends HttpServlet {
 					return;// 程式中斷
 				}
 
-				Integer shID = null;
+				Integer shStatus = null;
 				try {
-					shID = Integer.valueOf(str);
+					shStatus = Integer.valueOf(str);
 				} catch (Exception e) {
 					errorMsgs.add("商品編號格式不正確");
 				}
@@ -69,7 +69,7 @@ public class GetSecItemsServlet extends HttpServlet {
 
 				/*************************** 2.開始查詢資料 *****************************************/
 				SecItemsService secItemsSvc = new SecItemsService();
-				SecItemsVO secItemsVO = secItemsSvc.getOneSecItems(shID);
+				List<SecItemsVO> secItemsVO = secItemsSvc.getByCategory(shStatus);
 				if (secItemsVO == null) {
 					errorMsgs.add("查無資料");
 				}
@@ -82,7 +82,7 @@ public class GetSecItemsServlet extends HttpServlet {
 
 				/*************************** 3.查詢完成,準備轉交(Send the Success view) *************/
 				req.setAttribute("secItemsVO", secItemsVO); // 資料庫取出的secItemsVO物件,存入req
-				String url = "/frontend/sec_items/listOneSecItems.jsp";
+				String url = "/frontend/sec_items/listOneSecItemsStatus.jsp";
 				RequestDispatcher successView = req.getRequestDispatcher(url); // 成功轉交 listOneEmp.jsp
 				successView.forward(req, res);
 

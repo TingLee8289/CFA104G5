@@ -1,18 +1,20 @@
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
 <%@ page import="ezs.sec_items.model.*"%>
 <%@ page import="ezs.sec_pics.model.*"%>
 
 <%
 SecItemsVO secItemsVO = (SecItemsVO) request.getAttribute("secItemsVO");
+SecPicsVO secPicsVO = (SecPicsVO) request.getAttribute("secPicsVO");
+//SecItemsServlet.java (Concroller) 存入req的secItemsVO物件 (包括幫忙取出的secItemsVO, 也包括輸入資料錯誤時的SecItemsVO物件)
 %>
+
+<%-- <jsp:useBean id="secPicsSvc" scope="page" class="ezs.sec_items.model.SecPicsService" /> --%>
 
 <html>
 <head>
 <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
-<title>商品資料新增 - addSecItems.jsp</title>
+<title>商品資料修改 - update_secItems_input.jsp</title>
 
 <style>
 table#table-1 {
@@ -35,7 +37,7 @@ h4 {
 
 <style>
 table {
-	width: 600px;
+	width: 1000px;
 	background-color: white;
 	margin-top: 1px;
 	margin-bottom: 1px;
@@ -56,19 +58,17 @@ th, td {
 	<table id="table-1">
 		<tr>
 			<td>
-				<h3>商品資料新增 - addSecItems.jsp</h3>
-			</td>
-			<td>
+				<h3>商品資料修改 - update_secItems_input.jsp</h3>
 				<h4>
 					<a
 						href="<%=request.getContextPath()%>/frontend/sec_items/select_page.jsp"><img
-						src="images/tomcat.png" width="150" height="150" border="0">回首頁</a>
+						src="images/back1.gif" width="100" height="32" border="0">回首頁</a>
 				</h4>
 			</td>
 		</tr>
 	</table>
 
-	<h3>資料新增:</h3>
+	<h3>資料修改:</h3>
 
 	<%-- 錯誤表列 --%>
 	<c:if test="${not empty errorMsgs}">
@@ -81,108 +81,125 @@ th, td {
 	</c:if>
 
 	<FORM METHOD="post" enctype="multipart/form-data"
-		ACTION="<%=request.getContextPath()%>/sec_items/InsertSecItemsServlet.do"
+		ACTION="<%=request.getContextPath()%>/sec_items/UpdateSecItemsServlet.do"
 		name="form1">
-
 		<table>
 			<tr>
+				<td>商品編號:<font color=red><b>*</b></font></td>
+				<td><input type="TEXT" name="shSellerID"
+					value="<%=secItemsVO.getShID()%>" /></td>
+				
+			</tr>
 
-
-				<jsp:useBean id="secCategorySvc" scope="page"
-					class="ezs.sec_category.model.SecCategoryService" />
+			<jsp:useBean id="secCategorySvc" scope="page"
+				class="ezs.sec_category.model.SecCategoryService" />
 			<tr>
-				<td>選擇商品類別:<font color=red><b>*</b></font></td>
+				<td>商品類別:<font color=red><b>*</b></font></td>
 				<td><select size="1" name="shCateID">
 						<c:forEach var="secCategoryVO" items="${secCategorySvc.all}">
-							<option value="${secCategoryVO.shCateID}"
-								${(secItemsVO.shCateID==secCategoryVO.shCateID)? 'selected':'' }>${secCategoryVO.shCateName}
+							<option value="${secCategoryVO.shCateID}">${secCategoryVO.shCateName}</option>
+
 						</c:forEach>
 				</select></td>
-			</tr>
+		
 			<tr>
-<!-- 				<td>賣家ID:</td> -->
-				<td><input type="hidden" name="shSellerID" size="45"
-					value="<%=(secItemsVO == null) ? "1" : secItemsVO.getShSellerID()%>" /></td>
-			</tr>
 			<tr>
-				<td>商品名稱:</td>
+				<!-- 		<td>會員編號:</td> -->
+				<!-- 		<td><input type="hidden" name="id" size="45" -->
+				<%-- 			 value="<%=secItemsVO.getShSellerID()%>" /></td> --%>
+				<td><input type="hidden" name="shSellerID"
+					value="<%=secItemsVO.getShSellerID()%>" /></td>
+			</tr>
+
+			<tr>
+				<td>商品名稱:<font color=red><b>*</b></font></td>
 				<td><input type="TEXT" name="shName" size="45"
-					value="<%=(secItemsVO == null) ? "國際牌13公斤滾筒洗衣機" : secItemsVO.getShName()%>" /></td>
+					value="<%=secItemsVO.getShName()%>" /></td>
 			</tr>
-
-
 			<tr>
-				<td>價格:</td>
+				<td>價格:<font color=red><b>*</b></font></td>
 				<td><input type="TEXT" name="shPrice" size="45"
-					value="<%=(secItemsVO == null) ? "12000" : secItemsVO.getShPrice()%>" /></td>
+					value="<%=secItemsVO.getShPrice()%>" /></td>
 			</tr>
 			<tr>
-				<td>數量:</td>
+				<td>數量:<font color=red><b>*</b></font></td>
 				<td><input type="TEXT" name="shQTY" size="45"
-					value="<%=(secItemsVO == null) ? "1" : secItemsVO.getShQTY()%>" /></td>
+					value="<%=secItemsVO.getShQTY()%>" /></td>
 			</tr>
 			<tr>
-				<td>尺寸:</td>
+				<td>尺寸:<font color=red><b>*</b></font></td>
 				<td><input type="TEXT" name="shSize" size="45"
-					value="<%=(secItemsVO == null) ? "長67寬82高103(cm)" : secItemsVO.getShSize()%>" /></td>
+					value="<%=secItemsVO.getShSize()%>" /></td>
 			</tr>
 			<tr>
-				<td>簡介:</td>
+				<td>簡介:<font color=red><b>*</b></font></td>
 				<td><input type="TEXT" name="shDescription" size="45"
-					value="<%=(secItemsVO == null) ? "國際牌13公斤滾筒洗衣機" : secItemsVO.getShDescription()%>" /></td>
+					value="<%=secItemsVO.getShDescription()%>" /></td>
 			</tr>
 			<tr>
-				<td>新舊程度:</td>
+				<td>新舊程度:<font color=red><b>*</b></font></td>
 				<td><input type="TEXT" name="shCondition" size="45"
-					value="<%=(secItemsVO == null) ? "八成新" : secItemsVO.getShCondition()%>" /></td>
+					value="<%=secItemsVO.getShCondition()%>" /></td>
 			</tr>
 			<tr>
-				<td>已使用時間:</td>
+				<td>已使用時間:<font color=red><b>*</b></font></td>
 				<td><input type="TEXT" name="shTime" size="45"
-					value="<%=(secItemsVO == null) ? "一年" : secItemsVO.getShTime()%>" /></td>
+					value="<%=secItemsVO.getShTime()%>" /></td>
 			</tr>
 			<tr>
-				<td>保固:</td>
+				<td>保固:<font color=red><b>*</b></font></td>
 				<td><input type="TEXT" name="shGuarantee" size="45"
-					value="<%=(secItemsVO == null) ? " 一年" : secItemsVO.getShGuarantee()%>" /></td>
+					value="<%=secItemsVO.getShGuarantee()%>" /></td>
 			</tr>
 
 
 			<tr>
-<!-- 				<td>狀態:</td> -->
-				<td><input type="hidden" name="shStatus" size="45"
-					value="<%=(secItemsVO == null) ? "1" : secItemsVO.getShStatus()%>" /></td>
+				<!-- 		<td>狀態:</td> -->
+				<!-- 		<td><input type="hidden" name="comm" size="45" -->
+				<%-- 			 value="<%=secItemsVO.getShStatus()%>" /></td> --%>
+
+				<td><input type="hidden" name="shStatus"
+					value="<%=secItemsVO.getShStatus()%>" /></td>
 			</tr>
 			<tr>
-				<td>所在縣市:</td>
+				<td>所在縣市:<font color=red><b>*</b></font></td>
 				<td><input type="TEXT" name="shCounty" size="45"
-					value="<%=(secItemsVO == null) ? "桃園市" : secItemsVO.getShCounty()%>" /></td>
+					value="<%=secItemsVO.getShCounty()%>" /></td>
 			</tr>
 			<tr>
-				<td>所在鄉鎮區:</td>
+				<td>所在鄉鎮區:<font color=red><b>*</b></font></td>
 				<td><input type="TEXT" name="shDist" size="45"
-					value="<%=(secItemsVO == null) ? "中壢區" : secItemsVO.getShDist()%>" /></td>
+					value="<%=secItemsVO.getShDist()%>" /></td>
 			</tr>
 
 			<tr>
-				<td>商品圖片:</td>
+				<td>照片:</td>
 				<td><input type="file" id="upfiles" name="shPic"
 					accept="image/gif, image/jpeg, image/png" multiple="multiple" />
 					<div id="previews">
 						<p>圖片預覽</p>
-					</div>
+					</div> 
+				
+<%-- 				<c:forEach --%>
+<%-- 						var="secPicsVO" items="${secPicsSvc.all}"> --%>
+<%-- 						<option value="${secPicsVO.getOneShID(secItemsVO.shID)}"> --%>
+<%-- 					</c:forEach>  --%>
+<!-- 					查詢到舊的 -->
+					<img
+					src="<%=request.getContextPath()%>/sec_items/SecItemsPicReaderServlet.do?sh_id=${secItemsVO.shID}"
+					width=200px></td>
+					
+					
+<%-- 					<td><img src="<%=request.getContextPath()%>/sec_items/SecItemsPicReaderServlet.do?sh_id= --%>
+<%-- 				 ${secItemsVO.shID}" width = 200px></td> --%>
+
 			</tr>
 
-			<!-- 首先他在<input type="file"> 的 change event 綁上的一個函數， -->
-			<!-- 這個事件會在input的value改變時被呼叫， -->
-			<!-- 綁定的方式有用到jQuery, 所以必須要在input上面放一個ID -->
-
 		</table>
-		<br> <input type="hidden" name="action" value="insert"> <input
-			type="submit" value="送出新增">
-
+		<br> <input type="hidden" name="action" value="update"> <input
+			type="hidden" name="shID" value="<%=secItemsVO.getShID()%>">
+		<input type="submit" value="送出修改">
 	</FORM>
-
 </body>
 
 <script>
@@ -215,6 +232,5 @@ th, td {
 		}
 	}
 </script>
-
 
 </html>
