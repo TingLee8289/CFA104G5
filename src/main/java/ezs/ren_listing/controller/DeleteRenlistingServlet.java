@@ -13,7 +13,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import ezs.ren_listing.model.RenListingService;
 
-@WebServlet("frontend/ren_listing/DeleteRenlistingServlet.do")
+//@WebServlet("frontend/ren_listing/DeleteRenlistingServlet.do")
 public class DeleteRenlistingServlet extends HttpServlet {
 	
 	protected void doGet(HttpServletRequest req, HttpServletResponse res) 
