@@ -10,5 +10,6 @@ public interface SecOrdDAO_interface {
     public SecOrdVO findByPrimaryKey(Integer shOrdID);
     public List<SecOrdVO> getAll();
     public Set<SecOrdVO> getSecOrdByShBuyerID(Integer shBuyerID);
+    public Set<SecOrdVO> getSecOrdByShSellerID(Integer shSellerID);
     
 }

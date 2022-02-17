@@ -112,4 +112,7 @@ public class SecOrdService {
 	public Set<SecOrdVO> getSecOrdByShBuyerID(Integer shBuyerID) {
 		return dao.getSecOrdByShBuyerID(shBuyerID);
 	}
+	public Set<SecOrdVO> getSecOrdByShSellerID(Integer shSellerID) {
+		return dao.getSecOrdByShSellerID(shSellerID);
+	}
 }
