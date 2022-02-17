@@ -58,4 +58,7 @@ public class SerQuoService {
 	public List<SerQuoVO> getAll() {
 		return dao.getAll();
 	}
+	public List<SerQuoVO> findByDmdID(Integer dmdID) {
+		return dao.findByDmdID(dmdID);
+	}
 }
