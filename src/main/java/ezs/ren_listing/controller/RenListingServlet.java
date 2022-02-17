@@ -284,7 +284,7 @@ public class RenListingServlet extends HttpServlet {
 					failureView.forward(req, res);
 					return; //程式中斷
 				}
-				System.out.print(renListingVO);
+//				System.out.print(renListingVO);
 				/***************************2.開始修改資料*****************************************/
 				RenListingService renListingSvc = new RenListingService();
 				renListingVO = renListingSvc.updateRenListing(lisID,lisLddID,lisRtID,lisAreaID,lisTitle,lisAbt,

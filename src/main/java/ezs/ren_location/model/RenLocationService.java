@@ -41,11 +41,11 @@ public class RenLocationService {
 		return dao.findByPrimaryKey(locID);
 	}
 	
-<<<<<<< HEAD
+//<<<<<<< HEAD
 	public List<RenLocationVO> getAll(){
-=======
-	public List<RenLocationVO> getALL(){
->>>>>>> refs/heads/master
+//=======
+//	public List<RenLocationVO> getALL(){
+//>>>>>>> refs/heads/master
 		return dao.getAll();
 	}
 
