@@ -72,7 +72,7 @@ th, td {
 		</tr>
 	</table>
 
-	<h3>新增估價單:</h3>
+	<h3>新增估價單(投遞需求單):</h3>
 
 	<%-- 錯誤表列 --%>
 	<c:if test="${not empty errorMsgs}">
@@ -88,27 +88,27 @@ th, td {
 		ACTION="<%=request.getContextPath()%>/ser_quo/AddQuoServlet.do"
 		name="form1">
 		<table>
-			<tr>
-				<td><input type="hidden" type="TEXT" name="quoStatus" size="8" value=0 /></td>
-			</tr>
-			<tr>
-				<td>需求單編號:</td>
-				<td><input type="TEXT" name="quoDmdID" size="50"
-					value="<%=(serQuoVO == null) ? "4" : serQuoVO.getQuoDmdID()%>" /></td>
-			</tr>
+<!-- 			<tr> -->
+<!-- 				<td><input type="hidden" type="TEXT" name="quoStatus" size="8" value=0 /></td> -->
+<!-- 			</tr> -->
+<!-- 			<tr> -->
+<!-- 				<td>需求單編號:</td> -->
+<!-- 				<td><input type="TEXT" name="quoDmdID" size="50" -->
+<%-- 					value="<%=(serQuoVO == null) ? "4" : serQuoVO.getQuoDmdID()%>" /></td> --%>
+<!-- 			</tr> -->
 			
 			
 			
 			
-<!-- 	<tr> -->
-<!-- 		<td>需求單ID:<font color=red><b>*</b></font></td> -->
-<!-- 		<td><select size="1" name="quoDmdID"> -->
-<%-- 				<c:forEach var="${serDmdVO}" items="${OneMemDmdList}"> --%>
-<%-- 					<option value="${serDmdVO .dmdID}"> --%>
-<%-- 				</c:forEach> --%>
-<!-- 			</select> -->
-<!-- 		</td> -->
-<!-- 	</tr> -->
+	<tr>
+		<td>需求單ID:<font color=red><b>*</b></font></td>
+		<td><select size="1" name="quoDmdID">
+				<c:forEach var="serDmdVO" items="${OneMemDmdList}">
+					<option value="${serDmdVO .dmdID}">${serDmdVO.dmdID}</option>
+				</c:forEach>
+			</select>
+		</td>
+	</tr>
 	
 	
 	
