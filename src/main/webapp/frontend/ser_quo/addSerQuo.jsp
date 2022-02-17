@@ -1,12 +1,19 @@
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ page import="java.util.*"%>
 <%@ page import="ezs.ser_quo.model.*"%>
-
+<%@ page import="ezs.ser_dmd.model.*"%>
+<% session.setAttribute("memID", 2);%>
 <%
 SerQuoVO serQuoVO = (SerQuoVO) request.getAttribute("serQuoVO");
 %>
-<%=serQuoVO == null%>
---${serQuoVO.quoID}--
+<%
+    Integer memID = (Integer)session.getAttribute("memID");
+    SerDmdService serDmdSvc = new SerDmdService();
+    List<SerDmdVO> OneMemDmdList = serDmdSvc.findByMemID(memID);
+     									//如何動態取值
+    pageContext.setAttribute("OneMemDmdList",OneMemDmdList);
+%>
 <html>
 <head>
 <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
@@ -82,37 +89,48 @@ th, td {
 		name="form1">
 		<table>
 			<tr>
-				<td>估價單狀態:</td>
-				<td><input type="TEXT" name="quoStatus" size="8" value=0 /></td>
+				<td><input type="hidden" type="TEXT" name="quoStatus" size="8" value=0 /></td>
 			</tr>
 			<tr>
 				<td>需求單編號:</td>
 				<td><input type="TEXT" name="quoDmdID" size="50"
 					value="<%=(serQuoVO == null) ? "4" : serQuoVO.getQuoDmdID()%>" /></td>
 			</tr>
+			
+			
+			
+			
+<!-- 	<tr> -->
+<!-- 		<td>需求單ID:<font color=red><b>*</b></font></td> -->
+<!-- 		<td><select size="1" name="quoDmdID"> -->
+<%-- 				<c:forEach var="${serDmdVO}" items="${OneMemDmdList}"> --%>
+<%-- 					<option value="${serDmdVO .dmdID}"> --%>
+<%-- 				</c:forEach> --%>
+<!-- 			</select> -->
+<!-- 		</td> -->
+<!-- 	</tr> -->
+	
+	
+	
 			<tr>
 				<td>廠商編號:</td>
 				<td><input type="TEXT" name="quoVdrID" size="50"
 					value="<%=(serQuoVO == null) ? "3" : serQuoVO.getQuoVdrID()%>" /></td>
 			</tr>
 			<tr>
-				<!-- 	//日期尚未處理 -->
-				<td>估價單日期:</td>
-				<td><input name="quoDate" id="quoDate1" type="text" ></td>
+				
+				<td><input  type="hidden" name="quoDate" id="quoDate1" type="text" ></td>
 			</tr>
 			<tr>
-				<td>估價單到期日:</td>
-				<td><input name="quoExpiryDate" id="quoExpiryDate1" type="text"></td>
+				<td><input type="hidden" name="quoExpiryDate" id="quoExpiryDate1" type="text"></td>
 			</tr>
 			<tr>
-				<td>估價項目:</td>
-				<td><input type="TEXT" name="quoItem" size="8"
-					value="<%=(serQuoVO == null) ? "" : serQuoVO.getQuoItem()%>" /></td>
+				<td><input type="hidden" type="TEXT" name="quoItem" size="8"
+					value="" /></td>
 			</tr>
 			<tr>
-				<td>估價總金額:</td>
-				<td><input type="TEXT" name="quoTotalPrice"
-					value="<%=(serQuoVO == null) ? "" : serQuoVO.getQuoTotalPrice()%>" /></td>
+				<td><input type="hidden" type="TEXT" name="quoTotalPrice"
+					value="0" /></td>
 			</tr>
 
 
