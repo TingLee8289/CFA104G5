@@ -1,9 +1,9 @@
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="Big5"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<%@ page import="com.emp.model.*"%>
+
 
 <%
-  EmpVO empVO = (EmpVO) request.getAttribute("empVO");
+  //EmpVO empVO = (EmpVO) request.getAttribute("empVO");
 %>
 
 <html>
@@ -69,13 +69,13 @@
 <table>
 	<tr>
 		<td>員工姓名:</td>
-		<td><input type="TEXT" name="ename" size="45" 
-			 value="<%= (empVO==null)? "吳永志" : empVO.getEname()%>" /></td>
+<!-- 		<td><input type="TEXT" name="ename" size="45"  -->
+<%-- 			 value="<%= (empVO==null)? "吳永志" : empVO.getEname()%>" /></td> --%>
 	</tr>
 	<tr>
 		<td>職位:</td>
-		<td><input type="TEXT" name="job" size="45"
-			 value="<%= (empVO==null)? "MANAGER" : empVO.getJob()%>" /></td>
+<!-- 		<td><input type="TEXT" name="job" size="45" -->
+<%-- 			 value="<%= (empVO==null)? "MANAGER" : empVO.getJob()%>" /></td> --%>
 	</tr>
 	<tr>
 		<td>雇用日期:</td>
@@ -83,16 +83,16 @@
 	</tr>
 	<tr>
 		<td>薪水:</td>
-		<td><input type="TEXT" name="sal" size="45"
-			 value="<%= (empVO==null)? "10000" : empVO.getSal()%>" /></td>
+<!-- 		<td><input type="TEXT" name="sal" size="45" -->
+<%-- 			 value="<%= (empVO==null)? "10000" : empVO.getSal()%>" /></td> --%>
 	</tr>
 	<tr>
 		<td>獎金:</td>
-		<td><input type="TEXT" name="comm" size="45"
-			 value="<%= (empVO==null)? "100" : empVO.getComm()%>" /></td>
+<!-- 		<td><input type="TEXT" name="comm" size="45" -->
+<%-- 			 value="<%= (empVO==null)? "100" : empVO.getComm()%>" /></td> --%>
 	</tr>
 
-	<jsp:useBean id="deptSvc" scope="page" class="com.dept.model.DeptService" />
+<%-- 	<jsp:useBean id="deptSvc" scope="page" class="com.dept.model.DeptService" /> --%>
 	<tr>
 		<td>部門:<font color=red><b>*</b></font></td>
 		<td><select size="1" name="deptno">
@@ -115,7 +115,7 @@
 <% 
   java.sql.Date hiredate = null;
   try {
-	    hiredate = empVO.getHiredate();
+// 	    hiredate = empVO.getHiredate();
    } catch (Exception e) {
 	    hiredate = new java.sql.Date(System.currentTimeMillis());
    }

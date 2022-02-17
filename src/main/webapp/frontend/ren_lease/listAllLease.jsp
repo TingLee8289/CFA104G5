@@ -5,9 +5,9 @@
 <%-- 此頁練習採用 EL 的寫法取值 --%>
 
 <%
-    EmpService empSvc = new EmpService();
-    List<EmpVO> list = empSvc.getAll();
-    pageContext.setAttribute("list",list);
+//     EmpService empSvc = new EmpService();
+//     List<EmpVO> list = empSvc.getAll();
+//     pageContext.setAttribute("list",list);
 %>
 
 
@@ -48,8 +48,8 @@
 		<th>修改</th>
 		<th>刪除</th>
 	</tr>
-	<%@ include file="page1.file" %> 
-	<c:forEach var="empVO" items="${list}" begin="<%=pageIndex%>" end="<%=pageIndex+rowsPerPage-1%>">
+<%-- 	<%@ include file="page1.file" %>  --%>
+<%-- 	<c:forEach var="empVO" items="${list}" begin="<%=pageIndex%>" end="<%=pageIndex+rowsPerPage-1%>"> --%>
 		
 		<tr>
 			<td>${empVO.empno}</td>
@@ -72,9 +72,9 @@
 			     <input type="hidden" name="action" value="delete"></FORM>
 			</td>
 		</tr>
-	</c:forEach>
+<%-- 	</c:forEach> --%>
 </table>
-<%@ include file="page2.file" %>
+<%-- <%@ include file="page2.file" %> --%>
 
 </body>
 </html>
