@@ -25,15 +25,15 @@ public class SecOrdDAO implements SecOrdDAO_interface {
 			+ "(?, ?, ?, ?, ?" + ", ?, ?, ?, ?, ?" + ", ?, ?, ?, ?, ?" + ", ?)";
 	private static final String DELETE_STMT = "DELETE FROM `CFA104G5`.`SEC_ORD` WHERE sh_ord_id = ?";
 	private static final String UPDATE_STMT = "UPDATE `CFA104G5`.`SEC_ORD` "
-			+ "set sh_buyerid=?, sh_sellerid=?, sh_postcode=?, sh_county=?, sh_dist=?, "
+			+ "SET sh_buyerid=?, sh_sellerid=?, sh_postcode=?, sh_county=?, sh_dist=?, "
 			+ "sh_road=?, sh_payment=?, sh_ord_status=?, sh_price=?, sh_date=?, "
 			+ "sh_buyer_score=?, sh_buyer_txt=?, sh_seller_score=?, sh_seller_txt=?, sh_appdate=?, " + "sh_notes=?"
 			+ "WHERE sh_ord_id = ?";
 	private static final String GET_ONE_STMT = "SELECT * FROM `CFA104G5`.`SEC_ORD` WHERE sh_ord_id = ?";
 	private static final String GET_ALL_STMT = "SELECT * FROM `CFA104G5`.`SEC_ORD` ORDER BY sh_ord_id";
 	private static final String GET_ALL_BY_MEMID_STMT = "SELECT * FROM `CFA104G5`.`SEC_ORD` WHERE sh_buyerid = ? ORDER BY sh_date desc;";
-	
-	
+	private static final String UPDATE_COMPLETE_ORDER_STMT = "UPDATE `CFA104G5`.`SEC_ORD` SET sh_ord_status = 7 WHERE sh_ord_id = ?; ";
+
 	private static DataSource ds = null;
 	static {
 		try {
@@ -243,6 +243,19 @@ public class SecOrdDAO implements SecOrdDAO_interface {
 
 	}
 
-	
+	@Override
+	public void updateCompleteOrder(Integer shOrdID) {
+
+		try {
+			con = ds.getConnection();
+			pstmt = con.prepareStatement(UPDATE_COMPLETE_ORDER_STMT);
+			pstmt.setInt(1, shOrdID);
+			pstmt.executeUpdate();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			Util.closeResource(con, pstmt, rs);
+		}
+	}
 
 }

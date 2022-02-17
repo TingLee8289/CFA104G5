@@ -28,6 +28,7 @@ public class SecOrdJDBCDAO implements SecOrdDAO_interface {
 	private static final String GET_ONE_STMT = "SELECT * FROM `CFA104G5`.`SEC_ORD` WHERE sh_ord_id = ?";
 	private static final String GET_ALL_STMT = "SELECT * FROM `CFA104G5`.`SEC_ORD` ORDER BY sh_ord_id";
 	private static final String GET_ALL_BY_MEMID_STMT = "SELECT * FROM `CFA104G5`.`SEC_ORD` WHERE sh_buyerid = ? ORDER BY sh_date desc;";
+	private static final String UPDATE_COMPLETE_ORDER_STMT = "UPDATE `CFA104G5`.`SEC_ORD` SET sh_ord_status = 7 WHERE sh_ord_id = ?; ";
 
 	static {
 		try {
@@ -199,7 +200,7 @@ public class SecOrdJDBCDAO implements SecOrdDAO_interface {
 	public Set<SecOrdVO> getSecOrdByShBuyerID(Integer shBuyerID) {
 		Set<SecOrdVO> set = new LinkedHashSet<SecOrdVO>();
 		SecOrdVO secOrdVO = null;
-		
+
 		try {
 			con = DriverManager.getConnection(Util.URL, Util.USER, Util.PASSWORD);
 			pstmt = con.prepareStatement(GET_ALL_BY_MEMID_STMT);
@@ -233,6 +234,22 @@ public class SecOrdJDBCDAO implements SecOrdDAO_interface {
 			Util.closeResource(con, pstmt, rs);
 		}
 		return set;
+	}
+
+	@Override
+	public void updateCompleteOrder(Integer shOrdID) {
+
+		try {
+			con = DriverManager.getConnection(Util.URL, Util.USER, Util.PASSWORD);
+			pstmt = con.prepareStatement(UPDATE_COMPLETE_ORDER_STMT);
+			pstmt.setInt(1, shOrdID);
+			pstmt.executeUpdate();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			Util.closeResource(con, pstmt, rs);
+		}
+
 	}
 
 }

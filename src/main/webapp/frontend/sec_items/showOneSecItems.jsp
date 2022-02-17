@@ -440,7 +440,7 @@
 							    <input type="text" name="quantity" value="1" class="qty" id="addQuantity1">
 							    <div class="qtyplus" id="qtyplus">+</div>
 <!-- 							    <input type="submit" value="加入購物車" class="round-black-btn"> -->
-								<label for="size">尚有 ${secItemsVO.shQTY} 件</label><br>
+								<label for="size">尚有 <span id="stock">${secItemsVO.shQTY}</span> 件</label><br>
 								<input type="submit" value="加入購物車" class="round-black-btn">
 								<input type="hidden" name="shID" value="${secItemsVO.shID}">								
 								<input type="hidden" name="shName" value="${secItemsVO.shName}">								
@@ -448,16 +448,6 @@
 								<input type="hidden" name="shQTY" id="addQuantity2" value="1">								
 								<input type="hidden" name="action" value="ADD">		
 							</form>
-
-							
-<!-- 							<form action=> -->
-<!-- 								<input type="submit" value="加入購物車" class="round-black-btn"> -->
-<%-- 								<input type="hidden" name="shID" value="${secItemsVO.shID}">								 --%>
-<%-- 								<input type="hidden" name="shName" value="${secItemsVO.shName}">								 --%>
-<%-- 								<input type="hidden" name="shPrice" value="${secItemsVO.shPrice}">								 --%>
-<%-- 								<input type="hidden" name="shQTY" value="${secItemsVO.shQTY}">								 --%>
-<!-- 								<input type="hidden" name="action" value="ADD">								 -->
-<!-- 							</form> -->
 	        			</div>
 	        		</div>
 	        	</div>
@@ -528,20 +518,19 @@
 		 let addQuantity2 = document.getElementById("addQuantity2");
 		 let qtyplus = document.getElementById("qtyplus");
 		 let qtyminus = document.getElementById("qtyminus");
+		 let stock = document.getElementById("stock");
+		 
 		 
 		// 使用者直接輸入數量的情況
 		 addQuantity1.addEventListener("change", () => addQuantity2.value = addQuantity1.value);
 		// 使用者點擊 + 的情況
-		 qtyplus.addEventListener("click", () => addQuantity2.value = parseInt(addQuantity1.value,10) + 1);
+		 qtyplus.addEventListener("click", () => addQuantity2.value = parseInt(addQuantity1.value,10));
 		// 使用者點擊 - 的情況
-		 qtyminus.addEventListener("click", () => {
-			 										if(addQuantity2.value>1){
-			 											addQuantity2.value = parseInt(addQuantity1.value,10) - 1;
-			 										}else{
-			 											addQuantity2.value = 1;
-			 										}
-		 										  });
-		 
+		 qtyminus.addEventListener("click", () => { if(addQuantity2.value>1){addQuantity2.value = parseInt(addQuantity1.value,10) - 1;
+			 										}else{addQuantity2.value = 1;}});
+		// 可選數量不可大於庫存量
+		qtyDiv.addEventListener("click", () => {if(parseInt(addQuantity1.value) > parseInt(stock.innerText)){addQuantity1.value = stock.innerText;} })
+		
 		 
 	</script>
 
