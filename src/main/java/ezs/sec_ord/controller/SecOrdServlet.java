@@ -41,9 +41,35 @@ public class SecOrdServlet extends HttpServlet {
 				/*************************** 2.開始查詢資料 ****************************************/
 				SecOrdService secOrdSvc = new SecOrdService();
 				Set<SecOrdVO> set = secOrdSvc.getSecOrdByShBuyerID(shBuyerID);
-				
+
 				/*************************** 3.查詢完成,準備轉交(Send the Success view) ************/
-				req.setAttribute("listSecOrds_ByShBuyerID", set);    // 資料庫取出的list物件,存入request
+				req.setAttribute("listSecOrds_ByShBuyerID", set); // 資料庫取出的list物件,存入request
+
+				String url = "/frontend/sec_ord/listSecOrds_ByShBuyerID.jsp";
+				RequestDispatcher successView = req.getRequestDispatcher(url);
+				successView.forward(req, res);
+
+				/*************************** 其他可能的錯誤處理 ***********************************/
+			} catch (Exception e) {
+				throw new ServletException(e);
+			}
+		}
+
+// 買家會員完成訂單
+		if ("completeOrder".equals(action)) {
+
+			List<String> errorMsgs = new LinkedList<String>();
+			req.setAttribute("errorMsgs", errorMsgs);
+
+			try {
+				/*************************** 1.接收請求參數 ****************************************/
+				Integer secOrdID = Integer.valueOf(req.getParameter("secOrdID"));
+
+				/*************************** 2.開始修改資料 ****************************************/
+				SecOrdService secOrdSvc = new SecOrdService();
+				secOrdSvc.updateCompleteOrder(secOrdID);
+
+				/*************************** 3.修改完成,準備轉交(Send the Success view) ************/
 
 				String url = "/frontend/sec_ord/listSecOrds_ByShBuyerID.jsp";
 				RequestDispatcher successView = req.getRequestDispatcher(url);
