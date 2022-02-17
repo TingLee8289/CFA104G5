@@ -23,7 +23,8 @@ public class SerOrdDAO implements SerOrdDAO_interface {
 	private static final String GET_ONE_STMT = "SELECT ORD_ID,ORD_STATUS,ORD_PAY_STATUS,ORD_DMD_ID,ORD_QUO_ID,ORD_MEM_ID,ORD_VDR_ID,ORD_SER_CLA_ID,ORD_MEM_VATNO,ORD_VDR_VATNO,ORD_CLN_NAME,ORD_CLN_TEL,ORD_WORK_DATE,ORD_COUNTY,ORD_DIST,ORD_ADDR,ORD_ITEM,ORD_TOTALPRICE,ORD_PREPAY,ORD_PAYTYPE,ORD_PAY_DATE,ORD_FPAY,ORD_FPAYTYPE,ORD_FPAY_DATE,ORD_BUYER_SCORE,ORD_BUYER_TXT,ORD_VDR_SCORE,ORD_VDR_TXT,ORD_NOTE FROM `ser_ord` where ORD_ID = ?";
 	private static final String DELETE = "DELETE FROM `ser_ord` where ORD_ID = ?";
 	private static final String UPDATE = "UPDATE `ser_ord` set ORD_STATUS=?,ORD_PAY_STATUS=?,ORD_DMD_ID=?,ORD_QUO_ID=?,ORD_MEM_ID=?,ORD_VDR_ID=?,ORD_SER_CLA_ID=?,ORD_MEM_VATNO=?,ORD_VDR_VATNO=?,ORD_CLN_NAME=?,ORD_CLN_TEL=?,ORD_WORK_DATE=?,ORD_COUNTY=?,ORD_DIST=?,ORD_ADDR=?,ORD_ITEM=?,ORD_TOTALPRICE=?,ORD_PREPAY=?,ORD_PAYTYPE=?,ORD_PAY_DATE=?,ORD_FPAY=?,ORD_FPAYTYPE=?,ORD_FPAY_DATE=?,ORD_BUYER_SCORE=?,ORD_BUYER_TXT=?,ORD_VDR_SCORE=?,ORD_VDR_TXT=?,ORD_NOTE=? where ORD_ID = ?";
-
+	private static final String FIND_ORD_BY_VDRID = "SELECT * FROM CFA104G5.SER_ORD where ORD_VDR_ID = ?";
+	private static final String FIND_ORD_BY_MEMID = "SELECT * FROM CFA104G5.SER_ORD where ORD_MEM_ID = ?";
 	// 一個應用程式中,針對一個資料庫 ,共用一個DataSource即可
 				private static DataSource ds = null;
 				static {
@@ -152,7 +153,7 @@ public class SerOrdDAO implements SerOrdDAO_interface {
 		SerOrdVO serOrdVO= null;
 		
 		try {
-			con = DriverManager.getConnection(Util.URL,Util.USER,Util.PASSWORD);
+			con = ds.getConnection();
 			pstmt = con.prepareStatement(GET_ONE_STMT);
 			pstmt.setInt(1, ordID);
 			rs = pstmt.executeQuery();
@@ -204,8 +205,118 @@ public class SerOrdDAO implements SerOrdDAO_interface {
 		List<SerOrdVO> list= new ArrayList<SerOrdVO>();
 		SerOrdVO serOrdVO = null;
 		try {
-			con = DriverManager.getConnection(Util.URL,Util.USER,Util.PASSWORD);
+			con = ds.getConnection();
 			pstmt = con.prepareStatement(GET_ALL_STMT);
+			rs = pstmt.executeQuery();
+			while(rs.next()) {
+				// 每次進來迴圈裡，就代表一筆資料，我們就產生一個Bean，包裝著查詢的資料，最後再回傳給呼叫端
+				serOrdVO = new SerOrdVO();
+				
+				serOrdVO.setOrdID(rs.getInt("ORD_ID"));
+				serOrdVO.setOrdStatus(rs.getByte("ORD_STATUS"));
+				serOrdVO.setOrdPayStatus(rs.getByte("ORD_PAY_STATUS"));
+				serOrdVO.setOrdDmdID(rs.getInt("ORD_DMD_ID"));
+				serOrdVO.setOrdQuoID(rs.getInt("ORD_QUO_ID"));
+				serOrdVO.setOrdMemID(rs.getInt("ORD_MEM_ID"));
+				serOrdVO.setOrdVdrID(rs.getInt("ORD_VDR_ID"));
+				serOrdVO.setOrdSerClaID(rs.getInt("ORD_SER_CLA_ID"));
+				serOrdVO.setOrdMemVatno(rs.getString("ORD_MEM_VATNO"));
+				serOrdVO.setOrdVdrVatno(rs.getString("ORD_VDR_VATNO"));
+				serOrdVO.setOrdClnName(rs.getString("ORD_CLN_NAME"));
+				serOrdVO.setOrdClnTel(rs.getString("ORD_CLN_TEL"));
+				serOrdVO.setOrdWorkDate(rs.getDate("ORD_WORK_DATE"));
+				serOrdVO.setOrdCounty(rs.getString("ORD_COUNTY"));
+				serOrdVO.setOrdDist(rs.getString("ORD_DIST"));
+				serOrdVO.setOrdAddr(rs.getString("ORD_ADDR"));
+				serOrdVO.setOrdItem(rs.getString("ORD_ITEM"));
+				serOrdVO.setOrdTotalPrice(rs.getBigDecimal("ORD_TOTALPRICE"));
+				serOrdVO.setOrdPrePay(rs.getBigDecimal("ORD_PREPAY"));
+				serOrdVO.setOrdPayType(rs.getByte("ORD_PAYTYPE"));
+				serOrdVO.setOrdPayDate(rs.getDate("ORD_PAY_DATE"));
+				serOrdVO.setOrdFpay(rs.getBigDecimal("ORD_FPAY"));
+				serOrdVO.setOrdFpayType(rs.getByte("ORD_FPAYTYPE"));
+				serOrdVO.setOrdFpayDate(rs.getDate("ORD_FPAY_DATE"));
+				serOrdVO.setOrdBuyerScore(rs.getInt("ORD_BUYER_SCORE"));
+				serOrdVO.setOrdBuyerTxt(rs.getString("ORD_BUYER_TXT"));
+				serOrdVO.setOrdVdrScore(rs.getInt("ORD_VDR_SCORE"));
+				serOrdVO.setOrdVdrTxt(rs.getString("ORD_VDR_TXT"));
+				serOrdVO.setOrdNote(rs.getString("ORD_NOTE"));
+				list.add(serOrdVO);
+			}
+			
+			
+		} catch (SQLException se) {
+			se.printStackTrace();
+		}finally {
+			Util.closeResource(con, pstmt, rs);
+		}
+		return list;
+	}
+
+
+
+	@Override
+	public List<SerOrdVO> findOrdByVdrID(Integer ordVdrID) {
+		List<SerOrdVO> list= new ArrayList<SerOrdVO>();
+		SerOrdVO serOrdVO = null;
+		try {
+			con = ds.getConnection();
+			pstmt = con.prepareStatement(FIND_ORD_BY_VDRID);
+			pstmt.setInt(1, ordVdrID);
+			rs = pstmt.executeQuery();
+			while(rs.next()) {
+				// 每次進來迴圈裡，就代表一筆資料，我們就產生一個Bean，包裝著查詢的資料，最後再回傳給呼叫端
+				serOrdVO = new SerOrdVO();
+				
+				serOrdVO.setOrdID(rs.getInt("ORD_ID"));
+				serOrdVO.setOrdStatus(rs.getByte("ORD_STATUS"));
+				serOrdVO.setOrdPayStatus(rs.getByte("ORD_PAY_STATUS"));
+				serOrdVO.setOrdDmdID(rs.getInt("ORD_DMD_ID"));
+				serOrdVO.setOrdQuoID(rs.getInt("ORD_QUO_ID"));
+				serOrdVO.setOrdMemID(rs.getInt("ORD_MEM_ID"));
+				serOrdVO.setOrdVdrID(rs.getInt("ORD_VDR_ID"));
+				serOrdVO.setOrdSerClaID(rs.getInt("ORD_SER_CLA_ID"));
+				serOrdVO.setOrdMemVatno(rs.getString("ORD_MEM_VATNO"));
+				serOrdVO.setOrdVdrVatno(rs.getString("ORD_VDR_VATNO"));
+				serOrdVO.setOrdClnName(rs.getString("ORD_CLN_NAME"));
+				serOrdVO.setOrdClnTel(rs.getString("ORD_CLN_TEL"));
+				serOrdVO.setOrdWorkDate(rs.getDate("ORD_WORK_DATE"));
+				serOrdVO.setOrdCounty(rs.getString("ORD_COUNTY"));
+				serOrdVO.setOrdDist(rs.getString("ORD_DIST"));
+				serOrdVO.setOrdAddr(rs.getString("ORD_ADDR"));
+				serOrdVO.setOrdItem(rs.getString("ORD_ITEM"));
+				serOrdVO.setOrdTotalPrice(rs.getBigDecimal("ORD_TOTALPRICE"));
+				serOrdVO.setOrdPrePay(rs.getBigDecimal("ORD_PREPAY"));
+				serOrdVO.setOrdPayType(rs.getByte("ORD_PAYTYPE"));
+				serOrdVO.setOrdPayDate(rs.getDate("ORD_PAY_DATE"));
+				serOrdVO.setOrdFpay(rs.getBigDecimal("ORD_FPAY"));
+				serOrdVO.setOrdFpayType(rs.getByte("ORD_FPAYTYPE"));
+				serOrdVO.setOrdFpayDate(rs.getDate("ORD_FPAY_DATE"));
+				serOrdVO.setOrdBuyerScore(rs.getInt("ORD_BUYER_SCORE"));
+				serOrdVO.setOrdBuyerTxt(rs.getString("ORD_BUYER_TXT"));
+				serOrdVO.setOrdVdrScore(rs.getInt("ORD_VDR_SCORE"));
+				serOrdVO.setOrdVdrTxt(rs.getString("ORD_VDR_TXT"));
+				serOrdVO.setOrdNote(rs.getString("ORD_NOTE"));
+				list.add(serOrdVO);
+			}
+			
+			
+		} catch (SQLException se) {
+			se.printStackTrace();
+		}finally {
+			Util.closeResource(con, pstmt, rs);
+		}
+		return list;
+	}
+
+	@Override
+	public List<SerOrdVO> findOrdByMemID(Integer ordMemID) {
+		List<SerOrdVO> list= new ArrayList<SerOrdVO>();
+		SerOrdVO serOrdVO = null;
+		try {
+			con = ds.getConnection();
+			pstmt = con.prepareStatement(FIND_ORD_BY_MEMID);
+			pstmt.setInt(1, ordMemID);
 			rs = pstmt.executeQuery();
 			while(rs.next()) {
 				// 每次進來迴圈裡，就代表一筆資料，我們就產生一個Bean，包裝著查詢的資料，最後再回傳給呼叫端
