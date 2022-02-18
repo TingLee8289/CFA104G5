@@ -48,8 +48,8 @@ public class DeleteSecItemsServlet extends HttpServlet {
 				SecItemsService secItemsSvc = new SecItemsService();
 				SecPicsService secPicsSvc = new SecPicsService();
 				
-				secItemsSvc.deleteSecItems(shID);
 				secPicsSvc.deleteSecPics(shID);
+				secItemsSvc.deleteSecItems(shID);
 				
 				/*************************** 3.刪除完成,準備轉交(Send the Success view) ***********/
 				String url = "/frontend/sec_items/listAllSecItems.jsp";

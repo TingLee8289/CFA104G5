@@ -96,6 +96,19 @@ public class SecOrdService {
 
 		return secOrdVO;
 	}
+	public SecOrdVO updateSecOrdStatus(Integer shOrdID,
+			Integer shOrdStatus
+			) {
+		
+		SecOrdVO secOrdVO = new SecOrdVO();
+		
+		secOrdVO.setShOrdID(shOrdID);
+		secOrdVO.setShOrdStatus(shOrdStatus);
+		
+		dao.update(secOrdVO);
+		
+		return secOrdVO;
+	}
 
 	public void deleteSecOrd(Integer shOrdID) {
 		dao.delete(shOrdID);
@@ -112,6 +125,10 @@ public class SecOrdService {
 	public Set<SecOrdVO> getSecOrdByShBuyerID(Integer shBuyerID) {
 		return dao.getSecOrdByShBuyerID(shBuyerID);
 	}
+
+	public Set<SecOrdVO> getSecOrdByShSellerID(Integer shSellerID) {
+		return dao.getSecOrdByShSellerID(shSellerID);
+
 	
 	public void updateCompleteOrder(Integer shOrdID) {
 		dao.updateCompleteOrder(shOrdID);
@@ -120,5 +137,6 @@ public class SecOrdService {
 	public void refundOrder(Integer shOrdID) {
 		dao.refundOrder(shOrdID);
 		
+
 	}
 }

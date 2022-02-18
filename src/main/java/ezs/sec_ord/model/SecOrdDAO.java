@@ -32,8 +32,10 @@ public class SecOrdDAO implements SecOrdDAO_interface {
 	private static final String GET_ONE_STMT = "SELECT * FROM `CFA104G5`.`SEC_ORD` WHERE sh_ord_id = ?";
 	private static final String GET_ALL_STMT = "SELECT * FROM `CFA104G5`.`SEC_ORD` ORDER BY sh_ord_id";
 	private static final String GET_ALL_BY_MEMID_STMT = "SELECT * FROM `CFA104G5`.`SEC_ORD` WHERE sh_buyerid = ? ORDER BY sh_date desc;";
+	private static final String GET_ALL_BY_SELLERID_STMT = "SELECT * FROM `CFA104G5`.`SEC_ORD` WHERE sh_sellerid = ? ORDER BY sh_date desc;";
 	private static final String UPDATE_COMPLETE_ORDER_STMT = "UPDATE `CFA104G5`.`SEC_ORD` SET sh_ord_status = 7 WHERE sh_ord_id = ?; ";
 	private static final String UPDATE_REFUND_ORDER_STMT = "UPDATE `CFA104G5`.`SEC_ORD` SET sh_ord_status = 6 WHERE sh_ord_id = ?; ";
+
 
 	private static DataSource ds = null;
 	static {
@@ -242,6 +244,46 @@ public class SecOrdDAO implements SecOrdDAO_interface {
 		}
 		return set;
 
+	}
+	@Override
+	public Set<SecOrdVO> getSecOrdByShSellerID(Integer shSellerID) {
+		Set<SecOrdVO> set = new LinkedHashSet<SecOrdVO>();
+		SecOrdVO secOrdVO = null;
+		
+		try {
+			con = ds.getConnection();
+			pstmt = con.prepareStatement(GET_ALL_BY_SELLERID_STMT);
+			pstmt.setInt(1, shSellerID);
+			rs = pstmt.executeQuery();
+			
+			while (rs.next()) {
+				secOrdVO = new SecOrdVO();
+				secOrdVO.setShOrdID(rs.getInt("sh_ord_id"));
+				secOrdVO.setShBuyerID(rs.getInt("sh_buyerid"));
+				secOrdVO.setShSellerID(rs.getInt("sh_sellerid"));
+				secOrdVO.setShPostcode(rs.getInt("sh_postcode"));
+				secOrdVO.setShCounty(rs.getString("sh_county"));
+				secOrdVO.setShDist(rs.getString("sh_dist"));
+				secOrdVO.setShRoad(rs.getString("sh_road"));
+				secOrdVO.setShPayment(rs.getInt("sh_payment"));
+				secOrdVO.setShOrdStatus(rs.getInt("sh_ord_status"));
+				secOrdVO.setShPrice(rs.getBigDecimal("sh_price"));
+				secOrdVO.setShDate(rs.getDate("sh_date"));
+				secOrdVO.setShBuyerScore(rs.getInt("sh_buyer_score"));
+				secOrdVO.setShBuyerTXT(rs.getString("sh_buyer_txt"));
+				secOrdVO.setShSellerScore(rs.getInt("sh_seller_score"));
+				secOrdVO.setShSellerTXT(rs.getString("sh_seller_txt"));
+				secOrdVO.setShAPPDate(rs.getDate("sh_appdate"));
+				secOrdVO.setShNotes(rs.getString("sh_notes"));
+				set.add(secOrdVO);
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			Util.closeResource(con, pstmt, rs);
+		}
+		return set;
+		
 	}
 
 	@Override
