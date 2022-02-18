@@ -233,7 +233,9 @@ System.out.print(renListingVO);
 	</tr>
 	<tr>
 		<td></td>	
+
 		<td>沙發<select  name="lisSofa" ><option value='<%= (renListingVO==null)? "0": renListingVO.getLisSofa() %>'  selected >無</option>
+
 				
 				<option value='1' >有</option>
 				</select>
@@ -275,12 +277,13 @@ System.out.print(renListingVO);
 	</tr>
 	<tr>
 		<td></td>	
+
 		<td>限女性<select  name="lisFonly" ><option value='<%= (renListingVO==null)? "0": renListingVO.getLisFonly() %>'  selected >不可以</option>
 				
 				<option value='1' >可以</option>
 				</select>
 	</tr>
-	
+
 	<tr>
 		<td></td>	
 		<td>限學生<select  name="lisSonly" ><option value='<%= (renListingVO==null)? "0": renListingVO.getLisSonly() %>'  selected >不可以</option>
@@ -290,17 +293,21 @@ System.out.print(renListingVO);
 	</tr>
 	<tr>
 		<td></td>	
+
 		<td>房源上架狀態<select  name="lisStatus" ><option value='<%= (renListingVO==null)? "0": renListingVO.getLisStatus() %>'  selected >否</option>
 				
 				<option value='1' >已下架</option>
+
 				</select>
 	</tr>
 	<tr>
 		<td></td>	
+
 		<td>房源申請審核狀態<select  name="lisApproval" ><option value='<%= (renListingVO==null)? "0": renListingVO.getLisApproval() %>'  selected >審核中</option>
 				
 				<option value='1' >已審核</option>
 				<option value='2' >審核未過</option>
+
 				</select>
 	</tr>
 	

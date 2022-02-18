@@ -21,6 +21,7 @@ public class MemberJDBCDAO implements MemberDAO_interface {
 			+ "MEM_SELLER,MEM_PHONE,MEM_ADDRESS,MEM_EMAIL,MEM_PID,MEM_STATUS,MEM_HEADSHOT,"
 			+ "MEM_REV_COUNT,MEM_REV_SCORE,MEM_RED_COUNT,MEM_Red_SCORE,MEM_REPORTED,"
 			+ "MEM_LDD_REPORTED,MEM_SUP_REPORTED,MEM_SEL_REPORTED,MEM_VATNO FROM `CFA104G5`.`MEMBER` WHERE MEM_ID = ?";
+
 	private static final String DELETE = "DELETE FROM `CFA104G5`.`MEMBER` WHERE MEM_ID = ?";	
 	private static final String Search = "SELECT MEM_USERNAME,MEM_PASSWORD FROM `CFA104G5`.`MEMBER` WHERE (MEM_USERNAME,MEM_PASSWORD) = (?,?)";
 
@@ -31,7 +32,9 @@ public class MemberJDBCDAO implements MemberDAO_interface {
 			+ "MEM_REPORTED=?,MEM_LDD_REPORTED=?,MEM_SUP_REPORTED=?,MEM_SEL_REPORTED=? WHERE MEM_ID = ?";
 	
 	private static final String CHECK_USERNAME = "SELECT MEM_ID FROM `CFA104G5`.`MEMBER` WHERE MEM_USERNAME = ?";
-	
+	private static final String VERIFY_MEM_STMT = "UPDATE `CFA104G5`.`MEMBER` SET mem_status = 1 WHERE mem_name = ?;";
+
+
 	
 	static {
 		try {
@@ -337,13 +340,27 @@ public class MemberJDBCDAO implements MemberDAO_interface {
 				memberVO.setMemID(rs.getInt("MEM_ID"));
 				memberVO.setMemUsername(rs.getString("MEM_USERNAME"));
 			}
-
-		} catch (SQLException se) {
+      } catch (SQLException se) {
 			se.printStackTrace();
 		} finally {
 			Util.closeResource(con, pstmt, rs);
 
 		}
 		return memberVO;
+	}
+
+	public void verifyMember(String memName) {
+
+		try {
+			con = DriverManager.getConnection(Util.URL, Util.USER, Util.PASSWORD);
+			pstmt = con.prepareStatement(VERIFY_MEM_STMT);
+			pstmt.setString(1, memName);
+			pstmt.executeUpdate();
+
+		} catch (SQLException se) {
+			se.printStackTrace();
+		} finally {
+			Util.closeResource(con, pstmt, rs);
+		}
 	}
 }

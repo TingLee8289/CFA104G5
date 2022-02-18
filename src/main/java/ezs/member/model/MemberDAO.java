@@ -17,8 +17,6 @@ import util.Util;
 
 public class MemberDAO implements MemberDAO_interface {
 
-
-
 	private static final String INSERT_STMT = "INSERT INTO `CFA104G5`.`MEMBER`(MEM_USERNAME,MEM_PASSWORD,MEM_NAME,MEM_LANDLORD,MEM_SUPPLIER,"
 			+ "MEM_SELLER,MEM_PHONE,MEM_ADDRESS,MEM_EMAIL,MEM_PID,MEM_STATUS,MEM_HEADSHOT,"
 			+ "MEM_REV_COUNT,MEM_REV_SCORE,MEM_RED_COUNT,MEM_Red_SCORE,MEM_REPORTED,"
@@ -30,6 +28,7 @@ public class MemberDAO implements MemberDAO_interface {
 			+ "MEM_LDD_REPORTED,MEM_SUP_REPORTED,MEM_SEL_REPORTED,MEM_VATNO FROM `CFA104G5`.`MEMBER` WHERE MEM_ID = ?";
 	private static final String DELETE = "DELETE FROM `CFA104G5`.`MEMBER` WHERE MEM_ID = ?";
 	private static final String Search = "SELECT MEM_USERNAME,MEM_PASSWORD FROM `CFA104G5`.`MEMBER` WHERE (MEM_USERNAME,MEM_PASSWORD) = (?,?)";
+
 	
 	private static final String UPDATE = "UPDATE `CFA104G5`.`MEMBER` SET MEM_PASSWORD = ?,MEM_NAME =?,MEM_PHONE=?,MEM_ADDRESS=?"
 			+ ",MEM_EMAIL=?,MEM_HEADSHOT=?,MEM_VATNO=? WHERE MEM_ID = ?";
@@ -38,7 +37,9 @@ public class MemberDAO implements MemberDAO_interface {
 			+ "MEM_REPORTED=?,MEM_LDD_REPORTED=?,MEM_SUP_REPORTED=?,MEM_SEL_REPORTED=? WHERE MEM_ID = ?";
 		
 	private static final String CHECK_USERNAME = "SELECT MEM_ID FROM `CFA104G5`.`MEMBER` WHERE MEM_USERNAME = ?";
-	
+
+	private static final String VERIFY_MEM_STMT = "UPDATE `CFA104G5`.`MEMBER` SET mem_status = 1 WHERE mem_name = ?;";
+
 	private static DataSource ds = null;
 	static {
 		try {
@@ -48,7 +49,7 @@ public class MemberDAO implements MemberDAO_interface {
 			e.printStackTrace();
 		}
 	}
-	
+
 	Connection con = null;
 	PreparedStatement pstmt = null;
 	ResultSet rs = null;
@@ -351,6 +352,23 @@ public class MemberDAO implements MemberDAO_interface {
 
 		}
 		return memberVO;
+	}
+
+	@Override
+	public void verifyMember(String memName) {
+
+		try {
+			con = ds.getConnection();
+			pstmt = con.prepareStatement(VERIFY_MEM_STMT);
+			pstmt.setString(1, memName);
+			pstmt.executeUpdate();
+
+		} catch (SQLException se) {
+			se.printStackTrace();
+		} finally {
+			Util.closeResource(con, pstmt, rs);
+		}
+
 	}
 
 }

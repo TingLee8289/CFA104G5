@@ -81,12 +81,12 @@ th, td {
 		name="form1">
 		<table>
 			<tr>
-				<td>服務訂單狀態:</td>
-				<td><input type="TEXT" name="ordStatus" size="8" value=0 /></td>
+				
+				<td><input type="hidden" name="ordStatus" size="8" value=0 /></td>
 			</tr>
 			<tr>
-				<td>付款狀態:</td>
-				<td><input type="TEXT" name="ordPayStatus" size="8" value=0 /></td>
+				
+				<td><input type="hidden" name="ordPayStatus" size="8" value=0 /></td>
 			</tr>
 			<tr>
 				<td>需求單ID:</td>
@@ -190,29 +190,29 @@ th, td {
 			</tr>
 
 			<tr>
-				<td>廠商評價客戶星數:</td>
-				<td><input type="TEXT" name="ordBuyerScore"
-					value="<%=(serOrdVO == null) ? "4" : serOrdVO.getOrdBuyerScore() %>" /></td>
+				
+				<td><input type="hidden" name="ordBuyerScore"
+					value="<%=(serOrdVO == null) ? "0" : serOrdVO.getOrdBuyerScore() %>" /></td>
 			</tr>
 			<tr>
-				<td>廠商評價客戶留言:</td>
-				<td><input type="TEXT" name="ordBuyerTxt"
-					value="<%=(serOrdVO == null) ? "4" : serOrdVO.getOrdBuyerTxt() %>" /></td>
+				
+				<td><input type="hidden" name="ordBuyerTxt"
+					value="<%=(serOrdVO == null) ? "" : serOrdVO.getOrdBuyerTxt() %>" /></td>
 			</tr>
 			<tr>
-				<td>客戶評價廠商星數:</td>
-				<td><input type="TEXT" name="ordVdrScore"
-					value="<%=(serOrdVO == null) ? "4" : serOrdVO.getOrdVdrScore() %>" /></td>
+				
+				<td><input type="hidden" name="ordVdrScore"
+					value="<%=(serOrdVO == null) ? "0" : serOrdVO.getOrdVdrScore() %>" /></td>
 			</tr>
 			<tr>
-				<td>廠商評價客戶留言:</td>
-				<td><input type="TEXT" name="ordVdrTxt"
-					value="<%=(serOrdVO == null) ? "4" : serOrdVO.getOrdVdrTxt() %>" /></td>
+				
+				<td><input type="hidden" name="ordVdrTxt"
+					value="<%=(serOrdVO == null) ? "" : serOrdVO.getOrdVdrTxt() %>" /></td>
 			</tr>
 			<tr>
 				<td>備註:</td>
 				<td><input type="TEXT" name="ordNote"
-					value="<%=(serOrdVO == null) ? "4" : serOrdVO.getOrdNote() %>" /></td>
+					value="<%=(serOrdVO == null) ? "" : serOrdVO.getOrdNote() %>" /></td>
 			</tr>
 
 

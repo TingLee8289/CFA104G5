@@ -81,10 +81,10 @@ public class AddOrdServlet extends HttpServlet {
 					errorMsgs.add("請輸入日期!");
 				}
 				Integer ordBuyerScore = Integer.valueOf(req.getParameter("ordBuyerScore"));
-				String ordBuyerTxt = req.getParameter("ordBuyerTxt").trim();
+				String ordBuyerTxt = req.getParameter("ordBuyerTxt");
 				Integer ordVdrScore = Integer.valueOf(req.getParameter("ordVdrScore"));
-				String ordVdrTxt = req.getParameter("ordVdrTxt").trim();
-				String ordNote = req.getParameter("ordNote").trim();
+				String ordVdrTxt = req.getParameter("ordVdrTxt");
+				String ordNote = req.getParameter("ordNote");
 
 				SerOrdVO serOrdVO = new SerOrdVO();
 				serOrdVO.setOrdStatus(ordStatus);

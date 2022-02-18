@@ -6,6 +6,7 @@ import java.util.*;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
+import javax.servlet.annotation.MultipartConfig;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -13,9 +14,10 @@ import javax.servlet.http.HttpServletResponse;
 
 import ezs.sec_items.model.SecItemsService;
 import ezs.sec_items.model.SecItemsVO;
+import ezs.sec_pics.model.SecPicsVO;
 
 @WebServlet("/sec_items/InsertSecItemsServlet.do")
-
+@MultipartConfig(fileSizeThreshold = 1024 * 1024, maxFileSize = 5 * 1024 * 1024, maxRequestSize = 5 * 5 * 1024 * 1024)
 public class InsertSecItemsServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
@@ -45,23 +47,27 @@ public class InsertSecItemsServlet extends HttpServlet {
 				Integer shCateID = Integer.valueOf(req.getParameter("shCateID").trim());
 
 				Integer shSellerID = Integer.valueOf(req.getParameter("shSellerID").trim());
-
+				
+				int minStrLength=2;
+				int maxStrLength=30;
+				
 				String shName = req.getParameter("shName");
-				String shNameReg = "^[(\u4e00-\u9fa5)(a-zA-Z0-9_)]{2,10}$";
+				String shNameReg = String.format("^[(\u4e00-\u9fa5)(0-9)]{%s,%s}$", minStrLength, maxStrLength);
 				if (shName == null || shName.trim().length() == 0) {
-					errorMsgs.add("員工姓名: 請勿空白");
+					errorMsgs.add("商品名稱: 請勿空白");
 				} else if (!shName.trim().matches(shNameReg)) { // 以下練習正則(規)表示式(regular-expression)
-					errorMsgs.add("員工姓名: 只能是中、英文字母、數字和_ , 且長度必需在2到10之間");
+					errorMsgs.add(String.format("商品名稱: 只能是中文字, 且長度必需在%s到%s之間", minStrLength, maxStrLength));
 				}
 
-				BigDecimal shPrice = null;
+				String shPrice = req.getParameter("shPrice");
 				String shPriceReg = "^[(0-9)]{1,1000000000}$";
 				if (shPrice == null || shPrice.toString().trim().length() == 0) {
 					errorMsgs.add("價格: 請勿空白");
 				} else if (!shPrice.toString().trim().matches(shPriceReg)) { // 以下練習正則(規)表示式(regular-expression)
 					errorMsgs.add("價格: 請填有效數字");
 				}
-
+				BigDecimal shPrice1 = new BigDecimal(shPrice.trim());
+//				BigDecimal shPrice1 = new BigDecimal((shPrice.trim()), 0, RoundingMode.HALF_UP);
 //				try {
 //					shPrice = new BigDecimal(req.getParameter("shPrice").trim());
 //				} catch (NumberFormatException e) {
@@ -72,11 +78,21 @@ public class InsertSecItemsServlet extends HttpServlet {
 //				會不會有小數點問題??
 
 				Integer shQTY = Integer.valueOf(req.getParameter("shQTY").trim());
-
+				String shQTYReg = "^[(0-9)]{1,1000000000}$";
+				if (shQTY == null || shQTY.toString().trim().length() == 0) {
+					errorMsgs.add("數量: 請勿空白");
+				} else if (!shQTY.toString().trim().matches(shQTYReg)) { // 以下練習正則(規)表示式(regular-expression)
+					errorMsgs.add("數量: 請填有效數字");
+				}
+				
+				
+				
 				String shSize = req.getParameter("shSize").trim();
 				if (shSize == null || shSize.trim().length() == 0) {
 					errorMsgs.add("商品尺寸請勿空白");
 				}
+				
+				
 				String shDescription = req.getParameter("shDescription").trim();
 				if (shDescription == null || shDescription.trim().length() == 0) {
 					errorMsgs.add("商品介紹請勿空白");
@@ -105,12 +121,25 @@ public class InsertSecItemsServlet extends HttpServlet {
 				if (shDist == null || shDist.trim().length() == 0) {
 					errorMsgs.add("所在鄉鎮區請勿空白");
 				}
+				
+				//.....新增抓取圖片的code
 
+				InputStream in = req.getPart("shPic").getInputStream();   //servlet 3.0Part物件
+				byte[] shPic = null;
+				if(in.available()!=0) {
+//				part是拿到inputStream   要轉成陣列
+				shPic = new byte[in.available()];
+				in.read(shPic);
+				in.close();
+				}else {
+					errorMsgs.add("請上傳圖片");
+				}
+				
 				SecItemsVO secItemsVO = new SecItemsVO();
 				secItemsVO.setShCateID(shCateID);
 				secItemsVO.setShSellerID(shSellerID);
 				secItemsVO.setShName(shName);
-				secItemsVO.setShPrice(shPrice);
+				secItemsVO.setShPrice(shPrice1);
 				secItemsVO.setShQTY(shQTY);
 				secItemsVO.setShSize(shSize);
 				secItemsVO.setShDescription(shDescription);
@@ -122,33 +151,41 @@ public class InsertSecItemsServlet extends HttpServlet {
 				secItemsVO.setShDist(shDist);
 			
 				
+				SecPicsVO secPicVO= new SecPicsVO();
+				
+				secPicVO.setShPic(shPic);
+				
 				// Send the use back to the form, if there were errors
 				if (!errorMsgs.isEmpty()) {
 					req.setAttribute("secItemsVO", secItemsVO); // 含有輸入格式錯誤的secItemsVO物件,也存入req
-					RequestDispatcher failureView = req.getRequestDispatcher("/secItems/addSecItems.jsp");
+					RequestDispatcher failureView = req.getRequestDispatcher("/frontend/sec_items/addSecItems.jsp");
 					failureView.forward(req, res);
 					return;
 				}
 
 				/*************************** 2.開始新增資料 ***************************************/
+//				new一個新物件secItemsSvc  去放各式各樣零件  組奘起來回傳給secItemsVO  在讓VO送回去給資料庫~~
+				
 				SecItemsService secItemsSvc = new SecItemsService();
 				
-				secItemsVO = secItemsSvc.addSecItems(shCateID, shSellerID, shName, shPrice, shQTY, shSize,
-						shDescription, shCondition, shTime, shGuarantee, shStatus, shCounty, shDist);
-			
-
+//				secItemsVO = secItemsSvc.addSecItems(shCateID, shSellerID, shName, shPrice1, shQTY, shSize,
+//						shDescription, shCondition, shTime, shGuarantee, shStatus, shCounty, shDist);
+//			
+				secItemsVO = secItemsSvc.addSecItems(secItemsVO, secPicVO);
+				
 				/*************************** 3.新增完成,準備轉交(Send the Success view) ***********/
-				String url = "/secItems/listAllSecItems.jsp";
+				String url = "/frontend/sec_items/listAllSecItems.jsp";
 				RequestDispatcher successView = req.getRequestDispatcher(url); // 新增成功後轉交listAllEmp.jsp
 				successView.forward(req, res);
 
 				/*************************** 其他可能的錯誤處理 **********************************/
+				
 			} catch (Exception e) {
+				e.printStackTrace();
 				errorMsgs.add(e.getMessage());
-				RequestDispatcher failureView = req.getRequestDispatcher("/secItems/addSecItems.jsp");
+				RequestDispatcher failureView = req.getRequestDispatcher("/frontend/sec_items/addSecItems.jsp");
 				failureView.forward(req, res);
 			}
 		}
-
 	}
 }

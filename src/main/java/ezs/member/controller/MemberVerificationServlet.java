@@ -11,6 +11,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import ezs.member.model.MemberService;
 import redis.clients.jedis.Jedis;
 
 @WebServlet("/member/MemberVerificationServlet.do")
@@ -25,18 +26,21 @@ public class MemberVerificationServlet extends HttpServlet {
 
 		req.setCharacterEncoding("UTF-8");
 		String action = req.getParameter("action");
+		String memUserName = req.getParameter("memUserName");
+		String verifCode = req.getParameter("verifCode");
+		
+		System.out.println(memUserName);
+		System.out.println(verifCode);
 
 		if ("verify".equals(action)) {
 			List<String> errorMsgs = new LinkedList<String>();
-			// Store this set in the request scope, in case we need to
-			// send the ErrorPage view.
 			req.setAttribute("errorMsgs", errorMsgs);
 
-			String str = req.getParameter("verifCode");
-			if (str == null || (str.trim()).length() == 0) {
+			
+			/*************************** 1.處理沒有輸入的情況 *****************************************/
+			if (verifCode == null || (verifCode.trim()).length() == 0) {
 				errorMsgs.add("請輸入驗證碼");
 			}
-			// Send the use back to the form, if there were errors
 			if (!errorMsgs.isEmpty()) {
 				RequestDispatcher failureView = req.getRequestDispatcher("/frontend/member/memberVerificationPage.jsp");
 				failureView.forward(req, res);
@@ -45,15 +49,29 @@ public class MemberVerificationServlet extends HttpServlet {
 
 			/*************************** 2.開始查詢資料 *****************************************/
 			Jedis jedis = new Jedis("localhost", 6379);
-			if (jedis.get("verifCode") == null) {
-				errorMsgs.add("查無資料");
-			}
-			if (!errorMsgs.isEmpty()) {
-				RequestDispatcher failureView = req.getRequestDispatcher("/frontend/member/memberVerificationPage.jsp");
-				failureView.forward(req, res);
-				return;
-			}
+			System.out.println(jedis.get(memUserName));
 			
+			// 處理輸入驗證碼正確的情況
+			if (verifCode.equals(jedis.get(memUserName))) {
+				MemberService memberSvc = new MemberService();
+				memberSvc.verifyMember(memUserName);
+				jedis.close();
+				
+				String url = "/frontend/member/login.jsp";
+				RequestDispatcher successView = req.getRequestDispatcher(url);
+				successView.forward(req, res);
+				return;
+			// 處理輸入驗證碼錯誤的情況
+			} else {
+				jedis.close();
+				errorMsgs.add("驗證碼錯誤，請重新輸入");
+				
+				if (!errorMsgs.isEmpty()) {
+					RequestDispatcher failureView = req.getRequestDispatcher("/frontend/member/memberVerificationPage.jsp");
+					failureView.forward(req, res);
+					return;
+				}
+			}
 
 		}
 

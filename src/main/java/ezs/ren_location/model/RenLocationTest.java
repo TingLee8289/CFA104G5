@@ -23,14 +23,12 @@ public class RenLocationTest {
 //		dao.delete(65);
 
 		// PK查詢
-
 //		RenLocationVO locationVO3 = dao.findByPrimaryKey(63);
 //		System.out.print(locationVO3.getLocID() + ",");
 //		System.out.print(locationVO3.getLocCity() + ",");
 //		System.out.println(locationVO3.getLocDist() + ",");
 //		System.out.println("---------------------");
 
-		
 
 		// 全部查詢
 		List<RenLocationVO> list = dao.getAll();

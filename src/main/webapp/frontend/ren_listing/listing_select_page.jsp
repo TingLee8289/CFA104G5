@@ -75,6 +75,7 @@
      	  <input type="submit" value="送出">
        </FORM>
 	</li>
+
 	<li>
      	<FORM METHOD="post" ACTION="RenListingServlet.do">
      	<jsp:useBean id= "renLocationSvc" scope="page" class="ezs.ren_location.model.RenLocationService"/>
@@ -88,7 +89,7 @@
      	  <input type="submit" value="送出">
        </FORM>
 	</li>
-	
+
 </ul>
 
 <h3>我要刊登</h3>

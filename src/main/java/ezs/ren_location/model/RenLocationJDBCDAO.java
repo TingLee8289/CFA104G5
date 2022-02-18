@@ -30,7 +30,6 @@ public class RenLocationJDBCDAO implements RenLocationDAO_interface {
 	ResultSet rs = null;
 
 	@Override
-
 	public void insert(RenLocationVO renLocationVO) {
 		try {
 			con = DriverManager.getConnection(Util.URL, Util.USER, Util.PASSWORD);
@@ -122,7 +121,6 @@ public class RenLocationJDBCDAO implements RenLocationDAO_interface {
 				renLocationVO.setLocCity(rs.getString("LOC_CITY"));
 				renLocationVO.setLocDist(rs.getString("LOC_DIST"));
 				list.add(renLocationVO); // Store the row in the list
-
 			}
 		} catch (SQLException se) {
 			se.printStackTrace();

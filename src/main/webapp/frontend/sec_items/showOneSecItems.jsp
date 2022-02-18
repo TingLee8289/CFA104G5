@@ -284,6 +284,12 @@
 		text-transform: uppercase;
 		cursor: pointer;
 	}
+	
+	#addQuantity1{
+		height: 34px;
+	}
+	
+
   </style>
   <script>
     $(document).ready(function() {
@@ -351,19 +357,26 @@
 		        slider.data('owl.carousel').to(number, 300, true);
 		    });
 
-
+			let stockNumber = parseInt($('#stock').html());
+			console.log(stockNumber);
             $(".qtyminus").on("click",function(){
                 var now = $(".qty").val();
                 if ($.isNumeric(now)){
-                    if (parseInt(now) -1> 0)
-                    { now--;}
+                    if (parseInt(now) -1 > 0){ 
+                    	now--;
+                    }
                     $(".qty").val(now);
+                    $("#addQuantity2").val(now);
                 }
             })            
             $(".qtyplus").on("click",function(){
                 var now = $(".qty").val();
                 if ($.isNumeric(now)){
-                    $(".qty").val(parseInt(now)+1);
+                	let num = parseInt(now)+1;
+                	if(num <= stockNumber) {
+                		 $(".qty").val(num);
+                         $("#addQuantity2").val(num);
+                	}
                 }
             });
 		});
@@ -435,29 +448,20 @@
 	        			<p>${secItemsVO.shDescription}</p>
 	        			<div class="product-count" id="qtyDiv">
 	        				<label for="size">數量</label>
-	        				<form action="<%=request.getContextPath()%>/sec_items/ShoppingServlet.do" class="display-flex" method="POST">
+	        				<form id="myForm" action="<%=request.getContextPath()%>/sec_items/ShoppingServlet.do" class="display-flex" method="POST">
 							    <div class="qtyminus" id="qtyminus">-</div>
 							    <input type="text" name="quantity" value="1" class="qty" id="addQuantity1">
 							    <div class="qtyplus" id="qtyplus">+</div>
 <!-- 							    <input type="submit" value="加入購物車" class="round-black-btn"> -->
-								<label for="size">尚有 ${secItemsVO.shQTY} 件</label><br>
-								<input type="submit" value="加入購物車" class="round-black-btn">
+								<label for="size" id="stock-label">尚有 <span id="stock">${secItemsVO.shQTY}</span> 件</label><br>
+<!-- 								<input id="mySubmit" type="submit" value="加入購物車" class="round-black-btn" style="display: none;"> -->
 								<input type="hidden" name="shID" value="${secItemsVO.shID}">								
 								<input type="hidden" name="shName" value="${secItemsVO.shName}">								
 								<input type="hidden" name="shPrice" value="${secItemsVO.shPrice}">								
 								<input type="hidden" name="shQTY" id="addQuantity2" value="1">								
 								<input type="hidden" name="action" value="ADD">		
 							</form>
-
-							
-<!-- 							<form action=> -->
-<!-- 								<input type="submit" value="加入購物車" class="round-black-btn"> -->
-<%-- 								<input type="hidden" name="shID" value="${secItemsVO.shID}">								 --%>
-<%-- 								<input type="hidden" name="shName" value="${secItemsVO.shName}">								 --%>
-<%-- 								<input type="hidden" name="shPrice" value="${secItemsVO.shPrice}">								 --%>
-<%-- 								<input type="hidden" name="shQTY" value="${secItemsVO.shQTY}">								 --%>
-<!-- 								<input type="hidden" name="action" value="ADD">								 -->
-<!-- 							</form> -->
+							<input id="mySubmit" type="submit" value="加入購物車" class="round-black-btn">
 	        			</div>
 	        		</div>
 	        	</div>
@@ -528,21 +532,24 @@
 		 let addQuantity2 = document.getElementById("addQuantity2");
 		 let qtyplus = document.getElementById("qtyplus");
 		 let qtyminus = document.getElementById("qtyminus");
-		 
-		// 使用者直接輸入數量的情況
-		 addQuantity1.addEventListener("change", () => addQuantity2.value = addQuantity1.value);
-		// 使用者點擊 + 的情況
-		 qtyplus.addEventListener("click", () => addQuantity2.value = parseInt(addQuantity1.value,10) + 1);
-		// 使用者點擊 - 的情況
-		 qtyminus.addEventListener("click", () => {
-			 										if(addQuantity2.value>1){
-			 											addQuantity2.value = parseInt(addQuantity1.value,10) - 1;
-			 										}else{
-			 											addQuantity2.value = 1;
-			 										}
-		 										  });
+		 let stock = document.getElementById("stock");
 		 
 		 
+// 		// 使用者直接輸入數量的情況
+// 		 addQuantity1.addEventListener("change", () => addQuantity2.value = addQuantity1.value);
+// 		// 使用者點擊 + 的情況
+// 		 qtyplus.addEventListener("click", () => addQuantity2.value = parseInt(addQuantity1.value,10));
+// 		// 使用者點擊 - 的情況
+// 		 qtyminus.addEventListener("click", () => { if(addQuantity2.value>1){addQuantity2.value = parseInt(addQuantity1.value,10) - 1;
+// 			 										}else{addQuantity2.value = 1;}});
+		// 可選數量不可大於庫存量
+// 		qtyDiv.addEventListener("click", () => {if(parseInt(addQuantity1.value) > parseInt(stock.innerText)){addQuantity1.value = stock.innerText;} })
+		
+		let myForm = document.getElementById("myForm");
+		 let mySubmit = document.getElementById('mySubmit');
+		 mySubmit.addEventListener('click', function(){
+			 myForm.submit();
+		 });
 	</script>
 
 

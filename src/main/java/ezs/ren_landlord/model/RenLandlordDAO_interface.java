@@ -10,3 +10,4 @@ public interface RenLandlordDAO_interface {
     public RenLandlordVO findByPrimaryKey(Integer lddId);
     public List<RenLandlordVO> getAll();
 }
+

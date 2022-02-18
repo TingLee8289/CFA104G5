@@ -38,7 +38,6 @@ public class RenListingJNDIDAO implements RenListingDAO_interface {
 	ResultSet rs = null;
 
 	@Override
-
 	public void insert(RenListingVO renListingVO) {
 		try {
 			con = ds.getConnection();

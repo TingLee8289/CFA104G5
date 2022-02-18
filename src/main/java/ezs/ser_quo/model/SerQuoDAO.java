@@ -22,17 +22,19 @@ public class SerQuoDAO implements SerQuoDAO_interface {
 	private static final String DELETE = "DELETE FROM `ser_quo` where QUO_ID = ?";
 	private static final String UPDATE = "UPDATE `ser_quo` set QUO_STATUS=?, QUO_DMD_ID=?, QUO_VDR_ID=?, QUO_DATE=?, QUO_EXPIRYDATE=?, QUO_ITEM=?, QUO_TOTALPRICE=? where QUO_ID = ?";
 	public static final String FIND_BY_QUO_VDRID = "SELECT * FROM ser_quo WHERE quo_vdr_id = ?";
+	public static final String FIND_QUO_BY_DMDID = "select * from  SER_DMD  d  join SER_QUO q on d.DMD_ID = q.QUO_DMD_ID where d.DMD_ID = ?";
+
 	// 一個應用程式中,針對一個資料庫 ,共用一個DataSource即可
-			private static DataSource ds = null;
-			static {
-				try {
-					Context ctx = new InitialContext();
-					ds = (DataSource) ctx.lookup("java:comp/env/jdbc/CFA104G5");
-				} catch (NamingException e) {
-					e.printStackTrace();
-				}
-			}
-	
+	private static DataSource ds = null;
+	static {
+		try {
+			Context ctx = new InitialContext();
+			ds = (DataSource) ctx.lookup("java:comp/env/jdbc/CFA104G5");
+		} catch (NamingException e) {
+			e.printStackTrace();
+		}
+	}
+
 	Connection con = null;
 	PreparedStatement pstmt = null;
 	ResultSet rs = null;
@@ -111,9 +113,9 @@ public class SerQuoDAO implements SerQuoDAO_interface {
 			pstmt = con.prepareStatement(GET_ONE_STMT);
 			pstmt.setInt(1, quoID);
 			rs = pstmt.executeQuery();
-			while(rs.next()) {
+			while (rs.next()) {
 				serQuoVO = new SerQuoVO();
-				
+
 				serQuoVO.setQuoID(rs.getInt("QUO_ID"));
 				serQuoVO.setQuoStatus(rs.getByte("QUO_STATUS"));
 				serQuoVO.setQuoDmdID(rs.getInt("QUO_DMD_ID"));
@@ -123,11 +125,10 @@ public class SerQuoDAO implements SerQuoDAO_interface {
 				serQuoVO.setQuoItem(rs.getString("QUO_ITEM"));
 				serQuoVO.setQuoTotalPrice(rs.getBigDecimal("QUO_TOTALPRICE"));
 			}
-			
-			
+
 		} catch (SQLException se) {
 			se.printStackTrace();
-		}finally {
+		} finally {
 			Util.closeResource(con, pstmt, rs);
 		}
 		return serQuoVO;
@@ -141,10 +142,10 @@ public class SerQuoDAO implements SerQuoDAO_interface {
 			con = ds.getConnection();
 			pstmt = con.prepareStatement(GET_ALL_STMT);
 			rs = pstmt.executeQuery();
-			while(rs.next()) {
+			while (rs.next()) {
 				// 每次進來迴圈裡，就代表一筆資料，我們就產生一個Bean，包裝著查詢的資料，最後再回傳給呼叫端
 				serQuoVO = new SerQuoVO();
-				
+
 				serQuoVO.setQuoID(rs.getInt("QUO_ID"));
 				serQuoVO.setQuoStatus(rs.getByte("QUO_STATUS"));
 				serQuoVO.setQuoDmdID(rs.getInt("QUO_DMD_ID"));
@@ -155,15 +156,15 @@ public class SerQuoDAO implements SerQuoDAO_interface {
 				serQuoVO.setQuoTotalPrice(rs.getBigDecimal("QUO_TOTALPRICE"));
 				list.add(serQuoVO);
 			}
-			
-			
+
 		} catch (SQLException se) {
 			se.printStackTrace();
-		}finally {
+		} finally {
 			Util.closeResource(con, pstmt, rs);
 		}
 		return list;
 	}
+
 	public List<SerQuoVO> findByVdrID(Integer quoVdrID) {
 		List<SerQuoVO> list = new ArrayList<SerQuoVO>();
 		SerQuoVO serQuoVO = null;
@@ -172,10 +173,10 @@ public class SerQuoDAO implements SerQuoDAO_interface {
 			pstmt = con.prepareStatement(FIND_BY_QUO_VDRID);
 			pstmt.setInt(1, quoVdrID);
 			rs = pstmt.executeQuery();
-			while(rs.next()) {
+			while (rs.next()) {
 				// 每次進來迴圈裡，就代表一筆資料，我們就產生一個Bean，包裝著查詢的資料，最後再回傳給呼叫端
 				serQuoVO = new SerQuoVO();
-				
+
 				serQuoVO.setQuoID(rs.getInt("QUO_ID"));
 				serQuoVO.setQuoStatus(rs.getByte("QUO_STATUS"));
 				serQuoVO.setQuoDmdID(rs.getInt("QUO_DMD_ID"));
@@ -186,16 +187,44 @@ public class SerQuoDAO implements SerQuoDAO_interface {
 				serQuoVO.setQuoTotalPrice(rs.getBigDecimal("QUO_TOTALPRICE"));
 				list.add(serQuoVO);
 			}
-			
-			
+
 		} catch (SQLException se) {
 			se.printStackTrace();
-		}finally {
+		} finally {
 			Util.closeResource(con, pstmt, rs);
 		}
 		return list;
 	}
 
-	
+	@Override
+	public List<SerQuoVO> findByDmdID(Integer dmdID) {
+		List<SerQuoVO> list = new ArrayList<SerQuoVO>();
+		SerQuoVO serQuoVO = null;
+		try {
+			con = ds.getConnection();
+			pstmt = con.prepareStatement(FIND_QUO_BY_DMDID);
+			pstmt.setInt(1, dmdID);
+			rs = pstmt.executeQuery();
+			while (rs.next()) {
+				// 每次進來迴圈裡，就代表一筆資料，我們就產生一個Bean，包裝著查詢的資料，最後再回傳給呼叫端
+				serQuoVO = new SerQuoVO();
 
+				serQuoVO.setQuoID(rs.getInt("QUO_ID"));
+				serQuoVO.setQuoStatus(rs.getByte("QUO_STATUS"));
+				serQuoVO.setQuoDmdID(rs.getInt("QUO_DMD_ID"));
+				serQuoVO.setQuoVdrID(rs.getInt("QUO_VDR_ID"));
+				serQuoVO.setQuoDate(rs.getDate("QUO_DATE"));
+				serQuoVO.setQuoExpiryDate(rs.getDate("QUO_EXPIRYDATE"));
+				serQuoVO.setQuoItem(rs.getString("QUO_ITEM"));
+				serQuoVO.setQuoTotalPrice(rs.getBigDecimal("QUO_TOTALPRICE"));
+				list.add(serQuoVO);
+			}
+
+		} catch (SQLException se) {
+			se.printStackTrace();
+		} finally {
+			Util.closeResource(con, pstmt, rs);
+		}
+		return list;
+	}
 }
