@@ -4,13 +4,7 @@
 <%@ page import="java.util.*"%>
 <%@ page import="ezs.ser_quo.model.*"%>
 <% session.setAttribute("memID", 2);%>
-<%
-    Integer memID = (Integer)session.getAttribute("memID");
-    SerQuoService serQuoSvc = new SerQuoService();
-    List<SerQuoVO> memQuoList = serQuoSvc.findByDmdID(2);
-     									//如何動態取值
-    pageContext.setAttribute("memQuoList",memQuoList);
-%>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -72,7 +66,7 @@
 			<th>刪除</th>
 	</tr>
 	
-	<c:forEach var="serQuoVO" items="${memQuoList}" >
+	<c:forEach var="serQuoVO" items="${serQuoVOList}" >
 		
 		<tr>
 			<td>${serQuoVO.quoID}</td>

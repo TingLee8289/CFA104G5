@@ -1,9 +1,8 @@
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="Big5"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<%@ page import="com.emp.model.*"%>
 
 <%
-  EmpVO empVO = (EmpVO) request.getAttribute("empVO"); //EmpServlet.java (Concroller) 存入req的empVO物件 (包括幫忙取出的empVO, 也包括輸入資料錯誤時的empVO物件)
+//   EmpVO empVO = (EmpVO) request.getAttribute("empVO"); //EmpServlet.java (Concroller) 存入req的empVO物件 (包括幫忙取出的empVO, 也包括輸入資料錯誤時的empVO物件)
 %>
 
 <html>
@@ -69,15 +68,15 @@
 <table>
 	<tr>
 		<td>員工編號:<font color=red><b>*</b></font></td>
-		<td><%=empVO.getEmpno()%></td>
+<%-- 		<td><%=empVO.getEmpno()%></td> --%>
 	</tr>
 	<tr>
 		<td>員工姓名:</td>
-		<td><input type="TEXT" name="ename" size="45" value="<%=empVO.getEname()%>" /></td>
+<%-- 		<td><input type="TEXT" name="ename" size="45" value="<%=empVO.getEname()%>" /></td> --%>
 	</tr>
 	<tr>
 		<td>職位:</td>
-		<td><input type="TEXT" name="job" size="45"	value="<%=empVO.getJob()%>" /></td>
+<%-- 		<td><input type="TEXT" name="job" size="45"	value="<%=empVO.getJob()%>" /></td> --%>
 	</tr>
 	<tr>
 		<td>雇用日期:</td>
@@ -85,14 +84,14 @@
 	</tr>
 	<tr>
 		<td>薪水:</td>
-		<td><input type="TEXT" name="sal" size="45"	value="<%=empVO.getSal()%>" /></td>
+<%-- 		<td><input type="TEXT" name="sal" size="45"	value="<%=empVO.getSal()%>" /></td> --%>
 	</tr>
 	<tr>
 		<td>獎金:</td>
-		<td><input type="TEXT" name="comm" size="45" value="<%=empVO.getComm()%>" /></td>
+<%-- 		<td><input type="TEXT" name="comm" size="45" value="<%=empVO.getComm()%>" /></td> --%>
 	</tr>
 
-	<jsp:useBean id="deptSvc" scope="page" class="com.dept.model.DeptService" />
+<%-- 	<jsp:useBean id="deptSvc" scope="page" class="com.dept.model.DeptService" /> --%>
 	<tr>
 		<td>部門:<font color=red><b>*</b></font></td>
 		<td><select size="1" name="deptno">
@@ -105,7 +104,7 @@
 </table>
 <br>
 <input type="hidden" name="action" value="update">
-<input type="hidden" name="empno" value="<%=empVO.getEmpno()%>">
+<%-- <input type="hidden" name="empno" value="<%=empVO.getEmpno()%>"> --%>
 <input type="submit" value="送出修改"></FORM>
 </body>
 
@@ -133,7 +132,7 @@
  	       timepicker:false,       //timepicker:true,
  	       step: 1,                //step: 60 (這是timepicker的預設間隔60分鐘)
  	       format:'Y-m-d',         //format:'Y-m-d H:i:s',
- 		   value: '<%=empVO.getHiredate()%>', // value:   new Date(),
+<%--  		   value: '<%=empVO.getHiredate()%>', // value:   new Date(), --%>
            //disabledDates:        ['2017/06/08','2017/06/09','2017/06/10'], // 去除特定不含
            //startDate:	            '2017/07/10',  // 起始日
            //minDate:               '-1970-01-01', // 去除今日(不含)之前

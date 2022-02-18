@@ -15,7 +15,7 @@
 
 
 <form METHOD="post"
-		ACTION="<%=request.getContextPath()%>/AdminEmpServlet">
+		ACTION="<%=request.getContextPath()%>/admin_emp/AdminEmpServlet.do">
 		<input type="hidden" name="action" value="logout"> 
 		<button name="button">登出</button>
 	</form>

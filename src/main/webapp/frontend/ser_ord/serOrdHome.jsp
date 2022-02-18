@@ -31,7 +31,12 @@
 		
 		<ul>
 			<li><a
-				href="<%=request.getContextPath()%>/frontend/ser_ord/serOrdHome.jsp">檢視訂單</a>
+				href="<%=request.getContextPath()%>/frontend/ser_ord/getOrdByVdrID.jsp">廠商檢視訂單</a>
+			</li>
+		</ul>
+		<ul>
+			<li><a
+				href="<%=request.getContextPath()%>/frontend/ser_ord/getOrdByMemID.jsp">會員檢視訂單</a>
 			</li>
 		</ul>
 		<ul>

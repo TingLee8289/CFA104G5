@@ -7,12 +7,9 @@ import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
-import java.util.LinkedList;
-import java.util.List;
 
 import javax.naming.Context;
 import javax.naming.NamingException;
-import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.ServletOutputStream;
 import javax.servlet.annotation.WebServlet;
@@ -20,10 +17,6 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.sql.DataSource;
-
-import ezs.sec_items.model.SecItemsVO;
-import ezs.sec_pics.model.SecPicsService;
-import ezs.sec_pics.model.SecPicsVO;
 
 @WebServlet("/sec_pics/SecPicsReader.do")
 public class SecPicsReader extends HttpServlet {

@@ -79,7 +79,7 @@ public class MemberServlet extends HttpServlet {
 				HttpSession session = req.getSession();
 				session.setAttribute("memUsername", memberVO.getMemUsername());
 
-				String url = "/frontend/member/loginsuccess.jsp";
+				String url = "/frontend/member/loginsuccessSimple.jsp";
 				RequestDispatcher successView = req.getRequestDispatcher(url); // 成功轉交 loginsucess.jsp
 				successView.forward(req, res);
 				/*************************** 其他可能的錯誤處理 *************************************/
@@ -89,6 +89,17 @@ public class MemberServlet extends HttpServlet {
 				failureView.forward(req, res);
 			}
 		}
+//		登出設定
+//	System.out.println(action);
+	if ("logout".equals(action)) {
+		HttpSession session = req.getSession(false);
+		if (session != null) {
+//				   session.removeAttribute("memUsername");
+			session.invalidate();
+		}
+		req.getRequestDispatcher("/frontend/member/login.jsp").forward(req, res);
+		return;
+	}
 // 新增會員 (接收來自memberRegister.jsp請求)	
 		if ("insert".equals(action)) {
 			List<String> errorMsgs = new LinkedList<String>();

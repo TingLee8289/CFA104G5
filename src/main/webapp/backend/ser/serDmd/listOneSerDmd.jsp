@@ -1,6 +1,8 @@
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ page import="java.util.*"%>
 <%@ page import="ezs.ser_dmd.model.*"%>
-<%-- 此頁暫練習採用 Script 的寫法取值 --%>
+
 
 <%
 SerDmdVO serDmdVO = (SerDmdVO) request.getAttribute("serDmdVO"); //SerDmdServlet.java(Concroller), 存入req的empVO物件
@@ -84,7 +86,11 @@ th, td {
 		</tr>
 		<tr>
 			<td>${serDmdVO.dmdID}</td>
-			<td>${serDmdVO.dmdStatus}</td>
+			<td>
+				<c:if test="${serDmdVO.dmdStatus == 0}">未投遞</c:if>
+				<c:if test="${serDmdVO.dmdStatus == 1}">投遞中</c:if>
+				<c:if test="${serDmdVO.dmdStatus == 2}">訂單成立</c:if>
+			</td>
 			<td>${serDmdVO.dmdMemID}</td>
 			<td>${serDmdVO.dmdSerClaID}</td>
 			<td>${serDmdVO.dmdName}</td>

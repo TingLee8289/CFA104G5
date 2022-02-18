@@ -22,11 +22,24 @@
 	
 	<filter>
 		<filter-name>LoginFilter</filter-name>
-		<filter-class>filters.LoginFilter</filter-class>
+		<filter-class>filters.BackendLoginFilter</filter-class>
 	</filter>
 	<filter-mapping>
 		<filter-name>LoginFilter</filter-name>
 		<url-pattern>/backend/loginsucess.jsp</url-pattern>
+		<dispatcher>REQUEST</dispatcher>
+		<dispatcher>FORWARD</dispatcher>
+		<dispatcher>INCLUDE</dispatcher>
+		<dispatcher>ERROR</dispatcher>
+		<dispatcher>ASYNC</dispatcher>
+	</filter-mapping>
+	<filter>
+		<filter-name>FronendLoginFilter</filter-name>
+		<filter-class>filters.FrontendLoginFilter</filter-class>
+	</filter>
+	<filter-mapping>
+		<filter-name>FronendLoginFilter</filter-name>
+		<url-pattern>/frontend/member/loginsuccess.jsp</url-pattern>
 		<dispatcher>REQUEST</dispatcher>
 		<dispatcher>FORWARD</dispatcher>
 		<dispatcher>INCLUDE</dispatcher>

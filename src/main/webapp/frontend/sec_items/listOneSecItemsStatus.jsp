@@ -8,8 +8,10 @@
 
 SecItemsVO secItemsVO = (SecItemsVO) request.getAttribute("secItemsVO");
 SecItemsService secItemsSvc = new SecItemsService();
+
 // List<SecItemsVO> secItemslist = secItemsSvc.getShStatusAll(shStatus);
 // pageContext.setAttribute("secItemslist", secItemslist);
+
 
 //EmpServlet.java(Concroller), 存入req的empVO物件
 %>

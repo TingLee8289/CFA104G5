@@ -171,45 +171,49 @@ pageContext.setAttribute("secItemslist", secItemslist);
         <ul class="nav_list">
 	        <c:forEach var="secCategoryVO" items="${secCategorylist}">
 	         	 <li>
-		         	 	<a href="<%=request.getContextPath() %>/sec_items/GetSecItemsServlet.do?action=get_BY_CATE&shCateID=${secCategoryVO.shCateID}">
-		         	 		${secCategoryVO.shCateName}
-		         	 	</a>
+	         	 	<form method="get" action="<%=request.getContextPath() %>/frontend/sec_items/secItemsViewPageAJAX.jsp">
+		         	 	<input type="submit" value="${secCategoryVO.shCateName}">
+		         	 	<input type="hidden" name="shCateID" value="${secCategoryVO.shCateID}">
+	         	 	</form>
 	         	 </li>  
 	        </c:forEach>
         </ul>
       </nav>
+      <select id="test"></select>
     </aside>
 <!-- 	側邊欄 結束-------------------------------------------------------- -->
 <!-- 	main 開始-------------------------------------------------------- -->
 
     <main class="main">
-      <ul class="item_list">
-      
-      <c:forEach var="secPicsVO" items="${secPicslist}">
-        <li>
-          <a href="<%=request.getContextPath()%>/sec_items/GetSecItemsServlet.do?shID=${secPicsVO.shID}&action=getOne_For_Display">
-            <div class="img_block">
-              <img src="<%= request.getContextPath()%>/sec_pics/SecPicsReader.do?sh_id=${secPicsVO.shID}">
-            </div>
-            <c:forEach var="secItemsVO" items="${secItemslist}">
-            	<c:if test="${secItemsVO.shID==secPicsVO.shID}">
-              		<span class="item_text">${secItemsVO.shName}</span>
-           			<span class="item_price">$${secItemsVO.shPrice}</span>
-	            </c:if> 
-	        </c:forEach>
-          </a>
-          <c:forEach var="secItemsVO" items="${secItemslist}">
-          	<c:if test="${secItemsVO.shID==secPicsVO.shID}">
-          		<a class="btn btn-buy" href="<%=request.getContextPath()%>/sec_items/ShoppingServlet.do?shID=${secItemsVO.shID}&shName=${secItemsVO.shName}&shPrice=${secItemsVO.shPrice}&shQTY=1&action=ADD" >加入購物車</a>
-	        </c:if> 
-	      </c:forEach>
-        </li>
-      </c:forEach>
-      
-      </ul>
-    </main>
+		<ul class="item_list" id="item_list">
+
+			<c:forEach var="secPicsVO" items="${secPicslist}">
+				<li>
+					<a href="<%=request.getContextPath()%>/sec_items/GetSecItemsServlet.do?shID=${secPicsVO.shID}&action=getOne_For_Display">
+						<div class="img_block">
+							<img
+								src="<%= request.getContextPath()%>/sec_pics/SecPicsReader.do?sh_id=${secPicsVO.shID}">
+						</div> <c:forEach var="secItemsVO" items="${secItemslist}">
+							<c:if test="${secItemsVO.shID==secPicsVO.shID}">
+								<span class="item_text">${secItemsVO.shName}</span>
+								<span class="item_price">$${secItemsVO.shPrice}</span>
+							</c:if>
+						</c:forEach>
+					</a> 
+					<c:forEach var="secItemsVO" items="${secItemslist}">
+						<c:if test="${secItemsVO.shID==secPicsVO.shID}">
+							<a class="btn btn-buy"
+								href="<%=request.getContextPath()%>/sec_items/ShoppingServlet.do?shID=${secItemsVO.shID}&shName=${secItemsVO.shName}&shPrice=${secItemsVO.shPrice}&shQTY=1&action=ADD">加入購物車</a>
+						</c:if>
+					</c:forEach>
+				</li>
+			</c:forEach>
+
+		</ul>
+	</main>
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script src="http://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script>
       $(function(){
 
@@ -218,7 +222,63 @@ pageContext.setAttribute("secItemslist", secItemslist);
         });
 
       });
-    </script>
- <!-- 	main 結束-------------------------------------------------------- -->
+</script>
+<script>
+	$.ajax({
+		url: "<%=request.getContextPath()%>/frontend/sec_items/secItemsViewPageAJAX.jsp",
+		type: "GET",
+		success: function(data) {
+			showNames(data);
+		}
+	});
+	
+	function showNames(data){
+		var names = data.split(",");
+		$("#test").html("");
+		for (i in names){
+			var opt = $("<option>").val(names[i]).text(names[i]);
+			$("#test").append(opt);
+		}
+	}
+	
+	const select = document.getElementById("test");
+	console.log(select);
+
+	
+// 	$.ajax({
+// 	    // 進行要求的網址(URL)
+<%-- 	    url: '<%= request.getContextPath()%>/sec_items/GetSecItemsServlet.do', --%>
+// 	    // 要送出的資料 (會被自動轉成查詢字串)
+// 	    data: {
+// 	        shCateID: 
+// 	    },
+// 	    // 要使用的要求method(方法)，POST 或 GET
+// 	    type: 'GET',
+// 	    // 資料的類型
+// 	    dataType : 'json',
+// 	})
+// 	  // 要求成功時要執行的程式碼
+// 	  // 回應會被傳遞到回調函式的參數
+// 	  .done(function( json ) {
+// 	     $( '<h1>' ).text( json.title ).appendTo( 'body' );
+// 	     $( '<div class=\'content\'>').html( json.html ).appendTo( 'body' );
+// 	  })
+// 	  // 要求失敗時要執行的程式碼
+// 	  // 狀態碼會被傳遞到回調函式的參數
+// 	  .fail(function( xhr, status, errorThrown ) {
+// 	    console.log( '出現錯誤，無法完成!' )
+// 	    console.log( 'Error: ' + errorThrown )
+// 	    console.log( 'Status: ' + status )
+// 	    console.dir( xhr )
+// 	  })
+// 	  // 不論成功或失敗都會執行的回調函式
+// 	  .always(function( xhr, status ) {
+// 	    console.log( '要求已完成!' )
+// 	  })
+</script>
+
+
+
+<!-- 	main 結束-------------------------------------------------------- -->
 </body>
 </html>

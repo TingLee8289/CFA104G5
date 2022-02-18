@@ -12,10 +12,12 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import com.mysql.cj.Session;
+
 import ezs.admin_emp.model.AdminEmpService;
 import ezs.admin_emp.model.AdminEmpVO;
 
-@WebServlet("/AdminEmpServlet")
+@WebServlet("/admin_emp/AdminEmpServlet.do")
 public class AdminEmpServlet extends HttpServlet {
 //	protected void doGet(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
 //		doPost(req, res);
@@ -67,9 +69,10 @@ public class AdminEmpServlet extends HttpServlet {
 				}
 
 				/*************************** 3.查詢完成,準備轉交(Send the Success view) *************/
-				req.setAttribute("adminEmpVO", adminEmpVO); // 資料庫取出的adminEmpVO物件,存入req
 				HttpSession session = req.getSession();
+				session.setAttribute("adminEmpVO", adminEmpVO); // 資料庫取出的adminEmpVO物件,存入req
 				session.setAttribute("admUsername", adminEmpVO.getAdmUsername());
+				
 				String url = "/backend/loginsucess.jsp";
 				RequestDispatcher successView = req.getRequestDispatcher(url); // 成功轉交 loginsucess.jsp
 				successView.forward(req, res);
@@ -80,9 +83,17 @@ public class AdminEmpServlet extends HttpServlet {
 				failureView.forward(req, res);
 			}
 		}
+//		登出設定
 		if ("logout".equals(action)) {
-			
+			HttpSession session = req.getSession(false);
+			if (session != null) {
+//				   session.removeAttribute("admUsername");
+				   session.invalidate();
+				  }
+			req.getRequestDispatcher("/backend/login.jsp").forward(req, res);
+			  return;
 		}
+		
 	
 	}
 }
