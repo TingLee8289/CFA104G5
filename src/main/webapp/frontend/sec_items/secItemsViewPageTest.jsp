@@ -234,16 +234,16 @@ pageContext.setAttribute("secItemslist", secItemslist);
 				url: "<%= request.getContextPath()%>/frontend/sec_items/secItemsViewPageAJAX.jsp",
 				data: {"shCateID": 1},
 				success: function(data){
-					showNames(data);
+					showItems(data);
 				}
 			});
 		});
 
 	
-	function showNames(data){
-		var names = data.split(",");
-		$("#test").html("");
-		for (i in names){
+	function showItems(data){
+		let shIDs = data.split(",");
+		$("#item_list").html("");
+		for (i in shIDs){
 			var opt = $("<option>").val(names[i]).text(names[i]);
 			$("#test").append(opt);
 		}
