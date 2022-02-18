@@ -74,23 +74,31 @@ System.out.print(renListingVO);
 	</tr>
 	<tr>
 		<td>房東編號:</td>
-		<td><%=renListingVO.getLisLddID()%></td>
+		<td><input type="TEXT" name="lisLddID" size="45" value="<%=renListingVO.getLisLddID()%>" /></td>
 	</tr>
+	<jsp:useBean id= "renRoomtypeSvc" scope="page" class="ezs.ren_roomtype.model.RenRoomtypeService"/>
 	<tr>
-		<td>房型:</td>
-		<td><%=renListingVO.getLisRtID()%></td>
-	</tr>
+		<td>房屋類型<font color = red><b>*</b></font></td>
+			<td><select size="1" name="lisRtID">
+			<c:forEach var="renRoomtypeVO" items="${renRoomtypeSvc.all}">
+				<option value="${renRoomtypeVO.rtID}" ${(renListingVO.lisRtID == renRoomtypeVO.rtID)? 'selected':'' } >${renRoomtypeVO.rtType}
+			</c:forEach>
+		</select></td>
+	<jsp:useBean id= "renLocationSvc" scope="page" class="ezs.ren_location.model.RenLocationService"/>
 	<tr>
-		<td>區域:</td>
-		<td><%=renListingVO.getLisAreaID()%></td>
-	</tr>
+		<td>區域<font color = red><b>*</b></font></td>
+			<td><select size="1" name="lisAreaID">
+				<c:forEach var="renLocationVO" items="${renLocationSvc.all}">
+					<option value="${renLocationVO.locID}" ${(renListingVO.lisAreaID == renLocationVO.locID)? 'selected':'' } >${renLocationVO.locCity}${renLocationVO.locDist}
+				</c:forEach>
+		</select></td>
 	<tr>
 		<td>詳細地址<font color=red><b>*</b></font></td>
-		<td><%=renListingVO.getLisAddress()%></td>
+		<td><input type="TEXT" name="lisAddress" size="45" value="<%=renListingVO.getLisAddress()%>" /></td>
 	</tr>
 	<tr>
 		<td>樓層<font color=red><b>*</b></font></td>
-		<td><%=renListingVO.getLisFlr()%></td>
+		<td><input type="TEXT" name="lisFlr" size="45" value="<%=renListingVO.getLisFlr()%>" /></td>
 	</tr>
 	<tr>
 		<td>房源標題<font color=red><b>*</b></font></td>
@@ -225,14 +233,16 @@ System.out.print(renListingVO);
 	</tr>
 	<tr>
 		<td></td>	
-		<td>車位<select  name="lisParking" ><option value='<%= (renListingVO==null)? "0": renListingVO.getLisCabinet() %>'  selected >無</option>
+
+		<td>沙發<select  name="lisSofa" ><option value='<%= (renListingVO==null)? "0": renListingVO.getLisSofa() %>'  selected >無</option>
+
 				
 				<option value='1' >有</option>
 				</select>
 	</tr>
 	<tr>
 		<td></td>	
-		<td>車位<select  name="lisCabinet" ><option value='<%= (renListingVO==null)? "0": renListingVO.getLisParking() %>'  selected >無</option>
+		<td>車位<select  name="lisParking" ><option value='<%= (renListingVO==null)? "0": renListingVO.getLisParking() %>'  selected >無</option>
 				
 				<option value='1' >有</option>
 				</select>
@@ -267,18 +277,13 @@ System.out.print(renListingVO);
 	</tr>
 	<tr>
 		<td></td>	
-		<td>限女性<select  name="lisFonly" ><option value='<%= (renListingVO==null)? "0": renListingVO.getLisMonly() %>'  selected >不可以</option>
+
+		<td>限女性<select  name="lisFonly" ><option value='<%= (renListingVO==null)? "0": renListingVO.getLisFonly() %>'  selected >不可以</option>
 				
 				<option value='1' >可以</option>
 				</select>
 	</tr>
-	<tr>
-		<td></td>	
-		<td>養限男性<select  name="lisMonly" ><option value='<%= (renListingVO==null)? "0": renListingVO.getLisFonly() %>'  selected >不可以</option>
-				
-				<option value='1' >可以</option>
-				</select>
-	</tr>
+
 	<tr>
 		<td></td>	
 		<td>限學生<select  name="lisSonly" ><option value='<%= (renListingVO==null)? "0": renListingVO.getLisSonly() %>'  selected >不可以</option>
@@ -288,18 +293,32 @@ System.out.print(renListingVO);
 	</tr>
 	<tr>
 		<td></td>	
-		<td>房源上架狀態<select  name="lisStatus" ><option value='<%= (renListingVO==null)? "0": renListingVO.getLisStatus() %>'  selected >不可以</option>
+
+		<td>房源上架狀態<select  name="lisStatus" ><option value='<%= (renListingVO==null)? "0": renListingVO.getLisStatus() %>'  selected >否</option>
 				
-				<option value='1' >可以</option>
+				<option value='1' >已下架</option>
+
+				</select>
+	</tr>
+	<tr>
+		<td></td>	
+
+		<td>房源申請審核狀態<select  name="lisApproval" ><option value='<%= (renListingVO==null)? "0": renListingVO.getLisApproval() %>'  selected >審核中</option>
+				
+				<option value='1' >已審核</option>
+				<option value='2' >審核未過</option>
+
 				</select>
 	</tr>
 	
 	
 </table>
-
-
-
-
+<br>
+<input type="hidden" name="action" value="update">
+<input type="hidden" name="lisID" value="<%=renListingVO.getLisID()%>">
+<input type="submit" value="送出修改">
+</FORM>
+</body>
 
 </FORM>
 

@@ -10,6 +10,7 @@ import javax.naming.Context;
 import javax.naming.InitialContext;
 import javax.naming.NamingException;
 import javax.sql.DataSource;
+
 import util.Util;
 
 public class RenLandlordDAO implements RenLandlordDAO_interface {
@@ -18,7 +19,8 @@ public class RenLandlordDAO implements RenLandlordDAO_interface {
 	private static final String GET_ONE_STMT = "SELECT ldd_id,ldd_mem_id,ldd_approval FROM `CFA104G5`.`REN_LANDLORD` WHERE ldd_id = ?";
 	private static final String DELETE = "DELETE FROM `CFA104G5`.`REN_LANDLORD` WHERE ldd_id = ?";
 	private static final String UPDATE = "UPDATE `CFA104G5`.`REN_LANDLORD` set ldd_mem_id =?, ldd_approval=? WHERE ldd_id = ?";
-
+	private static final String UPDATESTATUS = "UPDATE `member` set mem_landlord = ? where mem_id =?";
+	
 	private static  DataSource ds = null;
 	static {
 		try {
@@ -66,6 +68,22 @@ public class RenLandlordDAO implements RenLandlordDAO_interface {
 		}
 	}
 
+	public void updatestatus(RenLandlordVO renLandlordVO) {
+		try {
+			con = ds.getConnection();
+			pstmt = con.prepareStatement(UPDATESTATUS);
+
+			pstmt.setInt(1, renLandlordVO.getLddApproval());
+			pstmt.setInt(2, renLandlordVO.getLddMemId());
+
+			pstmt.executeUpdate();
+		} catch (SQLException se) {
+			se.printStackTrace();
+		} finally {
+			Util.closeResource(con, pstmt, rs);
+		}
+	}
+	
 	public void delete(Integer lddId) {
 		try {
 			con = ds.getConnection();

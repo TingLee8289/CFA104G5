@@ -31,6 +31,7 @@ public class RenLandlordService {
 		renLandlordVO.setLddApproval(lddApproval);
 		dao.update(renLandlordVO);
 
+		dao.updatestatus(renLandlordVO);
 		return renLandlordVO;
 	}
 

@@ -45,22 +45,23 @@ public class RenListingPicServlet extends HttpServlet{
 				/*************1.接收請求參數_輸入格式的錯誤處理********************/
 				String str = req.getParameter("lspID");
 				if (str == null || (str.trim().length() == 0)) {
-					errorMsgs.add("請輸入房源照片ID");
+					errorMsgs.add("請輸入房源照片ID格式不正確");
 				}
 				if (!errorMsgs.isEmpty()) {
-					RequestDispatcher failureView = req.getRequestDispatcher("/backend/serDmd/select_page.jsp");
+					RequestDispatcher failureView = req.getRequestDispatcher("/frontend/ren_listing/listing_select_page.jsp");
 					failureView.forward(req, res);
 					return;// 中斷程式
 				}
+				
 				Integer lspID = null;
 				try{
 					lspID = Integer.valueOf(str);
 				}catch (Exception e) {
 					if (str == null || (str.trim().length() == 0)) {
-						errorMsgs.add("請輸入房源照片ID編號");
+						errorMsgs.add("房源照片ID編號");
 					}
 					if (!errorMsgs.isEmpty()) {
-						RequestDispatcher failureView = req.getRequestDispatcher("/backend/serDmd/select_page.jsp");
+						RequestDispatcher failureView = req.getRequestDispatcher("/frontend/ren_listing/listing_select_page.jsp");
 						failureView.forward(req, res);
 						return;// 中斷程式
 					}
@@ -79,14 +80,14 @@ public class RenListingPicServlet extends HttpServlet{
 				}
 				/*****************3.查詢完成，準備轉交*************/
 				req.setAttribute("renListingPicVO", renListingPicVO);
-				String url = "/frontend/";
+				String url = "/frontend/ren_listing/listOneListing.jsp";
 				RequestDispatcher successView = req.getRequestDispatcher(url);
 				successView.forward(req, res);
 				
 			}catch (Exception e) {
 				errorMsgs.add("無法取得資料:" + e.getMessage());
 				RequestDispatcher failureView = req
-						.getRequestDispatcher("/emp/select_page.jsp");
+						.getRequestDispatcher("/frontend/ren_listing/listing_select_page.jsp");
 				failureView.forward(req, res);
 			}
 		}
@@ -231,32 +232,7 @@ public class RenListingPicServlet extends HttpServlet{
 			
 			
 		}		
-		
-		
-				
-				
-				
-				
-				
-				
-				
-				
-				
-				
-				
-				
-				
-				
-				
-				
-				
-				
-				
-				
 			
-		
-		
-		
 	}
 
 }

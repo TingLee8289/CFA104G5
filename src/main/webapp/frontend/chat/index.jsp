@@ -45,7 +45,7 @@ html, body {
 	margin: 20px 200px 0 -50px;
 }
 </style>
-<title>聊天室</title>
+<title>Join Us</title>
 </head>
 <body>
 	<div id="outPopUp">

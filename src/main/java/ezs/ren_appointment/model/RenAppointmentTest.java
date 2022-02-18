@@ -32,14 +32,14 @@ public class RenAppointmentTest {
 //		dao.delete(6);
 
 		// Find by PK
-//		System.out.println("--PK查詢-------------------");
-//		RenAppointmentVO app3 = dao.findByPK(2);
-//		System.out.print(app3.getAptMemId() + ",");
-//		System.out.print(app3.getAptLddId() + ",");
-//		System.out.print(app3.getAptLisId() + ",");
-//		System.out.print(app3.getAptStatus() + ",");
-//		System.out.print(app3.getAptTime() + ",");
-//		System.out.println(app3.getAptTimestamp());
+		System.out.println("--PK查詢-------------------");
+		RenAppointmentVO app3 = dao.findByPK(2);
+		System.out.print(app3.getAptMemId() + ",");
+		System.out.print(app3.getAptLddId() + ",");
+		System.out.print(app3.getAptLisId() + ",");
+		System.out.print(app3.getAptStatus() + ",");
+		System.out.print(app3.getAptTime() + ",");
+		System.out.println(app3.getAptTimestamp());
 
 		// Find All
 //		System.out.println("--查詢全部-------------------");
@@ -55,19 +55,6 @@ public class RenAppointmentTest {
 //			System.out.println();
 //		}
 
-		// Find by MEMID
-//		System.out.println("--MEM查詢-------------------");
-//		List<RenAppointmentVO> appList2 = dao.findByMem(2);
-//		for (RenAppointmentVO aList : appList2) {
-//			System.out.print(aList.getAptId() + ",");
-//			System.out.print(aList.getAptMemId() + ",");
-//			System.out.print(aList.getAptLddId() + ",");
-//			System.out.print(aList.getAptLisId() + ",");
-//			System.out.print(aList.getAptStatus() + ",");
-//			System.out.print(aList.getAptTime() + ",");
-//			System.out.print(aList.getAptTimestamp());
-//			System.out.println();
-//		}
 		
 
 	}

@@ -107,7 +107,7 @@ public class RenListingServlet extends HttpServlet {
 			// send the ErrorPage view.
 			req.setAttribute("errorMsgs", errorMsgs);
 			
-			try {
+//			try {
 				/***************************1.接收請求參數****************************************/
 		        Integer lisID =  new Integer(req.getParameter("lisID"));
 		        /***************************2.開始查詢資料****************************************/
@@ -118,16 +118,20 @@ public class RenListingServlet extends HttpServlet {
 		        String url = "/frontend/ren_listing/update_listing_input.jsp";
 		        RequestDispatcher successView = req.getRequestDispatcher(url);
 		        successView.forward(req, res);
+		    
 		        /***************************其他可能的錯誤處理**********************************/
-			} catch (Exception e) {
-				errorMsgs.add("無法取得修改的資料:" + e.getMessage());
-				RequestDispatcher failureView = req
-						.getRequestDispatcher("/frontend/ren_listing/listAllListing.jsp");
-				failureView.forward(req, res);
-				
-			}
+		        
+			} 
+//		        catch (Exception e) {
+//		        
+//				errorMsgs.add("無法取得修改的資料:" + e.getMessage());
+//				RequestDispatcher failureView = req
+//						.getRequestDispatcher("/frontend/ren_listing/listAllListing.jsp");
+//				failureView.forward(req, res);
+//				
+//			}
 			
-		}
+//		}
 		
 		
 		if("update".equals(action)) {
@@ -184,7 +188,7 @@ public class RenListingServlet extends HttpServlet {
 				}
 				Double lisSqft = null;
 				try {		
-					lisSqft = new Double(req.getParameter("deptno").trim());
+					lisSqft = new Double(req.getParameter("lisSqft").trim());
 				}catch (NumberFormatException e) {
 					lisSqft = 0.0;
 					errorMsgs.add("坪數請填數字.");
@@ -301,6 +305,7 @@ public class RenListingServlet extends HttpServlet {
 				System.out.print(renListingVO);
 				/***************************其他可能的錯誤處理*************************************/
 			} catch (Exception e) {
+				e.printStackTrace();
 				errorMsgs.add("修改資料失敗:"+e.getMessage());
 				RequestDispatcher failureView = req
 						.getRequestDispatcher("/frontend/ren_listing/update_listing_input.jsp");
