@@ -251,7 +251,7 @@ public class MemberDAO implements MemberDAO_interface {
 				memberVO.setMemEmail(rs.getString("MEM_EMAIL"));
 				memberVO.setMemPID(rs.getString("MEM_PID"));
 				memberVO.setMemStatus(rs.getByte("MEM_STATUS"));
-				memberVO.setMemHeadshot(null);
+				memberVO.setMemHeadshot(rs.getBytes("MEM_HEADSHOT"));
 				memberVO.setMemRevCount(rs.getInt("MEM_REV_COUNT"));
 				memberVO.setMemRevScore(rs.getInt("MEM_REV_SCORE"));
 				memberVO.setMemRedCount(rs.getInt("MEM_RED_COUNT"));
