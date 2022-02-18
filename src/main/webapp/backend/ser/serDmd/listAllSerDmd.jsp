@@ -3,8 +3,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ page import="java.util.*"%>
 <%@ page import="ezs.ser_dmd.model.*"%>
-<%-- 此頁練習採用 EL 的寫法取值 --%>
-<%-- 為了提供給分頁的變數 --%>
+
 <%
 
     SerDmdService serDmdSvc = new SerDmdService();
