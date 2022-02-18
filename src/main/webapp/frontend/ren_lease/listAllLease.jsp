@@ -5,15 +5,15 @@
 <%-- 此頁練習採用 EL 的寫法取值 --%>
 
 <%
-//     EmpService empSvc = new EmpService();
-//     List<EmpVO> list = empSvc.getAll();
-//     pageContext.setAttribute("list",list);
+	RenLeaseService renLeaseSvc = new RenLeaseService();
+    List<RenLeaseVO> list = renLeaseSvc.getAll();
+    pageContext.setAttribute("list",list);
 %>
 
 
 <html>
 <head>
-<title>所有員工資料 - listAllEmp.jsp</title>
+<title>所有租賃單資料 - listAllLease.jsp</title>
 
 </head>
 <body bgcolor='white'>
@@ -21,8 +21,8 @@
 <h4>此頁練習採用 EL 的寫法取值:</h4>
 <table id="table-1">
 	<tr><td>
-		 <h3>所有員工資料 - listAllLease.jsp</h3>
-		 <h4><a href="select_page.jsp"><img src="images/back1.gif" width="100" height="32" border="0">回首頁</a></h4>
+		 <h3>所有租賃單資料 - listAllLease.jsp</h3>
+		 <h4><a href="<%=request.getContextPath()%>/frontend/ren_lease/select_page.jsp"><img src="<%=request.getContextPath()%>/images/ren/back_icon.png" width="60" height="60" border="0">回首頁</a></h4>
 	</td></tr>
 </table>
 
@@ -38,43 +38,52 @@
 
 <table>
 	<tr>
-		<th>員工編號</th>
-		<th>員工姓名</th>
-		<th>職位</th>
-		<th>雇用日期</th>
-		<th>薪水</th>
-		<th>獎金</th>
-		<th>部門</th>
+		<th>租賃訂單編號</th>
+		<th>會員編號</th>
+		<th>房東編號</th>
+		<th>房客評價房東星數</th>
+		<th>房客評價房東內容</th>
+		<th>房東評價房客星數</th>
+		<th>房東評價房客內容</th>
+		<th>租賃訂單狀態</th>
+		<th>租賃訂單成立時間</th>
+		<th>租賃開始時間</th>
+		<th>租賃結束時間</th>
 		<th>修改</th>
 		<th>刪除</th>
 	</tr>
-<%-- 	<%@ include file="page1.file" %>  --%>
-<%-- 	<c:forEach var="empVO" items="${list}" begin="<%=pageIndex%>" end="<%=pageIndex+rowsPerPage-1%>"> --%>
+	<%@ include file="page1.file" %> 
+	<c:forEach var="renLeaseVO" items="${list}" begin="<%=pageIndex%>" end="<%=pageIndex+rowsPerPage-1%>">
 		
 		<tr>
-			<td>${empVO.empno}</td>
-			<td>${empVO.ename}</td>
-			<td>${empVO.job}</td>
-			<td>${empVO.hiredate}</td>
-			<td>${empVO.sal}</td>
-			<td>${empVO.comm}</td> 
-			<td>${empVO.deptno}</td>
+			<td>${renLeaseVO.lseId}</td>
+			<td>${renLeaseVO.lseMemId}</td>
+			<td>${renLeaseVO.lseLisId}</td>
+			<td>${renLeaseVO.lseLddId}</td>
+			<td>${renLeaseVO.lseLddScore}</td>
+			<td>${renLeaseVO.lseLddTxt}</td> 
+			<td>${renLeaseVO.lseTntScore}</td>
+			<td>${renLeaseVO.lseTntTxt}</td> 
+			<td>${renLeaseVO.lseStatus}</td>
+			<td>${renLeaseVO.lseTimestamp}</td>
+			<td>${renLeaseVO.lseStart}</td>
+			<td>${renLeaseVO.lseEnd}</td>
 			<td>
-			  <FORM METHOD="post" ACTION="<%=request.getContextPath()%>/emp/emp.do" style="margin-bottom: 0px;">
+			  <FORM METHOD="post" ACTION="<%=request.getContextPath()%>/ren_lease/RenLeaseServlet.do" style="margin-bottom: 0px;">
 			     <input type="submit" value="修改">
-			     <input type="hidden" name="empno"  value="${empVO.empno}">
+			     <input type="hidden" name="lseId"  value="${renLeaseVO.lseId}">
 			     <input type="hidden" name="action"	value="getOne_For_Update"></FORM>
 			</td>
 			<td>
-			  <FORM METHOD="post" ACTION="<%=request.getContextPath()%>/emp/emp.do" style="margin-bottom: 0px;">
+			  <FORM METHOD="post" ACTION="<%=request.getContextPath()%>/ren_lease/RenLeaseServlet.do" style="margin-bottom: 0px;">
 			     <input type="submit" value="刪除">
-			     <input type="hidden" name="empno"  value="${empVO.empno}">
+			     <input type="hidden" name="lseId"  value="${renLeaseVO.lseId}">
 			     <input type="hidden" name="action" value="delete"></FORM>
 			</td>
 		</tr>
-<%-- 	</c:forEach> --%>
+	</c:forEach>
 </table>
-<%-- <%@ include file="page2.file" %> --%>
+<%@ include file="page2.file" %>
 
 </body>
 </html>

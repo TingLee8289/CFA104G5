@@ -1,63 +1,47 @@
-<%@ page contentType="text/html; charset=UTF-8" pageEncoding="Big5"%>
+<%@page import="org.eclipse.jdt.internal.compiler.ast.IfStatement"%>
+<%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ page import="ezs.ren_lease.model.*"%>
+<%@ page import="ezs.member.model.*"%>
+<%@ page import="java.util.*"%>
 
+<% request.setAttribute("memID", 7); 
+//æ¸¬è©¦ç”¨ï¼Œä¹‹å¾Œgetæ–¹æ³•è¦æ”¹æˆsession.get...
+%>
 
+ <%	RenLeaseService renLeaseSvc = new RenLeaseService();
+     List<RenLeaseVO> list = renLeaseSvc.getAll();
+     pageContext.setAttribute("list",list); %> 
+
+<% RenLeaseVO renLeaseVO =new RenLeaseVO(); %> 
+<%-- <%= renLeaseVO==null %> --%>
 <%
-  //EmpVO empVO = (EmpVO) request.getAttribute("empVO");
+MemberService memberSvc = new MemberService();
+Integer memID = (Integer)(request.getAttribute("memID"));
+MemberVO memberVO= memberSvc.getOneMember(memID);
+pageContext.setAttribute("memberVO", memberVO);
 %>
 
 <html>
 <head>
 <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
-<title>­û¤u¸ê®Æ·s¼W - addEmp.jsp</title>
-
-<style>
-  table#table-1 {
-	background-color: #CCCCFF;
-    border: 2px solid black;
-    text-align: center;
-  }
-  table#table-1 h4 {
-    color: red;
-    display: block;
-    margin-bottom: 1px;
-  }
-  h4 {
-    color: blue;
-    display: inline;
-  }
-</style>
-
-<style>
-  table {
-	width: 450px;
-	background-color: white;
-	margin-top: 1px;
-	margin-bottom: 1px;
-  }
-  table, th, td {
-    border: 0px solid #CCCCFF;
-  }
-  th, td {
-    padding: 1px;
-  }
-</style>
-
+<title>æ–°å¢ç§Ÿè³ƒå–® - addLease.jsp</title>
 </head>
+
 <body bgcolor='white'>
 
 <table id="table-1">
 	<tr><td>
-		 <h3>­û¤u¸ê®Æ·s¼W - addEmp.jsp</h3></td><td>
-		 <h4><a href="select_page.jsp"><img src="images/tomcat.png" width="100" height="100" border="0">¦^­º­¶</a></h4>
+		 <h3>æ–°å¢ç§Ÿè³ƒå–® - addLease.jsp</h3>
+		 <h4><a href="<%=request.getContextPath()%>/frontend/ren_lease/select_page.jsp"><img src="<%=request.getContextPath()%>/images/ren/back_icon.png" width="60" height="60" border="0">å›é¦–é </a></h4>
 	</td></tr>
 </table>
 
-<h3>¸ê®Æ·s¼W:</h3>
+<h3>è³‡æ–™æ–°å¢:</h3>
 
-<%-- ¿ù»~ªí¦C --%>
+<%-- éŒ¯èª¤è¡¨åˆ— --%>
 <c:if test="${not empty errorMsgs}">
-	<font style="color:red">½Ğ­×¥¿¥H¤U¿ù»~:</font>
+	<font style="color:red">è«‹ä¿®æ­£ä»¥ä¸‹éŒ¯èª¤:</font>
 	<ul>
 		<c:forEach var="message" items="${errorMsgs}">
 			<li style="color:red">${message}</li>
@@ -65,137 +49,88 @@
 	</ul>
 </c:if>
 
-<FORM METHOD="post" ACTION="emp.do" name="form1">
+<FORM METHOD="post" ACTION="<%=request.getContextPath()%>/ren_lease/RenLeaseServlet.do" name="form1">
 <table>
-	<tr>
-		<td>­û¤u©m¦W:</td>
-<!-- 		<td><input type="TEXT" name="ename" size="45"  -->
-<%-- 			 value="<%= (empVO==null)? "§d¥Ã§Ó" : empVO.getEname()%>" /></td> --%>
+	 <tr>
+		<td>ç§Ÿå®¢çš„æœƒå“¡ç·¨è™Ÿ</td>
+		<td><input type="TEXT" name="lseId" size="45"></td>
 	</tr>
 	<tr>
-		<td>Â¾¦ì:</td>
-<!-- 		<td><input type="TEXT" name="job" size="45" -->
-<%-- 			 value="<%= (empVO==null)? "MANAGER" : empVO.getJob()%>" /></td> --%>
-	</tr>
+		<td>æˆ¿æ±ç·¨è™Ÿ</td>
+		<td><input type="TEXT" name="lseId" size="45"></td> 
+		
+ 	</tr>
 	<tr>
-		<td>¶±¥Î¤é´Á:</td>
-		<td><input name="hiredate" id="f_date1" type="text"></td>
+		<td>æˆ¿æºç·¨è™Ÿ</td>
+		<td>
+		<select size="1" name="lseLisId">
+		<option value="">è«‹é¸æ“‡</option>
+ 		<c:forEach var="renLeaseVO" items="${list}"> 
+ 		<option value ="<c:if test="${memberVO.memID == renLeaseVO.lseMemId}">">${renLeaseVO.lseLisId}</c:if>
+ 		</c:forEach>
+ 		</select>
+		</td>
+				
 	</tr>
-	<tr>
-		<td>Á~¤ô:</td>
-<!-- 		<td><input type="TEXT" name="sal" size="45" -->
-<%-- 			 value="<%= (empVO==null)? "10000" : empVO.getSal()%>" /></td> --%>
+		<tr>
+		<td>ç§Ÿè³ƒé–‹å§‹æ™‚é–“</td>
+		<td><input name="lseStart" id="f_date1" type="text"></td>
 	</tr>
-	<tr>
-		<td>¼úª÷:</td>
-<!-- 		<td><input type="TEXT" name="comm" size="45" -->
-<%-- 			 value="<%= (empVO==null)? "100" : empVO.getComm()%>" /></td> --%>
+		<tr>
+		<td>ç§Ÿè³ƒé–‹å§‹æ™‚é–“:</td>
+		<td><input name="lseEnd" id="f_date2" type="text"></td>
 	</tr>
+				
+	
 
-<%-- 	<jsp:useBean id="deptSvc" scope="page" class="com.dept.model.DeptService" /> --%>
-	<tr>
-		<td>³¡ªù:<font color=red><b>*</b></font></td>
-		<td><select size="1" name="deptno">
-			<c:forEach var="deptVO" items="${deptSvc.all}">
-				<option value="${deptVO.deptno}" ${(empVO.deptno==deptVO.deptno)? 'selected':'' } >${deptVO.dname}
-			</c:forEach>
-		</select></td>
-	</tr>
 
 </table>
 <br>
 <input type="hidden" name="action" value="insert">
-<input type="submit" value="°e¥X·s¼W"></FORM>
+<input type="submit" value="é€å‡ºæ–°å¢"></FORM>
 </body>
-
-
-
-<!-- =========================================¥H¤U¬° datetimepicker ¤§¬ÛÃö³]©w========================================== -->
-
 <% 
-  java.sql.Date hiredate = null;
+  java.sql.Date lseStart = null;
   try {
-// 	    hiredate = empVO.getHiredate();
+	  lseStart = renLeaseVO.getLseStart();
    } catch (Exception e) {
-	    hiredate = new java.sql.Date(System.currentTimeMillis());
+	   lseStart = new java.sql.Date(System.currentTimeMillis());
    }
 %>
 <link rel="stylesheet" type="text/css" href="<%=request.getContextPath()%>/datetimepicker/jquery.datetimepicker.css" />
 <script src="<%=request.getContextPath()%>/datetimepicker/jquery.js"></script>
 <script src="<%=request.getContextPath()%>/datetimepicker/jquery.datetimepicker.full.js"></script>
 
-<style>
-  .xdsoft_datetimepicker .xdsoft_datepicker {
-           width:  300px;   /* width:  300px; */
-  }
-  .xdsoft_datetimepicker .xdsoft_timepicker .xdsoft_time_box {
-           height: 151px;   /* height:  151px; */
-  }
-</style>
-
 <script>
         $.datetimepicker.setLocale('zh');
         $('#f_date1').datetimepicker({
 	       theme: '',              //theme: 'dark',
 	       timepicker:false,       //timepicker:true,
-	       step: 1,                //step: 60 (³o¬Otimepickerªº¹w³]¶¡¹j60¤ÀÄÁ)
+	       step: 1,                //step: 60 (é€™æ˜¯timepickerçš„é è¨­é–“éš”60åˆ†é˜)
 	       format:'Y-m-d',         //format:'Y-m-d H:i:s',
-		   value: '<%=hiredate%>', // value:   new Date(),
-           //disabledDates:        ['2017/06/08','2017/06/09','2017/06/10'], // ¥h°£¯S©w¤£§t
-           //startDate:	            '2017/07/10',  // °_©l¤é
-           //minDate:               '-1970-01-01', // ¥h°£¤µ¤é(¤£§t)¤§«e
-           //maxDate:               '+1970-01-01'  // ¥h°£¤µ¤é(¤£§t)¤§«á
-        });
-        
-        
-   
-        // ----------------------------------------------------------¥H¤U¥Î¨Ó±Æ©wµLªk¿ï¾Üªº¤é´Á-----------------------------------------------------------
+		   value: '<%=lseStart%>', // value:   new Date(),
+        });</script>
+<% 
+  java.sql.Date lseEnd = null;
+  try {
+	  lseEnd = renLeaseVO.getLseEnd();
+   } catch (Exception e) {
+	   lseEnd = new java.sql.Date(System.currentTimeMillis());
+   }
+%>
+<link rel="stylesheet" type="text/css" href="<%=request.getContextPath()%>/datetimepicker/jquery.datetimepicker.css" />
+<script src="<%=request.getContextPath()%>/datetimepicker/jquery.js"></script>
+<script src="<%=request.getContextPath()%>/datetimepicker/jquery.datetimepicker.full.js"></script>
 
-        //      1.¥H¤U¬°¬Y¤@¤Ñ¤§«eªº¤é´ÁµLªk¿ï¾Ü
-        //      var somedate1 = new Date('2017-06-15');
-        //      $('#f_date1').datetimepicker({
-        //          beforeShowDay: function(date) {
-        //        	  if (  date.getYear() <  somedate1.getYear() || 
-        //		           (date.getYear() == somedate1.getYear() && date.getMonth() <  somedate1.getMonth()) || 
-        //		           (date.getYear() == somedate1.getYear() && date.getMonth() == somedate1.getMonth() && date.getDate() < somedate1.getDate())
-        //              ) {
-        //                   return [false, ""]
-        //              }
-        //              return [true, ""];
-        //      }});
+<script>
+        $.datetimepicker.setLocale('zh');
+        $('#f_date2').datetimepicker({
+	       theme: '',              //theme: 'dark',
+	       timepicker:false,       //timepicker:true,
+	       step: 1,                //step: 60 (é€™æ˜¯timepickerçš„é è¨­é–“éš”60åˆ†é˜)
+	       format:'Y-m-d',         //format:'Y-m-d H:i:s',
+		   value: '<%=lseEnd%>', // value:   new Date(),
+           minDate:               '-1970-01-01', // å»é™¤ä»Šæ—¥(ä¸å«)ä¹‹å‰
+        });</script>
 
-        
-        //      2.¥H¤U¬°¬Y¤@¤Ñ¤§«áªº¤é´ÁµLªk¿ï¾Ü
-        //      var somedate2 = new Date('2017-06-15');
-        //      $('#f_date1').datetimepicker({
-        //          beforeShowDay: function(date) {
-        //        	  if (  date.getYear() >  somedate2.getYear() || 
-        //		           (date.getYear() == somedate2.getYear() && date.getMonth() >  somedate2.getMonth()) || 
-        //		           (date.getYear() == somedate2.getYear() && date.getMonth() == somedate2.getMonth() && date.getDate() > somedate2.getDate())
-        //              ) {
-        //                   return [false, ""]
-        //              }
-        //              return [true, ""];
-        //      }});
-
-
-        //      3.¥H¤U¬°¨â­Ó¤é´Á¤§¥~ªº¤é´ÁµLªk¿ï¾Ü (¤]¥i«ö»İ­n´«¦¨¨ä¥L¤é´Á)
-        //      var somedate1 = new Date('2017-06-15');
-        //      var somedate2 = new Date('2017-06-25');
-        //      $('#f_date1').datetimepicker({
-        //          beforeShowDay: function(date) {
-        //        	  if (  date.getYear() <  somedate1.getYear() || 
-        //		           (date.getYear() == somedate1.getYear() && date.getMonth() <  somedate1.getMonth()) || 
-        //		           (date.getYear() == somedate1.getYear() && date.getMonth() == somedate1.getMonth() && date.getDate() < somedate1.getDate())
-        //		             ||
-        //		            date.getYear() >  somedate2.getYear() || 
-        //		           (date.getYear() == somedate2.getYear() && date.getMonth() >  somedate2.getMonth()) || 
-        //		           (date.getYear() == somedate2.getYear() && date.getMonth() == somedate2.getMonth() && date.getDate() > somedate2.getDate())
-        //              ) {
-        //                   return [false, ""]
-        //              }
-        //              return [true, ""];
-        //      }});
-        
-</script>
 </html>

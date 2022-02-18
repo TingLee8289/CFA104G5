@@ -2,18 +2,77 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ page import="java.util.*"%>
 <%@ page import="ezs.ren_landlord.model.*"%>
+<%@ page import="ezs.member.model.*"%>
+
 
 <%
 RenLandlordService renlandlordSvc = new RenLandlordService();
 List<RenLandlordVO> list = renlandlordSvc.getAll();
 pageContext.setAttribute("list", list);
 %>
+<%
+MemberService memberSvc = new MemberService();
+List<MemberVO> list2 = memberSvc.getAll();
+pageContext.setAttribute("list2", list2);
+%>
 
 
 <html>
 <head>
 <title>所有申請房東資料 - listAllLandlord.jsp</title>
-
+<style>
+html {
+    font-family: sans-serif;
+    -ms-text-size-adjust: 100%;
+    -webkit-text-size-adjust: 100%;
+}
+ 
+body {
+    margin: 10px;
+}
+table {
+    border-collapse: collapse;
+    border-spacing: 0;
+}
+ 
+td,th {
+    padding: 0;
+}
+ 
+.pure-table {
+    border-collapse: collapse;
+    border-spacing: 0;
+    empty-cells: show;
+    border: 1px solid #cbcbcb;
+}
+ 
+.pure-table caption {
+    color: #000;
+    font: italic 85%/1 arial,sans-serif;
+    padding: 1em 0;
+    text-align: center;
+}
+ 
+.pure-table td,.pure-table th {
+    border-left: 1px solid #cbcbcb;
+    border-width: 0 0 0 1px;
+    font-size: inherit;
+    margin: 0;
+    overflow: visible;
+    padding: .5em 1em;
+}
+ 
+.pure-table thead {
+    background-color: #e0e0e0;
+    color: #000;
+    text-align: left;
+    vertical-align: bottom;
+}
+ 
+.pure-table td {
+    background-color: transparent;
+}
+</style>
 </head>
 <body bgcolor='white'>
 
@@ -40,7 +99,8 @@ pageContext.setAttribute("list", list);
 		</ul>
 	</c:if>
 
-	<table>
+	<table class="pure-table"> 
+		<thead>
 		<tr>
 			<th>房東編號</th>
 			<th>會員編號</th>
@@ -49,19 +109,25 @@ pageContext.setAttribute("list", list);
 			<th>修改</th>
 			<th>刪除</th>
 		</tr>
+		</thead>
+		<tbody>
 		<%@ include file="page1.file"%>
 		<c:forEach var="renLandlordVO" items="${list}" begin="<%=pageIndex%>"
 			end="<%=pageIndex+rowsPerPage-1%>">
 			<tr>
 				<td>${renLandlordVO.lddId}</td>
 				<td>${renLandlordVO.lddMemId}</td>
-				<td></td>
+		
+		<td>
+		<c:forEach var="memberVO" items="${list2}">
+		<c:if test="${renLandlordVO.lddMemId == memberVO.memID}">${memberVO.memName}</c:if>
+		</c:forEach>
+		</td>		
 				<td>
 					<c:if test="${renLandlordVO.lddApproval == 0}">審核中</c:if>
 					<c:if test="${renLandlordVO.lddApproval == 1}">審核未過</c:if> 
 					<c:if test="${renLandlordVO.lddApproval == 2}">審核已過</c:if>
 				</td>
-
 				<td>
 					<FORM METHOD="post"
 						ACTION="<%=request.getContextPath()%>/ren_landlord/RenLandlordServlet.do"
@@ -82,6 +148,7 @@ pageContext.setAttribute("list", list);
 				</td>
 			</tr>
 		</c:forEach>
+		</tbody>
 	</table>
 	<%@ include file="page2.file"%>
 

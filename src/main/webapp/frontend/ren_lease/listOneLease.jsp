@@ -1,76 +1,55 @@
-<%@ page contentType="text/html; charset=UTF-8" pageEncoding="Big5"%>
-<%-- ¦¹­¶¼È½m²ß±Ä¥Î Script ªº¼gªk¨ú­È --%>
+<%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ page import="ezs.ren_lease.model.*"%>
+<%-- æ­¤é æš«ç·´ç¿’æ¡ç”¨ Script çš„å¯«æ³•å–å€¼ --%>
 
 <%
-  //EmpVO empVO = (EmpVO) request.getAttribute("empVO"); //EmpServlet.java(Concroller), ¦s¤JreqªºempVOª«¥ó
+RenLeaseVO renLeaseVO = (RenLeaseVO) request.getAttribute("renLeaseVO"); //EmpServlet.java(Concroller), å­˜å…¥reqçš„empVOç‰©ä»¶
 %>
 
 <html>
 <head>
-<title>­û¤u¸ê®Æ - listOneEmp.jsp</title>
+<title>ç§Ÿè³ƒå–®è³‡æ–™ - listOnelease.jsp</title>
 
-<style>
-  table#table-1 {
-	background-color: #CCCCFF;
-    border: 2px solid black;
-    text-align: center;
-  }
-  table#table-1 h4 {
-    color: red;
-    display: block;
-    margin-bottom: 1px;
-  }
-  h4 {
-    color: blue;
-    display: inline;
-  }
-</style>
 
-<style>
-  table {
-	width: 600px;
-	background-color: white;
-	margin-top: 5px;
-	margin-bottom: 5px;
-  }
-  table, th, td {
-    border: 1px solid #CCCCFF;
-  }
-  th, td {
-    padding: 5px;
-    text-align: center;
-  }
-</style>
 
 </head>
 <body bgcolor='white'>
 
-<h4>¦¹­¶¼È½m²ß±Ä¥Î Script ªº¼gªk¨ú­È:</h4>
 <table id="table-1">
 	<tr><td>
-		 <h3>­û¤u¸ê®Æ - ListOneEmp.jsp</h3>
-		 <h4><a href="select_page.jsp"><img src="images/back1.gif" width="100" height="32" border="0">¦^­º­¶</a></h4>
+		 <h3>ç§Ÿè³ƒå–®è³‡æ–™ - listOnelease.jsp</h3>
+		 <h4><a href="<%=request.getContextPath()%>/frontend/ren_lease/select_page.jsp"><img src="<%=request.getContextPath()%>/images/ren/back_icon.png" width="60" height="60" border="0">å›é¦–é </a></h4>
 	</td></tr>
 </table>
 
 <table>
 	<tr>
-		<th>­û¤u½s¸¹</th>
-		<th>­û¤u©m¦W</th>
-		<th>Â¾¦ì</th>
-		<th>¶±¥Î¤é´Á</th>
-		<th>Á~¤ô</th>
-		<th>¼úª÷</th>
-		<th>³¡ªù</th>
+		<th>ç§Ÿè³ƒè¨‚å–®ç·¨è™Ÿ</th>
+		<th>æœƒå“¡ç·¨è™Ÿ</th>
+		<th>æˆ¿æºç·¨è™Ÿ</th>
+		<th>æˆ¿æ±ç·¨è™Ÿ</th>
+		<th>æˆ¿å®¢è©•åƒ¹æˆ¿æ±æ˜Ÿæ•¸</th>
+		<th>æˆ¿å®¢è©•åƒ¹æˆ¿æ±å…§å®¹</th>
+		<th>æˆ¿æ±è©•åƒ¹æˆ¿å®¢æ˜Ÿæ•¸</th>
+		<th>æˆ¿æ±è©•åƒ¹æˆ¿å®¢å…§å®¹</th>
+		<th>ç§Ÿè³ƒè¨‚å–®ç‹€æ…‹</th>
+		<th>ç§Ÿè³ƒè¨‚å–®æˆç«‹æ™‚é–“</th>
+		<th>ç§Ÿè³ƒé–‹å§‹æ™‚é–“</th>
+		<th>ç§Ÿè³ƒçµæŸæ™‚é–“</th>
 	</tr>
 	<tr>
-<%-- 		<td><%=empVO.getEmpno()%></td> --%>
-<%-- 		<td><%=empVO.getEname()%></td> --%>
-<%-- 		<td><%=empVO.getJob()%></td> --%>
-<%-- 		<td><%=empVO.getHiredate()%></td> --%>
-<%-- 		<td><%=empVO.getSal()%></td> --%>
-<%-- 		<td><%=empVO.getComm()%></td> --%>
-<%-- 		<td><%=empVO.getDeptno()%></td> --%>
+		<td><%=renLeaseVO.getLseId()%></td>
+		<td><%=renLeaseVO.getLseMemId()%></td>
+		<td><%=renLeaseVO.getLseLisId()%></td>
+		<td><%=renLeaseVO.getLseLddId()%></td>
+		<td><%=renLeaseVO.getLseLddScore()%></td>
+		<td><%=renLeaseVO.getLseLddTxt()%></td>
+		<td><%=renLeaseVO.getLseTntScore()%></td>
+		<td><%=renLeaseVO.getLseTntTxt()%></td>
+		<td><%=renLeaseVO.getLseStatus()%></td>
+		<td><%=renLeaseVO.getLseTimestamp()%></td>
+		<td><%=renLeaseVO.getLseStart()%></td>
+		<td><%=renLeaseVO.getLseEnd()%></td>
 	</tr>
 </table>
 
