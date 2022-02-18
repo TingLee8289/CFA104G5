@@ -81,7 +81,7 @@
 				<td>${memberVO.memAddress}</td>
 				<td>${memberVO.memEmail}</td>
 				
-				<td><img src="<%=request.getContextPath()%>/DBGifReader?mem_ID=${memberVO.memID}" width=200px></td>
+				<td><img src="<%=request.getContextPath()%>/DBGifReader?mem_ID=${memberVO.memID}" height=200px width=200px></td>
 				
 				<td>
 					<c:choose>
@@ -91,7 +91,6 @@
 								value="${(memberVO.memRedScore/memberVO.memRedCount)}"/>
 						</c:otherwise>
 					</c:choose></td>
-				<td>${memberVO.memVatno}</td>
 
 				<td><form method="post" action="<%= request.getContextPath() %>/member/MemberServletUpdate.do">
 						<input type="submit" value="修改"> 
