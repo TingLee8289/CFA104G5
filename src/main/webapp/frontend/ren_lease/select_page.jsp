@@ -7,6 +7,8 @@
 </head>
 <body bgcolor='white'>
 
+
+
 	<table id="table-1">
 		<tr>
 			<td><h3>租賃單首頁</h3></td>
@@ -28,11 +30,11 @@
 	</c:if>
 
 	<ul>
-		<li><a href='listAllLease.jsp'>List</a> 查看所有的租賃單 <br> <br></li>
+		<li><a href='<%=request.getContextPath()%>/frontend/ren_lease/listAllLease.jsp'>List</a> 查看所有的租賃單 <br> <br></li>
 
 
-		<li>
-			<FORM METHOD="post" ACTION="/ren_landlord/RenLeaseServlet.do">
+ 		<li>
+			<FORM METHOD="post" ACTION="<%=request.getContextPath()%>/ren_lease/RenLeaseServlet.do">
 				<b>輸入租賃單編號 :</b>
 				<input type="text" name="lseId">
 				<input type="hidden" name="action" value="getOne_For_Display">
@@ -44,7 +46,7 @@
 			class="ezs.ren_lease.model.RenLeaseService" />
 
 		<li>
-			<FORM METHOD="post" ACTION="/ren_landlord/RenLeaseServlet.do">
+			<FORM METHOD="post" ACTION="<%=request.getContextPath()%>/ren_lease/RenLeaseServlet.do">
 				<b>選擇租賃單編號 :</b>
 				<select size="1" name="lseId">
 					<option value="">請選擇</option>
@@ -57,8 +59,8 @@
 			</FORM>
 		</li>
 
-		<li>
-			<FORM METHOD="post" ACTION="/ren_landlord/RenLeaseServlet.do">
+	<%-- 	<li>
+			<FORM METHOD="post" ACTION="<%=request.getContextPath()%>/ren_lease/RenLeaseServlet.do">
 				<b>選擇會員編號 :</b>
 				<select size="1" name="lseMemId">
 					<option value="">請選擇</option>
@@ -72,7 +74,7 @@
 		</li>
 
 		<li>
-			<FORM METHOD="post" ACTION="/ren_landlord/RenLeaseServlet.do">
+			<FORM METHOD="post" ACTION="<%=request.getContextPath()%>/ren_lease/RenLeaseServlet.do">
 				<b>選擇房源編號 :</b>
 				<select size="1" name="lseLisId">
 					<option value="">請選擇</option>
@@ -84,8 +86,9 @@
 				<input type="submit" value="送出">
 			</FORM>
 		</li>
+	想做“選擇房東名稱”和”選擇會員名稱“做查詢
 		<li>
-			<FORM METHOD="post" ACTION="/ren_landlord/RenLeaseServlet.do">
+			<FORM METHOD="post" ACTION="<%=request.getContextPath()%>/ren_lease/RenLeaseServlet.do">
 				<b>選擇房東編號 :</b>
 				<select size="1" name="lseLddId">
 					<option value="">請選擇</option>
@@ -98,7 +101,7 @@
 			</FORM>
 		</li>
 		<li>
-			<FORM METHOD="post" ACTION="/ren_landlord/RenLeaseServlet.do">
+			<FORM METHOD="post" ACTION="<%=request.getContextPath()%>/ren_lease/RenLeaseServlet.do">
 				<b>選擇租賃訂單成立時間 :</b>
 				<select size="1" name="lseTimestamp">
 					<option value="">請選擇</option>
@@ -110,13 +113,12 @@
 				</select> <input type="hidden" name="action" value="getOne_For_Display">
 				<input type="submit" value="送出">
 			</FORM>
-		</li>
-
+		</li> --%>
 		</ul>
 		
 	<h3>租賃單管理</h3>
 	<ul>
-		<li><a href='addRenLease.jsp'>加入</a>租賃單</li>
+		<li><a href='<%=request.getContextPath()%>/frontend/ren_lease/addLease.jsp'>加入</a>租賃單</li>
 	</ul>
 
 </body>
