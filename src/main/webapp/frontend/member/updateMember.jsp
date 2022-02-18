@@ -98,10 +98,14 @@
 			<td>email帳號:</td>
 			<td><input type="TEXT" name="memEmail" size="50" value="<%=memberVO.getMemEmail()%>" /></td>
 		</tr>
+		
+		<c:if test="${memberVO.memSupplier == 1}">
 		<tr>
 			<td>統一編號:</td>
 			<td><input type="TEXT" name="memVatno" size="8" value="<%=memberVO.getMemVatno()%>" /></td>
 		</tr>
+		</c:if>
+		
 		<tr>
 			<td>個人頭像:</td>
 			<td><input type="file" name="cpic"
