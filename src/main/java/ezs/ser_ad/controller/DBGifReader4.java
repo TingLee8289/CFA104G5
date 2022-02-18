@@ -19,7 +19,6 @@ import javax.sql.DataSource;
 
 @WebServlet("/ser_ad/DBGifReader4.do")
 public class DBGifReader4 extends HttpServlet {
-	private static final long serialVersionUID = 1L;
 	Connection con;
 
 	public void doGet(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {

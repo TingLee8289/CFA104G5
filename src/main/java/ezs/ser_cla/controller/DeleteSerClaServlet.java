@@ -38,14 +38,14 @@ public class DeleteSerClaServlet extends HttpServlet {
 				serClaSvc.deleteSerCla(serClaID);
 
 				/*************************** 3.刪除完成,準備轉交(Send the Success view) ***********/
-				String url = "/backend/ser_cla/listAllSerCla.jsp";
+				String url = "/backend/ser/ser_cla/listAllSerCla.jsp";
 				RequestDispatcher successView = req.getRequestDispatcher(url);// 刪除成功後,轉交回送出刪除的來源網頁
 				successView.forward(req, res);
 
 				/*************************** 其他可能的錯誤處理 **********************************/
 			} catch (Exception e) {
 				errorMsgs.add("刪除資料失敗:" + e.getMessage());
-				RequestDispatcher failureView = req.getRequestDispatcher("/backend/ser_cla/listAllSerCla.jsp");
+				RequestDispatcher failureView = req.getRequestDispatcher("/backend/ser/ser_cla/listAllSerCla.jsp");
 				failureView.forward(req, res);
 			}
 		}
