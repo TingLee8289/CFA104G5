@@ -1,6 +1,15 @@
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ page import="ezs.ren_landlord.model.*"%>
+<%@ page import="ezs.member.model.*"%>
+<%@ page import="java.util.*"%>
+
+
+<%
+MemberService memberSvc = new MemberService();
+List<MemberVO> list2 = memberSvc.getAll();
+pageContext.setAttribute("list2", list2);
+%>
 <%-- 此頁暫練習採用 Script 的寫法取值 --%>
 
 <%
@@ -32,11 +41,17 @@ RenLandlordVO renLandlordVO = (RenLandlordVO) request.getAttribute("renLandlordV
 		<tr>
 			<th>房東編號</th>
 			<th>會員編號</th>
+			<th>會員名稱</th>
 			<th>審核狀態</th>
 		</tr>
 		<tr>
 			<td><%=renLandlordVO.getLddId()%></td>
 			<td><%=renLandlordVO.getLddMemId()%></td>
+					<td>
+		<c:forEach var="memberVO" items="${list2}">
+		<c:if test="${renLandlordVO.lddMemId == memberVO.memID}">${memberVO.memName}</c:if>
+		</c:forEach>
+		</td>	
 			<td><c:if test="${renLandlordVO.lddApproval == 0}"><c:out value="審核中"/></c:if>
 			<c:if test="${renLandlordVO.lddApproval == 1}"><c:out value="審核未過"/></c:if>
 			<c:if test="${renLandlordVO.lddApproval == 2}"><c:out value="審核已過"/></c:if>

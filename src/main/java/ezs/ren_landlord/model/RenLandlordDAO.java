@@ -18,7 +18,7 @@ public class RenLandlordDAO implements RenLandlordDAO_interface {
 	private static final String GET_ALL_STMT = "SELECT * FROM `CFA104G5`.`REN_LANDLORD`";
 	private static final String GET_ONE_STMT = "SELECT ldd_id,ldd_mem_id,ldd_approval FROM `CFA104G5`.`REN_LANDLORD` WHERE ldd_id = ?";
 	private static final String DELETE = "DELETE FROM `CFA104G5`.`REN_LANDLORD` WHERE ldd_id = ?";
-	private static final String UPDATE = "UPDATE `CFA104G5`.`REN_LANDLORD` set ldd_mem_id =?, ldd_approval=? WHERE ldd_id = ?";
+	private static final String UPDATE = "UPDATE `CFA104G5`.`REN_LANDLORD` set ldd_mem_id =?, ldd_approval=? WHERE ldd_id =?";
 	private static final String UPDATESTATUS = "UPDATE `member` set mem_landlord = ? where mem_id =?";
 	
 	private static  DataSource ds = null;
@@ -35,6 +35,7 @@ public class RenLandlordDAO implements RenLandlordDAO_interface {
 	PreparedStatement pstmt = null;
 	ResultSet rs = null;
 
+	
 	public void insert(RenLandlordVO renLandlordVO) {
 		try {
 			con = ds.getConnection();
