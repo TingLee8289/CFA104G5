@@ -93,6 +93,7 @@ th, td {
 			<tr>
 				<td>需求單ID:<font color=red><b>*</b></font></td>
 				<td><select size="1" name="quoDmdID">
+						
 						<c:forEach var="serDmdVO" items="${OneMemDmdList}">
 							<option value="${serDmdVO.dmdID}">${serDmdVO.dmdID}</option>
 						</c:forEach>

@@ -68,8 +68,8 @@
 <FORM METHOD="post" enctype="multipart/form-data" ACTION="<%=request.getContextPath()%>/ser_dmd/SerDmdServlet.do" name="form1">
 <table>
 	<tr>
-		<td>需求單狀態:</td>
-		<td><input type="TEXT" name="dmdStatus" size="8"
+		
+		<td><input type="hidden" name="dmdStatus" size="8"
 			 value=0 /></td>
 	</tr>
 	<tr>

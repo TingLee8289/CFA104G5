@@ -1,6 +1,5 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
-	<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ page import="java.util.*"%>
 <%@ page import="ezs.ser_quo.model.*"%>
 <% session.setAttribute("memID", 2);%>
@@ -75,8 +74,14 @@
 	<c:forEach var="serQuoVO" items="${memQuoList}" >
 		
 		<tr>
-			<td>${serQuoVO.quoID}</td>
-				<td>${serQuoVO.quoStatus}</td>
+				<td>${serQuoVO.quoID}</td>
+				<td>
+					<c:if test="${serQuoVO.quoStatus == 0}">未報價</c:if>
+					<c:if test="${serQuoVO.quoStatus == 1}">已報價</c:if>
+					<c:if test="${serQuoVO.quoStatus == 2}">拒絕報價</c:if>
+					<c:if test="${serQuoVO.quoStatus == 3}">接受報價</c:if>
+				</td>
+				
 				<td>${serQuoVO.quoDmdID}</td>
 				<td>${serQuoVO.quoVdrID}</td>
 				<td>${serQuoVO.quoDate}</td>
