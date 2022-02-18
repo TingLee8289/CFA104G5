@@ -17,7 +17,7 @@ import util.Util;
 
 public class SerClaDAO implements SerClaDAO_interface {
 
-	public static final String INSERT = "INSERT INTO ser_cla(ser_cla_id,ser_cla_name) VALUES(?, ?)";
+	public static final String INSERT = "INSERT INTO ser_cla(ser_cla_name) VALUES(?)";
 	public static final String UPDATE = "UPDATE ser_cla SET ser_cla_name = ? WHERE ser_cla_id = ?";
 	public static final String DELETE = "DELETE FROM ser_cla WHERE ser_cla_id = ?";
 	public static final String FIND_BY_PK = "SELECT * FROM ser_cla WHERE ser_cla_id = ? ";
@@ -45,8 +45,8 @@ public class SerClaDAO implements SerClaDAO_interface {
 			con = ds.getConnection();
 			pstmt = con.prepareStatement(INSERT);
 
-			pstmt.setInt(1, serClaVO.getSerClaID());
-			pstmt.setString(2, serClaVO.getSerClaName());
+			
+			pstmt.setString(1, serClaVO.getSerClaName());
 
 			pstmt.executeUpdate();
 		} catch (SQLException e) {

@@ -14,7 +14,7 @@ import javax.servlet.http.HttpServletResponse;
 import ezs.ser_cla.model.SerClaService;
 import ezs.ser_cla.model.SerClaVO;
 
-@WebServlet("/backend/ser_cla/GetSerClaServlet.do")
+@WebServlet("/ser_cla/GetSerClaServlet.do")
 public class GetSerClaServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
 		doPost(req, res);
@@ -39,7 +39,7 @@ public class GetSerClaServlet extends HttpServlet {
 				}
 				// Send the use back to the form, if there were errors
 				if (!errorMsgs.isEmpty()) {
-					RequestDispatcher failureView = req.getRequestDispatcher("/backend/ser_cla/select_page.jsp");
+					RequestDispatcher failureView = req.getRequestDispatcher("/backend/ser/ser_cla/select_page.jsp");
 					failureView.forward(req, res);
 					return;// 程式中斷
 				}
@@ -52,7 +52,7 @@ public class GetSerClaServlet extends HttpServlet {
 				}
 				// Send the use back to the form, if there were errors
 				if (!errorMsgs.isEmpty()) {
-					RequestDispatcher failureView = req.getRequestDispatcher("/backend/ser_cla/select_page.jsp");
+					RequestDispatcher failureView = req.getRequestDispatcher("/backend/ser/ser_cla/select_page.jsp");
 					failureView.forward(req, res);
 					return;// 程式中斷
 				}
@@ -65,21 +65,21 @@ public class GetSerClaServlet extends HttpServlet {
 				}
 				// Send the use back to the form, if there were errors
 				if (!errorMsgs.isEmpty()) {
-					RequestDispatcher failureView = req.getRequestDispatcher("/backend/ser_cla/select_page.jsp");
+					RequestDispatcher failureView = req.getRequestDispatcher("/backend/ser/ser_cla/select_page.jsp");
 					failureView.forward(req, res);
 					return;// 程式中斷
 				}
 
 				/*************************** 3.查詢完成,準備轉交(Send the Success view) *************/
 				req.setAttribute("serClaVO", serClaVO); // 資料庫取出的empVO物件,存入req
-				String url = "/backend/ser_cla/listOneSerCla.jsp";
+				String url = "/backend/ser/ser_cla/listOneSerCla.jsp";
 				RequestDispatcher successView = req.getRequestDispatcher(url); // 成功轉交 listOneEmp.jsp
 				successView.forward(req, res);
 
 				/*************************** 其他可能的錯誤處理 *************************************/
 			} catch (Exception e) {
 				errorMsgs.add("無法取得資料:" + e.getMessage());
-				RequestDispatcher failureView = req.getRequestDispatcher("/backend/ser_cla/select_page.jsp");
+				RequestDispatcher failureView = req.getRequestDispatcher("/backend/ser/ser_cla/select_page.jsp");
 				failureView.forward(req, res);
 			}
 		}

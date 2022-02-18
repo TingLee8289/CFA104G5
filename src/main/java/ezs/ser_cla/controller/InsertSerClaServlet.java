@@ -14,7 +14,7 @@ import javax.servlet.http.HttpServletResponse;
 import ezs.ser_cla.model.SerClaService;
 import ezs.ser_cla.model.SerClaVO;
 
-@WebServlet("/backend/ser_cla/InsertSerClaServlet.do")
+@WebServlet("/ser_cla/InsertSerClaServlet.do")
 public class InsertSerClaServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
 		doPost(req, res);
@@ -34,35 +34,34 @@ public class InsertSerClaServlet extends HttpServlet {
 			try {
 				/*********************** 1.接收請求參數 - 輸入格式的錯誤處理 *************************/
 
-				Integer serClaID = new Integer(req.getParameter("serClaID").trim());
 				String serClaName = req.getParameter("serClaName");
 
 				SerClaVO serClaVO = new SerClaVO();
 
-				serClaVO.setSerClaID(serClaID);
+			
 				serClaVO.setSerClaName(serClaName);
 
 				// Send the use back to the form, if there were errors
 				if (!errorMsgs.isEmpty()) {
 					req.setAttribute("serClaVO", serClaVO); // 含有輸入格式錯誤的empVO物件,也存入req
-					RequestDispatcher failureView = req.getRequestDispatcher("/backend/ser_cla/addSerCla.jsp");
+					RequestDispatcher failureView = req.getRequestDispatcher("/backend/ser/ser_cla/addSerCla.jsp");
 					failureView.forward(req, res);
 					return;
 				}
 
 				/*************************** 2.開始新增資料 ***************************************/
 				SerClaService serClaSvc = new SerClaService();
-				serClaSvc.addSerCla(serClaID, serClaName);
+				serClaSvc.addSerCla(serClaName);
 
 				/*************************** 3.新增完成,準備轉交(Send the Success view) ***********/
-				String url = "/backend/ser_cla/listAllSerCla.jsp";
+				String url = "/backend/ser/ser_cla/listAllSerCla.jsp";
 				RequestDispatcher successView = req.getRequestDispatcher(url); // 新增成功後轉交listAllEmp.jsp
 				successView.forward(req, res);
 
 				/*************************** 其他可能的錯誤處理 **********************************/
 			} catch (Exception e) {
 				errorMsgs.add(e.getMessage());
-				RequestDispatcher failureView = req.getRequestDispatcher("/backend/ser_cla/addSerCla.jsp");
+				RequestDispatcher failureView = req.getRequestDispatcher("/backend/ser/ser_cla/addSerCla.jsp");
 				failureView.forward(req, res);
 			}
 		}

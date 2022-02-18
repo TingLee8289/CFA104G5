@@ -9,11 +9,11 @@ public class SerClaService {
 		dao = new SerClaDAO();
 	}
 
-	public SerClaVO addSerCla(Integer serClaID, String serClaName) {
+	public SerClaVO addSerCla(String serClaName) {
 
 		SerClaVO serclaVO = new SerClaVO();
 
-		serclaVO.setSerClaID(serClaID);
+	
 		serclaVO.setSerClaName(serClaName);
 		dao.insert(serclaVO);
 
