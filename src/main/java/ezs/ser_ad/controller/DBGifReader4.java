@@ -2,6 +2,7 @@ package ezs.ser_ad.controller;
 
 import java.io.BufferedInputStream;
 import java.io.IOException;
+import java.io.InputStream;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -42,24 +43,24 @@ public class DBGifReader4 extends HttpServlet {
 				in.close();
 			} else {
 				res.sendError(HttpServletResponse.SC_NOT_FOUND);
-//				InputStream in = getServletContext().getResourceAsStream("/NoData/none2.jpg");
-//				// 參數錯誤解決方法
-//				byte[] b = new byte[in.available()];
-//				in.read(b);
-//				out.write(b);
-//				in.close();
+				InputStream in = getServletContext().getResourceAsStream("/NoData/none2.jpg");
+				// 參數錯誤解決方法
+				byte[] b = new byte[in.available()];
+				in.read(b);
+				out.write(b);
+				in.close();
 			}
 			rs.close();
 			stmt.close();
 
 		} catch (Exception e) {
 			System.out.println(e);
-//			InputStream in = getServletContext().getResourceAsStream("/NoData/null.jpg");
-//			// 無參數解決方法
-//			byte[] b = new byte[in.available()];
-//			in.read(b);
-//			out.write(b);
-//			in.close();
+			InputStream in = getServletContext().getResourceAsStream("/NoData/null.jpg");
+			// 無參數解決方法
+			byte[] b = new byte[in.available()];
+			in.read(b);
+			out.write(b);
+			in.close();
 
 		}
 

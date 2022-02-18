@@ -56,7 +56,7 @@ header {
 			<div class="container">
 				<div class="navbar d-flex flex-nowrap py-3">
 					<a href="#"> <img
-						src="https://images.unsplash.com/photo-1523217582562-09d0def993a6?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MjV8fGhvbWV8ZW58MHx8MHx8&auto=format&fit=crop&w=700&q=60"
+						src="<%= request.getContextPath()%>/images/cmn/index/EASYSPACE.png"
 						alt="brand-logo-image" class=" brand-logo" style="height: 130px">
 					</a>
 					<div class="function-link d-flex flex-column col-10 bd-highlight">
