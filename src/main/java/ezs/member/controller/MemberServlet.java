@@ -179,8 +179,6 @@ public class MemberServlet extends HttpServlet {
 				/*************************** 3.新增完成,準備轉交(Send the Success view) ***********/
 				req.setAttribute("memberVO", memberVO);
 				
-				
-//				String url = "/frontend/EZ_home.jsp";
 				RequestDispatcher successView = req.getRequestDispatcher("/member/RegisterMailServlet.do"); 
 				successView.forward(req, res);
 

@@ -23,11 +23,10 @@
 	String URL = "jdbc:mysql://localhost:3306/CFA104G5";
 	Connection con = DriverManager.getConnection(URL, "CFA104G5", "CFA104G5");
 
-	String SQL = "SELECT sh_id FROM `CFA104G5`.`SEC_ITEMS` WHERE sh_cate_id = ?";
+	String SQL = "SELECT * FROM `CFA104G5`.`SEC_ITEMS` WHERE sh_cate_id = ?";
 	PreparedStatement pstmt = con.prepareStatement(SQL);
-// 	Integer shCateID = Integer.valueOf(request.getParameter("shCateID"));
-// 	pstmt.setInt(1, shCateID);
-	pstmt.setInt(1, 1);
+	Integer shCateID = Integer.valueOf(request.getParameter("shCateID"));
+	pstmt.setInt(1, shCateID);
 	ResultSet rs = pstmt.executeQuery();
 	
 	String str = "";
@@ -41,17 +40,5 @@
 	pstmt.close();
 	con.close();
 
-
-// 	SecPicsService secPicsSvc = new SecPicsService();
-// 	List<SecPicsVO> secPicslist = secPicsSvc.getEachFirst();
-// 	pageContext.setAttribute("secPicslist", secPicslist);
-	
-// 	SecCategoryService secCategorySvc = new SecCategoryService();
-// 	List<SecCategoryVO> secCategorylist = secCategorySvc.getAll();
-// 	pageContext.setAttribute("secCategorylist", secCategorylist);
-	
-// 	SecItemsService secItemsSvc = new SecItemsService();
-// 	List<SecItemsVO> secItemslist = secItemsSvc.getAll();
-// 	pageContext.setAttribute("secItemslist", secItemslist);
 
 %>

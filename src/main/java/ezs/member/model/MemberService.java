@@ -96,4 +96,8 @@ public MemberVO addMember(String memUsername, String memPassword, String memName
 	public MemberVO Search(String memUsername, String memPassword) {
 		return dao.Search(memUsername, memPassword);
 	}
+	
+	public void verifyMember(String memName) {
+		dao.verifyMember(memName);
+	}
 }
