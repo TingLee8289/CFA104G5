@@ -97,7 +97,11 @@
 			end="<%=pageIndex+rowsPerPage-1%>">
 		<tr>
 			<td>${serOrdVO.ordID}</td>
-				<td>${serOrdVO.ordStatus}</td>
+				<td>
+					<c:if test="${serOrdVO.ordStatus == 0}">未成立</c:if>
+					<c:if test="${serOrdVO.ordStatus == 1}">已成立</c:if>
+					<c:if test="${serOrdVO.ordStatus == 2}">結案</c:if>
+				</td>
 				<td>${serOrdVO.ordPayStatus}</td>
 				<td>${serOrdVO.ordDmdID}</td>
 				<td>${serOrdVO.ordQuoID}</td>
@@ -115,10 +119,20 @@
 				<td>${serOrdVO.ordItem}</td>
 				<td>${serOrdVO.ordTotalPrice}</td>
 				<td>${serOrdVO.ordPrePay}</td>
-				<td>${serOrdVO.ordPayType}</td>
+				<td>
+					<c:if test="${serOrdVO.ordPayType == 0}">尚未付款</c:if>
+					<c:if test="${serOrdVO.ordPayType == 1}">現金付款</c:if>
+					<c:if test="${serOrdVO.ordPayType == 2}">線上刷卡</c:if>
+					<c:if test="${serOrdVO.ordPayType == 3}">ATM轉帳</c:if>
+				</td>
 				<td>${serOrdVO.ordPayDate}</td>
 				<td>${serOrdVO.ordFpay}</td>
-				<td>${serOrdVO.ordFpayType}</td>
+				<td>
+					<c:if test="${serOrdVO.ordPayType == 0}">尚未付款</c:if>
+					<c:if test="${serOrdVO.ordPayType == 1}">現金付款</c:if>
+					<c:if test="${serOrdVO.ordPayType == 2}">線上刷卡</c:if>
+					<c:if test="${serOrdVO.ordPayType == 3}">ATM轉帳</c:if>
+				</td>
 				<td>${serOrdVO.ordFpayDate}</td>
 				<td>${serOrdVO.ordBuyerScore}</td>
 				<td>${serOrdVO.ordBuyerTxt}</td>

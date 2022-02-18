@@ -1,6 +1,5 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
-	<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ page import="java.util.*"%>
 <%@ page import="ezs.ser_dmd.model.*"%>
 <% session.setAttribute("memID", 2);%>
@@ -85,7 +84,7 @@
 			<td>${serDmdVO.dmdID}</td>
 			<td>
 				<c:if test="${serDmdVO.dmdStatus == 0}">未投遞</c:if>
-				<c:if test="${serDmdVO.dmdStatus == 1}">投遞中</c:if>
+				<c:if test="${serDmdVO.dmdStatus == 1}">已投遞</c:if>
 				<c:if test="${serDmdVO.dmdStatus == 2}">訂單成立</c:if>
 			</td>
 			<td>${serDmdVO.dmdMemID}</td>
