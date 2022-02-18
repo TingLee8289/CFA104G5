@@ -37,7 +37,7 @@
 <h4>此頁練習採用 EL 的寫法取值:</h4>
 <table id="table-1">
 	<tr><td>
-		 <h3>廠商檢視估價單資料 - listAllSerDmd.jsp</h3>
+		 <h3>會員檢視估價單資料 - listAllSerDmd.jsp</h3>
 		 <h4><a href="<%=request.getContextPath()%>/frontend/ser_quo/serQuoHome.jsp">回首頁</a></h4>
 	</td></tr>
 </table>
@@ -62,8 +62,8 @@
 			<th>有效限期</th>
 			<th>估價項目</th>
 			<th>估價總價</th>
-			<th>修改</th>
-			<th>刪除</th>
+			<th>接受報價</th>
+			<th>拒絕報價</th>
 	</tr>
 	
 	<c:forEach var="serQuoVO" items="${serQuoVOList}" >
@@ -83,16 +83,16 @@
 				<td>${serQuoVO.quoItem}</td>
 				<td>${serQuoVO.quoTotalPrice}</td>
 			<td>
-			  <FORM METHOD="post" ACTION="<%=request.getContextPath()%>/ser_quo/UpdateQuoServlet.do" style="margin-bottom: 0px;">
-			     <input type="submit" value="修改">
+			  <FORM METHOD="post" ACTION="<%=request.getContextPath()%>/ser_quo/AcceptQuoServlet.do" style="margin-bottom: 0px;">
+			     <input type="submit" value="修改(接受報價)">
 			     <input type="hidden" name="quoID"  value="${serQuoVO.quoID}">
-			     <input type="hidden" name="action"	value="updateOneQuo"></FORM>
+			     <input type="hidden" name="action"	value="acceptQuo"></FORM>
 			</td>
 			<td>
-			  <FORM METHOD="post" ACTION="<%=request.getContextPath()%>/ser_quo/DeleteOrdServlet.do" style="margin-bottom: 0px;">
-			     <input type="submit" value="刪除">
+			  <FORM METHOD="post" ACTION="<%=request.getContextPath()%>/ser_quo/RejectQuoServlet.do" style="margin-bottom: 0px;">
+			     <input type="submit" value="修改(拒絕報價)">
 			     <input type="hidden" name="quoID"  value="${serQuoVO.quoID}">
-			     <input type="hidden" name="action" value="delete"></FORM>
+			     <input type="hidden" name="action" value="rejectQuo"></FORM>
 			</td>
 		</tr>
 	</c:forEach>
