@@ -108,7 +108,8 @@ public MemberVO addMember(String memUsername, String memPassword, String memName
 
 	public MemberVO checkUsername(String memUsername) {
 		return dao.checkUsername(memUsername);
-
+	}
+	
 	public void verifyMember(String memName) {
 		dao.verifyMember(memName);
 

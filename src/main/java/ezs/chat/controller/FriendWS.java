@@ -19,7 +19,7 @@ import javax.websocket.server.ServerEndpoint;
 import com.google.gson.Gson;
 
 import ezs.chat.model.ChatMessage;
-import ezs.chat.jedis.JedisHandleMessage;
+import ezs.chat.model.JedisHandleMessage;
 import ezs.chat.model.State;
 
 @ServerEndpoint("/FriendWS/{userName}")
