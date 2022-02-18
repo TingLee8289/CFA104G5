@@ -29,12 +29,15 @@
 			BigDecimal shPrice = order.getShPrice();
 			Integer shQTY = order.getShQTY();
 			
+			
+			
 	%>
 	<tr>
 		<td width="200"><%=shID%>     </td>
 		<td width="100"><%=shName%>   </td>
 		<td width="100"><%=shPrice%></td>
 		<td width="100"><%=shQTY%>    </td>
+		<td width="120">    </td>
 	</tr>
 	<%
 		}
