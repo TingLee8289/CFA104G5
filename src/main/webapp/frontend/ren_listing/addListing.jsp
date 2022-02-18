@@ -88,7 +88,6 @@
 		<td><input type="TEXT" name="lisTitle" maxlength="25" size="45"
 			value="<%= (renListingVO==null)? "範例:吉屋出租，請速與我聯絡!": renListingVO.getLisTitle() %>"/></td>
 	</tr>
-	</tr>
 	<jsp:useBean id= "renLocationSvc" scope="page" class="ezs.ren_location.model.RenLocationService"/>
 	<tr>
 		<td>區域<font color = red><b>*</b></font></td>
@@ -287,6 +286,13 @@
 				
 				<option value='1' >有</option>
 				</select>
+				
+<!-- 			<br> -->
+<!-- 		      <td>房源圖片<font color = red><b>*</b></font></td> -->
+<!-- 		      <td><input type="file"  id = upfiles name="lspPic" size="45"	 -->
+<%-- 			      value="<%= (renListingVO==null)? "範例:中北路200號": renListingVO.getLisAddress() %>"/></td> --%>
+	          
+			
 			<br>
 			房源上架狀態<select  name="lisStatus" ><option value='<%= (renListingVO==null)? "0": renListingVO.getLisStatus() %>'  selected >否</option>
 				

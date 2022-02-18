@@ -1,84 +1,110 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@ page import="java.util.*"%>
-<%@ page import="ezs.sec_items.model.*"%>
-<!DOCTYPE html>
+<%@ page import="ezs.member.model.*"%>
+
+<%
+	MemberService memSvc = new MemberService();
+    List<MemberVO> list = memSvc.getAll();
+    pageContext.setAttribute("list",list);
+%>
+
 <html>
 <head>
-<meta charset="UTF-8">
 <title>所有會員</title>
 </head>
+
+
+<style>
+  table#table-1 {
+	background-color: #CCCCFF;
+    border: 2px solid black;
+    text-align: center;
+  }
+  table#table-1 h4 {
+    color: red;
+    display: block;
+    margin-bottom: 1px;
+  }
+  h4 {
+    color: blue;
+    display: inline;
+  }
+</style>
+
+<style>
+  table {
+	width: 800px;
+	background-color: white;
+	margin-top: 5px;
+	margin-bottom: 5px;
+  }
+  table, th, td {
+    border: 1px solid #CCCCFF;
+  }
+  th, td {
+    padding: 5px;
+    text-align: center;
+  }
+</style>
+
+</head>
+
 <body>
-	<a href="select_sec_items_page.jsp">回首頁</a>
+<jsp:include page="/frontend/EZ_header.jsp"></jsp:include>
+<table id="table-1">
+	<tr><td>
+		 <h3>所有會員資料</h3>
+	</td></tr>
+</table>
 	<table>
 		<tr>
-			<th>MemUsername</th>
-			<th>MemPassword</th>
-			<th>MemName</th>
-			<th>MemLandlord</th>
-			<th>MemSupplier</th>
-			<th>MemSeller</th>
-			<th>MemPhone</th>
-			<th>MemAddress</th>
-			<th>MemEmail</th>
-			<th>MemPID</th>
-			<th>MemStatus</th>
-			<th>MemHeadshot</th>
-			<th>MemHeadshot</th>
-			<th>MemRevCount</th>
-			<th>MemRevScore</th>
-			<th>MemRedCount</th>
-			<th>MemRedScore</th>
-			<th>MemReported</th>
-			<th>MemLddReported</th>
-			<th>MemSelReported</th>
-			<th>MemSupReported</th>
-			<th>MemVatno</th>
+			<th>帳號</th>
+			<th>名稱</th>
+			<th>電話</th>
+			<th>地址</th>
+			<th>email帳號</th>
+			<th>個人頭像</th>
+			<th>評分</th>
+			<th>統一編號</th>
 			<th>修改</th>
-			<th>刪除</th>
 		</tr>
+
 
 		<c:forEach var="memberVO" items="${list}">
 			<tr>
 				<td>${memberVO.memUsername}</td>
-				<td>${memberVO.memPassword}</td>
 				<td>${memberVO.memName}</td>
-				<td>${memberVO.memLandlord}</td>
-				<td>${memberVO.memSupplier}</td>
-				<td>${memberVO.memSeller}</td>
 				<td>${memberVO.memPhone}</td>
 				<td>${memberVO.memAddress}</td>
 				<td>${memberVO.memEmail}</td>
-				<td>${memberVO.memPID}</td>
-				<td>${memberVO.memStatus}</td>
-				<td>${memberVO.memHeadshot}</td>
-				<td>${memberVO.memRevCount}</td>
-				<td>${memberVO.memRevScore}</td>
-				<td>${memberVO.memRedCount}</td>
-				<td>${memberVO.memRedScore}</td>
-				<td>${memberVO.memReported}</td>
-				<td>${memberVO.memLddReported}</td>
-				<td>${memberVO.memSupReported}</td>
-				<td>${memberVO.memSelReported}</td>
+				
+				<td><img src="<%=request.getContextPath()%>/DBGifReader?mem_ID=${memberVO.memID}" width=200px></td>
+				
+				<td>
+					<c:choose>
+						<c:when test="${(memberVO.memRedCount) == 0}">尚無評分</c:when>
+						<c:otherwise>
+							<fmt:formatNumber type="number" maxFractionDigits="1" 
+								value="${(memberVO.memRedScore/memberVO.memRedCount)}"/>
+						</c:otherwise>
+					</c:choose></td>
 				<td>${memberVO.memVatno}</td>
 
-				<td><form method="post" action="<%= request.getContextPath() %>/member/MemberServlet.do">
-						<input type="submit" value="修改"> <input type="hidden"
-							name="memID" value="${memberVO.memID}"> <input
-							type="hidden" name="action" value="getOne_For_Update">
+				<td><form method="post" action="<%= request.getContextPath() %>/member/MemberServletUpdate.do">
+						<input type="submit" value="修改"> 
+						<input type="hidden" name="memID" value="${memberVO.memID}"> 
+						<input type="hidden" name="action" value="getOne_For_Update">
 					</form></td>
-				<td>
-					<form method="post" action="<%= request.getContextPath() %>/member/MemberServlet.do">
-						<input type="submit" value="刪除"> <input type="hidden"
-							name="memID" value="${memberVO.memID}"> <input
-							type="hidden" name="action" value="delete">
-					</form>
 
-				</td>
 
 			</tr>
 		</c:forEach>
 	</table>
+
+<jsp:include page="/frontend/EZ_footer.jsp"></jsp:include>
+
 </body>
 </html>

@@ -77,7 +77,6 @@
 		<th>廠商身份</th>
 		<th>賣家身份</th>
 		<th>被檢舉數</th>
-		<th>房東被檢舉數</th>
 		<th>廠商被檢舉數</th>
 		<th>賣家被檢舉數</th>
 		
@@ -104,7 +103,6 @@
 				<c:if test="${memberVO.memSeller == 0}">停權</c:if>
 				<c:if test="${memberVO.memSeller == 1}">啟用</c:if></td>
 			<td>${memberVO.memReported}</td>
-			<td>${memberVO.memLddReported}</td>
 			<td>${memberVO.memSupReported}</td>
 			<td>${memberVO.memSelReported}</td>
 			<td>

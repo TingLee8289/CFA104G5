@@ -41,26 +41,34 @@ public MemberVO addMember(String memUsername, String memPassword, String memName
 	}
 
 
-	public MemberVO updateMemberVO(Integer memID, String memUsername, String memPassword, String memName,
-			Byte memLandlord, Byte memSupplier, Byte memSeller, String memPhone, String memAddress, String memEmail,
-			String memPID, Byte memStatus, byte[] memheadshot, Integer memRevCount, Integer memRevScore,
-			Integer memRedCount, Integer memredscore, Integer memReported, Integer memLddReported,
-			Integer memSupReported, Integer memSelReported, String memVatno) {
+	public MemberVO updateMember(Integer memID, String memPassword, String memName,
+			String memPhone, String memAddress, String memEmail, byte[] memheadshot, String memVatno) {
 		MemberVO memberVO = new MemberVO();
 
 		memberVO.setMemID(memID);
-		memberVO.setMemUsername(memUsername);
 		memberVO.setMemPassword(memPassword);
 		memberVO.setMemName(memName);
-		memberVO.setMemLandlord(memLandlord);
-		memberVO.setMemSupplier(memSupplier);
-		memberVO.setMemSeller(memSeller);
 		memberVO.setMemPhone(memPhone);
 		memberVO.setMemAddress(memAddress);
 		memberVO.setMemEmail(memEmail);
-		memberVO.setMemPID(memPID);
+		memberVO.setMemHeadshot(memheadshot);
+		memberVO.setMemVatno(memVatno);
+		dao.update(memberVO);
+
+		return memberVO;
+	}
+	
+	
+	public MemberVO updateMemberADM(Integer memID, Byte memLandlord, Byte memSupplier, Byte memSeller,
+			Byte memStatus, Integer memRevCount, Integer memRevScore, Integer memRedCount, Integer memredscore, 
+			Integer memReported, Integer memLddReported, Integer memSupReported, Integer memSelReported) {
+		MemberVO memberVO = new MemberVO();
+
+		memberVO.setMemID(memID);
+		memberVO.setMemLandlord(memLandlord);
+		memberVO.setMemSupplier(memSupplier);
+		memberVO.setMemSeller(memSeller);
 		memberVO.setMemStatus(memStatus);
-		memberVO.setMemHeadshot(null);
 		memberVO.setMemRevCount(memRevCount);
 		memberVO.setMemRevScore(memRevScore);
 		memberVO.setMemRedCount(memRedCount);
@@ -69,11 +77,11 @@ public MemberVO addMember(String memUsername, String memPassword, String memName
 		memberVO.setMemLddReported(memLddReported);
 		memberVO.setMemSupReported(memSupReported);
 		memberVO.setMemSelReported(memSelReported);
-		memberVO.setMemVatno(memVatno);
-		dao.update(memberVO);
+		dao.updateADM(memberVO);
 
 		return memberVO;
 	}
+
 
 	// for Struts2
 	public void updateMember(MemberVO memberVO) {
@@ -95,5 +103,9 @@ public MemberVO addMember(String memUsername, String memPassword, String memName
 
 	public MemberVO Search(String memUsername, String memPassword) {
 		return dao.Search(memUsername, memPassword);
+	}
+	
+	public MemberVO checkUsername(String memUsername) {
+		return dao.checkUsername(memUsername);
 	}
 }

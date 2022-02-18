@@ -19,7 +19,7 @@ import javax.websocket.server.ServerEndpoint;
 import com.google.gson.Gson;
 
 import ezs.chat.model.ChatMessage;
-import ezs.chat.model.JedisHandleMessage;
+import ezs.chat.jedis.JedisHandleMessage;
 import ezs.chat.model.State;
 
 @ServerEndpoint("/FriendWS/{userName}")
@@ -69,8 +69,8 @@ public class FriendWS {
 		if (receiverSession != null && receiverSession.isOpen()) {
 			receiverSession.getAsyncRemote().sendText(message);
 			userSession.getAsyncRemote().sendText(message);
-			JedisHandleMessage.saveChatMessage(sender, receiver, message);
 		}
+		JedisHandleMessage.saveChatMessage(sender, receiver, message);
 		System.out.println("Message received: " + message);
 	}
 
@@ -95,9 +95,9 @@ public class FriendWS {
 			State stateMessage = new State("close", userNameClose, userNames);
 			String stateMessageJson = gson.toJson(stateMessage);
 			Collection<Session> sessions = sessionsMap.values();
-			for (Session session : sessions) {
-				session.getAsyncRemote().sendText(stateMessageJson);
-			}
+//			for (Session session : sessions) {
+//				session.getAsyncRemote().sendText(stateMessageJson);
+//			}
 		}
 
 		String text = String.format("session ID = %s, disconnected; close code = %d%nusers: %s", userSession.getId(),

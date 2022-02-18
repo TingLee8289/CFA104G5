@@ -140,10 +140,6 @@
 			<c:if test="${memberVO.memSeller == 1}">啟用</c:if></td>
 	</tr>
 	<tr>
-		<td>房東被檢舉數:</td>
-		<td>${memberVO.memLddReported}</td>
-	</tr>
-	<tr>
 		<td>廠商被檢舉數:</td>
 		<td>${memberVO.memSupReported}</td>
 	</tr>

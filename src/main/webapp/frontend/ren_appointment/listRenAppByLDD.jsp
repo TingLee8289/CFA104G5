@@ -100,7 +100,7 @@
                 </c:forEach>
 			</td>
 			<td>
-				<c:if test="${renAppointmentVO.aptStatus == 0}">待確認預約</c:if>
+<%-- 				<c:if test="${renAppointmentVO.aptStatus == 0}">待確認預約</c:if> --%>
 				<c:if test="${renAppointmentVO.aptStatus == 1}">已確認預約</c:if>
 				<c:if test="${renAppointmentVO.aptStatus == 2}">已取消</c:if>
 				<c:if test="${renAppointmentVO.aptStatus == 3}">預約時間已變更</c:if>
@@ -109,7 +109,7 @@
 
 			<td>
 				<FORM METHOD="post" ACTION="<%=request.getContextPath()%>/RenAppointmentServlet.do" style="margin-bottom: 0px;">
-					<input type="submit" value="修改"> 
+					<input type="submit" value="修改預約時間"> 
 					<input type="hidden" name="aptId" value="${renAppointmentVO.aptId}"> 
 					<input type="hidden" name="action" value="getOne_For_Update">
 				</FORM>
@@ -117,6 +117,13 @@
 			<td>
 				<FORM METHOD="post" ACTION="<%=request.getContextPath()%>/RenAppointmentServlet.do" style="margin-bottom: 0px;">
 					<input type="submit" value="取消預約"> 
+					<input type="hidden" name="aptId" value="${renAppointmentVO.aptId}"> 
+					<input type="hidden" name="action" value="cancel">
+				</FORM>
+			</td>
+			<td>
+				<FORM METHOD="post" ACTION="<%=request.getContextPath()%>/RenAppointmentServlet.do" style="margin-bottom: 0px;">
+					<input type="submit" value="刪除預約單"> 
 					<input type="hidden" name="aptId" value="${renAppointmentVO.aptId}"> 
 					<input type="hidden" name="action" value="delete">
 				</FORM>

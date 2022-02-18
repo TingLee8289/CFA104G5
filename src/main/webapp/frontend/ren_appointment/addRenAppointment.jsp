@@ -75,31 +75,20 @@
 
 <FORM METHOD="post" ACTION="<%=request.getContextPath()%>/RenAppointmentServlet.do" name="form1">
 <table>
+
 	<tr>
-		<td>預約會員編號:</td>
-		<td><input type="TEXT" name="memUsername" 
-			 value="<%= (renAppointmentVO==null)? "" : renAppointmentVO.getAptMemId()%>" /></td>
+		<td>預約會員帳號:</td>
+		<td><input type="TEXT" name="aptMemName" /></td>
 	</tr>
-	<tr>
-		<td>房東編號:</td>
-		<td><input type="TEXT" name="aptLddId" 
-			 value="<%= (renAppointmentVO==null)? "" : renAppointmentVO.getAptLddId()%>" /></td>
-	</tr>
+<!-- 	<tr> -->
+<!-- 		<td>房東編號:</td> -->
+<!-- 		<td><input type="TEXT" name="aptLddId"  -->
+<%-- 			 value="<%= (renAppointmentVO==null)? "" : renAppointmentVO.getAptLddId()%>" /></td> --%>
+<!-- 	</tr> -->
 	<tr>
 		<td>房源編號:</td>
 		<td><input type="TEXT" name="aptLisId"
 			 value="<%= (renAppointmentVO==null)? "" : renAppointmentVO.getAptLisId()%>" /></td>
-	</tr>
-	<tr>
-		<td>預約單狀態:</td>
-		<td><input type="TEXT" name="aptStatus" size="1"
-			 value="<%= (renAppointmentVO==null)? "" : renAppointmentVO.getAptStatus()%>" /></td>
-<!-- 		<td> -->
-<%-- 				<c:if test="${renAppointmentVO.aptStatus == 0}">待確認預約</c:if> --%>
-<%-- 				<c:if test="${renAppointmentVO.aptStatus == 1}">已確認預約</c:if> --%>
-<%-- 				<c:if test="${renAppointmentVO.aptStatus == 2}">已取消</c:if> --%>
-<!-- 			</td> -->
-	
 	</tr>
 	<tr>
 		<td>預約時間:</td>
@@ -110,13 +99,14 @@
 <br>
 <input type="hidden" name="action" value="insert">
 <input type="submit" value="送出新增"></FORM>
+
 <jsp:include page="/frontend/EZ_footer.jsp"></jsp:include>
+
+
+
+
 </body>
 
-
-
-
-<!-- =============================查詢會員是否存在========================== -->
 
 
 

@@ -29,7 +29,9 @@ public class RenLandlordService {
 		renLandlordVO.setLddId(lddId);
 		renLandlordVO.setLddMemId(lddMemId);
 		renLandlordVO.setLddApproval(lddApproval);
+		dao.update(renLandlordVO);
 
+		dao.updatestatus(renLandlordVO);
 		return renLandlordVO;
 	}
 

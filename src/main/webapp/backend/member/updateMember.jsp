@@ -1,3 +1,7 @@
+<!-- 可能刪除 -->
+
+
+
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ page import="java.util.*"%>
@@ -90,7 +94,6 @@
 		<th>被評價總數</th>
 		<th>被評價總分</th>
 		<th>被被檢舉數</th>
-		<th>房東被檢舉數</th>
 		<th>廠商被檢舉數</th>
 		<th>賣家被檢舉數</th>
 		<th>會員統一編號</th>
@@ -117,7 +120,6 @@
 			<td>${memberVO.memRedCount}</td>
 			<td>${memberVO.memRedScore}</td>
 			<td>${memberVO.memReported}</td>
-			<td>${memberVO.memLddReported}</td>
 			<td>${memberVO.memSupReported}</td>
 			<td>${memberVO.memSelReported}</td>
 			<td>${memberVO.memVatno}</td>
