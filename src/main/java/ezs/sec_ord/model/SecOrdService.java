@@ -128,7 +128,7 @@ public class SecOrdService {
 
 	public Set<SecOrdVO> getSecOrdByShSellerID(Integer shSellerID) {
 		return dao.getSecOrdByShSellerID(shSellerID);
-
+	}
 	
 	public void updateCompleteOrder(Integer shOrdID) {
 		dao.updateCompleteOrder(shOrdID);
