@@ -179,7 +179,6 @@ pageContext.setAttribute("secItemslist", secItemslist);
 	        </c:forEach>
         </ul>
       </nav>
-      <select id="test"></select>
     </aside>
 <!-- 	側邊欄 結束-------------------------------------------------------- -->
 <!-- 	main 開始-------------------------------------------------------- -->
@@ -224,30 +223,66 @@ pageContext.setAttribute("secItemslist", secItemslist);
       });
 </script>
 <script>
-	
-	
-	
-	
 		$('#Cate1').click(function() {
 			$.ajax({
 				type: "get",
 				url: "<%= request.getContextPath()%>/frontend/sec_items/secItemsViewPageAJAX.jsp",
 				data: {"shCateID": 1},
 				success: function(data){
-					showNames(data);
+					showItems(data);
 				}
 			});
 		});
-
-	
-	function showNames(data){
-		var names = data.split(",");
-		$("#test").html("");
-		for (i in names){
-			var opt = $("<option>").val(names[i]).text(names[i]);
-			$("#test").append(opt);
+		$('#Cate2').click(function() {
+			$.ajax({
+				type: "get",
+				url: "<%= request.getContextPath()%>/frontend/sec_items/secItemsViewPageAJAX.jsp",
+				data: {"shCateID": 2},
+				success: function(data){
+					showItems(data);
+				}
+			});
+		});
+		$('#Cate3').click(function() {
+			$.ajax({
+				type: "get",
+				url: "<%= request.getContextPath()%>/frontend/sec_items/secItemsViewPageAJAX.jsp",
+				data: {"shCateID": 3},
+				success: function(data){
+					showItems(data);
+				}
+			});
+		});
+		$('#Cate4').click(function() {
+			$.ajax({
+				type: "get",
+				url: "<%= request.getContextPath()%>/frontend/sec_items/secItemsViewPageAJAX.jsp",
+				data: {"shCateID": 4},
+				success: function(data){
+					showItems(data);
+				}
+			});
+		});
+		$('#Cate5').click(function() {
+			$.ajax({
+				type: "get",
+				url: "<%= request.getContextPath()%>/frontend/sec_items/secItemsViewPageAJAX.jsp",
+				data: {"shCateID": 5},
+				success: function(data){
+					showItems(data);
+				}
+			});
+		});
+		
+		
+		function showItems(data){
+			
+		//		console.log(data)
+			$("#item_list").html("");
+			$("#item_list").html(data);
 		}
-	}
+
+
 	
 
 	
