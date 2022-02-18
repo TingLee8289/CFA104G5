@@ -6,5 +6,6 @@ public interface AdminPriv_interface {
 		public void insert(AdminPrivVO adminFUNCTIONVO);
 		public void delete(Integer admID,Integer funID);
 		public AdminPrivVO findByPrimaryKey(Integer admID,Integer funID);
+		public List<AdminPrivVO> getAllFromID (Integer admID);
 		public List<AdminPrivVO> getAll();
 }

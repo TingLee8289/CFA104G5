@@ -31,6 +31,10 @@ public class AdminPrivService {
 		return dao.findByPrimaryKey(admID, funID);
 	}
 	
+	public List<AdminPrivVO> getAllFromID (Integer adminID){
+		return dao.getAllFromID(adminID);
+	}
+	
 	public  List<AdminPrivVO> getAll() {
 		return dao.getAll();
 	}
