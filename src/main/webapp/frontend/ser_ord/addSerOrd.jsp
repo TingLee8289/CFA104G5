@@ -49,7 +49,7 @@ th, td {
 
 </head>
 <body bgcolor='white'>
-
+<div style="width:500; margin:auto;">
 	<table id="table-1">
 		<tr>
 			<td>
@@ -65,7 +65,7 @@ th, td {
 	</table>
 
 	<h3>新增服務訂單:</h3>
-
+</div>
 	<%-- 錯誤表列 --%>
 	<c:if test="${not empty errorMsgs}">
 		<font style="color: red">請修正以下錯誤:</font>
@@ -75,7 +75,7 @@ th, td {
 			</c:forEach>
 		</ul>
 	</c:if>
-
+<div style= "width:500px; margin:auto; border:solid 1px red;">
 	<FORM METHOD="post" 
 		ACTION="<%=request.getContextPath()%>/ser_ord/AddOrdServlet.do"
 		name="form1">
@@ -89,7 +89,7 @@ th, td {
 				<td><input type="hidden" name="ordPayStatus" size="8" value=0 /></td>
 			</tr>
 			<tr>
-				<td>需求單ID:</td>
+				<td >需求單ID:</td>
 				<td><input type="TEXT" name="ordDmdID" size="50"
 					value="<%=(serOrdVO == null) ? "4" : serOrdVO.getOrdDmdID()%>" /></td>
 			</tr>
@@ -168,8 +168,8 @@ th, td {
 					value="<%=(serOrdVO == null) ? "100" : serOrdVO.getOrdPrePay()%>" /></td>
 			</tr>
 			<tr>
-				<td>訂金付款方式:</td>
-				<td><input type="TEXT" name="ordPayType" size="8" value=0 /></td>
+				
+				<td><input type="hidden" name="ordPayType" size="8" value=0 /></td>
 			</tr>
 			<tr>
 				<td>訂金付款日期:</td>
@@ -181,8 +181,8 @@ th, td {
 					value="<%=(serOrdVO == null) ? "100" : serOrdVO.getOrdPrePay()%>" /></td>
 			</tr>
 			<tr>
-				<td>尾款付款方式:</td>
-				<td><input type="TEXT" name="ordFpayType" size="8" value=0 /></td>
+				
+				<td><input type="hidden" name="ordFpayType" size="8" value=0 /></td>
 			</tr>
 			<tr>
 				<td>尾款付款日期:</td>
@@ -222,6 +222,7 @@ th, td {
 		<br> <input type="hidden" name="action" value="insert"> <input
 			type="submit" value="送出新增">
 	</FORM>
+	</div>
 </body>
 
 
