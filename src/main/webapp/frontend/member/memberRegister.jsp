@@ -315,18 +315,45 @@ body {
 						<label class="Headshot">個人頭像 :</label>
 					</div>
 					<div class="col-xs-8">
-						<input type="file" name="memHeadshot" id="memHeadshot"
+						<input type="file" name="memHeadshot" id="memHeadshot" accept="image/gif, image/jpeg, image/png"
 							class="form-control "
 							value="<%=(memberVO == null) ? "" : memberVO.getMemHeadshot()%>">
+							<div id="previews" >
+       							<p>圖片預覽</p>
+   							</div>
 					</div>
 				</div>
 			</div>
 			<!-------------------->
 			<input type="hidden" name="action" value="insert"> 
 			<input type="submit" value="送出新增" class="btn btn-submit">
+			
 		</form>
 	</div>
 
-
+	<!-- JavaScript part -->
+	<script>
+	$("#memHeadshot").change(function(){
+	  $("#errorMessage").html(""); // 清除錯誤訊息
+	  $("#previews").html("");     // 清除預覽
+	  readURL(this);
+	});
+	
+	function readURL(input){
+	  if (input.files && input.files.length >= 0) {
+	    for(var i = 0; i < input.files.length; i ++){
+	      var reader = new FileReader();
+	      reader.onload = function (e) {
+	        var img = $("<img width='143' height='100'>").attr('src', e.target.result);
+	        $("#previews").append(img);
+	      }
+	      reader.readAsDataURL(input.files[i]);
+	    }
+	  }else{
+	     var noPictures = $("<p>目前沒有圖片</p>");
+	     $("#previews").append(noPictures);
+	  }
+	}
+	</script>
 </body>
 </html>
