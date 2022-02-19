@@ -1,9 +1,19 @@
+<%@page import="ezs.ser_dmd.model.SerDmdService"%>
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ page import="ezs.ser_ord.model.*"%>
+<%@ page import="ezs.ser_quo.model.*"%>
+<%@ page import="ezs.ser_dmd.model.*"%>
 
 <%
 SerOrdVO serOrdVO = (SerOrdVO) request.getAttribute("serOrdVO");
+Integer quoID = Integer.valueOf(request.getParameter("quoID")) ;
+SerQuoService serQuoSvc = new SerQuoService();
+SerQuoVO oneQuoVO = serQuoSvc.getOneSerQuo(quoID);
+pageContext.setAttribute("oneQuoVO", oneQuoVO);
+SerDmdService serDmdSvc = new SerDmdService();
+SerDmdVO oneDmdVO = serDmdSvc.getOneSerDmd(oneQuoVO.getQuoDmdID());
+pageContext.setAttribute("oneDmdVO", oneDmdVO);
 %>
 
 <html>
@@ -90,82 +100,71 @@ th, td {
 			</tr>
 			<tr>
 				<td >需求單ID:</td>
-				<td><input type="TEXT" name="ordDmdID" size="50"
-					value="<%=(serOrdVO == null) ? "4" : serOrdVO.getOrdDmdID()%>" /></td>
+				<td><input type="TEXT" name="ordDmdID" size="50" value="${oneQuoVO.quoDmdID}" disabled/></td>
 			</tr>
 			<tr>
 				<td>估價單ID:</td>
-				<td><input type="TEXT" name="ordQuoID" size="50"
-					value="<%=(serOrdVO == null) ? "4" : serOrdVO.getOrdQuoID()%>" /></td>
+				<td><input type="TEXT" name="ordQuoID" size="50" value="${oneQuoVO.quoID}" disabled/></td>
 			</tr>
 			<tr>
 				<td>會員ID:</td>
-				<td><input type="TEXT" name="ordMemID" size="50"
-					value="<%=(serOrdVO == null) ? "2" : serOrdVO.getOrdMemID()%>" /></td>
+				<td><input type="TEXT" name="ordMemID" size="50" value="${oneDmdVO.dmdMemID}" disabled/></td>
 			</tr>
 			<tr>
 				<td>廠商ID:</td>
-				<td><input type="TEXT" name="ordVdrID" size="50"
-					value="<%=(serOrdVO == null) ? "3" : serOrdVO.getOrdVdrID()%>" /></td>
+				<td><input type="TEXT" name="ordVdrID" size="50" value="${oneQuoVO.quoVdrID}" disabled/></td>
 			</tr>
 			<tr>
 				<td>服務類別ID:</td>
-				<td><input type="TEXT" name="ordSerClaID" size="50"
-					value="<%=(serOrdVO == null) ? "2" : serOrdVO.getOrdSerClaID()%>" /></td>
+				<td><input type="TEXT" name="ordSerClaID" size="50" value="${oneDmdVO.dmdSerClaID}" disabled/></td>
 			</tr>
 			<tr>
-				<td>會員統一編號:</td>
+				<td>業主姓名:</td>
+				<td><input type="TEXT" name="ordClnName" size="50" value="${oneDmdVO.dmdName}" disabled/></td>
+			</tr>
+			<tr>
+				<td>業主電話:</td>
+				<td><input type="TEXT" name="ordClnTel" size="50" value="${oneDmdVO.dmdTel}" disabled/></td>
+			</tr>
+			<tr>
+				<td>案場縣市:</td>
+				<td><input type="TEXT" name="ordCounty" size="50" value="${oneDmdVO.dmdCounty}" disabled/></td>
+			</tr>
+			<tr>
+				<td>案場地區:</td>
+				<td><input type="TEXT" name="ordDist" size="50" value="${oneDmdVO.dmdRegion}" disabled /></td>
+			</tr>
+			<tr>
+				<td>案場詳細地址:</td>
+				<td><input type="TEXT" name="ordAddr" size="50" value="${oneDmdVO.dmdAddress}" disabled/></td>
+			</tr>
+			<tr>
+				<td>業主統一編號:</td>
 				<td><input type="TEXT" name="ordMemVatno" size="50"
-					value="<%=(serOrdVO == null) ? "87654321" : serOrdVO.getOrdMemVatno()%>" /></td>
+					value="" /></td>
 			</tr>
 			<tr>
 				<td>廠商統一編號:</td>
 				<td><input type="TEXT" name="ordVdrVatno" size="50"
-					value="<%=(serOrdVO == null) ? "43218765" : serOrdVO.getOrdVdrVatno()%>" /></td>
-			</tr>
-			<tr>
-				<td>業主姓名:</td>
-				<td><input type="TEXT" name="ordClnName" size="50"
-					value="<%=(serOrdVO == null) ? "劉冠鳴" : serOrdVO.getOrdClnName()%>" /></td>
-			</tr>
-			<tr>
-				<td>業主電話:</td>
-				<td><input type="TEXT" name="ordClnTel" size="50"
-					value="<%=(serOrdVO == null) ? "0988654321" : serOrdVO.getOrdClnTel()%>" /></td>
+					value="${oneQuoVO.quoID}" /></td>
 			</tr>
 			<tr>
 				<td>施作日期:</td>
 				<td><input name="ordWorkDate" id="ordWorkDate1" type="text" ></td>
 			</tr>
 			<tr>
-				<td>案場縣市:</td>
-				<td><input type="TEXT" name="ordCounty" size="50"
-					value="<%=(serOrdVO == null) ? "台北市" : serOrdVO.getOrdCounty()%>" /></td>
-			</tr>
-			<tr>
-				<td>案場地區:</td>
-				<td><input type="TEXT" name="ordDist" size="50"
-					value="<%=(serOrdVO == null) ? "狼港區" : serOrdVO.getOrdDist()%>" /></td>
-			</tr>
-			<tr>
-				<td>案場詳細地址:</td>
-				<td><input type="TEXT" name="ordAddr" size="50"
-					value="<%=(serOrdVO == null) ? "研究院路二段128號" : serOrdVO.getOrdAddr()%>" /></td>
-			</tr>
-			<tr>
 				<td>施工項目:</td>
 				<td><input type="TEXT" name="ordItem" size="50"
-					value="<%=(serOrdVO == null) ? "青仔600" : serOrdVO.getOrdItem()%>" /></td>
+					value="${oneQuoVO.quoItem}" /></td>
 			</tr>
 			<tr>
 				<td>總金額:</td>
 				<td><input type="TEXT" name="ordTotalPrice"
-					value="<%=(serOrdVO == null) ? "600" : serOrdVO.getOrdTotalPrice()%>" /></td>
+					value="${oneQuoVO.quoTotalPrice}" /></td>
 			</tr>
 			<tr>
 				<td>訂金:</td>
-				<td><input type="TEXT" name="ordPrePay"
-					value="<%=(serOrdVO == null) ? "100" : serOrdVO.getOrdPrePay()%>" /></td>
+				<td><input type="TEXT" name="ordPrePay" /></td>
 			</tr>
 			<tr>
 				
@@ -177,8 +176,7 @@ th, td {
 			</tr>
 			<tr>
 				<td>尾款:</td>
-				<td><input type="TEXT" name="ordFpay"
-					value="<%=(serOrdVO == null) ? "100" : serOrdVO.getOrdPrePay()%>" /></td>
+				<td><input type="TEXT" name="ordFpay" value="<%=(serOrdVO == null) ? "100" : serOrdVO.getOrdPrePay()%>" /></td>
 			</tr>
 			<tr>
 				
@@ -219,8 +217,19 @@ th, td {
 
 
 		</table>
-		<br> <input type="hidden" name="action" value="insert"> <input
-			type="submit" value="送出新增">
+		<br> 
+		<input type="hidden" name="ordDmdID" size="50" value="${oneQuoVO.quoDmdID}" />
+		<input type="hidden" name="ordQuoID" size="50" value="${oneQuoVO.quoID}" />
+		<input type="hidden" name="ordMemID" size="50" value="${oneDmdVO.dmdMemID}" />
+		<input type="hidden" name="ordVdrID" size="50" value="${oneQuoVO.quoVdrID}" />
+		<input type="hidden" name="ordSerClaID" size="50" value="${oneDmdVO.dmdSerClaID}" />
+		<input type="hidden" name="ordClnName" size="50" value="${oneDmdVO.dmdName}" />
+		<input type="hidden" name="ordClnTel" size="50" value="${oneDmdVO.dmdTel}" />
+		<input type="hidden" name="ordCounty" size="50" value="${oneDmdVO.dmdCounty}" />
+		<input type="hidden" name="ordDist" size="50" value="${oneDmdVO.dmdRegion}" />
+		<input type="hidden" name="ordAddr" size="50" value="${oneDmdVO.dmdAddress}" />
+		<input type="hidden" name="action" value="insert"> 
+		<input type="submit" value="送出新增">
 	</FORM>
 	</div>
 </body>
