@@ -2,14 +2,17 @@ package ezs.ren_listing_pic.model;
 
 import java.util.List;
 
+import ezs.sec_pics.model.SecPicsVO;
+
 public class RenListingPicService {
 	
 	private RenListingPicDAO_interface dao;
+
 	
 	public RenListingPicService() {
 		dao = new RenListingPicJNDIDAO();
 	}
-	
+	//新增
 	public RenListingPicVO addRenListingPic(Integer lspLisID,byte[] lspPic) {
 		
 		RenListingPicVO renListingPicVO = new RenListingPicVO();
@@ -20,7 +23,7 @@ public class RenListingPicService {
 		
 		return renListingPicVO;
 	}
-	
+	//修改
 	public RenListingPicVO updateRenListingPic(Integer lspID,Integer lspLisID,byte[] lspPic) {
 		
 		RenListingPicVO renListingPicVO = new RenListingPicVO();
@@ -45,5 +48,14 @@ public class RenListingPicService {
 	public List<RenListingPicVO> getAll(){
 		return dao.getAll();
 	}
+		
+//		public List<SecPicsVO> getEachFirst() {
+//			return dao.getEachItemFirstPic();
+//		}
+//
+//		public List<SecPicsVO> getByShID(Integer shID) {
+//			return dao.getByShID(shID);
+//		}
+	
 	
 }

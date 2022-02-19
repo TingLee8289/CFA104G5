@@ -3,12 +3,27 @@ package ezs.ren_listing.model;
 import java.math.BigDecimal;
 import java.util.List;
 
+import ezs.ren_listing_pic.model.RenListingPicDAO_interface;
+import ezs.ren_listing_pic.model.RenListingPicJNDIDAO;
+import ezs.ren_listing_pic.model.RenListingPicVO;
+
 public class RenListingService  {
 
 	private RenListingDAO_interface dao;
+	private RenListingPicDAO_interface daolspPic;
 	
 	public RenListingService() {
 		dao = new RenListingJNDIDAO();
+		daolspPic = new RenListingPicJNDIDAO();
+	}
+	
+	public void addRenListing(RenListingPicVO renListingPicVO) {
+		
+//		Integer id = dao.insert(renListingVO);
+////		DAO新增出來才會產生的ShID 讓它對應Pics
+//		renListingPicVO.setLspLisID(id);
+		//picDao 傳到關聯表格
+		daolspPic.insert(renListingPicVO);
 	}
 	
 	public RenListingVO addRenListing(Integer lisLddID,Integer lisRtID,Integer lisAreaID,String lisTitle,String lisAbt,
@@ -55,7 +70,9 @@ public class RenListingService  {
 		renListingVO.setLisSonly(lisSonly);
 		renListingVO.setLisStatus(lisStatus);
 		renListingVO.setLisApproval(lisApproval);
-		dao.insert(renListingVO);
+		
+		Integer lisID = dao.insert(renListingVO);
+		renListingVO.setLisID(lisID);
 		
 		return renListingVO;
 	}

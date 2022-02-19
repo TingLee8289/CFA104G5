@@ -1,10 +1,13 @@
+<%@page import="ezs.ren_listing_pic.model.RenListingPicVO"%>
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ page import="ezs.ren_listing.model.*"%>
+<%@ page import="ezs.ren_listing_pic.model.*"%>
 
 <%
 RenListingVO renListingVO = (RenListingVO) request.getAttribute("renListingVO"); //EmpServlet.java (Concroller) 存入req的empVO物件 (包括幫忙取出的empVO, 也包括輸入資料錯誤時的empVO物件)
 System.out.print(renListingVO);
+RenListingPicVO renListingPicVO = (RenListingPicVO) request.getAttribute("renListingPicVO");
 %>
 <%= renListingVO==null %>--${renListingVO.lisID}--
 <!DOCTYPE html>
@@ -293,6 +296,17 @@ System.out.print(renListingVO);
 	</tr>
 	<tr>
 		<td></td>	
+		<td>房源圖片<input type="file" id="upfiles" name="lspPic"
+					accept="image/gif, image/jpeg, image/png" multiple="multiple" />
+					<div id="previews">
+						<p>圖片預覽</p>
+					</div>
+					<img
+					src="<%=request.getContextPath()%>/ren_listing/RenListing_pic_ReaderServlet.do?lspLisID=${renListingVO.lisID}"
+					width=200px></td> 
+	</tr>
+	<tr>
+		<td></td>	
 
 		<td>房源上架狀態<select  name="lisStatus" ><option value='<%= (renListingVO==null)? "0": renListingVO.getLisStatus() %>'  selected >否</option>
 				
@@ -325,4 +339,33 @@ System.out.print(renListingVO);
 
 
 </body>
+<script>
+	// 	// // change這個event有只代表改變，並不代表有檔案。
+	// 	// 	如果要FileReader去讀檔案，必須給他一個檔案Object。
+	// 	// 	它拿到檔案Object後會驅動onload事件
+	// 	// 	藉由 FileReader 物件，Web 應用程式能以非同步（asynchronously）方式讀取儲存在用戶端的檔案（或原始資料暫存）內容
+	// 	// 裡面的input 就是我們丟進去的this，也就是<input type="file">，
+	// 	// 當<input type="file">被DOM變成Object的時候，如果他有選擇到檔案，
+	// 	// 會被放在input.files裡面，而且是一個Array(因為input如果寫成 <input type="file" multiple> 的時候是可以複選的)
+	$("#upfiles").change(function() {
+		$("#previews").html(""); // 清除預覽
+		readURL(this);
+	});
+	function readURL(input) {
+		if (input.files && input.files.length >= 0) {
+			for (var i = 0; i < input.files.length; i++) {
+				var reader = new FileReader();
+				reader.onload = function(e) {
+					var img = $("<img width='300' height='200'>").attr('src',
+							e.target.result);
+					$("#previews").append(img);
+				}
+				reader.readAsDataURL(input.files[i]);
+			}
+		} else {
+			var noPictures = $("<p>目前沒有圖片</p>");
+			$("#previews").append(noPictures);
+		}
+	}
+</script>
 </html>

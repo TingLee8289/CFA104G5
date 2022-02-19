@@ -75,17 +75,16 @@
      	  <input type="submit" value="送出">
        </FORM>
 	</li>
-
+	<jsp:useBean id= "renLocationSvc" scope="page" class="ezs.ren_location.model.RenLocationService"/>
 	<li>
-     	<FORM METHOD="post" ACTION="RenListingServlet.do">
-     	<jsp:useBean id= "renLocationSvc" scope="page" class="ezs.ren_location.model.RenLocationService"/>
+     	<FORM METHOD="post" ACTION="RenListingServlet.do">     	
      	  <b>選擇區域:</b>
      	  <select size="1" name="lisAreaID">
-     		<c:forEach var="renListingVO" items="${renListingSvc.all}">
-     		  <option value="${renListingVO.lisID}"${(renListingVO.lisAreaID == renLocationVO.locID)? 'selected':'' } >${renLocationVO.locCity}${renLocationVO.locDist}
+     		<c:forEach var="renLocationVO" items="${renLocationSvc.all}">
+     		  <option value="${renLocationVO.locID}">${renLocationVO.locCity}${renLocationVO.locDist}
      		</c:forEach>
      	  </select>
-     	  <input type="hidden" name="action" value="listLocations_ByLocID_A">
+     	  <input type="hidden" name="action" value="listLocations_BylisAreaID">
      	  <input type="submit" value="送出">
        </FORM>
 	</li>
