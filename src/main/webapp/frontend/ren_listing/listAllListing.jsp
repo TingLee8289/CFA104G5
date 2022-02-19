@@ -1,13 +1,19 @@
+<%@page import="ezs.ren_roomtype.model.RenRoomtypeVO"%>
+<%@page import="ezs.ren_roomtype.model.RenRoomtypeService"%>
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ page import="java.util.*"%>
 <%@ page import="ezs.ren_listing.model.*"%>
+<%@ page import="ezs.ren_roomtype.model.*"%>
 
 <%
 	RenListingService renListingSvc = new RenListingService();
 	List<RenListingVO> list = renListingSvc.getAll();
 	pageContext.setAttribute("list",list);
 %>
+
+<jsp:useBean id="renRoomtypeSvc" scope="page" class="ezs.ren_roomtype.model.RenRoomtypeService" />
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -102,6 +108,7 @@
 		<td>限男性</td>
 		<td>限女性</td>
 		<td>限學生</td>
+		<td>房源圖片</td>
 		<td>房源上架狀態</td>
 		<td>房源申請審核狀態</td>
 		<td>修改</td>
@@ -115,7 +122,7 @@
 			<td>${renListingVO.lisLddID}</td>
 			<td><c:forEach var="renRoomtypeVO" items="${renRoomtypeSvc.all}">
                     <c:if test="${renListingVO.lisRtID==renRoomtypeVO.rtID}">
-	                    ${renRoomtypeVO.rtType}
+	                    ${renRoomtypeVO.rtID}${renRoomtypeVO.rtType}
                     </c:if>
                 </c:forEach>
 			</td>
@@ -151,6 +158,8 @@
 			<td>${renListingVO.lisMonly}</td>
 			<td>${renListingVO.lisFonly}</td>
 			<td>${renListingVO.lisSonly}</td>
+			<td><img src="<%=request.getContextPath()%>/ren_listing/RenListing_pic_ReaderServlet.do?lspLisID=
+				 ${renListingVO.lisID}" width = 200px></td>
 			<td>${renListingVO.lisStatus}</td>
 			<td>${renListingVO.lisApproval}</td>
 			<td>

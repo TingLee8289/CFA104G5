@@ -30,6 +30,7 @@ public class RenRoomtypeJNDIDAO implements RenRoomtypeDAO_interface {
 	private static final String INSERT_STMT = "INSERT INTO `CFA104G5`.`REN_ROOMTYPE` (rt_type) VALUES (?)";
 	private static final String GET_ALL_STMT = "SELECT * FROM `CFA104G5`.`REN_ROOMTYPE` ORDER BY rt_id";
 	private static final String GET_ONE_STMT = "SELECT * FROM `CFA104G5`.`REN_ROOMTYPE` WHERE rt_id = ?";
+
 	private static final String DELETE = "DELETE FROM `CFA104G5`.`REN_ROOMTYPE` WHERE rt_id = ?";
 	private static final String UPDATE = "UPDATE `CFA104G5`.`REN_ROOMTYPE` SET rt_type = ? WHERE rt_id = ?";
 

@@ -4,6 +4,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -38,10 +39,11 @@ public class RenListingJNDIDAO implements RenListingDAO_interface {
 	ResultSet rs = null;
 
 	@Override
-	public void insert(RenListingVO renListingVO) {
+	public Integer insert(RenListingVO renListingVO) {
+		Integer key = 0;
 		try {
 			con = ds.getConnection();
-			pstmt = con.prepareStatement(INSERT_STMT);
+			pstmt = con.prepareStatement(INSERT_STMT, Statement.RETURN_GENERATED_KEYS);
 
 			pstmt.setInt(1, renListingVO.getLisLddID());
 			pstmt.setInt(2, renListingVO.getLisRtID());
@@ -80,11 +82,22 @@ public class RenListingJNDIDAO implements RenListingDAO_interface {
 			pstmt.setInt(35, renListingVO.getLisStatus());
 			pstmt.setInt(36, renListingVO.getLisApproval());
 			pstmt.executeUpdate();
+			
+			ResultSet rs = pstmt.getGeneratedKeys();
+			if (rs.next()) {
+				key = rs.getInt(1); // 只支援欄位索引值取得自增主鍵值
+				System.out.println("自增主鍵值 = " + key + "(剛新增成功的商品編號)");
+			} else {
+				System.out.println("NO KEYS WERE GENERATED.");
+			}
+
+			rs.close();
 		} catch (SQLException se) {
 			se.printStackTrace();
 		} finally {
 			Util.closeResource(con, pstmt, rs);
 		}
+		return key;
 	}
 
 	@Override

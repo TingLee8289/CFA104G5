@@ -6,13 +6,16 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.LinkedHashSet;
 import java.util.List;
+import java.util.Set;
 
 import javax.naming.Context;
 import javax.naming.InitialContext;
 import javax.naming.NamingException;
 import javax.sql.DataSource;
 
+import ezs.ren_listing.model.RenListingVO;
 import util.Util;
 
 public class RenLocationJNDIDAO implements RenLocationDAO_interface {
@@ -31,6 +34,7 @@ public class RenLocationJNDIDAO implements RenLocationDAO_interface {
 	private static final String GET_ONE_STMT = "SELECT loc_id, loc_city, loc_dist FROM `CFA104G5`.`REN_LOCATION` WHERE loc_id = ?";
 	private static final String DELETE = "DELETE FROM `CFA104G5`.`REN_LOCATION` WHERE loc_id = ?";
 	private static final String UPDATE = "UPDATE `CFA104G5`.`REN_LOCATION` SET  loc_city=?, loc_dist=? WHERE loc_id = ?";
+	private static final String GET_RenListing_BylisAreaID_STMT = "SELECT LIS_ID, LIS_LDD_ID, LIS_RT_ID, LIS_TITLE,LIS_AREA_ID FROM `CFA104G5`.`REN_LISTING` where LIS_AREA_ID = ? order by LIS_ID";
 
 	
 	Connection con = null;
@@ -137,5 +141,66 @@ public class RenLocationJNDIDAO implements RenLocationDAO_interface {
 		}
 		return list;
 	}
+	
+	@Override
+	public Set<RenListingVO> getRenListingByLisAreaID(Integer lisAreaID) {
+		Set<RenListingVO> set = new LinkedHashSet<RenListingVO>();
+		RenListingVO renListingVO = null;
+	
+		Connection con = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		
+		try {
+			con = ds.getConnection();
+			pstmt = con.prepareStatement(GET_RenListing_BylisAreaID_STMT);
 
+			pstmt.setInt(1, lisAreaID);
+
+			rs = pstmt.executeQuery();
+			
+			while (rs.next()) {
+				renListingVO = new RenListingVO();
+				
+				renListingVO.setLisID(rs.getInt("LIS_ID"));
+				renListingVO.setLisLddID(rs.getInt("LIS_LDD_ID"));
+				renListingVO.setLisRtID(rs.getInt("LIS_RT_ID"));
+				renListingVO.setLisAreaID(rs.getInt("LIS_AREA_ID"));
+				renListingVO.setLisTitle(rs.getString("LIS_TITLE"));
+//				renListingVO.setLisRent(rs.getString("LIS_TITLE"));
+//				renListingVO
+//				renListingVO
+//				renListingVO
+				set.add(renListingVO); // Store the row in the vector
+			}
+			}catch (SQLException se) {
+				throw new RuntimeException("A database error occured. "
+						+ se.getMessage());
+			} finally {
+				if (rs != null) {
+					try {
+						rs.close();
+					} catch (SQLException se) {
+						se.printStackTrace(System.err);
+					}
+				}
+				if (pstmt != null) {
+					try {
+						pstmt.close();
+					} catch (SQLException se) {
+						se.printStackTrace(System.err);
+					}
+				}
+				if (con != null) {
+					try {
+						con.close();
+					} catch (Exception e) {
+						e.printStackTrace(System.err);
+					}
+				}
+			}
+			return set;
+			
+		}
+		
 }

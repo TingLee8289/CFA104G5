@@ -1,12 +1,14 @@
 package ezs.ren_listing.controller;
 
 import java.io.IOException;
+import java.io.InputStream;
 import java.math.BigDecimal;
 import java.util.LinkedList;
 import java.util.List;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
+import javax.servlet.annotation.MultipartConfig;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -16,11 +18,14 @@ import javax.servlet.http.HttpServletResponse;
 
 import ezs.ren_listing.model.RenListingService;
 import ezs.ren_listing.model.RenListingVO;
+import ezs.ren_listing_pic.model.RenListingPicService;
+import ezs.ren_listing_pic.model.RenListingPicVO;
 
 /**
  * Servlet implementation class RenListingServlet
  */
 @WebServlet("/frontend/ren_listing/RenListingServlet.do")
+@MultipartConfig(fileSizeThreshold = 1024 * 1024, maxFileSize = 5 * 1024 * 1024, maxRequestSize = 5 * 5 * 1024 * 1024)
 public class RenListingServlet extends HttpServlet {
 	
 	protected void doGet(HttpServletRequest req, HttpServletResponse res) 
@@ -82,6 +87,8 @@ public class RenListingServlet extends HttpServlet {
 					failureView.forward(req, res);
 					return;
 				}
+				
+				
 				
 				/********************3.查詢完成,準備轉交*****************/
 				req.setAttribute("renListingVO", renListingVO);
@@ -237,9 +244,26 @@ public class RenListingServlet extends HttpServlet {
 				Integer lisSmoking = new Integer(req.getParameter("lisSmoking").trim());
 				Integer lisMonly = new Integer(req.getParameter("lisMonly").trim());
 				Integer lisFonly = new Integer(req.getParameter("lisFonly").trim());
-				Integer lisSonly = new Integer(req.getParameter("lisSonly").trim());
+				Integer lisSonly = new Integer(req.getParameter("lisSonly").trim());			
+				
 				Integer lisStatus = new Integer(req.getParameter("lisStatus").trim());
 				Integer lisApproval = new Integer(req.getParameter("lisApproval").trim());
+				//圖片
+				Integer lspID = new Integer(req.getParameter("lspID").trim());
+				Integer lspLisID = new Integer(req.getParameter("lspLisID").trim());
+				
+				
+				//.....update抓取圖片的code
+				InputStream in = req.getPart("lspPic").getInputStream();   //servlet 3.0Part物件
+				byte[] lspPic = null;
+				if(in.available()!=0) {
+//				part是拿到inputStream   要轉成陣列
+					lspPic = new byte[in.available()];
+				in.read(lspPic);
+				in.close();
+				}else {
+					errorMsgs.add("請上傳圖片");
+				}
 				
 				
 				RenListingVO renListingVO = new RenListingVO();
@@ -281,6 +305,11 @@ public class RenListingServlet extends HttpServlet {
 				renListingVO.setLisStatus(lisStatus);
 				renListingVO.setLisApproval(lisApproval);
 				
+				RenListingPicVO renListingPicVO = new RenListingPicVO();
+				renListingPicVO.setLspID(lspID);
+				renListingPicVO.setLspLisID(lspLisID);
+				renListingPicVO.setLspPic(lspPic);
+				
 				if (!errorMsgs.isEmpty()) {
 					req.setAttribute("renListingVO", renListingVO); // 含有輸入格式錯誤的empVO物件,也存入req
 					RequestDispatcher failureView = req
@@ -296,6 +325,9 @@ public class RenListingServlet extends HttpServlet {
 						lisCmnArea,lisBrNo,lisEthernet,lisWifi,lisWh,lisShenc,lisAc,lisFridge,
 						lisTv,lisWasher,lisDryer,lisTc,lisBed,lisCabinet,lisSofa,lisParking,
 						lisCook,lisPet,lisSmoking,lisMonly,lisFonly,lisSonly,lisStatus,lisApproval);
+				
+				RenListingPicService renListingPicSvc = new RenListingPicService();
+				renListingPicSvc.updateRenListingPic(lspID, lspLisID,lspPic);
 				
 				/***************************3.修改完成,準備轉交(Send the Success view)*************/
 				req.setAttribute("renListingVO", renListingVO); // 資料庫update成功後,正確的的empVO物件,存入req
@@ -399,6 +431,9 @@ public class RenListingServlet extends HttpServlet {
 				lisBrNo = 0;
 				errorMsgs.add("衛數請填數字.");
 			}
+			
+			
+			
 			Integer lisEthernet = new Integer(req.getParameter("lisEthernet").trim());
 			Integer lisWifi = new Integer(req.getParameter("lisWifi").trim());
 			Integer lisWh = new Integer(req.getParameter("lisWh").trim());
@@ -422,6 +457,19 @@ public class RenListingServlet extends HttpServlet {
 			Integer lisStatus = new Integer(req.getParameter("lisStatus").trim());
 			Integer lisApproval = new Integer(req.getParameter("lisApproval").trim());
 			
+			//.....新增抓取圖片的code
+			
+			InputStream in = req.getPart("lspPic").getInputStream();   //servlet 3.0Part物件
+			byte[] lspPic = null;
+			if(in.available()!=0) {
+//			part是拿到inputStream   要轉成陣列
+				lspPic = new byte[in.available()];
+			in.read(lspPic);
+			in.close();
+			}else {
+				errorMsgs.add("請上傳圖片");
+			}
+			//房源
 			RenListingVO renListingVO = new RenListingVO();
 			
 			renListingVO.setLisLddID(lisLddID);
@@ -459,7 +507,12 @@ public class RenListingServlet extends HttpServlet {
 			renListingVO.setLisFonly(lisFonly);
 			renListingVO.setLisSonly(lisSonly);
 			renListingVO.setLisStatus(lisStatus);
-			renListingVO.setLisApproval(lisApproval);		
+			renListingVO.setLisApproval(lisApproval);	
+			//圖片
+			RenListingPicVO renListingPicVO = new RenListingPicVO();
+			
+		
+			renListingPicVO.setLspPic(lspPic);
 				
 			if (!errorMsgs.isEmpty()) {
 				req.setAttribute("renListingVO", renListingVO);
@@ -478,12 +531,13 @@ public class RenListingServlet extends HttpServlet {
 					lisTv,lisWasher,lisDryer,lisTc,lisBed,lisCabinet,lisSofa,lisParking,
 					lisCook,lisPet,lisSmoking,lisMonly,lisFonly,lisSonly,lisStatus,lisApproval);
 			
+			renListingSvc.addRenListing(renListingPicVO);
 			
 			/*****************************3.新增完成，準備轉交(send the Success view)*********/
 			String url = "/frontend/ren_listing/listAllListing.jsp";
-			RequestDispatcher successView = req.getRequestDispatcher(url); // 新增成功後轉交listAllEmp.jsp
+			RequestDispatcher successView = req.getRequestDispatcher(url); // 新增成功後轉交listAllListing.jsp
 			successView.forward(req, res);
-			System.out.print("ddddd");
+			
 			/*****************************其他可能的錯誤處理*******************************/
 			
 			}catch (Exception e) {
@@ -507,9 +561,14 @@ public class RenListingServlet extends HttpServlet {
 				/***************************1.接收請求參數***************************************/
 				Integer lisID = new Integer(req.getParameter("lisID"));
 				
+				Integer lspID = new Integer(req.getParameter("lspID"));
+				lisID = lspID;
 				/***************************2.開始刪除資料***************************************/
 				RenListingService renListingSvc = new RenListingService();
+				RenListingPicService renListingPicSvc = new RenListingPicService();
 				renListingSvc.deleteRenListing(lisID);
+				
+				renListingPicSvc.deleteRenListingPic(lspID);
 				
 				/***************************3.刪除完成,準備轉交(Send the Success view)***********/								
 				String url = "/frontend/ren_listing/listAllListing.jsp";

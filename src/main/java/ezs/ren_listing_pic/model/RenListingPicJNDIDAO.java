@@ -29,7 +29,7 @@ public class RenListingPicJNDIDAO implements RenListingPicDAO_interface {
 		}
 	}
 	
-	private static final String INSERT_STMT = "INSERT INTO `CFA104G5`.`REN_LISTING_PIC` (LSP_LIS_ID, LSP_PIC) VALUES (?,?)";
+	private static final String INSERT_STMT = "INSERT INTO"+ "`CFA104G5`.`REN_LISTING_PIC` (LSP_LIS_ID, LSP_PIC) VALUES (?,?)";
 	private static final String GET_ALL_STMT = "SELECT LSP_ID, LSP_LIS_ID, LSP_PIC FROM `CFA104G5`.`REN_LISTING_PIC` ORDER BY LSP_ID";
 	private static final String GET_ONE_STMT = "SELECT LSP_ID, LSP_LIS_ID, LSP_PIC FROM `CFA104G5`.`REN_LISTING_PIC` WHERE LSP_ID = ?";
 	private static final String DELETE = "DELETE FROM `CFA104G5`.`REN_LISTING_PIC` WHERE LSP_ID = ?";
@@ -48,14 +48,13 @@ public class RenListingPicJNDIDAO implements RenListingPicDAO_interface {
 			pstmt = con.prepareStatement(INSERT_STMT);
 
 			pstmt.setInt(1, listingpicVO.getLspLisID());
-			byte[] pic = getPictureByteArray(path);
-			pstmt.setBytes(2, pic);
+		
+			pstmt.setBytes(2, listingpicVO.getLspPic());
 
 			pstmt.executeUpdate();
 		} catch (SQLException se) {
 			se.printStackTrace();
-		} catch (IOException e) {
-			e.printStackTrace();
+		
 		} finally {
 			Util.closeResource(con, pstmt, rs);
 		}

@@ -42,9 +42,7 @@ public class RenListingVO implements Serializable {
 	private Integer lisStatus;
 	private Integer lisApproval;
 	
-	public RenListingVO() {
-		super();
-	}
+	
 	
 	public Integer getLisID() {
 		return lisID;

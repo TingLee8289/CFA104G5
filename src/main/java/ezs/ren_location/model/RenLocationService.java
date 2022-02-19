@@ -1,6 +1,8 @@
 package ezs.ren_location.model;
 
 import java.util.List;
+import java.util.Set;
+import ezs.ren_listing.model.RenListingVO;
 
 public class RenLocationService {
 	
@@ -44,5 +46,9 @@ public class RenLocationService {
 	public List<RenLocationVO> getAll(){
 		return dao.getAll();
 	}
+	public Set<RenListingVO> getRenListingByLisAreaID(Integer lisAreaID) {
+		return dao.getRenListingByLisAreaID(lisAreaID);
+	}
+	
 
 }
