@@ -8,6 +8,7 @@ SerVdrVO servdrVO = (SerVdrVO) request.getAttribute("servdrVO");
 
 <html>
 <head>
+ <script src="<%=request.getContextPath()%>/frontend/js/jquery-1.11.3.min.js"></script>
 <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
 <title>廠商資料新增</title>
 
@@ -32,7 +33,7 @@ h4 {
 
 <style>
 table {
-	width: 450px;
+	width: 550px;
 	background-color: white;
 	margin-top: 1px;
 	margin-bottom: 1px;
@@ -109,7 +110,7 @@ th, td {
 			<tr>
 				<td>廠商統一編號:</td>
 				<td><input type="TEXT" name="vdrVatno" size="45"
-					value="<%=(servdrVO == null) ? "12345678" : servdrVO.getVdrVatno()%>" /></td>
+					value="<%=(servdrVO == null) ? "" : servdrVO.getVdrVatno()%>" /></td>
 			</tr>
 
 			<tr>
@@ -144,24 +145,30 @@ th, td {
 				<td><input type="TEXT" name="vdrIntro" size="45"
 					value="<%=(servdrVO == null) ? "哈囉!" : servdrVO.getVdrIntro()%>" /></td>
 			</tr>
-
+			
+			
 			<tr>
-				<td>廠商圖片:</td>
-				<td><input type="file" name="vdrPic" 
-					value="<%=(servdrVO == null) ? null : servdrVO.getVdrPic()%>" /></td>
-			</tr>
-
-			<tr>
-				<td>廠商評價人數:</td>
-				<td><input type="TEXT" name="vdrRevCount" size="45"
+				<%-- <td>廠商評價人數:</td>--%>
+				<td><input type="hidden" name="vdrRevCount" size="45"
 					value="<%=(servdrVO == null) ? "0" : servdrVO.getVdrRevCount()%>" /></td>
 			</tr>
 
 			<tr>
-				<td>廠商評價星數:</td>
-				<td><input type="TEXT" name="vdrRevScore" size="45"
+				<%-- <td>廠商評價星數:</td>--%>
+				<td><input type="hidden" name="vdrRevScore" size="45"
 					value="<%=(servdrVO == null) ? "0" : servdrVO.getVdrRevScore()%>" /></td>
 			</tr>
+
+			<tr>
+				<td>廠商圖片:</td>
+				<td><input type="file" id="upfiles" name="vdrPic"
+					accept="image/gif, image/jpeg, image/png" multiple="multiple" />
+					<div id="previews">
+						<p>圖片預覽</p>
+					</div>
+			</tr>
+
+			
 
 
 
@@ -174,8 +181,38 @@ th, td {
 	</FORM>
 	<jsp:include page="/frontend/EZ_footer.jsp"></jsp:include>
 
-	
+
 </body>
+
+<script>
+	// 	// // change這個event有只代表改變，並不代表有檔案。
+	// 	// 	如果要FileReader去讀檔案，必須給他一個檔案Object。
+	// 	// 	它拿到檔案Object後會驅動onload事件
+	// 	// 	藉由 FileReader 物件，Web 應用程式能以非同步（asynchronously）方式讀取儲存在用戶端的檔案（或原始資料暫存）內容
+	// 	// 裡面的input 就是我們丟進去的this，也就是<input type="file">，
+	// 	// 當<input type="file">被DOM變成Object的時候，如果他有選擇到檔案，
+	// 	// 會被放在input.files裡面，而且是一個Array(因為input如果寫成 <input type="file" multiple> 的時候是可以複選的)
+	$("#upfiles").change(function() {
+		$("#previews").html(""); // 清除預覽
+		readURL(this);
+	});
+	function readURL(input) {
+		if (input.files && input.files.length >= 0) {
+			for (var i = 0; i < input.files.length; i++) {
+				var reader = new FileReader();
+				reader.onload = function(e) {
+					var img = $("<img width='300' height='200'>").attr('src',
+							e.target.result);
+					$("#previews").append(img);
+				}
+				reader.readAsDataURL(input.files[i]);
+			}
+		} else {
+			var noPictures = $("<p>目前沒有圖片</p>");
+			$("#previews").append(noPictures);
+		}
+	}
+</script>
 
 
 

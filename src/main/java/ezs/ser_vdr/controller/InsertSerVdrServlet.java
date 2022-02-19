@@ -87,7 +87,7 @@ public class InsertSerVdrServlet extends HttpServlet {
 				if (vdrAddr == null || vdrAddr.trim().length() == 0) {
 					errorMsgs.add("詳細地址請勿空白");
 				} else if (!vdrAddr.trim().matches(addrReg)) { // 以下練習正則(規)表示式(regular-expression)
-					errorMsgs.add("請重新輸入詳細地址");
+					errorMsgs.add("請重新輸入詳細地址，最少五個字");
 				}
 
 				String vdrOpen = req.getParameter("vdrOpen").trim();

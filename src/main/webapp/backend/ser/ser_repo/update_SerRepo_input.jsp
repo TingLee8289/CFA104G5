@@ -80,42 +80,39 @@ th, td {
 		<table>
 			<tr>
 				<td>檢舉編號:<font color=red><b>*</b></font></td>
-				<td><input type="TEXT" name="rpID" size="50"
-					value="<%=serRepVO.getRpID()%>" /></td>
+				<td><%=serRepVO.getRpID()%></td>
 
 			</tr>
 			<tr>
 				<td>訂單編號:</td>
-				<td><input type="TEXT" name="rpOrdID" size="50"
-					value="<%=serRepVO.getRpOrdID()%>" /></td>
+				<td><%=serRepVO.getRpOrdID()%></td>
 			</tr>
 
 			<tr>
 				<td>會員編號:</td>
-				<td><input type="TEXT" name="rpMemID" size="50"
-					value="<%=serRepVO.getRpMemID()%>" /></td>
+				<td><%=serRepVO.getRpMemID()%></td>
 
 			</tr>
 
 
 			<tr>
 				<td>檢舉時間:</td>
-				<td><input type="TEXT" name="rpDate" size="50"
-					value="<%=serRepVO.getRpDate()%>" /></td>
+				<td><%=serRepVO.getRpDate()%></td>
 
 			</tr>
 
 
 			<tr>
 				<td>檢舉狀態:</td>
-				<td><input type="TEXT" name="rpStatus" size="50"
-					value="<%=serRepVO.getRpStatus()%>" /></td>
+				<td>
+				<input type="radio" name="rpStatus" value="0"<%=(serRepVO.getRpStatus() == 0) ? "checked" : ""%> />未通過 
+				<input type="radio" name="rpStatus" value="1" <%=(serRepVO.getRpStatus() == 1) ? "checked" : ""%> />通過
+				</td>
 
 			</tr>
 			<tr>
 				<td>檢舉內容:</td>
-				<td><input type="TEXT" name="rpTxt" size="50"
-					value="<%=serRepVO.getRpTxt()%>" /></td>
+				<td><%=serRepVO.getRpTxt()%></td>
 			</tr>
 
 
@@ -123,9 +120,13 @@ th, td {
 
 
 		</table>
-		<br> <input type="hidden" name="action" value="update"> <input
-			type="hidden" name="rpID" value="<%=serRepVO.getRpID()%>"> <input
-			type="submit" value="送出修改">
+		<br> <input type="hidden" name="action" value="update"> 
+		<input type="hidden" name="rpID" value="<%=serRepVO.getRpID()%>"> 
+		<input	type="hidden" name="rpMemID" value="<%=serRepVO.getRpMemID()%>"> 
+		<input	type="hidden" name="rpOrdID" value="<%=serRepVO.getRpOrdID()%>"> 
+		<input	type="hidden" name="rpDate" value="<%=serRepVO.getRpDate()%>"> 
+		<input	type="hidden" name="rpTxt" value="<%=serRepVO.getRpTxt()%>"> 
+		<input type="submit" value="送出修改">
 	</FORM>
 
 	<jsp:include page="/frontend/EZ_footer.jsp"></jsp:include>

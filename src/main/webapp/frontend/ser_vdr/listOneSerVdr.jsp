@@ -87,7 +87,7 @@ th, td {
 					test="${serVdrVO.vdrStatus == 1}">正常</c:if></td>
 			<td><%=serVdrVO.getVdrName()%></td>
 			<td><%=serVdrVO.getVdrTel()%></td>
-			<td><%=serVdrVO.getVdrVatno()%></td>
+			<td>${serVdrVO.getVdrVatno()}</td>
 			<td><%=serVdrVO.getVdrCounty()%></td>
 			<td><%=serVdrVO.getVdrDist()%></td>
 			<td><%=serVdrVO.getVdrAddr()%></td>

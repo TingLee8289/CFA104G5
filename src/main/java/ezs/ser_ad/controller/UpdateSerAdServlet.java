@@ -41,19 +41,19 @@ public class UpdateSerAdServlet extends HttpServlet {
 				Integer adSerClaID = new Integer(req.getParameter("adSerClaID"));
 
 				String adDist = req.getParameter("adDist");
-				String adDistReg = "^[(\u4e00-\u9fa5)(0-9)]{3,20}$";
+				String adDistReg = "^[(\u4e00-\u9fa5)(0-9)]{2,20}$";
 				if (adDist == null || adDist.trim().length() == 0) {
 					errorMsgs.add("員工姓名: 請勿空白");
 				} else if (!adDist.trim().matches(adDistReg)) { // 以下練習正則(規)表示式(regular-expression)
-					errorMsgs.add("服務地區: 只能是中文、數字, 且長度必需在3到20之間");
+					errorMsgs.add("服務地區: 只能是中文、數字, 且長度必需在2到20之間");
 				}
 
 				String adTxt = req.getParameter("adTxt");
-				String adTxtReg = "^[(\u4e00-\u9fa5)(0-9)]{10,1000}$";
+				String adTxtReg = "^[(\u4e00-\u9fa5)(0-9)]{5,500}$";
 				if (adTxt == null || adTxt.trim().length() == 0) {
 					errorMsgs.add("服務內容: 請勿空白");
 				} else if (!adDist.trim().matches(adDistReg)) { // 以下練習正則(規)表示式(regular-expression)
-					errorMsgs.add("服務內容: 只能是中文、數字, 且長度必需在10到20之間");
+					errorMsgs.add("服務內容: 只能是中文、數字, 且長度必需在5到500字之間");
 				}
 
 				InputStream in = req.getPart("adPic").getInputStream();// 廠商可以不上傳照片

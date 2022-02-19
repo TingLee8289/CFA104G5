@@ -8,6 +8,7 @@ SerVdrVO serVdrVO = (SerVdrVO) request.getAttribute("serVdrVO"); //EmpServlet.ja
 
 <html>
 <head>
+<script src="<%=request.getContextPath()%>/frontend/js/jquery-1.11.3.min.js"></script>
 <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
 <title>廠商資料修改</title>
 
@@ -81,13 +82,14 @@ th, td {
 			<tr>
 				<td>廠商編號:<font color=red><b>*</b></font></td>
 
-				<td><input type="TEXT" name="vdrID" size="50"
-					value="<%=serVdrVO.getVdrID()%>" /></td>
+				<td><%=serVdrVO.getVdrID()%></td>
 			</tr>
 			<tr>
 				<td>廠商狀態:</td>
-				<td><input type="TEXT" name="vdrStatus" size="50"
-					value="<%=serVdrVO.getVdrStatus()%>" /></td>
+				<td>
+				<input type="radio" name="vdrStatus" value="0"<%=(serVdrVO.getVdrStatus() == 0) ? "checked" : ""%> />停權 
+				<input type="radio" name="vdrStatus" value="1" <%=(serVdrVO.getVdrStatus() == 1) ? "checked" : ""%> />正常
+				</td>
 			</tr>
 			<tr>
 				<td>廠商姓名:</td>
@@ -105,7 +107,7 @@ th, td {
 			<tr>
 				<td>廠商統一編號:</td>
 				<td><input type="TEXT" name="vdrVatno" size="50"
-					value="<%=serVdrVO.getVdrVatno()%>" /></td>
+					value="${serVdrVO.getVdrVatno()}" /></td>
 			</tr>
 
 			<tr>
@@ -144,20 +146,18 @@ th, td {
 					accept="image/gif, image/jpeg, image/png" multiple="multiple" />
 					<div id="previews">
 						<p>圖片預覽</p>
-					</div> <img
-					src="<%=request.getContextPath()%>/ser_vdr/DBGifReader4.do?vdr_id=${serVdrVO.vdrID}"
-					width=200px></td>
+					</div> </td>
 			</tr>
 
 			<tr>
-				<td>廠商評價人數:</td>
-				<td><input type="TEXT" name="vdrRevCount" size="50"
+				<%-- <td>廠商評價人數:</td> --%>
+				<td><input type="hidden" name="vdrRevCount" size="50"
 					value="<%=serVdrVO.getVdrRevCount()%>" /></td>
 			</tr>
 
 			<tr>
-				<td>廠商評價星數:</td>
-				<td><input type="TEXT" name="vdrRevScore" size="50"
+				<%-- <td>廠商評價星數:</td>--%>
+				<td><input type="hidden" name="vdrRevScore" size="50"
 					value="<%=serVdrVO.getVdrRevScore()%>" /></td>
 			</tr>
 
@@ -165,9 +165,10 @@ th, td {
 
 
 		</table>
-		<br> <input type="hidden" name="action" value="update"> <input
-			type="hidden" name="vdrID" value="<%=serVdrVO.getVdrID()%>">
-		<input type="submit" value="送出修改">
+		<br>
+		 <input type="hidden" name="action" value="update"> 
+		 <input type="hidden" name="vdrID" value="<%=serVdrVO.getVdrID()%>">
+		 <input type="submit" value="送出修改">
 	</FORM>
 	<jsp:include page="/frontend/EZ_footer.jsp"></jsp:include>
 
