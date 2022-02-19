@@ -53,7 +53,7 @@ pageContext.setAttribute("vdrOrdList", vdrOrdList);
 							<th>訂單ID</th>
 							<th>服務訂單狀態</th>
 							<th>付款狀態</th>
-							<th>廠商ID</th>
+							
 							<th>需求單ID</th>
 							<th>估價單ID</th>
 							<th>會員ID</th>
@@ -74,13 +74,12 @@ pageContext.setAttribute("vdrOrdList", vdrOrdList);
 							<th>尾款</th>
 							<th>尾款付款方式</th>
 							<th>尾款付款日期</th>
-							<th>廠商評價客戶星數</th>
-							<th>廠商評價客戶留言</th>
+							
 							<th>客戶評價廠商星數</th>
 							<th>客戶評價廠商留言</th>
 							<th>備註</th>
 							<th>修改</th>
-							<th>刪除</th>
+							
 						</tr>
 					</thead>
 					<tbody id="show-list">
@@ -98,7 +97,7 @@ pageContext.setAttribute("vdrOrdList", vdrOrdList);
 								<td>${serOrdVO.ordDmdID}</td>
 								<td>${serOrdVO.ordQuoID}</td>
 								<td>${serOrdVO.ordMemID}</td>
-								<td>${serOrdVO.ordVdrID}</td>
+								
 								<td>${serOrdVO.ordSerClaID}</td>
 								<td>${serOrdVO.ordMemVatno}</td>
 								<td>${serOrdVO.ordVdrVatno}</td>
@@ -122,8 +121,7 @@ pageContext.setAttribute("vdrOrdList", vdrOrdList);
 										test="${serOrdVO.ordPayType == 2}">線上刷卡</c:if> <c:if
 										test="${serOrdVO.ordPayType == 3}">ATM轉帳</c:if></td>
 								<td>${serOrdVO.ordFpayDate}</td>
-								<td>${serOrdVO.ordBuyerScore}</td>
-								<td>${serOrdVO.ordBuyerTxt}</td>
+								
 								<td>${serOrdVO.ordVdrScore}</td>
 								<td>${serOrdVO.ordVdrTxt}</td>
 								<td>${serOrdVO.ordNote}</td>
@@ -136,15 +134,7 @@ pageContext.setAttribute("vdrOrdList", vdrOrdList);
 											type="hidden" name="action" value="updateOneOrd">
 									</FORM>
 								</td>
-								<td>
-									<FORM METHOD="post"
-										ACTION="<%=request.getContextPath()%>/ser_ord/DeleteOrdServlet.do"
-										style="margin-bottom: 0px;">
-										<input type="submit" value="刪除"> <input type="hidden"
-											name="ordID" value="${serOrdVO.ordID}"> <input
-											type="hidden" name="action" value="delete">
-									</FORM>
-								</td>
+								
 							</tr>
 						</c:forEach>
 					</tbody>
