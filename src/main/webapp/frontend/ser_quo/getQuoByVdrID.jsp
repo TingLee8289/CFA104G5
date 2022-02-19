@@ -4,7 +4,7 @@
 <%@ page import="java.util.*"%>
 <%@ page import="ezs.ser_quo.model.*"%>
 <%
-session.setAttribute("memID", 3);
+session.setAttribute("memID", 5);
 %>
 <%
 Integer memID = (Integer) session.getAttribute("memID");
