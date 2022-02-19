@@ -10,6 +10,15 @@
 
 <html>
 <head>
+<script>
+  var loadFile = function(event) {
+    var output = document.getElementById('output');
+    output.src = URL.createObjectURL(event.target.files[0]);
+    output.onload = function() {
+      URL.revokeObjectURL(output.src) // free memory
+    }
+  };
+</script>
 <meta charset="UTF-8">
 <title>會員資料修改</title>
 
@@ -108,12 +117,21 @@
 		
 		<tr>
 			<td>個人頭像:</td>
-			<td><input type="file" name="cpic"
+			<td>
+			
+<!-- 			可以預覽圖片但無法上傳圖片至資料庫 -->
+<!-- 			<input type="file" accept="image/*" onchange="loadFile(event)" -->
+<%-- 			value="<%= (memberVO==null)? "" : memberVO.getMemHeadshot()%>"> --%>
+<!-- 				<img id="output"  -->
+<%-- 				src="<%=request.getContextPath()%>/DBGifReader?mem_ID=<%=memberVO.getMemID()%>" width=200px/> --%>
+			
+			
+			
+			<input type="file" name="cpic"
 			 value="<%= (memberVO==null)? "" : memberVO.getMemHeadshot()%>"
 			 onchange="document.getElementById('blah').src = window.URL.createObjectURL(this.files[0])"/>
 			 <img src="<%=request.getContextPath()%>/DBGifReader?mem_ID=<%=memberVO.getMemID()%>" width=200px>
 	 </td>
-<%-- 			<td><input type="TEXT" name="memHeadshot"  value="<%=memberVO.getMemHeadshot()%>" /></td> --%>
 		</tr>
 	</table>
 

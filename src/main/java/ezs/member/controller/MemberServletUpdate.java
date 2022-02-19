@@ -32,8 +32,67 @@ public class MemberServletUpdate extends HttpServlet {
 
 		req.setCharacterEncoding("UTF-8");
 		String action = req.getParameter("action");
+		
+		// getOneMemInfo Frontend
+				if ("getOneMem_DisplayFrontEnd".equals(action)) {
 
-		// getOneMemInfo
+					List<String> errorMsgs = new LinkedList<String>();
+					req.setAttribute("errorMsgs", errorMsgs);
+
+					try {
+						/*************************** 1.接收請求參數 - 輸入格式的錯誤處理 **********************/
+						String str = req.getParameter("memID");
+						if (str == null || (str.trim()).length() == 0) {
+							errorMsgs.add("請輸入會員編號");
+						}
+
+						if (!errorMsgs.isEmpty()) {
+							RequestDispatcher failureView = req.getRequestDispatcher("/frontend/member/select_page.jsp");
+							failureView.forward(req, res);
+							return;// 程式中斷
+						}
+
+						Integer memID = null;
+						try {
+							memID = new Integer(str);
+						} catch (Exception e) {
+							errorMsgs.add("會員編號格式不正確");
+						}
+
+						if (!errorMsgs.isEmpty()) {
+							RequestDispatcher failureView = req.getRequestDispatcher("/frontend/member/select_page.jsp");
+							failureView.forward(req, res);
+							return;
+						}
+
+						/*************************** 2.開始查詢資料 *****************************************/
+						MemberService memSvc = new MemberService();
+						MemberVO memberVO = memSvc.getOneMember(memID);
+						if (memberVO == null) {
+							errorMsgs.add("查無資料");
+						}
+
+						if (!errorMsgs.isEmpty()) {
+							RequestDispatcher failureView = req.getRequestDispatcher("/frontend/member/select_page.jsp");
+							failureView.forward(req, res);
+							return;
+						}
+
+						/*************************** 3.查詢完成,準備轉交(Send the Success view) *************/
+						req.setAttribute("memberVO", memberVO);
+						String url = "/frontend/member/listOneMember.jsp";
+						RequestDispatcher successView = req.getRequestDispatcher(url);
+						successView.forward(req, res);
+
+						/*************************** 其他可能的錯誤處理 *************************************/
+					} catch (Exception e) {
+						errorMsgs.add("無法取得資料:" + e.getMessage());
+						RequestDispatcher failureView = req.getRequestDispatcher("/frontend/member/select_page.jsp");
+						failureView.forward(req, res);
+					}
+				}
+
+		// getOneMemInfo Backend
 		if ("getOneMem_Display".equals(action)) {
 
 			List<String> errorMsgs = new LinkedList<String>();
@@ -122,7 +181,7 @@ public class MemberServletUpdate extends HttpServlet {
 		if ("update".equals(action)) {
 			List<String> errorMsgs = new LinkedList<String>();
 			req.setAttribute("errorMsgs", errorMsgs);
-			System.out.println("hi");
+			
 			/*************************** 1.接收請求參數 - 輸入格式的錯誤處理 **********************/
 
 //			try {
@@ -180,11 +239,13 @@ System.out.println("xxxxxxxxxxxxxxxxxxxxxxxxxxxx");
 					}
 				}
 			}
-
+			
+			
 			String memVatno = req.getParameter("memVatno");
+			if (!(memVatno == null)) {
 			if (memVatno.trim().length() == 0) {
 				memVatno = "不須統編";
-			}
+			}}
 
 			MemberVO memberVO = new MemberVO();
 			memberVO.setMemID(memID);

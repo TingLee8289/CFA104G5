@@ -68,7 +68,6 @@
 			<th>email帳號</th>
 			<th>個人頭像</th>
 			<th>評分</th>
-			<th>統一編號</th>
 			<th>修改</th>
 		</tr>
 
@@ -91,7 +90,6 @@
 								value="${(memberVO.memRedScore/memberVO.memRedCount)}"/>
 						</c:otherwise>
 					</c:choose></td>
-
 				<td><form method="post" action="<%= request.getContextPath() %>/member/MemberServletUpdate.do">
 						<input type="submit" value="修改"> 
 						<input type="hidden" name="memID" value="${memberVO.memID}"> 
