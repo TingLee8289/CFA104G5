@@ -78,7 +78,7 @@
 		<th>賣家身份</th>
 		<th>被檢舉數</th>
 		<th>廠商被檢舉數</th>
-		<th>賣家被檢舉數</th>
+<!-- 		<th>賣家被檢舉數</th> -->
 		
 	</tr>
 	<%@ include file="page1.file" %> 
@@ -104,7 +104,7 @@
 				<c:if test="${memberVO.memSeller == 1}">啟用</c:if></td>
 			<td>${memberVO.memReported}</td>
 			<td>${memberVO.memSupReported}</td>
-			<td>${memberVO.memSelReported}</td>
+<%-- 			<td>${memberVO.memSelReported}</td> --%>
 			<td>
 			  <FORM METHOD="post" ACTION="<%=request.getContextPath()%>/member/MemberServletUpdate.do" style="margin-bottom: 0px;">
 			     <input type="submit" value="查看詳細資料">

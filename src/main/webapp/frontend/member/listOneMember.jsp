@@ -51,7 +51,6 @@
 <table id="table-1">
 	<tr><td>
 		 <h3>${memberVO.memID}- ${memberVO.memUsername} 會員資料</h3>
-<!-- 		 <h4><a href="select_page.jsp">回首頁</a></h4> -->
 	</td></tr>
 </table>
 
@@ -100,13 +99,6 @@
 		<td>${memberVO.memVatno}</td>
 	</tr>
 	</c:if>
-	<tr>
-		<td>會員狀態:</td>
-		<td>
-			<c:if test="${memberVO.memStatus == 0}">Email未驗證</c:if>
-			<c:if test="${memberVO.memStatus == 1}">Email已驗證</c:if>
-			<c:if test="${memberVO.memStatus == 2}">停權</c:if></td>
-	</tr>
 <!-- 	<tr> -->
 <!-- 		<td>評價總數:</td> -->
 <%-- 		<td>${memberVO.memRevCount}</td> --%>
@@ -135,31 +127,11 @@
 					</c:choose></td>
 	</tr>
 	<tr>
-		<td>被檢舉數:</td>
-		<td>${memberVO.memReported}</td>
-	</tr>
-	<tr>
-		<td>房東身分:</td>
-		<td>
-			<c:if test="${memberVO.memLandlord == 0}">未驗證</c:if>
-			<c:if test="${memberVO.memLandlord == 1}">已驗證</c:if>
-			<c:if test="${memberVO.memLandlord == 2}">停權</c:if></td>
-	</tr>
-	<tr>
-		<td>廠商身分:</td>
-		<td>
-			<c:if test="${memberVO.memSupplier == 0}">停權</c:if>
-			<c:if test="${memberVO.memSupplier == 1}">啟用</c:if></td>
-	</tr>
-	<tr>
-		<td>賣家身分:</td>
-		<td>
-			<c:if test="${memberVO.memSeller == 0}">停權</c:if>
-			<c:if test="${memberVO.memSeller == 1}">啟用</c:if></td>
-	</tr>
-	<tr>
-		<td>廠商被檢舉數:</td>
-		<td>${memberVO.memSupReported}</td>
+	<td><form method="post" action="<%= request.getContextPath() %>/member/MemberServletUpdate.do">
+						<input type="submit" value="修改"> 
+						<input type="hidden" name="memID" value="${memberVO.memID}"> 
+						<input type="hidden" name="action" value="getOne_For_Update">
+					</form></td>
 	</tr>
 
 
