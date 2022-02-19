@@ -66,10 +66,10 @@ pageContext.setAttribute("vdrQuoList", vdrQuoList);
 
 							<tr>
 								<td>${serQuoVO.quoID}</td>
-								<td><c:if test="${serQuoVO.quoStatus == 0}">未報價</c:if> <c:if
-										test="${serQuoVO.quoStatus == 1}">已報價</c:if> <c:if
-										test="${serQuoVO.quoStatus == 2}">拒絕報價</c:if> <c:if
-										test="${serQuoVO.quoStatus == 3}">接受報價</c:if></td>
+								<td><c:if test="${serQuoVO.quoStatus == 0}">未報價</c:if> 
+								<c:if test="${serQuoVO.quoStatus == 1}">已報價</c:if> 
+								<c:if test="${serQuoVO.quoStatus == 2}">拒絕報價</c:if> 
+								<c:if test="${serQuoVO.quoStatus == 3}">接受報價</c:if></td>
 								<td>${serQuoVO.quoDmdID}</td>
 								<td>${serQuoVO.quoDate}</td>
 								<td>${serQuoVO.quoExpiryDate}</td>
@@ -77,16 +77,16 @@ pageContext.setAttribute("vdrQuoList", vdrQuoList);
 								<td>${serQuoVO.quoTotalPrice}</td>
 								<td>
 									<FORM METHOD="post"
-										ACTION="<%=request.getContextPath()%>/ser_quo/UpdateQuoServlet.do"
+										ACTION="<%=request.getContextPath()%>/ser_quo/UpdateQuoByVdrServlet.do"
 										style="margin-bottom: 0px;">
-										<input type="submit" value="修改"> <input type="hidden"
+										<input type="submit" value="修改報價"> <input type="hidden"
 											name="quoID" value="${serQuoVO.quoID}"> <input
 											type="hidden" name="action" value="updateOneQuo">
 									</FORM>
 								</td>
 								<td>
 									<FORM METHOD="post"
-										ACTION="<%=request.getContextPath()%>/ser_quo/DeleteOrdServlet.do"
+										ACTION="<%=request.getContextPath()%>/ser_quo/DeleteQuoServlet.do"
 										style="margin-bottom: 0px;">
 										<input type="submit" value="刪除"> <input type="hidden"
 											name="quoID" value="${serQuoVO.quoID}"> <input
