@@ -13,6 +13,9 @@ SerQuoVO serQuoVO = (SerQuoVO) request.getAttribute("serQuoVO");
     List<SerDmdVO> OneMemDmdList = serDmdSvc.findByMemID(memID);
      									//如何動態取值
     pageContext.setAttribute("OneMemDmdList",OneMemDmdList);
+     									
+    String quoVdrID = (String) request.getParameter("quoVdrID");
+    pageContext.setAttribute("quoVdrID", quoVdrID);
 %>
 <html>
 <head>
@@ -113,7 +116,7 @@ th, td {
 			<tr>
 				<td>廠商編號:</td>
 				<td><input type="TEXT" name="quoVdrID" size="50"
-					value="<%=(serQuoVO == null) ? "3" : serQuoVO.getQuoVdrID()%>" /></td>
+					value="${quoVdrID}" /></td>
 			</tr>
 			<tr>
 
