@@ -1,6 +1,7 @@
 package ezs.sec_ord.model;
 
 import java.sql.Connection;
+import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -14,6 +15,7 @@ import javax.naming.InitialContext;
 import javax.naming.NamingException;
 import javax.sql.DataSource;
 
+import ezs.sec_ord_details.model.SecOrdDetailsVO;
 import util.Util;
 
 public class SecOrdDAO implements SecOrdDAO_interface {
@@ -35,8 +37,11 @@ public class SecOrdDAO implements SecOrdDAO_interface {
 	private static final String GET_ALL_BY_SELLERID_STMT = "SELECT * FROM `CFA104G5`.`SEC_ORD` WHERE sh_sellerid = ? ORDER BY sh_date desc;";
 	private static final String UPDATE_COMPLETE_ORDER_STMT = "UPDATE `CFA104G5`.`SEC_ORD` SET sh_ord_status = 7 WHERE sh_ord_id = ?; ";
 	private static final String UPDATE_REFUND_ORDER_STMT = "UPDATE `CFA104G5`.`SEC_ORD` SET sh_ord_status = 6 WHERE sh_ord_id = ?; ";
-
-
+	private static final String GET_ORDDETAILS_BYSECORD_STMT = "SELECT * FROM `CFA104G5`.`SEC_ORD_DETAILS` WHERE sh_ord_id = ?";
+	private static final String UPDATE_CANCEL_ORDER_STMT = "UPDATE `CFA104G5`.`SEC_ORD` SET sh_ord_status = 8 WHERE sh_ord_id = ?; ";
+	private static final String UPDATE_ORDER_SHIPPERED_STMT = "UPDATE `CFA104G5`.`SEC_ORD` SET sh_ord_status = 2 WHERE sh_ord_id = ?; ";
+	
+	
 	private static DataSource ds = null;
 	static {
 		try {
@@ -315,5 +320,65 @@ public class SecOrdDAO implements SecOrdDAO_interface {
 		}
 
 	}
+	
+	@Override
+	public Set<SecOrdDetailsVO> getSecAllOrdDeatails(Integer shOrdID) {
+		Set<SecOrdDetailsVO> set = new LinkedHashSet<SecOrdDetailsVO>();
+		SecOrdDetailsVO secOrdDetailsVO = null;
 
+		try {
+			con = ds.getConnection();
+			pstmt = con.prepareStatement(GET_ORDDETAILS_BYSECORD_STMT);
+			pstmt.setInt(1, shOrdID);
+			rs = pstmt.executeQuery();
+	
+			
+			while (rs.next()) {
+				secOrdDetailsVO = new SecOrdDetailsVO();
+				secOrdDetailsVO.setShOrdID(rs.getInt("sh_ord_id"));
+				secOrdDetailsVO.setShID(rs.getInt("sh_id"));
+				secOrdDetailsVO.setShName(rs.getString("sh_name"));
+				secOrdDetailsVO.setShPrice(rs.getInt("sh_price"));
+				secOrdDetailsVO.setShQty(rs.getInt("sh_qty"));
+
+				set.add(secOrdDetailsVO);
+
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			Util.closeResource(con, pstmt, rs);
+		}
+		return set;
+	}
+
+	
+	@Override
+	public void updateCancleOrder(Integer shOrdID) {
+
+		try {
+			con = ds.getConnection();
+			pstmt = con.prepareStatement(UPDATE_CANCEL_ORDER_STMT);
+			pstmt.setInt(1, shOrdID);
+			pstmt.executeUpdate();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			Util.closeResource(con, pstmt, rs);
+		}
+	}
+	@Override
+	public void updateOrderShippered(Integer shOrdID) {
+		
+		try {
+			con = ds.getConnection();
+			pstmt = con.prepareStatement(UPDATE_ORDER_SHIPPERED_STMT);
+			pstmt.setInt(1, shOrdID);
+			pstmt.executeUpdate();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			Util.closeResource(con, pstmt, rs);
+		}
+	}
 }

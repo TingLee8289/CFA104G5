@@ -93,7 +93,7 @@ th, td {
 
 			<tr>
 				<!-- 		<td>買家編號:</td> -->
-				<td><input type="hidden" name="shSellerID"
+				<td><input type="hidden" name="shBuyerID"
 					value="<%=secOrdVO.getShBuyerID()%>" /></td>
 			</tr>
 
@@ -103,43 +103,62 @@ th, td {
 					value="<%=secOrdVO.getShSellerID()%>" /></td>
 			</tr>
 			<tr>
-						<td>收件地址郵遞區號:</td>
-				<td><%=secOrdVO.getShSellerID()%></td>
+				<td>收件地址郵遞區號:</td>
+				<td><%=secOrdVO.getShPostcode()%></td>
 			</tr>
 			<tr>
-						<td>收件地址縣市:</td>
-				<td><%=secOrdVO.getShSellerID()%></td>
+				<td>收件地址縣市:</td>
+				<td><%=secOrdVO.getShCounty()%></td>
 			</tr>
 			<tr>
-						<td>收件地址鄉鎮區:</td>
-				<td><%=secOrdVO.getShSellerID()%></td>
+				<td>收件地址鄉鎮區:</td>
+				<td><%=secOrdVO.getShDist()%></td>
 			</tr>
 			<tr>
-						<td>收件地址路街弄:</td>
-				<td><%=secOrdVO.getShSellerID()%></td>
+				<td>收件地址路街弄:</td>
+				<td><%=secOrdVO.getShRoad()%></td>
 			</tr>
 			<tr>
-						<td>付款方式:</td>
-				<td><%=secOrdVO.getShSellerID()%></td>
+				<td>付款方式:</td>
+				<td><%=secOrdVO.getShPayment()%></td>
 			</tr>
 			<tr>
-						<td>訂單狀態:</td>
-				<td><input type="TEXT" name="shSellerID"
-					value="<%=secOrdVO.getShSellerID()%>" /></td>
+				<td>訂單狀態:</td>
+
+
+				<td><input type="radio" name="shOrdStatus" value="2"
+					<%=(secOrdVO.getShOrdStatus() == 2) ? "checked" : ""%> />已出貨 <input
+					type="radio" name="shOrdStatus" value="8"
+					<%=(secOrdVO.getShOrdStatus() == 8) ? "checked" : ""%> />訂單取消 </td>
+
+
+<!-- 				<td><input type="radio" name="shOrdStatus" value="0" -->
+<%-- 					<%=(secOrdVO.getShOrdStatus() == 0) ? "checked" : ""%> />待出貨 <input --%>
+<!-- 					type="radio" name="shOrdStatus" value="1" -->
+<%-- 					<%=(secOrdVO.getShOrdStatus() == 1) ? "checked" : ""%> />未成立 <input --%>
+<!-- 					type="radio" name="shOrdStatus" value="2" -->
+<%-- 					<%=(secOrdVO.getShOrdStatus() == 2) ? "checked" : ""%> />已成立 <input --%>
+<!-- 					type="radio" name="shOrdStatus" value="3" -->
+<%-- 					<%=(secOrdVO.getShOrdStatus() == 3) ? "checked" : ""%> />已出貨 <input --%>
+<!-- 					type="radio" name="shOrdStatus" value="4" -->
+<%-- 					<%=(secOrdVO.getShOrdStatus() == 4) ? "checked" : ""%> />退款審核 <input --%>
+<!-- 					type="radio" name="shOrdStatus" value="5" -->
+<%-- 					<%=(secOrdVO.getShOrdStatus() == 5) ? "checked" : ""%> />訂單取消</td> --%>
+
 			</tr>
 			<tr>
-						<td>訂單金額:</td>
-				<td><%=secOrdVO.getShSellerID()%></td>
+				<td>訂單金額:</td>
+				<td><%=secOrdVO.getShPrice()%></td>
 			</tr>
 			<tr>
-						<td>撥款日期:</td>
-				<td><%=secOrdVO.getShSellerID()%></td>
+				<td>撥款日期:</td>
+				<td><%=secOrdVO.getShDate()%></td>
 			</tr>
 			<tr>
-						<td>買家備註:</td>
-				<td><%=secOrdVO.getShSellerID()%></td>
+				<td>買家備註:</td>
+				<td><%=secOrdVO.getShBuyerScore()%></td>
 			</tr>
-			
+
 
 		</table>
 		<br> <input type="hidden" name="action" value="update"> <input

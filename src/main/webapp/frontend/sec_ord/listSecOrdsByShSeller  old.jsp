@@ -84,9 +84,13 @@ th, td {
 			</c:forEach>
 		</ul>
 	</c:if>
-
+<div>
 	<table>
 		<tr>
+			<th>商品編號</th>
+			<th>商品名稱</th>
+			<th>訂單金額</th>
+			<th>商品數量</th>
 			<th>商品訂單編號</th>
 			<th>買家編號</th>
 			<th>賣家編號</th>
@@ -104,55 +108,69 @@ th, td {
 			<th>賣家評價買家內容</th>
 			<th>撥款日期</th>
 			<th>買家備註</th>
-			<th>商品編號</th>
-			<th>商品名稱</th>
-			<th>訂單金額</th>
-			<th>商品數量</th>
+
 			<th>修改訂單</th>
 
-
-		</tr>
-
-<%-- 		<c:forEach var="secOrdVO" items="${listSecOrdsByShSellerID}"> --%>
-<!-- 			<tr> -->
-<%-- 				<td>${secOrdVO.shOrdID}</td> --%>
-<%-- 				<td>${secOrdVO.shBuyerID}</td> --%>
-<%-- 				<td>${secOrdVO.shSellerID}</td> --%>
-<%-- 				<td>${secOrdVO.shPostcode}</td> --%>
-<%-- 				<td>${secOrdVO.shCounty}</td> --%>
-<%-- 				<td>${secOrdVO.shDist}</td> --%>
-<%-- 				<td>${secOrdVO.shRoad}</td> --%>
-<%-- 				<td>${secOrdVO.shPayment}</td> --%>
-<%-- 				<td>${secOrdVO.shOrdStatus}</td> --%>
-<%-- 				<td>${secOrdVO.shPrice}</td> --%>
-<%-- 				<td>${secOrdVO.shDate}</td> --%>
-<%-- 				<td>${secOrdVO.shBuyerScore}</td> --%>
-<%-- 				<td>${secOrdVO.shBuyerTXT}</td> --%>
-<%-- 				<td>${secOrdVO.shSellerScore}</td> --%>
-<%-- 				<td>${secOrdVO.shSellerTXT}</td> --%>
-<%-- 				<td>${secOrdVO.shAPPDate}</td> --%>
-<%-- 				<td>${secOrdVO.shNotes}</td> --%>
-
-<!-- 				<td> -->
-<!-- 					<FORM METHOD="post" -->
-<%-- 						ACTION="<%=request.getContextPath()%>/sec_ord/UpdateSecOrdBySellerServlet.do" --%>
-<!-- 						style="margin-bottom: 0px;"> -->
-<!-- 						<input type="submit" value="修改訂單"> <input type="hidden" -->
-<%-- 							name="shOrdID" value="${secOrdVO.shOrdID}"> <input --%>
-<!-- 							type="hidden" name="requestURL" -->
-<%-- 							value="<%=request.getServletPath()%>"> <input --%>
-<!-- 							type="hidden" name="action" value="getOne_For_Update"> -->
-<!-- 					</FORM> -->
-<!-- 				</td> -->
-<%-- 		</c:forEach> --%>
+<tr>
+<tr>
+	<td colspan=4>
+		<table>
 		<c:forEach var="secOrdDetailsVO"
 			items="${listSecOrdsDetailsByShSellerID}">
-			<td>${secOrdDetailsVO.shID}</td>
-			<td>${secOrdDetailsVO.shName}</td>
-			<td>${secOrdDetailsVO.shPrice}</td>
-			<td>${secOrdDetailsVO.shQty}</td>
-
+			<tr>
+				<td>${secOrdDetailsVO.shID}</td>
+				<td>${secOrdDetailsVO.shName}</td>
+				<td>${secOrdDetailsVO.shPrice}</td>
+				<td>${secOrdDetailsVO.shQty}</td>
+			</tr>
 		</c:forEach>
+		</table>
+
+</td>
+
+<td  colspan=18>
+		<table>
+		<c:forEach var="secOrdVO" items="${listSecOrdsByShSellerID}">
+			<tr>
+				<td>${secOrdVO.shOrdID}</td>
+				<td>${secOrdVO.shBuyerID}</td>
+				<td>${secOrdVO.shSellerID}</td>
+				<td>${secOrdVO.shPostcode}</td>
+				<td>${secOrdVO.shCounty}</td>
+				<td>${secOrdVO.shDist}</td>
+				<td>${secOrdVO.shRoad}</td>
+				<td>${secOrdVO.shPayment}</td>
+				<td>${secOrdVO.shOrdStatus}</td>
+				<td>${secOrdVO.shPrice}</td>
+				<td>${secOrdVO.shDate}</td>
+				<td>${secOrdVO.shBuyerScore}</td>
+				<td>${secOrdVO.shBuyerTXT}</td>
+				<td>${secOrdVO.shSellerScore}</td>
+				<td>${secOrdVO.shSellerTXT}</td>
+				<td>${secOrdVO.shAPPDate}</td>
+				<td>${secOrdVO.shNotes}</td>
+
+				<td>
+					<FORM METHOD="post"
+						ACTION="<%=request.getContextPath()%>/sec_ord/UpdateSecOrdBySellerServlet.do"
+						style="margin-bottom: 0px;">
+						<input type="submit" value="修改訂單"> <input type="hidden"
+							name="shOrdID" value="${secOrdVO.shOrdID}"> <input
+							type="hidden" name="requestURL"
+							value="<%=request.getServletPath()%>"> <input
+							type="hidden" name="action" value="getOne_For_Update">
+					</FORM>
+				</td>
+			</tr>
+		</c:forEach>
+
+		</table>
+</td>
+</tr>
+</td>
+		</tr>
+		
+	</div>
 
 
 

@@ -3,6 +3,8 @@
 <%@ page import="ezs.sec_items.model.*"%>
 <%@ page import="ezs.sec_pics.model.*"%>
 
+<!-- 待補上jquery套件  現在只是暫時使用cdn -->
+
 <%
 SecItemsVO secItemsVO = (SecItemsVO) request.getAttribute("secItemsVO");
 SecPicsVO secPicsVO = (SecPicsVO) request.getAttribute("secPicsVO");
@@ -15,7 +17,7 @@ SecPicsVO secPicsVO = (SecPicsVO) request.getAttribute("secPicsVO");
 <head>
 <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
 <title>商品資料修改 - update_secItems_input.jsp</title>
-
+<script src="https://code.jquery.com/jquery-1.12.4.min.js" integrity="sha256-ZosEbRLbNQzLpnKIkEdrPv7lOy9C27hHQ+Xp8a4MxAQ=" crossorigin="anonymous"></script>
 <style>
 table#table-1 {
 	background-color: #CCCCFF;
@@ -178,6 +180,7 @@ th, td {
 					accept="image/gif, image/jpeg, image/png" multiple="multiple" />
 					<div id="previews">
 						<p>圖片預覽</p>
+						<img src="<%=request.getContextPath()%>/sec_items/SecItemsPicReaderServlet.do?sh_id=${secItemsVO.shID}" width=200px>
 					</div> 
 				
 <%-- 				<c:forEach --%>
@@ -185,9 +188,7 @@ th, td {
 <%-- 						<option value="${secPicsVO.getOneShID(secItemsVO.shID)}"> --%>
 <%-- 					</c:forEach>  --%>
 <!-- 					查詢到舊的 -->
-					<img
-					src="<%=request.getContextPath()%>/sec_items/SecItemsPicReaderServlet.do?sh_id=${secItemsVO.shID}"
-					width=200px></td>
+					</td>
 					
 					
 <%-- 					<td><img src="<%=request.getContextPath()%>/sec_items/SecItemsPicReaderServlet.do?sh_id= --%>

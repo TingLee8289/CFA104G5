@@ -1,5 +1,6 @@
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <%@ page import="java.util.*"%>
 <%@ page import="ezs.sec_items.model.*"%>
 <%-- 此頁練習採用 EL 的寫法取值 --%>
@@ -108,7 +109,7 @@ th, td {
 				<td>${secItemsVO.shCateID}</td>
 				<td>${secItemsVO.shSellerID}</td>
 				<td>${secItemsVO.shName}</td>
-				<td>${secItemsVO.shPrice}</td>
+				<td><fmt:formatNumber value="${secItemsVO.shPrice}" pattern="###,###"/></td>
 				<td>${secItemsVO.shQTY}</td>
 				<td>${secItemsVO.shSize}</td>
 				<td>${secItemsVO.shDescription}</td>
