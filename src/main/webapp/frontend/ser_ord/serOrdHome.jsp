@@ -41,7 +41,7 @@
 		</ul>
 		<ul>
 			<li><a
-				href="<%=request.getContextPath()%>/frontend/ser_ord/addSerOrd.jsp">新增訂單</a>
+				href="<%=request.getContextPath()%>/frontend/ser_ord/findQuoBeforeByVdrID.jsp">新增訂單</a>
 			</li>
 		</ul>
 		<ul>

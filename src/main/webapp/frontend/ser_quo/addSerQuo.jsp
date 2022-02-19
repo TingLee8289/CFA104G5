@@ -115,8 +115,7 @@ th, td {
 
 			<tr>
 				<td>廠商編號:</td>
-				<td><input type="TEXT" name="quoVdrID" size="50"
-					value="${quoVdrID}" /></td>
+				<td><input type="TEXT" name="quoVdrID" size="50" value="${quoVdrID}" /></td>
 			</tr>
 			<tr>
 
