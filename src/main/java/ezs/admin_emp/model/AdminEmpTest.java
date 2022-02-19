@@ -9,10 +9,10 @@ public class AdminEmpTest {
 		AdminEmpJDBCDAO dao = new AdminEmpJDBCDAO();
 
 //		// 1. 新增
-//		AdminEmpVO adminEmpVO1 = new AdminEmpVO();
-//		adminEmpVO1.setAdmUsername("happyjavaman");
-//		adminEmpVO1.setAdmPassword("123456");
-//		adminEmpVO1.setAdmStatus(1);
+		AdminEmpVO adminEmpVO1 = new AdminEmpVO();
+		adminEmpVO1.setAdmUsername("happyjavaman");
+		adminEmpVO1.setAdmPassword("123456");
+		adminEmpVO1.setAdmStatus(1);
 //		
 //		dao.insert(adminEmpVO1);
 
@@ -27,7 +27,7 @@ public class AdminEmpTest {
 //		dao.update(adminEmpVO2);
 
 //		// 3. 刪除
-//		dao.delete(5);
+//		dao.delete(4);
 //
 //		// 4. 查詢單筆
 //		AdminEmpVO adminEmpVO3 = dao.findByPrimaryKey(1);
@@ -38,14 +38,14 @@ public class AdminEmpTest {
 //		System.out.println("---------------------");
 //
 //		5. 查詢多筆
-		List<AdminEmpVO> list = dao.getAll();
-		for (AdminEmpVO aadminEmpVO : list) {
-			System.out.print(aadminEmpVO.getAdmID() + ",");
-			System.out.print(aadminEmpVO.getAdmUsername() + ",");
-			System.out.print(aadminEmpVO.getAdmPassword() + ",");
-			System.out.print(aadminEmpVO.getAdmStatus());
-			System.out.println();
-		}
+//		List<AdminEmpVO> list = dao.getAll();
+//		.out.print(aadminEmpVO.getAdmPassword() + ",");
+//			System.out.print(aadminEmpVO.getAdmStatus());
+//			System.out.println();
+//		}for (AdminEmpVO aadminEmpVO : list) {
+//			System.out.print(aadminEmpVO.getAdmID() + ",");
+//			System.out.print(aadminEmpVO.getAdmUsername() + ",");
+//			System
 		
 //		AdminEmpVO adminEmpVO4 = dao.Search("Alex","alex123");
 //		//System.out.print(adminEmpVO4.getAdmID() + ",");

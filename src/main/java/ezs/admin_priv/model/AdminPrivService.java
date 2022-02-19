@@ -22,9 +22,9 @@ public class AdminPrivService {
 		return adminPrivVO;
 	}
 
-	public void deleteAdminPrinv(Integer admID, Integer funID) {
+	public void deleteAdminPrinv(Integer admID) {
 
-		dao.delete(admID, funID);
+		dao.delete(admID);
 	}
 
 	public  AdminPrivVO  getoneAdminFunc(Integer admID, Integer funID) {

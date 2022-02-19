@@ -72,7 +72,7 @@ public class AdminEmpServlet extends HttpServlet {
 				HttpSession session = req.getSession();
 				session.setAttribute("adminEmpVO", adminEmpVO); // 資料庫取出的adminEmpVO物件,存入req
 				session.setAttribute("admUsername", adminEmpVO.getAdmUsername());
-				
+
 				String url = "/backend/loginsucess.jsp";
 				RequestDispatcher successView = req.getRequestDispatcher(url); // 成功轉交 loginsucess.jsp
 				successView.forward(req, res);
@@ -88,12 +88,11 @@ public class AdminEmpServlet extends HttpServlet {
 			HttpSession session = req.getSession(false);
 			if (session != null) {
 //				   session.removeAttribute("admUsername");
-				   session.invalidate();
-				  }
+				session.invalidate();
+			}
 			req.getRequestDispatcher("/backend/login.jsp").forward(req, res);
-			  return;
+			return;
 		}
 		
-	
 	}
 }

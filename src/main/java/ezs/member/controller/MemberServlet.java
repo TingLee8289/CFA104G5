@@ -48,7 +48,7 @@ public class MemberServlet extends HttpServlet {
 					errorMsgs.add("帳號密碼不得為空1");
 				}
 				if (!errorMsgs.isEmpty()) {
-					RequestDispatcher failureView = req.getRequestDispatcher("/frontend/member/login.jsp");
+					RequestDispatcher failureView = req.getRequestDispatcher("/frontend/member/Login2.jsp");
 					failureView.forward(req, res);
 					return;// 程式中斷
 				}
@@ -57,7 +57,7 @@ public class MemberServlet extends HttpServlet {
 					errorMsgs.add("帳號密碼不得為空2");
 				}
 				if (!errorMsgs.isEmpty()) {
-					RequestDispatcher failureView = req.getRequestDispatcher("/frontend/member/login.jsp");
+					RequestDispatcher failureView = req.getRequestDispatcher("/frontend/member/Login2.jsp");
 					failureView.forward(req, res);
 					return;// 程式中斷
 				}
@@ -69,7 +69,7 @@ public class MemberServlet extends HttpServlet {
 				}
 				// Send the use back to the form, if there were errors
 				if (!errorMsgs.isEmpty()) {
-					RequestDispatcher failureView = req.getRequestDispatcher("/frontend/member/login.jsp");
+					RequestDispatcher failureView = req.getRequestDispatcher("/frontend/member/Login2.jsp");
 					failureView.forward(req, res);
 					return;// 程式中斷
 				}
@@ -85,7 +85,7 @@ public class MemberServlet extends HttpServlet {
 				/*************************** 其他可能的錯誤處理 *************************************/
 			} catch (Exception e) {
 				errorMsgs.add("無法取得資料:" + e.getMessage());
-				RequestDispatcher failureView = req.getRequestDispatcher("frontend/member/login.jsp");
+				RequestDispatcher failureView = req.getRequestDispatcher("frontend/member/login2.jsp");
 				failureView.forward(req, res);
 			}
 		}
@@ -97,7 +97,7 @@ public class MemberServlet extends HttpServlet {
 //				   session.removeAttribute("memUsername");
 			session.invalidate();
 		}
-		req.getRequestDispatcher("/frontend/member/login.jsp").forward(req, res);
+		req.getRequestDispatcher("/frontend/member/Login2.jsp").forward(req, res);
 		return;
 	}
 // 新增會員 (接收來自memberRegister.jsp請求)	

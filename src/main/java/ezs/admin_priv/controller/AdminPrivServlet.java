@@ -11,12 +11,12 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import ezs.admin_emp.model.AdminEmpService;
 import ezs.admin_priv.model.AdminPrivService;
 import ezs.admin_priv.model.AdminPrivVO;
 
-public class AdminPrivServlet {
 	@WebServlet("/admin_priv/AdminPrivServlet.do")
-	public class AdminEmpServlet extends HttpServlet {
+	public class AdminPrivServlet extends HttpServlet {
 //		protected void doGet(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
 //			doPost(req, res);
 //		}
@@ -26,31 +26,31 @@ public class AdminPrivServlet {
 			req.setCharacterEncoding("UTF-8");
 			String action = req.getParameter("action");
 
-			if ("getOne_For_Update".equals(action)) {
-				
+			if ("delete".equals(action)) {
 				List<String> errorMsgs = new LinkedList<String>();
 				req.setAttribute("errorMsgs", errorMsgs);
-
+				
 				try {
 					/*************************** 1.接收請求參數 - 輸入格式的錯誤處理 **********************/
-					Integer adminID = new Integer(req.getParameter("admID"));
-					/***************************2.開始查詢資料****************************************/
+					Integer admID = new Integer(req.getParameter("admID"));
+					/*************************** 2.開始刪除資料 ***************************************/
+					AdminEmpService adminEmpService = new AdminEmpService();
 					AdminPrivService adminPrivService = new AdminPrivService();
-					List<AdminPrivVO> adminPrivVO = adminPrivService.getAllFromID(adminID);
-					/***************************3.查詢完成,準備轉交(Send the Success view)************/
-					req.setAttribute("adminprivVO", adminPrivVO); // 資料庫取出的empVO物件,存入req
-					String url = "/backend/adminEMP/listAllEMPadmin.jsp";
-					RequestDispatcher successView = req.getRequestDispatcher(url);// 成功轉交 update_emp_input.jsp
+					adminPrivService.deleteAdminPrinv(admID);
+					adminEmpService.deletAdminEmp(admID);
+					/*************************** 3.刪除完成,準備轉交(Send the Success view) ***********/
+					String url = "/backend/adminEmp/adminEmp.jsp";
+					RequestDispatcher successView = req.getRequestDispatcher(url);// 刪除成功後,轉交回送出刪除的來源網頁
 					successView.forward(req, res);
+					/*************************** 其他可能的錯誤處理 **********************************/
 				} catch (Exception e) {
-					errorMsgs.add("無法取得要修改的資料:" + e.getMessage());
-					RequestDispatcher failureView = req
-							.getRequestDispatcher("/emp/listAllEmp.jsp");
+					errorMsgs.add("刪除資料失敗:" + e.getMessage());
+					RequestDispatcher failureView = req.getRequestDispatcher("/backend/adminEmp/adminEmp.jsp");
 					failureView.forward(req, res);
 				}
+			}
 				
 				
 			}
 		}
-	}
-}
+	

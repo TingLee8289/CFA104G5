@@ -8,11 +8,13 @@ public class AdminPrivTest {
 		AdminPrivJDBCDAO dao = new AdminPrivJDBCDAO();
 
 // 		1. 新增
-//		AdminPrivVO adminPrivVO1 = new AdminPrivVO();
-//		adminPrivVO1.setAdmID(3);
-//		adminPrivVO1.setFunID(2);
-//		System.out.println("成功");
-//		dao.insert(adminPrivVO1);
+		AdminPrivVO adminPrivVO1 = new AdminPrivVO();
+		adminPrivVO1.setAdmID(1);
+//		adminPrivVO1.setFunID(7);
+//		adminPrivVO1.setFunID(8);
+//		adminPrivVO1.setFunID(9);
+		System.out.println("成功");
+		dao.insert(adminPrivVO1);
 
 //		2. 刪除
 //		dao.delete(3, 2);
@@ -25,12 +27,12 @@ public class AdminPrivTest {
 //		System.out.println("---------------------");
 
 //		4. 查詢單一ID的多筆
-		List<AdminPrivVO> list = dao.getAllFromID(1);
-		for (AdminPrivVO aVo : list) {
-			System.out.print(aVo.getAdmID() + ",");
-			System.out.print(aVo.getFunID());
-			System.out.println();
-		}
+//		List<AdminPrivVO> list = dao.getAllFromID(1);
+//		for (AdminPrivVO aVo : list) {
+//			System.out.print(aVo.getAdmID() + ",");
+//			System.out.print(aVo.getFunID());
+//			System.out.println();
+//		}
 //		5. 查詢多筆
 //		List<AdminPrivVO> list2 = dao.getAll();
 //		for (AdminPrivVO aVo : list) {
