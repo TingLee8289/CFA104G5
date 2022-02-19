@@ -1,4 +1,4 @@
-<%@ page contentType="text/html; charset=UTF-8" pageEncoding="Big5"%>
+<%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ page import="java.util.*"%>
 
@@ -23,214 +23,335 @@ pageContext.setAttribute("serClaList", serClaList);
 <!DOCTYPE html>
 <html>
 <head>
-    <meta charset="utf-8">
-    <title>EASY SPACE</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
-    <style>
-      *{
-        box-sizing: border-box;
-      }
-      :root{
-        --header-height: 60px;
-        --aside-width: 180px;
-      }
-      body{
-        margin: 0;
-      }
-      img{
-        max-width: 100%;
-        max-height:100%
-      }
+<meta charset="utf-8">
+<title>EASY SPACE</title>
+<meta name="viewport"
+	content="width=device-width, initial-scale=1.0, user-scalable=yes">
+<link
+	href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css"
+	rel="stylesheet"
+	integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3"
+	crossorigin="anonymous">
+<style>
+* {
+	box-sizing: border-box;
+}
 
-      /* ==================== header °Ï°ì ==================== */
-      header.header{
-        border: 1px solid black;
-        width: 100%;
-        position: sticky;
-        top: 0;
-        height: var(--header-height);
-        background-color: lightgray;
-      }
-      header.header button.btn_hamburger{
-        display: none;
-      }
-      /* ==================== aside °Ï°ì ==================== */
-      aside.aside{
-        border: 1px solid blue;
-        position: fixed;
-        top: var(--header-height)+100px;
-        left: 0;
-        height: calc(100% - var(--header-height));
-        width: var(--aside-width);
-        background-color: #efefef;
-        overflow-y: auto;
-        padding: 20px 0;
-        transition: all 1s;
-      }
-      aside.aside button.btn_hamburger{
-        display: none;
-      }
-      @media screen and (max-width: 767px){
-        aside.aside{
-          top: 0;
-          height: 100%;
-          transform: translateX(-100%);
-        }
-        aside.aside.-on{
-          transform: translateX(0%);
-        }
-        header.header button.btn_hamburger, aside.aside button.btn_hamburger{
-          display: inline-block;
-        }
-      }
+:root { -
+	-header-height: 60px; -
+	-aside-width: 180px;
+}
 
-      aside.aside > nav.nav > ul.nav_list{
-        margin: 0;
-        padding: 0;
-        list-style: none;
-      }
-      aside.aside > nav.nav > ul.nav_list > li > a{
-        display: inline-block;
-        border: 1px solid lightblue;
-        width: 100%;
-        padding: 3px 10px;
-      }
+body {
+	margin: 0;
+}
 
-      /* ==================== main °Ï°ì ==================== */
-      main.main{
-        border: 1px solid red;
-        margin-left: var(--aside-width);
-        width: calc(100% - var(--aside-width));
-        padding: 20px;
-        background-color: hsl(34, 100%, 84%);
-        min-height: calc(100vh - var(--header-height));
-        transition: all 1s;
-      }
-      @media screen and (max-width: 767px){
-        main.main{
-          width: 100%;
-          margin-left: 0;
-        }
-      }
-      main.main ul.item_list{
-        margin: 0;
-        padding: 0;
-        list-style:none;
-        display: flex;
-        flex-wrap: wrap;
-      }
-      main.main ul.item_list > li{
-        width: calc((100% - 60px) / 4);
-        margin-bottom:20px;
-        margin-right: 20px;
-      }
-      @media screen and (max-width: 767px){
-        main.main ul.item_list > li{
-          width: calc((100% - 20px) / 2);
-        }
-      }
-      main.main ul.item_list > li:nth-child(4n){
-        margin-right: 0;
-      }
-      @media screen and (max-width: 767px){
-        main.main ul.item_list > li:nth-child(2n){
-          margin-right: 0;
-        }
-      }
-      main.main ul.item_list > li > a{
-        display: inline-block;
-        border: 1px solid red;
-        text-decoration: none;
-        width: 100%;
-      }
-      main.main ul.item_list > li > a div.img_block{
-        border: 1px solid blue;
-        font-size: 0;
-        height: 200px;
-      }
-      main.main ul.item_list > li > a span.item_text{
-        border: 1px solid blue;
-        white-space: nowrap;
-        overflow: hidden;
-        text-overflow: ellipsis;
-        display: block;
-        width: 100%;
-      }
-    </style>
+img {
+	max-width: 100%;
+	max-height: 100%
+}
+
+/* ==================== header å€åŸŸ ==================== */
+header.header {
+	border: 1px solid black;
+	width: 100%;
+	position: sticky;
+	top: 0;
+	height: var(- -header-height);
+	background-color: lightgray;
+}
+
+header.header button.btn_hamburger {
+	display: none;
+}
+/* ==================== aside å€åŸŸ ==================== */
+aside.aside {
+	border: 1px solid blue;
+	position: fixed;
+	top: var(- -header-height) +100px;
+	left: 0;
+	height: calc(100% - var(- -header-height));
+	width: var(- -aside-width);
+	background-color: #efefef;
+	overflow-y: auto;
+	padding: 20px 0;
+	transition: all 1s;
+}
+
+aside.aside button.btn_hamburger {
+	display: none;
+}
+
+@media screen and (max-width: 767px) {
+	aside.aside {
+		top: 0;
+		height: 100%;
+		transform: translateX(-100%);
+	}
+	aside.aside.-on {
+		transform: translateX(0%);
+	}
+	header.header button.btn_hamburger, aside.aside button.btn_hamburger {
+		display: inline-block;
+	}
+}
+
+aside.aside>nav.nav>ul.nav_list {
+	margin: 0;
+	padding: 0;
+	list-style: none;
+}
+
+aside.aside>nav.nav>ul.nav_list>li>a {
+	display: inline-block;
+	border: 1px solid lightblue;
+	width: 100%;
+	padding: 3px 10px;
+}
+
+/* ==================== main å€åŸŸ ==================== */
+main.main {
+	border: 1px solid red;
+	margin-left: var(- -aside-width);
+	width: calc(100% - var(- -aside-width));
+	padding: 20px;
+	background-color: hsl(34, 100%, 84%);
+	min-height: calc(100vh - var(- -header-height));
+	transition: all 1s;
+}
+
+body {
+	background-color: #ecb88a;
+}
+
+
+
+
+
+
+
+
+
+* {
+	margin: 0;
+	padding: 0;
+}
+
+.card {
+	outline: 2px solid black;
+}
+
+img {
+	outline: 2px solid blue;
+}
+
+.right-side {
+	outline: 2px solid red;
+}
+
+
+
+.bottom {
+	outline: 2px solid green;
+}
+</style>
 </head>
 <body>
-<!-- 	header ¶}©l------------------------------------------------------ -->
-    <header class="header">
-      <button type="button" class="btn_hamburger">«ö¶s</button>³o¬O header
-    </header>
-<!-- 	header µ²§ô------------------------------------------------------ -->
-<!-- 	°¼ÃäÄæ ¶}©l-------------------------------------------------------- -->
-    <aside class="aside">
-      <nav class="nav">
-        <button type="button" class="btn_hamburger">«ö¶s</button>
-        <ul class="nav_list">
-	        <c:forEach var="serClaVO" items="${serClaList}">
-	         	 <li>
-	         	 	<form method="get" action="<%=request.getContextPath() %>/frontend/sec_items/secItemsViewPageAJAX.jsp">
-		         	 	<button type="button" id="Cla${serClaVO.serClaID}">${serClaVO.serClaName}</button>
-		         	 	<input type="hidden" name="serClaID" value="${serClaVO.serClaID}">
-	         	 	</form>
-	         	 </li>  
-	        </c:forEach>
-        </ul>
-      </nav>
-    </aside>
-<!-- 	°¼ÃäÄæ µ²§ô-------------------------------------------------------- -->
-<!-- 	main ¶}©l-------------------------------------------------------- -->
+	<!-- 	header é–‹å§‹------------------------------------------------------ -->
+	<header>
+			<div class="container">
+				<div class="navbar d-flex flex-nowrap py-3">
+					<a href="#"> <img
+						src="<%= request.getContextPath()%>/images/cmn/index/EASYSPACE.png"
+						alt="brand-logo-image" class=" brand-logo" style="height: 130px">
+					</a>
+					<div class="function-link d-flex flex-column col-10 bd-highlight">
+						<div
+							class="pages-login d-flex flex-row align-items-center col-12 justify-content-between mx-auto">
+							<ul
+								class="nav nav-items justify-content-between align-items-center col-9">
+								<li class="nav-item"><a class="nav-link" role="button"
+									href="#">æˆ¿å±‹ç§Ÿè³ƒ</a></li>
+								<li class="nav-item"><a class="nav-link" href="#">å±…å®¶æœå‹™</a>
+								</li>
+								<li class="nav-item"><a class="nav-link" href="#">äºŒæ‰‹å®¶é›»</a>
+								</li>
+							</ul>
+							<div
+								class="nav-menu-shopping-bag d-flex col-3 justify-content-sm-end  align-items-center">
+								<a href="#"><i class="bi bi-cart3 mx-2"
+									style="font-size: 3rem; color: #8C4E37;"></i></a> <a class="btn"
+									href="#" role="button" style="background-color: #FD9843">æœƒå“¡ç™»å…¥</a>
+							</div>
 
-    <main class="main">
-		
-			<c:forEach var="serAdVO" items="${serAdList}">
-				<div style="width: 500px; border:solid 1px red">
-				<div >
-				<img src="<%=request.getContextPath()%>/ser_ad/DBGifReader4.do?ad_vdr_id=${serAdVO.adVdrID}&ad_ser_cla_id=${serAdVO.adSerClaID}">
+						</div>
+						<form class="form-inline col-12 mx-auto mt-3">
+							<div class="input-group">
+								<input type="text" name="keyword" class="form-control"
+									id="searchinput" aria-describedby="search-input"
+									placeholder="Search" value="">
+								<button type="submit" class="btn btn-primary "
+									id="search-button" style="background-color: #1AA179">é–‹å§‹æœå°‹</button>
+							</div>
+						</form>
+					</div>
 				</div>
-					
-				<div>
-				</div>
-					
-					
-							
-								
-								
-								<span class="item_text" style="">${serVdrVO.vdrName}</span>
-								<span class="item_price">${serVdrVO.vdrTel}</span>
-								<span class="item_price">${serVdrVO.vdrCounty}</span>
-								<span class="item_price">${serVdrVO.vdrDist}</span>
-								<span class="item_price">${serVdrVO.vdrAddr}</span>
-								<span class="item_price">${serVdrVO.vdrOpen}</span>
-								<div class="item_price" style="width:100px">${serVdrVO.vdrIntro}</div>
-								<span class="item_price">${serVdrVO.vdrOpen}</span>
-							
-						
-					
-					<c:forEach var="secVO" items="${serAdList}">
-						<c:if test="${secItemsVO.shID==secPicsVO.shID}">
-							<a class="btn btn-buy"
-								href="<%=request.getContextPath()%>/sec_items/ShoppingServlet.do?shID=${secItemsVO.shID}&shName=${secItemsVO.shName}&shPrice=${secItemsVO.shPrice}&shQTY=1&action=ADD">¥[¤JÁÊª«¨®</a>
-						</c:if>
-					</c:forEach>
 			</div>
-			</c:forEach>
-		
-		
-		
-		
-		
-		
+		</header>
+	<!-- 	header çµæŸ------------------------------------------------------ -->
+	<!-- 	å´é‚Šæ¬„ é–‹å§‹-------------------------------------------------------- -->
+	<aside class="aside">
+		<nav class="nav">
+			<button type="button" class="btn_hamburger">æŒ‰éˆ•</button>
+			<ul class="nav_list">
+				<c:forEach var="serClaVO" items="${serClaList}">
+					<li>
+						<form method="get"
+							action="<%=request.getContextPath() %>/frontend/sec_items/secItemsViewPageAJAX.jsp">
+							<button type="button" id="Cla${serClaVO.serClaID}">${serClaVO.serClaName}</button>
+							<input type="hidden" name="serClaID" value="${serClaVO.serClaID}">
+						</form>
+					</li>
+				</c:forEach>
+			</ul>
+		</nav>
+	</aside>
+	<!-- 	å´é‚Šæ¬„ çµæŸ-------------------------------------------------------- -->
+	<!-- 	main é–‹å§‹-------------------------------------------------------- -->
 
-			
-	
+	<main class="main">
+
+		<c:forEach var="serAdVO" items="${serAdList}">
+
+			<div class="container">
+				<div class="card d-flex row flex-row p-4" style="min-width: 800px;">
+					<div class="company-img col-3">
+						<img class="img img-fluid"
+							src="https://d24o4k0vdyt0z8.cloudfront.net/thumb/20200620/2c07422d70925e37c9ea638461d0bea90f4e16836d2bb9624967bdd9e1e20f0214fb6aa0b01c49f4e396f4c52a0a24368f38b4ab9e7a0512089d855800b055ed.jpg"
+							alt="company-logo">
+					</div>
+					<div class="right-side col-9 d-flex flex-column">
+						<div
+							class="upper p-2 mb-5 d-flex flex-row justify-content-between">
+							<div class="company-info fs-5">
+								<h2 class="text-nowrap">${serAdVO.adVdrID }</h2>
+								<!-- ${companies[0].companyName} -->
+								<div>
+									<span class="me-1"><strong>5.0</strong></span> <i
+										class="bi bi-star-fill" style="color: Gold;"></i> <i
+										class="bi bi-star-fill" style="color: Gold;"></i> <i
+										class="bi bi-star-fill" style="color: Gold;"></i> <i
+										class="bi bi-star-fill" style="color: Gold;"></i> <i
+										class="bi bi-star-fill" style="color: Gold;"></i> <i
+										class="bi bi-star-fill" style="color: Gold;"></i> <span
+										class="ms-1">(27)</span>
+								</div>
+								<div>
+									<i class="bi bi-trophy"></i> 23 æ¬¡é›‡ç”¨
+								</div>
+								<div>
+									<i class="bi bi-check-circle-fill" style="color: DodgerBlue;"></i>
+									é€šéå…¬å¸èªè­‰
+								</div>
+								<span class="badge rounded-pill bg-info">æ´»èºå°ˆå®¶</span>
+							</div>
+							<div class="contact fs-5 text-end">
+								<div>
+									<i class="bi bi-chat bg-light"></i>
+								</div>
+								<p class="text-nowrap"></p>
+							</div>
+						</div>
+						<div
+							class="bottom p-2 d-flex flex-row align-items-end justify-content-between">
+							<div
+								class="p-2 w-70 company-profile d-inline-block text-truncate"
+								style="max-width: 500px;">
+								æ‹¾é–“è¨­è¨ˆæ˜¯ç”±30ä½è¨­è¨ˆå¸«&è¨­è¨ˆåŠ©ç†çµ„æˆçš„è¨­è¨ˆå…¬å¸ï¼Œä¸¦è‡ªæœ‰å¸«å‚…å››åå¹¾ä½ï¼Œéå¤–åŒ…ï¼Œæä¾›è¨­è¨ˆå¸«çš„æœå‹™çµ±åŒ…å•†çš„åƒ¹æ ¼ã€‚å¯æ–¼å®˜ç¶²ç™¼è¨Šè©¢å•ã€‚
+							</div>
+							<button type="button" class="btn btn-outline-success text-nowrap">æŠ•ééœ€æ±‚å–®</button>
+
+						</div>
+
+					</div>
+				</div>
+			</div>
+
+
+		</c:forEach>
+
+
+
+
+
+
+
+
+
 	</main>
+<footer>
+			<section class="ccc website-map pt-5">
+				<div class="container">
+					<div class="row">
+						<div class="footer-company-address col-xs-6 col-sm-3">
+							<address class="color-light-20">
+								1600 Amphitheatre Parkway <br> Mountain View, CA 94043
+							</address>
+						</div>
+						<div class="footer-about-us col-xs-6 col-sm-3">
+							<h4 class="my-2">é—œæ–¼æˆ‘å€‘</h4>
+							<ul class="list-unstyled list-light text-light">
+								<li><a href="#">å“ç‰Œæ•…äº‹</a></li>
+								<li><a href="#">æœ€æ–°æ¶ˆæ¯</a></li>
+								<li><a href="#">é€£çµ¡æˆ‘å€‘</a></li>
+							</ul>
+						</div>
+						<br style="clear: both" class="hidden-sm-up">
+						<div class="footer-service col-xs-6 col-sm-3">
+							<h4 class="my-2">åŠŸèƒ½æœå‹™</h4>
+							<ul class="list-unstyled list-light">
+								<li><a href="#">æˆ¿å±‹ç§Ÿè³ƒ</a></li>
+								<li><a href="#">å±…å®¶æœå‹™</a></li>
+								<li><a href="#">äºŒæ‰‹å®¶é›»</a></li>
 
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-<script src="http://code.jquery.com/jquery-3.6.0.min.js"></script>
-<script>
+							</ul>
+						</div>
+						<div class="footer-center col-xs-6 col-sm-3">
+							<h4 class="my-2">æœƒå“¡ä¸­å¿ƒ</h4>
+							<ul class="list-unstyled list-light">
+								<li><a href="#">æœƒå“¡è¨»å†Š</a></li>
+								<li><a href="#">å¿˜è¨˜å¯†ç¢¼</a></li>
+							</ul>
+						</div>
+					</div>
+					<hr>
+					<div class="footer-copyright row f-flex justify-content-between">
+						<div class="col-md-8 text-xs-center text-left my-1">
+							<p class="mt-1 text-muted">
+								Â© Copyright 2021 â€¢ All Rights Reserved | <a class=" " href="#">Disclaimer</a>
+								| <a class=" " href="#">Contact</a>
+							</p>
+						</div>
+					</div>
+				</div>
+			</section>
+			<section class="kkkk company-mail pt-3 bg-gray">
+				<div class="container">
+					<div class="row text-center justify-content-center">
+						<div class="col-12 col-md-8 col-lg-7">
+							<p class="text-h2">support@website.com</p>
+							<p class="text-h3">Fusce dapibus, tellus ac cursus commodo,
+								tortor mauris condimentum nibh, ut fermentum massa justo sit
+								amet risus.</p>
+						</div>
+					</div>
+				</div>
+			</section>
+		</footer>
+	<script
+		src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+	<script src="http://code.jquery.com/jquery-3.6.0.min.js"></script>
+	<script>
       $(function(){
 
         $("button.btn_hamburger").on("click", function(){
@@ -239,7 +360,7 @@ pageContext.setAttribute("serClaList", serClaList);
 
       });
 </script>
-<script>
+	<script>
 		$('#Cate1').click(function() {
 			$.ajax({
 				type: "get",
@@ -304,39 +425,39 @@ pageContext.setAttribute("serClaList", serClaList);
 
 	
 // 	$.ajax({
-// 	    // ¶i¦æ­n¨Dªººô§}(URL)
+// 	    // é€²è¡Œè¦æ±‚çš„ç¶²å€(URL)
 <%-- 	    url: '<%= request.getContextPath()%>/sec_items/GetSecItemsServlet.do', --%>
-// 	    // ­n°e¥Xªº¸ê®Æ (·|³Q¦Û°ÊÂà¦¨¬d¸ß¦r¦ê)
+// 	    // è¦é€å‡ºçš„è³‡æ–™ (æœƒè¢«è‡ªå‹•è½‰æˆæŸ¥è©¢å­—ä¸²)
 // 	    data: {
 // 	        shCateID: 
 // 	    },
-// 	    // ­n¨Ï¥Îªº­n¨Dmethod(¤èªk)¡APOST ©Î GET
+// 	    // è¦ä½¿ç”¨çš„è¦æ±‚method(æ–¹æ³•)ï¼ŒPOST æˆ– GET
 // 	    type: 'GET',
-// 	    // ¸ê®ÆªºÃş«¬
+// 	    // è³‡æ–™çš„é¡å‹
 // 	    dataType : 'json',
 // 	})
-// 	  // ­n¨D¦¨¥\®É­n°õ¦æªºµ{¦¡½X
-// 	  // ¦^À³·|³Q¶Ç»¼¨ì¦^½Õ¨ç¦¡ªº°Ñ¼Æ
+// 	  // è¦æ±‚æˆåŠŸæ™‚è¦åŸ·è¡Œçš„ç¨‹å¼ç¢¼
+// 	  // å›æ‡‰æœƒè¢«å‚³éåˆ°å›èª¿å‡½å¼çš„åƒæ•¸
 // 	  .done(function( json ) {
 // 	     $( '<h1>' ).text( json.title ).appendTo( 'body' );
 // 	     $( '<div class=\'content\'>').html( json.html ).appendTo( 'body' );
 // 	  })
-// 	  // ­n¨D¥¢±Ñ®É­n°õ¦æªºµ{¦¡½X
-// 	  // ª¬ºA½X·|³Q¶Ç»¼¨ì¦^½Õ¨ç¦¡ªº°Ñ¼Æ
+// 	  // è¦æ±‚å¤±æ•—æ™‚è¦åŸ·è¡Œçš„ç¨‹å¼ç¢¼
+// 	  // ç‹€æ…‹ç¢¼æœƒè¢«å‚³éåˆ°å›èª¿å‡½å¼çš„åƒæ•¸
 // 	  .fail(function( xhr, status, errorThrown ) {
-// 	    console.log( '¥X²{¿ù»~¡AµLªk§¹¦¨!' )
+// 	    console.log( 'å‡ºç¾éŒ¯èª¤ï¼Œç„¡æ³•å®Œæˆ!' )
 // 	    console.log( 'Error: ' + errorThrown )
 // 	    console.log( 'Status: ' + status )
 // 	    console.dir( xhr )
 // 	  })
-// 	  // ¤£½×¦¨¥\©Î¥¢±Ñ³£·|°õ¦æªº¦^½Õ¨ç¦¡
+// 	  // ä¸è«–æˆåŠŸæˆ–å¤±æ•—éƒ½æœƒåŸ·è¡Œçš„å›èª¿å‡½å¼
 // 	  .always(function( xhr, status ) {
-// 	    console.log( '­n¨D¤w§¹¦¨!' )
+// 	    console.log( 'è¦æ±‚å·²å®Œæˆ!' )
 // 	  })
 </script>
 
 
 
-<!-- 	main µ²§ô-------------------------------------------------------- -->
+	<!-- 	main çµæŸ-------------------------------------------------------- -->
 </body>
 </html>
