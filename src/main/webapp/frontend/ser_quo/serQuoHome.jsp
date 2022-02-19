@@ -46,7 +46,7 @@
 		</ul>
 		<ul>
 			<li><a
-				href="<%=request.getContextPath()%>/frontend/ser_quo/updateSerQuo.jsp">修改估價單</a>
+				href="<%=request.getContextPath()%>/frontend/ser_quo/updateSerQuo.jsp">廠商修改估價單</a>
 			</li>
 		</ul>
 
