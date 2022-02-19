@@ -3,6 +3,8 @@ package ezs.admin_emp.model;
 import java.util.List;
 
 import ezs.admin_func.model.AdminFuncJDBCDAO;
+import ezs.admin_priv.model.AdminPrivService;
+import ezs.admin_priv.model.AdminPrivVO;
 
 public class AdminEmpService {
 	
@@ -46,7 +48,14 @@ public class AdminEmpService {
 	}
 
 	public  List<AdminEmpVO> getAll() {
-		return dao.getAll();
+		AdminPrivService adminPrivService = new AdminPrivService();
+		List<AdminEmpVO> list = dao.getAll();
+		for(AdminEmpVO vo : list) {
+			Integer adminID = vo.getAdmID();
+			List<AdminPrivVO> authList = adminPrivService.getAllFromID(adminID);
+			vo.setAuthlist(authList);
+		}
+		return list;
 	}
 	
 	public AdminEmpVO Search(String admUsername ,String admPassword) {

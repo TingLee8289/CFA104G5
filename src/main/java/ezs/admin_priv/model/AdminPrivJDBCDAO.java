@@ -13,7 +13,7 @@ import util.Util;
 public class AdminPrivJDBCDAO implements AdminPriv_interface {
 
 	private static final String INSERT_STMT = "INSERT INTO `CFA104G5`.`ADMIN_PRIV` (adm_id, fun_id) VALUES (?, ?)";
-	private static final String DELETE = "DELETE FROM `CFA104G5`.`ADMIN_PRIV` WHERE (adm_id,fun_id) = (?,?)";
+	private static final String DELETE = "DELETE FROM `CFA104G5`.`ADMIN_PRIV` WHERE adm_id = ?";
 	private static final String GET_ONE_STMT = "SELECT adm_id, fun_id FROM `CFA104G5`.`ADMIN_PRIV` WHERE (adm_id,fun_id) = (?,?)";
 	private static final String GET_ALL_FROM_ONE_STMT = "SELECT adm_id, fun_id FROM `CFA104G5`.`ADMIN_PRIV` WHERE adm_id = ?";
 	private static final String GET_ALL_STMT = "SELECT adm_id, fun_id FROM `CFA104G5`.`ADMIN_PRIV` ORDER BY adm_id";
@@ -53,7 +53,7 @@ public class AdminPrivJDBCDAO implements AdminPriv_interface {
 	
 
 	@Override
-	public void delete(Integer admID, Integer funID) {
+	public void delete(Integer admID) {
 
 		try {
 
@@ -61,7 +61,6 @@ public class AdminPrivJDBCDAO implements AdminPriv_interface {
 			pstmt = con.prepareStatement(DELETE);
 
 			pstmt.setInt(1, admID);
-			pstmt.setInt(2, funID);
 
 			pstmt.executeUpdate();
 

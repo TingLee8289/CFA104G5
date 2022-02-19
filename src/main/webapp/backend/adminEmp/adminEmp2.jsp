@@ -1,3 +1,5 @@
+<%@page import="ezs.admin_func.model.AdminFuncVO"%>
+<%@page import="ezs.admin_func.model.AdminFuncService"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
@@ -10,7 +12,13 @@
 AdminEmpService admSvc = new AdminEmpService();
 List<AdminEmpVO> list = admSvc.getAll();
 pageContext.setAttribute("list", list);
-// System.out.print(list);
+System.out.print(list);
+%>
+<%
+AdminFuncService admfSvc = new AdminFuncService();
+List<AdminFuncVO> funList = admfSvc.getAll();
+pageContext.setAttribute("funlist", funList);
+// System.out.print(funList);
 %>
 <!DOCTYPE html>
 <html>
@@ -37,18 +45,23 @@ pageContext.setAttribute("list", list);
 				<td>${adminEmpVO.admPassword}</td>
 				<td>${adminEmpVO.admStatus}</td>
 				<td>
+					<c:forEach var="ff" items="${funList}">
+						<br>${adminFunSvc.getoneAdminFunc(ff.funID).funName}
+					</c:forEach>
+				</td> 
+				<td>
 					<c:forEach var="adminPrivVO" items="${adminEmpVO.authlist}">
 						<br>${adminFunSvc.getoneAdminFunc(adminPrivVO.funID).funName}
 					</c:forEach>
 				</td> 
-<!-- 				<td> -->
-<!-- 					<FORM METHOD="post" -->
-<%-- 						ACTION="<%=request.getContextPath()%>/admin_priv/AdminPrivServlet.do" --%>
-<!-- 						style="margin-bottom: 0px;"> -->
-<!-- 						<input type="submit" value="修改權限">  -->
-<%-- 						<input type="hidden" name="admID" value="${adminEmpVO.admID}">  --%>
-<!-- 						<input type="hidden" name="action" value="getOne_For_Update"> -->
-<!-- 					</FORM></td>--><td>
+				<td>
+					<FORM METHOD="post"
+						ACTION="<%=request.getContextPath()%>/admin_priv/AdminPrivServlet.do"
+						style="margin-bottom: 0px;">
+						<input type="submit" value="修改權限"> 
+						<input type="hidden" name="admID" value="${adminEmpVO.admID}"> 
+						<input type="hidden" name="action" value="getOne_For_Update">
+					</FORM></td><td>
 					<FORM METHOD="post"
 						ACTION="<%=request.getContextPath()%>/admin_priv/AdminPrivServlet.do"
 						style="margin-bottom: 0px;">
@@ -70,9 +83,5 @@ pageContext.setAttribute("list", list);
 		</c:forEach>
 	</ul>
 </c:if>
-<ul>
-  <li><a href='<%=request.getContextPath()%>/backend/adminEmp/addNewAdmin.jsp'>Add</a> a new Emp.</li>
-</ul>
-
 </body>
 </html>
