@@ -6,9 +6,13 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Insert title here</title>
-    
-<style>
+	<title>Insert title here</title>
+ 	<link href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+    <script src="//netdna.bootstrapcdn.com/bootstrap/3.0.0/js/bootstrap.min.js"></script>
+    <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+  
+<!--     寄送資訊css -->
+	<style>
         @import url("https://rsms.me/inter/inter.css");
 
         :root {
@@ -60,6 +64,7 @@
         padding: 10vw 2rem 0;
         margin: 0 auto;
         height: 100vh;
+        display: inline-block;
         }
 
         .form {
@@ -129,6 +134,14 @@
         background-color: #333;
         }
     </style>
+<!--     付款資訊css -->
+    <style>
+        body { margin-top:20px; }
+        .container2 { display: inline-block;}
+        .panel-title {display: inline;font-weight: bold;}
+        .checkbox.pull-right { margin: 0; }
+        .pl-ziro { padding-left: 0px; }
+    </style>
 </head>
 <body>
 	<div class="container">
@@ -169,9 +182,66 @@
             <input class="field__input" type="textarea" id="notes" />
           </label>
           
-        </div>
-        <hr>
         <button class="button">繼續填寫付款方式</button>
+        </div>
      </div>
+      <div class="container2">
+        <div class="row">
+            <div class="col-xs-12 col-md-4">
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <h3 class="panel-title">
+                            Payment Details
+                        </h3>
+                        <div class="checkbox pull-right">
+                            <label>
+                                <input type="checkbox" />
+                                Remember
+                            </label>
+                        </div>
+                    </div>
+                    <div class="panel-body">
+                        <form role="form">
+                        <div class="form-group">
+                            <label for="cardNumber">
+                                CARD NUMBER</label>
+                            <div class="input-group">
+                                <input type="text" class="form-control" id="cardNumber" placeholder="Valid Card Number"
+                                    required autofocus />
+                                <span class="input-group-addon"><span class="glyphicon glyphicon-lock"></span></span>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-xs-7 col-md-7">
+                                <div class="form-group">
+                                    <label for="expityMonth">
+                                        EXPIRY DATE</label>
+                                    <div class="col-xs-6 col-lg-6 pl-ziro">
+                                        <input type="text" class="form-control" id="expityMonth" placeholder="MM" required />
+                                    </div>
+                                    <div class="col-xs-6 col-lg-6 pl-ziro">
+                                        <input type="text" class="form-control" id="expityYear" placeholder="YY" required /></div>
+                                </div>
+                            </div>
+                            <div class="col-xs-5 col-md-5 pull-right">
+                                <div class="form-group">
+                                    <label for="cvCode">
+                                        CV CODE</label>
+                                    <input type="password" class="form-control" id="cvCode" placeholder="CV" required />
+                                </div>
+                            </div>
+                        </div>
+                        </form>
+                    </div>
+                </div>
+                <ul class="nav nav-pills nav-stacked">
+                    <li class="active"><a href="#"><span class="badge pull-right"><span class="glyphicon glyphicon-usd"></span>4200</span> Final Payment</a>
+                    </li>
+                </ul>
+                <br/>
+                <a href="#" class="btn btn-success btn-lg btn-block" role="button">Pay</a>
+            </div>
+        </div>
+   	 </div>
 </body>
 </html>
