@@ -136,7 +136,7 @@ th, td {
 		</c:forEach>
 	</table>
 	<%@ include file="page2.file"%>
-	<jsp:include page="/frontend/EZ_header.jsp"></jsp:include>
+	<jsp:include page="/frontend/EZ_footer.jsp"></jsp:include>
 
 </body>
 </html>

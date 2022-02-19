@@ -59,6 +59,9 @@ public class UpdateSerVdrServlet extends HttpServlet {
 				if (!vdrTel.trim().matches(telReg)) { // 以下練習正則(規)表示式(regular-expression)
 					errorMsgs.add("請重新輸入統一編號");
 				}
+				if(vdrVatno.length()==0) {
+					vdrVatno=null;
+				}
 
 				String vdrCounty = req.getParameter("vdrCounty").trim();
 				String countyReg = "^[(\\u4e00-\\u9fa5)]{3,20}$";// 檢查縣市三個字?
