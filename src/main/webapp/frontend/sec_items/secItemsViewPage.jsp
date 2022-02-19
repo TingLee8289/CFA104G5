@@ -1,4 +1,4 @@
-<%@ page contentType="text/html; charset=UTF-8" pageEncoding="Big5"%>
+<%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ page import="java.util.*"%>
 <%@ page import="ezs.sec_items.model.*"%>
@@ -42,7 +42,7 @@ pageContext.setAttribute("secItemslist", secItemslist);
         max-height:100%
       }
 
-      /* ==================== header °Ï°ì ==================== */
+      /* ==================== header å€åŸŸ ==================== */
       header.header{
         border: 1px solid black;
         width: 100%;
@@ -54,7 +54,7 @@ pageContext.setAttribute("secItemslist", secItemslist);
       header.header button.btn_hamburger{
         display: none;
       }
-      /* ==================== aside °Ï°ì ==================== */
+      /* ==================== aside å€åŸŸ ==================== */
       aside.aside{
         border: 1px solid blue;
         position: fixed;
@@ -96,7 +96,7 @@ pageContext.setAttribute("secItemslist", secItemslist);
         padding: 3px 10px;
       }
 
-      /* ==================== main °Ï°ì ==================== */
+      /* ==================== main å€åŸŸ ==================== */
       main.main{
         border: 1px solid red;
         margin-left: var(--aside-width);
@@ -159,15 +159,15 @@ pageContext.setAttribute("secItemslist", secItemslist);
     </style>
 </head>
 <body>
-<!-- 	header ¶}©l------------------------------------------------------ -->
+<!-- 	header é–‹å§‹------------------------------------------------------ -->
     <header class="header">
-      <button type="button" class="btn_hamburger">«ö¶s</button>³o¬O header
+      <button type="button" class="btn_hamburger">æŒ‰éˆ•</button>é€™æ˜¯ header
     </header>
-<!-- 	header µ²§ô------------------------------------------------------ -->
-<!-- 	°¼ÃäÄæ ¶}©l-------------------------------------------------------- -->
+<!-- 	header çµæŸ------------------------------------------------------ -->
+<!-- 	å´é‚Šæ¬„ é–‹å§‹-------------------------------------------------------- -->
     <aside class="aside">
       <nav class="nav">
-        <button type="button" class="btn_hamburger">«ö¶s</button>
+        <button type="button" class="btn_hamburger">æŒ‰éˆ•</button>
         <ul class="nav_list">
 	        <c:forEach var="secCategoryVO" items="${secCategorylist}">
 	         	 <li>
@@ -180,8 +180,8 @@ pageContext.setAttribute("secItemslist", secItemslist);
         </ul>
       </nav>
     </aside>
-<!-- 	°¼ÃäÄæ µ²§ô-------------------------------------------------------- -->
-<!-- 	main ¶}©l-------------------------------------------------------- -->
+<!-- 	å´é‚Šæ¬„ çµæŸ-------------------------------------------------------- -->
+<!-- 	main é–‹å§‹-------------------------------------------------------- -->
 
     <main class="main">
 		<ul class="item_list" id="item_list">
@@ -202,7 +202,7 @@ pageContext.setAttribute("secItemslist", secItemslist);
 					<c:forEach var="secItemsVO" items="${secItemslist}">
 						<c:if test="${secItemsVO.shID==secPicsVO.shID}">
 							<a class="btn btn-buy"
-								href="<%=request.getContextPath()%>/sec_items/ShoppingServlet.do?shID=${secItemsVO.shID}&shName=${secItemsVO.shName}&shPrice=${secItemsVO.shPrice}&shQTY=1&action=ADD">¥[¤JÁÊª«¨®</a>
+								href="<%=request.getContextPath()%>/sec_items/ShoppingServlet.do?shID=${secItemsVO.shID}&shName=${secItemsVO.shName}&shPrice=${secItemsVO.shPrice}&shQTY=1&action=ADD">åŠ å…¥è³¼ç‰©è»Š</a>
 						</c:if>
 					</c:forEach>
 				</li>
@@ -287,39 +287,39 @@ pageContext.setAttribute("secItemslist", secItemslist);
 
 	
 // 	$.ajax({
-// 	    // ¶i¦æ­n¨Dªººô§}(URL)
+// 	    // é€²è¡Œè¦æ±‚çš„ç¶²å€(URL)
 <%-- 	    url: '<%= request.getContextPath()%>/sec_items/GetSecItemsServlet.do', --%>
-// 	    // ­n°e¥Xªº¸ê®Æ (·|³Q¦Û°ÊÂà¦¨¬d¸ß¦r¦ê)
+// 	    // è¦é€å‡ºçš„è³‡æ–™ (æœƒè¢«è‡ªå‹•è½‰æˆæŸ¥è©¢å­—ä¸²)
 // 	    data: {
 // 	        shCateID: 
 // 	    },
-// 	    // ­n¨Ï¥Îªº­n¨Dmethod(¤èªk)¡APOST ©Î GET
+// 	    // è¦ä½¿ç”¨çš„è¦æ±‚method(æ–¹æ³•)ï¼ŒPOST æˆ– GET
 // 	    type: 'GET',
-// 	    // ¸ê®ÆªºÃş«¬
+// 	    // è³‡æ–™çš„é¡å‹
 // 	    dataType : 'json',
 // 	})
-// 	  // ­n¨D¦¨¥\®É­n°õ¦æªºµ{¦¡½X
-// 	  // ¦^À³·|³Q¶Ç»¼¨ì¦^½Õ¨ç¦¡ªº°Ñ¼Æ
+// 	  // è¦æ±‚æˆåŠŸæ™‚è¦åŸ·è¡Œçš„ç¨‹å¼ç¢¼
+// 	  // å›æ‡‰æœƒè¢«å‚³éåˆ°å›èª¿å‡½å¼çš„åƒæ•¸
 // 	  .done(function( json ) {
 // 	     $( '<h1>' ).text( json.title ).appendTo( 'body' );
 // 	     $( '<div class=\'content\'>').html( json.html ).appendTo( 'body' );
 // 	  })
-// 	  // ­n¨D¥¢±Ñ®É­n°õ¦æªºµ{¦¡½X
-// 	  // ª¬ºA½X·|³Q¶Ç»¼¨ì¦^½Õ¨ç¦¡ªº°Ñ¼Æ
+// 	  // è¦æ±‚å¤±æ•—æ™‚è¦åŸ·è¡Œçš„ç¨‹å¼ç¢¼
+// 	  // ç‹€æ…‹ç¢¼æœƒè¢«å‚³éåˆ°å›èª¿å‡½å¼çš„åƒæ•¸
 // 	  .fail(function( xhr, status, errorThrown ) {
-// 	    console.log( '¥X²{¿ù»~¡AµLªk§¹¦¨!' )
+// 	    console.log( 'å‡ºç¾éŒ¯èª¤ï¼Œç„¡æ³•å®Œæˆ!' )
 // 	    console.log( 'Error: ' + errorThrown )
 // 	    console.log( 'Status: ' + status )
 // 	    console.dir( xhr )
 // 	  })
-// 	  // ¤£½×¦¨¥\©Î¥¢±Ñ³£·|°õ¦æªº¦^½Õ¨ç¦¡
+// 	  // ä¸è«–æˆåŠŸæˆ–å¤±æ•—éƒ½æœƒåŸ·è¡Œçš„å›èª¿å‡½å¼
 // 	  .always(function( xhr, status ) {
-// 	    console.log( '­n¨D¤w§¹¦¨!' )
+// 	    console.log( 'è¦æ±‚å·²å®Œæˆ!' )
 // 	  })
 </script>
 
 
 
-<!-- 	main µ²§ô-------------------------------------------------------- -->
+<!-- 	main çµæŸ-------------------------------------------------------- -->
 </body>
 </html>

@@ -1,4 +1,4 @@
-<%@ page contentType="text/html; charset=UTF-8" pageEncoding="Big5"%>
+<%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ page import="java.util.* , ezs.sec_items.model.*" %>
 <html>
 <head>
@@ -10,15 +10,15 @@
    Vector<SecItem> buylist = (Vector<SecItem>) session.getAttribute("shoppingcart");%>
 <%if (buylist != null && (buylist.size() > 0)) {%>
 
-<font size="+3">�ثe�ʪ��������e�p�U�G�]ShoppingCart.jsp�^</font>
+<font size="+3">目前購物車的內容如下：（ShoppingCart.jsp）</font>
 
 <table id="table-1">
     <tr> 
-      <th width="200">�ӫ~ID</th>
-      <th width="100">�ӫ~�W��</th>
-      <th width="100">�ӫ~����</th>
-      <th width="100">�ƶq</th>
-      <th width="120">�ާ@</th>
+      <th width="200">商品ID</th>
+      <th width="100">商品名稱</th>
+      <th width="100">商品價格</th>
+      <th width="100">數量</th>
+      <th width="120">操作</th>
     </tr>
 </table>
     
@@ -38,7 +38,7 @@
           <form name="deleteForm" action="<%= request.getContextPath() %>/sec_items/ShoppingServlet.do" method="POST">
               <input type="hidden" name="action"  value="DELETE">
               <input type="hidden" name="del" value="<%= index %>">
-              <input type="submit" value="�R ��" class="button">
+              <input type="submit" value="刪 除" class="button">
           </form></td>
 	</tr>
 	<%}%>
@@ -46,10 +46,10 @@
 <p>
           <form name="checkoutForm" action="<%= request.getContextPath() %>/sec_items/ShoppingServlet.do" method="POST">
               <input type="hidden" name="action"  value="CHECKOUT"> 
-              <input type="submit" value="�I�ڵ��b" class="button">
+              <input type="submit" value="付款結帳" class="button">
           </form>
 <%}%>
 
-	<p><a href="<%= request.getContextPath() %>/frontend/sec_items/secItemsViewPage.jsp"><font size="+1"> �~ �� �� ��</font></a>
+	<p><a href="<%= request.getContextPath() %>/frontend/sec_items/secItemsViewPage.jsp"><font size="+1"> 繼 續 購 物</font></a>
 </body>
 </html>

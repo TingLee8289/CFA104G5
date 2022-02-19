@@ -1,4 +1,4 @@
-<%@ page language="java"  contentType="text/html; charset=UTF-8" pageEncoding="Big5"%>
+<%@ page language="java"  contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ page import="java.util.*, java.sql.*"%>
 <%@ page import="ezs.sec_items.model.*"%>
@@ -51,7 +51,7 @@
 		str += "&shPrice=";
 		str += rs.getInt("sh_price");
 		str += "&shQTY=1&action=ADD\"";
-		str += ">е[дJ┴╩клио</a>";
+		str += ">хКахЕеш│╝чЙйш╗К</a>";
 		str += "</li>";
 	}
 	
@@ -60,10 +60,10 @@
 // 	   	 	<div class="img_block">
 // 	    	    <img src="/CFA104G5/sec_pics/SecPicsReader.do?sh_id=1">
 // 	    	</div>
-// 	   	 <span class="item_text">дT╡┘16L░ко─╕`пр▓M▓b░г└у╛ў MJ-E160HN-TW</span>
+// 	   	 <span class="item_text">ф╕ЙшП▒16LщлШцХИчпАшГ╜ц╕Ец╖ищЩдц┐ХцйЯ MJ-E160HN-TW</span>
 // 	   	 <span class="item_price">$9000</span>
 // 			 </a>
-// 		<a class="btn btn-buy" href="/CFA104G5/sec_items/ShoppingServlet.do?shID=1&shName=дT╡┘16L░ко─╕`пр▓M▓b░г└у╛ў MJ-E160HN-TW&shPrice=9000&shQTY=1&action=ADD">е[дJ┴╩клио</a>
+// 		<a class="btn btn-buy" href="/CFA104G5/sec_items/ShoppingServlet.do?shID=1&shName=ф╕ЙшП▒16LщлШцХИчпАшГ╜ц╕Ец╖ищЩдц┐ХцйЯ MJ-E160HN-TW&shPrice=9000&shQTY=1&action=ADD">хКахЕеш│╝чЙйш╗К</a>
 // 	</li>	
 	
 	
