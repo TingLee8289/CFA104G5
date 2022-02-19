@@ -52,7 +52,6 @@
 </table>
        
        
-       <p><a href="<%= request.getContextPath() %>/frontend/sec_items/secItemsViewPage.jsp"><font size="+1"> 是 否 繼 續 購 物</font></a>
-
+<jsp:include page="/frontend/sec_items/shippingForm.jsp"></jsp:include>
 </body>
 </html>

@@ -55,7 +55,7 @@ public class ShoppingServlet extends HttpServlet {
 			}
 
 			session.setAttribute("shoppingcart", buylist);
-			String url = "/frontend/sec_items/shoppingCart.jsp";
+			String url = "/frontend/sec_items/shoppingCart2.jsp";
 			RequestDispatcher rd = req.getRequestDispatcher(url);
 			rd.forward(req, res);
 		}
@@ -66,7 +66,7 @@ public class ShoppingServlet extends HttpServlet {
 				SecItem order = buylist.get(i);
 				BigDecimal price = order.getShPrice();
 				Integer quantity = order.getShQTY();
-				total = total.add(price.multiply(new BigDecimal(quantity))) ;	// 此行相當於 total += (price*quantity);
+				total = total.add(price.multiply(new BigDecimal(quantity)));	// 此行相當於 total += (price*quantity);
 			}
 
 			String amount = String.valueOf(total);
