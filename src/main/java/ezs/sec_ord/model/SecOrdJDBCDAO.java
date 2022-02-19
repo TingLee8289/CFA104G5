@@ -10,6 +10,7 @@ import java.util.LinkedHashSet;
 import java.util.List;
 import java.util.Set;
 
+import ezs.sec_ord_details.model.SecOrdDetailsVO;
 import util.Util;
 
 public class SecOrdJDBCDAO implements SecOrdDAO_interface {
@@ -31,9 +32,11 @@ public class SecOrdJDBCDAO implements SecOrdDAO_interface {
 	private static final String GET_ALL_BY_SELLERID_STMT = "SELECT * FROM `CFA104G5`.`SEC_ORD` WHERE sh_sellerid = ? ORDER BY sh_date desc;";
 	private static final String UPDATE_COMPLETE_ORDER_STMT = "UPDATE `CFA104G5`.`SEC_ORD` SET sh_ord_status = 7 WHERE sh_ord_id = ?; ";
 	private static final String UPDATE_REFUND_ORDER_STMT = "UPDATE `CFA104G5`.`SEC_ORD` SET sh_ord_status = 6 WHERE sh_ord_id = ?; ";
+//	private static final String GET_ORD_DETAILS_STMT = "SELECT * FROM `CFA104G5`.`SEC_ORD` s JOIN `CFA104G5`.`SEC_ORD_DETAILS` s1 ON s.sh_ord_id = s1.sh_ord_id";
+	private static final String GET_ORDDETAILS_BYSECORD_STMT = "SELECT * FROM `CFA104G5`.`SEC_ORD_DETAILS` WHERE sh_ord_id = ?";
+	private static final String UPDATE_CANCEL_ORDER_STMT = "UPDATE `CFA104G5`.`SEC_ORD` SET sh_ord_status = 8 WHERE sh_ord_id = ?; ";
+	private static final String UPDATE_ORDER_SHIPPERED_STMT = "UPDATE `CFA104G5`.`SEC_ORD` SET sh_ord_status = 2 WHERE sh_ord_id = ?; ";
 
-	
-	
 	static {
 		try {
 			Class.forName(Util.DRIVER);
@@ -255,7 +258,7 @@ public class SecOrdJDBCDAO implements SecOrdDAO_interface {
 		}
 
 	}
-	
+
 	@Override
 	public void refundOrder(Integer shOrdID) {
 		try {
@@ -275,13 +278,13 @@ public class SecOrdJDBCDAO implements SecOrdDAO_interface {
 	public Set<SecOrdVO> getSecOrdByShSellerID(Integer shSellerID) {
 		Set<SecOrdVO> set = new LinkedHashSet<SecOrdVO>();
 		SecOrdVO secOrdVO = null;
-		
+
 		try {
 			con = DriverManager.getConnection(Util.URL, Util.USER, Util.PASSWORD);
 			pstmt = con.prepareStatement(GET_ALL_BY_SELLERID_STMT);
 			pstmt.setInt(1, shSellerID);
 			rs = pstmt.executeQuery();
-			
+
 			while (rs.next()) {
 				secOrdVO = new SecOrdVO();
 				secOrdVO.setShOrdID(rs.getInt("sh_ord_id"));
@@ -309,7 +312,67 @@ public class SecOrdJDBCDAO implements SecOrdDAO_interface {
 			Util.closeResource(con, pstmt, rs);
 		}
 		return set;
-		
+
 	}
 
+	@Override
+	public Set<SecOrdDetailsVO> getSecAllOrdDeatails(Integer shOrdID) {
+		Set<SecOrdDetailsVO> set = new LinkedHashSet<SecOrdDetailsVO>();
+		SecOrdDetailsVO secOrdDetailsVO = null;
+
+		try {
+			con = DriverManager.getConnection(Util.URL, Util.USER, Util.PASSWORD);
+			pstmt = con.prepareStatement(GET_ORDDETAILS_BYSECORD_STMT);
+			pstmt.setInt(1, shOrdID);
+			rs = pstmt.executeQuery();
+	
+			
+			while (rs.next()) {
+				secOrdDetailsVO = new SecOrdDetailsVO();
+				secOrdDetailsVO.setShOrdID(rs.getInt("sh_ord_id"));
+				secOrdDetailsVO.setShID(rs.getInt("sh_id"));
+				secOrdDetailsVO.setShName(rs.getString("sh_name"));
+				secOrdDetailsVO.setShPrice(rs.getInt("sh_price"));
+				secOrdDetailsVO.setShQty(rs.getInt("sh_qty"));
+
+				set.add(secOrdDetailsVO);
+
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			Util.closeResource(con, pstmt, rs);
+		}
+		return set;
+	}
+
+	@Override
+	public void updateCancleOrder(Integer shOrdID) {
+
+		try {
+			con = DriverManager.getConnection(Util.URL, Util.USER, Util.PASSWORD);
+			pstmt = con.prepareStatement(UPDATE_CANCEL_ORDER_STMT);
+			pstmt.setInt(1, shOrdID);
+			pstmt.executeUpdate();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			Util.closeResource(con, pstmt, rs);
+		}
+	}
+
+	@Override
+	public void updateOrderShippered(Integer shOrdID) {
+
+		try {
+			con = DriverManager.getConnection(Util.URL, Util.USER, Util.PASSWORD);
+			pstmt = con.prepareStatement(UPDATE_ORDER_SHIPPERED_STMT);
+			pstmt.setInt(1, shOrdID);
+			pstmt.executeUpdate();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			Util.closeResource(con, pstmt, rs);
+		}
+	}
 }

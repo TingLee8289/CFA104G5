@@ -4,6 +4,8 @@ import java.math.BigDecimal;
 import java.util.List;
 import java.util.Set;
 
+import ezs.sec_ord_details.model.SecOrdDetailsVO;
+
 public class SecOrdService {
 	
 	private SecOrdDAO_interface dao;
@@ -135,8 +137,19 @@ public class SecOrdService {
 	}
 
 	public void refundOrder(Integer shOrdID) {
-		dao.refundOrder(shOrdID);
-		
-
+		dao.refundOrder(shOrdID);	
 	}
+	
+	public Set<SecOrdDetailsVO> getSecAllOrdDeatails(Integer shOrdID) {
+		return dao.getSecAllOrdDeatails(shOrdID);
+	}
+	
+	public void updateCancleOrder(Integer shOrdID) {
+		dao.updateCancleOrder(shOrdID);
+	}
+	
+	public void updateOrderShippered(Integer shOrdID) {
+		dao.updateOrderShippered(shOrdID);
+	}
+	
 }

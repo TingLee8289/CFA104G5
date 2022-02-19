@@ -138,7 +138,8 @@ body {
 					action="<%=request.getContextPath()%>/frontend/member/memberRegister.jsp">
 					<input type="submit" class="btn btn-secondary" value="會員註冊">
 				</form>
-				<form method="post">
+				<form method="post"
+					action="<%=request.getContextPath()%>/frontend/member/resetpassword.jsp">
 					<input type="submit" class="btn btn-black" value="忘記密碼">
 				</form>
 			</div>

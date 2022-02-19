@@ -21,11 +21,13 @@ table#table-1 {
 	height: 80px;
 	text-align: center;
 }
+
 table#table-1 h4 {
 	color: blue;
 	display: block;
 	margin-bottom: 1px;
 }
+
 h4 {
 	color: SkyBlue;
 	display: inline;
@@ -62,67 +64,78 @@ h4 {
 
 
 		<li>
-			<FORM METHOD="post" ACTION="<%=request.getContextPath()%>/sec_ord/GetSecOrdBySellerServlet.do">
-				<b>輸入訂單編號:</b> <input type="text" name="shOrdID"> 
-				<input
+			<FORM METHOD="post"
+				ACTION="<%=request.getContextPath()%>/sec_ord/GetSecOrdBySellerServlet.do">
+				<b>輸入訂單編號:</b> <input type="text" name="shOrdID"> <input
 					type="hidden" name="action" value="getOne_For_Display"> <input
 					type="submit" value="送出">
 			</FORM>
 		</li>
 
-<%-- 		<jsp:useBean id="secItemsSvc" scope="page" --%>
-<%-- 			class="ezs.sec_items.model.SecItemsService" /> --%>
+		<jsp:useBean id="secOrdSvc" scope="page"
+			class="ezs.sec_ord.model.SecOrdService" />
 
-<!-- 		<li> -->
-<%-- 			<FORM METHOD="post" ACTION="<%=request.getContextPath()%>/sec_items/GetSecItemsServlet.do"> --%>
-<!-- 				<b>選擇商品編號:</b> <select size="1" name="shID"> -->
-<%-- 					<c:forEach var="secItemsVO" items="${secItemsSvc.all}"> --%>
-<%-- 						<option value="${secItemsVO.shID}">${secItemsVO.shID} --%>
-<%-- 					</c:forEach> --%>
-<!-- 				</select> <input type="hidden" name="action" value="getOne_For_Display"> -->
-<!-- 				<input type="submit" value="送出"> -->
-<!-- 			</FORM> -->
-<!-- 		</li> -->
+		<li>
+			<FORM METHOD="post"
+				ACTION="<%=request.getContextPath()%>/sec_ord/GetSecOrdBySellerServlet.do">
+				<b><font color=orange>選擇訂單編號:</font></b> <select size="1"
+					name="shOrdID">
+					<c:forEach var="shOrdID" items="${secOrdSvc.all}">
+						<option value="${secOrdVO.shOrdID}">${secOrdVO.shOrdID}
+					</c:forEach>
+				</select> <input type="submit" value="送出"> <input type="hidden"
+					name="action" value="listSecOrdDetails_BySecOrd_A">
+			</FORM>
+		</li>
 
-<%-- 		<jsp:useBean id="secCategorySvc" scope="page" --%>
-<%-- 			class="ezs.sec_category.model.SecCategoryService" /> --%>
-<!-- <!-- 			未對應到商品ID --> -->
-<!-- 		<li> -->
-<%-- 			<FORM METHOD="post" ACTION="<%=request.getContextPath()%>/sec_items/GetSecItemsServlet.do"> --%>
-<!-- 				<b>選擇商品類別:</b> <select size="1" name="shID"> -->
-<%-- 					<c:forEach var="secCategoryVO" items="${secCategorySvc.all}"> --%>
-<%-- 						<option value="${secCategoryVO.shCateID}">${secCategoryVO.shCateName}</option> --%>
-<%-- 					</c:forEach> --%>
-<!-- 				</select> <input type="hidden" name="action" value="getOne_For_Display"> -->
-<!-- 				<input type="submit" value="送出"> -->
-<!-- 			</FORM> -->
-<!-- 		</li> -->
-
-
-<!-- 		<li> -->
-<%-- 			<FORM METHOD="post" ACTION="<%=request.getContextPath()%>/sec_items/GetSecItemsServlet.do"> --%>
-<!-- 				<b>選擇商品名稱:</b> <select size="1" name="shID"> -->
-<%-- 					<c:forEach var="secItemsVO" items="${secItemsSvc.all}"> --%>
-<%-- 						<option value="${secItemsVO.shID}">${secItemsVO.shName} --%>
-<%-- 					</c:forEach> --%>
-<!-- 				</select> <input type="hidden" name="action" value="getOne_For_Display"> -->
-<!-- 				<input type="submit" value="送出"> -->
-<!-- 			</FORM> -->
-<!-- 		</li> -->
+		<%-- 		<jsp:useBean id="secCategorySvc" scope="page" --%>
+		<%-- 			class="ezs.sec_category.model.SecCategoryService" /> --%>
+		<!-- <!-- 			未對應到商品ID -->
 		
+		<!-- 		<li> -->
+		<%-- 			<FORM METHOD="post" ACTION="<%=request.getContextPath()%>/sec_items/GetSecItemsServlet.do"> --%>
+		<!-- 				<b>選擇商品類別:</b> <select size="1" name="shID"> -->
+		<%-- 					<c:forEach var="secCategoryVO" items="${secCategorySvc.all}"> --%>
+		<%-- 						<option value="${secCategoryVO.shCateID}">${secCategoryVO.shCateName}</option> --%>
+		<%-- 					</c:forEach> --%>
+		<!-- 				</select> <input type="hidden" name="action" value="getOne_For_Display"> -->
+		<!-- 				<input type="submit" value="送出"> -->
+		<!-- 			</FORM> -->
+		<!-- 		</li> -->
 
-<!-- 		<li> -->
-<%-- 			<FORM METHOD="post" ACTION="<%=request.getContextPath()%>/sec_items/GetSecItemsStatusServlet.do"> --%>
-<!-- 				<b>選擇商品狀態:</b>  -->
-<!-- 				<select size="1" name="shStatus"> -->
-<!-- 				<option value="0">已出售</option> -->
-<!-- 				<option value="1">上架</option> -->
-<!-- 				<option value="2">違規下架</option> -->
 
-<!-- 				</select> <input type="hidden" name="action" value="getOneStatus_For_Display"> -->
-<!-- 				<input type="submit" value="送出"> -->
-<!-- 			</FORM> -->
-<!-- 		</li> -->
-	
+		<!-- 		<li> -->
+		<%-- 			<FORM METHOD="post" ACTION="<%=request.getContextPath()%>/sec_items/GetSecItemsServlet.do"> --%>
+		<!-- 				<b>選擇商品名稱:</b> <select size="1" name="shID"> -->
+		<%-- 					<c:forEach var="secItemsVO" items="${secItemsSvc.all}"> --%>
+		<%-- 						<option value="${secItemsVO.shID}">${secItemsVO.shName} --%>
+		<%-- 					</c:forEach> --%>
+		<!-- 				</select> <input type="hidden" name="action" value="getOne_For_Display"> -->
+		<!-- 				<input type="submit" value="送出"> -->
+		<!-- 			</FORM> -->
+		<!-- 		</li> -->
+
+
+		<!-- 		<li> -->
+		<%-- 			<FORM METHOD="post" ACTION="<%=request.getContextPath()%>/sec_items/GetSecItemsStatusServlet.do"> --%>
+		<!-- 				<b>選擇商品狀態:</b>  -->
+		<!-- 				<select size="1" name="shStatus"> -->
+		<!-- 				<option value="0">已出售</option> -->
+		<!-- 				<option value="1">上架</option> -->
+		<!-- 				<option value="2">違規下架</option> -->
+
+		<!-- 				</select> <input type="hidden" name="action" value="getOneStatus_For_Display"> -->
+		<!-- 				<input type="submit" value="送出"> -->
+		<!-- 			</FORM> -->
+		<!-- 		</li> -->
+
+		<h3>
+			<font color=orange>賣家訂單查詢</font>
+		</h3>
+
+		<ul>
+			<li><a href='<%=request.getContextPath()%>/frontend/sec_ord/listAllSecOrd.jsp'>查詢</a>
+				賣家訂單</li>
+		</ul>
 </body>
 </html>
