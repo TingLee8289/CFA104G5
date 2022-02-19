@@ -31,7 +31,7 @@ public class DeleteQuoServlet extends HttpServlet{
 				SerQuoService serQuoSvc = new SerQuoService();
 				serQuoSvc.deleteSerQuo(quoID);
 				//刪除完成轉交頁面
-				String url = "/backend/ser/serQuo/listAllSerQuo.jsp";
+				String url = "/frontend/ser_quo/getQuoByVdrID.jsp";
 				RequestDispatcher successView = req.getRequestDispatcher(url); 
 				successView.forward(req, res);
 			} 
