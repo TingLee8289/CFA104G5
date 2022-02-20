@@ -13,25 +13,25 @@ import javax.servlet.http.HttpServletResponse;
 
 import ezs.ser_ord.model.*;
 
-@WebServlet("/ser_ord/DeleteOrdServlet.do")
-public class DeleteOrdServlet extends HttpServlet{
+@WebServlet("/ser_ord/JobCompletedServlet.do")
+public class JobCompletedServlet extends HttpServlet{
 	protected void doGet(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
 		doPost(req, res);
 	}
 
 	protected void doPost(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
 		String action = req.getParameter("action");
-		if("delete".equals(action)) {
+		if("JobCompleted".equals(action)) {
 			List<String> errorMsgs = new LinkedList<String>();
 			req.setAttribute("errorMsgs", errorMsgs);
 			//取得參數
 			try {
 				Integer ordID = Integer.valueOf(req.getParameter("ordID"));
-				//刪除資料
+				//更新資料
 				SerOrdService serOrdSvc = new SerOrdService();
-				serOrdSvc.deleteSerOrd(ordID);
-				//刪除完成轉交頁面
-				String url = "/backend/ser/serOrd/listAllSerOrd.jsp";
+				serOrdSvc.jobCompleted(ordID);
+				//更新完成轉交頁面
+				String url = "/frontend/ser_ord/getOrdByVdrID.jsp";
 				RequestDispatcher successView = req.getRequestDispatcher(url); 
 				successView.forward(req, res);
 			} 

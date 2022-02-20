@@ -13,15 +13,15 @@ import javax.servlet.http.HttpServletResponse;
 
 import ezs.ser_ord.model.*;
 
-@WebServlet("/ser_ord/DeleteOrdServlet.do")
-public class DeleteOrdServlet extends HttpServlet{
+@WebServlet("/ser_ord/FinishOrdServlet.do")
+public class FinishOrdServlet extends HttpServlet{
 	protected void doGet(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
 		doPost(req, res);
 	}
 
 	protected void doPost(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
 		String action = req.getParameter("action");
-		if("delete".equals(action)) {
+		if("FinishOrd".equals(action)) {
 			List<String> errorMsgs = new LinkedList<String>();
 			req.setAttribute("errorMsgs", errorMsgs);
 			//取得參數
@@ -29,9 +29,9 @@ public class DeleteOrdServlet extends HttpServlet{
 				Integer ordID = Integer.valueOf(req.getParameter("ordID"));
 				//刪除資料
 				SerOrdService serOrdSvc = new SerOrdService();
-				serOrdSvc.deleteSerOrd(ordID);
+				serOrdSvc.finishOrd(ordID);
 				//刪除完成轉交頁面
-				String url = "/backend/ser/serOrd/listAllSerOrd.jsp";
+				String url = "/frontend/ser_ord/getOrdByMemID.jsp";
 				RequestDispatcher successView = req.getRequestDispatcher(url); 
 				successView.forward(req, res);
 			} 
