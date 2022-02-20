@@ -55,8 +55,7 @@
 <table id="table-2">
 	<tr><td>
 		 <h3>此區房源 - listListing_ByLisAreaID.jsp</h3>
-		 <h4><a href="<%=request.getContextPath()%>/listing_select_page.jsp"><img src="images/back1.gif" width="100" height="32" border="0">回首頁</a></h4>
-	</td></tr>
+			<h4><a href="listing_select_page.jsp">回首頁</a></h4>	</td></tr>
 </table>
 
 <%-- 錯誤表列 --%>
@@ -109,20 +108,8 @@
 					<input type="hidden" name="lisID" value="${renListingVO.lisID}">
 					<input type="hidden" name="action" value="getOne_For_Display">
 				</FORM>
-			</td>
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	</c:forEach> 
-	
-	
+			</td>	
+	</c:forEach>
 
 </table>
 <%@ include file="page2.file" %>

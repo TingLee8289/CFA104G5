@@ -23,6 +23,7 @@ public class RenListingService  {
 ////		DAO新增出來才會產生的ShID 讓它對應Pics
 //		renListingPicVO.setLspLisID(id);
 		//picDao 傳到關聯表格
+//		System.out.print(renListingPicVO);
 		daolspPic.insert(renListingPicVO);
 	}
 	
