@@ -493,7 +493,7 @@
 	             			<img src="#" alt="" class="itemImg" />
 			                <p class="itemNumber">#QUE-007544-002</p>
 			                <h3 class="product-name"><%=order.getShName()%></h3>
-			                <p> <input type="text"  class="qty" placeholder="<%=order.getShQTY()%>"/> x <%=order.getShPrice()%></p>
+			                <p> <input type="text"  class="qty" placeholder="<%=order.getShQTY()%>"/> x $<%=order.getShPrice()%></p>
 			                <p class="stockStatus"> In Stock</p>
 	              		</div>  
 		             	<div class="prodTotal cartSection">
@@ -512,49 +512,49 @@
 	            </li>
 			<%}%>
 <!-- ---------------------------------------------------------------------------- -->
-			<li class="items odd">
-            	<div class="infoWrap"> 
-            		<div class="cartSection">
-		            	<img src="#" alt="" class="itemImg" />
-                		<p class="itemNumber">#QUE-007544-002</p>
-                		<h3>Item Name 1</h3>
-                 		<p> <input type="text"  class="qty" placeholder="3"/> x $5.00</p>
-                		<p class="stockStatus out"> Out of Stock</p>
-					</div>  
-					<div class="prodTotal cartSection">
-               			<p>$15.00</p>
-              		</div>
-                    <div class="cartSection removeWrap">
-                 		<a href="#" class="remove">x</a>
-            		</div>
-				</div>
-            </li>
+<!-- 			<li class="items odd"> -->
+<!--             	<div class="infoWrap">  -->
+<!--             		<div class="cartSection"> -->
+<!-- 		            	<img src="#" alt="" class="itemImg" /> -->
+<!--                 		<p class="itemNumber">#QUE-007544-002</p> -->
+<!--                 		<h3>Item Name 1</h3> -->
+<!--                  		<p> <input type="text"  class="qty" placeholder="3"/> x $5.00</p> -->
+<!--                 		<p class="stockStatus out"> Out of Stock</p> -->
+<!-- 					</div>   -->
+<!-- 					<div class="prodTotal cartSection"> -->
+<!--                			<p>$15.00</p> -->
+<!--               		</div> -->
+<!--                     <div class="cartSection removeWrap"> -->
+<!--                  		<a href="#" class="remove">x</a> -->
+<!--             		</div> -->
+<!-- 				</div> -->
+<!--             </li> -->
             
 <!-- ---------------------------------------------------------------------------- -->
-            <li class="items even">
-            	<div class="infoWrap"> 
-              		<div class="cartSection info">
-             			<img src="#" alt="" class="itemImg" />
-		                <p class="itemNumber">#QUE-007544-002</p>
-		                <h3>Item Name 1</h3>
-		                <p> <input type="text"  class="qty" placeholder="3"/> x $5.00</p>
-		                <p class="stockStatus"> In Stock</p>
-              		</div>  
-	             	<div class="prodTotal cartSection">
-	                	<p>$15.00</p>
-	              	</div>
+<!--             <li class="items even"> -->
+<!--             	<div class="infoWrap">  -->
+<!--               		<div class="cartSection info"> -->
+<!--              			<img src="#" alt="" class="itemImg" /> -->
+<!-- 		                <p class="itemNumber">#QUE-007544-002</p> -->
+<!-- 		                <h3>Item Name 1</h3> -->
+<!-- 		                <p> <input type="text"  class="qty" placeholder="3"/> x $5.00</p> -->
+<!-- 		                <p class="stockStatus"> In Stock</p> -->
+<!--               		</div>   -->
+<!-- 	             	<div class="prodTotal cartSection"> -->
+<!-- 	                	<p>$15.00</p> -->
+<!-- 	              	</div> -->
           
-                  	<div class="cartSection removeWrap">
-                		<a href="#" class="remove">x</a>
-            		</div>
-               </div>
+<!--                   	<div class="cartSection removeWrap"> -->
+<!--                 		<a href="#" class="remove">x</a> -->
+<!--             		</div> -->
+<!--                </div> -->
 <!-- ---------------------------------------------------------------------------- -->  
-               <div class="special">
-               		<div class="specialContent">
-               			Free gift with purchase!, gift wrap, etc!!
-               		</div>
-               </div>
-            </li>
+<!--                <div class="special"> -->
+<!--                		<div class="specialContent"> -->
+<!--                			Free gift with purchase!, gift wrap, etc!! -->
+<!--                		</div> -->
+<!--                </div> -->
+<!--             </li> -->
 <!-- ---------------------------------------------------------------------------- -->       
           </ul>
         </div>

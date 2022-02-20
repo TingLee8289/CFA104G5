@@ -167,12 +167,10 @@ public class SecOrdDetailsJDBCDAO implements SecOrdDetailsDAO_interface {
 	@Override
 	public void insert2 (SecOrdDetailsVO secOrdDetailsVO , Connection con) {
 
-		PreparedStatement pstmt = null;
-
 		try {
 
 			pstmt = con.prepareStatement(INSERT_STMT);
-			pstmt.setInt(1, secOrdDetailsVO.getShOrdID());
+			pstmt.setInt(1, secOrdDetailsVO.getShOrdID());  // 由自增主鍵提供
 			pstmt.setInt(2, secOrdDetailsVO.getShID());
 			pstmt.setString(3, secOrdDetailsVO.getShName());
 			pstmt.setInt(4, secOrdDetailsVO.getShPrice());

@@ -201,8 +201,17 @@ pageContext.setAttribute("secItemslist", secItemslist);
 					</a> 
 					<c:forEach var="secItemsVO" items="${secItemslist}">
 						<c:if test="${secItemsVO.shID==secPicsVO.shID}">
-							<a class="btn btn-buy"
-								href="<%=request.getContextPath()%>/sec_items/ShoppingServlet.do?shID=${secItemsVO.shID}&shName=${secItemsVO.shName}&shPrice=${secItemsVO.shPrice}&shQTY=1&action=ADD">加入購物車</a>
+<!-- 							<a class="btn btn-buy" -->
+<%-- 								href="<%=request.getContextPath()%>/sec_items/ShoppingServlet.do?shID=${secItemsVO.shID} --%>
+<%-- 								&shName=${secItemsVO.shName}&shPrice=${secItemsVO.shPrice}&shQTY=1&action=ADD">加入購物車</a> --%>
+							<form method="post" action="<%=request.getContextPath()%>/sec_items/ShoppingServlet.do">
+								<input type="submit" value="加入購物車">
+								<input type="hidden" name="shID" value="${secItemsVO.shID}">
+								<input type="hidden" name="shName" value="${secItemsVO.shName}">
+								<input type="hidden" name="shPrice" value="${secItemsVO.shPrice}">
+								<input type="hidden" name="shQTY" value="1">
+								<input type="hidden" name="action" value="ADD">
+							</form>
 						</c:if>
 					</c:forEach>
 				</li>

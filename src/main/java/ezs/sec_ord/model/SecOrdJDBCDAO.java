@@ -1,5 +1,6 @@
 package ezs.sec_ord.model;
 
+import java.math.BigDecimal;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
@@ -447,5 +448,44 @@ public class SecOrdJDBCDAO implements SecOrdDAO_interface {
 		
 		
 		
+	}
+
+	public static void main(String[] args) {
+
+		SecOrdJDBCDAO dao = new SecOrdJDBCDAO();
+
+		SecOrdVO secOrdVO = new SecOrdVO();
+		secOrdVO.setShBuyerID(1);
+		secOrdVO.setShSellerID(2);
+		secOrdVO.setShPostcode(320);
+		secOrdVO.setShCounty("測試測試測試測試");
+		secOrdVO.setShDist("測試測試");
+		secOrdVO.setShRoad("測試測試測試測試測試測試");
+		secOrdVO.setShPayment(10);
+		secOrdVO.setShOrdStatus(2);
+		secOrdVO.setShPrice(new BigDecimal(1000));
+		secOrdVO.setShDate(new java.sql.Date(new java.util.Date().getTime()));
+		secOrdVO.setShAPPDate(new java.sql.Date((new java.util.Date().getTime()) + 14 *24 *60 * 60 *1000L));
+		secOrdVO.setShNotes("zzz");
+		
+		List<SecOrdDetailsVO> testList = new ArrayList<SecOrdDetailsVO>(); // 準備置入明細數筆
+		SecOrdDetailsVO empXX = new SecOrdDetailsVO();   // 員工POJO1
+//		empXX.setEname("吳x");
+//		empXX.setJob("MANAGER");
+//		empXX.setHiredate(java.sql.Date.valueOf("2001-01-15"));
+//		empXX.setSal(new Double(15000));
+//		empXX.setComm(new Double(150));
+
+		SecOrdDetailsVO empYY = new SecOrdDetailsVO();   // 員工POJO2
+//		empYY.setEname("吳y");
+//		empYY.setJob("MANAGER");
+//		empYY.setHiredate(java.sql.Date.valueOf("2001-01-16"));
+//		empYY.setSal(new Double(16000));
+//		empYY.setComm(new Double(160));
+
+		testList.add(empXX);
+		testList.add(empYY);
+		
+//		dao.insertWithSecOrdDetails(deptVO , testList);
 	}
 }
