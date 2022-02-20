@@ -34,63 +34,63 @@ public class MemberServletUpdate extends HttpServlet {
 		String action = req.getParameter("action");
 		
 		// getOneMemInfo Frontend
-				if ("getOneMem_DisplayFrontEnd".equals(action)) {
+		if ("getOneMem_DisplayFrontEnd".equals(action)) {
 
-					List<String> errorMsgs = new LinkedList<String>();
-					req.setAttribute("errorMsgs", errorMsgs);
+			List<String> errorMsgs = new LinkedList<String>();
+			req.setAttribute("errorMsgs", errorMsgs);
 
-					try {
-						/*************************** 1.接收請求參數 - 輸入格式的錯誤處理 **********************/
-						String str = req.getParameter("memID");
-						if (str == null || (str.trim()).length() == 0) {
-							errorMsgs.add("請輸入會員編號");
-						}
-
-						if (!errorMsgs.isEmpty()) {
-							RequestDispatcher failureView = req.getRequestDispatcher("/frontend/member/select_page.jsp");
-							failureView.forward(req, res);
-							return;// 程式中斷
-						}
-
-						Integer memID = null;
-						try {
-							memID = new Integer(str);
-						} catch (Exception e) {
-							errorMsgs.add("會員編號格式不正確");
-						}
-
-						if (!errorMsgs.isEmpty()) {
-							RequestDispatcher failureView = req.getRequestDispatcher("/frontend/member/select_page.jsp");
-							failureView.forward(req, res);
-							return;
-						}
-
-						/*************************** 2.開始查詢資料 *****************************************/
-						MemberService memSvc = new MemberService();
-						MemberVO memberVO = memSvc.getOneMember(memID);
-						if (memberVO == null) {
-							errorMsgs.add("查無資料");
-						}
-
-						if (!errorMsgs.isEmpty()) {
-							RequestDispatcher failureView = req.getRequestDispatcher("/frontend/member/select_page.jsp");
-							failureView.forward(req, res);
-							return;
-						}
-
-						/*************************** 3.查詢完成,準備轉交(Send the Success view) *************/
-						req.setAttribute("memberVO", memberVO);
-						String url = "/frontend/member/listOneMember.jsp";
-						RequestDispatcher successView = req.getRequestDispatcher(url);
-						successView.forward(req, res);
-
-						/*************************** 其他可能的錯誤處理 *************************************/
-					} catch (Exception e) {
-						errorMsgs.add("無法取得資料:" + e.getMessage());
-						RequestDispatcher failureView = req.getRequestDispatcher("/frontend/member/select_page.jsp");
-						failureView.forward(req, res);
-					}
+			try {
+				/*************************** 1.接收請求參數 - 輸入格式的錯誤處理 **********************/
+				String str = req.getParameter("memID");
+				if (str == null || (str.trim()).length() == 0) {
+					errorMsgs.add("請輸入會員編號");
 				}
+
+				if (!errorMsgs.isEmpty()) {
+					RequestDispatcher failureView = req.getRequestDispatcher("/frontend/member/select_page.jsp");
+					failureView.forward(req, res);
+					return;// 程式中斷
+				}
+
+				Integer memID = null;
+				try {
+					memID = new Integer(str);
+				} catch (Exception e) {
+					errorMsgs.add("會員編號格式不正確");
+				}
+
+				if (!errorMsgs.isEmpty()) {
+					RequestDispatcher failureView = req.getRequestDispatcher("/frontend/member/select_page.jsp");
+					failureView.forward(req, res);
+					return;
+				}
+
+				/*************************** 2.開始查詢資料 *****************************************/
+				MemberService memSvc = new MemberService();
+				MemberVO memberVO = memSvc.getOneMember(memID);
+				if (memberVO == null) {
+					errorMsgs.add("查無資料");
+				}
+
+				if (!errorMsgs.isEmpty()) {
+					RequestDispatcher failureView = req.getRequestDispatcher("/frontend/member/select_page.jsp");
+					failureView.forward(req, res);
+					return;
+				}
+
+				/*************************** 3.查詢完成,準備轉交(Send the Success view) *************/
+				req.setAttribute("memberVO", memberVO);
+				String url = "/frontend/member/listOneMember.jsp";
+				RequestDispatcher successView = req.getRequestDispatcher(url);
+				successView.forward(req, res);
+
+				/*************************** 其他可能的錯誤處理 *************************************/
+			} catch (Exception e) {
+				errorMsgs.add("無法取得資料:" + e.getMessage());
+				RequestDispatcher failureView = req.getRequestDispatcher("/frontend/member/select_page.jsp");
+				failureView.forward(req, res);
+			}
+		}
 
 		// getOneMemInfo Backend
 		if ("getOneMem_Display".equals(action)) {
@@ -184,7 +184,7 @@ public class MemberServletUpdate extends HttpServlet {
 			
 			/*************************** 1.接收請求參數 - 輸入格式的錯誤處理 **********************/
 
-//			try {
+			try {
 			Integer memID = new Integer(req.getParameter("memID").trim());
 
 			String memPassword = req.getParameter("memPassword");
@@ -274,13 +274,101 @@ System.out.println("xxxxxxxxxxxxxxxxxxxxxxxxxxxx");
 			RequestDispatcher successView = req.getRequestDispatcher(url);
 			successView.forward(req, res);
 
-//			} catch (Exception e) {
-//				e.printStackTrace();
-//				errorMsgs.add(e.getMessage());
-//				RequestDispatcher failureView = req.getRequestDispatcher("/frontend/member/updateMember.jsp");
-//				failureView.forward(req, res);
-//			}
+			} catch (Exception e) {
+				e.printStackTrace();
+				errorMsgs.add(e.getMessage());
+				RequestDispatcher failureView = req.getRequestDispatcher("/frontend/member/updateMember.jsp");
+				failureView.forward(req, res);
+			}
 		}
+
+		
+		
+//==========================================================================================================
+		// backend member update
+		if ("getOneMemUpdate".equals(action)) {
+			List<String> errorMsgs = new LinkedList<String>();
+			req.setAttribute("errorMsgs", errorMsgs);
+			System.out.println("hhhhhhhhhh");
+			
+			try {
+				/*************************** 1.接收請求參數 - 輸入格式的錯誤處理 **********************/
+				Integer memID = new Integer(req.getParameter("memID").trim());
+
+				/*************************** 2.開始新增資料 ***************************************/
+				MemberService memberSvc = new MemberService();
+				MemberVO memberVO = memberSvc.getOneMember(memID);
+
+				/*************************** 3.新增完成,準備轉交(Send the Success view) ***********/
+				req.setAttribute("memberVO", memberVO);
+				String url = "/backend/member/listOneMember.jsp";
+				RequestDispatcher successView = req.getRequestDispatcher(url);
+				successView.forward(req, res);
+
+			} catch (Exception e) {
+				errorMsgs.add("無法取得要修改的資料:" + e.getMessage());
+				RequestDispatcher failureView = req.getRequestDispatcher("/backend/member/listAllMember.jsp");
+				failureView.forward(req, res);
+			}
+		}
+
+		// backend member update status
+		if ("updateADM".equals(action)) {
+			List<String> errorMsgs = new LinkedList<String>();
+			req.setAttribute("errorMsgs", errorMsgs);
+			System.out.println("testetstetetet");
+			
+			/*************************** 1.接收請求參數 - 輸入格式的錯誤處理 **********************/
+			try {
+			Integer memID = new Integer(req.getParameter("memID").trim());
+
+			Byte memStatus = new Byte(req.getParameter("memStatus"));
+			Integer memReported = new Integer(req.getParameter("memReported"));
+			Byte memLandlord = new Byte(req.getParameter("memLandlord"));
+			Byte memSupplier = new Byte(req.getParameter("memSupplier"));
+			Byte memSeller = new Byte(req.getParameter("memSeller"));
+			Integer memSupReported = new Integer(req.getParameter("memSupReported"));
+
+			MemberVO memberVO = new MemberVO();
+			memberVO.setMemID(memID);
+			memberVO.setMemStatus(memStatus);
+			memberVO.setMemReported(memReported);
+			memberVO.setMemLandlord(memLandlord);
+			memberVO.setMemSupplier(memSupplier);
+			memberVO.setMemSeller(memSeller);
+			memberVO.setMemSupReported(memSupReported);
+			
+			
+
+			if (!errorMsgs.isEmpty()) {
+				req.setAttribute("memberVO", memberVO);
+				RequestDispatcher failureView = req.getRequestDispatcher("/backend/member/listAllMember.jsp");
+				failureView.forward(req, res);
+				return;
+			}
+			/*************************** 2.開始新增資料 ***************************************/
+			MemberService memberSvc = new MemberService();
+			memberVO = memberSvc.updateMemberADM(memID, memLandlord, memSupplier, memSeller,
+					 memStatus, memReported, memSupReported);
+
+			/*************************** 3.新增完成,準備轉交(Send the Success view) ***********/
+			req.setAttribute("memberVO", memberVO);
+			String url = "/backend/member/listOneMember.jsp";
+			RequestDispatcher successView = req.getRequestDispatcher(url);
+			successView.forward(req, res);
+
+			} catch (Exception e) {
+				e.printStackTrace();
+				errorMsgs.add(e.getMessage());
+				RequestDispatcher failureView = req.getRequestDispatcher("/backend/member/listAllMember.jsp");
+				failureView.forward(req, res);
+			}
+		}
+
+		
+		
+		
+		
 
 //		if ("delete".equals(action)) { 
 //

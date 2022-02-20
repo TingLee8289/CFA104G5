@@ -1,5 +1,10 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ page import="ezs.sec_ord.model.*" %>
+<%
+	SecOrdVO secOrdVO = (SecOrdVO) request.getAttribute("secOrdVO");
+%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -141,107 +146,120 @@
         .panel-title {display: inline;font-weight: bold;}
         .checkbox.pull-right { margin: 0; }
         .pl-ziro { padding-left: 0px; }
+        
     </style>
 </head>
 <body>
-	<div class="container">
-        <h1>寄送資訊</h1>
-        <div class="form">
-          <div class="fields fields--2">
-            <label class="field">
-              <span class="field__label" for="name">全名</span>
-              <input class="field__input" type="text" id="name" value="" />
-            </label>
-            <label class="field">
-              <span class="field__label" for="phone">電話號碼</span>
-              <input class="field__input" type="text" id="phone" value="" />
-            </label>
-          </div>
-          <div class="fields fields--3">
-            <label class="field">
-              <span class="field__label" for="county">縣市</span>
-              <input class="field__input" type="text" id="county" />
-            </label>
-            <label class="field">
-              <span class="field__label" for="dist">區域</span>
-              <select class="field__input" id="dist">
-                <option value=""></option>
-              </select>
-            </label>
-            <label class="field">
-              <span class="field__label" for="zipcode">郵遞區號</span>
-              <input class="field__input" type="text" id="zipcode" />
-            </label>
-          </div>
-          <label class="field">
-            <span class="field__label" for="address">地址</span>
-            <input class="field__input" type="text" id="address" />
-          </label>
-          <label class="field">
-            <span class="field__label" for="notes">備註</span>
-            <input class="field__input" type="textarea" id="notes" />
-          </label>
-          
-        <button class="button">繼續填寫付款方式</button>
-        </div>
-     </div>
-      <div class="container2">
-        <div class="row">
-            <div class="col-xs-12 col-md-4">
-                <div class="panel panel-default">
-                    <div class="panel-heading">
-                        <h3 class="panel-title">
-                            Payment Details
-                        </h3>
-                        <div class="checkbox pull-right">
-                            <label>
-                                <input type="checkbox" />
-                                Remember
-                            </label>
-                        </div>
-                    </div>
-                    <div class="panel-body">
-                        <form role="form">
-                        <div class="form-group">
-                            <label for="cardNumber">
-                                CARD NUMBER</label>
-                            <div class="input-group">
-                                <input type="text" class="form-control" id="cardNumber" placeholder="Valid Card Number"
-                                    required autofocus />
-                                <span class="input-group-addon"><span class="glyphicon glyphicon-lock"></span></span>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-xs-7 col-md-7">
-                                <div class="form-group">
-                                    <label for="expityMonth">
-                                        EXPIRY DATE</label>
-                                    <div class="col-xs-6 col-lg-6 pl-ziro">
-                                        <input type="text" class="form-control" id="expityMonth" placeholder="MM" required />
-                                    </div>
-                                    <div class="col-xs-6 col-lg-6 pl-ziro">
-                                        <input type="text" class="form-control" id="expityYear" placeholder="YY" required /></div>
-                                </div>
-                            </div>
-                            <div class="col-xs-5 col-md-5 pull-right">
-                                <div class="form-group">
-                                    <label for="cvCode">
-                                        CV CODE</label>
-                                    <input type="password" class="form-control" id="cvCode" placeholder="CV" required />
-                                </div>
-                            </div>
-                        </div>
-                        </form>
-                    </div>
-                </div>
-                <ul class="nav nav-pills nav-stacked">
-                    <li class="active"><a href="#"><span class="badge pull-right"><span class="glyphicon glyphicon-usd"></span>4200</span> Final Payment</a>
-                    </li>
-                </ul>
-                <br/>
-                <a href="#" class="btn btn-success btn-lg btn-block" role="button">Pay</a>
-            </div>
-        </div>
-   	 </div>
+	<%-- 錯誤表列 --%>
+	<c:if test="${not empty errorMsgs}">
+		<font style="color: red">請修正以下錯誤:</font>
+		<ul>
+			<c:forEach var="message" items="${errorMsgs}">
+				<li style="color: red">${message}</li>
+			</c:forEach>
+		</ul>
+	</c:if>
+    <form method="post" action="<%=request.getContextPath()%>/sec_ord/SecOrdServlet.do">
+<!--  寄送資訊-------------------------------------------------------------- -->
+		<div class="container">
+	        <h1>寄送資訊</h1>
+		        <div class="form">
+		          <div class="fields fields--2">
+		            <label class="field">
+		              <span class="field__label" for="shBuyerID">買家會員編號</span>
+		              <input class="field__input" type="text" id="shBuyerID" name="shBuyerID" value="<%=(secOrdVO == null) ? "" : secOrdVO.getShBuyerID()%>" />
+		            </label>
+		            <label class="field">
+		              <span class="field__label" for="phone">收件人電話號碼</span>
+		              <input class="field__input" type="text" id="phone" value="" />
+		            </label>
+		          </div>
+		          <div class="fields fields--3">
+		            <label class="field">
+		              <span class="field__label" for="shCounty">縣市</span>
+		              <input class="field__input" type="text" id="shCounty" name="shCounty" value="<%=(secOrdVO == null) ? "" : secOrdVO.getShCounty()%>"/>
+		            </label>
+		            <label class="field">
+		              <span class="field__label" for="shDist">區域</span>
+		              <input class="field__input" type="text" id="shDist" name="shDist" value="<%=(secOrdVO == null) ? "" : secOrdVO.getShDist()%>"/>
+		            </label>
+		            <label class="field">
+		              <span class="field__label" for="shPostcode">郵遞區號</span>
+		              <input class="field__input" type="text" id="shPostcode" name="shPostcode" value="<%=(secOrdVO == null) ? "" : secOrdVO.getShPostcode()%>"/>
+		            </label>
+		          </div>
+		          <label class="field">
+		            <span class="field__label" for="shRoad">地址</span>
+		            <input class="field__input" type="text" id="shRoad" name="shRoad" value="<%=(secOrdVO == null) ? "" : secOrdVO.getShRoad()%>"/>
+		          </label>
+		          <label class="field">
+		            <span class="field__label" for="shNotes">備註</span>
+		            <input class="field__input" type="text" id="shNotes" name="shNotes" value="<%=(secOrdVO == null) ? "" : secOrdVO.getShNotes()%>"/>
+		          </label>
+		        	<button class="button">產生訂單</button>
+		        </div>
+	     </div>
+	      <input type="hidden" name="action" value="insert">
+      </form>
+<!--  信用卡資訊-------------------------------------------------------------- -->
+	      <div class="container2">
+	        <div class="row">
+	            <div class="col-xs-12 col-md-4">
+	                <div class="panel panel-default">
+	                    <div class="panel-heading">
+	                        <h3 class="panel-title">
+	                            Payment Details
+	                        </h3>
+	                        <div class="checkbox pull-right">
+	                            <label>
+	                                <input type="checkbox" />
+	                                Remember
+	                            </label>
+	                        </div>
+	                    </div>
+	                    <div class="panel-body">
+				<!--     <form role="form"> -->
+	                        <div class="form-group">
+	                            <label for="cardNumber">信用卡卡號</label>
+	                            <div class="input-group">
+	                                <input type="text" class="form-control" id="cardNumber" placeholder="Valid Card Number"
+	                                    required autofocus />
+	                                <span class="input-group-addon"><span class="glyphicon glyphicon-lock"></span></span>
+	                            </div>
+	                        </div>
+	                        <div class="row">
+	                            <div class="col-xs-7 col-md-7">
+	                                <div class="form-group">
+	                                    <label for="expityMonth">信用卡有效月年</label>
+	                                    <div class="col-xs-6 col-lg-6 pl-ziro">
+	                                    	<input type="text" class="form-control" id="expityMonth" placeholder="MM" required />
+	                                    </div>
+	                                    <div class="col-xs-6 col-lg-6 pl-ziro">
+	                                        <input type="text" class="form-control" id="expityYear" placeholder="YY" required />
+	                                    </div>
+	                                </div>
+	                            </div>
+	                            <div class="col-xs-5 col-md-5 pull-right">
+	                                <div class="form-group">
+	                                    <label for="cvCode">信用卡驗證碼</label>
+	                                    <input type="password" class="form-control" id="cvCode" placeholder="CV" required />
+	                                </div>
+	                            </div>
+	                        </div>
+						<!-- </form> -->
+	                    </div>
+	                </div>
+	                <ul class="nav nav-pills nav-stacked">
+	                    <li class="active"><a href="#"><span class="badge pull-right"><span class="glyphicon glyphicon-usd"></span>4200</span> Final Payment</a>
+	                    </li>
+	                </ul>
+	                <br/>
+	                <a href="#" class="btn btn-success btn-lg btn-block" role="button">Pay</a>
+	            </div>
+	        </div>
+	   	 </div>
+	   	
+ 
+   	 
 </body>
 </html>

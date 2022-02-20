@@ -34,7 +34,7 @@ public class RenLocationJNDIDAO implements RenLocationDAO_interface {
 	private static final String GET_ONE_STMT = "SELECT loc_id, loc_city, loc_dist FROM `CFA104G5`.`REN_LOCATION` WHERE loc_id = ?";
 	private static final String DELETE = "DELETE FROM `CFA104G5`.`REN_LOCATION` WHERE loc_id = ?";
 	private static final String UPDATE = "UPDATE `CFA104G5`.`REN_LOCATION` SET  loc_city=?, loc_dist=? WHERE loc_id = ?";
-	private static final String GET_RenListing_BylisAreaID_STMT = "SELECT LIS_ID, LIS_LDD_ID, LIS_RT_ID, LIS_TITLE,LIS_AREA_ID FROM `CFA104G5`.`REN_LISTING` where LIS_AREA_ID = ? order by LIS_ID";
+	private static final String GET_RenListing_BylisAreaID_STMT = "SELECT LIS_ID, LIS_LDD_ID, LIS_RT_ID, LIS_TITLE,LIS_AREA_ID,LIS_RENT,LIS_SQFT,LIS_FLR,LIS_RM_NO,LIS_CMN_AREA,LIS_BR_NO FROM `CFA104G5`.`REN_LISTING` where LIS_AREA_ID = ? order by LIS_ID";
 
 	
 	Connection con = null;
@@ -167,10 +167,13 @@ public class RenLocationJNDIDAO implements RenLocationDAO_interface {
 				renListingVO.setLisRtID(rs.getInt("LIS_RT_ID"));
 				renListingVO.setLisAreaID(rs.getInt("LIS_AREA_ID"));
 				renListingVO.setLisTitle(rs.getString("LIS_TITLE"));
-//				renListingVO.setLisRent(rs.getString("LIS_TITLE"));
-//				renListingVO
-//				renListingVO
-//				renListingVO
+				renListingVO.setLisRent(rs.getBigDecimal("LIS_RENT"));
+				renListingVO.setLisSqft(rs.getDouble("LIS_SQFT"));				
+				renListingVO.setLisFlr(rs.getString("LIS_FLR"));
+				renListingVO.setLisRmNo(rs.getInt("LIS_RM_NO"));
+				renListingVO.setLisCmnArea(rs.getInt("LIS_CMN_AREA"));
+				renListingVO.setLisBrNo(rs.getInt("LIS_BR_NO"));
+
 				set.add(renListingVO); // Store the row in the vector
 			}
 			}catch (SQLException se) {

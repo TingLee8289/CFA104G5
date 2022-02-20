@@ -8,6 +8,7 @@
   RenListingVO renListingVO = (RenListingVO) request.getAttribute("renListingVO");
 
 %>
+<%= renListingVO == null %>
 
 <!DOCTYPE html>
 <html>

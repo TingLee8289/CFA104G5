@@ -43,8 +43,10 @@ public class RenListingJNDIDAO implements RenListingDAO_interface {
 		Integer key = 0;
 		try {
 			con = ds.getConnection();
+			
 			pstmt = con.prepareStatement(INSERT_STMT, Statement.RETURN_GENERATED_KEYS);
-
+		
+			
 			pstmt.setInt(1, renListingVO.getLisLddID());
 			pstmt.setInt(2, renListingVO.getLisRtID());
 			pstmt.setInt(3, renListingVO.getLisAreaID());

@@ -23,4 +23,6 @@ public interface SecOrdDAO_interface {
     
     public void updateOrderShippered(Integer shOrdID);
     
+    public void insertWithSecOrdDetails(SecOrdVO secOrdVO , List<SecOrdDetailsVO> list);
+    
 }

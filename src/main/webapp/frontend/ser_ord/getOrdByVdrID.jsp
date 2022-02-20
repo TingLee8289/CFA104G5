@@ -53,13 +53,10 @@ pageContext.setAttribute("vdrOrdList", vdrOrdList);
 							<th>訂單ID</th>
 							<th>服務訂單狀態</th>
 							<th>付款狀態</th>
+							<th>付款方式</th>
 							
-							<th>需求單ID</th>
-							<th>估價單ID</th>
-							<th>會員ID</th>
 							<th>廠商ID</th>
-							<th>會員統一編號</th>
-							<th>廠商統一編號</th>
+							<th>服務類別</th>
 							<th>業主姓名</th>
 							<th>業主電話</th>
 							<th>施作日期</th>
@@ -68,17 +65,14 @@ pageContext.setAttribute("vdrOrdList", vdrOrdList);
 							<th>案場詳細地址</th>
 							<th>施工項目</th>
 							<th>總金額</th>
-							<th>訂金</th>
-							<th>訂金付款方式</th>
-							<th>訂金付款日期</th>
-							<th>尾款</th>
-							<th>尾款付款方式</th>
-							<th>尾款付款日期</th>
+							<th>會員統一編號</th>
+							<th>廠商統一編號</th>
 							
-							<th>客戶評價廠商星數</th>
-							<th>客戶評價廠商留言</th>
+<!-- 							<th>客戶評價廠商星數</th> -->
+<!-- 							<th>客戶評價廠商留言</th> -->
 							<th>備註</th>
-							<th>修改</th>
+							<th></th>
+							<th></th>
 							
 						</tr>
 					</thead>
@@ -90,17 +84,27 @@ pageContext.setAttribute("vdrOrdList", vdrOrdList);
 							<tr>
 								<td>${serOrdVO.ordID}</td>
 
-								<td><c:if test="${serOrdVO.ordStatus == 0}">未成立</c:if> <c:if
-										test="${serOrdVO.ordStatus == 1}">已成立</c:if> <c:if
-										test="${serOrdVO.ordStatus == 2}">結案</c:if></td>
-								<td>${serOrdVO.ordPayStatus}</td>
-								<td>${serOrdVO.ordDmdID}</td>
-								<td>${serOrdVO.ordQuoID}</td>
-								<td>${serOrdVO.ordMemID}</td>
+								<td>
+									<c:if test="${serOrdVO.ordStatus == 0}">未成立</c:if> 
+									<c:if test="${serOrdVO.ordStatus == 1}">已成立</c:if> 
+									<c:if test="${serOrdVO.ordStatus == 2}">完工</c:if>
+									<c:if test="${serOrdVO.ordStatus == 3}">結案</c:if>
+								</td>
+								<td>
+									<c:if test="${serOrdVO.ordPayStatus == 0}">未付款</c:if> 
+									<c:if test="${serOrdVO.ordPayStatus == 1}">已付款</c:if> 
+									<c:if test="${serOrdVO.ordPayStatus == 2}">確認收款</c:if> 
 								
+								</td>
+								<td>
+									<c:if test="${serOrdVO.ordPayType == 0}"></c:if> 
+									<c:if test="${serOrdVO.ordPayType == 1}">現金付款</c:if> 
+									<c:if test="${serOrdVO.ordPayType == 2}">線上刷卡</c:if> 
+									<c:if test="${serOrdVO.ordPayType == 3}">ATM轉帳</c:if>
+								</td>
+								
+								<td>${serOrdVO.ordVdrID}</td>
 								<td>${serOrdVO.ordSerClaID}</td>
-								<td>${serOrdVO.ordMemVatno}</td>
-								<td>${serOrdVO.ordVdrVatno}</td>
 								<td>${serOrdVO.ordClnName}</td>
 								<td>${serOrdVO.ordClnTel}</td>
 								<td>${serOrdVO.ordWorkDate}</td>
@@ -109,32 +113,30 @@ pageContext.setAttribute("vdrOrdList", vdrOrdList);
 								<td>${serOrdVO.ordAddr}</td>
 								<td>${serOrdVO.ordItem}</td>
 								<td>${serOrdVO.ordTotalPrice}</td>
-								<td>${serOrdVO.ordPrePay}</td>
-								<td><c:if test="${serOrdVO.ordPayType == 0}">尚未付款</c:if> <c:if
-										test="${serOrdVO.ordPayType == 1}">現金付款</c:if> <c:if
-										test="${serOrdVO.ordPayType == 2}">線上刷卡</c:if> <c:if
-										test="${serOrdVO.ordPayType == 3}">ATM轉帳</c:if></td>
-								<td>${serOrdVO.ordPayDate}</td>
-								<td>${serOrdVO.ordFpay}</td>
-								<td><c:if test="${serOrdVO.ordPayType == 0}">尚未付款</c:if> <c:if
-										test="${serOrdVO.ordPayType == 1}">現金付款</c:if> <c:if
-										test="${serOrdVO.ordPayType == 2}">線上刷卡</c:if> <c:if
-										test="${serOrdVO.ordPayType == 3}">ATM轉帳</c:if></td>
-								<td>${serOrdVO.ordFpayDate}</td>
+								<td>${serOrdVO.ordMemVatno}</td>
+								<td>${serOrdVO.ordVdrVatno}</td>
+<%-- 								<td>${serOrdVO.ordBuyerScore}</td> --%>
+<%-- 								<td>${serOrdVO.ordBuyerTxt}</td> --%>
 								
-								<td>${serOrdVO.ordVdrScore}</td>
-								<td>${serOrdVO.ordVdrTxt}</td>
 								<td>${serOrdVO.ordNote}</td>
 								<td>
 									<FORM METHOD="post"
-										ACTION="<%=request.getContextPath()%>/ser_ord/UpdateOrdServlet.do"
+										ACTION="<%=request.getContextPath()%>/ser_ord/UpdateOrdByVdrServlet.do"
 										style="margin-bottom: 0px;">
-										<input type="submit" value="修改"> <input type="hidden"
+										<input type="submit" value="確認付款"> <input type="hidden"
 											name="ordID" value="${serOrdVO.ordID}"> <input
 											type="hidden" name="action" value="updateOneOrd">
 									</FORM>
 								</td>
-								
+								<td>
+									<FORM METHOD="post"
+										ACTION="<%=request.getContextPath()%>/ser_ord/JobCompletedServlet.do"
+										style="margin-bottom: 0px;">
+										<input type="submit" value="完工"> <input type="hidden"
+											name="ordID" value="${serOrdVO.ordID}"> <input
+											type="hidden" name="action" value="JobCompleted">
+									</FORM>
+								</td>
 							</tr>
 						</c:forEach>
 					</tbody>

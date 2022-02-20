@@ -20,7 +20,8 @@ public class SerOrdJDBCDAO implements SerOrdDAO_interface {
 	private static final String UPDATE = "UPDATE `ser_ord` set ORD_STATUS=?,ORD_PAY_STATUS=?,ORD_DMD_ID=?,ORD_QUO_ID=?,ORD_MEM_ID=?,ORD_VDR_ID=?,ORD_SER_CLA_ID=?,ORD_MEM_VATNO=?,ORD_VDR_VATNO=?,ORD_CLN_NAME=?,ORD_CLN_TEL=?,ORD_WORK_DATE=?,ORD_COUNTY=?,ORD_DIST=?,ORD_ADDR=?,ORD_ITEM=?,ORD_TOTALPRICE=?,ORD_PREPAY=?,ORD_PAYTYPE=?,ORD_PAY_DATE=?,ORD_FPAY=?,ORD_FPAYTYPE=?,ORD_FPAY_DATE=?,ORD_BUYER_SCORE=?,ORD_BUYER_TXT=?,ORD_VDR_SCORE=?,ORD_VDR_TXT=?,ORD_NOTE=? where ORD_ID = ?";
 	private static final String FIND_ORD_BY_VDRID = "SELECT * FROM CFA104G5.SER_ORD where ORD_VDR_ID = ?";
 	private static final String FIND_ORD_BY_MEMID = "SELECT * FROM CFA104G5.SER_ORD where ORD_MEM_ID = ?";
-	
+	private static final String FINISH_ORD = "UPDATE `CFA104G5`.`SER_ORD` SET `ORD_STATUS` = '3' WHERE ORD_ID = ?";
+	private static final String JOB_COMPLETED = "UPDATE `CFA104G5`.`SER_ORD` SET `ORD_STATUS` = '2' WHERE ORD_ID = ?";
 	static {
 		try {
 			Class.forName(Util.DRIVER);
@@ -28,7 +29,7 @@ public class SerOrdJDBCDAO implements SerOrdDAO_interface {
 			ce.printStackTrace();
 		}
 	}
-	
+
 	Connection con = null;
 	PreparedStatement pstmt = null;
 	ResultSet rs = null;
@@ -143,15 +144,15 @@ public class SerOrdJDBCDAO implements SerOrdDAO_interface {
 
 	@Override
 	public SerOrdVO findByPrimaryKey(Integer ordID) {
-		SerOrdVO serOrdVO= null;
-		
+		SerOrdVO serOrdVO = null;
+
 		try {
-			con = DriverManager.getConnection(Util.URL,Util.USER,Util.PASSWORD);
+			con = DriverManager.getConnection(Util.URL, Util.USER, Util.PASSWORD);
 			pstmt = con.prepareStatement(GET_ONE_STMT);
 			pstmt.setInt(1, ordID);
 			rs = pstmt.executeQuery();
-			while(rs.next()) {
-				
+			while (rs.next()) {
+
 				serOrdVO = new SerOrdVO();
 				serOrdVO.setOrdID(rs.getInt("ORD_ID"));
 				serOrdVO.setOrdStatus(rs.getByte("ORD_STATUS"));
@@ -182,12 +183,11 @@ public class SerOrdJDBCDAO implements SerOrdDAO_interface {
 				serOrdVO.setOrdVdrScore(rs.getInt("ORD_VDR_SCORE"));
 				serOrdVO.setOrdVdrTxt(rs.getString("ORD_VDR_TXT"));
 				serOrdVO.setOrdNote(rs.getString("ORD_NOTE"));
-				
-				
+
 			}
 		} catch (SQLException se) {
 			se.printStackTrace();
-		}finally {
+		} finally {
 			Util.closeResource(con, pstmt, rs);
 		}
 		return serOrdVO;
@@ -195,16 +195,16 @@ public class SerOrdJDBCDAO implements SerOrdDAO_interface {
 
 	@Override
 	public List<SerOrdVO> getAll() {
-		List<SerOrdVO> list= new ArrayList<SerOrdVO>();
+		List<SerOrdVO> list = new ArrayList<SerOrdVO>();
 		SerOrdVO serOrdVO = null;
 		try {
-			con = DriverManager.getConnection(Util.URL,Util.USER,Util.PASSWORD);
+			con = DriverManager.getConnection(Util.URL, Util.USER, Util.PASSWORD);
 			pstmt = con.prepareStatement(GET_ALL_STMT);
 			rs = pstmt.executeQuery();
-			while(rs.next()) {
+			while (rs.next()) {
 				// 每次進來迴圈裡，就代表一筆資料，我們就產生一個Bean，包裝著查詢的資料，最後再回傳給呼叫端
 				serOrdVO = new SerOrdVO();
-				
+
 				serOrdVO.setOrdID(rs.getInt("ORD_ID"));
 				serOrdVO.setOrdStatus(rs.getByte("ORD_STATUS"));
 				serOrdVO.setOrdPayStatus(rs.getByte("ORD_PAY_STATUS"));
@@ -236,11 +236,10 @@ public class SerOrdJDBCDAO implements SerOrdDAO_interface {
 				serOrdVO.setOrdNote(rs.getString("ORD_NOTE"));
 				list.add(serOrdVO);
 			}
-			
-			
+
 		} catch (SQLException se) {
 			se.printStackTrace();
-		}finally {
+		} finally {
 			Util.closeResource(con, pstmt, rs);
 		}
 		return list;
@@ -248,17 +247,17 @@ public class SerOrdJDBCDAO implements SerOrdDAO_interface {
 
 	@Override
 	public List<SerOrdVO> findOrdByVdrID(Integer ordVdrID) {
-		List<SerOrdVO> list= new ArrayList<SerOrdVO>();
+		List<SerOrdVO> list = new ArrayList<SerOrdVO>();
 		SerOrdVO serOrdVO = null;
 		try {
-			con = DriverManager.getConnection(Util.URL,Util.USER,Util.PASSWORD);
+			con = DriverManager.getConnection(Util.URL, Util.USER, Util.PASSWORD);
 			pstmt = con.prepareStatement(FIND_ORD_BY_VDRID);
 			pstmt.setInt(1, ordVdrID);
 			rs = pstmt.executeQuery();
-			while(rs.next()) {
+			while (rs.next()) {
 				// 每次進來迴圈裡，就代表一筆資料，我們就產生一個Bean，包裝著查詢的資料，最後再回傳給呼叫端
 				serOrdVO = new SerOrdVO();
-				
+
 				serOrdVO.setOrdID(rs.getInt("ORD_ID"));
 				serOrdVO.setOrdStatus(rs.getByte("ORD_STATUS"));
 				serOrdVO.setOrdPayStatus(rs.getByte("ORD_PAY_STATUS"));
@@ -290,11 +289,10 @@ public class SerOrdJDBCDAO implements SerOrdDAO_interface {
 				serOrdVO.setOrdNote(rs.getString("ORD_NOTE"));
 				list.add(serOrdVO);
 			}
-			
-			
+
 		} catch (SQLException se) {
 			se.printStackTrace();
-		}finally {
+		} finally {
 			Util.closeResource(con, pstmt, rs);
 		}
 		return list;
@@ -302,17 +300,17 @@ public class SerOrdJDBCDAO implements SerOrdDAO_interface {
 
 	@Override
 	public List<SerOrdVO> findOrdByMemID(Integer ordMemID) {
-		List<SerOrdVO> list= new ArrayList<SerOrdVO>();
+		List<SerOrdVO> list = new ArrayList<SerOrdVO>();
 		SerOrdVO serOrdVO = null;
 		try {
-			con = DriverManager.getConnection(Util.URL,Util.USER,Util.PASSWORD);
+			con = DriverManager.getConnection(Util.URL, Util.USER, Util.PASSWORD);
 			pstmt = con.prepareStatement(FIND_ORD_BY_MEMID);
 			pstmt.setInt(1, ordMemID);
 			rs = pstmt.executeQuery();
-			while(rs.next()) {
+			while (rs.next()) {
 				// 每次進來迴圈裡，就代表一筆資料，我們就產生一個Bean，包裝著查詢的資料，最後再回傳給呼叫端
 				serOrdVO = new SerOrdVO();
-				
+
 				serOrdVO.setOrdID(rs.getInt("ORD_ID"));
 				serOrdVO.setOrdStatus(rs.getByte("ORD_STATUS"));
 				serOrdVO.setOrdPayStatus(rs.getByte("ORD_PAY_STATUS"));
@@ -344,16 +342,47 @@ public class SerOrdJDBCDAO implements SerOrdDAO_interface {
 				serOrdVO.setOrdNote(rs.getString("ORD_NOTE"));
 				list.add(serOrdVO);
 			}
-			
-			
+
 		} catch (SQLException se) {
 			se.printStackTrace();
-		}finally {
+		} finally {
 			Util.closeResource(con, pstmt, rs);
 		}
 		return list;
 	}
 
-	
-	
+	@Override
+	public void finishOrd(Integer ordID) {
+		try {
+			con = DriverManager.getConnection(Util.URL, Util.USER, Util.PASSWORD);
+
+			pstmt = con.prepareStatement(FINISH_ORD);
+
+			pstmt.setInt(1, ordID);
+			pstmt.executeUpdate();
+		} catch (SQLException se) {
+			se.printStackTrace();
+		} finally {
+			Util.closeResource(con, pstmt, rs);
+		}
+
+	}
+
+	@Override
+	public void jobCompleted(Integer ordID) {
+		try {
+			con = DriverManager.getConnection(Util.URL, Util.USER, Util.PASSWORD);
+
+			pstmt = con.prepareStatement(JOB_COMPLETED);
+
+			pstmt.setInt(1, ordID);
+			pstmt.executeUpdate();
+		} catch (SQLException se) {
+			se.printStackTrace();
+		} finally {
+			Util.closeResource(con, pstmt, rs);
+		}
+
+	}
+
 }

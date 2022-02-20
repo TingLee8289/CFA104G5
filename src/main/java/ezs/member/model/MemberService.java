@@ -58,30 +58,6 @@ public MemberVO addMember(String memUsername, String memPassword, String memName
 		return memberVO;
 	}
 	
-	
-	public MemberVO updateMemberADM(Integer memID, Byte memLandlord, Byte memSupplier, Byte memSeller,
-			Byte memStatus, Integer memRevCount, Integer memRevScore, Integer memRedCount, Integer memredscore, 
-			Integer memReported, Integer memLddReported, Integer memSupReported, Integer memSelReported) {
-		MemberVO memberVO = new MemberVO();
-
-		memberVO.setMemID(memID);
-		memberVO.setMemLandlord(memLandlord);
-		memberVO.setMemSupplier(memSupplier);
-		memberVO.setMemSeller(memSeller);
-		memberVO.setMemStatus(memStatus);
-		memberVO.setMemRevCount(memRevCount);
-		memberVO.setMemRevScore(memRevScore);
-		memberVO.setMemRedCount(memRedCount);
-		memberVO.setMemRedScore(memredscore);
-		memberVO.setMemReported(memReported);
-		memberVO.setMemLddReported(memLddReported);
-		memberVO.setMemSupReported(memSupReported);
-		memberVO.setMemSelReported(memSelReported);
-		dao.updateADM(memberVO);
-
-		return memberVO;
-	}
-
 
 	// for Struts2
 	public void updateMember(MemberVO memberVO) {
@@ -115,7 +91,27 @@ public MemberVO addMember(String memUsername, String memPassword, String memName
 
 	}
 	
+
 	public MemberVO searchEmail(String memEmail) {
 		return dao.searchEmail(memEmail);
 	}
+
+	public MemberVO updateMemberADM(Integer memID, Byte memLandlord, Byte memSupplier, Byte memSeller,
+			Byte memStatus, Integer memReported, Integer memSupReported) {
+		MemberVO memberVO = new MemberVO();
+
+		memberVO.setMemID(memID);
+		memberVO.setMemLandlord(memLandlord);
+		memberVO.setMemSupplier(memSupplier);
+		memberVO.setMemSeller(memSeller);
+		memberVO.setMemStatus(memStatus);
+		memberVO.setMemReported(memReported);
+		memberVO.setMemSupReported(memSupReported);
+		dao.updateADM(memberVO);
+
+		return memberVO;
+	}
+	
+	
+
 }

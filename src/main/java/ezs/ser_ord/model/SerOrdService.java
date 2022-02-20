@@ -113,4 +113,10 @@ public class SerOrdService {
 	public List<SerOrdVO> findOrdByMemID(Integer ordMemID){
 		return dao.findOrdByMemID(ordMemID);
 	}
+	public void finishOrd(Integer ordID) {   
+		 dao.finishOrd(ordID);
+	}
+	public void jobCompleted(Integer ordID) {   
+		dao.jobCompleted(ordID);
+	}
 }

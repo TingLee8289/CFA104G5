@@ -522,7 +522,7 @@ public class RenListingServlet extends HttpServlet {
 				failureView.forward(req, res);
 				return; //程式中斷
 			}	
-				
+			System.out.print(12345);	
 			/*******************************2.開始新增資料************************/
 			RenListingService renListingSvc = new RenListingService();
 			renListingVO = renListingSvc.addRenListing(lisLddID,lisRtID,lisAreaID,lisTitle,lisAbt,
@@ -530,7 +530,7 @@ public class RenListingServlet extends HttpServlet {
 					lisCmnArea,lisBrNo,lisEthernet,lisWifi,lisWh,lisShenc,lisAc,lisFridge,
 					lisTv,lisWasher,lisDryer,lisTc,lisBed,lisCabinet,lisSofa,lisParking,
 					lisCook,lisPet,lisSmoking,lisMonly,lisFonly,lisSonly,lisStatus,lisApproval);
-			
+			System.out.print(renListingPicVO);
 			renListingSvc.addRenListing(renListingPicVO);
 			
 			/*****************************3.新增完成，準備轉交(send the Success view)*********/
