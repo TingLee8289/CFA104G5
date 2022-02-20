@@ -66,19 +66,34 @@ public class SecOrdServlet extends HttpServlet {
 			List<String> errorMsgs = new LinkedList<String>();
 			req.setAttribute("errorMsgs", errorMsgs);
 			
+			
 			try {
 				/*************************** 1.接收請求參數 ****************************************/
-				Integer shBuyerID = Integer.valueOf(req.getParameter("memID"));
-				Integer shSellerID = Integer.valueOf(req.getParameter("shSellerID"));
+				Integer shBuyerID = Integer.valueOf(req.getParameter("shBuyerID"));
+				Integer shSellerID = 1;
 				Integer shPostcode = Integer.valueOf(req.getParameter("shPostcode"));
+				
 				String shCounty = (String) req.getParameter("shCounty");
+				if (shCounty == null || shCounty.trim().length() == 0) {
+					errorMsgs.add("縣市請勿空白");
+				}
+				
 				String shDist = (String) req.getParameter("shDist");
+				if (shDist == null || shDist.trim().length() == 0) {
+					errorMsgs.add("區域請勿空白");
+				}
+				
 				String shRoad = (String) req.getParameter("shRoad");
+				if (shRoad == null || shRoad.trim().length() == 0) {
+					errorMsgs.add("地址請勿空白");
+				}
+				
 				Integer shPayment = 11;
 				Integer shOrdStatus = 2;
-				BigDecimal shPrice = new BigDecimal(req.getParameter("shPrice"));
-				Date shDate = (Date) new java.util.Date();
+				BigDecimal shPrice = new BigDecimal(1000);
+				Date shDate = new java.sql.Date(new java.util.Date().getTime()) ;
 				String shNotes = (String) req.getParameter("shNotes");
+				
 				
 				SecOrdVO secOrdVO = new SecOrdVO();
 				secOrdVO.setShBuyerID(shBuyerID);
@@ -103,7 +118,7 @@ public class SecOrdServlet extends HttpServlet {
 
 				/*************************** 2.開始新增資料 ***************************************/
 				SecOrdService secOrdSvc = new SecOrdService();
-				secOrdVO = secOrdSvc.addSecOrd(shBuyerID, shSellerID, shPostcode, shCounty, shDist, shRoad,
+				secOrdSvc.addSecOrd(shBuyerID, shSellerID, shPostcode, shCounty, shDist, shRoad,
 						shPayment, shOrdStatus, shPrice, shDate, shNotes);
 
 				/*************************** 3.新增完成,準備轉交(Send the Success view) ************/
