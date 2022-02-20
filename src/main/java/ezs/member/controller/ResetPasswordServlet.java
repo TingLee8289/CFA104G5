@@ -48,18 +48,18 @@ public class ResetPasswordServlet extends HttpServlet {
         String recipient = request.getParameter("email");
         String subject = "Your Password has been reset";
  
-        CustomerServices customerServices = new CustomerServices(request, response);
-        String newPassword = customerServices.resetCustomerPassword(recipient);
+//        CustomerServices customerServices = new CustomerServices(request, response);
+//        String newPassword = customerServices.resetCustomerPassword(recipient);
  
-        String content = "Hi, this is your new password: " + newPassword;
-        content += "\nNote: for security reason, "
-                + "you must change your password after logging in.";
+//        String content = "Hi, this is your new password: " + newPassword;
+//        content += "\nNote: for security reason, "
+//                + "you must change your password after logging in.";
  
         String message = "";
  
         try {
-            EmailUtility.sendEmail(host, port, email, name, pass,
-                    recipient, subject, content);
+//            EmailUtility.sendEmail(host, port, email, name, pass,
+//                    recipient, subject, content);
             message = "Your password has been reset. Please check your e-mail.";
         } catch (Exception ex) {
             ex.printStackTrace();
