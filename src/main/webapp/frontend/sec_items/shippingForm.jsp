@@ -176,30 +176,31 @@
 		          </div>
 		          <div class="fields fields--3">
 		            <label class="field">
-		              <span class="field__label" for="county">縣市</span>
+		              <span class="field__label" for="shCounty">縣市</span>
 		              <input class="field__input" type="text" id="shCounty" name="shCounty" value="<%=(secOrdVO == null) ? "" : secOrdVO.getShCounty()%>"/>
 		            </label>
 		            <label class="field">
-		              <span class="field__label" for="dist">區域</span>
+		              <span class="field__label" for="shDist">區域</span>
 		              <input class="field__input" type="text" id="shDist" name="shDist" value="<%=(secOrdVO == null) ? "" : secOrdVO.getShDist()%>"/>
 		            </label>
 		            <label class="field">
-		              <span class="field__label" for="zipcode">郵遞區號</span>
+		              <span class="field__label" for="shPostcode">郵遞區號</span>
 		              <input class="field__input" type="text" id="shPostcode" name="shPostcode" value="<%=(secOrdVO == null) ? "" : secOrdVO.getShPostcode()%>"/>
 		            </label>
 		          </div>
 		          <label class="field">
-		            <span class="field__label" for="address">地址</span>
-		            <input class="field__input" type="text" id="address" />
+		            <span class="field__label" for="shRoad">地址</span>
+		            <input class="field__input" type="text" id="shRoad" name="shRoad" value="<%=(secOrdVO == null) ? "" : secOrdVO.getShRoad()%>"/>
 		          </label>
 		          <label class="field">
-		            <span class="field__label" for="notes">備註</span>
-		            <input class="field__input" type="text" id="notes" />
+		            <span class="field__label" for="shNotes">備註</span>
+		            <input class="field__input" type="text" id="shNotes" name="shNotes" value="<%=(secOrdVO == null) ? "" : secOrdVO.getShNotes()%>"/>
 		          </label>
-		        	<button class="button">繼續填寫付款方式</button>
+		        	<button class="button">產生訂單</button>
 		        </div>
 	     </div>
-     
+	      <input type="hidden" name="action" value="insert">
+      </form>
 <!--  信用卡資訊-------------------------------------------------------------- -->
 	      <div class="container2">
 	        <div class="row">
@@ -257,8 +258,8 @@
 	            </div>
 	        </div>
 	   	 </div>
-	   	 <input type="hidden" name="action" value="insert">
-  </form>
+	   	
+ 
    	 
 </body>
 </html>
