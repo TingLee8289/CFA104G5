@@ -22,6 +22,7 @@ public class SerOrdJDBCDAO implements SerOrdDAO_interface {
 	private static final String FIND_ORD_BY_MEMID = "SELECT * FROM CFA104G5.SER_ORD where ORD_MEM_ID = ?";
 	private static final String FINISH_ORD = "UPDATE `CFA104G5`.`SER_ORD` SET `ORD_STATUS` = '3' WHERE ORD_ID = ?";
 	private static final String JOB_COMPLETED = "UPDATE `CFA104G5`.`SER_ORD` SET `ORD_STATUS` = '2' WHERE ORD_ID = ?";
+	private static final String CREDIT_PAY="UPDATE `CFA104G5`.`SER_ORD` SET `ORD_PAY_STATUS` = '1', `ORD_PAYTYPE` = '2' WHERE (`ORD_ID` = ?)"; 
 	static {
 		try {
 			Class.forName(Util.DRIVER);
@@ -383,6 +384,22 @@ public class SerOrdJDBCDAO implements SerOrdDAO_interface {
 			Util.closeResource(con, pstmt, rs);
 		}
 
+	}
+
+	@Override
+	public void creditPay(Integer ordID) {
+		try {
+			con = DriverManager.getConnection(Util.URL, Util.USER, Util.PASSWORD);
+			pstmt = con.prepareStatement(CREDIT_PAY);
+
+			pstmt.setInt(1, ordID);
+			pstmt.executeUpdate();
+		} catch (SQLException se) {
+			se.printStackTrace();
+		} finally {
+			Util.closeResource(con, pstmt, rs);
+		}
+		
 	}
 
 }
