@@ -3,7 +3,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ page import="ezs.member.model.*"%>
 <%
-MemberVO memberVO = (MemberVO) request.getAttribute("memberVO");
+	MemberVO memberVO = (MemberVO) request.getAttribute("memberVO");
 %>
 <!DOCTYPE html>
 <html>

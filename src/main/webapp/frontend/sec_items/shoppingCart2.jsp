@@ -490,7 +490,7 @@
 				<li class="items even">
 	            	<div class="infoWrap"> 
 	              		<div class="cartSection info">
-<!-- 	             			<img src="http://lorempixel.com/output/technics-q-c-300-300-4.jpg" alt="" class="itemImg" /> -->
+	             			<img src="#" alt="" class="itemImg" />
 			                <p class="itemNumber">#QUE-007544-002</p>
 			                <h3 class="product-name"><%=order.getShName()%></h3>
 			                <p> <input type="text"  class="qty" placeholder="<%=order.getShQTY()%>"/> x <%=order.getShPrice()%></p>
@@ -515,7 +515,7 @@
 			<li class="items odd">
             	<div class="infoWrap"> 
             		<div class="cartSection">
-<!-- 		            	<img src="http://lorempixel.com/output/technics-q-c-300-300-4.jpg" alt="" class="itemImg" /> -->
+		            	<img src="#" alt="" class="itemImg" />
                 		<p class="itemNumber">#QUE-007544-002</p>
                 		<h3>Item Name 1</h3>
                  		<p> <input type="text"  class="qty" placeholder="3"/> x $5.00</p>
@@ -534,7 +534,7 @@
             <li class="items even">
             	<div class="infoWrap"> 
               		<div class="cartSection info">
-<!--              			<img src="http://lorempixel.com/output/technics-q-c-300-300-4.jpg" alt="" class="itemImg" /> -->
+             			<img src="#" alt="" class="itemImg" />
 		                <p class="itemNumber">#QUE-007544-002</p>
 		                <h3>Item Name 1</h3>
 		                <p> <input type="text"  class="qty" placeholder="3"/> x $5.00</p>
@@ -565,9 +565,12 @@
             <li class="totalRow"><span class="label">總價</span><span class="value"><%=total%></span></li>
                 <li class="totalRow"><span class="label">運費</span><span class="value">$0</span></li>
                 <li class="totalRow final"><span class="label">總金額</span><span class="value"><%=total%></span></li>
-            <li class="totalRow">
-            
-            <a href="#" class="btn continue">前往結帳</a></li>
+          		<li class="totalRow">
+              	<form name="checkoutForm" action="<%= request.getContextPath() %>/sec_items/ShoppingServlet.do" method="POST">
+		        	<input type="hidden" name="action"  value="CHECKOUT"> 
+		            <input type="submit" value="前往結帳" class="btn continue">
+		        </form>
+		        </li>
           </ul>
         </div>
       </div>
