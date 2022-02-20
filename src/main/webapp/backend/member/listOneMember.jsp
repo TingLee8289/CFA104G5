@@ -65,6 +65,7 @@
 	</ul>
 </c:if>
 
+<FORM METHOD="post" ACTION="<%=request.getContextPath()%>/member/MemberServletUpdate.do" name="form1">
 <table>
 	<tr>
 		<td>會員頭像</td>
@@ -102,19 +103,15 @@
 	</c:if>
 	<tr>
 		<td>會員狀態:</td>
+	
+			
 		<td>
-			<c:if test="${memberVO.memStatus == 0}">Email未驗證</c:if>
-			<c:if test="${memberVO.memStatus == 1}">Email已驗證</c:if>
-			<c:if test="${memberVO.memStatus == 2}">停權</c:if></td>
+			<select size="1" name="memStatus">
+				<option value="${memberVO.memStatus}" ${(memberVO.memStatus==0)?'selected':'' } >未驗證</option>
+				<option value="${memberVO.memStatus}" ${(memberVO.memStatus==1)?'selected':'' } >已驗證</option>
+				<option value="${memberVO.memStatus}" ${(memberVO.memStatus==2)?'selected':'' } >停權</option>
+			</select></td>
 	</tr>
-<!-- 	<tr> -->
-<!-- 		<td>評價總數:</td> -->
-<%-- 		<td>${memberVO.memRevCount}</td> --%>
-<!-- 	</tr> -->
-<!-- 	<tr> -->
-<!-- 		<td>評價總分:</td> -->
-<%-- 		<td>${memberVO.memRevScore}</td> --%>
-<!-- 	</tr> -->
 	<tr>
 		<td>被評價總數:</td>
 		<td>${memberVO.memRedCount}</td>
@@ -126,44 +123,64 @@
 	<tr>
 		<td>被評價均分:</td>
 		<td>
-					<c:choose>
-						<c:when test="${(memberVO.memRedCount) == 0}">尚無評分</c:when>
-						<c:otherwise>
-							<fmt:formatNumber type="number" maxFractionDigits="1" 
-								value="${(memberVO.memRedScore/memberVO.memRedCount)}"/>
-						</c:otherwise>
-					</c:choose></td>
+			<c:choose>
+				<c:when test="${(memberVO.memRedCount) == 0}">尚無評分</c:when>
+			<c:otherwise>
+				<fmt:formatNumber type="number" maxFractionDigits="1" 
+					value="${(memberVO.memRedScore/memberVO.memRedCount)}"/>
+			</c:otherwise></c:choose></td>
 	</tr>
 	<tr>
 		<td>被檢舉數:</td>
-		<td>${memberVO.memReported}</td>
+		<td><input type="TEXT" name="memReported" size="45" value=${memberVO.memReported} /></td>
 	</tr>
 	<tr>
 		<td>房東身分:</td>
 		<td>
-			<c:if test="${memberVO.memLandlord == 0}">未驗證</c:if>
-			<c:if test="${memberVO.memLandlord == 1}">已驗證</c:if>
-			<c:if test="${memberVO.memLandlord == 2}">停權</c:if></td>
+			<select size="1" name="memLandlord">
+				<option value="${memberVO.memLandlord}" ${(memberVO.memLandlord==0)?'selected':'' } >未驗證</option>
+				<option value="${memberVO.memLandlord}" ${(memberVO.memLandlord==1)?'selected':'' } >已驗證</option>
+				<option value="${memberVO.memLandlord}" ${(memberVO.memLandlord==2)?'selected':'' } >停權</option>
+			</select>
+<%-- 			<c:if test="${memberVO.memLandlord == 0}">未驗證</c:if> --%>
+<%-- 			<c:if test="${memberVO.memLandlord == 1}">已驗證</c:if> --%>
+<%-- 			<c:if test="${memberVO.memLandlord == 2}">停權</c:if>   --%>
+			</td>
 	</tr>
 	<tr>
 		<td>廠商身分:</td>
 		<td>
-			<c:if test="${memberVO.memSupplier == 0}">停權</c:if>
-			<c:if test="${memberVO.memSupplier == 1}">啟用</c:if></td>
+			<select size="1" name="memSupplier">
+				<option value="${memberVO.memSupplier}" ${(memberVO.memSupplier==0)?'selected':'' } >停權</option>
+				<option value="${memberVO.memSupplier}" ${(memberVO.memSupplier==1)?'selected':'' } >啟用</option>
+			</select>
+		
+<%-- 			<c:if test="${memberVO.memSupplier == 0}">停權</c:if> --%>
+<%-- 			<c:if test="${memberVO.memSupplier == 1}">啟用</c:if> --%>
+			</td>
 	</tr>
 	<tr>
 		<td>賣家身分:</td>
 		<td>
-			<c:if test="${memberVO.memSeller == 0}">停權</c:if>
-			<c:if test="${memberVO.memSeller == 1}">啟用</c:if></td>
+		<select size="1" name="memSeller">
+				<option value="${memberVO.memSeller}" ${(memberVO.memSeller==0)?'selected':'' } >停權</option>
+				<option value="${memberVO.memSeller}" ${(memberVO.memSeller==1)?'selected':'' } >啟用</option>
+			</select>
+<%-- 			<c:if test="${memberVO.memSeller == 0}">停權</c:if> --%>
+<%-- 			<c:if test="${memberVO.memSeller == 1}">啟用</c:if> --%>
+			</td>
 	</tr>
 	<tr>
 		<td>廠商被檢舉數:</td>
-		<td>${memberVO.memSupReported}</td>
+		<td><input type="TEXT" name="memSupReported" size="45" value=${memberVO.memSupReported} /></td>
+<%-- 		<td>${memberVO.memSupReported}</td> --%>
 	</tr>
 
 
 </table>
-
+<br>
+<input type="hidden" name="action" value="updateADM">
+<input type="hidden" name="memID" value="<%=memberVO.getMemID()%>">
+<input type="submit" value="送出修改"></FORM>
 </body>
 </html>
