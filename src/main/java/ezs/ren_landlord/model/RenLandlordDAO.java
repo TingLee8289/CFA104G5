@@ -1,5 +1,8 @@
 package ezs.ren_landlord.model;
 
+import java.io.FileInputStream;
+import java.io.IOException;
+import java.io.InputStream;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -14,13 +17,13 @@ import javax.sql.DataSource;
 import util.Util;
 
 public class RenLandlordDAO implements RenLandlordDAO_interface {
-	private static final String INSERT_STMT = "INSERT INTO `CFA104G5`.`REN_LANDLORD` (ldd_mem_id,ldd_approval) VALUES (?, ?)";
+	private static final String INSERT_STMT = "INSERT INTO `CFA104G5`.`REN_LANDLORD` (ldd_mem_id,ldd_pic) VALUES (?,?)";
 	private static final String GET_ALL_STMT = "SELECT * FROM `CFA104G5`.`REN_LANDLORD`";
 	private static final String GET_ONE_STMT = "SELECT ldd_id,ldd_mem_id,ldd_approval FROM `CFA104G5`.`REN_LANDLORD` WHERE ldd_id = ?";
 	private static final String DELETE = "DELETE FROM `CFA104G5`.`REN_LANDLORD` WHERE ldd_id = ?";
 	private static final String UPDATE = "UPDATE `CFA104G5`.`REN_LANDLORD` set ldd_mem_id =?, ldd_approval=? WHERE ldd_id =?";
 	private static final String UPDATESTATUS = "UPDATE `member` set mem_landlord = ? where mem_id =?";
-	
+
 	private static  DataSource ds = null;
 	static {
 		try {
@@ -42,8 +45,9 @@ public class RenLandlordDAO implements RenLandlordDAO_interface {
 			pstmt = con.prepareStatement(INSERT_STMT);
 
 			pstmt.setInt(1, renLandlordVO.getLddMemId());
-			pstmt.setInt(2, renLandlordVO.getLddApproval());
+			pstmt.setBytes(2, renLandlordVO.getLddPic());
 
+			
 			pstmt.executeUpdate();
 		} catch (SQLException se) {
 			se.printStackTrace();
