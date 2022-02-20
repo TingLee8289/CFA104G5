@@ -77,7 +77,7 @@
 	</li>
 	<jsp:useBean id= "renLocationSvc" scope="page" class="ezs.ren_location.model.RenLocationService"/>
 	<li>
-     	<FORM METHOD="post" ACTION="RenListingServlet.do">     	
+     	<FORM METHOD="post" ACTION="<%=request.getContextPath()%>/ren_location/RenLocationServlet.do">     	
      	  <b>選擇區域:</b>
      	  <select size="1" name="lisAreaID">
      		<c:forEach var="renLocationVO" items="${renLocationSvc.all}">
