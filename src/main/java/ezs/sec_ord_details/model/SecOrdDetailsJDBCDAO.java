@@ -168,7 +168,6 @@ public class SecOrdDetailsJDBCDAO implements SecOrdDetailsDAO_interface {
 	public void insert2 (SecOrdDetailsVO secOrdDetailsVO , Connection con) {
 
 		try {
-
 			pstmt = con.prepareStatement(INSERT_STMT);
 			pstmt.setInt(1, secOrdDetailsVO.getShOrdID());  // 由自增主鍵提供
 			pstmt.setInt(2, secOrdDetailsVO.getShID());
@@ -199,7 +198,7 @@ public class SecOrdDetailsJDBCDAO implements SecOrdDetailsDAO_interface {
 			throw new RuntimeException("A database error occured. "
 					+ se.getMessage());
 		} finally {
-			Util.closeResource(con, pstmt, rs);
+			Util.closeResource(null, pstmt, rs);
 		}
 
 	}
