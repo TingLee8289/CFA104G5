@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+	<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -95,6 +96,10 @@ header {
 								<a href="#"><i class="bi bi-cart3 mx-2"
 									style="font-size: 3rem; color: #8C4E37;"></i></a> <a class="btn"
 									href="#" role="button" style="background-color: #FD9843">會員登入</a>
+									<%
+						Object memberid = session.getAttribute("memID");
+						out.println("getAttribute :" + memberid);
+						%>
 							</div>
 
 						</div>

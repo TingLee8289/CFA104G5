@@ -27,7 +27,7 @@ public class MemberDAO implements MemberDAO_interface {
 			+ "MEM_REV_COUNT,MEM_REV_SCORE,MEM_RED_COUNT,MEM_Red_SCORE,MEM_REPORTED,"
 			+ "MEM_LDD_REPORTED,MEM_SUP_REPORTED,MEM_SEL_REPORTED,MEM_VATNO FROM `CFA104G5`.`MEMBER` WHERE MEM_ID = ?";
 	private static final String DELETE = "DELETE FROM `CFA104G5`.`MEMBER` WHERE MEM_ID = ?";
-	private static final String Search = "SELECT MEM_USERNAME,MEM_PASSWORD FROM `CFA104G5`.`MEMBER` WHERE (MEM_USERNAME,MEM_PASSWORD) = (?,?)";
+	private static final String Search = "SELECT * FROM `CFA104G5`.`MEMBER` WHERE (MEM_USERNAME,MEM_PASSWORD) = (?,?)";
 
 	
 	private static final String UPDATE = "UPDATE `CFA104G5`.`MEMBER` SET MEM_PASSWORD = ?,MEM_NAME =?,MEM_PHONE=?,MEM_ADDRESS=?"
@@ -292,28 +292,28 @@ public class MemberDAO implements MemberDAO_interface {
 			while (rs.next()) {
 				// memberVo 也稱為 Domain objects
 				memberVO = new MemberVO();
-//				memberVO.setMemID(rs.getInt("MEM_ID"));
+				memberVO.setMemID(rs.getInt("MEM_ID"));
 				memberVO.setMemUsername(rs.getString("MEM_USERNAME"));
 				memberVO.setMemPassword(rs.getString("MEM_PASSWORD"));
-//				memberVO.setMemName(rs.getString("MEM_NAME"));
-//				memberVO.setMemLandlord(rs.getByte("MEM_LANDLORD"));
-//				memberVO.setMemSupplier(rs.getByte("MEM_SUPPLIER"));
-//				memberVO.setMemSeller(rs.getByte("MEM_SELLER"));
-//				memberVO.setMemPhone(rs.getString("MEM_PHONE"));
-//				memberVO.setMemAddress(rs.getString("MEM_ADDRESS"));
-//				memberVO.setMemEmail(rs.getString("MEM_EMAIL"));
-//				memberVO.setMemPID(rs.getString("MEM_PID"));
-//				memberVO.setMemStatus(rs.getByte("MEM_STATUS"));
-//				memberVO.setMemHeadshot(null);
-//				memberVO.setMemRevCount(rs.getInt("MEM_REV_COUNT"));
-//				memberVO.setMemRevScore(rs.getInt("MEM_REV_SCORE"));
-//				memberVO.setMemRedCount(rs.getInt("MEM_RED_COUNT"));
-//				memberVO.setMemRedScore(rs.getInt("MEM_RED_SCORE"));
-//				memberVO.setMemReported(rs.getInt("MEM_REPORTED"));
-//				memberVO.setMemLddReported(rs.getInt("MEM_LDD_REPORTED"));
-//				memberVO.setMemSupReported(rs.getInt("MEM_SUP_REPORTED"));
-//				memberVO.setMemSelReported(rs.getInt("MEM_SEL_REPORTED"));
-//				memberVO.setMemVatno(rs.getString("MEM_VATNO"));
+				memberVO.setMemName(rs.getString("MEM_NAME"));
+				memberVO.setMemLandlord(rs.getByte("MEM_LANDLORD"));
+				memberVO.setMemSupplier(rs.getByte("MEM_SUPPLIER"));
+				memberVO.setMemSeller(rs.getByte("MEM_SELLER"));
+				memberVO.setMemPhone(rs.getString("MEM_PHONE"));
+				memberVO.setMemAddress(rs.getString("MEM_ADDRESS"));
+				memberVO.setMemEmail(rs.getString("MEM_EMAIL"));
+				memberVO.setMemPID(rs.getString("MEM_PID"));
+				memberVO.setMemStatus(rs.getByte("MEM_STATUS"));
+				memberVO.setMemHeadshot(null);
+				memberVO.setMemRevCount(rs.getInt("MEM_REV_COUNT"));
+				memberVO.setMemRevScore(rs.getInt("MEM_REV_SCORE"));
+				memberVO.setMemRedCount(rs.getInt("MEM_RED_COUNT"));
+				memberVO.setMemRedScore(rs.getInt("MEM_RED_SCORE"));
+				memberVO.setMemReported(rs.getInt("MEM_REPORTED"));
+				memberVO.setMemLddReported(rs.getInt("MEM_LDD_REPORTED"));
+				memberVO.setMemSupReported(rs.getInt("MEM_SUP_REPORTED"));
+				memberVO.setMemSelReported(rs.getInt("MEM_SEL_REPORTED"));
+				memberVO.setMemVatno(rs.getString("MEM_VATNO"));
 			}
 
 		} catch (SQLException se) {

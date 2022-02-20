@@ -83,6 +83,57 @@ public class AdminEmpServlet extends HttpServlet {
 				failureView.forward(req, res);
 			}
 		}
+
+		if ("insert".equals(action)) { //新增管理員
+			List<String> errorMsgs = new LinkedList<String>();
+			req.setAttribute("errorMsgs", errorMsgs);
+			try {
+				/*********************** 1.接收請求參數 - 輸入格式的錯誤處理 *************************/
+				String admUsername = req.getParameter("admUsername");
+				String admUsernameReg = "^[(\u4e00-\u9fa5)(a-zA-Z0-9_)]{4,45}$";
+				if (admUsername == null || admUsername.trim().length() == 0) {
+					errorMsgs.add("管理員名稱: 請勿空白");
+				} else if (!admUsername.trim().matches(admUsernameReg)) { // 以下練習正則(規)表示式(regular-expression)
+					errorMsgs.add("管理員名稱: 只能是中、英文字母、數字和_ , 且長度必需在4到45之間");
+				}
+				String admPassword = req.getParameter("admPassword");
+				String admPasswordReg = "^[(a-zA-Z0-9_)]{4,45}$";
+				if (admPassword == null || admPassword.trim().length() == 0) {
+					errorMsgs.add("管理員密碼: 請勿空白");
+				} else if (!admUsername.trim().matches(admUsernameReg)) { // 以下練習正則(規)表示式(regular-expression)
+					errorMsgs.add("管理員密碼: 只能是英文字母、數字和_ , 且長度必需在4到45之間");
+				}
+
+				Integer admStatus = new Integer(req.getParameter("admStatus").trim());
+
+				AdminEmpVO adminEmpVO = new AdminEmpVO();
+				adminEmpVO.setAdmUsername(admUsername);
+				adminEmpVO.setAdmPassword(admPassword);
+				adminEmpVO.setAdmStatus(admStatus);
+
+				if (!errorMsgs.isEmpty()) {
+					req.setAttribute("adminEmpVO", adminEmpVO); // 含有輸入格式錯誤的empVO物件,也存入req
+					RequestDispatcher failureView = req.getRequestDispatcher("/backend/adminEmp/addNewAdmin.jsp");
+					failureView.forward(req, res);
+					return;
+				}
+				/*************************** 2.開始新增資料 ***************************************/
+				AdminEmpService admSvc = new AdminEmpService();
+				adminEmpVO = admSvc.addAdminEmp(admUsername, admPassword, admStatus);
+
+				/*************************** 3.新增完成,準備轉交(Send the Success view) ***********/
+				String url = "/backend/adminEmp/adminEmp.jsp";
+				RequestDispatcher successView = req.getRequestDispatcher(url); // 新增成功後轉交listAllEmp.jsp
+				successView.forward(req, res);
+				/*************************** 其他可能的錯誤處理 **********************************/
+
+			} catch (Exception e) {
+				errorMsgs.add(e.getMessage());
+				RequestDispatcher failureView = req.getRequestDispatcher("/backend/adminEmp/adminEmp.jsp");
+				failureView.forward(req, res);
+			}
+		}
+
 //		登出設定
 		if ("logout".equals(action)) {
 			HttpSession session = req.getSession(false);
@@ -93,6 +144,6 @@ public class AdminEmpServlet extends HttpServlet {
 			req.getRequestDispatcher("/backend/login.jsp").forward(req, res);
 			return;
 		}
-		
+
 	}
 }

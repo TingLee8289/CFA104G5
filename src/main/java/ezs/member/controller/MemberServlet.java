@@ -78,6 +78,8 @@ public class MemberServlet extends HttpServlet {
 				req.setAttribute("memberVO", memberVO); // 資料庫取出的memberVO物件,存入req
 				HttpSession session = req.getSession();
 				session.setAttribute("memUsername", memberVO.getMemUsername());
+				session.setAttribute("memberVO", memberVO);
+				session.setAttribute("memID", memberVO.getMemID());
 
 				String url = "/frontend/member/loginsuccessSimple.jsp";
 				RequestDispatcher successView = req.getRequestDispatcher(url); // 成功轉交 loginsucess.jsp
