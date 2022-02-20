@@ -33,7 +33,7 @@ public class MemberServlet extends HttpServlet {
 
 		req.setCharacterEncoding("UTF-8");
 		String action = req.getParameter("action");
-
+// 登入設定
 		if ("getOne_For_Display".equals(action)) {
 
 			List<String> errorMsgs = new LinkedList<String>();
@@ -89,7 +89,7 @@ public class MemberServlet extends HttpServlet {
 				failureView.forward(req, res);
 			}
 		}
-//		登出設定
+// 登出設定
 //	System.out.println(action);
 	if ("logout".equals(action)) {
 		HttpSession session = req.getSession(false);

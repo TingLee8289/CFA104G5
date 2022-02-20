@@ -37,7 +37,7 @@ public class WriteBlobByJDBC將圖片寫進資料庫 {
 				pstmt.executeUpdate();
 			}
 
-			System.out.println("新增成功");
+			System.out.println("二手商品圖片新增成功");
 			
 			pstmt = con.prepareStatement("UPDATE Member SET mem_Headshot = ? WHERE mem_ID = ? ");
 
