@@ -7,7 +7,6 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
-
 import javax.naming.Context;
 import javax.naming.InitialContext;
 import javax.naming.NamingException;
@@ -29,12 +28,10 @@ public class MemberDAO implements MemberDAO_interface {
 	private static final String DELETE = "DELETE FROM `CFA104G5`.`MEMBER` WHERE MEM_ID = ?";
 	private static final String Search = "SELECT MEM_USERNAME,MEM_PASSWORD FROM `CFA104G5`.`MEMBER` WHERE (MEM_USERNAME,MEM_PASSWORD) = (?,?)";
 
-	
 	private static final String UPDATE = "UPDATE `CFA104G5`.`MEMBER` SET MEM_PASSWORD = ?,MEM_NAME =?,MEM_PHONE=?,MEM_ADDRESS=?"
 			+ ",MEM_EMAIL=?,MEM_HEADSHOT=?,MEM_VATNO=? WHERE MEM_ID = ?";
-	private static final String ADM_UPDATE = "UPDATE `MEMBER` SET MEM_LANDLORD= ?,MEM_SUPPLIER=?,MEM_SELLER=?"
-			+ "MEM_STATUS=?,MEM_REV_COUNT=?,MEM_REV_SCORE=?,MEM_RED_COUNT=?,MEM_RED_SCORE=?,"
-			+ "MEM_REPORTED=?,MEM_LDD_REPORTED=?,MEM_SUP_REPORTED=?,MEM_SEL_REPORTED=? WHERE MEM_ID = ?";
+	private static final String ADM_UPDATE = "UPDATE `CFA104G5`.`MEMBER` SET MEM_LANDLORD= ?,MEM_SUPPLIER=?,MEM_SELLER=?,"
+			+ "MEM_STATUS=?,MEM_REPORTED=?,MEM_SUP_REPORTED=? WHERE MEM_ID = ?";
 		
 	private static final String CHECK_USERNAME = "SELECT MEM_ID FROM `CFA104G5`.`MEMBER` WHERE MEM_USERNAME = ?";
 
@@ -122,39 +119,6 @@ public class MemberDAO implements MemberDAO_interface {
 
 	}
 	
-	@Override
-	public void updateADM(MemberVO memberVO) {
-		
-		try {
-			
-			con = ds.getConnection();
-			pstmt = con.prepareStatement(ADM_UPDATE);
-			
-			
-			pstmt.setByte(1, memberVO.getMemLandlord());
-			pstmt.setByte(2, memberVO.getMemSupplier());
-			pstmt.setByte(3, memberVO.getMemSeller());
-			pstmt.setByte(4, memberVO.getMemStatus());
-			pstmt.setInt(5, memberVO.getMemRevCount());
-			pstmt.setInt(6, memberVO.getMemRevScore());
-			pstmt.setInt(7, memberVO.getMemRedCount());
-			pstmt.setInt(8, memberVO.getMemRedScore());
-			pstmt.setInt(9, memberVO.getMemReported());
-			pstmt.setInt(10, memberVO.getMemLddReported());
-			pstmt.setInt(11, memberVO.getMemSupReported());
-			pstmt.setInt(12, memberVO.getMemSelReported());
-			pstmt.setInt(13, memberVO.getMemID());
-			
-			pstmt.executeUpdate();
-			
-		} catch (SQLException se) {
-			se.printStackTrace();
-		} finally {
-			Util.closeResource(con, pstmt, rs);
-		}
-		
-	}
-
 	@Override
 	public void delete(Integer memID) {
 
@@ -370,5 +334,31 @@ public class MemberDAO implements MemberDAO_interface {
 		}
 
 	}
+	
+	@Override
+	public void updateADM(MemberVO memberVO) {
+		
+		try {			
+			con = ds.getConnection();
+			pstmt = con.prepareStatement(ADM_UPDATE);
+						
+			pstmt.setByte(1, memberVO.getMemLandlord());
+			pstmt.setByte(2, memberVO.getMemSupplier());
+			pstmt.setByte(3, memberVO.getMemSeller());
+			pstmt.setByte(4, memberVO.getMemStatus());
+			pstmt.setInt(5, memberVO.getMemReported());
+			pstmt.setInt(6, memberVO.getMemSupReported());
+			pstmt.setInt(7, memberVO.getMemID());
+			
+			pstmt.executeUpdate();
+			
+		} catch (SQLException se) {
+			se.printStackTrace();
+		} finally {
+			Util.closeResource(con, pstmt, rs);
+		}	
+	}
+	
 
+	
 }

@@ -46,7 +46,7 @@
     text-align: center;
   }
 </style>
-
+<script src="https://kit.fontawesome.com/1c2ccc4859.js" crossorigin="anonymous"></script>
 </head>
 <body bgcolor='white'>
 
@@ -67,6 +67,7 @@
 	</ul>
 </c:if>
 
+
 <table>
 	<tr>
 		<th>會員ID</th>
@@ -77,7 +78,8 @@
 		<th>廠商身份</th>
 		<th>賣家身份</th>
 		<th>被檢舉數</th>
-		<th>廠商被檢舉數</th>
+		<th>查看詳細資料</th>
+<!-- 		<th>廠商被檢舉數</th> -->
 <!-- 		<th>賣家被檢舉數</th> -->
 		
 	</tr>
@@ -89,9 +91,9 @@
 			<td>${memberVO.memUsername}</td>
 			<td>${memberVO.memName}</td>
 			<td>	
-				<c:if test="${memberVO.memStatus == 0}">Email未驗證</c:if>
-				<c:if test="${memberVO.memStatus == 1}">Email已驗證</c:if>
-				<c:if test="${memberVO.memStatus == 2}">停權</c:if></td>
+				<c:if test="${memberVO.memStatus == 0}">未驗證</c:if>
+				<c:if test="${memberVO.memStatus == 1}">已驗證</c:if>
+				<c:if test="${memberVO.memStatus == 2}">停權</c:if></td>		
 			<td>
 				<c:if test="${memberVO.memLandlord == 0}">未驗證</c:if>
 				<c:if test="${memberVO.memLandlord == 1}">已驗證</c:if>
@@ -102,14 +104,15 @@
 			<td>
 				<c:if test="${memberVO.memSeller == 0}">停權</c:if>
 				<c:if test="${memberVO.memSeller == 1}">啟用</c:if></td>
+		
+		
 			<td>${memberVO.memReported}</td>
-			<td>${memberVO.memSupReported}</td>
-<%-- 			<td>${memberVO.memSelReported}</td> --%>
+
 			<td>
 			  <FORM METHOD="post" ACTION="<%=request.getContextPath()%>/member/MemberServletUpdate.do" style="margin-bottom: 0px;">
-			     <input type="submit" value="查看詳細資料">
+			     <button id ="submit" onclick="submit"><i class="fa-solid fa-magnifying-glass"></i></button>
 			     <input type="hidden" name="memID"  value="${memberVO.memID}">
-			     <input type="hidden" name="action"	value="getOneMem_Display"> </FORM>
+			     <input type="hidden" name="action"	value="getOneMemUpdate"> </FORM>
 			</td>
 		</tr>
 	</c:forEach>
