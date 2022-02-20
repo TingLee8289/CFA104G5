@@ -11,6 +11,10 @@ public interface MemberDAO_interface {
      public MemberVO Search(String memUsername ,String memPassword);
      public void verifyMember(String memName);
      public MemberVO checkUsername(String memUsername);
+
+     public MemberVO searchEmail(String memEmail);
+
      public void updateADM(MemberVO memberVO);
   
+
 }

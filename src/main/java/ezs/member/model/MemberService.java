@@ -91,6 +91,11 @@ public MemberVO addMember(String memUsername, String memPassword, String memName
 
 	}
 	
+
+	public MemberVO searchEmail(String memEmail) {
+		return dao.searchEmail(memEmail);
+	}
+
 	public MemberVO updateMemberADM(Integer memID, Byte memLandlord, Byte memSupplier, Byte memSeller,
 			Byte memStatus, Integer memReported, Integer memSupReported) {
 		MemberVO memberVO = new MemberVO();
@@ -108,4 +113,5 @@ public MemberVO addMember(String memUsername, String memPassword, String memName
 	}
 	
 	
+
 }
