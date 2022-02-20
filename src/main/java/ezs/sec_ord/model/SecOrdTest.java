@@ -20,10 +20,6 @@ public class SecOrdTest {
 		secOrdVO.setShOrdStatus(2);
 		secOrdVO.setShPrice(new BigDecimal(1000));
 		secOrdVO.setShDate(new java.sql.Date(new java.util.Date().getTime()));
-		secOrdVO.setShBuyerScore(1);
-		secOrdVO.setShBuyerTXT("xxx");
-		secOrdVO.setShSellerScore(2);
-		secOrdVO.setShSellerTXT("yyy");
 		secOrdVO.setShAPPDate(new java.sql.Date((new java.util.Date().getTime()) + 14 *24 *60 * 60 *1000L));
 		secOrdVO.setShNotes("zzz");
 		dao.insert(secOrdVO);

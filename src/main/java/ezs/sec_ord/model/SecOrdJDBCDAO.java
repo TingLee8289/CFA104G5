@@ -18,8 +18,8 @@ public class SecOrdJDBCDAO implements SecOrdDAO_interface {
 	private static final String INSERT_STMT = "INSERT INTO " + "`CFA104G5`.`SEC_ORD` "
 			+ "(sh_buyerid, sh_sellerid, sh_postcode, sh_county, sh_dist, "
 			+ "sh_road, sh_payment, sh_ord_status, sh_price, sh_date, "
-			+ "sh_buyer_score, sh_buyer_txt, sh_seller_score, sh_seller_txt, sh_appdate, " + "sh_notes) " + "VALUES "
-			+ "(?, ?, ?, ?, ?" + ", ?, ?, ?, ?, ?" + ", ?, ?, ?, ?, ?" + ", ?)";
+			+ "sh_notes)" + "VALUES "
+			+ "(?, ?, ?, ?, ?" + ", ?, ?, ?, ?, ?" + ", ?)";
 	private static final String DELETE_STMT = "DELETE FROM `CFA104G5`.`SEC_ORD` WHERE sh_ord_id = ?";
 	private static final String UPDATE_STMT = "UPDATE `CFA104G5`.`SEC_ORD` "
 			+ "SET sh_buyerid=?, sh_sellerid=?, sh_postcode=?, sh_county=?, sh_dist=?, "
@@ -54,7 +54,6 @@ public class SecOrdJDBCDAO implements SecOrdDAO_interface {
 		try {
 			con = DriverManager.getConnection(Util.URL, Util.USER, Util.PASSWORD);
 			pstmt = con.prepareStatement(INSERT_STMT);
-//			pstmt.setInt(1, secOrdVO.getShOrdID());
 			pstmt.setInt(1, secOrdVO.getShBuyerID());
 			pstmt.setInt(2, secOrdVO.getShSellerID());
 			pstmt.setInt(3, secOrdVO.getShPostcode());
@@ -65,12 +64,7 @@ public class SecOrdJDBCDAO implements SecOrdDAO_interface {
 			pstmt.setInt(8, secOrdVO.getShOrdStatus());
 			pstmt.setBigDecimal(9, secOrdVO.getShPrice());
 			pstmt.setDate(10, secOrdVO.getShDate());
-			pstmt.setInt(11, secOrdVO.getShBuyerScore());
-			pstmt.setString(12, secOrdVO.getShBuyerTXT());
-			pstmt.setInt(13, secOrdVO.getShSellerScore());
-			pstmt.setString(14, secOrdVO.getShSellerTXT());
-			pstmt.setDate(15, secOrdVO.getShAPPDate());
-			pstmt.setString(16, secOrdVO.getShNotes());
+			pstmt.setString(11, secOrdVO.getShNotes());
 			pstmt.executeUpdate();
 
 		} catch (SQLException e) {

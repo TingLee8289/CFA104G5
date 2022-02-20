@@ -25,11 +25,6 @@ public class SecOrdService {
 			Integer shOrdStatus,
 			BigDecimal shPrice,
 			java.sql.Date shDate,
-			Integer shBuyerScore,
-			String shBuyerTXT,
-			Integer shSellerScore,
-			String shSellerTXT,
-			java.sql.Date shAPPDate,
 			String shNotes) {
 
 		SecOrdVO secOrdVO = new SecOrdVO();
@@ -45,11 +40,6 @@ public class SecOrdService {
 		secOrdVO.setShOrdStatus(shOrdStatus);
 		secOrdVO.setShPrice(shPrice);
 		secOrdVO.setShDate(shDate);
-		secOrdVO.setShBuyerScore(shBuyerScore);
-		secOrdVO.setShBuyerTXT(shBuyerTXT);
-		secOrdVO.setShSellerScore(shSellerScore);
-		secOrdVO.setShSellerTXT(shSellerTXT);
-		secOrdVO.setShAPPDate(shAPPDate);
 		secOrdVO.setShNotes(shNotes);
 		dao.insert(secOrdVO);
 	
