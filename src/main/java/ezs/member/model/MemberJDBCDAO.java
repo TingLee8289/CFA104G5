@@ -32,7 +32,7 @@ public class MemberJDBCDAO implements MemberDAO_interface {
 			+ "MEM_REPORTED=?,MEM_LDD_REPORTED=?,MEM_SUP_REPORTED=?,MEM_SEL_REPORTED=? WHERE MEM_ID = ?";
 	
 	private static final String CHECK_USERNAME = "SELECT MEM_ID FROM `CFA104G5`.`MEMBER` WHERE MEM_USERNAME = ?";
-	private static final String VERIFY_MEM_STMT = "UPDATE `CFA104G5`.`MEMBER` SET mem_status = 1 WHERE mem_name = ?;";
+	private static final String VERIFY_MEM_STMT = "UPDATE `CFA104G5`.`MEMBER` SET mem_status = 1 WHERE mem_username = ?;";
 
 
 	
