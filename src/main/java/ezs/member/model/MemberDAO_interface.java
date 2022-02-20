@@ -12,7 +12,7 @@ public interface MemberDAO_interface {
      public void verifyMember(String memName);
      public MemberVO checkUsername(String memUsername);
 
-     public MemberVO searchEmail(String memEmail);
+//     public MemberVO searchEmail(String memEmail);
 
      public void updateADM(MemberVO memberVO);
   

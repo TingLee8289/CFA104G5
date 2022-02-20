@@ -365,32 +365,32 @@ public class MemberDAO implements MemberDAO_interface {
 
 
 	
-	@Override
-	public MemberVO searchEmail(String memEmail) {
-		MemberVO memberVO = null;
-
-		try {
-
-			con = ds.getConnection();
-			pstmt = con.prepareStatement(SEARCH_EMAIL);
-
-			rs = pstmt.executeQuery();
-
-			while (rs.next()) {
-			
-				memberVO = new MemberVO();
-				memberVO.setMemEmail(rs.getString("MEM_EMAIL"));
-
-			}
-
-		} catch (SQLException se) {
-			se.printStackTrace();
-		} finally {
-			Util.closeResource(con, pstmt, rs);
-
-		}
-		return memberVO;
-
-	}
+//	@Override
+//	public MemberVO searchEmail(String memEmail) {
+//		MemberVO memberVO = null;
+//
+//		try {
+//
+//			con = ds.getConnection();
+//			pstmt = con.prepareStatement(SEARCH_EMAIL);
+//
+//			rs = pstmt.executeQuery();
+//
+//			while (rs.next()) {
+//			
+//				memberVO = new MemberVO();
+//				memberVO.setMemEmail(rs.getString("MEM_EMAIL"));
+//
+//			}
+//
+//		} catch (SQLException se) {
+//			se.printStackTrace();
+//		} finally {
+//			Util.closeResource(con, pstmt, rs);
+//
+//		}
+//		return memberVO;
+//
+//	}
 
 }
