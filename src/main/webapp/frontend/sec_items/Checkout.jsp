@@ -28,9 +28,6 @@
 			String shName = order.getShName();
 			BigDecimal shPrice = order.getShPrice();
 			Integer shQTY = order.getShQTY();
-			
-			
-			
 	%>
 	<tr>
 		<td width="200"><%=shID%>     </td>

@@ -6,6 +6,7 @@ import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -161,6 +162,48 @@ public class SecOrdDetailsJDBCDAO implements SecOrdDetailsDAO_interface {
 			Util.closeResource(con, pstmt, rs);
 		}
 		return list;
+	}
+
+	@Override
+	public void insert2 (SecOrdDetailsVO secOrdDetailsVO , Connection con) {
+
+		PreparedStatement pstmt = null;
+
+		try {
+
+			pstmt = con.prepareStatement(INSERT_STMT);
+			pstmt.setInt(1, secOrdDetailsVO.getShOrdID());
+			pstmt.setInt(2, secOrdDetailsVO.getShID());
+			pstmt.setString(3, secOrdDetailsVO.getShName());
+			pstmt.setInt(4, secOrdDetailsVO.getShPrice());
+			pstmt.setInt(5, secOrdDetailsVO.getShQty());
+     		
+
+			Statement stmt=	con.createStatement();
+			//stmt.executeUpdate("set auto_increment_offset=7001;"); //自增主鍵-初始值
+			stmt.executeUpdate("set auto_increment_increment=1;");   //自增主鍵-遞增
+			
+			pstmt.executeUpdate();
+
+			// Handle any SQL errors
+		} catch (SQLException se) {
+			if (con != null) {
+				try {
+					// 3●設定於當有exception發生時之catch區塊內
+					System.err.print("Transaction is being ");
+					System.err.println("rolled back-由-secOrdDetails");
+					con.rollback();
+				} catch (SQLException excep) {
+					throw new RuntimeException("rollback error occured. "
+							+ excep.getMessage());
+				}
+			}
+			throw new RuntimeException("A database error occured. "
+					+ se.getMessage());
+		} finally {
+			Util.closeResource(con, pstmt, rs);
+		}
+
 	}
 
 }
