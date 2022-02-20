@@ -6,6 +6,8 @@ public class RenLandlordVO implements Serializable{
 	private Integer lddId;
 	private Integer lddMemId;
 	private Integer lddApproval;
+	private byte[] lddPic;
+
 	
 	public Integer getLddId() {
 		return lddId;
@@ -30,4 +32,14 @@ public class RenLandlordVO implements Serializable{
 	public void setLddApproval(Integer lddApproval) {
 		this.lddApproval = lddApproval;
 	}
+
+	public byte[] getLddPic() {
+		return lddPic;
+	}
+
+	public void setLddPic(byte[] lddPic) {
+		this.lddPic = lddPic;
+	}
+
+
 }
