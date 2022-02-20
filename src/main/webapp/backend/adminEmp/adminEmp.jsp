@@ -62,14 +62,14 @@ pageContext.setAttribute("list", list);
 	</table>
 	<%@ include file="page2.file"%>
 	<%-- 錯誤表列 --%>
-<c:if test="${not empty errorMsgs}">
-	<font style="color:red">請修正以下錯誤:</font>
-	<ul>
-		<c:forEach var="message" items="${errorMsgs}">
-			<li style="color:red">${message}</li>
-		</c:forEach>
-	</ul>
-</c:if>
+	<c:if test="${not empty errorMsgs}">
+		<font style="color: red">請修正以下錯誤:</font>
+		<ul>
+			<c:forEach var="message" items="${errorMsgs}">
+				<p style="color: red">${message}</p>
+			</c:forEach>
+		</ul>
+	</c:if>
 <ul>
   <li><a href='<%=request.getContextPath()%>/backend/adminEmp/addNewAdmin.jsp'>Add</a> a new Emp.</li>
 </ul>

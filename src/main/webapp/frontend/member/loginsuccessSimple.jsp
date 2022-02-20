@@ -15,6 +15,10 @@
 		Object memusername = session.getAttribute("memUsername");
 		out.println("getAttribute :" + memusername);
 		%>
+		<%
+		Object memberid = session.getAttribute("memID");
+		out.println("getAttribute :" + memberid);
+		%>
 	</div>
 
 	<form METHOD="post"
