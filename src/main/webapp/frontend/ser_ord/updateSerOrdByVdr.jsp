@@ -1,29 +1,19 @@
-<%@page import="ezs.ser_dmd.model.SerDmdService"%>
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ page import="ezs.ser_ord.model.*"%>
-<%@ page import="ezs.ser_quo.model.*"%>
-<%@ page import="ezs.ser_dmd.model.*"%>
 
 <%
 SerOrdVO serOrdVO = (SerOrdVO) request.getAttribute("serOrdVO");
-Integer quoID = Integer.valueOf(request.getParameter("quoID")) ;
-SerQuoService serQuoSvc = new SerQuoService();
-SerQuoVO oneQuoVO = serQuoSvc.getOneSerQuo(quoID);
-pageContext.setAttribute("oneQuoVO", oneQuoVO);
-SerDmdService serDmdSvc = new SerDmdService();
-SerDmdVO oneDmdVO = serDmdSvc.getOneSerDmd(oneQuoVO.getQuoDmdID());
-pageContext.setAttribute("oneDmdVO", oneDmdVO);
+// UpdateSerQuoServlet.java (Concroller) 存入req的serOrdVO物件 (包括幫忙取出的serDmdVO, 也包括輸入資料錯誤時的serDmdVO物件)
 %>
 
 <html>
 <head>
 <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
-<title>新增服務服務訂單 - addOrder.jsp</title>
+<title>訂單資料修改 - updateSerOrd.jsp</title>
 
 <style>
 table#table-1 {
-	width: 450px;
 	background-color: #CCCCFF;
 	border: 2px solid black;
 	text-align: center;
@@ -39,13 +29,19 @@ h4 {
 	color: blue;
 	display: inline;
 }
+
+h3 {
+	
+}
 </style>
 
 <style>
 table {
+	width: 450px;
 	background-color: white;
 	margin-top: 1px;
 	margin-bottom: 1px;
+	margin: 0 auto;
 }
 
 table, th, td {
@@ -54,28 +50,30 @@ table, th, td {
 
 th, td {
 	padding: 1px;
+	display: inline-block;
+	/*    文字要加此行 */
 }
 </style>
 
 </head>
 <body bgcolor='white'>
-<div style="width:500; margin:auto;">
+
 	<table id="table-1">
 		<tr>
 			<td>
-				<h3>新增服務訂單 - addSerOrd.jsp</h3>
-			</td>
-			<td style="text-align: center">
+				<h3>訂單資料修改 - updateSerOrd.jsp</h3>
 				<h4>
 					<a
-						href="<%=request.getContextPath()%>/frontend/ser_ord/serOrdHome.jsp">回首頁</a>
+						href="<%=request.getContextPath()%>/backend/ser/serOrd/ordBackend.jsp">回首頁</a>
 				</h4>
 			</td>
 		</tr>
 	</table>
+	<div style="text-align: center">
+		<h3>訂單修改</h3>
+	</div>
 
-	<h3>新增服務訂單:</h3>
-</div>
+
 	<%-- 錯誤表列 --%>
 	<c:if test="${not empty errorMsgs}">
 		<font style="color: red">請修正以下錯誤:</font>
@@ -85,121 +83,128 @@ th, td {
 			</c:forEach>
 		</ul>
 	</c:if>
-<div style= "width:500px; margin:auto; border:solid 1px red;">
-	<FORM METHOD="post" 
-		ACTION="<%=request.getContextPath()%>/ser_ord/AddOrdServlet.do"
+
+	<FORM METHOD="post"
+		ACTION="<%=request.getContextPath()%>/ser_ord/UpdateOrdByVdrServlet.do"
 		name="form1">
 		<table>
 			<tr>
-				
-				<td><input type="hidden" name="ordStatus" size="8" value=0 /></td>
+				<td>訂單ID:</td>
+				<td><input type="TEXT" name="ordID" size="8" value="<%=serOrdVO.getOrdID()%>" disabled/></td>
 			</tr>
 			<tr>
-				
-				<td><input type="hidden" name="ordPayStatus" size="8" value=0 /></td>
+				<td>服務訂單狀態:</td>
+				<td><input type="TEXT" name="" size="8" value="未成立" disabled/></td>
 			</tr>
-			<tr>
-				<td >需求單ID:</td>
-				<td><input type="TEXT" name="ordDmdID" size="50" value="${oneQuoVO.quoDmdID}" disabled/></td>
-			</tr>
-			<tr>
-				<td>估價單ID:</td>
-				<td><input type="TEXT" name="ordQuoID" size="50" value="${oneQuoVO.quoID}" disabled/></td>
-			</tr>
+			
+			
 			<tr>
 				<td>會員ID:</td>
-				<td><input type="TEXT" name="ordMemID" size="50" value="${oneDmdVO.dmdMemID}" disabled/></td>
+				<td><input type="TEXT" name="ordMemID" size="50" value="<%=serOrdVO.getOrdMemID()%>" disabled/></td>
 			</tr>
-			<tr>
-				<td>廠商ID:</td>
-				<td><input type="TEXT" name="ordVdrID" size="50" value="${oneQuoVO.quoVdrID}" disabled/></td>
-			</tr>
+			
 			<tr>
 				<td>服務類別ID:</td>
-				<td><input type="TEXT" name="ordSerClaID" size="50" value="${oneDmdVO.dmdSerClaID}" disabled/></td>
+				<td><input type="TEXT" name="ordSerClaID" size="40" value="<%=serOrdVO.getOrdSerClaID()%>" disabled /></td>
 			</tr>
+			
 			<tr>
 				<td>業主姓名:</td>
-				<td><input type="TEXT" name="ordClnName" size="50" value="${oneDmdVO.dmdName}" disabled/></td>
+				<td><input type="TEXT" name="ordClnName" size="50" value="<%=serOrdVO.getOrdClnName()%>" disabled/></td>
 			</tr>
 			<tr>
 				<td>業主電話:</td>
-				<td><input type="TEXT" name="ordClnTel" size="50" value="${oneDmdVO.dmdTel}" disabled/></td>
-			</tr>
-			<tr>
-				<td>案場縣市:</td>
-				<td><input type="TEXT" name="ordCounty" size="50" value="${oneDmdVO.dmdCounty}" disabled/></td>
-			</tr>
-			<tr>
-				<td>案場地區:</td>
-				<td><input type="TEXT" name="ordDist" size="50" value="${oneDmdVO.dmdRegion}" disabled /></td>
-			</tr>
-			<tr>
-				<td>案場詳細地址:</td>
-				<td><input type="TEXT" name="ordAddr" size="50" value="${oneDmdVO.dmdAddress}" disabled/></td>
-			</tr>
-			<tr>
-				<td>業主統一編號:</td>
-				<td><input type="TEXT" name="ordMemVatno" size="50"
-					value="" /></td>
-			</tr>
-			<tr>
-				<td>廠商統一編號:</td>
-				<td><input type="TEXT" name="ordVdrVatno" size="50"
-					value="${oneQuoVO.quoID}" /></td>
+				<td><input type="TEXT" name="ordClnTel" size="50" value="<%=serOrdVO.getOrdClnTel()%>" disabled/></td>
 			</tr>
 			<tr>
 				<td>施作日期:</td>
-				<td><input name="ordWorkDate" id="ordWorkDate1" type="text" ></td>
+				<td><input name="ordWorkDate" id="ordWorkDate1" type="text" disabled></td>
+			</tr>
+			<tr>
+				<td>案場縣市:</td>
+				<td><input type="TEXT" name="ordCounty" size="50" value="<%=serOrdVO.getOrdCounty()%>" disabled/></td>
+			</tr>
+			<tr>
+				<td>案場地區:</td>
+				<td><input type="TEXT" name="ordDist" size="50" value="<%=serOrdVO.getOrdDist()%>" disabled/></td>
+			</tr>
+			<tr>
+				<td>案場詳細地址:</td>
+				<td><input type="TEXT" name="ordAddr" size="40" value="<%=serOrdVO.getOrdAddr()%>" disabled/></td>
 			</tr>
 			<tr>
 				<td>施工項目:</td>
-				<td><input type="TEXT" name="ordItem" size="50"
-					value="${oneQuoVO.quoItem}" /></td>
+				<td><input type="TEXT" name="ordItem" size="50" value="<%=serOrdVO.getOrdItem()%>" disabled/></td>
 			</tr>
 			<tr>
 				<td>總金額:</td>
-				<td><input type="TEXT" name="ordTotalPrice"
-					value="${oneQuoVO.quoTotalPrice}" /></td>
+				<td><input type="TEXT" name="ordTotalPrice" value="<%=serOrdVO.getOrdTotalPrice()%>" disabled/></td>
 			</tr>
 			<tr>
-				<td>備註:</td>
-				<td><input type="TEXT" name="ordNote"
-					value="<%=(serOrdVO == null) ? "" : serOrdVO.getOrdNote() %>" /></td>
+				<td>會員統一編號:</td>
+				<td><input type="TEXT" name="ordMemVatno" size="40" value="<%=serOrdVO.getOrdMemVatno()%>" /></td>
 			</tr>
-			
+			<tr>
+				<td>廠商統一編號:</td>
+				<td><input type="TEXT" name="ordVdrVatno" size="40" value="<%=serOrdVO.getOrdVdrVatno()%>" /></td>
+			</tr>
+			<tr>
+				<td>付款狀態:</td>
+				<td><input type="TEXT" name="ordPayStatus" size="8" value="確認收款" disabled/></td>
+			</tr>
+			<tr>
+				<td>付款方式:</td>
+				<td>
+					
+					<input type="radio" name="ordPayType" value="1"  />現金付款
+					<input type="radio" name="ordPayType" value="2"  />信用卡
+					<input type="radio" name="ordPayType" value="3"  />ATM轉帳
+				
+				</td>
+			</tr>
+		
+			<tr>
+				<td>備註:</td>
+				<td><input type="TEXT" name="ordNote" value="<%=serOrdVO.getOrdNote()%>" /></td>
+			</tr>
+			<tr>
+				<td>
+					<input type="submit" value="送出修改">
+				</td>
+			</tr>
 			
 
 		</table>
-		<br> 
-		<input type="hidden" name="ordDmdID" size="50" value="${oneQuoVO.quoDmdID}" />
-		<input type="hidden" name="ordQuoID" size="50" value="${oneQuoVO.quoID}" />
-		<input type="hidden" name="ordMemID" size="50" value="${oneDmdVO.dmdMemID}" />
-		<input type="hidden" name="ordVdrID" size="50" value="${oneQuoVO.quoVdrID}" />
-		<input type="hidden" name="ordSerClaID" size="50" value="${oneDmdVO.dmdSerClaID}" />
-		<input type="hidden" name="ordClnName" size="50" value="${oneDmdVO.dmdName}" />
-		<input type="hidden" name="ordClnTel" size="50" value="${oneDmdVO.dmdTel}" />
-		<input type="hidden" name="ordCounty" size="50" value="${oneDmdVO.dmdCounty}" />
-		<input type="hidden" name="ordDist" size="50" value="${oneDmdVO.dmdRegion}" />
-		<input type="hidden" name="ordAddr" size="50" value="${oneDmdVO.dmdAddress}" />
-		<input type="hidden" name="ordPrePay" value="10" />
-		<input type="hidden" name="ordPayType" size="8" value=0 />
-		<input name="ordPayDate" id="ordPayDate1" type="hidden">
-		<input type="hidden" name="ordFpay" value="10" />
-		<input type="hidden" name="ordFpayType" size="8" value=0 />
-		<input name="ordFpayDate" id="ordFpayDate1" type="hidden">
-		<input type="hidden" name="ordBuyerScore" value="<%=(serOrdVO == null) ? "0" : serOrdVO.getOrdBuyerScore() %>" />
-		<input type="hidden" name="ordBuyerTxt" value="<%=(serOrdVO == null) ? "" : serOrdVO.getOrdBuyerTxt() %>" />
-		<input type="hidden" name="ordVdrScore" value="<%=(serOrdVO == null) ? "0" : serOrdVO.getOrdVdrScore() %>" />
-		<input type="hidden" name="ordVdrTxt" value="<%=(serOrdVO == null) ? "" : serOrdVO.getOrdVdrTxt() %>" />
-		<input type="hidden" name="action" value="insert"> 
-		<input type="submit" value="送出新增">
+		<br>
+		<input type="hidden" name="action" value="update"> 
+		<input type="hidden" name="ordID" value="<%=serOrdVO.getOrdID()%>"> 
+		<input type="hidden" name="ordID" size="8" value="<%=serOrdVO.getOrdID()%>" />
+		<input type="hidden" name="ordMemID" size="50" value="<%=serOrdVO.getOrdMemID()%>" />
+		<input type="hidden" name="ordStatus" size="8" value="1" />
+		<input type="hidden" name="ordDmdID" size="50" value="<%=serOrdVO.getOrdDmdID()%>" />
+		<input type="hidden" name="ordVdrID" size="50" value="<%=serOrdVO.getOrdVdrID()%>" />
+		<input type="hidden" name="ordQuoID" size="50" value="<%=serOrdVO.getOrdQuoID()%>" />
+		<input type="hidden" name="ordSerClaID" size="40" value="<%=serOrdVO.getOrdSerClaID()%>" />
+		<input type="hidden" name="ordClnName" size="50" value="<%=serOrdVO.getOrdClnName()%>" />
+		<input type="hidden" name="ordClnTel" size="50" value="<%=serOrdVO.getOrdClnTel()%>" />
+		<input name="ordWorkDate" id="ordWorkDate1" type="hidden"value="<%=serOrdVO.getOrdWorkDate()%>">
+		<input type="hidden" name="ordCounty" size="50" value="<%=serOrdVO.getOrdCounty()%>" />
+		<input type="hidden" name="ordDist" size="50" value="<%=serOrdVO.getOrdDist()%>" />
+		<input type="hidden" name="ordAddr" size="40" value="<%=serOrdVO.getOrdAddr()%>" />
+		<input type="hidden" name="ordItem" size="50" value="<%=serOrdVO.getOrdItem()%>" />
+		<input type="hidden" name="ordTotalPrice" value="<%=serOrdVO.getOrdTotalPrice()%>" />
+		<input type="hidden" name="ordPayStatus" size="8" value="2" />
+		<input type="hidden" name="ordPrePay" value="<%=serOrdVO.getOrdPrePay()%>" />
+		<input name="ordPayDate" id="ordPayDate1" type="hidden"value="<%=serOrdVO.getOrdPayDate()%>">
+		<input type="hidden" name="ordFpay" value="<%=serOrdVO.getOrdPrePay()%>" />
+		<input type="hidden" name="ordFpayType" size="8" value="<%=serOrdVO.getOrdFpayType()%>" />
+		<input name="ordFpayDate" id="ordFpayDate1" type="hidden" value="<%=serOrdVO.getOrdFpayDate()%>">
+		<input type="hidden" name="ordBuyerScore" value="<%=serOrdVO.getOrdBuyerScore()%>" />
+		<input type="hidden" name="ordBuyerTxt" value="<%=serOrdVO.getOrdBuyerTxt()%>" />
+		<input type="hidden" name="ordVdrScore" value="<%=serOrdVO.getOrdVdrScore()%>" />
+		<input type="hidden" name="ordVdrTxt" value="<%=serOrdVO.getOrdVdrTxt()%>" />
 	</FORM>
-	</div>
 </body>
-
-
-
 <!-- =========================================以下為 datetimepicker 之相關設定========================================== -->
 
 

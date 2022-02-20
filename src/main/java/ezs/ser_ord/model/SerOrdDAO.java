@@ -25,6 +25,8 @@ public class SerOrdDAO implements SerOrdDAO_interface {
 	private static final String UPDATE = "UPDATE `ser_ord` set ORD_STATUS=?,ORD_PAY_STATUS=?,ORD_DMD_ID=?,ORD_QUO_ID=?,ORD_MEM_ID=?,ORD_VDR_ID=?,ORD_SER_CLA_ID=?,ORD_MEM_VATNO=?,ORD_VDR_VATNO=?,ORD_CLN_NAME=?,ORD_CLN_TEL=?,ORD_WORK_DATE=?,ORD_COUNTY=?,ORD_DIST=?,ORD_ADDR=?,ORD_ITEM=?,ORD_TOTALPRICE=?,ORD_PREPAY=?,ORD_PAYTYPE=?,ORD_PAY_DATE=?,ORD_FPAY=?,ORD_FPAYTYPE=?,ORD_FPAY_DATE=?,ORD_BUYER_SCORE=?,ORD_BUYER_TXT=?,ORD_VDR_SCORE=?,ORD_VDR_TXT=?,ORD_NOTE=? where ORD_ID = ?";
 	private static final String FIND_ORD_BY_VDRID = "SELECT * FROM CFA104G5.SER_ORD where ORD_VDR_ID = ?";
 	private static final String FIND_ORD_BY_MEMID = "SELECT * FROM CFA104G5.SER_ORD where ORD_MEM_ID = ?";
+	private static final String FINISH_ORD = "UPDATE `CFA104G5`.`SER_ORD` SET `ORD_STATUS` = '3' WHERE ORD_ID = ?";
+	private static final String JOB_COMPLETED = "UPDATE `CFA104G5`.`SER_ORD` SET `ORD_STATUS` = '2' WHERE ORD_ID = ?";
 	// 一個應用程式中,針對一個資料庫 ,共用一個DataSource即可
 				private static DataSource ds = null;
 				static {
@@ -361,6 +363,38 @@ public class SerOrdDAO implements SerOrdDAO_interface {
 			Util.closeResource(con, pstmt, rs);
 		}
 		return list;
+	}
+
+	@Override
+	public void finishOrd(Integer ordID) {
+		try {
+			con = ds.getConnection();
+			pstmt = con.prepareStatement(FINISH_ORD);
+
+			pstmt.setInt(1, ordID);
+			pstmt.executeUpdate();
+		} catch (SQLException se) {
+			se.printStackTrace();
+		} finally {
+			Util.closeResource(con, pstmt, rs);
+		}
+		
+	}
+
+	@Override
+	public void jobCompleted(Integer ordID) {
+		try {
+			con = ds.getConnection();
+			pstmt = con.prepareStatement(JOB_COMPLETED);
+
+			pstmt.setInt(1, ordID);
+			pstmt.executeUpdate();
+		} catch (SQLException se) {
+			se.printStackTrace();
+		} finally {
+			Util.closeResource(con, pstmt, rs);
+		}
+		
 	}
 	
 }
