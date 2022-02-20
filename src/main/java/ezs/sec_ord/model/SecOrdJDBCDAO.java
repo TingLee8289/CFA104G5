@@ -469,23 +469,23 @@ public class SecOrdJDBCDAO implements SecOrdDAO_interface {
 		secOrdVO.setShNotes("zzz");
 		
 		List<SecOrdDetailsVO> testList = new ArrayList<SecOrdDetailsVO>(); // 準備置入明細數筆
-		SecOrdDetailsVO empXX = new SecOrdDetailsVO();   // 員工POJO1
-//		empXX.setEname("吳x");
-//		empXX.setJob("MANAGER");
-//		empXX.setHiredate(java.sql.Date.valueOf("2001-01-15"));
-//		empXX.setSal(new Double(15000));
-//		empXX.setComm(new Double(150));
+		SecOrdDetailsVO secOrdDetailsVO1 = new SecOrdDetailsVO();   // 員工POJO1
+		secOrdDetailsVO1.setShOrdID(3);
+		secOrdDetailsVO1.setShID(1);
+		secOrdDetailsVO1.setShName("測試測試1");
+		secOrdDetailsVO1.setShPrice(100);
+		secOrdDetailsVO1.setShQty(1);
 
-		SecOrdDetailsVO empYY = new SecOrdDetailsVO();   // 員工POJO2
-//		empYY.setEname("吳y");
-//		empYY.setJob("MANAGER");
-//		empYY.setHiredate(java.sql.Date.valueOf("2001-01-16"));
-//		empYY.setSal(new Double(16000));
-//		empYY.setComm(new Double(160));
+		SecOrdDetailsVO secOrdDetailsVO2 = new SecOrdDetailsVO();   // 員工POJO1
+		secOrdDetailsVO2.setShOrdID(3);
+		secOrdDetailsVO2.setShID(2);
+		secOrdDetailsVO2.setShName("測試測試2");
+		secOrdDetailsVO2.setShPrice(10000);
+		secOrdDetailsVO2.setShQty(2);
 
-		testList.add(empXX);
-		testList.add(empYY);
+		testList.add(secOrdDetailsVO1);
+		testList.add(secOrdDetailsVO2);
 		
-//		dao.insertWithSecOrdDetails(deptVO , testList);
+		dao.insertWithSecOrdDetails(secOrdVO , testList);
 	}
 }
