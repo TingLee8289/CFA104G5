@@ -14,4 +14,5 @@ public interface MemberDAO_interface {
 //   public List<EmpVO> getAll(Map<String, String[]> map); 
      public void updateADM(MemberVO memberVO);
      public MemberVO checkUsername(String memUsername);
+     public MemberVO searchEmail(String memEmail);
 }

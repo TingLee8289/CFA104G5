@@ -114,4 +114,8 @@ public MemberVO addMember(String memUsername, String memPassword, String memName
 		dao.verifyMember(memName);
 
 	}
+	
+	public MemberVO searchEmail(String memEmail) {
+		return dao.searchEmail(memEmail);
+	}
 }
