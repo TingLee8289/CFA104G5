@@ -18,7 +18,7 @@ public interface MemberDAO_interface {
 
 	public void verifyMember(String memName);
 
-	public MemberVO checkUsername(String memUsername);
+//	public MemberVO checkUsername(String memUsername);
 
 	public MemberVO searchEmail(String memEmail);
 
@@ -26,7 +26,7 @@ public interface MemberDAO_interface {
 
 	public void updateMemberPassword(MemberVO memberVO);
     
-  public Integer checkUsername(String memUsername);
+//  public Integer checkUsername(String memUsername);
 
 }
 
