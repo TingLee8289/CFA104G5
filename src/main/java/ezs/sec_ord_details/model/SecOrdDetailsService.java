@@ -1,5 +1,6 @@
 package ezs.sec_ord_details.model;
 
+import java.math.BigDecimal;
 import java.util.List;
 
 //二手購物訂單明細複合主鍵確認
@@ -15,7 +16,7 @@ public class SecOrdDetailsService {
 	public SecOrdDetailsVO addSecOrdDetails(Integer shOrdID,
 			Integer shID,
 			String shName,
-			Integer shPrice,
+			BigDecimal shPrice,
 			Integer shQty) {
 
 		SecOrdDetailsVO secOrdDetailsVO = new SecOrdDetailsVO();
@@ -34,7 +35,7 @@ public class SecOrdDetailsService {
 	public SecOrdDetailsVO updateSecOrdDetails(Integer shOrdID,
 			Integer shID,
 			String shName,
-			Integer shPrice,
+			BigDecimal shPrice,
 			Integer shQty) {
 
 		SecOrdDetailsVO secOrdDetailsVO = new SecOrdDetailsVO();

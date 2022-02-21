@@ -23,9 +23,8 @@ public class SecOrdDAO implements SecOrdDAO_interface {
 
 	private static final String INSERT_STMT = "INSERT INTO " + "`CFA104G5`.`SEC_ORD` "
 			+ "(sh_buyerid, sh_sellerid, sh_postcode, sh_county, sh_dist, "
-			+ "sh_road, sh_payment, sh_ord_status, sh_price, sh_date, "
-			+ "sh_notes)" + "VALUES "
-			+ "(?, ?, ?, ?, ?" + ", ?, ?, ?, ?, ?" + ", ?)";
+			+ "sh_road, sh_payment, sh_ord_status, sh_price, sh_date, " + "sh_notes)" + "VALUES " + "(?, ?, ?, ?, ?"
+			+ ", ?, ?, ?, ?, ?" + ", ?)";
 	private static final String DELETE_STMT = "DELETE FROM `CFA104G5`.`SEC_ORD` WHERE sh_ord_id = ?";
 	private static final String UPDATE_STMT = "UPDATE `CFA104G5`.`SEC_ORD` "
 			+ "SET sh_buyerid=?, sh_sellerid=?, sh_postcode=?, sh_county=?, sh_dist=?, "
@@ -41,8 +40,7 @@ public class SecOrdDAO implements SecOrdDAO_interface {
 	private static final String GET_ORDDETAILS_BYSECORD_STMT = "SELECT * FROM `CFA104G5`.`SEC_ORD_DETAILS` WHERE sh_ord_id = ?";
 	private static final String UPDATE_CANCEL_ORDER_STMT = "UPDATE `CFA104G5`.`SEC_ORD` SET sh_ord_status = 8 WHERE sh_ord_id = ?; ";
 	private static final String UPDATE_ORDER_SHIPPERED_STMT = "UPDATE `CFA104G5`.`SEC_ORD` SET sh_ord_status = 2 WHERE sh_ord_id = ?; ";
-	
-	
+
 	private static DataSource ds = null;
 	static {
 		try {
@@ -246,17 +244,18 @@ public class SecOrdDAO implements SecOrdDAO_interface {
 		return set;
 
 	}
+
 	@Override
 	public Set<SecOrdVO> getSecOrdByShSellerID(Integer shSellerID) {
 		Set<SecOrdVO> set = new LinkedHashSet<SecOrdVO>();
 		SecOrdVO secOrdVO = null;
-		
+
 		try {
 			con = ds.getConnection();
 			pstmt = con.prepareStatement(GET_ALL_BY_SELLERID_STMT);
 			pstmt.setInt(1, shSellerID);
 			rs = pstmt.executeQuery();
-			
+
 			while (rs.next()) {
 				secOrdVO = new SecOrdVO();
 				secOrdVO.setShOrdID(rs.getInt("sh_ord_id"));
@@ -284,7 +283,7 @@ public class SecOrdDAO implements SecOrdDAO_interface {
 			Util.closeResource(con, pstmt, rs);
 		}
 		return set;
-		
+
 	}
 
 	@Override
@@ -316,7 +315,7 @@ public class SecOrdDAO implements SecOrdDAO_interface {
 		}
 
 	}
-	
+
 	@Override
 	public Set<SecOrdDetailsVO> getSecAllOrdDeatails(Integer shOrdID) {
 		Set<SecOrdDetailsVO> set = new LinkedHashSet<SecOrdDetailsVO>();
@@ -327,14 +326,13 @@ public class SecOrdDAO implements SecOrdDAO_interface {
 			pstmt = con.prepareStatement(GET_ORDDETAILS_BYSECORD_STMT);
 			pstmt.setInt(1, shOrdID);
 			rs = pstmt.executeQuery();
-	
-			
+
 			while (rs.next()) {
 				secOrdDetailsVO = new SecOrdDetailsVO();
 				secOrdDetailsVO.setShOrdID(rs.getInt("sh_ord_id"));
 				secOrdDetailsVO.setShID(rs.getInt("sh_id"));
 				secOrdDetailsVO.setShName(rs.getString("sh_name"));
-				secOrdDetailsVO.setShPrice(rs.getInt("sh_price"));
+				secOrdDetailsVO.setShPrice(rs.getBigDecimal("sh_price"));
 				secOrdDetailsVO.setShQty(rs.getInt("sh_qty"));
 
 				set.add(secOrdDetailsVO);
@@ -348,7 +346,6 @@ public class SecOrdDAO implements SecOrdDAO_interface {
 		return set;
 	}
 
-	
 	@Override
 	public void updateCancleOrder(Integer shOrdID) {
 
@@ -363,9 +360,10 @@ public class SecOrdDAO implements SecOrdDAO_interface {
 			Util.closeResource(con, pstmt, rs);
 		}
 	}
+
 	@Override
 	public void updateOrderShippered(Integer shOrdID) {
-		
+
 		try {
 			con = ds.getConnection();
 			pstmt = con.prepareStatement(UPDATE_ORDER_SHIPPERED_STMT);
@@ -377,19 +375,19 @@ public class SecOrdDAO implements SecOrdDAO_interface {
 			Util.closeResource(con, pstmt, rs);
 		}
 	}
-	
+
 	@Override
 	public void insertWithSecOrdDetails(SecOrdVO secOrdVO, List<SecOrdDetailsVO> list) {
 
 		try {
 			con = ds.getConnection();
-			
+
 			// 1●設定於 pstmt.executeUpdate()之前
 			con.setAutoCommit(false);
-			
-    		// 先新增部門
-			String cols[] = {"sh_ord_id"};
-			pstmt = con.prepareStatement(INSERT_STMT , cols);			
+
+			// 先新增部門
+			String cols[] = { "sh_ord_id" };
+			pstmt = con.prepareStatement(INSERT_STMT, cols);
 			pstmt.setInt(1, secOrdVO.getShBuyerID());
 			pstmt.setInt(2, secOrdVO.getShSellerID());
 			pstmt.setInt(3, secOrdVO.getShPostcode());
@@ -401,37 +399,36 @@ public class SecOrdDAO implements SecOrdDAO_interface {
 			pstmt.setBigDecimal(9, secOrdVO.getShPrice());
 			pstmt.setDate(10, secOrdVO.getShDate());
 			pstmt.setString(11, secOrdVO.getShNotes());
-			
-			Statement stmt=	con.createStatement();
-			stmt.executeUpdate("set auto_increment_offset=1;");    //自增主鍵-初始值
-			stmt.executeUpdate("set auto_increment_increment=1;"); //自增主鍵-遞增
-			
+
+			Statement stmt = con.createStatement();
+			stmt.executeUpdate("set auto_increment_offset=1;"); // 自增主鍵-初始值
+			stmt.executeUpdate("set auto_increment_increment=1;"); // 自增主鍵-遞增
+
 			pstmt.executeUpdate();
-			//掘取對應的自增主鍵值
+			// 掘取對應的自增主鍵值
 			String next_secOrdno = null;
 			ResultSet rs = pstmt.getGeneratedKeys();
 			if (rs.next()) {
 				next_secOrdno = rs.getString(1);
-				System.out.println("自增主鍵值= " + next_secOrdno +"(剛新增成功的訂單編號)");
+				System.out.println("自增主鍵值= " + next_secOrdno + "(剛新增成功的訂單編號)");
 			} else {
 				System.out.println("未取得自增主鍵值");
 			}
 			rs.close();
 			// 再同時新增訂單明細
 			SecOrdDetailsJDBCDAO dao = new SecOrdDetailsJDBCDAO();
-			System.out.println("list.size()-A="+list.size());
+			System.out.println("list.size()-A=" + list.size());
 			for (SecOrdDetailsVO aSecOrdDetails : list) {
-				aSecOrdDetails.setShOrdID(Integer.valueOf(next_secOrdno)) ;
-				dao.insert2(aSecOrdDetails,con);
+				aSecOrdDetails.setShOrdID(Integer.valueOf(next_secOrdno));
+				dao.insert2(aSecOrdDetails, con);
 			}
 
 			// 2●設定於 pstmt.executeUpdate()之後
 			con.commit();
 			con.setAutoCommit(true);
-			System.out.println("list.size()-B="+list.size());
-			System.out.println("新增訂單編號" + next_secOrdno + "時,共有訂單明細" + list.size()
-					+ "筆同時被新增");
-			
+			System.out.println("list.size()-B=" + list.size());
+			System.out.println("新增訂單編號" + next_secOrdno + "時,共有訂單明細" + list.size() + "筆同時被新增");
+
 			// Handle any SQL errors
 		} catch (SQLException se) {
 			if (con != null) {
@@ -441,17 +438,13 @@ public class SecOrdDAO implements SecOrdDAO_interface {
 					System.err.println("rolled back-由-secOrd");
 					con.rollback();
 				} catch (SQLException excep) {
-					throw new RuntimeException("rollback error occured. "
-							+ excep.getMessage());
+					throw new RuntimeException("rollback error occured. " + excep.getMessage());
 				}
 			}
-			throw new RuntimeException("A database error occured. "
-					+ se.getMessage());
+			throw new RuntimeException("A database error occured. " + se.getMessage());
 		} finally {
 			Util.closeResource(con, pstmt, rs);
 		}
-		
-		
-		
+
 	}
 }
