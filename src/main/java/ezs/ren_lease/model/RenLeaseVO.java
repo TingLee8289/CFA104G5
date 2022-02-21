@@ -18,6 +18,7 @@ public class RenLeaseVO  implements Serializable  {
 	private Timestamp lseTimestamp;
 	private Date lseStart;
 	private Date lseEnd;
+	private Integer lsePrice;
 
 	public RenLeaseVO() {
 		super();
@@ -117,5 +118,13 @@ public class RenLeaseVO  implements Serializable  {
 
 	public void setLseEnd(Date lseEnd) {
 		this.lseEnd = lseEnd;
+	}
+
+	public Integer getLsePrice() {
+		return lsePrice;
+	}
+
+	public void setLsePrice(Integer lsePrice) {
+		this.lsePrice = lsePrice;
 	}	
 }
