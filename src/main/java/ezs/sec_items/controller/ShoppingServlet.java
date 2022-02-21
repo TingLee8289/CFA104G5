@@ -55,7 +55,7 @@ public class ShoppingServlet extends HttpServlet {
 			}
 
 			session.setAttribute("shoppingcart", buylist);
-			String url = "/frontend/sec_items/shoppingCart2.jsp";
+			String url = "/frontend/sec_items/shoppingCart.jsp";
 			RequestDispatcher rd = req.getRequestDispatcher(url);
 			rd.forward(req, res);
 		}
