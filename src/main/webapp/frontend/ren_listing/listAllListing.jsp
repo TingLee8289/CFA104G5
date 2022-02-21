@@ -119,8 +119,8 @@
 		<td>修改</td>
 		<td>刪除</td>
 	</tr>
-	<%@ include file="page1.file" %>
-	<c:forEach var="renListingVO" items="${list}" begin="<%=pageIndex %>" end="<%=pageIndex+rowsPerPage-1 %>">
+<%-- 	<%@ include file="page1.file" %> --%>
+<%-- 	<c:forEach var="renListingVO" items="${list}" begin="<%=pageIndex %>" end="<%=pageIndex+rowsPerPage-1 %>"> --%>
 	
 		<tr>
 			<td>${renListingVO.lisID}</td>
@@ -187,9 +187,9 @@
 			    </FORM>
 			 </td>
 		</tr>
-	</c:forEach>
+<%-- 	</c:forEach> --%>
 </table>
-<%@ include file="page2.file" %>
+<%-- <%@ include file="page2.file" %> --%>
 
 </body>
 </html>

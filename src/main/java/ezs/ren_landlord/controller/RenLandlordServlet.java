@@ -189,7 +189,7 @@ public class RenLandlordServlet extends HttpServlet {
 						
 						/***************************2.開始新增資料***************************************/
 						RenLandlordService renLandlordSvc = new RenLandlordService();
-						renLandlordVO = renLandlordSvc.addLandlord(lddMemId, lddPic);
+//						renLandlordVO = renLandlordSvc.addLandlord(lddMemId, lddPic);
 						
 						/***************************3.新增完成,準備轉交(Send the Success view)***********/
 						String url = "/backend/ren/select.jsp";
