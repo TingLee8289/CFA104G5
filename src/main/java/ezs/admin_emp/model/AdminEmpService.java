@@ -58,6 +58,10 @@ public class AdminEmpService {
 		return list;
 	}
 	
+	public  List<AdminEmpVO> getAll1() {
+		return dao.getAll1();
+	}
+	
 	public AdminEmpVO Search(String admUsername ,String admPassword) {
 		return dao.Search(admUsername ,admPassword);
 	}
