@@ -5,6 +5,9 @@ import java.math.BigDecimal;
 import java.sql.Date;
 
 public class SecOrdVO implements Serializable{
+	
+	private static final long serialVersionUID = 1L;
+	
 	private Integer shOrdID;
 	private Integer shBuyerID;
 	private Integer shSellerID;
@@ -22,6 +25,9 @@ public class SecOrdVO implements Serializable{
 	private String shSellerTXT;
 	private Date shAPPDate;
 	private String shNotes;
+	private String shRecipName;
+	private String shRecipPhone;
+	
 	
 	public Integer getShOrdID() {
 		return shOrdID;
@@ -124,6 +130,18 @@ public class SecOrdVO implements Serializable{
 	}
 	public void setShNotes(String shNotes) {
 		this.shNotes = shNotes;
+	}
+	public String getShRecipName() {
+		return shRecipName;
+	}
+	public void setShRecipName(String shRecipName) {
+		this.shRecipName = shRecipName;
+	}
+	public String getShRecipPhone() {
+		return shRecipPhone;
+	}
+	public void setShRecipPhone(String shRecipPhone) {
+		this.shRecipPhone = shRecipPhone;
 	}
 	
 	

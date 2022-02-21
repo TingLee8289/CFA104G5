@@ -102,7 +102,7 @@ pageContext.setAttribute("secItemslist", secItemslist);
         margin-left: var(--aside-width);
         width: calc(100% - var(--aside-width));
         padding: 20px;
-        background-color: hsl(34, 100%, 84%);
+        background-color: white;
         min-height: calc(100vh - var(--header-height));
         transition: all 1s;
       }
@@ -139,17 +139,17 @@ pageContext.setAttribute("secItemslist", secItemslist);
       }
       main.main ul.item_list > li > a{
         display: inline-block;
-        border: 1px solid red;
+/*         border: 1px solid red; */
         text-decoration: none;
         width: 100%;
       }
       main.main ul.item_list > li > a div.img_block{
-        border: 1px solid blue;
+/*         border: 1px solid blue; */
         font-size: 0;
         height: 200px;
       }
       main.main ul.item_list > li > a span.item_text{
-        border: 1px solid blue;
+/*         border: 1px solid blue; */
         white-space: nowrap;
         overflow: hidden;
         text-overflow: ellipsis;

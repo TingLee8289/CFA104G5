@@ -464,7 +464,6 @@
         }
         
         #checkoutbtn{
-		    text-decoration: none;
 		    font-family: "Montserrat", sans-serif;
 		    letter-spacing: -.015em;
 		    font-size: .75em;
@@ -492,7 +491,7 @@
 	<div class="wrap cf">
         <div class="heading cf">
           <h1>EASY SPACE | 購物車</h1>
-          <a href="<%= request.getContextPath() %>/frontend/sec_items/secItemsViewPage.jsp"" class="continue">繼續購物</a>
+          <a href="<%= request.getContextPath() %>/frontend/sec_items/secItemsViewPage.jsp" class="continue">繼續購物</a>
         </div>
         <div class="cart">
           <ul class="cartWrap">
@@ -530,7 +529,7 @@
 	               </div>
 	            </li>
 			<%	}
-			  }%>
+			  }	%>
 <!-- ---------------------------------------------------------------------------- -->
 <!-- 			<li class="items odd"> -->
 <!--             	<div class="infoWrap">  -->
