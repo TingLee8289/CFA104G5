@@ -64,15 +64,23 @@ header {
 							class="pages-login d-flex flex-row align-items-center col-12 justify-content-between mx-auto">
 							<ul
 								class="nav nav-items justify-content-between align-items-center col-9">
-								<li class="nav-item"><a class="nav-link" role="button"
-									href="#">房屋租賃</a></li>
-								<li class="nav-item"><a class="nav-link" href="#">居家服務</a>
+								<li class="nav-item">
+									<a class="nav-link" role="button" href="#">房屋租賃</a>
 								</li>
-								<li class="nav-item"><a class="nav-link" href="#">二手家電</a>
+								<li class="nav-item">
+									<a class="nav-link" href="#">居家服務</a>
 								</li>
+								<li class="nav-item">
+									<a class="nav-link" href="#">二手家電</a>
+								</li>
+								
+								<li class="nav-item">
+									<a class="nav-link" href="#">會員中心</a>
+								</li>
+								
 							</ul>
-							<div
-								class="nav-menu-shopping-bag d-flex col-3 justify-content-sm-end  align-items-center">
+							<div class="nav-menu-shopping-bag d-flex col-3 justify-content-sm-end  align-items-center">
+								
 								<a href="#"><i class="bi bi-cart3 mx-2"
 									style="font-size: 3rem; color: #8C4E37;"></i></a> <a class="btn"
 									href="#" role="button" style="background-color: #FD9843">會員登入</a>

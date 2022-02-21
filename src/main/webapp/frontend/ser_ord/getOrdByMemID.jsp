@@ -120,13 +120,14 @@ pageContext.setAttribute("memOrdList", memOrdList);
 								
 								<td>${serOrdVO.ordNote}</td>
 								<td>
-									<FORM METHOD="post"
-										ACTION="<%=request.getContextPath()%>/ser_ord/CreditPay.do"
-										style="margin-bottom: 0px;">
-										<input type="submit" value="線上付款"> 
-										<input type="hidden" name="ordID" value="${serOrdVO.ordID}"> 
-										<input type="hidden" name="action" value="CreditPay">
-									</FORM>
+<!-- 									<FORM METHOD="post" -->
+<%-- 										ACTION="<%=request.getContextPath()%>/frontend/ser_ord/creditPay.jsp?" --%>
+<!-- 										style="margin-bottom: 0px;"> -->
+<!-- 										<input type="submit" value="線上付款">  -->
+<%-- 										<input type="hidden" name="ordID" value="${serOrdVO.ordID}">  --%>
+<!-- 										<input type="hidden" name="action" value="CreditPay"> -->
+<!-- 									</FORM> -->
+									<a href="<%=request.getContextPath()%>/frontend/ser_ord/creditPay.jsp?ordID=${serOrdVO.ordID}" class="btn btn-outline-success text-nowrap">線上付款</a>
 								</td>
 								<td>
 									<FORM METHOD="post"
