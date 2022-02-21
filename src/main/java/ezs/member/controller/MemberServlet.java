@@ -67,6 +67,11 @@ public class MemberServlet extends HttpServlet {
 				if (memberVO == null) {
 					errorMsgs.add("帳號或密碼有誤，請重新輸入3");
 				}
+				if(memberVO.getMemSupReported() >= 5) {// *************被檢舉次數****************
+					errorMsgs.add("該帳號檢舉次數已達5次被停權，如有問題清洽客服人員");
+				}
+				
+			
 				// Send the use back to the form, if there were errors
 				if (!errorMsgs.isEmpty()) {
 					RequestDispatcher failureView = req.getRequestDispatcher("/frontend/member/Login2.jsp");
