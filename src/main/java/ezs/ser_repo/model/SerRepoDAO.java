@@ -13,7 +13,7 @@ import javax.naming.InitialContext;
 import javax.naming.NamingException;
 import javax.sql.DataSource;
 
-
+import ezs.member.model.MemberVO;
 import util.Util;
 
 public class SerRepoDAO implements SerRepoDAO_interface {
@@ -22,7 +22,8 @@ public class SerRepoDAO implements SerRepoDAO_interface {
 	private static final String GET_ONE_STMT = "SELECT RP_ID,RP_ORD_ID,RP_MEM_ID,RP_TXT,RP_DATE,RP_STATUS FROM `ser_repo` where RP_ID = ?";
 	private static final String DELETE = "DELETE FROM `ser_repo` where RP_ID = ?";
 	private static final String UPDATE = "UPDATE `ser_repo` set RP_ORD_ID=?, RP_MEM_ID=?, RP_TXT=?, RP_DATE=?, RP_STATUS=? where RP_ID = ?";
-
+	private static final String UPDATEMEMSUPREPORT = "UPDATE member SET mem_sup_reported = mem_sup_reported + 1 WHERE mem_id = ?";
+	
 	private static DataSource ds = null;
 	static {
 		try {
@@ -162,5 +163,31 @@ public class SerRepoDAO implements SerRepoDAO_interface {
 		return list;
 
 	}
+	
+	@Override
+	public void updateMemSupReport(Integer memID) { //檢舉次數
+		try {
+			con = ds.getConnection();
+			pstmt = con.prepareStatement(UPDATEMEMSUPREPORT);
+			
+			pstmt.setInt(1, memID);
+			
+			pstmt.executeUpdate();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}finally {
+			Util.closeResource(con, pstmt, rs);
+		}
 
-}
+	}
+		
+	}
+	
+	
+	
+	
+	
+	
+	
+
+

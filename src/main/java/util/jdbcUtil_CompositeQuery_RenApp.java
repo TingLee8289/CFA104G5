@@ -31,7 +31,7 @@ public class jdbcUtil_CompositeQuery_RenApp {
 				else
 					whereCondition.append(" and " + aCondition);
 
-				System.out.println("有送出查詢資料的欄位數count = " + count);
+//				System.out.println("有送出查詢資料的欄位數count = " + count);
 			}
 		}
 		
@@ -49,7 +49,7 @@ public class jdbcUtil_CompositeQuery_RenApp {
 		String finalSQL = "select * from `CFA104G5`.`REN_APPOINTMENT` "
 				          + jdbcUtil_CompositeQuery_RenApp.get_WhereCondition(map)
 				          + "order by apt_id desc";
-		System.out.println("●●finalSQL = " + finalSQL);
+//		System.out.println("●●finalSQL = " + finalSQL);
 
 	}
 }

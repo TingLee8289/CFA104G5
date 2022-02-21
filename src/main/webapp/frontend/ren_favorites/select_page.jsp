@@ -77,7 +77,7 @@
 <h3>收藏管理</h3>
 
 <ul>
-  <li><a href='addRenFavorites.jsp'>Add</a> a new RenFavorites.</li>
+  <li><a href='<%=request.getContextPath()%>/frontend/ren_favorites/addRenFavorites.jsp'>Add</a> a new RenFavorites.</li>
 </ul>
 <jsp:include page="/frontend/EZ_footer.jsp"></jsp:include>
 

@@ -41,7 +41,7 @@ public class GetSerVdrServlet extends HttpServlet {
 				}
 				// Send the use back to the form, if there were errors
 				if (!errorMsgs.isEmpty()) {
-					RequestDispatcher failureView = req.getRequestDispatcher("/frontend/ser_vdr/select_page.jsp");// 參數要換
+					RequestDispatcher failureView = req.getRequestDispatcher("/frontend/ser_vdr/readSerVdr.jsp");// 參數要換
 					failureView.forward(req, res);
 					return;// 程式中斷
 				}
@@ -54,7 +54,7 @@ public class GetSerVdrServlet extends HttpServlet {
 				}
 				// Send the use back to the form, if there were errors
 				if (!errorMsgs.isEmpty()) {
-					RequestDispatcher failureView = req.getRequestDispatcher("/frontend/ser_vdr/select_page.jsp");
+					RequestDispatcher failureView = req.getRequestDispatcher("/frontend/ser_vdr/readSerVdr.jsp");
 					failureView.forward(req, res);
 					return;// 程式中斷
 				}
@@ -67,7 +67,7 @@ public class GetSerVdrServlet extends HttpServlet {
 				}
 				// Send the use back to the form, if there were errors
 				if (!errorMsgs.isEmpty()) {
-					RequestDispatcher failureView = req.getRequestDispatcher("/frontend/ser_vdr/select_page.jsp");
+					RequestDispatcher failureView = req.getRequestDispatcher("/frontend/ser_vdr/readSerVdr.jsp");
 					failureView.forward(req, res);
 					return;// 程式中斷
 				}
@@ -81,7 +81,7 @@ public class GetSerVdrServlet extends HttpServlet {
 				/*************************** 其他可能的錯誤處理 *************************************/
 			} catch (Exception e) {
 				errorMsgs.add("無法取得資料:" + e.getMessage());
-				RequestDispatcher failureView = req.getRequestDispatcher("/frontend/ser_vdr/select_page.jsp");
+				RequestDispatcher failureView = req.getRequestDispatcher("/frontend/ser_vdr/readSerVdr.jsp");
 				failureView.forward(req, res);
 			}
 		}

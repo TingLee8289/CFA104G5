@@ -289,7 +289,7 @@ System.out.println("xxxxxxxxxxxxxxxxxxxxxxxxxxxx");
 		if ("getOneMemUpdate".equals(action)) {
 			List<String> errorMsgs = new LinkedList<String>();
 			req.setAttribute("errorMsgs", errorMsgs);
-			System.out.println("hhhhhhhhhh");
+			System.out.println("getOneMemUpdate");
 			
 			try {
 				/*************************** 1.接收請求參數 - 輸入格式的錯誤處理 **********************/
@@ -316,7 +316,7 @@ System.out.println("xxxxxxxxxxxxxxxxxxxxxxxxxxxx");
 		if ("updateADM".equals(action)) {
 			List<String> errorMsgs = new LinkedList<String>();
 			req.setAttribute("errorMsgs", errorMsgs);
-			System.out.println("testetstetetet");
+			System.out.println("admin update");
 			
 			/*************************** 1.接收請求參數 - 輸入格式的錯誤處理 **********************/
 			try {

@@ -51,6 +51,8 @@ public class WriteBlobByJDBC將圖片寫進資料庫 {
 				pstmt.setInt(2, i+1);
 				pstmt.executeUpdate();
 			}
+      System.out.println("會員頭相新增成功");
+
 
 			// 請先到SQL下指令找出你的PIC欄位
 			pstmt = con.prepareStatement("UPDATE `CFA104G5`.`REN_LISTING_PIC` SET LSP_LIS_ID = ?, LSP_PIC = ? WHERE LSP_ID = ?");
@@ -70,6 +72,7 @@ public class WriteBlobByJDBC將圖片寫進資料庫 {
 
 			System.out.println("房源圖片新增成功");
 
+	
 		} catch (ClassNotFoundException ce) {
 			System.out.println(ce);
 		} catch (SQLException se) {

@@ -1,12 +1,13 @@
 package ezs.sec_ord_details.model;
 
 import java.io.Serializable;
+import java.math.BigDecimal;
 
 public class SecOrdDetailsVO implements Serializable{
 	private Integer shOrdID;
 	private Integer shID;
 	private String shName;
-	private Integer shPrice;
+	private BigDecimal shPrice;
 	private Integer shQty;
 	
 	public Integer getShOrdID() {
@@ -27,10 +28,10 @@ public class SecOrdDetailsVO implements Serializable{
 	public void setShName(String shName) {
 		this.shName = shName;
 	}
-	public Integer getShPrice() {
+	public BigDecimal getShPrice() {
 		return shPrice;
 	}
-	public void setShPrice(Integer shPrice) {
+	public void setShPrice(BigDecimal shPrice) {
 		this.shPrice = shPrice;
 	}
 	public Integer getShQty() {
