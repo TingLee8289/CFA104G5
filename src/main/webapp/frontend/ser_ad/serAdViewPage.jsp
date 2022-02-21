@@ -171,12 +171,9 @@ img {
 							class="pages-login d-flex flex-row align-items-center col-12 justify-content-between mx-auto">
 							<ul
 								class="nav nav-items justify-content-between align-items-center col-9">
-								<li class="nav-item"><a class="nav-link" role="button"
-									href="#">房屋租賃</a></li>
-								<li class="nav-item"><a class="nav-link" href="#">居家服務</a>
-								</li>
-								<li class="nav-item"><a class="nav-link" href="#">二手家電</a>
-								</li>
+								<li class="nav-item"><a class="nav-link" role="button" href="#">房屋租賃</a></li>
+								<li class="nav-item"><a class="nav-link" href="#">居家服務</a></li>
+								<li class="nav-item"><a class="nav-link" href="#">二手家電</a></li>
 							</ul>
 							<div
 								class="nav-menu-shopping-bag d-flex col-3 justify-content-sm-end  align-items-center">
@@ -207,9 +204,8 @@ img {
 			<ul class="nav_list">
 				<c:forEach var="serClaVO" items="${serClaList}">
 					<li>
-						<form method="get"
-							action="<%=request.getContextPath() %>/frontend/sec_items/secItemsViewPageAJAX.jsp">
-							<button type="button" id="Cla${serClaVO.serClaID}">${serClaVO.serClaName}</button>
+						<form method="get" action="<%=request.getContextPath() %>/ser_ad/getAdBySerClaID.do">
+							<button type="submit" id="Cla${serClaVO.serClaID}">${serClaVO.serClaName}</button>
 							<input type="hidden" name="serClaID" value="${serClaVO.serClaID}">
 						</form>
 					</li>
@@ -222,7 +218,7 @@ img {
 
 	<main class="main">
 
-		<c:forEach var="serAdVO" items="${serAdList}">
+		<c:forEach var="serAdVO" items="${serAdVO}">
 
 			<div class="container">
 				<div class="card d-flex row flex-row p-4" style="min-width: 800px;">
@@ -373,106 +369,14 @@ img {
         $("button.btn_hamburger").on("click", function(){
           $("aside.aside").toggleClass("-on");
         });
-
+		
+        console.log(location.href.indexOf('serAdViewPage.jsp'));
+        if(location.href.indexOf('serAdViewPage.jsp') > -1) {
+        	$("#Cla2").trigger('click');
+        }
       });
 </script>
-	<script>
-		$('#Cate1').click(function() {
-			$.ajax({
-				type: "get",
-				url: "<%= request.getContextPath()%>/frontend/sec_items/secItemsViewPageAJAX.jsp",
-				data: {"shCateID": 1},
-				success: function(data){
-					showItems(data);
-				}
-			});
-		});
-		$('#Cate2').click(function() {
-			$.ajax({
-				type: "get",
-				url: "<%= request.getContextPath()%>/frontend/sec_items/secItemsViewPageAJAX.jsp",
-				data: {"shCateID": 2},
-				success: function(data){
-					showItems(data);
-				}
-			});
-		});
-		$('#Cate3').click(function() {
-			$.ajax({
-				type: "get",
-				url: "<%= request.getContextPath()%>/frontend/sec_items/secItemsViewPageAJAX.jsp",
-				data: {"shCateID": 3},
-				success: function(data){
-					showItems(data);
-				}
-			});
-		});
-		$('#Cate4').click(function() {
-			$.ajax({
-				type: "get",
-				url: "<%= request.getContextPath()%>/frontend/sec_items/secItemsViewPageAJAX.jsp",
-				data: {"shCateID": 4},
-				success: function(data){
-					showItems(data);
-				}
-			});
-		});
-		$('#Cate5').click(function() {
-			$.ajax({
-				type: "get",
-				url: "<%= request.getContextPath()%>/frontend/sec_items/secItemsViewPageAJAX.jsp",
-				data: {"shCateID": 5},
-				success: function(data){
-					showItems(data);
-				}
-			});
-		});
-		
-		
-		function showItems(data){
-			
-		//		console.log(data)
-			$("#item_list").html("");
-			$("#item_list").html(data);
-		}
-
-
 	
-
-	
-// 	$.ajax({
-// 	    // 進行要求的網址(URL)
-<%-- 	    url: '<%= request.getContextPath()%>/sec_items/GetSecItemsServlet.do', --%>
-// 	    // 要送出的資料 (會被自動轉成查詢字串)
-// 	    data: {
-// 	        shCateID: 
-// 	    },
-// 	    // 要使用的要求method(方法)，POST 或 GET
-// 	    type: 'GET',
-// 	    // 資料的類型
-// 	    dataType : 'json',
-// 	})
-// 	  // 要求成功時要執行的程式碼
-// 	  // 回應會被傳遞到回調函式的參數
-// 	  .done(function( json ) {
-// 	     $( '<h1>' ).text( json.title ).appendTo( 'body' );
-// 	     $( '<div class=\'content\'>').html( json.html ).appendTo( 'body' );
-// 	  })
-// 	  // 要求失敗時要執行的程式碼
-// 	  // 狀態碼會被傳遞到回調函式的參數
-// 	  .fail(function( xhr, status, errorThrown ) {
-// 	    console.log( '出現錯誤，無法完成!' )
-// 	    console.log( 'Error: ' + errorThrown )
-// 	    console.log( 'Status: ' + status )
-// 	    console.dir( xhr )
-// 	  })
-// 	  // 不論成功或失敗都會執行的回調函式
-// 	  .always(function( xhr, status ) {
-// 	    console.log( '要求已完成!' )
-// 	  })
-</script>
-
-
 
 	<!-- 	main 結束-------------------------------------------------------- -->
 </body>
