@@ -2,7 +2,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ page import="java.util.*"%>
 <%@ page import="ezs.ren_lease.model.*"%>
-<%-- 此頁練習採用 EL 的寫法取值 --%>
+
 
 <%
 	RenLeaseService renLeaseSvc = new RenLeaseService();
@@ -18,7 +18,6 @@
 </head>
 <body bgcolor='white'>
 
-<h4>此頁練習採用 EL 的寫法取值:</h4>
 <table id="table-1">
 	<tr><td>
 		 <h3>所有租賃單資料 - listAllLease.jsp</h3>
@@ -41,14 +40,16 @@
 		<th>租賃訂單編號</th>
 		<th>會員編號</th>
 		<th>房東編號</th>
+		<th>房源編號</th>
+		<th>租金</th>
+		<th>租賃訂單狀態</th>
+		<th>租賃開始時間</th>
+		<th>租賃結束時間</th>
 		<th>房客評價房東星數</th>
 		<th>房客評價房東內容</th>
 		<th>房東評價房客星數</th>
 		<th>房東評價房客內容</th>
-		<th>租賃訂單狀態</th>
 		<th>租賃訂單成立時間</th>
-		<th>租賃開始時間</th>
-		<th>租賃結束時間</th>
 		<th>修改</th>
 		<th>刪除</th>
 	</tr>
@@ -60,14 +61,16 @@
 			<td>${renLeaseVO.lseMemId}</td>
 			<td>${renLeaseVO.lseLisId}</td>
 			<td>${renLeaseVO.lseLddId}</td>
+			<td>${renLeaseVO.lsePrice}</td>
+			<td>${renLeaseVO.lseStatus}</td>
+			<td>${renLeaseVO.lseStart}</td>
+			<td>${renLeaseVO.lseEnd}</td>
 			<td>${renLeaseVO.lseLddScore}</td>
 			<td>${renLeaseVO.lseLddTxt}</td> 
 			<td>${renLeaseVO.lseTntScore}</td>
 			<td>${renLeaseVO.lseTntTxt}</td> 
-			<td>${renLeaseVO.lseStatus}</td>
 			<td>${renLeaseVO.lseTimestamp}</td>
-			<td>${renLeaseVO.lseStart}</td>
-			<td>${renLeaseVO.lseEnd}</td>
+			
 			<td>
 			  <FORM METHOD="post" ACTION="<%=request.getContextPath()%>/ren_lease/RenLeaseServlet.do" style="margin-bottom: 0px;">
 			     <input type="submit" value="修改">
