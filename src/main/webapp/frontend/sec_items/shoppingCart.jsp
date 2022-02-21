@@ -1,6 +1,5 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
-    <%@ page import="java.util.* , ezs.sec_items.model.* , java.math.*" %>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ page import="java.util.* , ezs.sec_items.model.* , java.math.*" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -499,10 +498,9 @@
           <ul class="cartWrap">
           
           
-          		<%! %>
           	<%
-          	if (buylist!=null){
 				BigDecimal total = new BigDecimal(BigInteger.ZERO,0);
+          	if (buylist!=null){
 				for (int index = 0; index < buylist.size(); index++) {
 				 SecItem order = buylist.get(index);
 				 BigDecimal subtotal = order.getShPrice().multiply(new BigDecimal(order.getShQTY()));
@@ -584,9 +582,9 @@
         
         <div class="subtotal cf">
           <ul>
-<%--             <li class="totalRow"><span class="label">總價</span><span class="value"><%=total%></span></li> --%>
+            <li class="totalRow"><span class="label">總價</span><span class="value">$<%=total%></span></li>
                 <li class="totalRow"><span class="label">運費</span><span class="value">$0</span></li>
-<%--                 <li class="totalRow final"><span class="label">總金額</span><span class="value"><%=total%></span></li> --%>
+                <li class="totalRow final"><span class="label">總金額</span><span class="value">$<%=total%></span></li>
           		<li class="totalRow">
               	<form name="checkoutForm" action="<%= request.getContextPath() %>/sec_items/ShoppingServlet.do" method="POST">
 		        	<input type="hidden" name="action"  value="CHECKOUT"> 
