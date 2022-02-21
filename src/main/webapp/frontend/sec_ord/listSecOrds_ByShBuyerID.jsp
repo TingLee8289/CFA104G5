@@ -90,6 +90,7 @@ th, td {
 			<th>買家評價賣家內容</th>
 			<th>撥款日期</th>
 			<th>買家備註</th>
+			<th>查看訂單明細</th>
 			<th>完成訂單</th>
 			<th>申請退款</th>
 		</tr>
@@ -113,6 +114,13 @@ th, td {
 				<td>${secOrdVO.shSellerTXT}</td>
 				<td>${secOrdVO.shAPPDate}</td>
 				<td>${secOrdVO.shNotes}</td>
+				<td>
+					<FORM METHOD="post"	ACTION="<%=request.getContextPath()%>/sec_ord/SecOrdServlet.do" style="margin-bottom: 0px;">
+						<input type="submit" value="查看訂單明細"> 
+						<input type="hidden" name="secOrdID" value="${secOrdVO.shOrdID}"> 
+						<input type="hidden" name="action" value="getSecOrdDetails">
+					</FORM>
+				</td>
 				<td>
 					<FORM METHOD="post"	ACTION="<%=request.getContextPath()%>/sec_ord/SecOrdServlet.do" style="margin-bottom: 0px;">
 						<input type="submit" value="完成訂單"> 
