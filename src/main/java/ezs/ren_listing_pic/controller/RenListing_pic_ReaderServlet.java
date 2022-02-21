@@ -29,11 +29,11 @@ public class RenListing_pic_ReaderServlet extends HttpServlet {
 		
 		try {
 			Statement stmt = con.createStatement();
-			String lspLisID = req.getParameter("lspLisID").trim();
-			ResultSet rs = stmt.executeQuery("SELECT `LSP_PIC` FROM `REN_LISTING` s JOIN `REN_LISTING_PIC` s1 on S.LIS_ID=S1.LSP_LIS_ID WHERE s.LIS_ID ="+ lspLisID);
+			String LIS_ID = req.getParameter("LIS_ID").trim();
+			ResultSet rs = stmt.executeQuery("SELECT `LSP_PIC` FROM `REN_LISTING` s JOIN `REN_LISTING_PIC` s1 on S.LIS_ID=S1.LSP_LIS_ID WHERE s.LIS_ID ="+ LIS_ID);
 			// "SELECT IMAGE FROM PICTURES WHERE PID = "+ req.getParameter("PID"));
 			if(rs.next()) {
-				BufferedInputStream in = new BufferedInputStream(rs.getBinaryStream("lspPic"));
+				BufferedInputStream in = new BufferedInputStream(rs.getBinaryStream("LSP_PIC"));
 				byte[] buf = new byte[4 * 1024]; // 4K buffer
 				int len;
 				while ((len = in.read(buf)) != -1) {
@@ -42,12 +42,12 @@ public class RenListing_pic_ReaderServlet extends HttpServlet {
 				in.close();
 			} else {
 				res.sendError(HttpServletResponse.SC_NOT_FOUND);
-//				InputStream in = getServletContext().getResourceAsStream("/NoData/null.jpg");
-//														
-//				byte[] b = new byte[in.available()];
-//				in.read(b);
-//				out.write(b);
-//				in.close();
+				InputStream in = getServletContext().getResourceAsStream("/NoData/null.jpg");
+														
+				byte[] b = new byte[in.available()];
+				in.read(b);
+				out.write(b);
+				in.close();
 				
 			}
 			rs.close();
@@ -55,12 +55,12 @@ public class RenListing_pic_ReaderServlet extends HttpServlet {
 			
 		}catch (Exception e) {
 			System.out.println(e);
-//			InputStream in = getServletContext().getResourceAsStream("/NoData/null.jpg");
-//			
-//			byte[] b = new byte[in.available()];
-//			in.read(b);
-//			out.write(b);
-//			in.close();
+			InputStream in = getServletContext().getResourceAsStream("/NoData/null.jpg");
+			
+			byte[] b = new byte[in.available()];
+			in.read(b);
+			out.write(b);
+			in.close();
 		}
 		
 	}

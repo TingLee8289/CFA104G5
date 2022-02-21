@@ -1,15 +1,19 @@
+<%@page import="ezs.ren_location.model.RenLocationVO"%>
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ page import="java.util.*"%>
 <%@ page import="ezs.ren_listing.model.*"%>
+<%@ page import="ezs.ren_roomtype.model.*"%>
+<%@ page import="ezs.ren_roomtype.model.RenRoomtypeVO"%>
+<%@ page import="ezs.ren_roomtype.model.RenRoomtypeService"%>
+<%@ page import="ezs.ren_location.model.*"%>
 
 <jsp:useBean id="listLocations_BylisAreaID" scope="request" type="java.util.Set<RenListingVO>" /> <!-- 於EL此行可省略 -->
 <jsp:useBean id="renLocationSvc" scope="page" class="ezs.ren_location.model.RenLocationService" />
-<%
-	RenListingService renListingSvc = new RenListingService();
-	List<RenListingVO> list = renListingSvc.getAll();
-	pageContext.setAttribute("list",list);
-%>
+<% 
+	Set<RenListingVO> set = (Set<RenListingVO>)session.getAttribute("listRenListing_ByLisAreaID"); 
+	pageContext.setAttribute("set", set);
+%> 
 
 <!DOCTYPE html>
 <html>
@@ -55,7 +59,7 @@
 <table id="table-2">
 	<tr><td>
 		 <h3>此區房源 - listListing_ByLisAreaID.jsp</h3>
-			<h4><a href="listing_select_page.jsp">回首頁</a></h4>	</td></tr>
+			<h4><a href="<%=request.getContextPath()%>/listing_select_page.jsp">回首頁</a></h4>	</td></tr>
 </table>
 
 <%-- 錯誤表列 --%>
@@ -83,8 +87,8 @@
 		<th>詳情</th>
 		<th>加入收藏</th>
 	</tr>
-	<%@ include file="page1.file"%>
-	<c:forEach var="renListingVO" items="${list}" begin="<%=pageIndex%>" end="<%=pageIndex+rowsPerPage-1%>">
+<%-- 	<%@ include file="page1.file"%> --%>
+<%-- 	<c:forEach var="renListingVO" items="${list}" begin="<%=pageIndex%>" end="<%=pageIndex+rowsPerPage-1%>"> --%>
 	
 		<tr>
 			<td>${renListingVO.lisID}</td>			
@@ -109,10 +113,10 @@
 					<input type="hidden" name="action" value="getOne_For_Display">
 				</FORM>
 			</td>	
-	</c:forEach>
+<%-- 	</c:forEach> --%>
 
 </table>
-<%@ include file="page2.file" %>
+<%-- <%@ include file="page2.file" %> --%>
 
 </body>
 </html>
