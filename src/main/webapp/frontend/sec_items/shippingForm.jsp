@@ -548,7 +548,7 @@
 		            <span class="field__label" for="shNotes">備註</span>
 		            <input class="field__input" type="text" id="shNotes" name="shNotes" value="<%=(secOrdVO == null) ? "" : secOrdVO.getShNotes()%>"/>
 		          </label>
-		        	<button class="button">產生訂單</button>
+		        	
 		        </div>
 	     </div>
 	      <input type="hidden" name="action" value="insert">
@@ -686,6 +686,7 @@
         </div>
     </div>
     
+    <button class="button">產生訂單</button>
     <script>
         window.onload = function () {
 

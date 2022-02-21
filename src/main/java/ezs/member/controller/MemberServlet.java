@@ -139,10 +139,6 @@ public class MemberServlet extends HttpServlet {
 				if (memPID == null || memPID.trim().length() == 0) {
 					errorMsgs.add("身分證字號請勿空白");
 				}
-				String memVatno = req.getParameter("memVatno");
-				if (memVatno == null || memVatno.trim().length() == 0) {
-					errorMsgs.add("統編請勿空白");
-				}
 				
 				byte[] memHeadshot = null;
 				Collection<Part> parts = req.getParts();
@@ -164,7 +160,7 @@ public class MemberServlet extends HttpServlet {
 				memberVO.setMemAddress(memAddress);
 				memberVO.setMemEmail(memEmail);
 				memberVO.setMemPID(memPID);
-				memberVO.setMemVatno(memVatno);
+				memberVO.setMemVatno(null);
 				memberVO.setMemHeadshot(memHeadshot);
 
 				if (!errorMsgs.isEmpty()) {
@@ -176,7 +172,7 @@ public class MemberServlet extends HttpServlet {
 				/*************************** 2.開始新增資料 ***************************************/
 				MemberService memberSvc = new MemberService();
 				memberVO = memberSvc.addMember(memUsername, memPassword, memName, memPhone, memAddress, memEmail,
-						memPID, memVatno, memHeadshot);
+						memPID, memHeadshot);
 
 				/*************************** 3.新增完成,準備轉交(Send the Success view) ***********/
 				req.setAttribute("memberVO", memberVO);

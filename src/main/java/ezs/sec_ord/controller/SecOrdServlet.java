@@ -73,9 +73,22 @@ public class SecOrdServlet extends HttpServlet {
 			
 			try {
 				/*************************** 1.接收請求參數 ****************************************/
-				Integer shBuyerID = Integer.valueOf(req.getParameter("shBuyerID"));
+				Integer shBuyerID = null;
+				try {
+					shBuyerID = Integer.valueOf(req.getParameter("shBuyerID"));
+				} catch (Exception e) {
+					errorMsgs.add("買家會員ID格式不正確");
+				}
+				
 				Integer shSellerID = 1;
-				Integer shPostcode = Integer.valueOf(req.getParameter("shPostcode"));
+				
+				Integer shPostcode = null;
+				try {
+					shPostcode = Integer.valueOf(req.getParameter("shPostcode"));
+				} catch (Exception e) {
+					errorMsgs.add("郵遞區號格式不正確");
+				}
+				
 				String shCounty = (String) req.getParameter("shCounty");
 					if (shCounty == null || shCounty.trim().length() == 0) {
 						errorMsgs.add("縣市請勿空白");
@@ -106,6 +119,13 @@ public class SecOrdServlet extends HttpServlet {
 				secOrdVO.setShPrice(shPrice);
 				secOrdVO.setShDate(shDate);
 				secOrdVO.setShNotes(shNotes);
+				
+				if (!errorMsgs.isEmpty()) {
+					req.setAttribute("secOrdVO", secOrdVO); // 含有輸入格式錯誤的secOrdVO物件,也存入req
+					RequestDispatcher failureView = req.getRequestDispatcher("/frontend/sec_items/Checkout.jsp");
+					failureView.forward(req, res);
+					return;
+				}
 				
 				/*************************** 2.開始新增資料 ***************************************/
 				SecOrdJDBCDAO dao = new SecOrdJDBCDAO();
