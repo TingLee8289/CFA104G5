@@ -5,6 +5,7 @@ import java.io.InputStream;
 import java.math.BigDecimal;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.Set;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -13,8 +14,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-
-
+import javax.servlet.http.HttpSession;
 
 import ezs.ren_listing.model.RenListingService;
 import ezs.ren_listing.model.RenListingVO;
@@ -106,7 +106,72 @@ public class RenListingServlet extends HttpServlet {
 				failureView.forward(req, res);
 			}
 		}
-		
+//查房東房源
+if("listRenListing_ByLisLddID".equals(action)) {
+			
+			List<String> errorMsgs = new LinkedList<String>();
+			
+			req.setAttribute("errorMsgs", errorMsgs);
+			
+			try {
+				/*****************1.接收請求參數_輸入格式的錯誤處理******************/
+				String str = req.getParameter("lisLddID");
+				if(str == null || (str.trim()).length() == 0) {
+					errorMsgs.add("請輸入房東ID");
+				}
+				if(!errorMsgs.isEmpty()) {
+					RequestDispatcher failureView = req
+							.getRequestDispatcher("/frontend/ren_listing/listing_select_page.jsp");
+					failureView.forward(req, res);
+					return;
+				}
+				
+				Integer lisLddID = null;
+				try {
+					lisLddID = new Integer(str);
+				} catch (Exception e) {
+					errorMsgs.add("房東ID格式不正確");
+				}
+				
+				if (!errorMsgs.isEmpty()) {
+					RequestDispatcher failureView = req
+							.getRequestDispatcher("/frontend/ren_listing/listing_select_page.jsp");
+					failureView.forward(req, res);
+					return;
+				}
+				/**********************2.開始查詢資料*************************/
+				RenListingService renListingSvc = new RenListingService();
+				Set<RenListingVO> set = renListingSvc.getRenListingByLisLddID(lisLddID);
+				if (set == null) {
+					errorMsgs.add("查無資料");
+				}
+				
+				if(!errorMsgs.isEmpty()) {
+					RequestDispatcher failureView = req
+							.getRequestDispatcher("/frontend/ren_listing/listing_select_page.jsp");
+					failureView.forward(req, res);
+					return;
+				}
+				
+				
+				
+				/********************3.查詢完成,準備轉交*****************/
+				HttpSession session = req.getSession();
+				session.setAttribute("listRenListing_ByLisLddID", set);
+				String url = "/frontend/ren_listing/listRenListing_ByLisLddID.jsp";
+				RequestDispatcher successView = req.getRequestDispatcher(url);
+				successView.forward(req, res);
+				
+				/*********************其他可能的錯誤*************/	
+				
+				
+			} catch (Exception e) {
+				errorMsgs.add("無法取得資料:" + e.getMessage());
+				RequestDispatcher failureView = req
+						.getRequestDispatcher("/frontend/ren_listing/listing_select_page.jsp");
+				failureView.forward(req, res);
+			}
+		}
 		if ("getOne_For_Update".equals(action)) { // 來自listAllEmp.jsp的請求
 
 			List<String> errorMsgs = new LinkedList<String>();
@@ -114,7 +179,7 @@ public class RenListingServlet extends HttpServlet {
 			// send the ErrorPage view.
 			req.setAttribute("errorMsgs", errorMsgs);
 			
-//			try {
+			try {
 				/***************************1.接收請求參數****************************************/
 		        Integer lisID =  new Integer(req.getParameter("lisID"));
 		        /***************************2.開始查詢資料****************************************/
@@ -128,18 +193,18 @@ public class RenListingServlet extends HttpServlet {
 		    
 		        /***************************其他可能的錯誤處理**********************************/
 		        
-			} 
-//		        catch (Exception e) {
-//		        
-//				errorMsgs.add("無法取得修改的資料:" + e.getMessage());
-//				RequestDispatcher failureView = req
-//						.getRequestDispatcher("/frontend/ren_listing/listAllListing.jsp");
-//				failureView.forward(req, res);
-//				
-//			}
+			} catch (Exception e) {
+				e.printStackTrace();
+				errorMsgs.add("無法取得修改的資料:" + e.getMessage());
+				RequestDispatcher failureView = req
+						.getRequestDispatcher("/frontend/ren_listing/listAllListing.jsp");
+				failureView.forward(req, res);
+			}
+				
+		}
 			
-//		}
-		
+	
+	
 		
 		if("update".equals(action)) {
 		
@@ -358,21 +423,16 @@ public class RenListingServlet extends HttpServlet {
 			Integer lisLddID = new Integer(req.getParameter("lisLddID").trim());
 			Integer lisRtID = new Integer(req.getParameter("lisRtID").trim());
 			Integer lisAreaID = new Integer(req.getParameter("lisAreaID").trim());
-			String lisTitle = req.getParameter("lisTitle");
-			String lisTitleReg = "^[(\u4e00-\u9fa5)(a-zA-Z0-9_)]{2,25}$";
+			String lisTitle = req.getParameter("lisTitle").trim();
+		
 			if (lisTitle == null || lisTitle.trim().length() == 0) {
-				errorMsgs.add("房源標題: 請勿空白");
-			} else if(!lisTitle.trim().matches(lisTitleReg)) { //以下練習正則(規)表示式(regular-expression)
-				errorMsgs.add("房源標題: 只能是中、英文字母、數字和_ , 且長度必需在2到25之間");
+				errorMsgs.add("房源標題: 請勿空白");			
             }
 			
-			String lisAbt = req.getParameter("lisAbt");
-			String lisAbtReg = "^[(\u4e00-\u9fa5)(a-zA-Z0-9_)]{2,255}$";
+			String lisAbt = req.getParameter("lisAbt").trim();
 			if (lisTitle == null || lisTitle.trim().length() == 0) {
 				errorMsgs.add("房源介紹: 請勿空白");
-			} else if(!lisTitle.trim().matches(lisTitleReg)) { //以下練習正則(規)表示式(regular-expression)
-				errorMsgs.add("房源介紹: 只能是中、英文字母、數字和_ , 且長度必需在2到255之間");
-            }
+			} 
 			
 			String lisAddress = req.getParameter("lisAddress").trim();
 			if (lisAddress == null || lisAddress.trim().length() == 0) {
@@ -531,6 +591,7 @@ public class RenListingServlet extends HttpServlet {
 					lisTv,lisWasher,lisDryer,lisTc,lisBed,lisCabinet,lisSofa,lisParking,
 					lisCook,lisPet,lisSmoking,lisMonly,lisFonly,lisSonly,lisStatus,lisApproval);
 			System.out.print(renListingPicVO);
+			renListingPicVO.setLspLisID(renListingVO.getLisID());
 			renListingSvc.addRenListing(renListingPicVO);
 			
 			/*****************************3.新增完成，準備轉交(send the Success view)*********/

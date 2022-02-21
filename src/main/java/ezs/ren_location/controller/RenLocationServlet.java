@@ -16,7 +16,7 @@ import ezs.ren_location.model.RenLocationService;
 import ezs.ren_listing.model.*;
 import ezs.ren_location.model.*;
 
-@WebServlet("/ren_location/RenLocationServlet.do")
+@WebServlet("/frontend/ren_location/RenLocationServlet.do")
 public class RenLocationServlet extends HttpServlet {
 	
 	protected void doGet(HttpServletRequest req, HttpServletResponse res) 
@@ -43,7 +43,7 @@ public class RenLocationServlet extends HttpServlet {
 				Set<RenListingVO> set = renLocationSvc.getRenListingByLisAreaID(lisAreaID);
 				/*************************** 3.查詢完成,準備轉交(Send the Success view) ************/
 				req.setAttribute("listLocations_BylisAreaID", set);    // 資料庫取出的list物件,存入request				
-				String url = "/frontend/ren_location/ListListing_ByLisAreaID.jsp";
+				String url = "/frontend/ren_location/listListing_ByLisAreaID.jsp";
 				
 				RequestDispatcher successView = req.getRequestDispatcher(url);
 				successView.forward(req, res);

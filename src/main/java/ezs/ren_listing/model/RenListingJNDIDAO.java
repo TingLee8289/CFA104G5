@@ -6,7 +6,9 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
+import java.util.LinkedHashSet;
 import java.util.List;
+import java.util.Set;
 
 import javax.naming.Context;
 import javax.naming.InitialContext;
@@ -30,6 +32,7 @@ public class RenListingJNDIDAO implements RenListingDAO_interface {
 	private static final String INSERT_STMT = "INSERT INTO `CFA104G5`.`REN_LISTING` (LIS_LDD_ID, LIS_RT_ID, LIS_AREA_ID, LIS_TITLE, LIS_ABT, LIS_ADDRESS, LIS_RENT, LIS_MNG_FEE, LIS_PFEE, LIS_SQFT, LIS_FLR, LIS_RM_NO, LIS_CMN_AREA, LIS_BR_NO, LIS_ETHERNET, LIS_WIFI, LIS_WH, LIS_SHENC, LIS_AC, LIS_FRIDGE, LIS_TV, LIS_WASHER, LIS_DRYER, LIS_TC, LIS_BED, LIS_CABINET, LIS_SOFA, LIS_PARKING, LIS_COOK, LIS_PET, LIS_SMOKING, LIS_MONLY, LIS_FONLY, LIS_SONLY, LIS_STATUS, LIS_APPROVAL) VALUES (?, ?, ?, ?,?, ?, ?, ?, ?,?, ?, ?, ?, ?,?, ?, ?, ?, ?,?, ?, ?, ?, ?,?, ?, ?, ?, ?,?, ?, ?, ?, ?,?,?)";
 	private static final String GET_ALL_STMT = "SELECT LIS_ID, LIS_LDD_ID, LIS_RT_ID, LIS_AREA_ID, LIS_TITLE, LIS_ABT, LIS_ADDRESS, LIS_RENT, LIS_MNG_FEE, LIS_PFEE, LIS_SQFT, LIS_FLR, LIS_RM_NO, LIS_CMN_AREA, LIS_BR_NO, LIS_ETHERNET, LIS_WIFI, LIS_WH, LIS_SHENC, LIS_AC, LIS_FRIDGE, LIS_TV, LIS_WASHER, LIS_DRYER, LIS_TC, LIS_BED, LIS_CABINET, LIS_SOFA, LIS_PARKING, LIS_COOK, LIS_PET, LIS_SMOKING, LIS_MONLY, LIS_FONLY, LIS_SONLY, LIS_STATUS, LIS_APPROVAL FROM `CFA104G5`.`REN_LISTING` order by LIS_ID";
 	private static final String GET_ONE_STMT = "SELECT LIS_ID, LIS_LDD_ID, LIS_RT_ID, LIS_AREA_ID, LIS_TITLE, LIS_ABT, LIS_ADDRESS, LIS_RENT, LIS_MNG_FEE, LIS_PFEE, LIS_SQFT, LIS_FLR, LIS_RM_NO, LIS_CMN_AREA, LIS_BR_NO, LIS_ETHERNET, LIS_WIFI, LIS_WH, LIS_SHENC, LIS_AC, LIS_FRIDGE, LIS_TV, LIS_WASHER, LIS_DRYER, LIS_TC, LIS_BED, LIS_CABINET, LIS_SOFA, LIS_PARKING, LIS_COOK, LIS_PET, LIS_SMOKING, LIS_MONLY, LIS_FONLY, LIS_SONLY, LIS_STATUS, LIS_APPROVAL FROM `CFA104G5`.`REN_LISTING`where LIS_ID = ?";
+	private static final String GET_ONE_STMT_BYLisLddID = "SELECT LIS_ID, LIS_LDD_ID, LIS_RT_ID, LIS_AREA_ID, LIS_TITLE, LIS_ABT, LIS_ADDRESS, LIS_RENT, LIS_MNG_FEE, LIS_PFEE, LIS_SQFT, LIS_FLR, LIS_RM_NO, LIS_CMN_AREA, LIS_BR_NO, LIS_ETHERNET, LIS_WIFI, LIS_WH, LIS_SHENC, LIS_AC, LIS_FRIDGE, LIS_TV, LIS_WASHER, LIS_DRYER, LIS_TC, LIS_BED, LIS_CABINET, LIS_SOFA, LIS_PARKING, LIS_COOK, LIS_PET, LIS_SMOKING, LIS_MONLY, LIS_FONLY, LIS_SONLY, LIS_STATUS, LIS_APPROVAL FROM `CFA104G5`.`REN_LISTING`where  LIS_LDD_ID= ? order by LIS_ID";
 	private static final String DELETE = "DELETE FROM `CFA104G5`.`REN_LISTING` where LIS_ID = ?";
 	private static final String UPDATE = "UPDATE `CFA104G5`.`REN_LISTING` set LIS_LDD_ID=?, LIS_RT_ID=?, LIS_AREA_ID=?, LIS_TITLE=?, LIS_ABT=?, LIS_ADDRESS=?, LIS_RENT=?, LIS_MNG_FEE=?, LIS_PFEE=?, LIS_SQFT=?, LIS_FLR=?, LIS_RM_NO=?, LIS_CMN_AREA=?, LIS_BR_NO=?, LIS_ETHERNET=?, LIS_WIFI=?, LIS_WH=?, LIS_SHENC=?, LIS_AC=?, LIS_FRIDGE=?, LIS_TV=?, LIS_WASHER=?, LIS_DRYER=?, LIS_TC=?, LIS_BED=?, LIS_CABINET=?, LIS_SOFA=?, LIS_PARKING=?, LIS_COOK=?, LIS_PET=?, LIS_SMOKING=?, LIS_MONLY=?, LIS_FONLY=?, LIS_SONLY=?, LIS_STATUS=?, LIS_APPROVAL=? where LIS_ID = ?";
 
@@ -225,6 +228,66 @@ public class RenListingJNDIDAO implements RenListingDAO_interface {
 			Util.closeResource(con, pstmt, rs);
 		}
 		return renListingVO;
+	}
+	//房東找
+	@Override
+	public Set<RenListingVO>getRenListingByLisLddID(Integer lisLddID) {
+		Set<RenListingVO> set = new LinkedHashSet<RenListingVO>();
+		RenListingVO renListingVO = null;
+
+		try {
+			con = ds.getConnection();
+			pstmt = con.prepareStatement(GET_ONE_STMT_BYLisLddID);
+			pstmt.setInt(1, lisLddID);
+			rs = pstmt.executeQuery();
+
+			while (rs.next()) {
+				renListingVO = new RenListingVO();
+				renListingVO.setLisID(rs.getInt("LIS_ID"));
+				renListingVO.setLisLddID(rs.getInt("LIS_LDD_ID"));
+				renListingVO.setLisRtID(rs.getInt("LIS_RT_ID"));
+				renListingVO.setLisAreaID(rs.getInt("LIS_AREA_ID"));
+				renListingVO.setLisTitle(rs.getString("LIS_TITLE"));
+				renListingVO.setLisAbt(rs.getString("LIS_ABT"));
+				renListingVO.setLisAddress(rs.getString("LIS_ADDRESS"));
+				renListingVO.setLisRent(rs.getBigDecimal("LIS_RENT"));
+				renListingVO.setLisMngFee(rs.getBigDecimal("LIS_MNG_FEE"));
+				renListingVO.setLisPfee(rs.getBigDecimal("LIS_PFEE"));
+				renListingVO.setLisSqft(rs.getDouble("LIS_SQFT"));
+				renListingVO.setLisFlr(rs.getString("LIS_FLR"));
+				renListingVO.setLisRmNo(rs.getInt("LIS_RM_NO"));
+				renListingVO.setLisCmnArea(rs.getInt("LIS_CMN_AREA"));
+				renListingVO.setLisBrNo(rs.getInt("LIS_BR_NO"));
+				renListingVO.setLisEthernet(rs.getInt("LIS_ETHERNET"));
+				renListingVO.setLisWifi(rs.getInt("LIS_WIFI"));
+				renListingVO.setLisWh(rs.getInt("LIS_WH"));
+				renListingVO.setLisShenc(rs.getInt("LIS_SHENC"));
+				renListingVO.setLisAc(rs.getInt("LIS_AC"));
+				renListingVO.setLisFridge(rs.getInt("LIS_FRIDGE"));
+				renListingVO.setLisTv(rs.getInt("LIS_TV"));
+				renListingVO.setLisWasher(rs.getInt("LIS_WASHER"));
+				renListingVO.setLisDryer(rs.getInt("LIS_DRYER"));
+				renListingVO.setLisTc(rs.getInt("LIS_TC"));
+				renListingVO.setLisBed(rs.getInt("LIS_BED"));
+				renListingVO.setLisCabinet(rs.getInt("LIS_CABINET"));
+				renListingVO.setLisSofa(rs.getInt("LIS_SOFA"));
+				renListingVO.setLisParking(rs.getInt("LIS_PARKING"));
+				renListingVO.setLisCook(rs.getInt("LIS_COOK"));
+				renListingVO.setLisPet(rs.getInt("LIS_PET"));
+				renListingVO.setLisSmoking(rs.getInt("LIS_SMOKING"));
+				renListingVO.setLisMonly(rs.getInt("LIS_MONLY"));
+				renListingVO.setLisFonly(rs.getInt("LIS_FONLY"));
+				renListingVO.setLisSonly(rs.getInt("LIS_SONLY"));
+				renListingVO.setLisStatus(rs.getInt("LIS_STATUS"));
+				renListingVO.setLisApproval(rs.getInt("LIS_APPROVAL"));
+				set.add(renListingVO);
+			}
+		} catch (SQLException se) {
+			se.printStackTrace();
+		} finally {
+			Util.closeResource(con, pstmt, rs);
+		}
+		return set;
 	}
 
 	@Override

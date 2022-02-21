@@ -52,6 +52,23 @@ public class WriteBlobByJDBC將圖片寫進資料庫 {
 				pstmt.executeUpdate();
 			}
 
+			// 請先到SQL下指令找出你的PIC欄位
+			pstmt = con.prepareStatement("UPDATE `CFA104G5`.`REN_LISTING_PIC` SET LSP_LIS_ID = ?, LSP_PIC = ? WHERE LSP_ID = ?");
+
+			File file1 = new File("src/main/webapp/images/ren/listingPic/");
+			File[] listFile1 = file1.listFiles();
+			for (int i = 0; i < file1.listFiles().length; i++) {
+				String url = listFile1[i].toString();
+				System.out.println(url);
+				// 2. setBytes 萬用做法
+				byte[] pic = getPictureByteArray(url);
+				pstmt.setBytes(2, pic);
+				pstmt.setInt(1, i+1);
+				pstmt.setInt(3, i+1);
+				pstmt.executeUpdate();
+			}
+
+			System.out.println("房源圖片新增成功");
 
 		} catch (ClassNotFoundException ce) {
 			System.out.println(ce);

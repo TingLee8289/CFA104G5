@@ -1,29 +1,24 @@
-<%@page import="ezs.ren_roomtype.model.RenRoomtypeVO"%>
-<%@page import="ezs.ren_roomtype.model.RenRoomtypeService"%>
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ page import="java.util.*"%>
 <%@ page import="ezs.ren_listing.model.*"%>
 <%@ page import="ezs.ren_roomtype.model.*"%>
-<%@ page import="ezs.ren_location.model.*"%>
-<%@ page import="ezs.ren_location.model.RenLocationVO"%>
-<%@ page import="ezs.ren_location.model.RenLocationService"%>
-
+<%@ page import="ezs.ren_roomtype.model.RenRoomtypeVO"%>
+<%@ page import="ezs.ren_roomtype.model.RenRoomtypeService"%>
 
 <%
-	RenListingService renListingSvc = new RenListingService();
-	List<RenListingVO> list = renListingSvc.getAll();
-	pageContext.setAttribute("list",list);
+	Set<RenListingVO> set = (Set<RenListingVO>)session.getAttribute("listRenListing_ByLisLddID"); 
+	pageContext.setAttribute("set", set);
 %>
 
 <jsp:useBean id="renRoomtypeSvc" scope="page" class="ezs.ren_roomtype.model.RenRoomtypeService" />
-<jsp:useBean id="renLocationSvc" scope="page" class="ezs.ren_location.model.RenLocationService" />
 
 <!DOCTYPE html>
 <html>
 <head>
+<head>
 <meta charset="UTF-8">
-<title>所有房源資料 - listingAllListing.jsp</title>
+<title>房東房源管理 - listRenListing_ByLisLddID.jsp</title>
 <style>
   table#table-1 {
 	background-color: #CCCCFF;
@@ -58,11 +53,14 @@
 </style>
 
 </head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
 <body bgcolor="white">
 <table id="table-1">
 	<tr><td>
-		<h3>所有房源資料 - listingAllListing.jsp</h3>
-		<h4><a href="listing_select_page.jsp">回首頁</a></h4>
+		<h3>房東房源管理 - listRenListing_ByLisLddID.jsp</h3>
+		<h4><a href="<%=request.getContextPath()%>/listing_select_page.jsp">回首頁</a></h4>
 	</td></tr>
 
 </table>
@@ -75,53 +73,52 @@
 		</c:forEach>
 	</ul>
 </c:if>
-
 <table>
 	<tr>
-	    <td>房源ID</td>
-		<td>房東ID</td>
-		<td>房型ID</td>
-		<td>區域ID</td>
-		<td>房源標題</td>
-		<td>房源介紹</td>
-		<td>詳細地址</td>
-		<td>租金</td>
-		<td>管理費</td>
-		<td>停車費</td>
-		<td>坪數</td>
-		<td>樓層</td>
-		<td>房間數量</td>
-		<td>廳堂數量</td>
-		<td>衛浴數量</td>
-		<td>有線網路</td>
-		<td>WIFI</td>
-		<td>熱水器</td>
-		<td>乾溼分離</td>
-		<td>>冷氣</td>
-		<td>冰箱</td>
-		<td>電視</td>
-		<td>洗衣機</td>
-		<td>烘衣機</td>
-		<td>桌椅</td>
-		<td>床</td>
-		<td>櫃子</td>
-		<td>沙發</td>
-		<td>車位</td>
-		<td>可以開伙</td>
-		<td>可以養寵物</td>
-		<td>可以吸菸</td>
-		<td>限男性</td>
-		<td>限女性</td>
-		<td>限學生</td>
-		<td>房源圖片</td>
-		<td>房源上架狀態</td>
-		<td>房源申請審核狀態</td>
-		<td>修改</td>
-		<td>刪除</td>
+	    <th>房源ID</th>
+		<th>房東ID</th>
+		<th>房型ID</th>
+		<th>區域ID</th>
+		<th>房源標題</th>
+		<th>房源介紹</th>
+		<th>詳細地址</th>
+		<th>租金</th>
+		<th>管理費</th>
+		<th>停車費</th>
+		<th>坪數</th>
+		<th>樓層</th>
+		<th>房間數量</th>
+		<th>廳堂數量</th>
+		<th>衛浴數量</th>
+		<th>有線網路</th>
+		<th>WIFI</th>
+		<th>熱水器</th>
+		<th>乾溼分離</th>
+		<th>>冷氣</th>
+		<th>冰箱</th>
+		<th>電視</th>
+		<th>洗衣機</th>
+		<th>烘衣機</th>
+		<th>桌椅</th>
+		<th>床</th>
+		<th>櫃子</th>
+		<th>沙發</th>
+		<th>車位</th>
+		<th>可以開伙</th>
+		<th>可以養寵物</th>
+		<th>可以吸菸</th>
+		<th>限男性</th>
+		<th>限女性</th>
+		<th>限學生</th>
+		<th>房源圖片</th>
+		<th>房源上架狀態</th>
+		<th>房源申請審核狀態</th>
+		<th>修改</th>
+		<th>刪除</th>
 	</tr>
+	 
 	<%@ include file="page1.file" %>
-	<c:forEach var="renListingVO" items="${list}" begin="<%=pageIndex %>" end="<%=pageIndex+rowsPerPage-1 %>">
-	
+	<c:forEach var="renListingVO" items="${set}" begin="<%=pageIndex %>" end="<%=pageIndex+rowsPerPage-1 %>">
 		<tr>
 			<td>${renListingVO.lisID}</td>
 			<td>${renListingVO.lisLddID}</td>
@@ -131,12 +128,7 @@
                     </c:if>
                 </c:forEach>
 			</td>
-			<td><c:forEach var="renLocationVO" items="${renLocationSvc.all}">
-                    <c:if test="${renListingVO.lisAreaID==renLocationVO.locID}">
-	                    ${renLocationVO.locID}${renLocationVO.locCity}${renLocationVO.locDist}
-                    </c:if>
-                </c:forEach>
-			</td>			
+			<td>${renListingVO.lisAreaID}</td>
 			<td>${renListingVO.lisTitle}</td>
 			<td>${renListingVO.lisAbt}</td>
 			<td>${renListingVO.lisAddress}</td>
@@ -168,7 +160,7 @@
 			<td>${renListingVO.lisMonly}</td>
 			<td>${renListingVO.lisFonly}</td>
 			<td>${renListingVO.lisSonly}</td>
-			<td><img src="<%=request.getContextPath()%>/ren_listing/RenListing_pic_ReaderServlet.do?LIS_ID=
+			<td><img src="<%=request.getContextPath()%>/ren_listing/RenListing_pic_ReaderServlet.do?lspLisID=
 				 ${renListingVO.lisID}" width = 200px></td>
 			<td>${renListingVO.lisStatus}</td>
 			<td>${renListingVO.lisApproval}</td>
@@ -188,8 +180,10 @@
 			 </td>
 		</tr>
 	</c:forEach>
+	<%@ include file="page2.file" %>
+	
 </table>
-<%@ include file="page2.file" %>
+		
 
 </body>
 </html>
