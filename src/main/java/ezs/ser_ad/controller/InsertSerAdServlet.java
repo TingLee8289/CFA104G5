@@ -86,7 +86,7 @@ public class InsertSerAdServlet extends HttpServlet {
 				serAdSvc.addSerAd(adVdrID, adStatus, adSerClaID, adDist, adTxt, adPic);
 
 				/*************************** 3.新增完成,準備轉交(Send the Success view) ***********/
-				String url = "/frontend/ser_ad/listAllSerAd.jsp";
+				String url = "/frontend/ser_ad/serAdHome.jsp";
 				RequestDispatcher successView = req.getRequestDispatcher(url); // 新增成功後轉交listAllEmp.jsp
 				successView.forward(req, res);
 

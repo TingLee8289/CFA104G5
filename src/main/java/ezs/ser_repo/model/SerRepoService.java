@@ -55,5 +55,9 @@ public class SerRepoService {
 	public List<SerRepVO> getAll() {
 		return dao.getAll();
 	}
+	
+	public void updateMemSupReported(Integer memID) { //檢舉次數
+		dao.updateMemSupReport(memID);
+	}
 
 }

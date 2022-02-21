@@ -108,7 +108,7 @@ public class GetSerAdServlet extends HttpServlet {
 				// Send the use back to the form, if there were errors
 				if (!errorMsgs.isEmpty()) {
 					RequestDispatcher failureView = req
-							.getRequestDispatcher("/frontend/ser_ad/select_page.jsp");
+							.getRequestDispatcher("/frontend/ser_ad/readSerAd.jsp");
 					failureView.forward(req, res);
 					return;//程式中斷
 				}
@@ -123,7 +123,7 @@ public class GetSerAdServlet extends HttpServlet {
 			} catch (Exception e) {
 				errorMsgs.add("無法取得資料:" + e.getMessage());
 				RequestDispatcher failureView = req
-						.getRequestDispatcher("/frontend/ser_ad/select_page.jsp");
+						.getRequestDispatcher("/frontend/ser_ad/readSerAd.jsp");
 				failureView.forward(req, res);
 			}
 		}

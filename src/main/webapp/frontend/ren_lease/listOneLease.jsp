@@ -26,30 +26,32 @@ RenLeaseVO renLeaseVO = (RenLeaseVO) request.getAttribute("renLeaseVO"); //EmpSe
 	<tr>
 		<th>租賃訂單編號</th>
 		<th>會員編號</th>
-		<th>房源編號</th>
 		<th>房東編號</th>
+		<th>房源編號</th>
+		<th>租金</th>
+		<th>租賃訂單狀態</th>
+		<th>租賃開始時間</th>
+		<th>租賃結束時間</th>
 		<th>房客評價房東星數</th>
 		<th>房客評價房東內容</th>
 		<th>房東評價房客星數</th>
 		<th>房東評價房客內容</th>
-		<th>租賃訂單狀態</th>
 		<th>租賃訂單成立時間</th>
-		<th>租賃開始時間</th>
-		<th>租賃結束時間</th>
 	</tr>
 	<tr>
 		<td><%=renLeaseVO.getLseId()%></td>
 		<td><%=renLeaseVO.getLseMemId()%></td>
 		<td><%=renLeaseVO.getLseLisId()%></td>
 		<td><%=renLeaseVO.getLseLddId()%></td>
+		<td><%=renLeaseVO.getLsePrice()%></td>
+		<td><%=renLeaseVO.getLseStatus()%></td>
+		<td><%=renLeaseVO.getLseStart()%></td>
+		<td><%=renLeaseVO.getLseEnd()%></td>
 		<td><%=renLeaseVO.getLseLddScore()%></td>
 		<td><%=renLeaseVO.getLseLddTxt()%></td>
 		<td><%=renLeaseVO.getLseTntScore()%></td>
 		<td><%=renLeaseVO.getLseTntTxt()%></td>
-		<td><%=renLeaseVO.getLseStatus()%></td>
 		<td><%=renLeaseVO.getLseTimestamp()%></td>
-		<td><%=renLeaseVO.getLseStart()%></td>
-		<td><%=renLeaseVO.getLseEnd()%></td>
 	</tr>
 </table>
 

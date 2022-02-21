@@ -3,9 +3,11 @@ package ezs.sec_ord.controller;
 import java.io.IOException;
 import java.math.BigDecimal;
 import java.sql.Date;
+import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Set;
+import java.util.Vector;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -15,9 +17,11 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import ezs.member.model.MemberService;
+import ezs.sec_items.model.SecItem;
+import ezs.sec_ord.model.SecOrdJDBCDAO;
 import ezs.sec_ord.model.SecOrdService;
 import ezs.sec_ord.model.SecOrdVO;
+import ezs.sec_ord_details.model.SecOrdDetailsVO;
 
 @WebServlet("/sec_ord/SecOrdServlet.do")
 public class SecOrdServlet extends HttpServlet {
@@ -65,38 +69,51 @@ public class SecOrdServlet extends HttpServlet {
 
 			List<String> errorMsgs = new LinkedList<String>();
 			req.setAttribute("errorMsgs", errorMsgs);
-			
+			HttpSession session = req.getSession();
 			
 			try {
 				/*************************** 1.接收請求參數 ****************************************/
-				Integer shBuyerID = Integer.valueOf(req.getParameter("shBuyerID"));
+				
+				String shRecipName = (String) req.getParameter("shRecipName");
+				if (shRecipName == null || shRecipName.trim().length() == 0) {
+					errorMsgs.add("收件人姓名請勿空白");
+				}
+				String shRecipPhone = (String) req.getParameter("shRecipPhone");
+				if (shRecipPhone == null || shRecipPhone.trim().length() == 0) {
+					errorMsgs.add("收件人電話請勿空白");
+				}
+				
 				Integer shSellerID = 1;
-				Integer shPostcode = Integer.valueOf(req.getParameter("shPostcode"));
+				
+				Integer shPostcode = null;
+				try {
+					shPostcode = Integer.valueOf(req.getParameter("shPostcode"));
+				} catch (Exception e) {
+					errorMsgs.add("郵遞區號格式不正確");
+				}
 				
 				String shCounty = (String) req.getParameter("shCounty");
-				if (shCounty == null || shCounty.trim().length() == 0) {
-					errorMsgs.add("縣市請勿空白");
-				}
-				
+					if (shCounty == null || shCounty.trim().length() == 0) {
+						errorMsgs.add("縣市請勿空白");
+					}
 				String shDist = (String) req.getParameter("shDist");
-				if (shDist == null || shDist.trim().length() == 0) {
-					errorMsgs.add("區域請勿空白");
-				}
-				
+					if (shDist == null || shDist.trim().length() == 0) {
+						errorMsgs.add("區域請勿空白");
+					}
 				String shRoad = (String) req.getParameter("shRoad");
-				if (shRoad == null || shRoad.trim().length() == 0) {
-					errorMsgs.add("地址請勿空白");
-				}
-				
+					if (shRoad == null || shRoad.trim().length() == 0) {
+						errorMsgs.add("地址請勿空白");
+					}
 				Integer shPayment = 11;
 				Integer shOrdStatus = 2;
 				BigDecimal shPrice = new BigDecimal(1000);
 				Date shDate = new java.sql.Date(new java.util.Date().getTime()) ;
 				String shNotes = (String) req.getParameter("shNotes");
 				
-				
 				SecOrdVO secOrdVO = new SecOrdVO();
-				secOrdVO.setShBuyerID(shBuyerID);
+				secOrdVO.setShRecipName(shRecipName);
+				secOrdVO.setShRecipPhone(shRecipPhone);
+				secOrdVO.setShBuyerID(Integer.valueOf(session.getAttribute("memID").toString()));
 				secOrdVO.setShSellerID(shSellerID);
 				secOrdVO.setShPostcode(shPostcode);
 				secOrdVO.setShCounty(shCounty);
@@ -109,22 +126,40 @@ public class SecOrdServlet extends HttpServlet {
 				secOrdVO.setShNotes(shNotes);
 				
 				if (!errorMsgs.isEmpty()) {
-					req.setAttribute("secOrdVO", secOrdVO);
-					RequestDispatcher failureView = req.getRequestDispatcher("/frontend/member/memberRegister.jsp");
+					req.setAttribute("secOrdVO", secOrdVO); // 含有輸入格式錯誤的secOrdVO物件,也存入req
+					RequestDispatcher failureView = req.getRequestDispatcher("/frontend/sec_items/Checkout.jsp");
 					failureView.forward(req, res);
 					return;
 				}
 				
-
 				/*************************** 2.開始新增資料 ***************************************/
-				SecOrdService secOrdSvc = new SecOrdService();
-				secOrdSvc.addSecOrd(shBuyerID, shSellerID, shPostcode, shCounty, shDist, shRoad,
-						shPayment, shOrdStatus, shPrice, shDate, shNotes);
+				SecOrdJDBCDAO dao = new SecOrdJDBCDAO();
+				@SuppressWarnings("unchecked")
+				Vector<SecItem> buylist = (Vector<SecItem>) session.getAttribute("shoppingcart");
+				List<SecOrdDetailsVO> testList = new ArrayList<SecOrdDetailsVO>(); // 準備置入明細數筆
+				
+				for (int i = 0; i < buylist.size(); i++) {
+					SecItem order = buylist.get(i);
+					Integer shID = order.getShID();
+					String shName = order.getShName();
+					BigDecimal shSubPrice = order.getShPrice();
+					Integer shQTY = order.getShQTY();
+					
+					SecOrdDetailsVO secOrdDetailsVO = new SecOrdDetailsVO(); // 明細POJO
+					secOrdDetailsVO.setShID(shID);
+					secOrdDetailsVO.setShName(shName);
+					secOrdDetailsVO.setShPrice(shSubPrice);
+					secOrdDetailsVO.setShQty(shQTY);
+					
+					testList.add(secOrdDetailsVO); // 加入明細
+				}
+				
+				dao.insertWithSecOrdDetails(secOrdVO, testList);
+				
 
 				/*************************** 3.新增完成,準備轉交(Send the Success view) ************/
-				req.setAttribute("secOrdVO", secOrdVO);
 
-				String url = "/frontend/EZ_home.jsp";
+				String url = "/frontend/EZ_home.jsp"; // 暫時設定跳轉到首頁
 				RequestDispatcher successView = req.getRequestDispatcher(url);
 				successView.forward(req, res);
 

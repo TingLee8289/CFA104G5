@@ -72,8 +72,8 @@ pageContext.setAttribute("memOrdList", memOrdList);
 <!-- 							<th>廠商評價客戶留言</th> -->
 							
 							<th>備註</th>
-							<th>修改(付訂金)</th>
-							<th>修改(付尾款)</th>
+							<th></th>
+							<th></th>
 						</tr>
 					</thead>
 					<tbody id="show-list">
@@ -120,11 +120,14 @@ pageContext.setAttribute("memOrdList", memOrdList);
 								
 								<td>${serOrdVO.ordNote}</td>
 								<td>
-									<FORM METHOD="post"
-										ACTION="<%=request.getContextPath()%>/ser_ord/UpdateOrdServlet.do"
-										style="margin-bottom: 0px;">
-										<input type="submit" value="修改(線上付款)"> <input type="hidden" name="ordID" value="${serOrdVO.ordID}"> <input type="hidden" name="action" value="updateOneOrd">
-									</FORM>
+<!-- 									<FORM METHOD="post" -->
+<%-- 										ACTION="<%=request.getContextPath()%>/frontend/ser_ord/creditPay.jsp?" --%>
+<!-- 										style="margin-bottom: 0px;"> -->
+<!-- 										<input type="submit" value="線上付款">  -->
+<%-- 										<input type="hidden" name="ordID" value="${serOrdVO.ordID}">  --%>
+<!-- 										<input type="hidden" name="action" value="CreditPay"> -->
+<!-- 									</FORM> -->
+									<a href="<%=request.getContextPath()%>/frontend/ser_ord/creditPay.jsp?ordID=${serOrdVO.ordID}" class="btn btn-outline-success text-nowrap">線上付款</a>
 								</td>
 								<td>
 									<FORM METHOD="post"

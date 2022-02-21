@@ -9,6 +9,7 @@ public interface SerOrdDAO_interface {
      public void update(SerOrdVO serOrdVO);
      public void finishOrd(Integer ordID);
      public void jobCompleted(Integer ordID);
+     public void creditPay(Integer ordID);
      public void delete(Integer ordID);
      public SerOrdVO findByPrimaryKey(Integer ordID);
      public List<SerOrdVO> findOrdByVdrID(Integer ordVdrID);

@@ -16,6 +16,7 @@ public class SerAdJDBCDAO implements SerAdDAO_interface{
 	public static final String DELETE = "DELETE FROM ser_ad WHERE (ad_vdr_id ,ad_ser_cla_id) = (?,?)";
 	public static final String FIND_BY_PK = "SELECT * FROM ser_ad WHERE (ad_vdr_id,ad_ser_cla_id) = (?,?)";
 	public static final String GET_ALL = "SELECT * FROM ser_ad";
+	public static final String GET_AD_BY_SER_CLA_ID = "SELECT * FROM CFA104G5.SER_AD where AD_SER_CLA_ID =?";
 	
 	static {
 		try {
@@ -159,5 +160,56 @@ public class SerAdJDBCDAO implements SerAdDAO_interface{
 	
 		return serAdVOList;
 	}
+	@Override
 	
+	public List<SerAdVO> getAdBySerClaID(Integer adSerClaID) {
+		List<SerAdVO> serAdVOList = new ArrayList<SerAdVO>();
+
+		try {
+			con = DriverManager.getConnection(Util.URL, Util.USER, Util.PASSWORD);
+			pstmt = con.prepareStatement(GET_AD_BY_SER_CLA_ID);
+			pstmt.setInt(1,adSerClaID );
+			rs = pstmt.executeQuery();
+
+			while (rs.next()) {
+				SerAdVO serAdVO = new SerAdVO();
+
+				serAdVO.setAdVdrID(rs.getInt("ad_vdr_id"));
+				serAdVO.setAdStatus(rs.getByte("ad_status"));
+				serAdVO.setAdSerClaID(rs.getInt("ad_ser_cla_id"));
+				serAdVO.setAdDist(rs.getString("ad_dist"));;
+				serAdVO.setAdTxt(rs.getString("ad_txt"));
+				serAdVO.setAdPic(rs.getBytes("ad_pic"));
+
+				serAdVOList.add(serAdVO);
+
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			if (rs != null) {
+				try {
+					rs.close();
+				} catch (SQLException se) {
+					se.printStackTrace(System.err);
+				}
+			}
+			if (pstmt != null) {
+				try {
+					pstmt.close();
+				} catch (SQLException se) {
+					se.printStackTrace(System.err);
+				}
+			}
+			if (con != null) {
+				try {
+					con.close();
+				} catch (Exception e) {
+					e.printStackTrace(System.err);
+				}
+			}
+		}
+
+		return serAdVOList;
+	}
 }

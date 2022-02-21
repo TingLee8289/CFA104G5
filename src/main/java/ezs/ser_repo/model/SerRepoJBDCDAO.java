@@ -24,6 +24,7 @@ public class SerRepoJBDCDAO implements SerRepoDAO_interface {
 	private static final String GET_ONE_STMT = "SELECT RP_ID,RP_ORD_ID,RP_MEM_ID,RP_TXT,RP_DATE,RP_STATUS FROM `ser_repo` where RP_ID = ?";
 	private static final String DELETE = "DELETE FROM `ser_repo` where RP_ID = ?";
 	private static final String UPDATE = "UPDATE `ser_repo` set RP_ORD_ID=?, RP_MEM_ID=?, RP_TXT=?, RP_DATE=?, RP_STATUS=? where RP_ID = ?";
+	private static final String UPDATEMEMSUPREPORT = "UPDATE member SET mem_sup_reported = mem_sup_reported + 1 WHERE mem_id = ?";
 
 	static {
 		try {
@@ -36,7 +37,7 @@ public class SerRepoJBDCDAO implements SerRepoDAO_interface {
 	Connection con = null;
 	PreparedStatement pstmt = null;
 	ResultSet rs = null;
-	
+
 	@Override
 	public void insert(SerRepVO serRepVO) {
 
@@ -160,6 +161,23 @@ public class SerRepoJBDCDAO implements SerRepoDAO_interface {
 			Util.closeResource(con, pstmt, rs);
 		}
 		return list;
+
+	}
+
+	@Override
+	public void updateMemSupReport(Integer memID) {
+		try {
+			con = DriverManager.getConnection(Util.URL, Util.USER, Util.PASSWORD);
+			pstmt = con.prepareStatement(UPDATEMEMSUPREPORT);
+
+			pstmt.setInt(1, memID);
+			pstmt.executeUpdate();
+		} catch (SQLException e) {
+
+			e.printStackTrace();
+		} finally {
+			Util.closeResource(con, pstmt, rs);
+		}
 
 	}
 

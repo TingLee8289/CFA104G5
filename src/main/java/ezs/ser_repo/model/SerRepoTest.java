@@ -25,13 +25,16 @@ public class SerRepoTest {
 		// delete
 //		dao.delete(2);
 //		 findOne
-		SerRepVO aRp = dao.findByPrimaryKey(1);
-		System.out.println(aRp.getRpTxt());
+//		SerRepVO aRp = dao.findByPrimaryKey(1);
+//		System.out.println(aRp.getRpTxt());
 //		//findAll
 //		List<SerRepVO> list = dao.getAll();
 //		for(SerRepVO Rp:list) {
 //			System.out.println(Rp.getRpTxt());
 //		}
+		
+		//檢舉次數
+		dao.updateMemSupReport(1);
 //		
 	}
 }

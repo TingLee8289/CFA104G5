@@ -45,7 +45,6 @@ public class SecItemsDAO implements SecItemsDAO_interface {
 	public Integer insert(SecItemsVO secItemsVO) {
 		Integer key = 0;
 		try {
-//			con = DriverManager.getConnection(Util.URL, Util.USER, Util.PASSWORD);
 			con = ds.getConnection();
 			pstmt = con.prepareStatement(INSERT_STMT,Statement.RETURN_GENERATED_KEYS);
 			pstmt.setInt(1, secItemsVO.getShCateID());

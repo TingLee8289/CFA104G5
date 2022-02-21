@@ -5,6 +5,10 @@
 <%@ page import="java.util.*"%>
 <%@ page import="ezs.ren_listing.model.*"%>
 <%@ page import="ezs.ren_roomtype.model.*"%>
+<%@ page import="ezs.ren_location.model.*"%>
+<%@ page import="ezs.ren_location.model.RenLocationVO"%>
+<%@ page import="ezs.ren_location.model.RenLocationService"%>
+
 
 <%
 	RenListingService renListingSvc = new RenListingService();
@@ -13,6 +17,7 @@
 %>
 
 <jsp:useBean id="renRoomtypeSvc" scope="page" class="ezs.ren_roomtype.model.RenRoomtypeService" />
+<jsp:useBean id="renLocationSvc" scope="page" class="ezs.ren_location.model.RenLocationService" />
 
 <!DOCTYPE html>
 <html>
@@ -57,7 +62,7 @@
 <table id="table-1">
 	<tr><td>
 		<h3>所有房源資料 - listingAllListing.jsp</h3>
-		<h4><a href="<%=request.getContextPath()%>/listing_select_page.jsp">回首頁</a></h4>
+		<h4><a href="listing_select_page.jsp">回首頁</a></h4>
 	</td></tr>
 
 </table>
@@ -126,7 +131,12 @@
                     </c:if>
                 </c:forEach>
 			</td>
-			<td>${renListingVO.lisAreaID}</td>
+			<td><c:forEach var="renLocationVO" items="${renLocationSvc.all}">
+                    <c:if test="${renListingVO.lisAreaID==renLocationVO.locID}">
+	                    ${renLocationVO.locID}${renLocationVO.locCity}${renLocationVO.locDist}
+                    </c:if>
+                </c:forEach>
+			</td>			
 			<td>${renListingVO.lisTitle}</td>
 			<td>${renListingVO.lisAbt}</td>
 			<td>${renListingVO.lisAddress}</td>
@@ -158,7 +168,7 @@
 			<td>${renListingVO.lisMonly}</td>
 			<td>${renListingVO.lisFonly}</td>
 			<td>${renListingVO.lisSonly}</td>
-			<td><img src="<%=request.getContextPath()%>/ren_listing/RenListing_pic_ReaderServlet.do?lspLisID=
+			<td><img src="<%=request.getContextPath()%>/ren_listing/RenListing_pic_ReaderServlet.do?LIS_ID=
 				 ${renListingVO.lisID}" width = 200px></td>
 			<td>${renListingVO.lisStatus}</td>
 			<td>${renListingVO.lisApproval}</td>

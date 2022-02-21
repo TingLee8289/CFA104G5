@@ -110,7 +110,7 @@ th, td {
 					</c:forEach></td>
 			<tr>
 				<td>預約單狀態:</td>
-				<td><c:if test="${renAppointmentVO.aptStatus == 0}">待確認預約</c:if>
+				<td>
 					<c:if test="${renAppointmentVO.aptStatus == 1}">已確認預約</c:if> 
 					<c:if test="${renAppointmentVO.aptStatus == 2}">已取消</c:if>
 					<c:if test="${renAppointmentVO.aptStatus == 3}">預約時間已變更</c:if></td>
@@ -120,13 +120,16 @@ th, td {
 				<td><input name="aptTime" id="f_date1" type="text" ></td>
 			</tr>
 		</table>
+
 		<br> 
 		<input type="hidden" name="action" value="update"> 
 		<input type="hidden" name="aptId" value="<%=renAppointmentVO.getAptId()%>">
 		<input type="hidden" name="aptMemId" value="<%=renAppointmentVO.getAptMemId()%>">
 		<input type="hidden" name="aptLddId" value="<%=renAppointmentVO.getAptLddId()%>">
 		<input type="hidden" name="aptLisId" value="<%=renAppointmentVO.getAptLisId()%>">
+		<input type="hidden" name="aptTime" value="<%=renAppointmentVO.getAptTime()%>">
 		<input type="submit" value="送出修改">
+		
 	</FORM>
 	
 	<jsp:include page="/frontend/EZ_footer.jsp"></jsp:include>

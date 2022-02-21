@@ -5,10 +5,11 @@
 <%
 	SerDmdVO serDmdVO = (SerDmdVO) request.getAttribute("serDmdVO");
 %>
-<%= serDmdVO==null %> --${serDmdVO.dmdID}--  
+
 <html>
 <head>
 <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
+ <script src="<%=request.getContextPath()%>/frontend/js/jquery-1.11.3.min.js"></script>
 <title>新增需求單 - addSerDmd.jsp</title>
 
 <style>
@@ -150,15 +151,18 @@
 	</tr>
 	<tr>
 		<td>需求簡介:</td>
-		<td><input type="TEXT" name="dmdIntro" size= "100"
+		<td><input type="TEXT" name="dmdIntro" size= "50"
 			 value="<%= (serDmdVO==null)? "搞裡頭" : serDmdVO.getDmdIntro() %>"/></td>
 	</tr>
 	<tr>
 		<td>照片:</td>
-		<td><input type="file" name="dmdPic" 
-			 value="<%= (serDmdVO==null)? null :serDmdVO.getDmdPic() %>"/></td>
+		<td>
+			<input type="file" name="dmdPic" id="upfiles" accept="image/gif, image/jpeg, image/png" multiple="multiple"/>
+		<div id="previews">
+			<p>圖片預覽</p>
+		</div>
 	</tr>
-
+	
 	
 
 </table>
@@ -167,94 +171,35 @@
 <input type="submit" value="送出新增"></FORM>
 </body>
 
-
-
-<!-- =========================================以下為 datetimepicker 之相關設定========================================== -->
-
-<%-- <% 
-  java.sql.Date hiredate = null;
-  try {
-	    hiredate = java.sql.Date.valueOf(request.getParameter("hiredate").trim());
-   } catch (Exception e) {
-	    hiredate = new java.sql.Date(System.currentTimeMillis());
-   }
-%>
-<link rel="stylesheet" type="text/css" href="<%=request.getContextPath()%>/datetimepicker/jquery.datetimepicker.css" />
-<script src="<%=request.getContextPath()%>/datetimepicker/jquery.js"></script>
-<script src="<%=request.getContextPath()%>/datetimepicker/jquery.datetimepicker.full.js"></script> --%>
-
-<style>
-  .xdsoft_datetimepicker .xdsoft_datepicker {
-           width:  300px;   /* width:  300px; */
-  }
-  .xdsoft_datetimepicker .xdsoft_timepicker .xdsoft_time_box {
-           height: 151px;   /* height:  151px; */
-  }
-</style>
-
 <script>
-       <%--  $.datetimepicker.setLocale('zh');
-        $('#f_date1').datetimepicker({
- 	       theme: '',              //theme: 'dark',
-	       timepicker:false,       //timepicker:true,
-	       step: 1,                //step: 60 (這是timepicker的預設間隔60分鐘)
-	       format:'Y-m-d',         //format:'Y-m-d H:i:s',
-		   value: '<%=hiredate%>', // value:   new Date(),
-           //disabledDates:        ['2017/06/08','2017/06/09','2017/06/10'], // 去除特定不含
-           //startDate:	            '2017/07/10',  // 起始日
-           //minDate:               '-1970-01-01', // 去除今日(不含)之前
-           //maxDate:               '+1970-01-01'  // 去除今日(不含)之後
-        });
-       --%>  
-        
-   
-        // ----------------------------------------------------------以下用來排定無法選擇的日期-----------------------------------------------------------
-
-        //      1.以下為某一天之前的日期無法選擇
-        //      var somedate1 = new Date('2017-06-15');
-        //      $('#f_date1').datetimepicker({
-        //          beforeShowDay: function(date) {
-        //        	  if (  date.getYear() <  somedate1.getYear() || 
-        //		           (date.getYear() == somedate1.getYear() && date.getMonth() <  somedate1.getMonth()) || 
-        //		           (date.getYear() == somedate1.getYear() && date.getMonth() == somedate1.getMonth() && date.getDate() < somedate1.getDate())
-        //              ) {
-        //                   return [false, ""]
-        //              }
-        //              return [true, ""];
-        //      }});
-
-        
-        //      2.以下為某一天之後的日期無法選擇
-        //      var somedate2 = new Date('2017-06-15');
-        //      $('#f_date1').datetimepicker({
-        //          beforeShowDay: function(date) {
-        //        	  if (  date.getYear() >  somedate2.getYear() || 
-        //		           (date.getYear() == somedate2.getYear() && date.getMonth() >  somedate2.getMonth()) || 
-        //		           (date.getYear() == somedate2.getYear() && date.getMonth() == somedate2.getMonth() && date.getDate() > somedate2.getDate())
-        //              ) {
-        //                   return [false, ""]
-        //              }
-        //              return [true, ""];
-        //      }});
-
-
-        //      3.以下為兩個日期之外的日期無法選擇 (也可按需要換成其他日期)
-        //      var somedate1 = new Date('2017-06-15');
-        //      var somedate2 = new Date('2017-06-25');
-        //      $('#f_date1').datetimepicker({
-        //          beforeShowDay: function(date) {
-        //        	  if (  date.getYear() <  somedate1.getYear() || 
-        //		           (date.getYear() == somedate1.getYear() && date.getMonth() <  somedate1.getMonth()) || 
-        //		           (date.getYear() == somedate1.getYear() && date.getMonth() == somedate1.getMonth() && date.getDate() < somedate1.getDate())
-        //		             ||
-        //		            date.getYear() >  somedate2.getYear() || 
-        //		           (date.getYear() == somedate2.getYear() && date.getMonth() >  somedate2.getMonth()) || 
-        //		           (date.getYear() == somedate2.getYear() && date.getMonth() == somedate2.getMonth() && date.getDate() > somedate2.getDate())
-        //              ) {
-        //                   return [false, ""]
-        //              }
-        //              return [true, ""];
-        //      }});
-        
+	// 	// // change這個event有只代表改變，並不代表有檔案。
+	// 	// 	如果要FileReader去讀檔案，必須給他一個檔案Object。
+	// 	// 	它拿到檔案Object後會驅動onload事件
+	// 	// 	藉由 FileReader 物件，Web 應用程式能以非同步（asynchronously）方式讀取儲存在用戶端的檔案（或原始資料暫存）內容
+	// 	// 裡面的input 就是我們丟進去的this，也就是<input type="file">，
+	// 	// 當<input type="file">被DOM變成Object的時候，如果他有選擇到檔案，
+	// 	// 會被放在input.files裡面，而且是一個Array(因為input如果寫成 <input type="file" multiple> 的時候是可以複選的)
+	$("#upfiles").change(function() {
+		$("#previews").html(""); // 清除預覽
+		readURL(this);
+	});
+	function readURL(input) {
+		if (input.files && input.files.length >= 0) {
+			for (var i = 0; i < input.files.length; i++) {
+				var reader = new FileReader();
+				reader.onload = function(e) {
+					var img = $("<img width='300' height='200'>").attr('src',
+							e.target.result);
+					$("#previews").append(img);
+				}
+				reader.readAsDataURL(input.files[i]);
+			}
+		} else {
+			var noPictures = $("<p>目前沒有圖片</p>");
+			$("#previews").append(noPictures);
+		}
+	}
 </script>
+
+
 </html>

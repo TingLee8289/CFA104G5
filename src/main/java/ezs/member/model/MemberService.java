@@ -10,7 +10,7 @@ public class MemberService {
 	}
 
 public MemberVO addMember(String memUsername, String memPassword, String memName, String memPhone,
-			String memAddress, String memEmail, String memPID, String memVatno, byte[] memHeadshot) {
+			String memAddress, String memEmail, String memPID, byte[] memHeadshot) {
 
 		MemberVO memberVO = new MemberVO();
 		memberVO.setMemUsername(memUsername);
@@ -34,7 +34,7 @@ public MemberVO addMember(String memUsername, String memPassword, String memName
 		memberVO.setMemLddReported(0);
 		memberVO.setMemSelReported(0);
 		memberVO.setMemSupReported(0);
-		memberVO.setMemVatno(memVatno);
+		memberVO.setMemVatno(null);
 
 		dao.insert(memberVO);
 		return memberVO;
@@ -82,7 +82,7 @@ public MemberVO addMember(String memUsername, String memPassword, String memName
 	}
 	
 
-	public MemberVO checkUsername(String memUsername) {
+	public Integer checkUsername(String memUsername) {
 		return dao.checkUsername(memUsername);
 	}
 	

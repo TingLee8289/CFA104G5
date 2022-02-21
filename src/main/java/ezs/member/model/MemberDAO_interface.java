@@ -3,6 +3,7 @@ package ezs.member.model;
 import java.util.List;
 
 public interface MemberDAO_interface {
+  
 	public void insert(MemberVO memberVO);
 
 	public void update(MemberVO memberVO);
@@ -25,7 +26,7 @@ public interface MemberDAO_interface {
 
 	public void updateMemberPassword(MemberVO memberVO);
     
-  
+  public Integer checkUsername(String memUsername);
 
 }
 
