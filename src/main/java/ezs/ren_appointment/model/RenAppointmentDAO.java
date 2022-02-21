@@ -181,7 +181,7 @@ public class RenAppointmentDAO implements RenAppointmentDAO_interface {
 		          + jdbcUtil_CompositeQuery_RenApp.get_WhereCondition(map)
 		          + "order by apt_id";
 			pstmt = con.prepareStatement(finalSQL);
-			System.out.println("●●finalSQL(by DAO) = "+finalSQL);
+//			System.out.println("●●finalSQL(by DAO) = "+finalSQL);
 			rs = pstmt.executeQuery();
 	
 			while (rs.next()) {

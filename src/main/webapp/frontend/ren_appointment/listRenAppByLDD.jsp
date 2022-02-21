@@ -12,7 +12,7 @@
 
 
 <html>
-<head><title>房東 - 預約訂單管理 - listRenAppByLDD.jsp</title>
+<head><title>房東 - 預約訂單管理</title>
 
 <style>
   table#table-1 {
@@ -54,7 +54,7 @@
 
 <table id="table-1">
 	<tr><td>
-		 <h3>預約訂單管理</h3>
+		 <h3>房東預約訂單管理</h3>
 		 <h4><a href="<%=request.getContextPath()%>/frontend/ren_appointment/select_page.jsp">回首頁</a></h4>
 		 <a href='<%=request.getContextPath()%>/frontend/ren_appointment/addRenAppointment.jsp'>新增</a>預約訂單</li>
 	</td></tr>
@@ -100,26 +100,26 @@
                 </c:forEach>
 			</td>
 			<td>
-<%-- 				<c:if test="${renAppointmentVO.aptStatus == 0}">待確認預約</c:if> --%>
 				<c:if test="${renAppointmentVO.aptStatus == 1}">已確認預約</c:if>
 				<c:if test="${renAppointmentVO.aptStatus == 2}">已取消</c:if>
 				<c:if test="${renAppointmentVO.aptStatus == 3}">預約時間已變更</c:if>
 			</td>
 			<td>${renAppointmentVO.aptTime}</td>			
 
-			<td>
+			<td><c:if test="${renAppointmentVO.aptStatus != 2}">
 				<FORM METHOD="post" ACTION="<%=request.getContextPath()%>/RenAppointmentServlet.do" style="margin-bottom: 0px;">
-					<input type="submit" value="修改預約時間"> 
+					<input type="submit" value="修改"> 
 					<input type="hidden" name="aptId" value="${renAppointmentVO.aptId}"> 
 					<input type="hidden" name="action" value="getOne_For_Update">
 				</FORM>
+				</c:if>
 			</td>
-			<td>
+			<td><c:if test="${renAppointmentVO.aptStatus != 2}">
 				<FORM METHOD="post" ACTION="<%=request.getContextPath()%>/RenAppointmentServlet.do" style="margin-bottom: 0px;">
 					<input type="submit" value="取消預約"> 
 					<input type="hidden" name="aptId" value="${renAppointmentVO.aptId}"> 
 					<input type="hidden" name="action" value="cancel">
-				</FORM>
+				</FORM></c:if>
 			</td>
 			<td>
 				<FORM METHOD="post" ACTION="<%=request.getContextPath()%>/RenAppointmentServlet.do" style="margin-bottom: 0px;">
@@ -135,7 +135,7 @@
 <br>
 <br>
 <br>
-<a href='addRenAppointment.jsp'>新增</a>預約訂單</li>
+<a href='<%=request.getContextPath()%>/addRenAppointment.jsp'>新增</a>預約訂單</li>
 
 
 <jsp:include page="/frontend/EZ_footer.jsp"></jsp:include>

@@ -82,7 +82,7 @@ public MemberVO addMember(String memUsername, String memPassword, String memName
 	}
 	
 
-	public MemberVO checkUsername(String memUsername) {
+	public Integer checkUsername(String memUsername) {
 		return dao.checkUsername(memUsername);
 	}
 	
@@ -92,9 +92,9 @@ public MemberVO addMember(String memUsername, String memPassword, String memName
 	}
 	
 
-	public MemberVO searchEmail(String memEmail) {
-		return dao.searchEmail(memEmail);
-	}
+//	public MemberVO searchEmail(String memEmail) {
+//		return dao.searchEmail(memEmail);
+//	}
 
 	public MemberVO updateMemberADM(Integer memID, Byte memLandlord, Byte memSupplier, Byte memSeller,
 			Byte memStatus, Integer memReported, Integer memSupReported) {
