@@ -66,9 +66,11 @@
 		</ul>
 	</c:if>
 
+	
+	
 	<ul>
 		<li><a
-			href='<%=request.getContextPath()%>/backend/ser/ser_repo/viewSerRepo.jsp'>檢視檢舉單</a>
+			href='<%=request.getContextPath()%>/backend/ser/ser_repo/listAllSerRepo.jsp'>檢視檢舉單</a>
 			<br></li></ul>
 			
 	<ul>
@@ -78,10 +80,7 @@
 			
 	
 		
-		<ul>
-		<li><a
-			href='<%=request.getContextPath()%>/backend/ser/ser_repo/listAllSerRepo.jsp'>修改檢舉單</a>
-			<br></li></ul>
+		
 
 
 	

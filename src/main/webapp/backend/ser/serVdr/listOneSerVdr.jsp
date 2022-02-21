@@ -76,7 +76,7 @@ SerVdrVO serVdrVO = (SerVdrVO) request.getAttribute("serVdrVO"); //EmpServlet.ja
 				<table
 					class="table table-striped table-hover align-middle text-center caption-top">
 					<caption>
-						<h2>所有刊登服務</h2>
+						<h2>廠商資料</h2>
 					
 					</caption>
 					<thead class="table-success">
@@ -95,8 +95,11 @@ SerVdrVO serVdrVO = (SerVdrVO) request.getAttribute("serVdrVO"); //EmpServlet.ja
 							<th>營業時間</th>
 							<th>廠商簡介</th>
 							<th>廠商圖片</th>
-							<th>廠商評價總人數</th>
-							<th>廠商評價總星數</th>
+							<th></th>
+							<th></th>
+							
+						<%-- <th>廠商評價總人數</th>
+							<th>廠商評價總星數</th> --%>
 						</tr>
 					</thead>
 					<tbody id="show-list">
@@ -115,8 +118,27 @@ SerVdrVO serVdrVO = (SerVdrVO) request.getAttribute("serVdrVO"); //EmpServlet.ja
 							<td><img
 								src="<%=request.getContextPath()%>/ser_vdr/DBGifReader4.do?vdr_id=${serVdrVO.vdrID}"
 								width=200px></td>
-							<td><%=serVdrVO.getVdrRevCount()%></td>
-							<td><%=serVdrVO.getVdrRevScore()%></td>
+						<%-- <td><%=serVdrVO.getVdrRevCount()%></td>
+							<td><%=serVdrVO.getVdrRevScore()%></td> --%>
+							
+							<td>
+									<FORM METHOD="post"
+										ACTION="<%=request.getContextPath()%>/ser_vdr/BackOneUpdateSerVdrServlet.do"
+										style="margin-bottom: 0px;">
+										<input type="submit" value="修改"> <input type="hidden"
+											name="vdrID" value="${serVdrVO.vdrID}"> <input
+											type="hidden" name="action" value="getOne_For_Update">
+									</FORM>
+								</td>
+								<td>
+									<FORM METHOD="post"
+										ACTION="<%=request.getContextPath()%>/frontend/ser_vdr/DeleteSerVdrServlet.do"
+										style="margin-bottom: 0px;">
+										<input type="submit" value="刪除"> <input type="hidden"
+											name="vdrID" value="${serVdrVO.vdrID}"> <input
+											type="hidden" name="action" value="delete">
+									</FORM>
+								</td>
 						</tr>
 					</tbody>
 				</table>
