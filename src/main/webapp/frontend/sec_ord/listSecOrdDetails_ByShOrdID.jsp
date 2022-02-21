@@ -12,7 +12,7 @@
 
 <html>
 <head>
-<title>訂單明細 - listSecOrdDetails_BySecOrdID.jsp</title>
+<title>訂單明細 - listSecOrdDetails_ByShOrdID.jsp</title>
 
 <style>
 table#table-2 {
