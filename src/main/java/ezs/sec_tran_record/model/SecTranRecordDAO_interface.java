@@ -10,4 +10,5 @@ public interface SecTranRecordDAO_interface {
     public void delete(Integer shTranID);
     public SecTranRecordVO findByPrimaryKey(Integer shTranID);
     public List<SecTranRecordVO> getAll();
+    public List<SecTranRecordVO> getAllformMemID(Integer shTranMemID);
 }

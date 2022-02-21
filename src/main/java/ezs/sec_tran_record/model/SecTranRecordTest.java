@@ -11,9 +11,9 @@ public class SecTranRecordTest {
 
 //		1. 新增
 //		SecTranRecordVO secTranRecordVO1 = new SecTranRecordVO();
-//		secTranRecordVO1.setShTranMemID(11);
-//		secTranRecordVO1.setShTranTime(Date.valueOf("2021-01-01"));
-//		secTranRecordVO1.setShTranCategory(0);
+//		secTranRecordVO1.setShTranMemID(2);
+//		secTranRecordVO1.setShTranTime(Date.valueOf("2022-01-28"));
+//		secTranRecordVO1.setShTranCategory(10);
 //		secTranRecordVO1.setShTranAmount(BigDecimal.valueOf(3000));
 //		secTranRecordVO1.setShTranAP(BigDecimal.valueOf(-3000));
 //		secTranRecordVO1.setShTranBal(BigDecimal.valueOf(1000));
@@ -38,16 +38,16 @@ public class SecTranRecordTest {
 
 
 //		4. 單筆查詢
-		SecTranRecordVO secTranRecordVO3 = dao.findByPrimaryKey(1);
-		System.out.print(secTranRecordVO3.getShTranID() + ",");
-		System.out.print(secTranRecordVO3.getShTranMemID() + ",");
-		System.out.print(secTranRecordVO3.getShTranTime() + ",");
-		System.out.print(secTranRecordVO3.getShTranCategory() + ",");
-		System.out.print(secTranRecordVO3.getShTranAmount() + ",");
-		System.out.print(secTranRecordVO3.getShTranAP() + ",");
-		System.out.print(secTranRecordVO3.getShTranBal());
-
-		System.out.println("---------------------");
+//		SecTranRecordVO secTranRecordVO3 = dao.findByPrimaryKey(1);
+//		System.out.print(secTranRecordVO3.getShTranID() + ",");
+//		System.out.print(secTranRecordVO3.getShTranMemID() + ",");
+//		System.out.print(secTranRecordVO3.getShTranTime() + ",");
+//		System.out.print(secTranRecordVO3.getShTranCategory() + ",");
+//		System.out.print(secTranRecordVO3.getShTranAmount() + ",");
+//		System.out.print(secTranRecordVO3.getShTranAP() + ",");
+//		System.out.print(secTranRecordVO3.getShTranBal());
+//
+//		System.out.println("---------------------");
 
 //		5. 多筆查詢
 		List<SecTranRecordVO> list = dao.getAll();
@@ -61,6 +61,22 @@ public class SecTranRecordTest {
 			System.out.print(secTranRecordVO4.getShTranAP() + ",");
 			System.out.print(secTranRecordVO4.getShTranBal());
 
+			System.out.println();
+		}
+		
+//		6. 查詢特定ID的所有交易紀錄，以日期排序
+		List<SecTranRecordVO> list2 = dao.getAllformMemID(2);
+		System.out.println("aa");
+		for (SecTranRecordVO secTranRecordVO5 : list2) {
+			
+			System.out.print(secTranRecordVO5.getShTranID() + ",");
+			System.out.print(secTranRecordVO5.getShTranMemID() + ",");
+			System.out.print(secTranRecordVO5.getShTranTime() + ",");
+			System.out.print(secTranRecordVO5.getShTranCategory() + ",");
+			System.out.print(secTranRecordVO5.getShTranAmount() + ",");
+			System.out.print(secTranRecordVO5.getShTranAP() + ",");
+			System.out.print(secTranRecordVO5.getShTranBal());
+			
 			System.out.println();
 		}
 	}
