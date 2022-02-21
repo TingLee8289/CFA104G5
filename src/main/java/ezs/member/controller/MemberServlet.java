@@ -18,6 +18,7 @@ import javax.servlet.http.Part;
 
 import ezs.member.model.MemberService;
 import ezs.member.model.MemberVO;
+import ezs.ser_vdr.model.SerVdrService;
 
 @WebServlet("/member/MemberServlet.do")
 @MultipartConfig(fileSizeThreshold = 1024 * 1024, maxFileSize = 5 * 1024 * 1024, maxRequestSize = 5 * 5 * 1024 * 1024)
@@ -81,7 +82,7 @@ public class MemberServlet extends HttpServlet {
 				session.setAttribute("memberVO", memberVO);
 				session.setAttribute("memID", memberVO.getMemID());
 
-				String url = "/frontend/member/loginsuccessSimple.jsp";
+				String url = "/frontend/EZ_home.jsp";
 				RequestDispatcher successView = req.getRequestDispatcher(url); // 成功轉交 loginsucess.jsp
 				successView.forward(req, res);
 				/*************************** 其他可能的錯誤處理 *************************************/
@@ -173,7 +174,10 @@ public class MemberServlet extends HttpServlet {
 				MemberService memberSvc = new MemberService();
 				memberVO = memberSvc.addMember(memUsername, memPassword, memName, memPhone, memAddress, memEmail,
 						memPID, memHeadshot);
-
+				
+				SerVdrService serVdrSvc = new SerVdrService();
+//				serVdrSvc.addSerVdr(memID, 0, null, null, null, null, null, null, null, null, null, null, null);
+				
 				/*************************** 3.新增完成,準備轉交(Send the Success view) ***********/
 				req.setAttribute("memberVO", memberVO);
 				

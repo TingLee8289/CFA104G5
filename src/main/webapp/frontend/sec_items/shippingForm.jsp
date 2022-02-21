@@ -670,7 +670,7 @@
         </div>
         <div class="field-container">
             <label for="cardnumber">信用卡卡號</label><span id="generatecard">generate random</span>
-            <input id="cardnumber" type="text" pattern="[0-9]*" inputmode="numeric">
+            <input id="cardnumber" type="text" pattern="[0-9]*" inputmode="numeric" required>
             <svg id="ccicon" class="ccicon" width="750" height="471" viewBox="0 0 750 471" version="1.1"
                 xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
 
@@ -678,7 +678,7 @@
         </div>
         <div class="field-container">
             <label for="expirationdate">信用卡有效月年 (mm/yy)</label>
-            <input id="expirationdate" type="text" pattern="[0-9]*" inputmode="numeric">
+            <input id="expirationdate" type="text" pattern="[0-9]*" inputmode="numeric" required>
         </div>
         <div class="field-container">
             <label for="securitycode">信用卡背面末三碼</label>
