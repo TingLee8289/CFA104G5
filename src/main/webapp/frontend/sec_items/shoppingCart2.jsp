@@ -463,7 +463,26 @@
 		    text-overflow: ellipsis;
 		    white-space: nowrap;
         }
-
+        
+        #checkoutbtn{
+		    text-decoration: none;
+		    font-family: "Montserrat", sans-serif;
+		    letter-spacing: -.015em;
+		    font-size: .75em;
+		    padding: 1em;
+		    color: #fff;
+		    background: #82ca9c;
+		    font-weight: bold;
+		    border-radius: 50px;
+		    float: right;
+		    text-align: right;
+		    -webkit-transition: all 0.25s linear;
+		    -moz-transition: all 0.25s linear;
+		    -ms-transition: all 0.25s linear;
+		    -o-transition: all 0.25s linear;
+		    transition: all 0.25s linear;
+		    text-decoration: none;
+		}
     </style>
 </head>
 <body>
@@ -568,7 +587,7 @@
           		<li class="totalRow">
               	<form name="checkoutForm" action="<%= request.getContextPath() %>/sec_items/ShoppingServlet.do" method="POST">
 		        	<input type="hidden" name="action"  value="CHECKOUT"> 
-		            <input type="submit" value="前往結帳" class="btn continue">
+		            <input type="submit" value="前往結帳" id="checkoutbtn">
 		        </form>
 		        </li>
           </ul>
