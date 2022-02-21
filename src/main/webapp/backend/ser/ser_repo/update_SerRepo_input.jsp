@@ -53,7 +53,7 @@ th, td {
 	<table id="table-1">
 		<tr>
 			<td>
-				<h3>檢舉單修改</h3>
+				<h3>檢舉單審核</h3>
 				<h4>
 					<a
 						href="<%=request.getContextPath()%>/backend/ser/ser_repo/select_page.jsp">回首頁</a>
@@ -62,7 +62,8 @@ th, td {
 		</tr>
 	</table>
 
-	<h3>資料修改:</h3>
+	<h3> </h3>
+	<h4></h4>
 
 	<%-- 錯誤表列 --%>
 	<c:if test="${not empty errorMsgs}">

@@ -79,6 +79,9 @@ public class UpdateSerRepoServlet extends HttpServlet {
 				/*************************** 2.開始修改資料 *****************************************/
 				SerRepoService serRepoSvc = new SerRepoService();
 				serRepoSvc.updateSerRepo(rpID, rpOrdID, rpMemID, rpTxt, rpDate, rpStatus);
+				if(rpStatus == 1) { //檢舉判斷為通過
+					serRepoSvc.updateMemSupReported(rpMemID);
+				}
 
 				/*************************** 3.修改完成,準備轉交(Send the Success view) *************/
 				req.setAttribute("serRepVO", serRepVO); // 資料庫update成功後,正確的的empVO物件,存入req
