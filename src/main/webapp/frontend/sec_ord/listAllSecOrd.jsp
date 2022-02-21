@@ -156,9 +156,9 @@ th, td {
 	</table>
 
 	<%
-	if (request.getAttribute("listSecOrdDetails_BySecOrd") != null) {
+	if (request.getAttribute("listSecOrdDetails_BySecOrdID") != null) {
 	%>
-	<jsp:include page="listSecOrdDetails_BySecOrd.jsp" />
+	<jsp:include page="listSecOrdDetails_ByShOrdID.jsp" />
 	<%
 	}
 	%>
