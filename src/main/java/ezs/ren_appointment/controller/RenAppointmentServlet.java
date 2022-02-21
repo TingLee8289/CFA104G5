@@ -254,7 +254,7 @@ public class RenAppointmentServlet extends HttpServlet {
 			
 			String memUsername = new String(req.getParameter("aptMemName"));
 			MemberService memSvc = new MemberService();
-			Integer aptMemId = memSvc.checkUsername(memUsername);
+//			Integer aptMemId = memSvc.checkUsername(memUsername);
 			
 //			MemberVO memberVO = memSvc.checkUsername(aptMemName);
 //			Integer aptMemId = memberVO.getMemID();	
@@ -288,7 +288,7 @@ public class RenAppointmentServlet extends HttpServlet {
 				}
 
 				RenAppointmentVO renAppointmentVO = new RenAppointmentVO();
-				renAppointmentVO.setAptMemId(aptMemId);
+//				renAppointmentVO.setAptMemId(aptMemId);
 				renAppointmentVO.setAptLddId(aptLddId);
 				renAppointmentVO.setAptLisId(aptLisId);
 				renAppointmentVO.setAptStatus(aptStatus);
@@ -305,7 +305,7 @@ public class RenAppointmentServlet extends HttpServlet {
 
 				/*************************** 2.開始新增資料 ***************************************/
 				RenAppointmentService renAppSvc = new RenAppointmentService();
-				renAppointmentVO = renAppSvc.addRenApp(aptMemId, aptLddId, aptLisId, aptStatus, aptTime, aptTimestamp);
+//				renAppointmentVO = renAppSvc.addRenApp(aptMemId, aptLddId, aptLisId, aptStatus, aptTime, aptTimestamp);
 
 				/*************************** 3.新增完成,準備轉交(Send the Success view) ***********/
 				String url = "/frontend/ren_appointment/select_page.jsp";
