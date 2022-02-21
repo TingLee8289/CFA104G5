@@ -96,6 +96,8 @@ SerRepVO serRepVO = (SerRepVO) request.getAttribute("serRepVO"); //EmpServlet.ja
 							<th>檢舉內容</th>
 							<th>檢舉時間</th>
 							<th>檢舉狀態</th>
+							<th></th>
+							<th></th>
 						</tr>
 					</thead>
 					<tbody id="show-list">
@@ -107,6 +109,26 @@ SerRepVO serRepVO = (SerRepVO) request.getAttribute("serRepVO"); //EmpServlet.ja
 							<td><%=serRepVO.getRpDate()%></td>
 							<td><c:if test="${serRepVO.rpStatus == 0}">審核未通過</c:if> <c:if
 									test="${serRepVO.rpStatus == 1}">審核通過</c:if></td>
+									
+									
+									<td>
+									<FORM METHOD="post"
+										ACTION="<%=request.getContextPath()%>/ser_repo/GetOneForUpdateSerRepoServlet.do"
+										style="margin-bottom: 0px;">
+										<input type="submit" value="修改"> <input type="hidden"
+											name="rpID" value="${serRepVO.rpID}"> <input
+											type="hidden" name="action" value="getOne_For_Update">
+									</FORM>
+								</td>
+								<td>
+									<FORM METHOD="post"
+										ACTION="<%=request.getContextPath()%>/ser_repo/DeleteSerRepoServlet.do"
+										style="margin-bottom: 0px;">
+										<input type="submit" value="刪除"> <input type="hidden"
+											name="rpID" value="${serRepVO.rpID}"> <input
+											type="hidden" name="action" value="delete">
+									</FORM>
+								</td>
 
 						</tr>
 					</tbody>

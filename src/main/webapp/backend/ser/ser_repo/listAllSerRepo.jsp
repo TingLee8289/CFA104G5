@@ -97,10 +97,12 @@ pageContext.setAttribute("list", list);
 				<table
 					class="table table-striped table-hover align-middle text-center caption-top">
 					<caption>
-						<h2>所有刊登服務</h2>
+					
+						<h2>所有檢舉單</h2>
 						<%@ include file="page1.file"%>
 					</caption>
 					<thead class="table-success">
+			
 
 						<tr class="text-nowrap">
 							<th>檢舉編號</th>
@@ -109,6 +111,8 @@ pageContext.setAttribute("list", list);
 							<th>檢舉內容</th>
 							<th>檢舉時間</th>
 							<th>檢舉狀態</th>
+							<th></th>
+							<th></th>
 
 
 						</tr>
