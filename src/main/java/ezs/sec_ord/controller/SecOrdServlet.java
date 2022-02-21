@@ -21,6 +21,7 @@ import ezs.sec_items.model.SecItem;
 import ezs.sec_ord.model.SecOrdJDBCDAO;
 import ezs.sec_ord.model.SecOrdService;
 import ezs.sec_ord.model.SecOrdVO;
+import ezs.sec_ord_details.model.SecOrdDetailsService;
 import ezs.sec_ord_details.model.SecOrdDetailsVO;
 
 @WebServlet("/sec_ord/SecOrdServlet.do")
@@ -58,6 +59,32 @@ public class SecOrdServlet extends HttpServlet {
 				RequestDispatcher successView = req.getRequestDispatcher(url);
 				successView.forward(req, res);
 
+				/*************************** 其他可能的錯誤處理 ***********************************/
+			} catch (Exception e) {
+				throw new ServletException(e);
+			}
+		}
+		
+// 用訂單編號查詢明細
+		if ("getSecOrdDetails".equals(action)) {
+			
+			List<String> errorMsgs = new LinkedList<String>();
+			req.setAttribute("errorMsgs", errorMsgs);
+			try {
+				/*************************** 1.接收請求參數 ****************************************/
+				Integer shOrdID = Integer.valueOf(req.getParameter("shOrdID"));
+				
+				/*************************** 2.開始查詢資料 ****************************************/
+				SecOrdDetailsService secOrdDetailsSvc = new SecOrdDetailsService();
+				List<SecOrdDetailsVO> list = secOrdDetailsSvc.findByShOrdID(shOrdID);
+				
+				/*************************** 3.查詢完成,準備轉交(Send the Success view) ************/
+				req.setAttribute("listSecOrdDetails_ByShOrdID", list); // 資料庫取出的list物件,存入request
+				
+				String url = "/frontend/sec_ord/listSecOrdDetails_ByShOrdID.jsp";
+				RequestDispatcher successView = req.getRequestDispatcher(url);
+				successView.forward(req, res);
+				
 				/*************************** 其他可能的錯誤處理 ***********************************/
 			} catch (Exception e) {
 				throw new ServletException(e);

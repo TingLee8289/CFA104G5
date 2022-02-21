@@ -8,42 +8,41 @@
 
 <html>
 <head>
-<title>EASY SPACE</title>
-
-<style>
-table#table-2 {
-	background-color: #CCCCFF;
-	border: 2px solid black;
-	text-align: center;
-}
-
-table#table-2 h4 {
-	color: red;
-	display: block;
-	margin-bottom: 1px;
-}
-
-h4 {
-	color: blue;
-	display: inline;
-}
-
-table {
-	width: 800px;
-	background-color: white;
-	margin-top: 5px;
-	margin-bottom: 5px;
-}
-
-table, th, td {
-	border: 1px solid #CCCCFF;
-}
-
-th, td {
-	padding: 5px;
-	text-align: center;
-}
-</style>
+	<title>EASY SPACE</title>
+	<style>
+		table#table-2 {
+			background-color: #CCCCFF;
+			border: 2px solid black;
+			text-align: center;
+		}
+		
+		table#table-2 h4 {
+			color: red;
+			display: block;
+			margin-bottom: 1px;
+		}
+		
+		h4 {
+			color: blue;
+			display: inline;
+		}
+		
+		table {
+			width: 800px;
+			background-color: white;
+			margin-top: 5px;
+			margin-bottom: 5px;
+		}
+		
+		table, th, td {
+			border: 1px solid #CCCCFF;
+		}
+		
+		th, td {
+			padding: 5px;
+			text-align: center;
+		}
+	</style>
 
 </head>
 <body bgcolor='white'>
@@ -117,7 +116,7 @@ th, td {
 				<td>
 					<FORM METHOD="post"	ACTION="<%=request.getContextPath()%>/sec_ord/SecOrdServlet.do" style="margin-bottom: 0px;">
 						<input type="submit" value="查看訂單明細"> 
-						<input type="hidden" name="secOrdID" value="${secOrdVO.shOrdID}"> 
+						<input type="hidden" name="shOrdID" value="${secOrdVO.shOrdID}"> 
 						<input type="hidden" name="action" value="getSecOrdDetails">
 					</FORM>
 				</td>
@@ -138,12 +137,10 @@ th, td {
 			</tr>
 		</c:forEach>
 	</table>
-
-	<br>本網頁的路徑:
-	<br>
-	<b> <font color=blue>request.getServletPath():</font> <%=request.getServletPath()%><br>
-		<font color=blue>request.getRequestURI(): </font> <%=request.getRequestURI()%>
-	</b>
+	
+		<%if (request.getAttribute("listSecOrdDetails_BySecOrdID")!=null){%>
+		       <jsp:include page="listSecOrdDetails_ByShOrdID.jsp" />
+		<%} %>
 
 </body>
 </html>
