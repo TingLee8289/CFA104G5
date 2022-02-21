@@ -1,8 +1,6 @@
 package ezs.sec_tran_record.model;
 
-import java.math.BigDecimal;
 import java.sql.Connection;
-import java.sql.Date;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -10,22 +8,28 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.naming.Context;
+import javax.naming.InitialContext;
+import javax.naming.NamingException;
+import javax.sql.DataSource;
+
 import util.Util;
 
-public class SecTranRecordJDBCDAO implements SecTranRecordDAO_interface {
+public class SecTranRecordDAO implements SecTranRecordDAO_interface {
 
 	private static final String INSERT_STMT = "INSERT INTO `CFA104G5`.`SEC_TRAN_RECORD` (sh_tran_mem_id, sh_tran_time, sh_tran_category,sh_tran_amount, sh_tran_ap, sh_tran_bal) VALUES (?, ?, ?, ?, ?, ?)";
 	private static final String GET_ALL_STMT = "SELECT * FROM `CFA104G5`.`SEC_TRAN_RECORD` ORDER BY sh_tran_id";
+	private static final String GET_ALL_BY_ONE_STMT = "SELECT * FROM `CFA104G5`.`SEC_TRAN_RECORD`  WHERE sh_tran_mem_id = ? ORDER BY sh_tran_time";
 	private static final String GET_ONE_STMT = "SELECT * FROM `CFA104G5`.`SEC_TRAN_RECORD` WHERE sh_tran_id = ?";
 	private static final String DELETE = "DELETE FROM `CFA104G5`.`SEC_TRAN_RECORD` WHERE sh_tran_id = ?";
 	private static final String UPDATE = "UPDATE `CFA104G5`.`SEC_TRAN_RECORD` SET sh_tran_mem_id=?, sh_tran_time=?, sh_tran_category=?, sh_tran_amount=?, sh_tran_ap=?, sh_tran_bal=? WHERE sh_tran_id = ?";
 
-	private static final String GET_ALL_BY_ONE_STMT = "SELECT * FROM `CFA104G5`.`SEC_TRAN_RECORD`  WHERE sh_tran_mem_id = ? ORDER BY sh_tran_time";
-	
+	private static DataSource ds = null;
 	static {
 		try {
-			Class.forName(Util.DRIVER);
-		} catch (ClassNotFoundException e) {
+			Context ctx = new InitialContext();
+			ds = (DataSource) ctx.lookup("java:comp/env/jdbc/CFA104G5");
+		} catch (NamingException e) {
 			e.printStackTrace();
 		}
 	}
@@ -36,9 +40,8 @@ public class SecTranRecordJDBCDAO implements SecTranRecordDAO_interface {
 
 	@Override
 	public void insert(SecTranRecordVO secTranRecordVO) {
-
 		try {
-			con = DriverManager.getConnection(Util.URL, Util.USER, Util.PASSWORD);
+			con = ds.getConnection();
 
 			pstmt = con.prepareStatement(INSERT_STMT);
 			pstmt.setInt(1, secTranRecordVO.getShTranMemID());
@@ -55,15 +58,13 @@ public class SecTranRecordJDBCDAO implements SecTranRecordDAO_interface {
 		} finally {
 			Util.closeResource(con, pstmt, rs);
 		}
-
 	}
 
 	@Override
 	public void update(SecTranRecordVO secTranRecordVO) {
-
 		try {
 
-			con = DriverManager.getConnection(Util.URL, Util.USER, Util.PASSWORD);
+			con = ds.getConnection();
 
 			pstmt = con.prepareStatement(UPDATE);
 
@@ -82,15 +83,14 @@ public class SecTranRecordJDBCDAO implements SecTranRecordDAO_interface {
 		} finally {
 			Util.closeResource(con, pstmt, rs);
 		}
-
 	}
 
 	@Override
 	public void delete(Integer shTranID) {
-
 		try {
 
-			con = DriverManager.getConnection(Util.URL, Util.USER, Util.PASSWORD);
+			con = ds.getConnection();
+			
 			pstmt = con.prepareStatement(DELETE);
 			pstmt.setInt(1, shTranID);
 			pstmt.executeUpdate();
@@ -109,7 +109,8 @@ public class SecTranRecordJDBCDAO implements SecTranRecordDAO_interface {
 
 		try {
 
-			con = DriverManager.getConnection(Util.URL, Util.USER, Util.PASSWORD);
+			con = ds.getConnection();
+			
 			pstmt = con.prepareStatement(GET_ONE_STMT);
 			pstmt.setInt(1, shTranID);
 			rs = pstmt.executeQuery();
@@ -133,21 +134,22 @@ public class SecTranRecordJDBCDAO implements SecTranRecordDAO_interface {
 		}
 		return secTranRecordVO;
 	}
-
+	
 	@Override
 	public List<SecTranRecordVO> getAllformMemID(Integer shTranMemID) {
 		List<SecTranRecordVO> list = new ArrayList<SecTranRecordVO>();
 		SecTranRecordVO secTranRecordVO = null;
-
+		
 		try {
-
-			con = DriverManager.getConnection(Util.URL, Util.USER, Util.PASSWORD);
+			
+			con = ds.getConnection();
+			
 			pstmt = con.prepareStatement(GET_ALL_BY_ONE_STMT);
 			pstmt.setInt(1, shTranMemID);
 			rs = pstmt.executeQuery();
-
+			
 			while (rs.next()) {
-
+				
 				secTranRecordVO = new SecTranRecordVO();
 				secTranRecordVO.setShTranMemID(rs.getInt("sh_tran_mem_id"));
 				secTranRecordVO.setShTranTime(rs.getDate("sh_tran_time"));
@@ -159,7 +161,7 @@ public class SecTranRecordJDBCDAO implements SecTranRecordDAO_interface {
 				
 				list.add(secTranRecordVO);
 			}
-
+			
 		} catch (SQLException se) {
 			se.printStackTrace();
 		} finally {
@@ -175,7 +177,8 @@ public class SecTranRecordJDBCDAO implements SecTranRecordDAO_interface {
 
 		try {
 
-			con = DriverManager.getConnection(Util.URL, Util.USER, Util.PASSWORD);
+			con = ds.getConnection();
+			
 			pstmt = con.prepareStatement(GET_ALL_STMT);
 			rs = pstmt.executeQuery();
 

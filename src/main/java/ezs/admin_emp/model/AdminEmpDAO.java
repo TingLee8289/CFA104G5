@@ -152,10 +152,10 @@ public class AdminEmpDAO implements AdminEmpDAO_interface {
 
 			while (rs.next()) {
 				adminEmpVO = new AdminEmpVO();
-//				adminEmpVO.setAdmID(rs.getInt("ADM_ID"));
+				adminEmpVO.setAdmID(rs.getInt("ADM_ID"));
 				adminEmpVO.setAdmUsername(rs.getString("ADM_USERNAME"));
 				adminEmpVO.setAdmPassword(rs.getString("ADM_PASSWORD"));
-//				adminEmpVO.setAdmStatus(rs.getInt("ADM_STATUS"));
+				adminEmpVO.setAdmStatus(rs.getInt("ADM_STATUS"));
 			}
 
 		} catch (SQLException se) {
@@ -186,6 +186,33 @@ public class AdminEmpDAO implements AdminEmpDAO_interface {
 				list.add(adminEmpVO); // Store the row in the list
 			}
 
+		} catch (SQLException se) {
+			throw new RuntimeException("A database error occured. " + se.getMessage());
+		} finally {
+			Util.closeResource(con, pstmt, rs);
+		}
+		return list;
+	}
+	@Override
+	public List<AdminEmpVO> getAll1() {
+		List<AdminEmpVO> list = new ArrayList<AdminEmpVO>();
+		AdminEmpVO adminEmpVO = null;
+		
+		try {
+			con = ds.getConnection();
+			
+			pstmt = con.prepareStatement(GET_ALL_STMT);
+			rs = pstmt.executeQuery();
+			
+			while (rs.next()) {
+				adminEmpVO = new AdminEmpVO();
+				adminEmpVO.setAdmID(rs.getInt("ADM_ID"));
+				adminEmpVO.setAdmUsername(rs.getString("ADM_USERNAME"));
+				adminEmpVO.setAdmPassword(rs.getString("ADM_PASSWORD"));
+				adminEmpVO.setAdmStatus(rs.getInt("ADM_STATUS"));
+				list.add(adminEmpVO); // Store the row in the list
+			}
+			
 		} catch (SQLException se) {
 			throw new RuntimeException("A database error occured. " + se.getMessage());
 		} finally {
