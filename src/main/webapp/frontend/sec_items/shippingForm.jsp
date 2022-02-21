@@ -128,12 +128,13 @@
         font-weight: 600;
         display: block;
         color: #fff;
-        width: 100%;
+        width: 360px;
         padding: 1rem;
         border-radius: 0.25rem;
         border: 0;
         cursor: pointer;
         outline: 0;
+        margin: 0 auto 50px;
         }
         .button:focus-visible {
         background-color: #333;
@@ -514,16 +515,16 @@
     
 <!--  寄送資訊-------------------------------------------------------------- -->
 		<div class="container">
-	        <h1>寄送資訊</h1>
+	        <h1 style="text-align: center;">寄送資訊</h1>
 		        <div class="form">
 		          <div class="fields fields--2">
 		            <label class="field">
-		              <span class="field__label" for="shBuyerID">買家會員編號</span>
-		              <input class="field__input" type="text" id="shBuyerID" name="shBuyerID" value="<%=(secOrdVO == null) ? "" : secOrdVO.getShBuyerID()%>" />
+		              <span class="field__label" for="shRecipID">收件人姓名</span>
+		              <input class="field__input" type="text" id="shRecipName" name="shRecipName" value="<%=(secOrdVO == null) ? "" : secOrdVO.getShRecipName()%>" />
 		            </label>
 		            <label class="field">
-		              <span class="field__label" for="phone">收件人電話號碼</span>
-		              <input class="field__input" type="text" id="phone" value="" />
+		              <span class="field__label" for="shRecipPhone">收件人電話號碼</span>
+		              <input class="field__input" type="text" id="shRecipPhone" name="shRecipPhone" value="<%=(secOrdVO == null) ? "" : secOrdVO.getShRecipPhone()%>" />
 		            </label>
 		          </div>
 		          <div class="fields fields--3">
@@ -666,11 +667,11 @@
     <div class="form-container">
         <div class="field-container">
             <label for="name">持卡人姓名</label>
-            <input id="name" maxlength="20" type="text">
+            <input id="name" maxlength="20" type="text" required>
         </div>
         <div class="field-container">
             <label for="cardnumber">信用卡卡號</label><span id="generatecard">generate random</span>
-            <input id="cardnumber" type="text" pattern="[0-9]*" inputmode="numeric" required>
+            <input id="cardnumber" type="text" inputmode="numeric" required>
             <svg id="ccicon" class="ccicon" width="750" height="471" viewBox="0 0 750 471" version="1.1"
                 xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
 
@@ -678,15 +679,15 @@
         </div>
         <div class="field-container">
             <label for="expirationdate">信用卡有效月年 (mm/yy)</label>
-            <input id="expirationdate" type="text" pattern="[0-9]*" inputmode="numeric" required>
+            <input id="expirationdate" type="text" pattern="[0-9]*/[0-9]*" inputmode="numeric" required>
         </div>
         <div class="field-container">
             <label for="securitycode">信用卡背面末三碼</label>
-            <input id="securitycode" type="text" pattern="[0-9]*" inputmode="numeric">
+            <input id="securitycode" type="text" pattern="[0-9]*" inputmode="numeric" required>
         </div>
     </div>
     
-    <button class="button">產生訂單</button>
+    <button class="button"> 付款 </button>
     <script>
         window.onload = function () {
 
