@@ -93,7 +93,7 @@
                             </a>
                             <div class="collapse" id="collapsePages3" aria-labelledby="headingThree" data-bs-parent="#sidenavAccordion">
                                 <nav class="sb-sidenav-menu-nested nav">
-                                    <a class="nav-link" href="layout-static.html">會員資料管理</a>
+                                    <a class="nav-link" href="<%=request.getContextPath()%>/backend/member/listAllMember.jsp">會員資料管理</a>
                                 </nav>
                             </div>
 <!-- ------------------------------------------------------------------------------------------------- -->

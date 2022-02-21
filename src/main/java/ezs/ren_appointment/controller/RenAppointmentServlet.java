@@ -122,6 +122,7 @@ public class RenAppointmentServlet extends HttpServlet {
 			// send the ErrorPage view.
 			req.setAttribute("errorMsgs", errorMsgs);
 
+			System.out.println("update");
 			try {
 				/*************************** 1.接收請求參數 - 輸入格式的錯誤處理 **********************/
 				Integer aptId = new Integer(req.getParameter("aptId").trim());
@@ -132,7 +133,7 @@ public class RenAppointmentServlet extends HttpServlet {
 
 				Integer aptLisId = new Integer(req.getParameter("aptLisId").trim());
 
-				Integer aptStatus = new Integer(req.getParameter("aptStatus").trim());
+				Integer aptStatus = 3;
 
 				java.sql.Timestamp aptTime = null;
 				try {
@@ -177,6 +178,72 @@ public class RenAppointmentServlet extends HttpServlet {
 				failureView.forward(req, res);
 			}
 		}
+		
+		if ("cancel".equals(action)) {
+
+			List<String> errorMsgs = new LinkedList<String>();
+			// Store this set in the request scope, in case we need to
+			// send the ErrorPage view.
+			req.setAttribute("errorMsgs", errorMsgs);
+			
+			System.out.println("cancel");
+
+			try {
+				/*************************** 1.接收請求參數 - 輸入格式的錯誤處理 **********************/
+				Integer aptId = new Integer(req.getParameter("aptId").trim());
+
+				Integer aptMemId = new Integer(req.getParameter("aptMemId").trim());
+
+				Integer aptLddId = new Integer(req.getParameter("aptLddId").trim());
+
+				Integer aptLisId = new Integer(req.getParameter("aptLisId").trim());
+
+				Integer aptStatus = 2;
+
+				java.sql.Timestamp aptTime = null;
+				try {
+					aptTime = java.sql.Timestamp.valueOf(req.getParameter("aptTime").trim());
+				} catch (IllegalArgumentException e) {
+					aptTime = new java.sql.Timestamp(System.currentTimeMillis());
+					errorMsgs.add("請輸入日期及時間!");
+				}
+
+				RenAppointmentVO renAppointmentVO = new RenAppointmentVO();
+				renAppointmentVO.setAptId(aptId);
+				renAppointmentVO.setAptMemId(aptMemId);
+				renAppointmentVO.setAptLddId(aptLddId);
+				renAppointmentVO.setAptLisId(aptLisId);
+				renAppointmentVO.setAptStatus(aptStatus);
+				renAppointmentVO.setAptTime(aptTime);
+
+				// Send the use back to the form, if there were errors
+				if (!errorMsgs.isEmpty()) {
+					req.setAttribute("renAppointmentVO", renAppointmentVO); // 含有輸入格式錯誤的VO,也存入req
+					RequestDispatcher failureView = req
+							.getRequestDispatcher("/ren_appointment/update_ren_appointment_input.jsp");
+					failureView.forward(req, res);
+					return; // 程式中斷
+				}
+
+				/*************************** 2.開始修改資料 *****************************************/
+				RenAppointmentService renAppSvc = new RenAppointmentService();
+				renAppointmentVO = renAppSvc.updateRenApp(aptId, aptMemId, aptLddId, aptLisId, aptStatus, aptTime);
+
+				/*************************** 3.修改完成,準備轉交(Send the Success view) *************/
+				req.setAttribute("renAppointmentVO", renAppointmentVO); // 資料庫update成功後,正確的的VO物件,存入req
+				String url = "/frontend/ren_appointment/listOneRenAppointment.jsp";
+				RequestDispatcher successView = req.getRequestDispatcher(url); // 修改成功後,轉交
+				successView.forward(req, res);
+
+				/*************************** 其他可能的錯誤處理 *************************************/
+			} catch (Exception e) {
+				e.printStackTrace();
+				errorMsgs.add("修改資料失敗:" + e.getMessage());
+				RequestDispatcher failureView = req
+						.getRequestDispatcher("/frontend/ren_appointment/update_ren_appointment_input.jsp");
+				failureView.forward(req, res);
+			}
+		}
 
 		if ("insert".equals(action)) {
 
@@ -185,10 +252,12 @@ public class RenAppointmentServlet extends HttpServlet {
 			// send the ErrorPage view.
 			req.setAttribute("errorMsgs", errorMsgs);
 			
-			String aptMemName = new String(req.getParameter("aptMemName").trim());
+			String memUsername = new String(req.getParameter("aptMemName"));
 			MemberService memSvc = new MemberService();
-			MemberVO memberVO = memSvc.checkUsername(aptMemName);
-			Integer aptMemId = memberVO.getMemID();	
+			Integer aptMemId = memSvc.checkUsername(memUsername);
+			
+//			MemberVO memberVO = memSvc.checkUsername(aptMemName);
+//			Integer aptMemId = memberVO.getMemID();	
 
 			try {
 				/*********************** 1.接收請求參數 - 輸入格式的錯誤處理 *************************/
@@ -198,7 +267,7 @@ public class RenAppointmentServlet extends HttpServlet {
 
 				Integer aptLisId = new Integer(req.getParameter("aptLisId").trim());
 
-				Integer aptStatus = 0;
+				Integer aptStatus = 1;
 //				Integer aptStatus = new Integer(req.getParameter("aptStatus").trim());
 
 				java.sql.Timestamp aptTime = null;

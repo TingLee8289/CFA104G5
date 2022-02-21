@@ -82,7 +82,7 @@ public MemberVO addMember(String memUsername, String memPassword, String memName
 	}
 	
 
-	public MemberVO checkUsername(String memUsername) {
+	public Integer checkUsername(String memUsername) {
 		return dao.checkUsername(memUsername);
 	}
 	

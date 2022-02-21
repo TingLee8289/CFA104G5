@@ -31,7 +31,9 @@ public class MemberJDBCDAO implements MemberDAO_interface {
 
 	private static final String CHECK_USERNAME = "SELECT MEM_ID FROM `CFA104G5`.`MEMBER` WHERE MEM_USERNAME = ?";
 	private static final String VERIFY_MEM_STMT = "UPDATE `CFA104G5`.`MEMBER` SET mem_status = 1 WHERE mem_name = ?;";
+
 	private static final String SEARCH_EMAIL = "SELECT MEM_EMAIL FROM `CFA104G5`.`MEMBER`";
+
 
 	static {
 		try {
@@ -284,7 +286,7 @@ public class MemberJDBCDAO implements MemberDAO_interface {
 	}
 
 	@Override
-	public MemberVO checkUsername(String memUsername) {
+	public Integer checkUsername(String memUsername) {
 		MemberVO memberVO = null;
 
 		try {
@@ -307,7 +309,7 @@ public class MemberJDBCDAO implements MemberDAO_interface {
 			Util.closeResource(con, pstmt, rs);
 
 		}
-		return memberVO;
+		return memberVO.getMemID();
 	}
 
 	public void verifyMember(String memName) {
@@ -343,6 +345,7 @@ public class MemberJDBCDAO implements MemberDAO_interface {
 //
 //			}
 
+
 	@Override
 	public void updateADM(MemberVO memberVO) {
 
@@ -365,7 +368,6 @@ public class MemberJDBCDAO implements MemberDAO_interface {
 		} finally {
 			Util.closeResource(con, pstmt, rs);
 		}
-		return;
 
 	}
 

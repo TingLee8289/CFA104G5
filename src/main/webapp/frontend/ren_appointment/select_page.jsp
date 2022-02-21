@@ -54,19 +54,19 @@
   <jsp:useBean id="renAppSvc" scope="page" class="ezs.ren_appointment.model.RenAppointmentService" />
  
 
-  <li>
-     <FORM METHOD="post" 
-     	ACTION="<%=request.getContextPath()%>/RenAppointmentServlet.do" >
-       <b>選擇預約訂單編號:</b>
-       <select size="1" name="aptId">
-         <c:forEach var="renAppointmentVO" items="${renAppSvc.all}" > 
-          <option value="${renAppointmentVO.aptId}">${renAppointmentVO.aptId}
-         </c:forEach>   
-       </select>
-       <input type="hidden" name="action" value="getOne_For_Display">
-       <input type="submit" value="送出">
-    </FORM>
-  </li>
+<!--   <li> -->
+<!--      <FORM METHOD="post"  -->
+<%--      	ACTION="<%=request.getContextPath()%>/RenAppointmentServlet.do" > --%>
+<!--        <b>選擇預約訂單編號:</b> -->
+<!--        <select size="1" name="aptId"> -->
+<%--          <c:forEach var="renAppointmentVO" items="${renAppSvc.all}" >  --%>
+<%--           <option value="${renAppointmentVO.aptId}">${renAppointmentVO.aptId} --%>
+<%--          </c:forEach>    --%>
+<!--        </select> -->
+<!--        <input type="hidden" name="action" value="getOne_For_Display"> -->
+<!--        <input type="submit" value="送出"> -->
+<!--     </FORM> -->
+<!--   </li> -->
   
   <li>
      <FORM METHOD="post" ACTION="<%=request.getContextPath()%>/RenAppointmentServlet.do" >

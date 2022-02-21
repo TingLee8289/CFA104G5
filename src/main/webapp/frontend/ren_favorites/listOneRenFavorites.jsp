@@ -26,6 +26,8 @@ RenListingPicVO renListingPicVO = (RenListingPicVO) request.getAttribute("renLis
 
 <html>
 <head>
+<!--   <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/js/all.min.js" crossorigin="anonymous"></script> -->
+  <script src="https://kit.fontawesome.com/1c2ccc4859.js" crossorigin="anonymous"></script>
 <title>收藏房源</title>
 
 <style>
@@ -98,8 +100,14 @@ th, td {
 				</td>
 
 				<td>
+<%-- 					<FORM METHOD="post" ACTION="<%=request.getContextPath()%>/RenFavoritesServlet.do" style="margin-bottom: 0px;"> --%>
+<!-- 						<input type="submit" value="刪除">  -->
+<%-- 						<input type="hidden" name="favLisId" value="${renFavoritesVO.favLisId}">  --%>
+<%-- 						<input type="hidden" name="favMemId" value="${renFavoritesVO.favMemId}">  --%>
+<!-- 						<input type="hidden" name="action" value="delete"> -->
+<!-- 					</FORM> -->
 					<FORM METHOD="post" ACTION="<%=request.getContextPath()%>/RenFavoritesServlet.do" style="margin-bottom: 0px;">
-						<input type="submit" value="刪除"> 
+						<button id ="submit" onclick="submit"><i class="fa-solid fa-trash"></i></button> 
 						<input type="hidden" name="favLisId" value="${renFavoritesVO.favLisId}"> 
 						<input type="hidden" name="favMemId" value="${renFavoritesVO.favMemId}"> 
 						<input type="hidden" name="action" value="delete">
