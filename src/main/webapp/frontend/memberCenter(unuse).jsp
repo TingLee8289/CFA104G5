@@ -144,22 +144,42 @@ header {
       <div class="container">
         <div class="row">
           <!--   左側欄       -->
-          <aside class="col-3 left-sidebar">
-            <ul id="sideBarUl" class="list-unstyled text-nowrap p-2">
-              <li class="li-item active" data-id="0">
-                <a class="" href="#">會員基本資料管理</a>
+          <aside class="col-3 home-repair-services">
+            <ul class="user-link-group list-unstyled text-nowrap p-2">
+              <li class="user-link-item rentals">
+                <div class="dropdown text-start">
+                  <button type="button" class="btn btn-lg w-100 dropdown-toggle px-0 text-start" data-bs-toggle="dropdown" aria-expanded="false">
+                    服務管理
+                  </button>
+                  <ul class="dropdown-menu dropdown-menu-end">
+                    <li>
+                      <span class="dropdown-item-text">刊登服務</span>
+                    </li>
+                    <li>
+                      <hr class="dropdown-divider">
+                    </li>
+                    <li><a class="dropdown-item" href="#">修改 / 刪除資料</a></li>
+                    <li><a class="dropdown-item" href="#">新增服務</a></li>
+                  </ul>
+                </div>
               </li>
-              <li class="li-item active" data-id="1">
-                <a class="" href="#">買家訂單管理</a>
+
+              <li class="user-link-item home-repair-servives">
+                <a href="" class="home-repair-servives-link">訂單管理</a>
               </li>
-              <li class="li-item active" data-id="2">
-                <a class="" href="#">賣家管理</a>
+              <li class="user-link-item second-hand-appliances">
+                <a href="" class="second-hand-appliances-link">排程管理</a>
               </li>
-              <li class="li-item active" data-id="3">
-                <a class="" href="#">聊聊</a>
-              </li>
-              <li class="li-item active" data-id="4">
-                <a class="" href="#">購物車</a>
+              <li class="user-link-item rentals">
+                <div class="dropdown text-start">
+                  <button type="button" class="btn btn-lg w-100 dropdown-toggle px-0 text-start" data-bs-toggle="dropdown" aria-expanded="false">
+                    需求單管理
+                  </button>
+                  <ul class="dropdown-menu dropdown-menu-end">
+                    <li><a class="dropdown-item" href="#">填寫需求</a></li>
+                    <li><a class="dropdown-item" href="#">修改 / 刪除</a></li>
+                  </ul>
+                </div>
               </li>
             </ul>
           </aside>

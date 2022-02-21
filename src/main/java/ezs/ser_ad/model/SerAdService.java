@@ -54,5 +54,8 @@ public class SerAdService {
 	public List<SerAdVO> getAll() {
 		return dao.getAll();
 	}
+	public List<SerAdVO> getAdBySerClaID(Integer adSerClaID) {
+		return dao.getAdBySerClaID(adSerClaID);
+	}
 
 }
