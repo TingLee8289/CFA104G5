@@ -43,7 +43,7 @@ public class SecOrdDetailsJDBCDAO implements SecOrdDetailsDAO_interface {
 			pstmt.setInt(1, secOrdDetailsVO.getShOrdID());
 			pstmt.setInt(2, secOrdDetailsVO.getShID());
 			pstmt.setString(3, secOrdDetailsVO.getShName());
-			pstmt.setInt(4, secOrdDetailsVO.getShPrice());
+			pstmt.setBigDecimal(4, secOrdDetailsVO.getShPrice());
 			pstmt.setInt(5, secOrdDetailsVO.getShQty());
 
 			pstmt.executeUpdate();
@@ -65,7 +65,7 @@ public class SecOrdDetailsJDBCDAO implements SecOrdDetailsDAO_interface {
 			pstmt = con.prepareStatement(UPDATE);
 
 			pstmt.setString(1, secOrdDetailsVO.getShName());
-			pstmt.setInt(2, secOrdDetailsVO.getShPrice());
+			pstmt.setBigDecimal(2, secOrdDetailsVO.getShPrice());
 			pstmt.setInt(3, secOrdDetailsVO.getShQty());
 			pstmt.setInt(4, secOrdDetailsVO.getShOrdID());
 			pstmt.setInt(5, secOrdDetailsVO.getShID());
@@ -120,7 +120,7 @@ public class SecOrdDetailsJDBCDAO implements SecOrdDetailsDAO_interface {
 				secOrdDetailsVO.setShOrdID(rs.getInt("sh_ord_id"));
 				secOrdDetailsVO.setShID(rs.getInt("sh_id"));
 				secOrdDetailsVO.setShName(rs.getString("sh_name"));
-				secOrdDetailsVO.setShPrice(rs.getInt("sh_price"));
+				secOrdDetailsVO.setShPrice(rs.getBigDecimal("sh_price"));
 				secOrdDetailsVO.setShQty(rs.getInt("sh_qty"));
 			}
 
@@ -150,7 +150,7 @@ public class SecOrdDetailsJDBCDAO implements SecOrdDetailsDAO_interface {
 				secOrdDetailsVO.setShOrdID(rs.getInt("sh_ord_id"));
 				secOrdDetailsVO.setShID(rs.getInt("sh_id"));
 				secOrdDetailsVO.setShName(rs.getString("sh_name"));
-				secOrdDetailsVO.setShPrice(rs.getInt("sh_price"));
+				secOrdDetailsVO.setShPrice(rs.getBigDecimal("sh_price"));
 				secOrdDetailsVO.setShQty(rs.getInt("sh_qty"));
 
 				list.add(secOrdDetailsVO); // Store the row in the list
@@ -168,12 +168,11 @@ public class SecOrdDetailsJDBCDAO implements SecOrdDetailsDAO_interface {
 	public void insert2 (SecOrdDetailsVO secOrdDetailsVO , Connection con) {
 
 		try {
-
 			pstmt = con.prepareStatement(INSERT_STMT);
 			pstmt.setInt(1, secOrdDetailsVO.getShOrdID());  // 由自增主鍵提供
 			pstmt.setInt(2, secOrdDetailsVO.getShID());
 			pstmt.setString(3, secOrdDetailsVO.getShName());
-			pstmt.setInt(4, secOrdDetailsVO.getShPrice());
+			pstmt.setBigDecimal(4, secOrdDetailsVO.getShPrice());
 			pstmt.setInt(5, secOrdDetailsVO.getShQty());
      		
 
@@ -199,7 +198,7 @@ public class SecOrdDetailsJDBCDAO implements SecOrdDetailsDAO_interface {
 			throw new RuntimeException("A database error occured. "
 					+ se.getMessage());
 		} finally {
-			Util.closeResource(con, pstmt, rs);
+			Util.closeResource(null, pstmt, rs);
 		}
 
 	}

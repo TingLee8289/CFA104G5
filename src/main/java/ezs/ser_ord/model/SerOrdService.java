@@ -2,9 +2,11 @@ package ezs.ser_ord.model;
 
 import java.math.BigDecimal;
 import java.sql.Date;
+import java.sql.SQLException;
 import java.util.List;
 
 import ezs.ser_quo.model.SerQuoVO;
+import util.Util;
 
 public class SerOrdService {
 	private SerOrdDAO_interface dao;
@@ -118,5 +120,8 @@ public class SerOrdService {
 	}
 	public void jobCompleted(Integer ordID) {   
 		dao.jobCompleted(ordID);
+	}
+	public void creditPay(Integer ordID) {
+		dao.creditPay(ordID);
 	}
 }

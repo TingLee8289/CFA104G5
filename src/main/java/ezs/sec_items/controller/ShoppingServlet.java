@@ -61,12 +61,12 @@ public class ShoppingServlet extends HttpServlet {
 		}
 
 		else if (action.equals("CHECKOUT")) {
-			BigDecimal total = new BigDecimal(BigInteger.ZERO,0);		// 此行相當於 Integer total = 0;
+			BigDecimal total = new BigDecimal(BigInteger.ZERO, 0); // 此行相當於 Integer total = 0;
 			for (int i = 0; i < buylist.size(); i++) {
 				SecItem order = buylist.get(i);
 				BigDecimal price = order.getShPrice();
 				Integer quantity = order.getShQTY();
-				total = total.add(price.multiply(new BigDecimal(quantity)));	// 此行相當於 total += (price*quantity);
+				total = total.add(price.multiply(new BigDecimal(quantity))); // 此行相當於 total += (price*quantity);
 			}
 
 			String amount = String.valueOf(total);
@@ -75,6 +75,7 @@ public class ShoppingServlet extends HttpServlet {
 			RequestDispatcher rd = req.getRequestDispatcher(url);
 			rd.forward(req, res);
 		}
+
 	}
 
 	private SecItem getSecItem(HttpServletRequest req) {

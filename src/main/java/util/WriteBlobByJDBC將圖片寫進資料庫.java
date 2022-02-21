@@ -52,7 +52,8 @@ public class WriteBlobByJDBC將圖片寫進資料庫 {
 				pstmt.executeUpdate();
 			}
 
-
+			System.out.println("會員頭相新增成功");
+			
 		} catch (ClassNotFoundException ce) {
 			System.out.println(ce);
 		} catch (SQLException se) {
