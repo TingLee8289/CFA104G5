@@ -11,5 +11,7 @@ public interface AdminEmpDAO_interface {
 		public List<AdminEmpVO> getAll();
 		public List<AdminEmpVO> getAll1();
 		public AdminEmpVO Search(String admUsername ,String admPassword);
+		public AdminEmpVO CheckAdmUsername(String admUsername);
+		
 
 }

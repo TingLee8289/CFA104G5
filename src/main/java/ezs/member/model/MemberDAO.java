@@ -294,6 +294,7 @@ public class MemberDAO implements MemberDAO_interface {
 
 	}
 
+
 	@Override
 	public void verifyMember(String memName) {
 

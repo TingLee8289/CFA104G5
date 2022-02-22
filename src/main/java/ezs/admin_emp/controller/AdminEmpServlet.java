@@ -103,6 +103,17 @@ public class AdminEmpServlet extends HttpServlet {
 				} else if (!admUsername.trim().matches(admUsernameReg)) { // 以下練習正則(規)表示式(regular-expression)
 					errorMsgs.add("管理員密碼: 只能是英文字母、數字和_ , 且長度必需在4到45之間");
 				}
+				
+				AdminEmpService adminEmpService = new AdminEmpService();
+				AdminEmpVO adminEmpVO1 = adminEmpService.Check(admUsername);
+				if (adminEmpVO1 != null) {
+					errorMsgs.add("管理員名稱:已被使用");
+				}
+				if (!errorMsgs.isEmpty()) {
+					RequestDispatcher failureView = req.getRequestDispatcher("/backend/adminEmp/addNewAdmin.jsp");
+					failureView.forward(req, res);
+					return;// 程式中斷
+				}
 
 				Integer admStatus = new Integer(req.getParameter("admStatus").trim());
 
