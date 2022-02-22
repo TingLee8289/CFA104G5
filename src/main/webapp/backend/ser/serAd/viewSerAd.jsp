@@ -68,7 +68,7 @@ pageContext.setAttribute("list", list);
 			<td>
 			
 				<h4>
-					<a href="select_page.jsp">回首頁</a>
+					<a href="<%=request.getContextPath()%>/backend/ser/serAd/select_page.jsp">回首頁</a>
 				</h4>
 			</td>
 		</tr>
@@ -103,6 +103,8 @@ pageContext.setAttribute("list", list);
 							<th>服務地區</th>
 							<th>服務內容</th>
 							<th>服務案例圖片</th>
+							<th></th>
+							<th></th>
 
 						</tr>
 					</thead>
@@ -121,6 +123,27 @@ pageContext.setAttribute("list", list);
 									src="<%=request.getContextPath()%>/ser_ad/DBGifReader4.do?ad_vdr_id=${serAdVO.adVdrID}&ad_ser_cla_id=${serAdVO.adSerClaID}"
 									width=200px></td>
 								<%--  ad_cla_id=${serAdVO.adClaID}--%>
+								
+								<td>
+									<FORM METHOD="post"
+										ACTION="<%=request.getContextPath()%>/ser_ad/BackOneUpdateSerAdServlet.do"
+										style="margin-bottom: 0px;">
+										<input type="submit" value="修改"> <input type="hidden"
+											name="adVdrID" value="${serAdVO.adVdrID}"> <input
+											type="hidden" name="adSerClaID" value="${serAdVO.adSerClaID}">
+										<input type="hidden" name="action" value="getOne_For_Update">
+									</FORM>
+								</td>
+								<td>
+									<FORM METHOD="post"
+										ACTION="<%=request.getContextPath()%>/ser_ad/BackDeleteSerAdServlet.do"
+										style="margin-bottom: 0px;">
+										<input type="submit" value="刪除"> <input type="hidden"
+											name="adVdrID" value="${serAdVO.adVdrID}"> <input
+											type="hidden" name="adSerClaID" value="${serAdVO.adSerClaID}">
+										<input type="hidden" name="action" value="delete">
+									</FORM>
+								</td>
 
 								
 							</tr>

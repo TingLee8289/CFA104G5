@@ -143,7 +143,7 @@ th, td {
 			<jsp:useBean id="serClaSvc" scope="page"
 				class="ezs.ser_cla.model.SerClaService" />
 			<tr>
-				<td>服務類別編號:<font color=red><b>*</b></font></td>
+				<td>服務類別名稱:<font color=red><b>*</b></font></td>
 				<td><select size="1" name="adSerClaID">
 						<c:forEach var="serClaVO" items="${serClaSvc.all}">
 							<option value="${serClaVO.serClaID}" ${(serAdVO.adSerClaID==serClaVO.serClaID)? 'selected':'' }>${serClaVO.serClaName}
