@@ -54,7 +54,7 @@ pageContext.setAttribute("secItemslist", secItemslist);
         box-sizing: border-box;
       }
       :root{
-        --header-height: 60px;
+        --header-height: 108px;
         --aside-width: 180px;
       }
       body{
