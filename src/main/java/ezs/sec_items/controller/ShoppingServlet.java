@@ -55,25 +55,31 @@ public class ShoppingServlet extends HttpServlet {
 			}
 
 			session.setAttribute("shoppingcart", buylist);
-			String url = "/frontend/sec_items/shoppingCart2.jsp";
+			String url = "/frontend/sec_items/shoppingCart.jsp";
 			RequestDispatcher rd = req.getRequestDispatcher(url);
 			rd.forward(req, res);
 		}
 
 		else if (action.equals("CHECKOUT")) {
-			BigDecimal total = new BigDecimal(BigInteger.ZERO, 0); // 此行相當於 Integer total = 0;
-			for (int i = 0; i < buylist.size(); i++) {
-				SecItem order = buylist.get(i);
-				BigDecimal price = order.getShPrice();
-				Integer quantity = order.getShQTY();
-				total = total.add(price.multiply(new BigDecimal(quantity))); // 此行相當於 total += (price*quantity);
+			if (buylist!= null) {
+				BigDecimal total = new BigDecimal(BigInteger.ZERO, 0); // 此行相當於 Integer total = 0;
+				for (int i = 0; i < buylist.size(); i++) {
+					SecItem order = buylist.get(i);
+					BigDecimal price = order.getShPrice();
+					Integer quantity = order.getShQTY();
+					total = total.add(price.multiply(new BigDecimal(quantity))); // 此行相當於 total += (price*quantity);
+				}
+				String amount = String.valueOf(total);
+				req.setAttribute("amount", amount);
+				String url = "/frontend/sec_items/Checkout.jsp";
+				RequestDispatcher rd = req.getRequestDispatcher(url);
+				rd.forward(req, res);
+			} else {
+				String url = "/frontend/sec_items/shoppingCart.jsp";
+				RequestDispatcher rd = req.getRequestDispatcher(url);
+				rd.forward(req, res);
 			}
 
-			String amount = String.valueOf(total);
-			req.setAttribute("amount", amount);
-			String url = "/frontend/sec_items/Checkout.jsp";
-			RequestDispatcher rd = req.getRequestDispatcher(url);
-			rd.forward(req, res);
 		}
 
 	}

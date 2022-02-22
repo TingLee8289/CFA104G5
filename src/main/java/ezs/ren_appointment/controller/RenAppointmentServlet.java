@@ -253,6 +253,7 @@ public class RenAppointmentServlet extends HttpServlet {
 			req.setAttribute("errorMsgs", errorMsgs);
 			
 //			try {
+
 				/*********************** 1.接收請求參數 - 輸入格式的錯誤處理 *************************/
 				Integer aptMemId = new Integer(req.getParameter("aptMemId").trim());
 
@@ -281,7 +282,7 @@ public class RenAppointmentServlet extends HttpServlet {
 				}
 
 				RenAppointmentVO renAppointmentVO = new RenAppointmentVO();
-				renAppointmentVO.setAptMemId(aptMemId);
+//				renAppointmentVO.setAptMemId(aptMemId);
 				renAppointmentVO.setAptLddId(aptLddId);
 				renAppointmentVO.setAptLisId(aptLisId);
 				renAppointmentVO.setAptStatus(aptStatus);
@@ -298,7 +299,7 @@ public class RenAppointmentServlet extends HttpServlet {
 
 				/*************************** 2.開始新增資料 ***************************************/
 				RenAppointmentService renAppSvc = new RenAppointmentService();
-				renAppointmentVO = renAppSvc.addRenApp(aptMemId, aptLddId, aptLisId, aptStatus, aptTime, aptTimestamp);
+//				renAppointmentVO = renAppSvc.addRenApp(aptMemId, aptLddId, aptLisId, aptStatus, aptTime, aptTimestamp);
 
 				/*************************** 3.新增完成,準備轉交(Send the Success view) ***********/
 				String url = "/frontend/ren_appointment/select_page.jsp";

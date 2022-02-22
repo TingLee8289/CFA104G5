@@ -35,11 +35,13 @@ public class MemberDAO implements MemberDAO_interface {
 //	private static final String ADM_UPDATE = "UPDATE `CFA104G5`.`MEMBER` SET MEM_LANDLORD= ?,MEM_SUPPLIER=?,MEM_SELLER=?,"
 //			+ "MEM_STATUS=?,MEM_REPORTED=?,MEM_SUP_REPORTED=? WHERE MEM_ID = ?";
 
+
 	private static final String VERIFY_MEM_STMT = "UPDATE `CFA104G5`.`MEMBER` SET mem_status = 1 WHERE mem_username = ?;";
 
-	private static final String SEARCH_EMAIL = "SELECT MEM_EMAIL FROM `CFA104G5`.`MEMBER`";	
-	
-	
+	private static final String SEARCH_EMAIL = "SELECT * FROM `CFA104G5`.`MEMBER` WHERE MEM_EMAIL = ?";
+
+	private static final String UPDATE_PASSWORD = "UPDATE `CFA104G5`.`MEMBER` SET mem_password= ? WHERE mem_id = ?";
+
 	private static DataSource ds = null;
 	static {
 		try {
@@ -101,10 +103,10 @@ public class MemberDAO implements MemberDAO_interface {
 
 			con = ds.getConnection();
 			pstmt = con.prepareStatement(UPDATE);
-			
+
 			pstmt.setString(1, memberVO.getMemPassword());
 			pstmt.setString(2, memberVO.getMemName());
-			pstmt.setString(3, memberVO.getMemPhone());			
+			pstmt.setString(3, memberVO.getMemPhone());
 			pstmt.setString(4, memberVO.getMemAddress());
 			pstmt.setString(5, memberVO.getMemEmail());
 			pstmt.setBytes(6, memberVO.getMemHeadshot());
@@ -120,7 +122,7 @@ public class MemberDAO implements MemberDAO_interface {
 		}
 
 	}
-	
+
 	@Override
 	public void delete(Integer memID) {
 
@@ -291,8 +293,7 @@ public class MemberDAO implements MemberDAO_interface {
 		return memberVO;
 
 	}
-	
-	
+
 	@Override
 	public void verifyMember(String memName) {
 
@@ -309,38 +310,14 @@ public class MemberDAO implements MemberDAO_interface {
 		}
 
 	}
-	
-//	@Override
-//	public void updateADM(MemberVO memberVO) {
-//		
-//		try {			
-//			con = ds.getConnection();
-//			pstmt = con.prepareStatement(ADM_UPDATE);
-//						
-//			pstmt.setByte(1, memberVO.getMemLandlord());
-//			pstmt.setByte(2, memberVO.getMemSupplier());
-//			pstmt.setByte(3, memberVO.getMemSeller());
-//			pstmt.setByte(4, memberVO.getMemStatus());
-//			pstmt.setInt(5, memberVO.getMemReported());
-//			pstmt.setInt(6, memberVO.getMemSupReported());
-//			pstmt.setInt(7, memberVO.getMemID());
-//			
-//			pstmt.executeUpdate();
-//			
-//		} catch (SQLException se) {
-//			se.printStackTrace();
-//		} finally {
-//			Util.closeResource(con, pstmt, rs);
-//		}	
-//	}
-	
+
 	@Override
 	public void updateADM(MemberVO memberVO) {
-		
-		try {			
+
+		try {
 			con = ds.getConnection();
 			pstmt = con.prepareStatement(ADM_UPDATE);
-						
+
 			pstmt.setByte(1, memberVO.getMemLandlord());
 			pstmt.setByte(2, memberVO.getMemSupplier());
 			pstmt.setByte(3, memberVO.getMemSeller());
@@ -356,46 +333,63 @@ public class MemberDAO implements MemberDAO_interface {
 			pstmt.setString(12, memberVO.getMemEmail());
 			pstmt.setInt(13, memberVO.getMemRedCount());
 			pstmt.setInt(14, memberVO.getMemRedScore());
-			
+
 			pstmt.executeUpdate();
-			
+
 		} catch (SQLException se) {
 			se.printStackTrace();
 		} finally {
 			Util.closeResource(con, pstmt, rs);
-		}	
+		}
 	}
-	
 
 
+	@Override
+	public MemberVO searchEmail(String memEmail) {
+		MemberVO memberVO = null;
 
-	
-//	@Override
-//	public MemberVO searchEmail(String memEmail) {
-//		MemberVO memberVO = null;
-//
-//		try {
-//
-//			con = ds.getConnection();
-//			pstmt = con.prepareStatement(SEARCH_EMAIL);
-//
-//			rs = pstmt.executeQuery();
-//
-//			while (rs.next()) {
-//			
-//				memberVO = new MemberVO();
-//				memberVO.setMemEmail(rs.getString("MEM_EMAIL"));
-//
-//			}
-//
-//		} catch (SQLException se) {
-//			se.printStackTrace();
-//		} finally {
-//			Util.closeResource(con, pstmt, rs);
-//
-//		}
-//		return memberVO;
-//
-//	}
+		try {
 
+			con = DriverManager.getConnection(Util.URL, Util.USER, Util.PASSWORD);
+			pstmt = con.prepareStatement(SEARCH_EMAIL);
+
+			rs = pstmt.executeQuery();
+
+			while (rs.next()) {
+
+				memberVO = new MemberVO();
+				memberVO.setMemEmail(rs.getString("MEM_EMAIL"));
+				memberVO.setMemID(rs.getInt("MEM_ID"));
+
+			}
+
+		} catch (SQLException se) {
+			se.printStackTrace();
+		} finally {
+			Util.closeResource(con, pstmt, rs);
+
+		}
+		return memberVO;
+
+	}
+
+	@Override
+	public void updateMemberPassword(MemberVO memberVO) {
+
+		try {
+			con = ds.getConnection();
+			pstmt = con.prepareStatement(UPDATE_PASSWORD);
+
+			pstmt.setInt(1, memberVO.getMemID());
+			pstmt.setString(2, memberVO.getMemPassword());
+			pstmt.executeUpdate();
+
+		} catch (SQLException se) {
+			se.printStackTrace();
+		} finally {
+			Util.closeResource(con, pstmt, rs);
+
+		}
+
+	}
 }

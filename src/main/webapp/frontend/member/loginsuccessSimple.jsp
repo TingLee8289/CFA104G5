@@ -20,7 +20,7 @@
 		out.println("getAttribute :" + memberid);
 		%>
 	</div>
-
+<a href="<%=request.getContextPath()%>/frontend/sec_tran_record/listall.jsp">交易紀錄</a>
 	<form METHOD="post"
 		ACTION="<%=request.getContextPath()%>/member/MemberServlet.do">
 		<input type="hidden" name="action" value="logout">

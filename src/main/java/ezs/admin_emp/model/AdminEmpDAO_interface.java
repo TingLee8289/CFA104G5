@@ -9,6 +9,7 @@ public interface AdminEmpDAO_interface {
 		public void delete(Integer admID);
 		public AdminEmpVO findByPrimaryKey(Integer admID);
 		public List<AdminEmpVO> getAll();
+		public List<AdminEmpVO> getAll1();
 		public AdminEmpVO Search(String admUsername ,String admPassword);
 
 }

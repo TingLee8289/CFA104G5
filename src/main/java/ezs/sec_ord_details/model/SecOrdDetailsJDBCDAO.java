@@ -10,6 +10,11 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.naming.Context;
+import javax.naming.InitialContext;
+import javax.naming.NamingException;
+import javax.sql.DataSource;
+
 import util.Util;
 
 public class SecOrdDetailsJDBCDAO implements SecOrdDetailsDAO_interface {
@@ -19,11 +24,15 @@ public class SecOrdDetailsJDBCDAO implements SecOrdDetailsDAO_interface {
 	private static final String GET_ONE_STMT = "SELECT sh_ord_id,sh_id,sh_name,sh_price,sh_qty FROM `CFA104G5`.`SEC_ORD_DETAILS` WHERE (sh_ord_id, sh_id )= ( ?,?) ";
 	private static final String DELETE = "DELETE FROM `CFA104G5`.`SEC_ORD_DETAILS` WHERE (sh_ord_id, sh_id )= ( ?,?)";
 	private static final String UPDATE = "UPDATE `CFA104G5`.`SEC_ORD_DETAILS` SET sh_name=?, sh_price=?, sh_qty=? WHERE (sh_ord_id, sh_id )= ( ?,?)";
-
+	private static final String GET_BY_ORD_ID_STMT = "SELECT * FROM `CFA104G5`.`SEC_ORD_DETAILS` WHERE sh_ord_id = ?";
+	
+	
+	private static DataSource ds = null;
 	static {
 		try {
-			Class.forName(Util.DRIVER);
-		} catch (ClassNotFoundException e) {
+			Context ctx = new InitialContext();
+			ds = (DataSource) ctx.lookup("java:comp/env/jdbc/CFA104G5");
+		} catch (NamingException e) {
 			e.printStackTrace();
 		}
 	}
@@ -37,7 +46,7 @@ public class SecOrdDetailsJDBCDAO implements SecOrdDetailsDAO_interface {
 
 		try {
 
-			con = DriverManager.getConnection(Util.URL, Util.USER, Util.PASSWORD);
+			con = ds.getConnection();
 
 			pstmt = con.prepareStatement(INSERT_STMT);
 			pstmt.setInt(1, secOrdDetailsVO.getShOrdID());
@@ -61,7 +70,7 @@ public class SecOrdDetailsJDBCDAO implements SecOrdDetailsDAO_interface {
 
 		try {
 
-			con = DriverManager.getConnection(Util.URL, Util.USER, Util.PASSWORD);
+			con = ds.getConnection();
 			pstmt = con.prepareStatement(UPDATE);
 
 			pstmt.setString(1, secOrdDetailsVO.getShName());
@@ -85,7 +94,7 @@ public class SecOrdDetailsJDBCDAO implements SecOrdDetailsDAO_interface {
 
 		try {
 
-			con = DriverManager.getConnection(Util.URL, Util.USER, Util.PASSWORD);
+			con = ds.getConnection();
 
 			pstmt = con.prepareStatement(DELETE);
 
@@ -107,7 +116,7 @@ public class SecOrdDetailsJDBCDAO implements SecOrdDetailsDAO_interface {
 
 		try {
 
-			con = DriverManager.getConnection(Util.URL, Util.USER, Util.PASSWORD);
+			con = ds.getConnection();
 
 			pstmt = con.prepareStatement(GET_ONE_STMT);
 
@@ -140,7 +149,7 @@ public class SecOrdDetailsJDBCDAO implements SecOrdDetailsDAO_interface {
 
 		try {
 
-			con = DriverManager.getConnection(Util.URL, Util.USER, Util.PASSWORD);
+			con = ds.getConnection();
 			pstmt = con.prepareStatement(GET_ALL_STMT);
 			rs = pstmt.executeQuery();
 
@@ -201,6 +210,38 @@ public class SecOrdDetailsJDBCDAO implements SecOrdDetailsDAO_interface {
 			Util.closeResource(null, pstmt, rs);
 		}
 
+	}
+
+	@Override
+	public List<SecOrdDetailsVO> findByShOrdID(Integer shOrdID) {
+		List<SecOrdDetailsVO> list = new ArrayList<SecOrdDetailsVO>();
+		SecOrdDetailsVO secOrdDetailsVO = null;
+
+		try {
+
+			con = ds.getConnection();
+			pstmt = con.prepareStatement(GET_BY_ORD_ID_STMT);
+			pstmt.setInt(1, shOrdID);
+			rs = pstmt.executeQuery();
+
+			while (rs.next()) {
+
+				secOrdDetailsVO = new SecOrdDetailsVO();
+				secOrdDetailsVO.setShOrdID(rs.getInt("sh_ord_id"));
+				secOrdDetailsVO.setShID(rs.getInt("sh_id"));
+				secOrdDetailsVO.setShName(rs.getString("sh_name"));
+				secOrdDetailsVO.setShPrice(rs.getBigDecimal("sh_price"));
+				secOrdDetailsVO.setShQty(rs.getInt("sh_qty"));
+
+				list.add(secOrdDetailsVO); // Store the row in the list
+			}
+
+		} catch (SQLException se) {
+			se.printStackTrace();
+		} finally {
+			Util.closeResource(con, pstmt, rs);
+		}
+		return list;
 	}
 
 }

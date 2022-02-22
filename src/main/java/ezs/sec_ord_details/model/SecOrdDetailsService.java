@@ -10,7 +10,7 @@ public class SecOrdDetailsService {
 	private SecOrdDetailsDAO_interface dao;
 
 	public SecOrdDetailsService() {
-		dao = new SecOrdDetailsJDBCDAO();
+		dao = new SecOrdDetailsDAO();
 	}
 
 	public SecOrdDetailsVO addSecOrdDetails(Integer shOrdID,
@@ -61,5 +61,9 @@ public class SecOrdDetailsService {
 
 	public List<SecOrdDetailsVO> getAll() {
 		return dao.getAll();
+	}
+
+	public List<SecOrdDetailsVO> findByShOrdID(Integer shOrdID) {
+		return dao.findByShOrdID(shOrdID);
 	}
 }

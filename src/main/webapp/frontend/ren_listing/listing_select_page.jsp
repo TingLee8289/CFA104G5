@@ -74,10 +74,18 @@
      	  <input type="hidden" name="action" value="getOne_For_Display">
      	  <input type="submit" value="送出">
        </FORM>
+	</li>     
+     <li>
+     	<FORM METHOD="post" ACTION="RenListingServlet.do">
+     	  <b>房東管理選擇房東ID:</b>
+     	 <input type="text" name="lisLddID">
+      	<input type="hidden" name="action" value="listRenListing_ByLisLddID">
+        <input type="submit" name="送出">      
+       </FORM>
 	</li>
 	<jsp:useBean id= "renLocationSvc" scope="page" class="ezs.ren_location.model.RenLocationService"/>
 	<li>
-     	<FORM METHOD="post" ACTION="<%=request.getContextPath()%>/ren_location/RenLocationServlet.do">     	
+     	<FORM METHOD="post" ACTION="RenLocationServlet.do">     	
      	  <b>選擇區域:</b>
      	  <select size="1" name="lisAreaID">
      		<c:forEach var="renLocationVO" items="${renLocationSvc.all}">

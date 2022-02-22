@@ -21,6 +21,7 @@ import ezs.sec_items.model.SecItem;
 import ezs.sec_ord.model.SecOrdJDBCDAO;
 import ezs.sec_ord.model.SecOrdService;
 import ezs.sec_ord.model.SecOrdVO;
+import ezs.sec_ord_details.model.SecOrdDetailsService;
 import ezs.sec_ord_details.model.SecOrdDetailsVO;
 
 @WebServlet("/sec_ord/SecOrdServlet.do")
@@ -63,21 +64,50 @@ public class SecOrdServlet extends HttpServlet {
 				throw new ServletException(e);
 			}
 		}
+		
+// 用訂單編號查詢明細
+		if ("getSecOrdDetails".equals(action)) {
+			
+			List<String> errorMsgs = new LinkedList<String>();
+			req.setAttribute("errorMsgs", errorMsgs);
+			try {
+				/*************************** 1.接收請求參數 ****************************************/
+				Integer shOrdID = Integer.valueOf(req.getParameter("shOrdID"));
+				
+				/*************************** 2.開始查詢資料 ****************************************/
+				SecOrdDetailsService secOrdDetailsSvc = new SecOrdDetailsService();
+				List<SecOrdDetailsVO> list = secOrdDetailsSvc.findByShOrdID(shOrdID);
+				
+				/*************************** 3.查詢完成,準備轉交(Send the Success view) ************/
+				req.setAttribute("listSecOrdDetails_ByShOrdID", list); // 資料庫取出的list物件,存入request
+				
+				String url = "/frontend/sec_ord/listSecOrdDetails_ByShOrdID.jsp";
+				RequestDispatcher successView = req.getRequestDispatcher(url);
+				successView.forward(req, res);
+				
+				/*************************** 其他可能的錯誤處理 ***********************************/
+			} catch (Exception e) {
+				throw new ServletException(e);
+			}
+		}
 // 買家會員新增訂單
 
 		if ("insert".equals(action)) {
 
 			List<String> errorMsgs = new LinkedList<String>();
 			req.setAttribute("errorMsgs", errorMsgs);
-			
+			HttpSession session = req.getSession();
 			
 			try {
 				/*************************** 1.接收請求參數 ****************************************/
-				Integer shBuyerID = null;
-				try {
-					shBuyerID = Integer.valueOf(req.getParameter("shBuyerID"));
-				} catch (Exception e) {
-					errorMsgs.add("買家會員ID格式不正確");
+				
+				String shRecipName = (String) req.getParameter("shRecipName");
+				if (shRecipName == null || shRecipName.trim().length() == 0) {
+					errorMsgs.add("收件人姓名請勿空白");
+				}
+				String shRecipPhone = (String) req.getParameter("shRecipPhone");
+				if (shRecipPhone == null || shRecipPhone.trim().length() == 0) {
+					errorMsgs.add("收件人電話請勿空白");
 				}
 				
 				Integer shSellerID = 1;
@@ -108,7 +138,9 @@ public class SecOrdServlet extends HttpServlet {
 				String shNotes = (String) req.getParameter("shNotes");
 				
 				SecOrdVO secOrdVO = new SecOrdVO();
-				secOrdVO.setShBuyerID(shBuyerID);
+				secOrdVO.setShRecipName(shRecipName);
+				secOrdVO.setShRecipPhone(shRecipPhone);
+				secOrdVO.setShBuyerID(Integer.valueOf(session.getAttribute("memID").toString()));
 				secOrdVO.setShSellerID(shSellerID);
 				secOrdVO.setShPostcode(shPostcode);
 				secOrdVO.setShCounty(shCounty);
@@ -129,7 +161,6 @@ public class SecOrdServlet extends HttpServlet {
 				
 				/*************************** 2.開始新增資料 ***************************************/
 				SecOrdJDBCDAO dao = new SecOrdJDBCDAO();
-				HttpSession session = req.getSession();
 				@SuppressWarnings("unchecked")
 				Vector<SecItem> buylist = (Vector<SecItem>) session.getAttribute("shoppingcart");
 				List<SecOrdDetailsVO> testList = new ArrayList<SecOrdDetailsVO>(); // 準備置入明細數筆

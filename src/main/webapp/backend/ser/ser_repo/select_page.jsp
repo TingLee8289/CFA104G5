@@ -4,44 +4,57 @@
 <html>
 <head>
 <title>Easy Space 檢舉</title>
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
 
-<style>
-table#table-1 {
-	width: 450px;
-	background-color: #CCCCFF;
-	margin-top: 5px;
-	margin-bottom: 10px;
-	border: 3px ridge Gray;
-	height: 80px;
-	text-align: center;
-}
-
-table#table-1 h4 {
-	color: red;
-	display: block;
-	margin-bottom: 1px;
-}
-
-h4 {
-	color: blue;
-	display: inline;
-}
-</style>
 
 </head>
 <body>
-	<jsp:include page="/frontend/EZ_header.jsp"></jsp:include>
+<header>
+			<div class="container">
+				<div class="navbar d-flex flex-nowrap py-3">
+					<a href="#"> <img
+						src="<%= request.getContextPath()%>/images/cmn/index/EASYSPACE.png"
+						alt="brand-logo-image" class=" brand-logo" style="height: 130px">
+					</a>
+					<div class="function-link d-flex flex-column col-10 bd-highlight">
+						<div
+							class="pages-login d-flex flex-row align-items-center col-12 justify-content-between mx-auto">
+							<ul
+								class="nav nav-items justify-content-between align-items-center col-9">
+								<li class="nav-item"><a class="nav-link" role="button"
+									href="#">房屋租賃</a></li>
+								<li class="nav-item"><a class="nav-link" href="#">居家服務</a>
+								</li>
+								<li class="nav-item"><a class="nav-link" href="#">二手家電</a>
+								</li>
+							</ul>
+							<div
+								class="nav-menu-shopping-bag d-flex col-3 justify-content-sm-end  align-items-center">
+								<a href="#"><i class="bi bi-cart3 mx-2"
+									style="font-size: 3rem; color: #8C4E37;"></i></a> <a class="btn"
+									href="#" role="button" style="background-color: #FD9843">會員登入</a>
+							</div>
+
+						</div>
+						<form class="form-inline col-12 mx-auto mt-3">
+							<div class="input-group">
+								<input type="text" name="keyword" class="form-control"
+									id="searchinput" aria-describedby="search-input"
+									placeholder="Search" value="">
+								<button type="submit" class="btn btn-primary "
+									id="search-button" style="background-color: #1AA179">開始搜尋</button>
+							</div>
+						</form>
+					</div>
+				</div>
+			</div>
+		</header>
+	
+<h2>後台</h2>
+<br>
 
 
-	<table id="table-1">
-		<tr>
-			<td><h3>Easy Space 檢舉</h3></td>
-		</tr>
-	</table>
-
-	<p>This is the Home page for Easy Space 檢舉</p>
-
-	<h3>資料查詢:</h3>
+	
 
 	<%-- 錯誤表列 --%>
 	<c:if test="${not empty errorMsgs}">
@@ -53,47 +66,83 @@ h4 {
 		</ul>
 	</c:if>
 
+	
+	
 	<ul>
 		<li><a
-			href='<%=request.getContextPath()%>/backend/ser/ser_repo/listAllSerRepo.jsp'>List</a>
-			all Vender <br> <br></li>
-
-
-		<li>
-			<FORM METHOD="post"
-				ACTION="<%=request.getContextPath()%>/ser_repo/GetSerRepoServlet.do">
-				<b>輸入檢舉編號 (如1):</b> <input type="text" name="rpID"> <input
-					type="hidden" name="action" value="getOne_For_Display"> <input
-					type="submit" value="送出">
-			</FORM>
-		</li>
-
-		<jsp:useBean id="serRepoSvc" scope="page"
-			class="ezs.ser_repo.model.SerRepoService" />
-
-		<li>
-			<FORM METHOD="post"
-				ACTION="<%=request.getContextPath()%>/ser_repo/GetSerRepoServlet.do">
-				<b>選擇檢舉編號:</b> <select size="1" name="rpID">
-					<c:forEach var="serRepVO" items="${serRepoSvc.all}">
-						<option value="${serRepVO.rpID}">${serRepVO.rpID}
-					</c:forEach>
-				</select> <input type="hidden" name="action" value="getOne_For_Display">
-				<input type="submit" value="送出">
-			</FORM>
-		</li>
-
-
-
-	</ul>
-
-
-	<h3>員工管理</h3>
-
+			href='<%=request.getContextPath()%>/backend/ser/ser_repo/listAllSerRepo.jsp'>檢視檢舉單</a>
+			<br></li></ul>
+			
 	<ul>
-		<li><a href='addSerRepo.jsp'>Add</a> a new SerRepo.</li>
-	</ul>
+		<li><a
+			href='<%=request.getContextPath()%>/backend/ser/ser_repo/readSerRepo.jsp'>查詢檢舉單(依編號)</a>
+			<br></li></ul>
+			
+	
+		
+		
 
-<jsp:include page="/frontend/EZ_footer.jsp"></jsp:include>
+
+	
+<footer>
+			<section class="ccc website-map pt-5">
+				<div class="container">
+					<div class="row">
+						<div class="footer-company-address col-xs-6 col-sm-3">
+							<address class="color-light-20">
+								1600 Amphitheatre Parkway <br> Mountain View, CA 94043
+							</address>
+						</div>
+						<div class="footer-about-us col-xs-6 col-sm-3">
+							<h4 class="my-2">關於我們</h4>
+							<ul class="list-unstyled list-light text-light">
+								<li><a href="#">品牌故事</a></li>
+								<li><a href="#">最新消息</a></li>
+								<li><a href="#">連絡我們</a></li>
+							</ul>
+						</div>
+						<br style="clear: both" class="hidden-sm-up">
+						<div class="footer-service col-xs-6 col-sm-3">
+							<h4 class="my-2">功能服務</h4>
+							<ul class="list-unstyled list-light">
+								<li><a href="#">房屋租賃</a></li>
+								<li><a href="#">居家服務</a></li>
+								<li><a href="#">二手家電</a></li>
+
+							</ul>
+						</div>
+						<div class="footer-center col-xs-6 col-sm-3">
+							<h4 class="my-2">會員中心</h4>
+							<ul class="list-unstyled list-light">
+								<li><a href="#">會員註冊</a></li>
+								<li><a href="#">忘記密碼</a></li>
+							</ul>
+						</div>
+					</div>
+					<hr>
+					<div class="footer-copyright row f-flex justify-content-between">
+						<div class="col-md-8 text-xs-center text-left my-1">
+							<p class="mt-1 text-muted">
+								© Copyright 2021 • All Rights Reserved | <a class=" " href="#">Disclaimer</a>
+								| <a class=" " href="#">Contact</a>
+							</p>
+						</div>
+					</div>
+				</div>
+			</section>
+			<section class="kkkk company-mail pt-3 bg-gray">
+				<div class="container">
+					<div class="row text-center justify-content-center">
+						<div class="col-12 col-md-8 col-lg-7">
+							<p class="text-h2">support@website.com</p>
+							<p class="text-h3">Fusce dapibus, tellus ac cursus commodo,
+								tortor mauris condimentum nibh, ut fermentum massa justo sit
+								amet risus.</p>
+						</div>
+					</div>
+				</div>
+			</section>
+		</footer>
+
 </body>
 </html>

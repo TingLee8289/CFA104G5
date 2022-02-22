@@ -185,5 +185,31 @@ public class AdminEmpJDBCDAO implements AdminEmpDAO_interface {
 		}
 		return list;
 	}
+	@Override
+	public List<AdminEmpVO> getAll1() {
+		List<AdminEmpVO> list = new ArrayList<AdminEmpVO>();
+		AdminEmpVO adminEmpVO = null;
+		
+		try {
+			con = DriverManager.getConnection(Util.URL, Util.USER, Util.PASSWORD);
+			pstmt = con.prepareStatement(GET_ALL_STMT);
+			rs = pstmt.executeQuery();
+			
+			while (rs.next()) {
+				adminEmpVO = new AdminEmpVO();
+				adminEmpVO.setAdmID(rs.getInt("ADM_ID"));
+				adminEmpVO.setAdmUsername(rs.getString("ADM_USERNAME"));
+				adminEmpVO.setAdmPassword(rs.getString("ADM_PASSWORD"));
+				adminEmpVO.setAdmStatus(rs.getInt("ADM_STATUS"));
+				list.add(adminEmpVO); // Store the row in the list
+			}
+			
+		} catch (SQLException se) {
+			throw new RuntimeException("A database error occured. " + se.getMessage());
+		} finally {
+			Util.closeResource(con, pstmt, rs);
+		}
+		return list;
+	}
 
 }
