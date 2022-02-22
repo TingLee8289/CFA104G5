@@ -69,7 +69,7 @@ public class MemberServlet extends HttpServlet {
 					errorMsgs.add("帳號或密碼有誤，請重新輸入3");
 				}
 				if(memberVO.getMemSupReported() >= 5) {// *************被檢舉次數****************
-					errorMsgs.add("該帳號檢舉次數已達5次被停權，如有問題清洽客服人員");
+					errorMsgs.add("該帳號被檢舉次數已達上限，如有相關問題清洽客服人員");
 				}
 				
 			
