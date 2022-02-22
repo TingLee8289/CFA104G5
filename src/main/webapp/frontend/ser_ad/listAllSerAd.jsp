@@ -103,6 +103,8 @@ pageContext.setAttribute("list", list);
 							<th>服務地區</th>
 							<th>服務內容</th>
 							<th>服務案例圖片</th>
+							<th></th>
+							<th></th>
 
 						</tr>
 					</thead>

@@ -95,8 +95,8 @@ SerVdrVO serVdrVO = (SerVdrVO) request.getAttribute("serVdrVO"); //EmpServlet.ja
 							<th>營業時間</th>
 							<th>廠商簡介</th>
 							<th>廠商圖片</th>
-							<th>廠商評價總人數</th>
-							<th>廠商評價總星數</th>
+					<%-- 	<th>廠商評價總人數</th>
+							<th>廠商評價總星數</th> --%>
 						</tr>
 					</thead>
 					<tbody id="show-list">
@@ -115,8 +115,8 @@ SerVdrVO serVdrVO = (SerVdrVO) request.getAttribute("serVdrVO"); //EmpServlet.ja
 							<td><img
 								src="<%=request.getContextPath()%>/ser_vdr/DBGifReader4.do?vdr_id=${serVdrVO.vdrID}"
 								width=200px></td>
-							<td><%=serVdrVO.getVdrRevCount()%></td>
-							<td><%=serVdrVO.getVdrRevScore()%></td>
+					<%-- 		<td><%=serVdrVO.getVdrRevCount()%></td>
+							<td><%=serVdrVO.getVdrRevScore()%></td> --%>
 						</tr>
 					</tbody>
 				</table>
