@@ -32,7 +32,7 @@ h1, h2, h3, h4, h5,
   position: fixed;
   top: 0;
   float: left;
-  min-height: 500px;
+  margin-top: 95px;
   overflow-y: scroll;
   -webkit-transition: .3s all ease;
   -o-transition: .3s all ease;
@@ -106,8 +106,7 @@ h1, h2, h3, h4, h5,
             width: 30px; }
         .probootstrap-aside .probootstrap-nav ul li.active a:after {
           width: 100%; }
-  .probootstrap-aside .probootstrap-overflow {
-    height: 500px; }
+
   .probootstrap-aside .probootstrap-aside-footer {
     font-size: 14px;
     padding-left: 30px;
