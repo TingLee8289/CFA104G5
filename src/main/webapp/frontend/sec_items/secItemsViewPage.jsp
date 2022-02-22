@@ -54,7 +54,7 @@ pageContext.setAttribute("secItemslist", secItemslist);
         box-sizing: border-box;
       }
       :root{
-        --header-height: 108px;
+        --header-height: 60px;
         --aside-width: 180px;
       }
       body{
@@ -89,6 +89,7 @@ pageContext.setAttribute("secItemslist", secItemslist);
         overflow-y: auto;
         padding: 20px 0;
         transition: all 1s;
+        margin-top: 1
       }
       aside.aside button.btn_hamburger{
         display: none;
@@ -128,6 +129,7 @@ pageContext.setAttribute("secItemslist", secItemslist);
         background-color: white;
         min-height: calc(100vh - var(--header-height));
         transition: all 1s;
+        margin-top: 80px;
       }
       @media screen and (max-width: 767px){
         main.main{
@@ -194,7 +196,7 @@ pageContext.setAttribute("secItemslist", secItemslist);
       <div class="probootstrap-site-logo probootstrap-animate" data-animate-effect="fadeInLeft">
         
         <a href="<%=request.getContextPath() %>/frontend/sec_items/secItemsViewPage.jsp" class="mb-2 d-block probootstrap-logo">二手家電</a>
-        <p class="mb-0">這是說明文字這是說明文字這是說明文字這是說明文字 </p>
+<!--         <p class="mb-0">這是說明文字這是說明文字這是說明文字這是說明文字 </p> -->
       </div>
       <div class="probootstrap-overflow">
         <nav class="probootstrap-nav">
@@ -208,9 +210,6 @@ pageContext.setAttribute("secItemslist", secItemslist);
 	        
           </ul>
         </nav>
-        <footer class="probootstrap-aside-footer probootstrap-animate" data-animate-effect="fadeInLeft">
-          <p>&copy; 2022 <a href="#">EASY SPACE</a>. <br> All Rights Reserved.</p>
-        </footer>
       </div>
     </aside>
 
