@@ -3,18 +3,17 @@
 <%@ page import="ezs.ser_dmd.model.*"%>
 
 <%
-	SerDmdVO serDmdVO = (SerDmdVO) request.getAttribute("serDmdVO");
+SerDmdVO serDmdVO = (SerDmdVO) request.getAttribute("serDmdVO"); 
+//SerDmdServlet.java (Concroller) 存入req的serDmdVO物件 (包括幫忙取出的serDmdVO, 也包括輸入資料錯誤時的serDmdVO物件)
 %>
 
 <html>
 <head>
 <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
- <script src="<%=request.getContextPath()%>/frontend/js/jquery-1.11.3.min.js"></script>
-<title>新增需求單 - addSerDmd.jsp</title>
+<title>需求單資料修改 - update_serDmd_input.jsp</title>
 
 <style>
   table#table-1 {
-    width: 450px;
 	background-color: #CCCCFF;
     border: 2px solid black;
     text-align: center;
@@ -28,10 +27,13 @@
     color: blue;
     display: inline;
   }
+  h3{
+  
+  }
 </style>
 
 <style>
-   table {
+  table {
 	width: 450px;
 	background-color: white;
 	margin-top: 1px;
@@ -53,12 +55,14 @@
 
 <table id="table-1">
 	<tr><td>
-		 <h3>新增需求單 - addSerDmd.jsp</h3></td><td style="text-align: center">
-		 <h4><a href="<%=request.getContextPath()%>/frontend/ser_dmd/serDmdHome.jsp">回首頁</a></h4>
+		 <h3>需求單資料修改 - update_serDmd_input.jsp</h3>
+		 <h4><a href="<%=request.getContextPath()%>/backend/ser/serDmd/select_page.jsp">回首頁</a></h4>
 	</td></tr>
 </table>
+<div style="text-align: center">
+<h3>資料修改</h3>
+</div>
 
-<h3>資料新增:</h3>
 
 <%-- 錯誤表列 --%>
 <c:if test="${not empty errorMsgs}">
@@ -73,92 +77,75 @@
 <FORM METHOD="post" enctype="multipart/form-data" ACTION="<%=request.getContextPath()%>/ser_dmd/SerDmdServlet.do" name="form1">
 <table>
 	<tr>
-		
-		<td><input type="hidden" name="dmdStatus" size="8"
-			 value=0 /></td>
+		<td>需求單ID:</td>
+		<td><input type="TEXT" name="dmdID" size="8"
+			 value="<%= serDmdVO.getDmdID() %>" /></td>
+	</tr>
+	<tr>
+		<td>需求單狀態:</td>
+		<td><input type="TEXT" name="dmdStatus" size="8"
+			 value="<%= serDmdVO.getDmdStatus() %>" /></td>
 	</tr>
 	<tr>
 		<td>會員ID:</td>
 		<td><input type="TEXT" name="dmdMemID" size="50"
-			 value="<%= (serDmdVO==null)? "2" : serDmdVO.getDmdMemID() %>"/></td>
+			 value="<%= serDmdVO.getDmdMemID() %>"/></td>
 	</tr>
 	
-<!-- 	<tr> -->
-<!-- 		<td>服務類別ID:</td> -->
-<!-- 		<td><input type="TEXT" name="dmdSerClaID" size="8" -->
-<%-- 			 value="<%= (serDmdVO==null)? "2" : serDmdVO.getDmdSerClaID() %>"/></td> --%>
-<!-- 	</tr> -->
-	
-	
-	
-	<jsp:useBean id="serCla" scope="page" class="ezs.ser_cla.model.SerClaService" />
 	<tr>
-		<td>服務類別:<font color=red><b>*</b></font></td>
-		<td><select size="1" name="dmdSerClaID">
-			<c:forEach var="serClaVO" items="${serCla.all}">
-				<option value="${serClaVO.serClaID}" ${(serDmdVO.dmdSerClaID==serClaVO.serClaID)? 'selected':'' } >${serClaVO.serClaName}
-			</c:forEach>
-		</select></td>
+		<td>服務類別ID:</td>
+		<td><input type="TEXT" name="dmdSerClaID" size="8"
+			 value="<%= serDmdVO.getDmdSerClaID() %>"/></td>
 	</tr>
-	
-	
-	
-	
-	
-	
-	
-	
 	<tr>
 		<td>需求人姓名:</td>
 		<td><input type="TEXT" name="dmdName" 
-			 value="<%= (serDmdVO==null)? "劉冠鳴" : serDmdVO.getDmdName() %>"/></td>
+			 value="<%= serDmdVO.getDmdName() %>"/></td>
 	</tr>
 	<tr>
 		<td>需求人電話:</td>
 		<td><input type="TEXT" name="dmdTel" 
-			 value="<%= (serDmdVO==null)? "066220167" : serDmdVO.getDmdTel() %>"/></td>
+			 value="<%=  serDmdVO.getDmdTel() %>"/></td>
 	</tr>
 	<tr>
 		<td>需求人信箱:</td>
 		<td><input type="EMAIL" name="dmdMail" 
-			 value="<%= (serDmdVO==null)? "jimmypc03@hotmail.com.tw" : serDmdVO.getDmdMail() %>"/></td>
+			 value="<%=  serDmdVO.getDmdMail() %>"/></td>
 	</tr>
 	<tr>
 		<td>案場縣市:</td>
 		<td><input type="TEXT" name="dmdCounty" size="20"
-			 value="<%= (serDmdVO==null)? "台南市" : serDmdVO.getDmdCounty() %>"/></td>
+			 value="<%= serDmdVO.getDmdCounty() %>"/></td>
 	</tr>
 	<tr>
 		<td>案場地區:</td>
 		<td><input type="TEXT" name="dmdRegion" size="20"
-			 value="<%= (serDmdVO==null)? "柳營區" : serDmdVO.getDmdRegion() %>"/></td>
+			 value="<%= serDmdVO.getDmdRegion() %>"/></td>
 	</tr>
 	<tr>
 		<td>案場詳細地址:</td>
 		<td><input type="TEXT" name="dmdAddress" size="50"
-			 value="<%= (serDmdVO==null)? "是鄰里123號" : serDmdVO.getDmdAddress() %>"/></td>
+			 value="<%= serDmdVO.getDmdAddress() %>"/></td>
 	</tr>
 	<tr>
 		<td>空間類別:</td>
 		<td><input type="TEXT" name="dmdSpaceClass" size="20"
-			 value="<%= (serDmdVO==null)? "豪窄" : serDmdVO.getDmdSpaceClass() %>"/></td>
+			 value="<%= serDmdVO.getDmdSpaceClass() %>"/></td>
 	</tr>
 	<tr>
 		<td>坪數:</td>
 		<td><input type="TEXT" name="dmdSquare" 
-			 value="<%= (serDmdVO==null)? "500" : serDmdVO.getDmdSquare() %>"/></td>
+			 value="<%= serDmdVO.getDmdSquare() %>"/></td>
 	</tr>
 	<tr>
 		<td>預算:</td>
 		<td><input type="TEXT" name="dmdBudget" 
-			 value="<%= (serDmdVO==null)? "50" : serDmdVO.getDmdBudget() %>"/></td>
+			 value="<%= serDmdVO.getDmdBudget() %>"/></td>
 	</tr>
 	<tr>
 		<td>需求簡介:</td>
-		<td>
-		<textarea name="dmdIntro"rows="4" cols="50" value="<%= (serDmdVO==null)? "搞裡頭" : serDmdVO.getDmdIntro() %>"></textarea>
-<%-- 		<input type="TEXT" name="dmdIntro" size= "50"value="<%= (serDmdVO==null)? "搞裡頭" : serDmdVO.getDmdIntro() %>"/> --%>
-	    </td>
+		<td><input type="TEXT" name="dmdIntro" size= "100"
+			 value="<%= serDmdVO.getDmdIntro() %>"/></td>
 	</tr>
 	<tr>
 		<td>照片:</td>
@@ -168,21 +155,13 @@
 			<p>圖片預覽</p>
 		</div>
 	</tr>
-	
-	<tr>
-		<td>
-			<input type="submit" value="送出新增">
-
-		</td>
-	</tr>
-	
 
 </table>
 <br>
-<input type="hidden" name="action" value="insert">
-</FORM>
+<input type="hidden" name="action" value="update">
+<input type="hidden" name="dmdID" value="<%=serDmdVO.getDmdID()%>">
+<input type="submit" value="送出修改"></FORM>
 </body>
-
 <script>
 	// 	// // change這個event有只代表改變，並不代表有檔案。
 	// 	// 	如果要FileReader去讀檔案，必須給他一個檔案Object。

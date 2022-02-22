@@ -3,10 +3,10 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>會員訂單需求單</title>
+<title>會員訂單專區</title>
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
 <style>
-	* {
+	* { 
   box-sizing: border-box;
 }
 html,
@@ -116,7 +116,7 @@ header {
                 <a class="nav-link" role="button" href="#">房屋租賃</a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" href="<%= request.getContextPath()%>/frontend/ser_ad/serAdViewPage.jsp">居家服務</a>
+                <a class="nav-link" href="#">居家服務</a>
               </li>
               <li class="nav-item">
                 <a class="nav-link" href="#">二手家電</a>
@@ -147,9 +147,9 @@ header {
       <div class="container">
         <div class="row">
           <!--   左側欄       -->
-          <aside class="col-3 left-sidebar">
+     <aside class="col-3 left-sidebar">
             <ul id="sideBarUl" class="list-unstyled text-nowrap p-2">
-               <li class="li-item active" data-id="0">
+              <li class="li-item active" data-id="0">
                 <a class="" href="<%=request.getContextPath()%>/frontend/member/memberCenter/memberCenter.jsp">會員基本資料</a>
               </li>
               <li class="li-item active" data-id="3">
@@ -162,7 +162,7 @@ header {
                 <a class="" href="<%=request.getContextPath()%>/frontend/member/memberCenter/memberCenterBuyer.jsp">買家訂單管理</a>
               </li>
               <li class="li-item active" data-id="2">
-                <a class="" href="<%=request.getContextPath()%>/frontend/member/memberCenter/memberCenterSeller.jsp">賣家管理</a>
+                <a class="" href="#">賣家管理</a>
               </li>
             </ul>
           </aside>
@@ -193,9 +193,11 @@ header {
                     </ul>
                   </li>
                   <li class="dropdown">
-                    <a href="#" class="dropdown-toggle" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">服務案件管理</a>
+                    <a href="#" class="dropdown-toggle" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">服務訂單管理</a>
                     <ul class="dropdown-menu text-center">
-                      <li><a class="dropdown-item" href="<%=request.getContextPath()%>/frontend/member/memberCenter/memberCenterBuyerDmd.jsp" data-id="231">需求單管理</a></li>
+                    	
+                      <li><a class="dropdown-item" href="<%=request.getContextPath()%>/frontend/member/memberCenter/memberCenterBuyerQuo.jsp" data-id="232">成為廠商</a></li>
+                      <li><a class="dropdown-item" href="<%=request.getContextPath()%>/frontend/member/memberCenter/memberCenterBuyerQuo.jsp" data-id="232">刊登服務</a></li>
                       <li><a class="dropdown-item" href="<%=request.getContextPath()%>/frontend/member/memberCenter/memberCenterBuyerQuo.jsp" data-id="232">估價單管理</a></li>
                       <li><a class="dropdown-item" href="<%=request.getContextPath()%>/frontend/member/memberCenter/memberCenterBuyerOrd.jsp" data-id="233">訂單管理</a></li>
                     </ul>
@@ -206,10 +208,10 @@ header {
             <!--  右側 內容  -->
             <div id="article-list">
             
-           <jsp:include page="/frontend/ser_ord/serOrdMem.jsp"></jsp:include>
+           
               <!-- 2111 預約單管理 進行中預約單 -->
             </div>
-          </div> 
+          </div>
 
         </div>
       </div>
@@ -296,6 +298,166 @@ header {
 </div>
 <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.10.2/dist/umd/popper.min.js" integrity="sha384-7+zCNj/IqJ95wo16oMtfsKbZ9ccEh31eOz1HGyDuCQ6wgnyJNSYdrPa03rtR1zdB" crossorigin="anonymous"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.min.js" integrity="sha384-QJHtvGhmr9XOIpI6YVutG+2QOK9T+ZnN4kzFN1RtK3zEFEIsxhlmWl5/YESvpZ13" crossorigin="anonymous"></script>
+<script type="text/javascript">
+// const articles = [
+// 	  {
+// 	    id: 1,
+// 	    number: 2111,
+// 	    title: "預約單管理 / 進行中預約單",
+// 	    content:
+// 	      "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec pretium ante erat, vitae sodales mi varius quis. Etiam vestibulum lorem vel urna tempor, eu fermentum odio aliquam. Aliquam consequat urna vitae ipsum pulvinar, in blandit purus eleifend."
+// 	  },
+// 	  {
+// 	    id: 2,
+// 	    number: 2122,
+// 	    title: "租賃訂單管理 / 評價",
+// 	    content:
+// 	      "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec pretium ante erat, vitae sodales mi varius quis. Etiam vestibulum lorem vel urna tempor, eu fermentum odio aliquam. Aliquam consequat urna vitae ipsum pulvinar, in blandit purus eleifend."
+// 	  },
+// 	  {
+// 	    id: 3,
+// 	    number: 213,
+// 	    title: "收藏房源管理",
+// 	    content:
+// 	      "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec pretium ante erat, vitae sodales mi varius quis. Etiam vestibulum lorem vel urna tempor, eu fermentum odio aliquam. Aliquam consequat urna vitae ipsum pulvinar, in blandit purus eleifend."
+// 	  },
+// 	  {
+// 	    id: 4,
+// 	    number: 221,
+// 	    title: "評價",
+// 	    content:
+// 	      "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec pretium ante erat, vitae sodales mi varius quis. Etiam vestibulum lorem vel urna tempor, eu fermentum odio aliquam. Aliquam consequat urna vitae ipsum pulvinar, in blandit purus eleifend."
+// 	  },
+// 	  {
+// 	    id: 5,
+// 	    number: 222,
+// 	    title: "檢舉",
+// 	    content:
+// 	      "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec pretium ante erat, vitae sodales mi varius quis. Etiam vestibulum lorem vel urna tempor, eu fermentum odio aliquam. Aliquam consequat urna vitae ipsum pulvinar, in blandit purus eleifend."
+// 	  },
+// 	  {
+// 	    id: 6,
+// 	    number: 223,
+// 	    title: "完成訂單",
+// 	    content:
+// 	      "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec pretium ante erat, vitae sodales mi varius quis. Etiam vestibulum lorem vel urna tempor, eu fermentum odio aliquam. Aliquam consequat urna vitae ipsum pulvinar, in blandit purus eleifend."
+// 	  },
+// 	  {
+// 	    id: 7,
+// 	    number: 224,
+// 	    title: "取消訂單",
+// 	    content:
+// 	      "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec pretium ante erat, vitae sodales mi varius quis. Etiam vestibulum lorem vel urna tempor, eu fermentum odio aliquam. Aliquam consequat urna vitae ipsum pulvinar, in blandit purus eleifend."
+// 	  },
+// 	  {
+// 	    id: 8,
+// 	    number: 225,
+// 	    title: "申請退款",
+// 	    content:
+// 	      "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec pretium ante erat, vitae sodales mi varius quis. Etiam vestibulum lorem vel urna tempor, eu fermentum odio aliquam. Aliquam consequat urna vitae ipsum pulvinar, in blandit purus eleifend."
+// 	  },
+// 	  {
+// 	    id: 9,
+// 	    number: 226,
+// 	    title: "延遲付款",
+// 	    content:
+// 	      "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec pretium ante erat, vitae sodales mi varius quis. Etiam vestibulum lorem vel urna tempor, eu fermentum odio aliquam. Aliquam consequat urna vitae ipsum pulvinar, in blandit purus eleifend."
+// 	  },
+// 	  {
+// 	    id: 10,
+// 	    number: 231,
+// 	    title: "需求單管理",
+// 	    content: [
+// 	      {
+// 	        a: "新增需求單 Lorem ipsum dolor sit amet, consectetur adipiscing elit."
+// 	      },
+// 	      {
+// 	        b: "刪除需求單 Donec pretium ante erat, vitae sodales mi varius quis."
+// 	      },
+// 	      {
+// 	        c:
+// 	          "修改需求單Etiam vestibulum lorem vel urna tempor, eu fermentum odio aliquam."
+// 	      }
+// 	    ]
+// 	  },
+// 	  {
+// 	    id: 11,
+// 	    number: 232,
+// 	    title: "估價單管理",
+// 	    content: [
+// 	      {
+// 	        a: "檢視報價 Lorem ipsum dolor sit amet, consectetur adipiscing elit."
+// 	      },
+// 	      { b: "回復報價 Donec pretium ante erat, vitae sodales mi varius quis." }
+// 	    ]
+// 	  },
+// 	  {
+// 	    id: 12,
+// 	    number: 233,
+// 	    title: "訂單管理",
+// 	    content: [
+// 	      {
+// 	        a: "已完成訂單 Lorem ipsum dolor sit amet, consectetur adipiscing elit."
+// 	      },
+// 	      {
+// 	        b: "未完成訂單 Donec pretium ante erat, vitae sodales mi varius quis."
+// 	      },
+// 	      {
+// 	        c:
+// 	          "付款Etiam vestibulum lorem vel urna tempor, eu fermentum odio aliquam."
+// 	      }
+// 	    ]
+// 	  }
+// 	];
+	const thetArticle = document.querySelector(".article");
+	const articleList = document.querySelector("#article-list");
 
+	let activeArticle = 0;
+	// 右側 上方導覽列
+	const rightContentMenu = document.querySelector(".right-content-menu");
+
+
+
+	(function () {
+	  articles.forEach((article) => {
+	    articleList.innerHTML += `
+	      <article id="${article.id}" uni="${article.title}-${article.id}" data-id="${article.number}" 
+	                class="article d-none" >
+	        <div class="container page-container p-3 text-wrap mx-auto my-3">
+	          <h4>${article.title}</h4>
+	          <p class="d-inline-block">${article.content}</p>
+	        </div>
+	      </article>
+	    `;
+	  });
+	})();
+
+
+	function showModal(id) {
+	  const filteredArticle = articles.find((article) => article.number === id); //找出陣列中同data-id的文章
+
+	  let rawHTML = `
+	      <article id="${filteredArticle.id}" uni="${filteredArticle.title}-${filteredArticle.id}" data-id="${filteredArticle.number}"
+	                class="article d-block" >
+	        <div class="container page-container p-3 text-wrap mx-auto my-3">
+	          <h4>${filteredArticle.title}</h4>
+	          <p class="d-inline-block">${filteredArticle.content}</p>
+	        </div>
+	      </article>
+	    `;
+	  articleList.innerHTML = rawHTML;
+	}
+
+	// 父層掛上監聽器
+	rightContentMenu.addEventListener("click", function onMenuClicked(event) {
+	  //有選到下拉選單的話
+	  if (event.target.matches(".dropdown-item")) {
+	    showModal(Number(event.target.dataset.id));
+	    console.log("dropdown-item", Number(event.target.dataset.id));
+	  }
+	});
+
+	articleList.addEventListener("click", handleArticleClicked);
+</script>
 </body>
 </html>
