@@ -3,14 +3,22 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ page import="java.util.*"%>
 <%@ page import="ezs.admin_emp.model.*"%>
-
-<jsp:useBean id="adminFunSvc" scope="page" class="ezs.admin_func.model.AdminFuncService" />
+<%@ page import="java.util.*"%>
+<%@page import="ezs.admin_func.model.AdminFuncService"%>
+<%@page import="ezs.admin_func.model.AdminFuncVO"%>
+<jsp:useBean id="adminFunSvc" scope="page"
+	class="ezs.admin_func.model.AdminFuncService" />
 
 <%
 AdminEmpService admSvc = new AdminEmpService();
 List<AdminEmpVO> list = admSvc.getAll();
 pageContext.setAttribute("list", list);
 // System.out.print(list);
+%>
+<%
+AdminFuncService admfSvc = new AdminFuncService();
+List<AdminFuncVO> funList = admfSvc.getAll();
+pageContext.setAttribute("funList", funList);
 %>
 <!DOCTYPE html>
 <html>
@@ -36,25 +44,53 @@ pageContext.setAttribute("list", list);
 				<td>${adminEmpVO.admUsername}</td>
 				<td>${adminEmpVO.admPassword}</td>
 				<td>${adminEmpVO.admStatus}</td>
+
+				<!-- 				<td> -->
+				<%-- 				<c:forEach var="adminPrivVO" items="${adminEmpVO.authlist}"> --%>
+				<%-- 						<br>${adminFunSvc.getoneAdminFunc(adminPrivVO.funID).funName} --%>
+				<%-- 					</c:forEach> --%>
+				<!-- 				</td> -->
+<FORM METHOD="post" ACTION="<%=request.getContextPath()%>/admin_priv/AdminPrivServlet.do" style="margin-bottom: 0px;">
 				<td>
-					<c:forEach var="adminPrivVO" items="${adminEmpVO.authlist}">
-						<br>${adminFunSvc.getoneAdminFunc(adminPrivVO.funID).funName}
-					</c:forEach>
-				</td> 
-<!-- 				<td> -->
-<!-- 					<FORM METHOD="post" -->
-<%-- 						ACTION="<%=request.getContextPath()%>/admin_priv/AdminPrivServlet.do" --%>
-<!-- 						style="margin-bottom: 0px;"> -->
-<!-- 						<input type="submit" value="修改權限">  -->
-<%-- 						<input type="hidden" name="admID" value="${adminEmpVO.admID}">  --%>
-<!-- 						<input type="hidden" name="action" value="getOne_For_Update"> -->
-<!-- 					</FORM></td>--><td>
+					
+
+						<c:forEach var="funElment" items="${funList}">
+							<%-- 					<input type=hidden name="${funElment.funName}" value="${funElment.funID}" checked> --%>
+							<br>
+
+							<c:set var="check" value="0" />
+							<c:forEach var="adminPrivVO" items="${adminEmpVO.authlist}">
+								<c:if test="${adminPrivVO.funID == funElment.funID }">
+									<c:set var="check" value="1" />
+								</c:if>
+							</c:forEach>
+
+							<c:if test="${ check == 1 }">
+								<input type="checkbox" name="funID" value="${funElment.funID}"
+									checked> ${funElment.funName}
+					</c:if>
+							<c:if test="${ check != 1 }">
+								<input type="checkbox" name="funID" value="${funElment.funID}"> ${funElment.funName}
+					</c:if>
+						</c:forEach>
+						
+				</td>
+
+
+
+
+				<td><input type="submit" value="修改權限"> <input
+					type="hidden" name="admID" value="${adminEmpVO.admID}"> <input
+					type="hidden" name="action" value="update">
+					</td>
+</FORM>
+				<td>
 					<FORM METHOD="post"
 						ACTION="<%=request.getContextPath()%>/admin_priv/AdminPrivServlet.do"
 						style="margin-bottom: 0px;">
-						<input type="submit" value="刪除"> 
-						<input type="hidden" name="admID" value="${adminEmpVO.admID}"> 
-						<input type="hidden" name="action" value="delete">
+						<input type="submit" value="刪除"> <input type="hidden"
+							name="admID" value="${adminEmpVO.admID}"> <input
+							type="hidden" name="action" value="delete">
 					</FORM>
 				</td>
 			</tr>
@@ -70,9 +106,11 @@ pageContext.setAttribute("list", list);
 			</c:forEach>
 		</ul>
 	</c:if>
-<ul>
-  <li><a href='<%=request.getContextPath()%>/backend/adminEmp/addNewAdmin.jsp'>Add</a> a new Emp.</li>
-</ul>
+	<ul>
+		<li><a
+			href='<%=request.getContextPath()%>/backend/adminEmp/addNewAdmin.jsp'>Add</a>
+			a new Emp</li>
+	</ul>
 
 </body>
 </html>

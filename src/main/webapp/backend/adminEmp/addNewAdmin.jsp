@@ -3,9 +3,26 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html>
+
 <head>
 <meta charset="UTF-8">
 <title>新增管理員</title>
+
+<style>
+  table {
+	width: 450px;
+	background-color: white;
+	margin-top: 1px;
+	margin-bottom: 1px;
+  }
+  table, tr, td {
+    border: 0px solid #CCCCFF;
+  }
+  tr, td {
+    padding: 1px;
+  }
+</style>
+
 </head>
 <body>
 <a href="<%=request.getContextPath()%>/backend/adminEmp/adminEmp.jsp">回首頁</a>
