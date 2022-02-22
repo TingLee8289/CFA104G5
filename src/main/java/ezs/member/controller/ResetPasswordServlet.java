@@ -35,7 +35,7 @@ public class ResetPasswordServlet extends HttpServlet {
 			List<String> errorMsgs = new LinkedList<String>();
 
 			req.setAttribute("errorMsgs", errorMsgs);
-
+			System.out.println(action);
 			try {
 				/*************************** 1.接收請求參數 - 輸入格式的錯誤處理 **********************/
 
@@ -68,7 +68,7 @@ public class ResetPasswordServlet extends HttpServlet {
 				MemberVO memberVO = new MemberVO();
 				memberVO.setMemID(memID);
 				memberVO.setMemPassword(memPassword);
-
+System.out.println(memPassword);
 				// Send the use back to the form, if there were errors
 				if (!errorMsgs.isEmpty()) {
 					req.setAttribute("memberVO", memberVO); // 含有輸入格式錯誤的memberVO物件,也存入req
@@ -81,13 +81,17 @@ public class ResetPasswordServlet extends HttpServlet {
 				/*************************** 2.開始修改資料 *****************************************/
 				MemberService memberSvc = new MemberService();
 				 memberSvc.updateMemberPassword(memberVO);
-
+				 System.out.println("=======================");
 				/*************************** 3.修改完成,準備轉交(Send the Success view) *************/
 				req.setAttribute("memberVO", memberVO); // 資料庫update成功後,正確的的memberVO物件,存入req
 				String url = "/frontend/EZ_home.jsp"; // 更新完成跳轉至首頁
 				RequestDispatcher successView = req.getRequestDispatcher(url); // 修改成功後,轉交listOneEmp.jsp
 				successView.forward(req, res);
 
+				System.out.println(successView);
+				
+				
+				
 				/*************************** 其他可能的錯誤處理 *************************************/
 			} catch (Exception e) {
 				e.printStackTrace();

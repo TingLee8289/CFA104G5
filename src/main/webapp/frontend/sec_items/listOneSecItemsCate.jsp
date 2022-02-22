@@ -66,11 +66,11 @@ th, td {
 <body bgcolor='white'>
 
 
-	<h4>查詢商品狀態</h4>
+	<h4>查詢單一商品種類</h4>
 	<table id="table-1">
 		<tr>
 			<td>
-				<h3>單一商品 - listOneSecItemStatus.jsp</h3>
+				<h3>單一商品 - listOneSecItemsCate.jsp</h3>
 				<h4>
 					<a
 						href="<%=request.getContextPath()%>/frontend/sec_items/select_page.jsp"><img

@@ -34,6 +34,8 @@ public class ForgetPasswordServlet extends HttpServlet {
 
 //		
 		String action = req.getParameter("action");
+//		res.setHeader("Refresh", "10";URL=req.getScheme() + "://" + req.getServerName() + ":" + req.getServerPort() + req.getContextPath() +
+//				"/frontend/member/updateMemberPassword.jsp);
 
 		if ("reset_Password_Email".equals(action)) { // 來自resetpassword.jsp的請求
 
@@ -78,7 +80,7 @@ public class ForgetPasswordServlet extends HttpServlet {
 							+ "1.此密碼有效時間為30分鐘，如逾時失效，請至EASY SPACE重新申請「忘記密碼」，系統將重新派送。\r\n"
 							+ "2.密碼變更完成後，請使用新密碼重新登入，並請妥善保管您的個人資料，切勿提供他人，以保障您的帳號安全。\r\n";
 					String link = req.getScheme() + "://" + req.getServerName() + ":" + req.getServerPort() + req.getContextPath() +
-							"/member/updateMemberPassword.jsp?memid=" + memberVO.getMemID(); 
+							"/frontend/member/updateMemberPassword.jsp?memid=" + memberVO.getMemID(); 
 					System.out.println(link);
 					messageText += link;
 //					參數傳遞
@@ -96,7 +98,9 @@ public class ForgetPasswordServlet extends HttpServlet {
 				/*************************** 3.查詢完成,準備轉交(Send the Success view) *************/
 
 				req.setAttribute("memberVO", memberVO); // 資料庫取出的memberVO物件,存入req
-				String url = "/frontend/member/finishEmail.jsp";
+//				String url = "/frontend/member/updateMemberPassword.jsp?memid=" + memberVO.getMemID();
+				
+				String url ="/frontend/EZ_home.jsp";
 				RequestDispatcher successView = req.getRequestDispatcher(url); // 成功轉交 listOneEmp.jsp
 				successView.forward(req, res);
 

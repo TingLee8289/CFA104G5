@@ -31,18 +31,17 @@ MemberVO memberVO = (MemberVO) request.getAttribute("memberVO");
 	<div align="center">
 		<h2>重設密碼</h2>
 		<p>請輸入帳號及密碼:</p>
-		<form method="post" action="<%=request.getContextPath()%>/member/ResetPasswordServlet.do"
-			enctype="multipart/form-data">
+		<form method="post" action="<%=request.getContextPath()%>/member/ResetPasswordServlet.do">
 		
 			<div class="col-sm-12">
 				<div class="row">
 					<div class="col-xs-4">
-						<label class="Username">帳號 :</label>
+						<label class="memID">帳號 :</label>
 <!-- 					</div> -->
 <!-- 					<div class="col-xs-8"> -->
-						<input type="text" name="memUsername" id="memUsername"
+						<input type="text" name="memID" id="memID"
 							placeholder="請輸入帳號" class="form-control "
-							value="<%=(memberVO == null) ? "" : memberVO.getMemUsername()%>">
+							value="<%=(memberVO == null) ? "" : memberVO.getMemID()%>">
 					</div>
 				</div>
 			</div>
@@ -50,10 +49,10 @@ MemberVO memberVO = (MemberVO) request.getAttribute("memberVO");
 			<div class="col-sm-12">
 				<div class="row">
 					<div class="col-xs-4">
-						<label class="Password">密碼 :</label>
+						<label class="memPassword">密碼 :</label>
 <!-- 					</div> -->
 <!-- 					<div class="col-xs-8"> -->
-						<input type="password" name="memPassword" id="memPassword"
+						<input type="text" name="memPassword" id="memPassword"
 							placeholder="請輸入密碼" class="form-control "
 							value="<%=(memberVO == null) ? "" : memberVO.getMemPassword()%>">
 					</div>

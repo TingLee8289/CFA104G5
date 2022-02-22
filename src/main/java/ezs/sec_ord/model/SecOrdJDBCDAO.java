@@ -37,7 +37,7 @@ public class SecOrdJDBCDAO implements SecOrdDAO_interface {
 //	private static final String GET_ORD_DETAILS_STMT = "SELECT * FROM `CFA104G5`.`SEC_ORD` s JOIN `CFA104G5`.`SEC_ORD_DETAILS` s1 ON s.sh_ord_id = s1.sh_ord_id";
 	private static final String GET_ORDDETAILS_BYSECORD_STMT = "SELECT * FROM `CFA104G5`.`SEC_ORD_DETAILS` WHERE sh_ord_id = ?";
 	private static final String UPDATE_CANCEL_ORDER_STMT = "UPDATE `CFA104G5`.`SEC_ORD` SET sh_ord_status = 8 WHERE sh_ord_id = ?; ";
-	private static final String UPDATE_ORDER_SHIPPERED_STMT = "UPDATE `CFA104G5`.`SEC_ORD` SET sh_ord_status = 2 WHERE sh_ord_id = ?; ";
+	private static final String UPDATE_STATUS_STMT = "UPDATE `CFA104G5`.`SEC_ORD` set sh_ord_status = ? WHERE sh_ord_id = ?";
 
 	static {
 		try {
@@ -357,12 +357,14 @@ public class SecOrdJDBCDAO implements SecOrdDAO_interface {
 	}
 
 	@Override
-	public void updateOrderShippered(Integer shOrdID) {
+	public void updateOrderStatus(SecOrdVO secOrdVO) {
 
 		try {
 			con = DriverManager.getConnection(Util.URL, Util.USER, Util.PASSWORD);
-			pstmt = con.prepareStatement(UPDATE_ORDER_SHIPPERED_STMT);
-			pstmt.setInt(1, shOrdID);
+			pstmt = con.prepareStatement(UPDATE_STATUS_STMT);
+			pstmt.setInt(1, secOrdVO.getShOrdStatus());
+			pstmt.setInt(2, secOrdVO.getShOrdID());
+	
 			pstmt.executeUpdate();
 		} catch (SQLException e) {
 			e.printStackTrace();
