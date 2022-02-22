@@ -10,14 +10,10 @@
 <meta name="description" content="">
 <meta name="author" content="">
 <link rel="icon" href="favicon.ico">
-
+<link rel="stylesheet"
+	href=" https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css ">
 <link rel="stylesheet"
 	href="https://use.fontawesome.com/releases/v5.2.0/css/all.css">
-	<style type="text/css">
-	}
-body {
-  background-color: #ecb88a;
-}</style>
 <script
 	src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-alpha3/dist/js/bootstrap.bundle.min.js"
 	integrity="sha384-popRpmFF9JQgExhfw5tZT4I9/CI5e2QcuUZPOVXb1m7qUmeR2b50u+YFEYe1wgzy"
@@ -35,15 +31,11 @@ body {
 
 		<ul>
 			<li>
-				<a href="<%=request.getContextPath()%>/frontend/ser_dmd/getByDmdMemID.jsp">檢視需求單</a>
+			<a href="<%=request.getContextPath()%>/frontend/ser_quo/findByQuoDmdID.jsp">會員檢視估價單</a>
 			</li>
 		</ul>
 		
-		<ul>
-			<li>
-				<a href="<%=request.getContextPath()%>/frontend/ser_dmd/addSerDmd.jsp">新增需求單</a>
-			</li>
-		</ul>
+		
 
 
 
@@ -51,5 +43,6 @@ body {
 	</div>
 	<!-- Footer ends from here -->
 	
+	<!-- Footer ends from here -->
 </body>
 </html>

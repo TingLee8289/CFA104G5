@@ -292,32 +292,7 @@ public class MemberDAO implements MemberDAO_interface {
 
 	}
 
-	@Override
-	public Integer checkUsername(String memUsername) {
-		MemberVO memberVO = null;
-
-		try {
-
-			con = ds.getConnection();
-			pstmt = con.prepareStatement(CHECK_USERNAME);
-
-			pstmt.setString(1, memUsername);
-
-			rs = pstmt.executeQuery();
-
-			while (rs.next()) {
-				memberVO = new MemberVO();
-				memberVO.setMemID(rs.getInt("MEM_ID"));
-				memberVO.setMemUsername(rs.getString("MEM_USERNAME"));
-			}
-
-		} catch (SQLException se) {
-			se.printStackTrace();
-		} finally {
-			Util.closeResource(con, pstmt, rs);
-		}
-		return memberVO.getMemID();
-	}
+	
 
 	@Override
 	public void verifyMember(String memName) {

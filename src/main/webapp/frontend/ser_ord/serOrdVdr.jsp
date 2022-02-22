@@ -22,40 +22,32 @@
 </head>
 <body>
 	<!-- Header starts from here -->
-	<jsp:include page="/frontend/EZ_header.jsp"></jsp:include>
+	
 	<!-- Header ends from here -->
 	<div class="container-fluid">
 		<!--  main start -->
-
-
-
+		
+		
+		
 		<ul>
 			<li><a
-				href="<%=request.getContextPath()%>/frontend/ser_quo/findByQuoDmdID.jsp">會員檢視估價單</a>
+				href="<%=request.getContextPath()%>/frontend/ser_ord/getOrdByVdrID.jsp">廠商檢視訂單</a>
 			</li>
 		</ul>
+		
 		<ul>
 			<li><a
-				href="<%=request.getContextPath()%>/frontend/ser_quo/getQuoByVdrID.jsp">廠商檢視估價單</a>
+				href="<%=request.getContextPath()%>/frontend/ser_ord/findQuoBeforeByVdrID.jsp">新增訂單</a>
 			</li>
 		</ul>
-		<ul>
-			<li><a
-				href="<%=request.getContextPath()%>/frontend/ser_quo/addSerQuo.jsp">新增估價單</a>
-			</li>
-		</ul>
-		<ul>
-			<li><a
-				href="<%=request.getContextPath()%>/frontend/ser_quo/updateSerQuo.jsp">廠商修改估價單</a>
-			</li>
-		</ul>
-
-
-
-		<!--  end of main -->
+		
+		
+		
+		
+		<!--  end of main -->	
 	</div>
 	<!-- Footer ends from here -->
-	<jsp:include page="/frontend/EZ_footer.jsp"></jsp:include>
+	
 	<!-- Footer ends from here -->
 </body>
 </html>

@@ -37,7 +37,7 @@
 						
 						<h4>
 							<a
-								href="<%=request.getContextPath()%>/frontend/ser_quo/serQuoHome.jsp">回首頁</a>
+								href="<%=request.getContextPath()%>/frontend/member/memberCenter/memberCenterBuyerOrd.jsp">回會員中心</a>
 						</h4>
 					</caption>
 					<thead class="table-success">

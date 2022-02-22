@@ -42,7 +42,9 @@ pageContext.setAttribute("serDmdList", serDmdList);
 				<table
 					class="table table-striped table-hover align-middle text-center caption-top">
 					<caption>
-						<h2>所有需求單資料</h2>
+						<h3>所有需求單資料</h3>
+						<h4> <a href="<%=request.getContextPath()%>/frontend/member/memberCenter/memberCenterBuyerDmd.jsp">回會員中心</a>
+				</h4>
 					</caption>
 					<thead class="table-success">
 						<tr class="text-nowrap">

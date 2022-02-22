@@ -19,60 +19,14 @@ SerQuoVO serQuoVO = (SerQuoVO) request.getAttribute("serQuoVO");
 <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
 <title>會員檢視估價單 - findByDmdID.jsp</title>
 
-<style>
-table#table-1 {
-	width: 450px;
-	background-color: #CCCCFF;
-	border: 2px solid black;
-	text-align: center;
-}
 
-table#table-1 h4 {
-	color: red;
-	display: block;
-	margin-bottom: 1px;
-}
-
-h4 {
-	color: blue;
-	display: inline;
-}
-</style>
-
-<style>
-table {
-	background-color: white;
-	margin-top: 1px;
-	margin-bottom: 1px;
-}
-
-table, th, td {
-	border: 0px solid #CCCCFF;
-}
-
-th, td {
-	padding: 1px;
-}
-</style>
 
 </head>
 <body bgcolor='white'>
 
-	<table id="table-1">
-		<tr>
-			<td>
-				<h3>會員檢視估價單 - findByDmdID.jsp</h3>
-			</td>
-			<td style="text-align: center">
-				<h4>
-					<a
-						href="<%=request.getContextPath()%>/frontend/ser_quo/serQuoHome.jsp">回首頁</a>
-				</h4>
-			</td>
-		</tr>
-	</table>
+	
 
-	<h3>會員檢視估價單:</h3>
+	<h4>請選擇需求單號碼</h4>
 
 	<%-- 錯誤表列 --%>
 	<c:if test="${not empty errorMsgs}">
@@ -108,7 +62,7 @@ th, td {
 
 		</table>
 		<br> <input type="hidden" name="action" value="findByDmdID"> <input
-			type="submit" value="送出新增">
+			type="submit" value="送出查詢">
 	</FORM>
 </body>
 
