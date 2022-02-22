@@ -127,6 +127,7 @@ pageContext.setAttribute("serClaList", serClaList);
         background-color: white;
         min-height: calc(100vh - var(--header-height));
         transition: all 1s;
+        margin-top: 80px;
       }
       @media screen and (max-width: 767px){
         main.main{
@@ -210,7 +211,7 @@ pageContext.setAttribute("serClaList", serClaList);
           </ul>
         </nav>
         <footer class="probootstrap-aside-footer probootstrap-animate" data-animate-effect="fadeInLeft">
-          <p>&copy; 2022 <a href="#">EASY SPACE</a>. <br> All Rights Reserved.</p>
+<!--           <p>&copy; 2022 <a href="#">EASY SPACE</a>. <br> All Rights Reserved.</p> -->
         </footer>
       </div>
     </aside>
@@ -285,8 +286,8 @@ pageContext.setAttribute("serClaList", serClaList);
 						</div>
 						<div
 							class="bottom p-2 d-flex flex-row align-items-end justify-content-between">
-							<div class="p-2 w-70 company-profile d-inline-block text-truncate" style="max-width: 500px;">
-								<p class="text-nowrap">
+							<div class="p-2 w-70 company-profile d-inline-block" style="max-width: 580px;">
+								<p>
 								<c:forEach var="serVdrVO" items="${serVdrList}">
 							 			<c:if test="${serAdVO.adVdrID==serVdrVO.vdrID}">
 	                   						 廠商簡介:${serVdrVO.vdrIntro}
