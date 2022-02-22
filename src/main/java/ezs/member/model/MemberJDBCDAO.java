@@ -29,7 +29,6 @@ public class MemberJDBCDAO implements MemberDAO_interface {
 	private static final String ADM_UPDATE = "UPDATE `CFA104G5`.`MEMBER` SET MEM_LANDLORD= ?,MEM_SUPPLIER=?,MEM_SELLER=?"
 			+ "MEM_STATUS=?,MEM_REPORTED=?,MEM_SUP_REPORTED=? WHERE MEM_ID = ?";
 
-	private static final String CHECK_USERNAME = "SELECT MEM_ID FROM `CFA104G5`.`MEMBER` WHERE MEM_USERNAME = ?";
 	private static final String VERIFY_MEM_STMT = "UPDATE `CFA104G5`.`MEMBER` SET mem_status = 1 WHERE mem_name = ?;";
 
 	private static final String SEARCH_EMAIL = "SELECT MEM_EMAIL FROM `CFA104G5`.`MEMBER`";
@@ -285,33 +284,7 @@ public class MemberJDBCDAO implements MemberDAO_interface {
 
 	}
 
-	@Override
-	public Integer checkUsername(String memUsername) {
-		MemberVO memberVO = null;
-
-		try {
-
-			con = DriverManager.getConnection(Util.URL, Util.USER, Util.PASSWORD);
-			pstmt = con.prepareStatement(CHECK_USERNAME);
-
-			pstmt.setString(1, memUsername);
-
-			rs = pstmt.executeQuery();
-
-			while (rs.next()) {
-				memberVO = new MemberVO();
-				memberVO.setMemID(rs.getInt("MEM_ID"));
-				memberVO.setMemUsername(rs.getString("MEM_USERNAME"));
-			}
-		} catch (SQLException se) {
-			se.printStackTrace();
-		} finally {
-			Util.closeResource(con, pstmt, rs);
-
-		}
-		return memberVO.getMemID();
-	}
-
+	
 	public void verifyMember(String memName) {
 
 		try {

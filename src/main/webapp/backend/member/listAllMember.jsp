@@ -211,7 +211,7 @@
 			  <FORM METHOD="post" ACTION="<%=request.getContextPath()%>/member/MemberServletUpdate.do" style="margin-bottom: 0px;">
 			     <button id ="submit" onclick="submit"><i class="fa-solid fa-magnifying-glass"></i></button>
 			     <input type="hidden" name="memID"  value="${memberVO.memID}">
-			     <input type="hidden" name="action"	value="getOneMemUpdate"> </FORM>
+			     <input type="hidden" name="action"	value="getOneMem_Display"> </FORM>
 			</td>
 		</tr>
 	</c:forEach>

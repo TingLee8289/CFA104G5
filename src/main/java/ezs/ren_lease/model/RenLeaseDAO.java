@@ -174,7 +174,7 @@ public class RenLeaseDAO implements RenLeaseDAO_interface {
 		return list;
 	}
 
-	public List<RenLeaseVO> getLse(Integer	lseMemId) {
+	public List<RenLeaseVO> getLse(Integer lseMemId) {
 		List<RenLeaseVO> getLse = new ArrayList<RenLeaseVO>();
 		RenLeaseVO leaseVO = null;
 

@@ -31,9 +31,9 @@ public class MemberDAO implements MemberDAO_interface {
 	private static final String UPDATE = "UPDATE `CFA104G5`.`MEMBER` SET MEM_PASSWORD = ?,MEM_NAME =?,MEM_PHONE=?,MEM_ADDRESS=?"
 			+ ",MEM_EMAIL=?,MEM_HEADSHOT=?,MEM_VATNO=? WHERE MEM_ID = ?";
 	private static final String ADM_UPDATE = "UPDATE `CFA104G5`.`MEMBER` SET MEM_LANDLORD= ?,MEM_SUPPLIER=?,MEM_SELLER=?,"
-			+ "MEM_STATUS=?,MEM_REPORTED=?,MEM_SUP_REPORTED=? WHERE MEM_ID = ?";
-		
-	private static final String CHECK_USERNAME = "SELECT MEM_ID FROM `CFA104G5`.`MEMBER` WHERE mem_username = ?";
+			+ "MEM_STATUS=?,MEM_REPORTED=?,MEM_SUP_REPORTED=?, MEM_USERNAME=?, MEM_NAME=?,MEM_PHONE=?,MEM_ADDRESS=?,MEM_EMAIL=?, MEM_RED_COUNT=?, MEM_Red_SCORE=? WHERE MEM_ID = ?";
+//	private static final String ADM_UPDATE = "UPDATE `CFA104G5`.`MEMBER` SET MEM_LANDLORD= ?,MEM_SUPPLIER=?,MEM_SELLER=?,"
+//			+ "MEM_STATUS=?,MEM_REPORTED=?,MEM_SUP_REPORTED=? WHERE MEM_ID = ?";
 
 	private static final String VERIFY_MEM_STMT = "UPDATE `CFA104G5`.`MEMBER` SET mem_status = 1 WHERE mem_username = ?;";
 
@@ -292,33 +292,7 @@ public class MemberDAO implements MemberDAO_interface {
 
 	}
 	
-	@Override
-	public Integer checkUsername(String memUsername) {
-		MemberVO memberVO = null;
-
-		try {
-
-			con = ds.getConnection();
-			pstmt = con.prepareStatement(CHECK_USERNAME);
-
-			pstmt.setString(1, memUsername);
-
-			rs = pstmt.executeQuery();
-
-			while (rs.next()) {
-				memberVO = new MemberVO();
-				memberVO.setMemID(rs.getInt("MEM_ID"));
-				memberVO.setMemUsername(rs.getString("MEM_USERNAME"));
-			}
-
-		} catch (SQLException se) {
-			se.printStackTrace();
-		} finally {
-			Util.closeResource(con, pstmt, rs);
-		}
-		return memberVO.getMemID();
-	}
-
+	
 	@Override
 	public void verifyMember(String memName) {
 
@@ -336,6 +310,30 @@ public class MemberDAO implements MemberDAO_interface {
 
 	}
 	
+//	@Override
+//	public void updateADM(MemberVO memberVO) {
+//		
+//		try {			
+//			con = ds.getConnection();
+//			pstmt = con.prepareStatement(ADM_UPDATE);
+//						
+//			pstmt.setByte(1, memberVO.getMemLandlord());
+//			pstmt.setByte(2, memberVO.getMemSupplier());
+//			pstmt.setByte(3, memberVO.getMemSeller());
+//			pstmt.setByte(4, memberVO.getMemStatus());
+//			pstmt.setInt(5, memberVO.getMemReported());
+//			pstmt.setInt(6, memberVO.getMemSupReported());
+//			pstmt.setInt(7, memberVO.getMemID());
+//			
+//			pstmt.executeUpdate();
+//			
+//		} catch (SQLException se) {
+//			se.printStackTrace();
+//		} finally {
+//			Util.closeResource(con, pstmt, rs);
+//		}	
+//	}
+	
 	@Override
 	public void updateADM(MemberVO memberVO) {
 		
@@ -351,6 +349,14 @@ public class MemberDAO implements MemberDAO_interface {
 			pstmt.setInt(6, memberVO.getMemSupReported());
 			pstmt.setInt(7, memberVO.getMemID());
 			
+			pstmt.setString(8, memberVO.getMemUsername());
+			pstmt.setString(9, memberVO.getMemName());
+			pstmt.setString(10, memberVO.getMemPhone());
+			pstmt.setString(11, memberVO.getMemAddress());
+			pstmt.setString(12, memberVO.getMemEmail());
+			pstmt.setInt(13, memberVO.getMemRedCount());
+			pstmt.setInt(14, memberVO.getMemRedScore());
+			
 			pstmt.executeUpdate();
 			
 		} catch (SQLException se) {
@@ -360,6 +366,7 @@ public class MemberDAO implements MemberDAO_interface {
 		}	
 	}
 	
+
 
 
 	
