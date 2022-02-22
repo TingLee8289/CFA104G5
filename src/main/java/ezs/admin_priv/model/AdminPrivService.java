@@ -11,7 +11,7 @@ public class AdminPrivService {
 		dao = new AdminPrivDAO();
 	}
 
-	public AdminPrivVO adminPrivVO(Integer admID, Integer funID) {
+	public AdminPrivVO addAdminPriv(Integer admID, Integer funID) {
 
 		AdminPrivVO adminPrivVO = new AdminPrivVO();
 
@@ -22,7 +22,7 @@ public class AdminPrivService {
 		return adminPrivVO;
 	}
 
-	public void deleteAdminPrinv(Integer admID) {
+	public void deleteAdminPriv(Integer admID) {
 
 		dao.delete(admID);
 	}

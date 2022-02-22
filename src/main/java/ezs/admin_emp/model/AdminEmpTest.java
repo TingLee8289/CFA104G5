@@ -54,5 +54,9 @@ public class AdminEmpTest {
 //		//System.out.print(adminEmpVO4.getAdmStatus());
 //		System.out.println("---------------------");
 //
+		AdminEmpVO adminEmpVO4 = dao.CheckAdmUsername("BOSS");
+		System.out.print(adminEmpVO4.getAdmUsername() + ",");
+		System.out.println("---------------------");
+		
 	}
 }
