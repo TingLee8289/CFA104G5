@@ -7,5 +7,6 @@ public interface RenLeaseDAO_interface {
     public void update(RenLeaseVO leaseVO);
     public void delete(Integer lse_id);
     public RenLeaseVO findByPrimaryKey(Integer leaseVO);
-    public List<RenLeaseVO> getAll();
+	public List<RenLeaseVO> getAll();
+	public List<RenLeaseVO> getGetPersonal();
 }

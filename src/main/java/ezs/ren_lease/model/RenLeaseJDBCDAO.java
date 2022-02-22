@@ -170,4 +170,10 @@ public class RenLeaseJDBCDAO implements RenLeaseDAO_interface {
 		return list;
 	}
 
+	@Override
+	public List<RenLeaseVO> getGetPersonal() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
 }

@@ -1,18 +1,23 @@
 package ezs.ren_lease.controller;
 
 import java.io.IOException;
+import java.io.InputStream;
 import java.util.LinkedList;
 import java.util.List;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
+import javax.servlet.annotation.MultipartConfig;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import ezs.ren_lease.model.*;
+import javax.servlet.http.Part;
+import ezs.ren_lease.model.RenLeaseService;
+import ezs.ren_lease.model.RenLeaseVO;
+
 
 @WebServlet("/ren_lease/RenLeaseServlet.do")
-
+@MultipartConfig
 public class RenLeaseServlet extends HttpServlet {
 	public void doGet(HttpServletRequest req, HttpServletResponse res)
 			throws ServletException, IOException {
@@ -82,6 +87,48 @@ public class RenLeaseServlet extends HttpServlet {
 				failureView.forward(req, res);
 			}
 		}
+		
+		if ("getOne".equals(action)) { // 來自select_page.jsp的請求
+
+			List<String> errorMsgs = new LinkedList<String>();
+			req.setAttribute("errorMsgs", errorMsgs);
+
+			try {
+				/***************************1.接收請求參數 - 輸入格式的錯誤處理**********************/
+				if (!errorMsgs.isEmpty()) {
+					RequestDispatcher failureView = req
+							.getRequestDispatcher("/frontend/ren_lease/select_page.jsp");
+					failureView.forward(req, res);
+					return;//程式中斷
+				}
+				/***************************2.開始查詢資料*****************************************/
+				RenLeaseService renLeaseSvc = new RenLeaseService();
+				List<RenLeaseVO> renLeaseVO = renLeaseSvc.getOne();
+
+				if (renLeaseVO == null) {
+					errorMsgs.add("查無資料");
+				}
+				if (!errorMsgs.isEmpty()) {
+					RequestDispatcher failureView = req
+							.getRequestDispatcher("/frontend/ren_lease/select_page.jsp");
+					failureView.forward(req, res);
+					return;//程式中斷
+				}
+				/***************************3.查詢完成,準備轉交(Send the Success view)*************/
+				req.setAttribute("renLeaseVO", renLeaseVO); // 資料庫取出的empVO物件,存入req
+				String url = "/frontend/ren_lease/listAllLease.jsp";
+				RequestDispatcher successView = req.getRequestDispatcher(url); // 成功轉交 listOneEmp.jsp
+				successView.forward(req, res);
+
+				/***************************其他可能的錯誤處理*************************************/
+			} catch (Exception e) {
+				errorMsgs.add("無法取得資料:" + e.getMessage());
+				RequestDispatcher failureView = req
+						.getRequestDispatcher("/frontend/ren_lease/select_page.jsp");
+				failureView.forward(req, res);
+			}
+		}
+		
 		
 	//		
 	//		if ("getOne_For_Update".equals(action)) { // 來自listAllEmp.jsp的請求
@@ -205,11 +252,13 @@ public class RenLeaseServlet extends HttpServlet {
 
 			try {
 				/***********************1.接收請求參數 - 輸入格式的錯誤處理*************************/
+				RenLeaseVO renLeaseVO = new RenLeaseVO();
 				Integer lseMemId = new Integer(req.getParameter("lseMemId"));
 				Integer lseLddId = new Integer(req.getParameter("lseLddId"));
 				Integer lseLisId = new Integer(req.getParameter("lseLisId"));
 				Integer lsePrice = new Integer(req.getParameter("lsePrice"));
-				
+				Integer lseLeaseMemId = new Integer(req.getParameter("lseLeaseMemId"));
+
 				java.sql.Date lseStart = null;
 				try {
 					lseStart = java.sql.Date.valueOf(req.getParameter("lseStart").trim());
@@ -226,14 +275,32 @@ public class RenLeaseServlet extends HttpServlet {
 					errorMsgs.add("請輸入日期!");
 				}
 				
+				Part part = req.getPart("lsePic");
+
+				byte[] lsePic = null;
+				if (part == null || part.getSize() == 0) {
+					req.setAttribute("renLeaseVO", renLeaseVO);
+					RenLeaseService renLeaseSvc2 = new RenLeaseService();
+					RenLeaseVO RenLeaseVO2 = renLeaseSvc2.getOneRenLease(lseLisId);
+					lsePic = RenLeaseVO2.getLsePic();
+
+				} else {
+					req.setAttribute("renLeaseVO", renLeaseVO);
+					InputStream in = part.getInputStream();
+					lsePic = new byte[in.available()];
+					in.read(lsePic);
+					in.close();
+				}					
 				
-				RenLeaseVO renLeaseVO = new RenLeaseVO();
+				
 				renLeaseVO.setLseMemId(lseMemId);
 				renLeaseVO.setLseLddId(lseLddId);
 				renLeaseVO.setLseLisId(lseLisId);
 				renLeaseVO.setLsePrice(lsePrice);
 				renLeaseVO.setLseStart(lseStart);
 				renLeaseVO.setLseEnd(lseEnd);
+				renLeaseVO.setLsePic(lsePic);
+				renLeaseVO.setLseLeaseMemId(lseLeaseMemId);
 
 				if (!errorMsgs.isEmpty()) {
 					req.setAttribute("renLeaseVO", renLeaseVO); // 含有輸入格式錯誤的empVO物件,也存入req
@@ -245,7 +312,7 @@ public class RenLeaseServlet extends HttpServlet {
 				
 				/***************************2.開始新增資料***************************************/
 				RenLeaseService renLeaseSvc = new RenLeaseService();
-				renLeaseVO = renLeaseSvc.addRenLease(lseMemId,lseLisId,lseLddId,lsePrice,lseStart,lseEnd);
+				renLeaseVO = renLeaseSvc.addRenLease(lseMemId,lseLisId,lseLddId,lsePrice,lseStart,lseEnd,lsePic,lseLeaseMemId);
 				
 				/***************************3.新增完成,準備轉交(Send the Success view)***********/
 				String url = "/frontend/ren_lease/listAllLease.jsp";

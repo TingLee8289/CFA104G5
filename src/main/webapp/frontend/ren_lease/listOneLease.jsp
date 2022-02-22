@@ -1,9 +1,22 @@
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ page import="ezs.ren_lease.model.*"%>
-<%-- 此頁暫練習採用 Script 的寫法取值 --%>
+<%@ page import="ezs.member.model.*"%>
+<%@ page import="java.util.*"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+
+
 
 <%
 RenLeaseVO renLeaseVO = (RenLeaseVO) request.getAttribute("renLeaseVO"); //EmpServlet.java(Concroller), 存入req的empVO物件
+RenLeaseService renLeaseSvc = new RenLeaseService();
+List<RenLeaseVO> list = renLeaseSvc.getAll();
+pageContext.setAttribute("list",list);
+%>
+ <%
+ 	MemberVO memberVO =(MemberVO) request.getAttribute("memberVO");
+	MemberService memberSvc = new MemberService();
+	List<MemberVO> list2= memberSvc.getAll(); 
+	pageContext.setAttribute("list2", list2);
 %>
 
 <html>
@@ -25,32 +38,31 @@ RenLeaseVO renLeaseVO = (RenLeaseVO) request.getAttribute("renLeaseVO"); //EmpSe
 <table>
 	<tr>
 		<th>租賃訂單編號</th>
-		<th>會員編號</th>
+		<th>房客會員編號</th>
+		<th>房客名稱</th>
 		<th>房東編號</th>
 		<th>房源編號</th>
 		<th>租金</th>
 		<th>租賃訂單狀態</th>
 		<th>租賃開始時間</th>
 		<th>租賃結束時間</th>
-		<th>房客評價房東星數</th>
-		<th>房客評價房東內容</th>
-		<th>房東評價房客星數</th>
-		<th>房東評價房客內容</th>
+		<th>租約照片<th>
 		<th>租賃訂單成立時間</th>
 	</tr>
 	<tr>
 		<td><%=renLeaseVO.getLseId()%></td>
-		<td><%=renLeaseVO.getLseMemId()%></td>
+		<td><%=renLeaseVO.getLseLeaseMemId()%></td>
+			<td>
+			<c:forEach var="memberVO" items="${list2}">			
+			<c:if test="${renLeaseVO.lseLeaseMemId == memberVO.memID}">${memberVO.memName}</c:if>
+			</c:forEach>
+			</td>
 		<td><%=renLeaseVO.getLseLisId()%></td>
 		<td><%=renLeaseVO.getLseLddId()%></td>
 		<td><%=renLeaseVO.getLsePrice()%></td>
 		<td><%=renLeaseVO.getLseStatus()%></td>
 		<td><%=renLeaseVO.getLseStart()%></td>
 		<td><%=renLeaseVO.getLseEnd()%></td>
-		<td><%=renLeaseVO.getLseLddScore()%></td>
-		<td><%=renLeaseVO.getLseLddTxt()%></td>
-		<td><%=renLeaseVO.getLseTntScore()%></td>
-		<td><%=renLeaseVO.getLseTntTxt()%></td>
 		<td><%=renLeaseVO.getLseTimestamp()%></td>
 	</tr>
 </table>
