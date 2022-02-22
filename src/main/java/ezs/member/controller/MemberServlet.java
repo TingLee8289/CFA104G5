@@ -93,7 +93,7 @@ public class MemberServlet extends HttpServlet {
 				/*************************** 其他可能的錯誤處理 *************************************/
 			} catch (Exception e) {
 				errorMsgs.add("無法取得資料:" + e.getMessage());
-				RequestDispatcher failureView = req.getRequestDispatcher("frontend/member/login2.jsp");
+				RequestDispatcher failureView = req.getRequestDispatcher("/frontend/member/login.jsp");
 				failureView.forward(req, res);
 			}
 		}
