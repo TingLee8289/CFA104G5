@@ -22,7 +22,7 @@ public class AdminEmpDAO implements AdminEmpDAO_interface {
 
 	private static final String GET_ONE_STMT = "SELECT adm_id, adm_username, adm_password, adm_status FROM `CFA104G5`.`ADMIN_EMP` WHERE adm_id = ?";
 	
-	private static final String Search = "SELECT adm_username, adm_password FROM `CFA104G5`.`ADMIN_EMP` WHERE (adm_username, adm_password) = (?, ?)";
+	private static final String Search = "SELECT adm_id, adm_username, adm_password, adm_status FROM `CFA104G5`.`ADMIN_EMP` WHERE (adm_username, adm_password) = (?, ?)";
 
 	private static final String Check = "SELECT adm_username FROM `CFA104G5`.`ADMIN_EMP` WHERE adm_username = ?";
 

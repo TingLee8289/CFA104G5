@@ -47,16 +47,16 @@ public class AdminEmpTest {
 //			System.out.print(aadminEmpVO.getAdmUsername() + ",");
 //			System
 		
-//		AdminEmpVO adminEmpVO4 = dao.Search("Alex","alex123");
-//		//System.out.print(adminEmpVO4.getAdmID() + ",");
-//		System.out.print(adminEmpVO4.getAdmUsername() + ",");
-//		System.out.print(adminEmpVO4.getAdmPassword() + ",");
-//		//System.out.print(adminEmpVO4.getAdmStatus());
-//		System.out.println("---------------------");
-//
-		AdminEmpVO adminEmpVO4 = dao.CheckAdmUsername("BOSS");
+		AdminEmpVO adminEmpVO4 = dao.Search("Alex","alex123");
+		System.out.print(adminEmpVO4.getAdmID() + ",");
 		System.out.print(adminEmpVO4.getAdmUsername() + ",");
+		System.out.print(adminEmpVO4.getAdmPassword() + ",");
+		System.out.print(adminEmpVO4.getAdmStatus());
 		System.out.println("---------------------");
+//
+//		AdminEmpVO adminEmpVO4 = dao.CheckAdmUsername("BOSS");
+//		System.out.print(adminEmpVO4.getAdmUsername() + ",");
+//		System.out.println("---------------------");
 		
 	}
 }
