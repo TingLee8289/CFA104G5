@@ -18,7 +18,9 @@
 		.navbar{
 			display: flex;
 			background-color: rgb(239,239,239);
-			position: sticky;
+			position:fixed;
+			z-index:9999;
+			width:100%;			
 		}
 		
 		a{
