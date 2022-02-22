@@ -8,10 +8,14 @@
 <title>login</title>
 <meta charset="utf-8" />
 <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+<meta name="viewport"
+	content="width=device-width, initial-scale=1, shrink-to-fit=no" />
 <title>EASY SPACE 後台</title>
-<link href="<%=request.getContextPath() %>/css/backendLogin.css" rel="stylesheet" />
-<script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/js/all.min.js" crossorigin="anonymous"></script>
+<link href="<%=request.getContextPath()%>/css/backendLogin.css"
+	rel="stylesheet" />
+<script
+	src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/js/all.min.js"
+	crossorigin="anonymous"></script>
 </head>
 <body class="bg-primary">
 
@@ -51,27 +55,43 @@
 									<h3 class="text-center font-weight-light my-4">後台登入</h3>
 								</div>
 								<div class="card-body">
-									<form>
+
+									<form METHOD="post"
+										ACTION="<%=request.getContextPath()%>/admin_emp/AdminEmpServlet.do">
+
+										<input type="hidden" name="action" value="getOne_For_Display">
 										<div class="form-floating mb-3">
-											<input class="form-control" id="inputEmail" type="email"
-												placeholder="name@example.com" /> <label for="inputEmail">管理員帳號</label>
+
+											<input class="form-control" id="inputEmail" type="text"
+												placeholder="name@example.com" name="admUsername" /> <label
+												for="inputEmail">管理員帳號</label>
+
 										</div>
 										<div class="form-floating mb-3">
+
 											<input class="form-control" id="inputPassword"
-												type="password" placeholder="Password" /> <label
-												for="inputPassword">密碼</label>
+												type="password" placeholder="Password" name="admPassword" />
+											<label for="inputPassword">密碼</label>
+
 										</div>
 										<div class="form-check mb-3">
-											<input class="form-check-input" id="inputRememberPassword"
-												type="checkbox" value="" /> <label class="form-check-label"
-												for="inputRememberPassword">Remember Password</label>
+											
+											<%-- 錯誤表列 --%>
+											<c:if test="${not empty errorMsgs}">
+													<c:forEach var="message" items="${errorMsgs}">
+														<p  style="color: red">${message}</p>
+													</c:forEach>
+											</c:if>
 										</div>
+
 										<div
 											class="d-flex align-items-center justify-content-between mt-4 mb-0">
-											<a class="small" href="password.html">Forgot Password?</a> <a
-												class="btn btn-primary" href="index.html">Login</a>
+											<%-- <a class="btn btn-primary" href="<%=request.getContextPath() %>/backend/ind.jsp">Login</a> --%>
+											<input type="submit" value="登入" align="center"class="btn btn-primary" >
 										</div>
+
 									</form>
+
 								</div>
 							</div>
 						</div>
@@ -94,7 +114,7 @@
 			</footer>
 		</div>
 	</div>
-	
+
 	<script
 		src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
 		crossorigin="anonymous"></script>

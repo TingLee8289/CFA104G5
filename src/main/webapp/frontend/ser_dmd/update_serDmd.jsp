@@ -10,6 +10,7 @@ SerDmdVO serDmdVO = (SerDmdVO) request.getAttribute("serDmdVO");
 <html>
 <head>
 <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
+<script src="<%=request.getContextPath()%>/frontend/js/jquery-1.11.3.min.js"></script>
 <title>需求單資料修改 - update_serDmd_input.jsp</title>
 
 <style>
@@ -144,8 +145,10 @@ SerDmdVO serDmdVO = (SerDmdVO) request.getAttribute("serDmdVO");
 	</tr>
 	<tr>
 		<td>需求簡介:</td>
-		<td><input type="TEXT" name="dmdIntro" size= "100"
-			 value="<%= serDmdVO.getDmdIntro() %>"/></td>
+		<td>
+				<textarea name="dmdIntro"rows="4" cols="50" value="<%=  serDmdVO.getDmdIntro() %>"></textarea>
+		
+		</td>
 	</tr>
 	<tr>
 		<td>照片:</td>
@@ -155,12 +158,18 @@ SerDmdVO serDmdVO = (SerDmdVO) request.getAttribute("serDmdVO");
 			<p>圖片預覽</p>
 		</div>
 	</tr>
+	<tr>
+	<td>
+	
+<input type="submit" value="送出修改">
+	</td>
+	</tr>
 
 </table>
 <br>
 <input type="hidden" name="action" value="update">
 <input type="hidden" name="dmdID" value="<%=serDmdVO.getDmdID()%>">
-<input type="submit" value="送出修改"></FORM>
+</FORM>
 </body>
 <script>
 	// 	// // change這個event有只代表改變，並不代表有檔案。

@@ -22,7 +22,7 @@ public class AdminEmpJDBCDAO implements AdminEmpDAO_interface {
 
 	private static final String GET_ONE_STMT = "SELECT adm_id, adm_username, adm_password, adm_status FROM `CFA104G5`.`ADMIN_EMP` WHERE adm_id = ?";
 	
-	private static final String Search = "SELECT adm_username, adm_password FROM `CFA104G5`.`ADMIN_EMP` WHERE (adm_username, adm_password) = (?, ?)";
+	private static final String Search = "SELECT adm_id, adm_username, adm_password, adm_status FROM `CFA104G5`.`ADMIN_EMP` WHERE (adm_username, adm_password) = (?, ?)";
 
 	private static final String Check = "SELECT adm_username FROM `CFA104G5`.`ADMIN_EMP` WHERE adm_username = ?";
 	
@@ -147,10 +147,10 @@ public class AdminEmpJDBCDAO implements AdminEmpDAO_interface {
 
 			while (rs.next()) {
 				adminEmpVO = new AdminEmpVO();
-//				adminEmpVO.setAdmID(rs.getInt("ADM_ID"));
+				adminEmpVO.setAdmID(rs.getInt("ADM_ID"));
 				adminEmpVO.setAdmUsername(rs.getString("ADM_USERNAME"));
 				adminEmpVO.setAdmPassword(rs.getString("ADM_PASSWORD"));
-//				adminEmpVO.setAdmStatus(rs.getInt("ADM_STATUS"));
+				adminEmpVO.setAdmStatus(rs.getInt("ADM_STATUS"));
 			}
 
 		} catch (SQLException se) {
