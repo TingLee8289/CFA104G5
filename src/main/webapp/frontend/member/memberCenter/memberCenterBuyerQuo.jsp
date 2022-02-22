@@ -162,7 +162,7 @@ header {
                 <a class="" href="<%=request.getContextPath()%>/frontend/member/memberCenter/memberCenterBuyer.jsp">買家訂單管理</a>
               </li>
               <li class="li-item active" data-id="2">
-                <a class="" href="#">賣家管理</a>
+                <a class="" href="<%=request.getContextPath()%>/frontend/member/memberCenter/memberCenterSeller.jsp">賣家管理</a>
               </li>
             </ul>
           </aside>
