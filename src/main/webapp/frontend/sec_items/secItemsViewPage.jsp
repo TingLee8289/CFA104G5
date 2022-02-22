@@ -98,7 +98,7 @@ pageContext.setAttribute("secItemslist", secItemslist);
 
       /* ==================== main 區域 ==================== */
       main.main{
-        border: 1px solid red;
+/*         border: 1px solid red; */
         margin-left: var(--aside-width);
         width: calc(100% - var(--aside-width));
         padding: 20px;
@@ -139,20 +139,26 @@ pageContext.setAttribute("secItemslist", secItemslist);
       }
       main.main ul.item_list > li > a{
         display: inline-block;
-/*         border: 1px solid red; */
+/*         border: 1px solid red;  */
         text-decoration: none;
         width: 100%;
       }
       main.main ul.item_list > li > a div.img_block{
-/*         border: 1px solid blue; */
+        border: 1px solid #e1e1e1;
         font-size: 0;
         height: 200px;
+        display: flex;
       }
       main.main ul.item_list > li > a span.item_text{
-/*         border: 1px solid blue; */
+/*         border: 1px solid blue;  */
         white-space: nowrap;
         overflow: hidden;
         text-overflow: ellipsis;
+        display: block;
+        width: 100%;
+      }
+      main.main ul.item_list > li > a span.item_price{
+/*         border: 1px solid blue;  */
         display: block;
         width: 100%;
       }
@@ -190,7 +196,7 @@ pageContext.setAttribute("secItemslist", secItemslist);
 				<li>
 					<a href="<%=request.getContextPath()%>/sec_items/GetSecItemsServlet.do?shID=${secPicsVO.shID}&action=getOne_For_Display">
 						<div class="img_block">
-							<img
+							<img style="margin: 0px auto;"
 								src="<%= request.getContextPath()%>/sec_pics/SecPicsReader.do?sh_id=${secPicsVO.shID}">
 						</div> <c:forEach var="secItemsVO" items="${secItemslist}">
 							<c:if test="${secItemsVO.shID==secPicsVO.shID}">
