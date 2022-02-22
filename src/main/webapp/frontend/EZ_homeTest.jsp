@@ -4,9 +4,8 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>EASY SPACE</title>
 <meta charset="UTF-8">
-<title>Bootstrap 5 generator example page</title>
 
 <meta charset="utf-8">
 <meta name="viewport"
@@ -24,7 +23,7 @@
 	<nav class="navbar navbar-light bg-white  navbar-expand-md ">
 		<div class="container">
 			<div class="text-left" style="padding:20px;">
-				<a href="#"> <img src="<%=request.getContextPath() %>/images/cmn/index/EASYSPACE.png" height="100px" alt="image">
+				<a href="<%= request.getContextPath()%>/frontend/EZ_home.jsp"> <img src="<%=request.getContextPath() %>/images/cmn/index/EASYSPACE.png" height="100px" alt="image">
 				</a>
 			</div>
 			<button class="navbar-toggler" type="button" data-toggle="collapse"
@@ -63,13 +62,13 @@
 		<div>
 			<form class="form-noborder" style="left: 178px; position: absolute; top: 130px;">
 				<div class="row mb-5 justify-content-center">
-					<div class="col-lg-8 col-sm-12 form-group" style="width: 650px; padding: 0 10px 0 0; border: 1px solid black;">
+					<div class="col-lg-8 col-sm-12 form-group" style="width: 650px; padding: 0 10px 0 0;">
 						<input class="form-control form-control-lg"
-							placeholder="Search keyword" type="text" style="font-size: 10px; width: 650px; margin-left: 40px"/>
+							placeholder="Search keyword" type="text" style="font-size: 10px; width: 620px; margin-left: 40px"/>
 					</div>
 		
 					<div class="col-lg-3 col-sm-12 form-group" style="width:100px">
-						<button class="btn btn-primary" type="submit" style="font-size:16px;">搜尋</button>
+						<button class="btn btn-primary" type="submit" style="font-size:15px;">搜尋</button>
 					</div>
 				</div>
 			</form>
@@ -145,7 +144,6 @@
 							<a href="#"> <svg class="d-block mb-4" width="36" height="36"
 									viewBox="0 0 612 612" xmlns="http://www.w3.org/2000/svg"
 									focusable="false">
-                    <title>Bootstrap</title>
                     <path fill="currentColor"
 										d="M510 8a94.3 94.3 0 0 1 94 94v408a94.3 94.3 0 0 1-94 94H102a94.3 94.3 0 0 1-94-94V102a94.3 94.3 0 0 1 94-94h408m0-8H102C45.9 0 0 45.9 0 102v408c0 56.1 45.9 102 102 102h408c56.1 0 102-45.9 102-102V102C612 45.9 566.1 0 510 0z">
                     </path>
@@ -155,7 +153,8 @@
                   </svg>
 							</a>
 							<address class="color-light-20">
-								1600 Amphitheatre Parkway <br> Mountain View, CA 94043
+								EASY SPACE<br>
+								320 桃園市中壢區復興路46號9樓
 							</address>
 							<ul class="list-unstyled list-light">
 								<li><a href="#">Disclaimer</a></li>
@@ -204,7 +203,7 @@
 					<div class="row f-flex justify-content-between">
 						<div class="col-md-8 text-xs-center  text-left   my-1">
 							<p class="mt-2  text-muted">
-								© Copyright 2021 • All Rights Reserved | <a class=" " href="#">Disclaimer</a>
+								© Copyright 2022 • All Rights Reserved | <a class=" " href="#">Disclaimer</a>
 								| <a class=" " href="#">Contact</a>
 							</p>
 						</div>
@@ -228,22 +227,6 @@
 							</div>
 						</div>
 					</div>
-				</div>
-			</div>
-		</div>
-	</section>
-	<section class="pb-5 pt-5 bg-gray">
-		<div class="container">
-			<div class="row text-center justify-content-center">
-				<div class="col-12 col-md-8 col-lg-7">
-					<p class="text-h2">support@website.com</p>
-					<p class="text-h3">Fusce dapibus, tellus ac cursus commodo,
-						tortor mauris condimentum nibh, ut fermentum massa justo sit amet
-						risus.</p>
-					<p>
-						<br>
-					</p>
-
 				</div>
 			</div>
 		</div>

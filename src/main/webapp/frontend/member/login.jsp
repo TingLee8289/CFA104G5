@@ -219,7 +219,7 @@ a {
 </style>
 </head>
 <body>
-	<jsp:include page="/frontend/EZ_LoginHeader.jsp" />
+<%-- 	<jsp:include page="/frontend/EZ_LoginHeader.jsp" /> --%>
 
 
 	<%-- 錯誤表列 --%>
