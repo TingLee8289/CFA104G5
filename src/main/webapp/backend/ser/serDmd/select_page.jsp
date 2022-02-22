@@ -29,18 +29,10 @@ h4 {
 </style>
 
 </head>
-<body bgcolor='white'>
+<body>
 
-	<table id="table-1">
-		<tr>
-			<td><h3>Ezs Service Demand: Home</h3>
-				<h4>( MVC )</h4></td>
-		</tr>
-	</table>
 
-	<p>This is the Home page for Ezs Service Demand: Home</p>
-
-	<h3>資料查詢:</h3>
+	<h2>後台需求單管理</h2>
 
 	<%-- 錯誤表列 --%>
 	<c:if test="${not empty errorMsgs}">
@@ -53,8 +45,9 @@ h4 {
 	</c:if>
 
 	<ul>
-		<li><a href='<%=request.getContextPath()%>/backend/ser/serDmd/listAllSerDmd.jsp'>List</a>
-			all Dmd. <br> <br></li>
+		<li><a href='<%=request.getContextPath()%>/backend/ser/serDmd/listAllSerDmd.jsp'>檢視需求單</a>
+			</li>
+			<br>
 
 		<li>
 			<FORM METHOD="post"
@@ -90,10 +83,10 @@ h4 {
 		</li>
 	</ul>
 
-	<h3>需求單管理</h3>
+	
 
 	<ul>
-		<li><a href="<%=request.getContextPath()%>/backend/ser/serDmd/addSerDmd.jsp">Add</a> a new Ser Demand.</li>
+		<li><a href="<%=request.getContextPath()%>/backend/ser/serDmd/addSerDmd.jsp">新增需求單</a> </li>
 	</ul>
 
 </body>

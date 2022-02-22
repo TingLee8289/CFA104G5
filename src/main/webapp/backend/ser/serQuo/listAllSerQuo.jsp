@@ -14,53 +14,22 @@ pageContext.setAttribute("serQuolist", serQuolist);
 
 <html>
 <head>
-<title>所有估價單資料 - listAllSerQuo.jsp</title>
+<title>所有估價單資料</title>
+<link
+	href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css"
+	rel="stylesheet"
+	integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3"
+	crossorigin="anonymous">
 
-<style>
-table#table-1 {
-	background-color: #CCCCFF;
-	border: 2px solid black;
-	text-align: center;
-}
-
-table#table-1 h4 {
-	color: red;
-	display: block;
-	margin-bottom: 1px;
-}
-
-h4 {
-	color: blue;
-	display: inline;
-}
-</style>
-
-<style>
-table {
-	width: 100%;
-	background-color: white;
-	margin-top: 5px;
-	margin-bottom: 5px;
-}
-
-table, th, td {
-	border: 1px solid #CCCCFF;
-}
-
-th, td {
-	padding: 5px;
-	text-align: center;
-}
-</style>
 
 </head>
-<body bgcolor='white'>
+<body>
 
-	<h4>此頁練習採用 EL 的寫法取值:</h4>
+
 	<table id="table-1">
 		<tr>
 			<td>
-				<h3>所有估價單資料 - listAllSerQuo.jsp</h3>
+
 				<h4>
 					<a
 						href="<%=request.getContextPath()%>/backend/ser/serQuo/quoBackend.jsp">回首頁</a>
@@ -78,57 +47,76 @@ th, td {
 			</c:forEach>
 		</ul>
 	</c:if>
+	\
+	<div class="container-fluid m-3 mx-auto">
+		<main>
+			<div id="data-panel" class="table-responsive ">
+				<table
+					class="table table-striped table-hover align-middle text-center caption-top">
+					<caption>
 
-	<table>
-		<tr>
-			<th>估價單ID</th>
-			<th>估價單狀態</th>
-			<th>需求單ID</th>
-			<th>廠商ID</th>
-			<th>估價日期</th>
-			<th>有效限期</th>
-			<th>估價項目</th>
-			<th>估價總價</th>
-			<th>修改</th>
-			<th>刪除</th>
-		</tr>
- <%@ include file = "page1.file"%> 
-		<c:forEach var="serQuoVO" items="${serQuolist}" begin="<%=pageIndex%>"
-			end="<%=pageIndex+rowsPerPage-1%>"> 
-<%-- <c:forEach var="serQuoVO" items="${serQuolist}"> --%>
-								<!-- 變數名稱要注意 -->
-			<tr>
-				<td>${serQuoVO.quoID}</td>
-				<td>${serQuoVO.quoStatus}</td>
-				<td>${serQuoVO.quoDmdID}</td>
-				<td>${serQuoVO.quoVdrID}</td>
-				<td>${serQuoVO.quoDate}</td>
-				<td>${serQuoVO.quoExpiryDate}</td>
-				<td>${serQuoVO.quoItem}</td>
-				<td>${serQuoVO.quoTotalPrice}</td>
-				
-				<td>
-					<FORM METHOD="post"
-						ACTION="<%=request.getContextPath()%>/ser_quo/UpdateQuoServlet.do"
-						style="margin-bottom: 0px;">
-						<input type="submit" value="修改"> 
-						<input type="hidden"name="quoID" value="${serQuoVO.quoID}"> 
-						<input type="hidden" name="action" value="updateOneQuo">
-					</FORM>
-				</td>
-				<td>
-					<FORM METHOD="post"
-						ACTION="<%=request.getContextPath()%>/ser_quo/DeleteQuoServlet.do"
-						style="margin-bottom: 0px;">
-						<input type="submit" value="刪除"> 
-						<input type="hidden" name="quoID" value="${serQuoVO.quoID}"> 
-						<input type="hidden" name="action" value="delete">
-					</FORM>
-				</td>
-			</tr>
-		</c:forEach>
-	</table>
-<%@ include file="page2.file"%> 
+						<h2>所有估價單</h2>
+						<%@ include file="page1.file"%>
+					</caption>
+					<thead class="table-success">
+
+
+						<tr class="text-nowrap">
+							<th>估價單ID</th>
+							<th>估價單狀態</th>
+							<th>需求單ID</th>
+							<th>廠商ID</th>
+							<th>估價日期</th>
+							<th>有效限期</th>
+							<th>估價項目</th>
+							<th>估價總價</th>
+							<th>修改</th>
+							<th>刪除</th>
+						</tr>
+					</thead>
+					<tbody id="show-list">
+
+						<c:forEach var="serQuoVO" items="${serQuolist}"
+							begin="<%=pageIndex%>" end="<%=pageIndex+rowsPerPage-1%>">
+							<%-- <c:forEach var="serQuoVO" items="${serQuolist}"> --%>
+							<!-- 變數名稱要注意 -->
+							<tr>
+								<td>${serQuoVO.quoID}</td>
+								<td>${serQuoVO.quoStatus}</td>
+								<td>${serQuoVO.quoDmdID}</td>
+								<td>${serQuoVO.quoVdrID}</td>
+								<td>${serQuoVO.quoDate}</td>
+								<td>${serQuoVO.quoExpiryDate}</td>
+								<td>${serQuoVO.quoItem}</td>
+								<td>${serQuoVO.quoTotalPrice}</td>
+
+								<td>
+									<FORM METHOD="post"
+										ACTION="<%=request.getContextPath()%>/ser_quo/UpdateQuoServlet.do"
+										style="margin-bottom: 0px;">
+										<input type="submit" value="修改"> <input type="hidden"
+											name="quoID" value="${serQuoVO.quoID}"> <input
+											type="hidden" name="action" value="updateOneQuo">
+									</FORM>
+								</td>
+								<td>
+									<FORM METHOD="post"
+										ACTION="<%=request.getContextPath()%>/ser_quo/DeleteQuoServlet.do"
+										style="margin-bottom: 0px;">
+										<input type="submit" value="刪除"> <input type="hidden"
+											name="quoID" value="${serQuoVO.quoID}"> <input
+											type="hidden" name="action" value="delete">
+									</FORM>
+								</td>
+							</tr>
+						</c:forEach>
+					</tbody>
+				</table>
+			</div>
+		</main>
+	</div>
+
+	<%@ include file="page2.file"%>
 
 </body>
 </html>
