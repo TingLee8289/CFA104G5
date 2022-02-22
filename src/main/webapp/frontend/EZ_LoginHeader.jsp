@@ -17,7 +17,8 @@
 		
 		.navbar{
 			display: flex;
-			background-color: white;
+			background-color: rgb(239,239,239);
+			position: sticky;
 		}
 		
 		a{
@@ -41,13 +42,13 @@
 
 <body>
 
-	<nav class="navbar navbar-light bg-white  navbar-expand-md ">
+	<nav class="navbar navbar-light  navbar-expand-md ">
 		<div class="header">
 			<div class="col-2 pl-md-0 text-left" style="display: inline-block;">
 				<a href="<%=request.getContextPath()%>/frontend/EZ_home.jsp"> 
 				<img
 					src="<%=request.getContextPath()%>/images/cmn/index/EASYSPACE.png"
-					height="70" alt="image">
+					alt="image" >
 				</a>
 			</div>
 			<div class="logintext">| EASY SPACE</div>
