@@ -28,12 +28,17 @@
 			margin: 0px;
 		}
 		
-		.logintext{
+		.brand-text{
 			margin: auto 0px;
 			display: inline-block; 
 			font-size: 30px; 
 			font-family: sans-serif;
 			color: rgb(187,122,68);
+		}
+		
+		#logo{
+			max-height: 60px;
+			margin: auto 0px;
 		}
 		
 		
@@ -49,12 +54,10 @@
 		<div class="header">
 			<div class="col-2 pl-md-0 text-left" style="display: inline-block;">
 				<a href="<%=request.getContextPath()%>/frontend/EZ_home.jsp"> 
-				<img
-					src="<%=request.getContextPath()%>/images/cmn/index/EASYSPACE.png"
-					alt="image" >
+				<img src="<%=request.getContextPath()%>/images/cmn/index/EASYSPACE.png" alt="image" id="logo">
 				</a>
 			</div>
-			<div class="logintext">| EASY SPACE</div>
+			<div class="brand-text">| EASY SPACE</div>
 		</div>
 	</nav>
 

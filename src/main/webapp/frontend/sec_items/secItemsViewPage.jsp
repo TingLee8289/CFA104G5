@@ -190,6 +190,7 @@ pageContext.setAttribute("secItemslist", secItemslist);
     </style>
   </head>
   <body>
+<%--   	<jsp:include page="/frontend/EZ_nav.jsp"/> --%>
     <jsp:include page="/frontend/EZ_LoginHeader.jsp" />
     <aside class="probootstrap-aside js-probootstrap-aside aside">
       <a href="#" class="probootstrap-close-menu js-probootstrap-close-menu d-md-none"><span class="oi oi-arrow-left"></span> Close</a>

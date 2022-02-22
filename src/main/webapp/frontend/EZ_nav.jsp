@@ -32,13 +32,13 @@
 			</button>
 			<div class="collapse navbar-collapse" id="navbarTogglerDemo03">
 				<ul class="navbar-nav ms-auto me-sm-2 mt-2 mt-lg-0">
-					<li class="nav-item active me-3"><a class="nav-link text-dark" href="#">首頁
+					<li class="nav-item active me-3"><a class="nav-link text-dark" href="<%= request.getContextPath()%>/frontend/EZ_home.jsp">首頁
 					</a></li>
 					<li class="nav-item me-3"><a class="nav-link text-dark" href="#">租賃服務</a>
 					</li>
-					<li class="nav-item me-3"><a class="nav-link text-dark" href="#">二手家電</a>
+					<li class="nav-item me-3"><a class="nav-link text-dark" href="<%= request.getContextPath()%>/frontend/sec_items/secItemsViewPage.jsp">二手家電</a>
 					</li>
-					<li class="nav-item me-3"><a class="nav-link text-dark" href="#">居家服務</a>
+					<li class="nav-item me-3"><a class="nav-link text-dark" href="<%= request.getContextPath()%>/frontend/ser_ad/serAdViewPage.jsp">居家服務</a>
 					</li>
 					<li class="nav-item dropdown"><a class="nav-link text-dark" href="#"
 						id="navbarDropdown" role="button" data-bs-toggle="dropdown"
@@ -48,9 +48,10 @@
 							alt="Htmlstream"> John Doe <i class="fa fa-angle-down   "></i>
 					</a>
 						<div class="dropdown-menu" aria-labelledby="navbarDropdown">
-							<a class="dropdown-item" href="#">會員中心</a> <a
-								class="dropdown-item" href="#">賣家中心</a> <a class="dropdown-item"
-								href="#">聊聊</a>
+							<a class="dropdown-item" href="<%= request.getContextPath()%>/frontend/member/memberCenter/memberCenter.jsp">會員中心</a> 
+							<a class="dropdown-item" href="#">賣家中心</a> 
+							<a class="dropdown-item" href="<%=request.getContextPath()%>/frontend/chat/index.jsp">聊聊</a>
+							<a class="dropdown-item" href="<%=request.getContextPath()%>/frontend/sec_items/shoppingCart.jsp">購物車</a>
 							<div class="dropdown-divider"></div>
 							<a class="dropdown-item" href="#">登出</a>
 						</div></li>
