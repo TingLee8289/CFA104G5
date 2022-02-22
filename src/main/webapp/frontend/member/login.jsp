@@ -180,8 +180,10 @@ header {
 													</c:forEach>
 												</ul>
 											</c:if>
+<%-- 											<a href="<%=request.getContextPath()%>/frontend/member/resetpassword.jsp"></a> --%>
 										<button class="btn btn-outline-warning mt-3"
-											style="background-color: #C3894F; color: white">忘記密碼</button>
+											style="background-color: #C3894F; color: white" onclick="location.href="<%=request.getContextPath()%>/frontend/member/resetpassword.jsp">
+											忘記密碼</button>
 									</div>
 								</div>
 							</div>

@@ -88,8 +88,8 @@ th, td {
 		<table>
 			<tr>
 				<td>商品編號:<font color=red><b>*</b></font></td>
-				<td><input type="TEXT" name="shSellerID"
-					value="<%=secItemsVO.getShID()%>" /></td>
+				
+				<td><%=secItemsVO.getShID()%></td>
 				
 			</tr>
 

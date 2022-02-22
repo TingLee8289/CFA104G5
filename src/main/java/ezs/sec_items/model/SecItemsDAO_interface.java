@@ -9,7 +9,8 @@ public interface SecItemsDAO_interface {
     public void delete(Integer shID);
     public SecItemsVO findByPrimaryKey(Integer shID);
     public List<SecItemsVO> findByShCategory(Integer shCateID);
+    public List<SecItemsVO> findByStatus(Integer shStatus);
     public List<SecItemsVO> getAll();
-    public List<SecItemsVO> getShStatusAll(Integer shStatus);
+    public SecItemsVO getShStatusAll(Integer shStatus);
 }
 

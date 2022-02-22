@@ -97,7 +97,7 @@ public class SecOrdService {
 		secOrdVO.setShOrdID(shOrdID);
 		secOrdVO.setShOrdStatus(shOrdStatus);
 		
-		dao.update(secOrdVO);
+		dao.updateOrderStatus(secOrdVO);
 		
 		return secOrdVO;
 	}
@@ -138,8 +138,7 @@ public class SecOrdService {
 		dao.updateCancleOrder(shOrdID);
 	}
 	
-	public void updateOrderShippered(Integer shOrdID) {
-		dao.updateOrderShippered(shOrdID);
-	}
+
+	
 	
 }
