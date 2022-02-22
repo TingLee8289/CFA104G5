@@ -3,11 +3,11 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>會員中心頁面</title>
+<title>Insert title here</title>
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
 <style>
 	* {
-  box-sizing: border-box;
+  box-sizing: border-box; 
 }
 html,
 body {
@@ -64,8 +64,7 @@ header {
   width: 80%;
   margin: 0 auto;
 }
- 
- 
+
 /**  right   ***/
 #sideBarUl > .li-item {
   margin-top: 1em;
@@ -142,7 +141,7 @@ header {
       </div>
     </div>
   </header>
-
+  
   <main>
     <div id="會員登入" class="section">
       <div class="container">
@@ -172,11 +171,42 @@ header {
             <!--  右側 上方導覽列  -->
             <div class="right-content-menu">
               <div class="part-menu">
-                
+                <!--      買家訂單管理           -->
+                <ul class="nav navbar">
+                  <li class="dropdown">
+                    <a href="#" class="dropdown-toggle" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">租屋訂單管理</a>
+                    <ul class="dropdown-menu text-center">
+                      <li><a class="dropdown-item" href="#1" data-id="2111">預約單管理</a></li>
+                      <li><a class="dropdown-item" href="#2" data-id="2122">租賃訂單管理</a></li>
+                      <li><a class="dropdown-item" href="#3" data-id="213">收藏房源管理</a></li>
+                    </ul>
+                  </li>
+                  <li class="dropdown">
+                    <a href="#" class="dropdown-toggle" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">二手訂單管理</a>
+                    <ul class="dropdown-menu text-center">
+                      <li><a class="dropdown-item" href="#4" data-id="221">評價</a></li>
+                      <li><a class="dropdown-item" href="#5" data-id="222">檢舉</a></li>
+                      <li><a class="dropdown-item" href="#6" data-id="223">完成訂單</a></li>
+                      <li><a class="dropdown-item" href="#7" data-id="224">取消訂單</a></li>
+                      <li><a class="dropdown-item" href="#8" data-id="225">申請退款</a></li>
+                      <li><a class="dropdown-item" href="#9" data-id="226">延遲付款</a></li>
+                    </ul>
+                  </li>
+                  <li class="dropdown">
+                    <a href="#" class="dropdown-toggle" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">服務案件管理</a>
+                    <ul class="dropdown-menu text-center">
+                     <li><a class="dropdown-item" href="<%=request.getContextPath()%>/frontend/member/memberCenter/memberCenterBuyerDmd.jsp" data-id="231">需求單管理</a></li>
+                      <li><a class="dropdown-item" href="<%=request.getContextPath()%>/frontend/member/memberCenter/memberCenterBuyerQuo.jsp" data-id="232">估價單管理</a></li>
+                      <li><a class="dropdown-item" href="<%=request.getContextPath()%>/frontend/member/memberCenter/memberCenterBuyerOrd.jsp" data-id="233">訂單管理</a></li>
+                    </ul>
+                  </li>
+                </ul>
+              </div>
+            </div>
             <!--  右側 內容  -->
             <div id="article-list">
             
-           <p>這裡列出會員資料</p>
+           <jsp:include page="/frontend/ser_quo/findByQuoDmdID.jsp"></jsp:include>
               <!-- 2111 預約單管理 進行中預約單 -->
             </div>
           </div>
@@ -186,7 +216,7 @@ header {
     </div>
   </main>
 
-  <footer>
+   <footer>
     <section class="ccc website-map pt-5">
       <div class="container">
         <div class="row">
@@ -267,6 +297,6 @@ header {
 <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.10.2/dist/umd/popper.min.js" integrity="sha384-7+zCNj/IqJ95wo16oMtfsKbZ9ccEh31eOz1HGyDuCQ6wgnyJNSYdrPa03rtR1zdB" crossorigin="anonymous"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.min.js" integrity="sha384-QJHtvGhmr9XOIpI6YVutG+2QOK9T+ZnN4kzFN1RtK3zEFEIsxhlmWl5/YESvpZ13" crossorigin="anonymous"></script>
 
-	
+
 </body>
 </html>
