@@ -31,16 +31,20 @@
 </style>
 
 <style>
-  table {
+   table {
+	width: 450px;
 	background-color: white;
 	margin-top: 1px;
 	margin-bottom: 1px;
+	margin: 0 auto;
   }
   table, th, td {
     border: 0px solid #CCCCFF;
   }
   th, td {
     padding: 1px;
+    display:inline-block;
+/*    文字要加此行 */
   }
 </style>
 
@@ -151,8 +155,10 @@
 	</tr>
 	<tr>
 		<td>需求簡介:</td>
-		<td><input type="TEXT" name="dmdIntro" size= "50"
-			 value="<%= (serDmdVO==null)? "搞裡頭" : serDmdVO.getDmdIntro() %>"/></td>
+		<td>
+		<textarea name="dmdIntro"rows="4" cols="50" value="<%= (serDmdVO==null)? "搞裡頭" : serDmdVO.getDmdIntro() %>"></textarea>
+<%-- 		<input type="TEXT" name="dmdIntro" size= "50"value="<%= (serDmdVO==null)? "搞裡頭" : serDmdVO.getDmdIntro() %>"/> --%>
+	    </td>
 	</tr>
 	<tr>
 		<td>照片:</td>
@@ -163,12 +169,18 @@
 		</div>
 	</tr>
 	
+	<tr>
+		<td>
+			<input type="submit" value="送出新增">
+
+		</td>
+	</tr>
 	
 
 </table>
 <br>
 <input type="hidden" name="action" value="insert">
-<input type="submit" value="送出新增"></FORM>
+</FORM>
 </body>
 
 <script>
