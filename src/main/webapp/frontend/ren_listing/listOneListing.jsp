@@ -1,10 +1,25 @@
+<%@page import="ezs.ren_favorites.model.RenFavoritesService"%>
+<%@page import="ezs.ren_favorites.model.RenFavoritesVO"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ page import="ezs.ren_listing.model.*"%>
-
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ page import="java.util.*"%>
 <%
  RenListingVO renListingVO = (RenListingVO) request.getAttribute("renListingVO");
 %>
+<%
+ RenFavoritesVO renFavoritesVO = (RenFavoritesVO) request.getAttribute("renFavoritesVO");
+
+%>
+
+<%
+	RenFavoritesService renFavSvc = new RenFavoritesService();
+    List<RenFavoritesVO> list = renFavSvc.getAll();
+    pageContext.setAttribute("list",list);
+%>
+
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -135,6 +150,38 @@
 	</tr>
 </table>
 
+<div>
+
+<button type="button" class="btn btn-outline-secondary" id="collection" value="${renListingVO.lisID}"
+										style="margin-right: 20px;">收藏</button>
+<button type="button" class="btn btn-outline-secondary" id="collection" value="${renFavoritesVO.favLisId}"
+										style="margin-right: 20px;">收藏</button>
+                 
+<form method="post" action="<%=request.getContextPath()%>/RenFavoritesServlet.do">
+	<input type="submit" value="加入收藏">
+	<input type="hidden" name="favLisId" value="${renFavoritesVO.favLisId}">
+	<input type="hidden" name="action" value="insert">
+</form>
+
+
+</div>
+
+<div>
+</div>
+<button id="addApp" class="float-left submit-button" >預約看房</button>
+<script type="text/javascript">
+    document.getElementById("addApp").onclick = function () {
+        location.href = "<%=request.getContextPath()%>/frontend/ren_appointment/addRenAppointment.jsp";
+    };
+</script>
+<div>
+<form method="post" action="<%=request.getContextPath()%>/RenAppointmentServlet.do">
+	<input type="submit" value="預約看房">
+	<input type="hidden" name="favLisId" value="${renListingVO.lisID}">
+	<input type="hidden" name="action" value="insert">
+</form>
+<a href='<%=request.getContextPath()%>/frontend/ren_appointment/addRenAppointment.jsp'>List</a> all Depts.
+</div>
 </body>
 </html>		
 		

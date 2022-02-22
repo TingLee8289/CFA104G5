@@ -21,13 +21,11 @@ table#table-1 {
 	border: 2px solid black;
 	text-align: center;
 }
-
 table#table-1 h4 {
 	color: red;
 	display: block;
 	margin-bottom: 1px;
 }
-
 h4 {
 	color: blue;
 	display: inline;
@@ -41,11 +39,9 @@ table {
 	margin-top: 1px;
 	margin-bottom: 1px;
 }
-
 table, th, td {
 	border: 0px solid #CCCCFF;
 }
-
 th, td {
 	padding: 1px;
 }
@@ -148,7 +144,6 @@ th, td {
 .xdsoft_datetimepicker .xdsoft_datepicker {
 	width: 300px; /* width:  300px; */
 }
-
 .xdsoft_datetimepicker .xdsoft_timepicker .xdsoft_time_box {
 	height: 151px; /* height:  151px; */
 }

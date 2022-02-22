@@ -3,8 +3,8 @@
 <%@ page import="ezs.sec_ord.model.*"%>
 <%@ page import="ezs.sec_ord_details.model.*"%>
 
-<jsp:useBean id="listSecOrdDetails_BySecOrd" scope="request"
-	type="java.util.Set<SecOrdDetailsVO>" />
+<jsp:useBean id="listSecOrdDetails_ByShOrdID" scope="request"
+	type="java.util.List<SecOrdDetailsVO>" />
 <!-- 於EL此行可省略 -->
 <jsp:useBean id="secOrdSvc" scope="page"
 	class="ezs.sec_ord.model.SecOrdService" />
@@ -12,7 +12,7 @@
 
 <html>
 <head>
-<title>訂單明細 - listSecOrdDetails_BySecOrd.jsp</title>
+<title>訂單明細 - listSecOrdDetails_ByShOrdID.jsp</title>
 
 <style>
 table#table-2 {
@@ -58,7 +58,7 @@ th, td {
 	<table id="table-2">
 		<tr>
 			<td>
-				<h3>訂單明細 - listSecOrdDetails_BySecOrd.jsp</h3>
+				<h3>訂單明細 - listSecOrdDetails_ByShOrd.jsp</h3>
 				<h4>
 					<a
 						href="<%=request.getContextPath()%>/frontend/sec_ord/secOrdHomeSeller.jsp"><img
@@ -90,7 +90,7 @@ th, td {
 
 
 		<c:forEach var="secOrdDetailsVO"
-			items="${listSecOrdDetails_BySecOrd}">
+			items="${listSecOrdDetails_ByShOrdID}">
 			<tr>
 				<td>${secOrdDetailsVO.shOrdID}</td>
 				<td>${secOrdDetailsVO.shID}</td>
@@ -100,17 +100,7 @@ th, td {
 			</tr>
 		</c:forEach>
 
-
-
-
-
 	</table>
-
-	<br>本網頁的路徑:
-	<br>
-	<b> <font color=blue>request.getServletPath():</font> <%=request.getServletPath()%><br>
-		<font color=blue>request.getRequestURI(): </font> <%=request.getRequestURI()%>
-	</b>
 
 </body>
 </html>
