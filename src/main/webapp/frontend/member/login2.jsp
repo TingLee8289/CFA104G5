@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+	<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -95,6 +96,10 @@ header {
 								<a href="#"><i class="bi bi-cart3 mx-2"
 									style="font-size: 3rem; color: #8C4E37;"></i></a> <a class="btn"
 									href="#" role="button" style="background-color: #FD9843">會員登入</a>
+									<%
+						Object memberid = session.getAttribute("memID");
+						out.println("getAttribute :" + memberid);
+						%>
 							</div>
 
 						</div>
@@ -141,7 +146,7 @@ header {
 							alt="log-in-image">
 					</div>
 					<section class="login-form">
-						<form id="login-form" method="post">
+						<form id="login-form" method="post" action="<%=request.getContextPath()%>/member/MemberServlet.do">
 							<div
 								class="form__content text-center login-page text-nowrap flex-nowrap p-5">
 								<h4>
@@ -150,21 +155,31 @@ header {
 								<div class="form__row__panel form__info">
 									<div class="form__row mt-3">
 										<input id="account" type="text" class="form-control w-100"
-											placeholder="帳號" name="account">
+											placeholder="帳號" name="name">
 									</div>
 									<div class="form__row mt-3">
 										<input id="inputPassword" type="password"
-											class="form-control w-100" placeholder="密碼" name="password">
+											class="form-control w-100" placeholder="密碼" name="psw">
 									</div>
 								</div>
 								<div class="form__control__btn__panel d-flex flex-column"
 									id="btn-control">
 									<div class="form__row">
-										<button class="btn btn-warning w-100 mt-3 ml-4">登入按鈕</button>
+									<input type="hidden" name="action" value="getOne_For_Display">
+										<input type ="submit" class="btn btn-warning w-100 mt-3 ml-4" value="登入按鈕">
 									</div>
 									<div class="form__row d-flex justify-content-between">
 										<button class="btn btn-outline-warning mt-3"
 											style="background-color: #C3894F; color: white">註冊</button>
+											<%-- 錯誤表列 --%>
+											<c:if test="${not empty errorMsgs}">
+												<front style="color: red">請修正以下錯誤:</front>
+												<ul>
+													<c:forEach var="message" items="${errorMsgs}">
+														<p style="color: red">${message}</p>
+													</c:forEach>
+												</ul>
+											</c:if>
 										<button class="btn btn-outline-warning mt-3"
 											style="background-color: #C3894F; color: white">忘記密碼</button>
 									</div>

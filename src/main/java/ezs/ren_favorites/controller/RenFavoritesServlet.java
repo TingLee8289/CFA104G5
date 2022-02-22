@@ -7,6 +7,7 @@ import javax.servlet.*;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.*;
 
+import ezs.member.model.MemberVO;
 import ezs.ren_favorites.model.RenFavoritesService;
 import ezs.ren_favorites.model.RenFavoritesVO;
 
@@ -79,6 +80,42 @@ public class RenFavoritesServlet extends HttpServlet {
 				failureView.forward(req, res);
 			}
 		}
+		
+		if ("COLLECTION".equals(action)) {
+			List<String> errorMsgs = new LinkedList<String>();
+			// Store this set in the request scope, in case we need to
+			// send the ErrorPage view.
+			req.setAttribute("errorMsgs", errorMsgs);
+			
+			Integer favLisId = new Integer(req.getParameter("lisID"));
+			
+//			Integer favLisId = new Integer(req.getParameter("favLisId"));
+			
+			MemberVO memberVO = (MemberVO) req.getSession().getAttribute("memberVO");
+			Integer favMemId =	memberVO.getMemID();
+			java.sql.Timestamp favAddTime = null;
+			try {
+				favAddTime = new java.sql.Timestamp(System.currentTimeMillis());
+//				favAddTime = java.sql.Timestamp.valueOf(req.getParameter("favAddTime").trim());
+			} catch (IllegalArgumentException e) {
+				favAddTime = new java.sql.Timestamp(System.currentTimeMillis());
+				errorMsgs.add("請輸入日期及時間!");
+			}
+			int i = 0;
+			try {
+				RenFavoritesService renFavSvc = new RenFavoritesService();
+				renFavSvc.addRenFav(favLisId, favMemId, favAddTime);
+				i=1;
+				//如果已收藏將會移除收藏
+			} catch (Exception e) {
+				if(i==0) {
+					RenFavoritesService renFavSvc = new RenFavoritesService();
+					renFavSvc.deleteRenFav(favLisId, favMemId);
+				}
+			}
+		}
+		
+		
 
 //		if ("update".equals(action)) { // 來自update_ren_favorites_input.jsp的請求
 //
@@ -141,8 +178,12 @@ public class RenFavoritesServlet extends HttpServlet {
 
 			try {
 				/*********************** 1.接收請求參數 - 輸入格式的錯誤處理 *************************/
+				MemberVO memberVO = (MemberVO) req.getSession().getAttribute("memberVO");
+				Integer favMemId =	memberVO.getMemID();
+				
+				
 				Integer favLisId = new Integer(req.getParameter("favLisId").trim());
-				Integer favMemId = new Integer(req.getParameter("favMemId").trim());
+//				Integer favMemId = new Integer(req.getParameter("favMemId").trim());
 
 
 				java.sql.Timestamp favAddTime = null;

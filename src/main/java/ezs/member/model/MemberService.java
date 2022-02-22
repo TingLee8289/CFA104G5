@@ -82,10 +82,7 @@ public MemberVO addMember(String memUsername, String memPassword, String memName
 	}
 	
 
-//	public Integer checkUsername(String memUsername) {
-//		return dao.checkUsername(memUsername);
-//	}
-	
+
 	public void verifyMember(String memName) {
 		dao.verifyMember(memName);
 
@@ -97,7 +94,12 @@ public MemberVO addMember(String memUsername, String memPassword, String memName
 	}
 
 	public MemberVO updateMemberADM(Integer memID, Byte memLandlord, Byte memSupplier, Byte memSeller,
-			Byte memStatus, Integer memReported, Integer memSupReported) {
+			Byte memStatus, Integer memReported, Integer memSupReported,
+			String memUsername, String memName, String memPhone, String memAddress,
+			String memEmail, Integer memRedCount, Integer memRedScore		
+			) {
+		
+		
 		MemberVO memberVO = new MemberVO();
 
 		memberVO.setMemID(memID);
@@ -107,6 +109,13 @@ public MemberVO addMember(String memUsername, String memPassword, String memName
 		memberVO.setMemStatus(memStatus);
 		memberVO.setMemReported(memReported);
 		memberVO.setMemSupReported(memSupReported);
+		memberVO.setMemUsername(memUsername);
+		memberVO.setMemName(memName);
+		memberVO.setMemPhone(memPhone);
+		memberVO.setMemAddress(memAddress);
+		memberVO.setMemEmail(memEmail);
+		memberVO.setMemRedCount(memRedCount);
+		memberVO.setMemRedScore(memRedScore);
 		dao.updateADM(memberVO);
 
 		return memberVO;

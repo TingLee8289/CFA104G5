@@ -38,7 +38,8 @@
 			max-width: 500px;
 			padding-top: 10px;
 			height: 500px;
-			margin-top: 166px;
+			margin-top: 50px;
+			margin-bottom: 50px;
 		}
 		/*---for heading-----*/
 		.heading {
@@ -183,6 +184,7 @@
 	</style>
 </head>
 <body>
+	<jsp:include page="/frontend/EZ_LoginHeader.jsp" />
 	<%-- 錯誤表列 --%>
 	<c:if test="${not empty errorMsgs}">
 		<font style="color: red">請修正以下錯誤:</font>
@@ -194,7 +196,7 @@
 	</c:if>
 	<div class="container">
 		<!---heading---->
-		<header class="heading">填寫會員資料</header>
+		<header class="heading">註冊會員資料</header>
 		<hr></hr>
 		<!---Form starting---->
 		<form method="post"
@@ -313,6 +315,7 @@
 			
 		</form>
 	</div>
+	
 
 	<!-- JavaScript part -->
 	<script>

@@ -77,14 +77,13 @@
 <table>
 
 	<tr>
-		<td>預約會員帳號:</td>
-		<td><input type="TEXT" name="aptMemName" /></td>
+		<td>預約會員編號:</td>
+		<td><input type="TEXT" name="aptMemId" /></td>
 	</tr>
-<!-- 	<tr> -->
-<!-- 		<td>房東編號:</td> -->
-<!-- 		<td><input type="TEXT" name="aptLddId"  -->
-<%-- 			 value="<%= (renAppointmentVO==null)? "" : renAppointmentVO.getAptLddId()%>" /></td> --%>
-<!-- 	</tr> -->
+	<tr>
+		<td>房東編號:</td>
+		<td><input type="TEXT" name="aptLddId" /></td>
+	</tr>
 	<tr>
 		<td>房源編號:</td>
 		<td><input type="TEXT" name="aptLisId"

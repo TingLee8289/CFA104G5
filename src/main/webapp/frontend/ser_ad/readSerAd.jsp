@@ -88,13 +88,17 @@
 					</c:forEach>
 				</select> <input type="hidden" name="action" value="getOne_For_Display">
 		</li>
+		
+		<jsp:useBean id="serClaSvc" scope="page"
+				class="ezs.ser_cla.model.SerClaService" />
 
 		
-		<li><b>選擇服務類別編號:</b> <select size="1" name="adSerClaID">
-				<c:forEach var="serAdVO" items="${serAdSvc.all}">
-					<option value="${serAdVO.adSerClaID}">${serAdVO.adSerClaID}
-				</c:forEach>
-		</select> <input type="hidden" name="action" value="getOne_For_Display">
+		<li><b>選擇服務類別名稱:</b> <select size="1" name="adSerClaID">
+				<c:forEach var="serClaVO" items="${serClaSvc.all}">
+							<option value="${serClaVO.serClaID}" ${(serAdVO.adSerClaID==serClaVO.serClaID)? 'selected':'' }>${serClaVO.serClaName}
+						</c:forEach>
+		</select> 
+		<input type="hidden" name="action" value="getOne_For_Display">
 			<input type="submit" value="送出">
 
 			</FORM></li>
