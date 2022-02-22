@@ -348,7 +348,7 @@ pageContext.setAttribute("serClaList", serClaList);
           $("aside.aside").toggleClass("-on");
         });
 		
-        console.log(location.href.indexOf('serAdViewPage.jsp'));
+        console.log(location.href.indexOf('serAdViewPage2.jsp'));
         if(location.href.indexOf('serAdViewPage2.jsp') > -1) {
         	$("#Cla2").trigger('click');
         }
