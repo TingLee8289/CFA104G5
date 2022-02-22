@@ -226,8 +226,7 @@ public class MemberServletUpdate extends HttpServlet {
 				String str = part.getContentType();
 //				System.out.println("part.getContentType()=" + str);
 				if (str != null) {
-					if (str.equals("application/octet-stream")) {
-System.out.println("xxxxxxxxxxxxxxxxxxxxxxxxxxxx");						
+					if (str.equals("application/octet-stream")) {					
 						MemberService memSvc = new MemberService();
 						MemberVO memberVO = memSvc.getOneMember(memID);
 						memHeadshot = memberVO.getMemHeadshot();
@@ -301,13 +300,13 @@ System.out.println("xxxxxxxxxxxxxxxxxxxxxxxxxxxx");
 
 				/*************************** 3.新增完成,準備轉交(Send the Success view) ***********/
 				req.setAttribute("memberVO", memberVO);
-				String url = "/backend/member/listOneMember.jsp";
+				String url = "/backend/member/updateMember.jsp";
 				RequestDispatcher successView = req.getRequestDispatcher(url);
 				successView.forward(req, res);
 
 			} catch (Exception e) {
 				errorMsgs.add("無法取得要修改的資料:" + e.getMessage());
-				RequestDispatcher failureView = req.getRequestDispatcher("/backend/member/listAllMember.jsp");
+				RequestDispatcher failureView = req.getRequestDispatcher("/backend/member/listOneMember.jsp");
 				failureView.forward(req, res);
 			}
 		}
@@ -329,6 +328,15 @@ System.out.println("xxxxxxxxxxxxxxxxxxxxxxxxxxxx");
 			Byte memSeller = new Byte(req.getParameter("memSeller"));
 			Integer memSupReported = new Integer(req.getParameter("memSupReported"));
 
+			String memUsername = new String(req.getParameter("memUsername"));
+			String memName = new String(req.getParameter("memName"));
+			String memPhone = new String(req.getParameter("memPhone"));
+			String memAddress = new String(req.getParameter("memAddress"));
+			String memEmail = new String(req.getParameter("memEmail"));
+			Integer memRedCount = new Integer(req.getParameter("memRedCount"));
+			Integer memRedScore = new Integer(req.getParameter("memRedScore"));
+		
+			
 			MemberVO memberVO = new MemberVO();
 			memberVO.setMemID(memID);
 			memberVO.setMemStatus(memStatus);
@@ -338,18 +346,26 @@ System.out.println("xxxxxxxxxxxxxxxxxxxxxxxxxxxx");
 			memberVO.setMemSeller(memSeller);
 			memberVO.setMemSupReported(memSupReported);
 			
+			memberVO.setMemUsername(memUsername);
+			memberVO.setMemName(memName);
+			memberVO.setMemPhone(memPhone);
+			memberVO.setMemAddress(memAddress);
+			memberVO.setMemEmail(memEmail);
+			memberVO.setMemRedCount(memRedCount);
+			memberVO.setMemRedScore(memRedScore);
 			
 
 			if (!errorMsgs.isEmpty()) {
 				req.setAttribute("memberVO", memberVO);
-				RequestDispatcher failureView = req.getRequestDispatcher("/backend/member/listAllMember.jsp");
+				RequestDispatcher failureView = req.getRequestDispatcher("/backend/member/listOneMember.jsp");
 				failureView.forward(req, res);
 				return;
 			}
 			/*************************** 2.開始新增資料 ***************************************/
 			MemberService memberSvc = new MemberService();
 			memberVO = memberSvc.updateMemberADM(memID, memLandlord, memSupplier, memSeller,
-					 memStatus, memReported, memSupReported);
+					 memStatus, memReported, memSupReported, memUsername, memName,memPhone,
+					 memAddress, memEmail,memRedCount,memRedScore );
 
 			/*************************** 3.新增完成,準備轉交(Send the Success view) ***********/
 			req.setAttribute("memberVO", memberVO);

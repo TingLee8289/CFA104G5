@@ -135,8 +135,7 @@
                             <div class="collapse" id="collapsePages3" aria-labelledby="headingThree" data-bs-parent="#sidenavAccordion">
                                 <nav class="sb-sidenav-menu-nested nav">
                                     <a class="nav-link" href="<%=request.getContextPath()%>/backend/member/listAllMember.jsp">會員資料管理</a>
-<!--                                     <a class="nav-link" href="layout-static.html">會員資料管理</a> -->
-                                </nav>
+							    </nav>
                             </div>
 <!-- ------------------------------------------------------------------------------------------------- -->
     
@@ -155,7 +154,6 @@
       <table id="table-1">
 	<tr><td>
 		 <h3>${memberVO.memID}- ${memberVO.memUsername} 會員資料</h3>
-<!-- 		 <h4><a href="select_page.jsp">回首頁</a></h4> -->
 	</td></tr>
 </table>
 
@@ -206,15 +204,11 @@
 	</tr>
 	</c:if>
 	<tr>
-		<td>會員狀態:</td>
-	
-			
+		<td>會員狀態:</td>		
 		<td>
-			<select size="1" name="memStatus">
-				<option value="0" id="memStatus0">未驗證</option>
-				<option value="1" id="memStatus1">已驗證</option>
-				<option value="2" id="memStatus2">停權</option>
-			</select></td>
+			<c:if test="${memberVO.memStatus == 0}">未驗證</c:if>
+				<c:if test="${memberVO.memStatus == 1}">已驗證</c:if>
+				<c:if test="${memberVO.memStatus == 2}">停權</c:if></td>
 	</tr>
 	<tr>
 		<td>被評價總數:</td>
@@ -236,59 +230,49 @@
 	</tr>
 	<tr>
 		<td>被檢舉數:</td>
-		<td><input type="TEXT" name="memReported" size="45" value=${memberVO.memReported} /></td>
+		<td>${memberVO.memReported}</td>
 	</tr>
 	<tr>
 		<td>房東身分:</td>
 		<td>
-			<select size="1" name="memLandlord">
-				<option value="${memberVO.memLandlord}" ${(memberVO.memLandlord==0)?'selected':'' } >未驗證</option>
-				<option value="${memberVO.memLandlord}" ${(memberVO.memLandlord==1)?'selected':'' } >已驗證</option>
-				<option value="${memberVO.memLandlord}" ${(memberVO.memLandlord==2)?'selected':'' } >停權</option>
-			</select>
-<%-- 			<c:if test="${memberVO.memLandlord == 0}">未驗證</c:if> --%>
-<%-- 			<c:if test="${memberVO.memLandlord == 1}">已驗證</c:if> --%>
-<%-- 			<c:if test="${memberVO.memLandlord == 2}">停權</c:if>   --%>
-			</td>
+			<c:if test="${memberVO.memLandlord == 0}">未驗證</c:if>
+				<c:if test="${memberVO.memLandlord == 1}">已驗證</c:if>
+				<c:if test="${memberVO.memLandlord == 2}">停權</c:if></td>
 	</tr>
 	<tr>
 		<td>廠商身分:</td>
 		<td>
-			<select size="1" name="memSupplier">
-				<option value="${memberVO.memSupplier}" ${(memberVO.memSupplier==0)?'selected':'' } >停權</option>
-				<option value="${memberVO.memSupplier}" ${(memberVO.memSupplier==1)?'selected':'' } >啟用</option>
-			</select>
-		
-<%-- 			<c:if test="${memberVO.memSupplier == 0}">停權</c:if> --%>
-<%-- 			<c:if test="${memberVO.memSupplier == 1}">啟用</c:if> --%>
-			</td>
+			<c:if test="${memberVO.memSupplier == 0}">停權</c:if>
+				<c:if test="${memberVO.memSupplier == 1}">啟用</c:if></td>
 	</tr>
 	<tr>
 		<td>賣家身分:</td>
 		<td>
-		<select size="1" name="memSeller">
-				<option value="${memberVO.memSeller}" ${(memberVO.memSeller==0)?'selected':'' } >停權</option>
-				<option value="${memberVO.memSeller}" ${(memberVO.memSeller==1)?'selected':'' } >啟用</option>
-			</select>
-<%-- 			<c:if test="${memberVO.memSeller == 0}">停權</c:if> --%>
-<%-- 			<c:if test="${memberVO.memSeller == 1}">啟用</c:if> --%>
-			</td>
+			<c:if test="${memberVO.memSeller == 0}">停權</c:if>
+				<c:if test="${memberVO.memSeller == 1}">啟用</c:if></td>
 	</tr>
 	<tr>
 		<td>廠商被檢舉數:</td>
-		<td><input type="TEXT" name="memSupReported" size="45" value=${memberVO.memSupReported} /></td>
-<%-- 		<td>${memberVO.memSupReported}</td> --%>
+		<td>${memberVO.memReported}</td>
 	</tr>
 
 
 </table>
 <br>
-<input type="hidden" name="action" value="updateADM">
+<input type="hidden" name="action" value="getOneMemUpdate">
 <input type="hidden" name="memID" value="<%=memberVO.getMemID()%>">
-<input type="submit" value="送出修改"></FORM>
+<input type="hidden" name="memUsername" value="<%=memberVO.getMemUsername()%>">
+<input type="hidden" name="memName" value="<%=memberVO.getMemName()%>">
+<input type="hidden" name="memPhone" value="<%=memberVO.getMemPhone()%>">
+<input type="hidden" name="memAddress" value="<%=memberVO.getMemAddress()%>">
+<input type="hidden" name="memEmail" value="<%=memberVO.getMemEmail()%>">
+<input type="hidden" name="memRedCount" value="<%=memberVO.getMemRedCount()%>">
+<input type="hidden" name="memRedScore" value="<%=memberVO.getMemRedScore()%>">
+<input type="hidden" name="memAvgScore" value="<%=memberVO.getMemID()%>">
+<input type="submit" value="修改"></FORM>
+                   
                         
-                        
-                        
+<a href='<%=request.getContextPath()%>/backend/member/listAllMember.jsp'>回會員資料管理首頁</a>                        
                         
                      </div>
                 </main>

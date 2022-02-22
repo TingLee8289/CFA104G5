@@ -95,6 +95,7 @@ th, td {
 		<tr>
 			<td>預約單狀態:</td>
 			<td>
+				<c:if test="${renAppointmentVO.aptStatus == 0}">預約確認中</c:if> 
 				<c:if test="${renAppointmentVO.aptStatus == 1}">已確認預約</c:if> 
 				<c:if test="${renAppointmentVO.aptStatus == 2}">已取消</c:if>
 				<c:if test="${renAppointmentVO.aptStatus == 3}">預約時間已變更</c:if></td>

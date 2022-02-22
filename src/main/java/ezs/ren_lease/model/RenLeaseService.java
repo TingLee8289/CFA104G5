@@ -56,6 +56,9 @@ public class RenLeaseService {
 		return dao.getAll();
 	}
 	
-		
-	
+
+	public List<RenLeaseVO> getLse(Integer lseMemId) {
+		return dao.getLse(lseMemId);
+	}
+
 }

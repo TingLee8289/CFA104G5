@@ -56,8 +56,7 @@
 	<tr><td>
 		 <h3>房東預約訂單管理</h3>
 		 <h4><a href="<%=request.getContextPath()%>/frontend/ren_appointment/select_page.jsp">回首頁</a></h4>
-		 <a href='<%=request.getContextPath()%>/frontend/ren_appointment/addRenAppointment.jsp'>新增</a>預約訂單</li>
-	</td></tr>
+</td></tr>
 </table>
 
 
@@ -135,7 +134,6 @@
 <br>
 <br>
 <br>
-<a href='<%=request.getContextPath()%>/addRenAppointment.jsp'>新增</a>預約訂單</li>
 
 
 <jsp:include page="/frontend/EZ_footer.jsp"></jsp:include>
