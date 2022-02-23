@@ -3,7 +3,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ page import="java.util.*"%>
 <%@ page import="ezs.ser_quo.model.*"%>
-<%session.setAttribute("memID", 5);%>
+<%-- <%session.setAttribute("memID", 5);%> --%>
 <%
 Integer memID = (Integer) session.getAttribute("memID");
 SerQuoService serQuoSvc = new SerQuoService();
