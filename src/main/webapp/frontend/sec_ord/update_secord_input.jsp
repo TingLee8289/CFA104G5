@@ -96,8 +96,8 @@ th, td {
 				<td>訂單狀態:</td>
 
 
-				<td><input type="radio" name="shOrdStatus" value="2"
-					<%=(secOrdVO.getShOrdStatus() == 2) ? "checked" : ""%> />已出貨 <input
+				<td><input type="radio" name="shOrdStatus" value="3"
+					<%=(secOrdVO.getShOrdStatus() == 3) ? "checked" : ""%> />已出貨 <input
 					type="radio" name="shOrdStatus" value="8"
 					<%=(secOrdVO.getShOrdStatus() == 8) ? "checked" : ""%> />訂單取消</td>
 

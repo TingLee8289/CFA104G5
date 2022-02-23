@@ -1,14 +1,27 @@
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+
+<%@ page import="ezs.sec_ord.model.*"%>
+<%@ page import="ezs.sec_ord_details.model.*"%>
+
+<jsp:useBean id="list" scope="request"
+	type="java.util.Set<SecOrdDetailsVO>" />
+<!-- 於EL此行可省略 -->
+<jsp:useBean id="secOrdSvc" scope="page"
+	class="ezs.sec_ord.model.SecOrdService" />
+
 <%@ page import="java.util.*"%>
 <% 
 	Integer memID = (Integer) session.getAttribute("memID");
 %>
 
+
 <!DOCTYPE html>
 
 <html>
 <head>
+
+
 <meta charset="utf-8" />
 <meta http-equiv="X-UA-Compatible" content="IE=edge" />
 <meta name="viewport"
@@ -19,6 +32,7 @@
 <script	src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/js/all.min.js"></script>
 <link rel="stylesheet"href=" https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css ">
 <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.2.0/css/all.css">
+
 
 <style>
 #nav {
@@ -48,8 +62,10 @@
 </style>
 
 <style>
+
   table {
 	width: 800px;
+
 	background-color: white;
 	margin-top: 5px;
 	margin-bottom: 5px;
@@ -87,6 +103,7 @@
 					<li class="nav-item me-3"><a class="nav-link text-dark"
 						href="<%=request.getContextPath()%>/frontend/ser_ad/serAdViewPage.jsp">居家服務</a>
 					</li>
+
 
 					<%
 					String memUsername = (String) session.getAttribute("memUsername");
@@ -219,6 +236,7 @@
 <!-- 塞頁面從這裡開始--------------------------------------------------------------------------------- -->
 
 
+
 	<%-- 錯誤表列 --%>
 	<c:if test="${not empty errorMsgs}">
 		<font style="color: red">請修正以下錯誤:</font>
@@ -241,7 +259,7 @@
 
 
 		<c:forEach var="secOrdDetailsVO"
-			items="${listSecOrdDetails_ByShOrdID}">
+			items="${list}">
 			<tr>
 				<td>${secOrdDetailsVO.shOrdID}</td>
 				<td>${secOrdDetailsVO.shID}</td>
@@ -251,7 +269,12 @@
 			</tr>
 		</c:forEach>
 
+
+
+
+
 	</table>
+
 
 
 
@@ -278,5 +301,6 @@
 
 	<!-- 側邊導覽列結束--------------------------------------- -->
 	<main></main>
+
 </body>
 </html>
