@@ -39,7 +39,7 @@ public class WriteBlobByJDBC將圖片寫進資料庫 {
 
 			System.out.println("二手商品圖片新增成功");
 			
-			pstmt = con.prepareStatement("UPDATE Member SET mem_Headshot = ? WHERE mem_ID = ? ");
+			pstmt = con.prepareStatement("UPDATE `Member` SET mem_Headshot = ? WHERE mem_ID = ? ");
 
 			File file2 = new File("src/main/webapp/images/cmn/member_pic/");
 			File[] listFile2 = file2.listFiles();
