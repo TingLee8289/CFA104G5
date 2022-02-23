@@ -183,6 +183,7 @@
 		}
 	</style>
 
+
 </head>
 <body>
 <%-- 	<jsp:include page="/frontend/EZ_LoginHeader.jsp" /> --%>
