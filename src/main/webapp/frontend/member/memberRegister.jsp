@@ -184,7 +184,7 @@
 	</style>
 </head>
 <body>
-	<jsp:include page="/frontend/EZ_LoginHeader.jsp" />
+<%-- 	<jsp:include page="/frontend/EZ_LoginHeader.jsp" /> --%>
 	<%-- 錯誤表列 --%>
 	<c:if test="${not empty errorMsgs}">
 		<font style="color: red">請修正以下錯誤:</font>
