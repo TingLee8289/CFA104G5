@@ -28,7 +28,7 @@
 
 </head>
 <body bgcolor='white'>
-<jsp:include page="/frontend/EZ_header.jsp"></jsp:include>
+
 
 <table id="table-1">
    <tr><td><h3>RenAppointment : Home</h3></td></tr>
