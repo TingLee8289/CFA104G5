@@ -552,7 +552,6 @@
 		        	
 		        </div>
 	     </div>
-	      <input type="hidden" name="action" value="insert">
 	      <hr><hr><hr><hr><hr><hr><hr><hr><hr>
 <!--  信用卡資訊-------------------------------------------------------------- -->
 	<div class="payment-title">
@@ -670,7 +669,8 @@
             <input id="name" maxlength="20" type="text" required>
         </div>
         <div class="field-container">
-            <label for="cardnumber">信用卡卡號</label><span id="generatecard">generate random</span>
+            <label for="cardnumber">信用卡卡號</label>
+<!--             <span id="generatecard">generate random</span> -->
             <input id="cardnumber" type="text" inputmode="numeric" required>
             <svg id="ccicon" class="ccicon" width="750" height="471" viewBox="0 0 750 471" version="1.1"
                 xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">

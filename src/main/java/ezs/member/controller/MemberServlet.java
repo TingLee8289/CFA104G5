@@ -46,7 +46,7 @@ public class MemberServlet extends HttpServlet {
 				String memPassword = req.getParameter("psw");
 
 				if (memUsername == null || (memUsername.trim()).length() == 0) {
-					errorMsgs.add("帳號密碼不得為空1");
+					errorMsgs.add("帳號密碼不得為空");
 				}
 				if (!errorMsgs.isEmpty()) {
 					RequestDispatcher failureView = req.getRequestDispatcher("/frontend/member/login.jsp");
@@ -55,7 +55,7 @@ public class MemberServlet extends HttpServlet {
 				}
 
 				if (memPassword == null || (memPassword.trim()).length() == 0) {
-					errorMsgs.add("帳號密碼不得為空2");
+					errorMsgs.add("帳號密碼不得為空");
 				}
 				if (!errorMsgs.isEmpty()) {
 					RequestDispatcher failureView = req.getRequestDispatcher("/frontend/member/login.jsp");
@@ -66,10 +66,13 @@ public class MemberServlet extends HttpServlet {
 				MemberService memberserivce = new MemberService();
 				MemberVO memberVO = memberserivce.Search(memUsername, memPassword);
 				if (memberVO == null) {
-					errorMsgs.add("帳號或密碼有誤，請重新輸入3");
+					errorMsgs.add("帳號或密碼有誤，請重新輸入");
 				}
 				if(memberVO.getMemSupReported() >= 5) {// *************被檢舉次數****************
 					errorMsgs.add("該帳號被檢舉次數已達上限，如有相關問題清洽客服人員");
+				}
+				if(memberVO.getMemStatus() == 0) {// *************帳號未開通****************
+					errorMsgs.add("該帳號尚未開通，請先進行驗證後再登入");
 				}
 				
 			

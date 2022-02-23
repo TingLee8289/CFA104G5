@@ -11,7 +11,7 @@ SerDmdVO serDmdVO = (SerDmdVO) request.getAttribute("serDmdVO");
 <head>
 <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
 <script src="<%=request.getContextPath()%>/frontend/js/jquery-1.11.3.min.js"></script>
-<title>需求單資料修改 - update_serDmd_input.jsp</title>
+<title>EASY SPACE</title>
 
 <style>
   table#table-1 {

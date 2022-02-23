@@ -71,38 +71,69 @@ public class WriteBlobByJDBC將圖片寫進資料庫 {
 			}
 
 			System.out.println("房源圖片新增成功");
-			
+
 			pstmt = con.prepareStatement("UPDATE `CFA104G5`.`REN_LANDLORD` SET LDD_PIC = ? WHERE LDD_ID = ?");
 
-			   File file3 = new File("src/main/webapp/images/ren/landlordPic/");
-			   File[] listFile3 = file3.listFiles();
-			   for (int i = 0; i < file3.listFiles().length; i++) {
-			    String url = listFile3[i].toString();
-			    System.out.println(url);
-			    // 2. setBytes 萬用做法
-			    byte[] pic = getPictureByteArray(url);
-			    pstmt.setBytes(1, pic);
-			    pstmt.setInt(2, i+1);
-			    pstmt.executeUpdate();
-			   }
+			File file3 = new File("src/main/webapp/images/ren/landlordPic/");
+			File[] listFile3 = file3.listFiles();
+			for (int i = 0; i < file3.listFiles().length; i++) {
+				String url = listFile3[i].toString();
+				System.out.println(url);
+				// 2. setBytes 萬用做法
+				byte[] pic = getPictureByteArray(url);
+				pstmt.setBytes(1, pic);
+				pstmt.setInt(2, i + 1);
+				pstmt.executeUpdate();
+			}
 
-			   System.out.println("房東圖片新增成功");
-			   
-			   pstmt = con.prepareStatement("UPDATE `CFA104G5`.`REN_LEASE` SET LSE_PIC = ? WHERE LSE_ID = ?");
+			System.out.println("房東圖片新增成功");
 
-			   File file4 = new File("src/main/webapp/images/ren/leasePic/");
-			   File[] listFile4 = file4.listFiles();
-			   for (int i = 0; i < file4.listFiles().length; i++) {
-			    String url = listFile4[i].toString();
-			    System.out.println(url);
-			    // 2. setBytes 萬用做法
-			    byte[] pic = getPictureByteArray(url);
-			    pstmt.setBytes(1, pic);
-			    pstmt.setInt(2, i+1);
-			    pstmt.executeUpdate();
-			   }
+			pstmt = con.prepareStatement("UPDATE `CFA104G5`.`REN_LEASE` SET LSE_PIC = ? WHERE LSE_ID = ?");
 
-			   System.out.println("租賃合約圖片新增成功");
+			File file4 = new File("src/main/webapp/images/ren/leasePic/");
+			File[] listFile4 = file4.listFiles();
+			for (int i = 0; i < file4.listFiles().length; i++) {
+				String url = listFile4[i].toString();
+				System.out.println(url);
+				// 2. setBytes 萬用做法
+				byte[] pic = getPictureByteArray(url);
+				pstmt.setBytes(1, pic);
+				pstmt.setInt(2, i + 1);
+				pstmt.executeUpdate();
+			}
+
+			System.out.println("租賃合約圖片新增成功");
+
+			pstmt = con.prepareStatement("UPDATE `CFA104G5`.`SER_VDR` SET VDR_PIC = ? WHERE VDR_ID = ?");
+
+			File file5 = new File("src/main/webapp/images/ser/ser_vdr/");
+			File[] listFile5 = file5.listFiles();
+			for (int i = 0; i < file5.listFiles().length; i++) {
+				String url = listFile5[i].toString();
+				System.out.println(url);
+				// 2. setBytes 萬用做法
+				byte[] pic = getPictureByteArray(url);
+				pstmt.setBytes(1, pic);
+				pstmt.setInt(2, i + 1);
+				pstmt.executeUpdate();
+			}
+			System.out.println("廠商圖片新增成功");
+
+			pstmt = con.prepareStatement("UPDATE `CFA104G5`.`SER_DMD` SET DMD_PIC = ? WHERE DMD_ID = ?");
+
+			File file6 = new File("src/main/webapp/images/ser/ser_dmd/");
+			File[] listFile6 = file6.listFiles();
+			for (int i = 0; i < file6.listFiles().length; i++) {
+				String url = listFile6[i].toString();
+				System.out.println(url);
+				// 2. setBytes 萬用做法
+				byte[] pic = getPictureByteArray(url);
+				pstmt.setBytes(1, pic);
+				pstmt.setInt(2, i + 1);
+				pstmt.executeUpdate();
+			}
+			System.out.println("需求單圖片新增成功");
+
 		} catch (ClassNotFoundException ce) {
 			System.out.println(ce);
 		} catch (SQLException se) {

@@ -10,7 +10,7 @@
 
 <html>
 <head>
-<title>會員資料</title>
+<title>EASY SPACE</title>
 
 <style>
   table#table-1 {

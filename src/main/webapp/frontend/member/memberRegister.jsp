@@ -37,7 +37,7 @@
 			box-shadow: 2px 5px 5px 0px #eee;
 			max-width: 500px;
 			padding-top: 10px;
-			height: 500px;
+			height: 560px;
 			margin-top: 50px;
 			margin-bottom: 50px;
 		}
@@ -186,7 +186,7 @@
 
 </head>
 <body>
-<%-- 	<jsp:include page="/frontend/EZ_LoginHeader.jsp" /> --%>
+
 	<%-- 錯誤表列 --%>
 	<c:if test="${not empty errorMsgs}">
 		<font style="color: red">請修正以下錯誤:</font>
@@ -305,7 +305,7 @@
 						<input type="file" name="memHeadshot" id="memHeadshot" accept="image/gif, image/jpeg, image/png"
 							class="form-control "
 							value="<%=(memberVO == null) ? "" : memberVO.getMemHeadshot()%>">
-							<div id="previews" >
+							<div id="previews" style="text-align: left;">
        							<p>圖片預覽</p>
    							</div>
 					</div>

@@ -13,7 +13,7 @@ RenAppointmentVO renAppointmentVO = (RenAppointmentVO) request.getAttribute("ren
 
 <html>
 <head>
-<title>預約訂單資料 - listOneRenAppointment.jsp</title>
+<title>EASY SPACE</title>
 
 <style>
 table#table-1 {

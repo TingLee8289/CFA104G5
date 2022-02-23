@@ -14,7 +14,7 @@ SecOrdVO secOrdVO = (SecOrdVO) request.getAttribute("secOrdVO");
 <html>
 <head>
 <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
-<title>訂單資料修改 - update_secord_input.jsp</title>
+<title>EASY SPACE</title>
 
 <style>
 table#table-1 {
@@ -96,8 +96,8 @@ th, td {
 				<td>訂單狀態:</td>
 
 
-				<td><input type="radio" name="shOrdStatus" value="2"
-					<%=(secOrdVO.getShOrdStatus() == 2) ? "checked" : ""%> />已出貨 <input
+				<td><input type="radio" name="shOrdStatus" value="3"
+					<%=(secOrdVO.getShOrdStatus() == 3) ? "checked" : ""%> />已出貨 <input
 					type="radio" name="shOrdStatus" value="8"
 					<%=(secOrdVO.getShOrdStatus() == 8) ? "checked" : ""%> />訂單取消</td>
 

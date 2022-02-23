@@ -36,6 +36,10 @@ public class SecOrdServlet extends HttpServlet {
 
 		req.setCharacterEncoding("UTF-8");
 		String action = req.getParameter("action");
+		
+		res.setHeader("Cache-Control", "no-store");
+		res.setHeader("Pragma", "no-cache");
+		res.setDateHeader("Expires", 0);
 
 // 買家會員查詢自己的訂單
 		if ("listSecOrd_ByShBuyerID".equals(action)) {
@@ -79,9 +83,9 @@ public class SecOrdServlet extends HttpServlet {
 				List<SecOrdDetailsVO> list = secOrdDetailsSvc.findByShOrdID(shOrdID);
 				
 				/*************************** 3.查詢完成,準備轉交(Send the Success view) ************/
-				req.setAttribute("listSecOrdDetails_ByShOrdID", list); // 資料庫取出的list物件,存入request
+				req.setAttribute("list", list); // 資料庫取出的list物件,存入request
 				
-				String url = "/frontend/sec_ord/listSecOrdDetails_ByShOrdID.jsp";
+				String url = "/frontend/sec_ord/listSecOrdDetails_ByShOrdID_ShBuyer.jsp";
 				RequestDispatcher successView = req.getRequestDispatcher(url);
 				successView.forward(req, res);
 				
@@ -182,7 +186,7 @@ public class SecOrdServlet extends HttpServlet {
 				}
 				
 				dao.insertWithSecOrdDetails(secOrdVO, testList);
-				
+				session.removeAttribute("shoppingcart");
 
 				/*************************** 3.新增完成,準備轉交(Send the Success view) ************/
 

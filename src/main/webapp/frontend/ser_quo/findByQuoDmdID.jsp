@@ -17,7 +17,7 @@ SerQuoVO serQuoVO = (SerQuoVO) request.getAttribute("serQuoVO");
 <html>
 <head>
 <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
-<title>會員檢視估價單 - findByDmdID.jsp</title>
+<title>EASY SPACE</title>
 
 
 

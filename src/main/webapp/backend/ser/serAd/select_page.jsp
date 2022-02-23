@@ -27,6 +27,7 @@ figure img {
 </head>
 <body class="sb-nav-fixed">
 
+
 	<nav class="sb-topnav navbar navbar-expand navbar-dark bg-dark">
 		<!-- Navbar Brand-->
 		<a class="navbar-brand ps-3"
@@ -170,21 +171,18 @@ figure img {
 					
 
 
-	<%-- 錯誤表列 --%>
-	<c:if test="${not empty errorMsgs}">
-		<font style="color: red">請修正以下錯誤:</font>
-		<ul>
-			<c:forEach var="message" items="${errorMsgs}">
-				<li style="color: red">${message}</li>
-			</c:forEach>
-		</ul>
-	</c:if>
+
+	
 
 	<ul>
-		<li><a href='<%=request.getContextPath()%>/backend/ser/serAd/viewSerAd.jsp'>檢視刊登服務</a> <br></li></ul>
+		<li>
+			<a href='<%=request.getContextPath()%>/backend/ser/serAd/viewSerAd.jsp'>檢視刊登服務</a> <br>
+		</li>
+	</ul>
 
 
 	
+
 </div>
 			</main>
 			<footer class="py-4 bg-light mt-auto">

@@ -25,6 +25,7 @@ figure img {
 }
 </style>
 </head>
+
 <body class="sb-nav-fixed">
 
 	<nav class="sb-topnav navbar navbar-expand navbar-dark bg-dark">
@@ -177,6 +178,7 @@ figure img {
 		</ul>
 	</c:if>
 
+
 	
 	
 	<ul>
@@ -189,7 +191,7 @@ figure img {
 			href='<%=request.getContextPath()%>/backend/ser/ser_repo/readSerRepo.jsp'>查詢檢舉單(依編號)</a>
 			<br></li></ul>
 			
-	
+
 </div>
 			</main>
 			<footer class="py-4 bg-light mt-auto">
@@ -218,5 +220,6 @@ figure img {
 	<script src="https://cdn.jsdelivr.net/npm/simple-datatables@latest"
 		crossorigin="anonymous"></script>
 	<script src="js/datatables-simple-demo.js"></script>
+
 </body>
 </html>

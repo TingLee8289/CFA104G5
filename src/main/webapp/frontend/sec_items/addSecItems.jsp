@@ -12,7 +12,7 @@ SecItemsVO secItemsVO = (SecItemsVO) request.getAttribute("secItemsVO");
 <html>
 <head>
 <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
-<title>商品資料新增 - addSecItems.jsp</title>
+<title>EASY SPACE</title>
 
 <style>
 table#table-1 {

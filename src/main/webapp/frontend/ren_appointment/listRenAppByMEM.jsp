@@ -23,7 +23,7 @@
 <html>
 <head>
 <script src="https://kit.fontawesome.com/1c2ccc4859.js" crossorigin="anonymous"></script>
-<title>會員 - 預約訂單</title>
+<title>EASY SPACE</title>
 
 <style>
   table#table-1 {

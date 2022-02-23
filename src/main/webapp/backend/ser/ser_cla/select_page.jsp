@@ -25,6 +25,7 @@ figure img {
 }
 </style>
 </head>
+
 <body class="sb-nav-fixed">
 
 	<nav class="sb-topnav navbar navbar-expand navbar-dark bg-dark">
@@ -170,16 +171,9 @@ figure img {
 					
 
 
+
 	
-<%-- 錯誤表列 --%>
-<c:if test="${not empty errorMsgs}">
-	<font style="color:red">請修正以下錯誤:</font>
-	<ul>
-	    <c:forEach var="message" items="${errorMsgs}">
-			<li style="color:red">${message}</li>
-		</c:forEach>
-	</ul>
-</c:if>
+
 
 <ul>
   <li><a href='<%=request.getContextPath()%>/backend/ser/ser_cla/viewSerCla.jsp'>檢視服務類別</a><br></li>
@@ -197,6 +191,7 @@ figure img {
 <ul>
   <li><a href='<%=request.getContextPath()%>/backend/ser/ser_cla/listAllSerCla.jsp'>修改服務類別</a></li>
 </ul>
+
 </div>
 			</main>
 			<footer class="py-4 bg-light mt-auto">
@@ -225,5 +220,6 @@ figure img {
 	<script src="https://cdn.jsdelivr.net/npm/simple-datatables@latest"
 		crossorigin="anonymous"></script>
 	<script src="js/datatables-simple-demo.js"></script>
+
 </body>
 </html>
