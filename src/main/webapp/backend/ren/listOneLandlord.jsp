@@ -26,7 +26,7 @@ RenLandlordVO renLandlordVO = (RenLandlordVO) request.getAttribute("renLandlordV
         <link href="<%=request.getContextPath()%>/css/styles.css" rel="stylesheet" />
         <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/js/all.min.js" crossorigin="anonymous"></script>
   
-<title>房東資料 - listOneLandlord.jsp</title>
+<title>EASY SPACE後台管理系統</title>
 
 <link
 	href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css"

@@ -35,7 +35,7 @@ pageContext.setAttribute("funList", funList);
 <script
 	src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/js/all.min.js"
 	crossorigin="anonymous"></script>
-<title>員工管理</title>
+<title>EASY SPACE後台管理系統</title>
 
 <link
 	href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css"

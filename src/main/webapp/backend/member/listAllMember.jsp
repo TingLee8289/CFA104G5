@@ -25,7 +25,7 @@ pageContext.setAttribute("list", list);
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.css" integrity="sha256-46qynGAkLSFpVbEBog43gvNhfrOj+BmwXdxFgVK/Kvc=" crossorigin="anonymous" />
 
 
-<title>所有會員資料</title>
+<title>EASY SPACE後台管理系統</title>
 <style>
 #cssTable
 {

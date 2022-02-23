@@ -32,7 +32,7 @@ pageContext.setAttribute("list2", list2);
 	src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/js/all.min.js"
 	crossorigin="anonymous"></script>
 
-<title>所有申請房東資料 - listAllLandlord.jsp</title>
+<title>EASY SPACE後台管理系統</title>
 <link
 	href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css"
 	rel="stylesheet" id="bootstrap-css">
