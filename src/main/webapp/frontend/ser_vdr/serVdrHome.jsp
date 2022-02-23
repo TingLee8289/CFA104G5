@@ -44,6 +44,10 @@
 		<li><a href='<%=request.getContextPath()%>/frontend/ser_ad/addSerAd.jsp'>刊登服務</a>  <br></li>
 		
 	</ul>
+	<ul>
+		<li><a href='<%=request.getContextPath()%>/frontend/ser_ad/listAllSerAd.jsp'>檢視服務內容</a>  <br></li>
+		
+	</ul>
 	
 	<ul>
 		<li>
