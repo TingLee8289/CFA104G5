@@ -32,6 +32,8 @@ public class ShoppingServlet extends HttpServlet {
 		List<SecItem> buylist = (Vector<SecItem>) session.getAttribute("shoppingcart");
 		String action = req.getParameter("action");
 
+		
+// 新增或刪除商品
 		if (!action.equals("CHECKOUT")) {
 
 			if (action.equals("DELETE")) {
@@ -60,6 +62,7 @@ public class ShoppingServlet extends HttpServlet {
 			rd.forward(req, res);
 		}
 
+//	結帳
 		else if (action.equals("CHECKOUT")) {
 			if (buylist!= null) {
 				BigDecimal total = new BigDecimal(BigInteger.ZERO, 0); // 此行相當於 Integer total = 0;
@@ -74,6 +77,7 @@ public class ShoppingServlet extends HttpServlet {
 				String url = "/frontend/sec_items/Checkout.jsp";
 				RequestDispatcher rd = req.getRequestDispatcher(url);
 				rd.forward(req, res);
+				
 			} else {
 				String url = "/frontend/sec_items/shoppingCart.jsp";
 				RequestDispatcher rd = req.getRequestDispatcher(url);
