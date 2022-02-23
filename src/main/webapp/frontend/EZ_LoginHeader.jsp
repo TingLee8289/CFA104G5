@@ -20,7 +20,8 @@
 			background-color: rgb(239,239,239);
 			position:fixed;
 			z-index:9999;
-			width:100%;			
+			width:100%;		
+			margin-top: 40px;	
 
 		}
 		
