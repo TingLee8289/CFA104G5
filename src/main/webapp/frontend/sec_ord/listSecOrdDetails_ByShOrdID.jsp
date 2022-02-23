@@ -53,6 +53,7 @@ th, td {
 
 </head>
 <body bgcolor='white'>
+	<jsp:include page="/frontend/member/memberCenter/buyerMemberCenter.jsp" />
 
 	<h4>此頁練習採用 EL 的寫法取值:</h4>
 	<table id="table-2">
