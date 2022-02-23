@@ -265,14 +265,17 @@ a {
 
 				</div>
 				<div class="for-pwd-htm">
+				<form id="resetForm" ACTION="<%=request.getContextPath()%>/member/ForgetPasswordServlet.do" method="post">
 					<div class="group">
-						<label for="user" class="label">請輸入Email</label> <input id="user"
-							type="text" class="input">
+						<label for="email" class="label">請輸入Email</label> 
+						<input type="text" class="input" name="email" id="email">
+						<input type="hidden" name="action"	value="reset_Password_Email">
 					</div>
 					<div class="group">
 						<input type="submit" class="button" value="重置密碼">
 					</div>
 					<div class="hr"></div>
+				</form>
 				</div>
 			</div>
 		</div>

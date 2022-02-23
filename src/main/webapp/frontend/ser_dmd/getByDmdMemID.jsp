@@ -3,10 +3,9 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ page import="java.util.*"%>
 <%@ page import="ezs.ser_dmd.model.*"%>
+<%@ page import="ezs.ser_quo.model.*"%>
 
-<%
-session.setAttribute("memID", 2);
-%>
+<%-- <%session.setAttribute("memID", 2);%> --%>
 <%
 Integer memID = (Integer) session.getAttribute("memID");
 SerDmdService serDmdSvc = new SerDmdService();
@@ -14,12 +13,17 @@ List<SerDmdVO> serDmdList = serDmdSvc.findByMemID(memID);
 //如何動態取值
 pageContext.setAttribute("serDmdList", serDmdList);
 %>
+<%
+    List<SerDmdVO> OneMemDmdList = serDmdSvc.findByMemID(memID);
+     									//如何動態取值
+    pageContext.setAttribute("OneMemDmdList",OneMemDmdList);
+%>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
  <script src="<%=request.getContextPath()%>/frontend/js/jquery-1.11.3.min.js"></script>
-<title>後台需求單管理</title>
+<title>會員檢視需求單</title>
 <link
 	href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css"
 	rel="stylesheet"
@@ -46,7 +50,7 @@ pageContext.setAttribute("serDmdList", serDmdList);
 						<h2>所有需求單資料</h2>
 						<h4>
 							<a
-								href="<%=request.getContextPath()%>/frontend/member/memberCenter/memberCenterBuyerDmd.jsp">回首頁</a>
+								href="<%=request.getContextPath()%>/frontend/member/memberCenter/buyerMemberCenter.jsp">回前頁</a>
 						</h4>
 					</caption>
 					<thead class="table-success">
@@ -67,6 +71,7 @@ pageContext.setAttribute("serDmdList", serDmdList);
 							<th>預算</th>
 							<th>需求簡介</th>
 							<th>照片</th>
+							<th>檢視估價單</th>
 							<th>修改</th>
 							<th>刪除</th>
 						</tr>
@@ -94,16 +99,29 @@ pageContext.setAttribute("serDmdList", serDmdList);
 								<td>${serDmdVO.dmdSquare}</td>
 								<td>${serDmdVO.dmdBudget}</td>
 								<td>${serDmdVO.dmdIntro}</td>
-								<td><img
-									src="<%=request.getContextPath()%>/ser_dmd/DBGifReader4?dmdID=${serDmdVO.dmdID}"
-									width=200px></td>
+								<td><img src="<%=request.getContextPath()%>/ser_dmd/DBGifReader4?dmdID=${serDmdVO.dmdID}" width=200px></td>
+								
+									
+										
+								<td>
+									<FORM METHOD="post" ACTION="<%=request.getContextPath()%>/ser_quo/FindByQuoDmdIDServlet.do" name="form1">
+									
+									
+									<input type="hidden" name="quoDmdID" value="${serDmdVO.dmdID}">
+										
+									<input type="hidden" name="action" value="findByDmdID"> 
+									<input type="submit" value="檢視報價">
+									</FORM>
+								</td>
+								
+								
 								<td>
 									<FORM METHOD="post"
 										ACTION="<%=request.getContextPath()%>/ser_dmd/UpdateSerDmdServlet.do"
 										style="margin-bottom: 0px;">
-										<input type="submit" value="修改"> <input type="hidden"
-											name="dmdID" value="${serDmdVO.dmdID}"> <input
-											type="hidden" name="action" value="UpdateDmd">
+										<input type="submit" value="修改"> 
+										<input type="hidden" name="dmdID" value="${serDmdVO.dmdID}"> 
+										<input type="hidden" name="action" value="UpdateDmd">
 									</FORM>
 								</td>
 								<td>

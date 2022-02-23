@@ -3,9 +3,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ page import="java.util.*"%>
 <%@ page import="ezs.ser_ord.model.*"%>
-<%
-session.setAttribute("memID", 2);
-%>
+<%-- <%session.setAttribute("memID", 2);%> --%>
 <%
 Integer memID = (Integer) session.getAttribute("memID");
 SerOrdService serOrdSvc = new SerOrdService();
@@ -44,7 +42,7 @@ pageContext.setAttribute("memOrdList", memOrdList);
 						<h2>會員檢視訂單資料</h2>
 						<h4>
 							<a
-								href="<%=request.getContextPath()%>/frontend/ser_ord/serOrdHome.jsp">回首頁</a>
+								href="<%=request.getContextPath()%>/frontend/member/memberCenter/buyerMemberCenter.jsp">回首頁</a>
 						</h4>
 					</caption>
 					<thead class="table-success">

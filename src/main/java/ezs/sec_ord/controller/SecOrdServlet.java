@@ -45,14 +45,14 @@ public class SecOrdServlet extends HttpServlet {
 
 			try {
 				/*************************** 1.接收請求參數 ****************************************/
-				Integer shBuyerID = Integer.valueOf(req.getParameter("shBuyerID"));
+				HttpSession session = req.getSession();
+				Integer shBuyerID = Integer.valueOf((String)session.getAttribute("memID"));
 
 				/*************************** 2.開始查詢資料 ****************************************/
 				SecOrdService secOrdSvc = new SecOrdService();
 				Set<SecOrdVO> set = secOrdSvc.getSecOrdByShBuyerID(shBuyerID);
 
 				/*************************** 3.查詢完成,準備轉交(Send the Success view) ************/
-				HttpSession session = req.getSession();
 				session.setAttribute("listSecOrds_ByShBuyerID", set); // 資料庫取出的list物件,存入request
 
 				String url = "/frontend/sec_ord/listSecOrds_ByShBuyerID.jsp";
