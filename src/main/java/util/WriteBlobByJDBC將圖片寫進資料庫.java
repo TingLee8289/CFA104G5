@@ -103,9 +103,9 @@ public class WriteBlobByJDBC將圖片寫進資料庫 {
 			}
 
 			System.out.println("租賃合約圖片新增成功");
-			
-			pstmt = con.prepareStatement("UPDATE `CFA104G5`.`SER_VDR` SET `VDR_PIC` = ? WHERE `VDR_ID` = ?");
-			
+
+			pstmt = con.prepareStatement("UPDATE `CFA104G5`.`SER_VDR` SET VDR_PIC = ? WHERE VDR_ID = ?");
+
 			File file5 = new File("src/main/webapp/images/ser/ser_vdr/");
 			File[] listFile5 = file5.listFiles();
 			for (int i = 0; i < file5.listFiles().length; i++) {
@@ -118,9 +118,9 @@ public class WriteBlobByJDBC將圖片寫進資料庫 {
 				pstmt.executeUpdate();
 			}
 			System.out.println("廠商圖片新增成功");
-			
-			pstmt = con.prepareStatement("UPDATE `CFA104G5`.`SER_DMD` SET `DMD_PIC` = ? WHERE `DMD_ID` = ?");
-			
+
+			pstmt = con.prepareStatement("UPDATE `CFA104G5`.`SER_DMD` SET DMD_PIC = ? WHERE DMD_ID = ?");
+
 			File file6 = new File("src/main/webapp/images/ser/ser_dmd/");
 			File[] listFile6 = file6.listFiles();
 			for (int i = 0; i < file6.listFiles().length; i++) {
