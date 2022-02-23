@@ -30,7 +30,7 @@ pageContext.setAttribute("list", list);
 
 
 
-<title>所有會員資料</title>
+<title>EASY SPACE後台管理系統</title>
 <style>
 #cssTable
 {

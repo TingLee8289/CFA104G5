@@ -10,7 +10,9 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>EASY SPACE</title>
+
+<title>EASY SPACE後台管理系統</title>
+
 </head>
 
 <body>
