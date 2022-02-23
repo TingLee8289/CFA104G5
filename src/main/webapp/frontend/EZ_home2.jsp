@@ -1,18 +1,61 @@
-<%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%><%--JSTL標籤宣告 --%>
-
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
+<!DOCTYPE html>
 <html>
 <head>
-<title>EASY SPACE</title>
+<meta charset="UTF-8">
+<title>EZ_SPACE</title>
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+<style type="text/css">
+* {
+	box-sizing: border-box;
+}
 
+html, body {
+	width: 100%;
+	height: 100%;
+}
 
+body {
+	background-color: #ecb88a;
+}
+
+.container {
+	width: 90%;
+	min-width: 768px;
+	font-size: 1.2rem;
+}
+
+footer {
+	background-color: #fecba1;
+}
+
+.nav-link {
+	/* 去除超連結的線 */
+	color: #666666;
+}
+
+.nav-item>a, a {
+	/*  去除連結線 */
+	text-decoration: none;
+	color: #373c3f;
+}
+
+.nav-item>a:hover, a:hover {
+	color: #31a0b7;
+}
+
+header {
+	outline: 1px solid black;
+}
+</style>
 </head>
 <body>
-<header>
+	<div id="ezhome" class="">
+		<header>
 			<div class="container">
 				<div class="navbar d-flex flex-nowrap py-3">
-					<a href="#"> <img
+					<a href="<%=request.getContextPath()%>/frontend/EZ_home.jsp"> <img
 						src="<%= request.getContextPath()%>/images/cmn/index/EASYSPACE.png"
 						alt="brand-logo-image" class=" brand-logo" style="height: 130px">
 					</a>
@@ -21,15 +64,23 @@
 							class="pages-login d-flex flex-row align-items-center col-12 justify-content-between mx-auto">
 							<ul
 								class="nav nav-items justify-content-between align-items-center col-9">
-								<li class="nav-item"><a class="nav-link" role="button"
-									href="#">房屋租賃</a></li>
-								<li class="nav-item"><a class="nav-link" href="#">居家服務</a>
+								<li class="nav-item">
+									<a class="nav-link" role="button" href="<%= request.getContextPath()%>">房屋租賃</a>
 								</li>
-								<li class="nav-item"><a class="nav-link" href="#">二手家電</a>
+								<li class="nav-item">
+									<a class="nav-link" href="<%= request.getContextPath()%>/frontend/ser_ad/serAdViewPage.jsp">居家服務</a>
 								</li>
+								<li class="nav-item">
+									<a class="nav-link" href="<%= request.getContextPath()%>">二手家電</a>
+								</li>
+								
+								<li class="nav-item">
+									<a class="nav-link" href="<%= request.getContextPath()%>/frontend/member/memberCenter/memberCenter.jsp">會員中心</a>
+								</li>
+								
 							</ul>
-							<div
-								class="nav-menu-shopping-bag d-flex col-3 justify-content-sm-end  align-items-center">
+							<div class="nav-menu-shopping-bag d-flex col-3 justify-content-sm-end  align-items-center">
+								
 								<a href="#"><i class="bi bi-cart3 mx-2"
 									style="font-size: 3rem; color: #8C4E37;"></i></a> <a class="btn"
 									href="#" role="button" style="background-color: #FD9843">會員登入</a>
@@ -49,64 +100,38 @@
 				</div>
 			</div>
 		</header>
-		
-	<table>
-		<tr>
-			<td>
 
-				<h4>
-					<a
-						href="<%=request.getContextPath()%>/backend/ser/ser_repo/select_page.jsp">回首頁</a>
-				</h4>
-			</td>
-		</tr>
-	</table>
-	
+		<main>
+			<section>
+				<div class="container">
+					<div class="card-group my-5">
+						<div class="card">
+							<img
+								src="https://images.unsplash.com/photo-1554995207-c18c203602cb?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MTV8fGludGVyaW9yfGVufDB8fDB8fA%3D%3D&auto=format&fit=crop&w=600&q=60"
+								class="card-img-top" alt="..." data-bs-toggle="tooltip"
+								data-bs-placement="bottom" title="房屋租賃" style="height: 100%">
 
-<br>
+						</div>
+						<div class="card">
+							<img
+								src="https://media.istockphoto.com/photos/emergency-emergency-plumber-call-picture-id1296737106?b=1&k=20&m=1296737106&s=170667a&w=0&h=LxktlA5vroADLiZfbU9h3F2v8vSB4lhQVEB93EVSELw="
+								class="card-img-top" alt="..." data-bs-toggle="tooltip"
+								data-bs-placement="bottom" title="居家服務" style="height: 100%">
 
+						</div>
+						<div class="card">
+							<img
+								src="https://media.istockphoto.com/photos/energy-efficiency-of-home-kitchen-appliances-concept-picture-id1301959047?b=1&k=20&m=1301959047&s=170667a&w=0&h=zNfwslJxQYuWrU3pjtZdu7QbCgoVjAr_znVRBPVjVEQ="
+								class="card-img-top" alt="..." data-bs-toggle="tooltip"
+								data-bs-placement="bottom" title="二手家電" style="height: 100%">
 
-	
+						</div>
+					</div>
+				</div>
+			</section>
+		</main>
 
-	<%-- 錯誤表列 --%>
-	<c:if test="${not empty errorMsgs}">
-		<font style="color: red">請修正以下錯誤:</font>
-		<ul>
-			<c:forEach var="message" items="${errorMsgs}">
-				<li style="color: red">${message}</li>
-			</c:forEach>
-		</ul>
-	</c:if>
-
-	<ul>
-	<li>
-			<FORM METHOD="post"
-				ACTION="<%=request.getContextPath()%>/ser_repo/GetSerRepoServlet.do">
-				<b>輸入檢舉編號 (如1):</b> <input type="text" name="rpID"> <input
-					type="hidden" name="action" value="getOne_For_Display"> <input
-					type="submit" value="送出">
-			</FORM>
-		</li>
-
-		<jsp:useBean id="serRepoSvc" scope="page"
-			class="ezs.ser_repo.model.SerRepoService" />
-
-		<li>
-			<FORM METHOD="post"
-				ACTION="<%=request.getContextPath()%>/ser_repo/GetSerRepoServlet.do">
-				<b>選擇檢舉編號:</b> <select size="1" name="rpID">
-					<c:forEach var="serRepVO" items="${serRepoSvc.all}">
-						<option value="${serRepVO.rpID}">${serRepVO.rpID}
-					</c:forEach>
-				</select> <input type="hidden" name="action" value="getOne_For_Display">
-				<input type="submit" value="送出">
-			</FORM>
-		</li>
-
-
-
-	</ul>
-	<footer>
+		<footer>
 			<section class="ccc website-map pt-5">
 				<div class="container">
 					<div class="row">
@@ -165,6 +190,8 @@
 				</div>
 			</section>
 		</footer>
-
+	</div>
+	<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.10.2/dist/umd/popper.min.js" integrity="sha384-7+zCNj/IqJ95wo16oMtfsKbZ9ccEh31eOz1HGyDuCQ6wgnyJNSYdrPa03rtR1zdB" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.min.js" integrity="sha384-QJHtvGhmr9XOIpI6YVutG+2QOK9T+ZnN4kzFN1RtK3zEFEIsxhlmWl5/YESvpZ13" crossorigin="anonymous"></script>
 </body>
 </html>

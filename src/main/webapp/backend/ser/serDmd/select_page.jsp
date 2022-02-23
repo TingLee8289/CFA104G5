@@ -3,7 +3,7 @@
 
 <html>
 <head>
-<title>Ezs Service Demand: Home</title>
+<title>EASY SPACE</title>
 
 <style>
 table#table-1 {

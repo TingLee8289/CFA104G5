@@ -4,9 +4,9 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>EASY SPACE</title>
+<title>Insert title here</title>
 </head>
 <body>
-
+<jsp:include page="/frontend/member/memberCenter/buyerMemberCenter.jsp" />
 </body>
 </html>

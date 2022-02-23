@@ -484,6 +484,8 @@
     </style>
 </head>
 <body>
+
+<jsp:include page="/frontend/EZ_nav.jsp" />
 	<% @SuppressWarnings("unchecked")
 	Vector<SecItem> buylist = (Vector<SecItem>) session.getAttribute("shoppingcart");%>
 	

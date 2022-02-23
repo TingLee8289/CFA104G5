@@ -52,13 +52,20 @@
 <body bgcolor='white'>
 
 <table id="table-1">
-	<tr><td>
+	<tr>
+		<td>
 		 <h3>新增需求單 - addSerDmd.jsp</h3></td><td style="text-align: center">
 		 <h4><a href="<%=request.getContextPath()%>/frontend/ser_dmd/serDmdHome.jsp">回首頁</a></h4>
-	</td></tr>
+		</td>
+	</tr>
+</table>
+<table>
+<th>
+<h3>資料新增:</h3>
+</th>
+
 </table>
 
-<h3>資料新增:</h3>
 
 <%-- 錯誤表列 --%>
 <c:if test="${not empty errorMsgs}">
@@ -156,8 +163,7 @@
 	<tr>
 		<td>需求簡介:</td>
 		<td>
-		<textarea name="dmdIntro"rows="4" cols="50" value="<%= (serDmdVO==null)? "搞裡頭" : serDmdVO.getDmdIntro() %>"></textarea>
-<%-- 		<input type="TEXT" name="dmdIntro" size= "50"value="<%= (serDmdVO==null)? "搞裡頭" : serDmdVO.getDmdIntro() %>"/> --%>
+		<textarea name="dmdIntro"rows="4" cols="50" ><%= (serDmdVO==null)? "搞裡頭" : serDmdVO.getDmdIntro() %></textarea>
 	    </td>
 	</tr>
 	<tr>

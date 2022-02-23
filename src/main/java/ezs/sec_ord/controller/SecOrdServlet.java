@@ -46,7 +46,7 @@ public class SecOrdServlet extends HttpServlet {
 			try {
 				/*************************** 1.接收請求參數 ****************************************/
 				HttpSession session = req.getSession();
-				Integer shBuyerID = Integer.valueOf((String)session.getAttribute("memID"));
+				Integer shBuyerID = Integer.valueOf(session.getAttribute("memID").toString());
 
 				/*************************** 2.開始查詢資料 ****************************************/
 				SecOrdService secOrdSvc = new SecOrdService();

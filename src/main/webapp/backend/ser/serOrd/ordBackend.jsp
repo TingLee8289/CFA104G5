@@ -3,7 +3,7 @@
 
 <html>
 <head>
-<title>Ezs Service Order: Home</title>
+<title>EASY SPACE</title>
 
 
 </head>

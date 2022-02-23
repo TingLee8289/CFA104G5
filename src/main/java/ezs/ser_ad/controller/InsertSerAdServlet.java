@@ -36,7 +36,7 @@ public class InsertSerAdServlet extends HttpServlet {
 
 //			try {
 				/*********************** 1.接收請求參數 - 輸入格式的錯誤處理 *************************/
-				Integer adVdrID = new Integer(req.getParameter("adVdrID"));
+				Integer adVdrID = Integer.valueOf(req.getParameter("adVdrID"));
 
 				Byte adStatus = Byte.valueOf(req.getParameter("adStatus"));
 				Integer adSerClaID = new Integer(req.getParameter("adSerClaID"));

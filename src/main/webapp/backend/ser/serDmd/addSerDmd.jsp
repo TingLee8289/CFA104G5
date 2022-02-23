@@ -11,7 +11,7 @@ SerDmdVO serDmdVO = (SerDmdVO) request.getAttribute("serDmdVO");
 <head>
  <script src="<%=request.getContextPath()%>/frontend/js/jquery-1.11.3.min.js"></script>
 <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
-<title>新增需求單 </title>
+<title>EASY SPACE</title>
 
 <style>
 table#table-1 {

@@ -105,7 +105,7 @@ public class MemberServlet extends HttpServlet {
 //				   session.removeAttribute("memUsername");
 			session.invalidate();
 		}
-		req.getRequestDispatcher("/frontend/member/login.jsp").forward(req, res);
+		req.getRequestDispatcher("/frontend/EZ_home.jsp").forward(req, res);
 		return;
 	}
 // 新增會員 (接收來自memberRegister.jsp請求)	

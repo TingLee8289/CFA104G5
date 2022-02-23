@@ -24,13 +24,13 @@
    		}
 		
 		.header{
-			display: flex;
+			position: fixed;
+			margin-top: 0px;
 			background-color: rgb(239,239,239);
-			position:fixed;
-			z-index:9999;
+			z-index:995;
 			width:100%;		
-			margin-top: 40px;	
-			border:1px solid black;
+ 			margin-top: 19px;	 
+/* 			border:1px solid black; */
 
 		}
 		
