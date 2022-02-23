@@ -31,7 +31,7 @@
                                 <nav class="sb-sidenav-menu-nested nav">
                                     <a class="nav-link" href="layout-static.html">申請成為房東</a>
                                     <a class="nav-link" href="layout-static.html">房源管理</a>
-                                    <a class="nav-link" href="layout-sidenav-light.html">預約單管理</a>
+                                    <a class="nav-link" href="<%=request.getContextPath()%>/frontend/ren_appointment/listRenAppByLDD.jsp">預約單管理</a>
                                     <a class="nav-link" href="layout-sidenav-light.html">租賃單管理</a>
                                 </nav>
                             </div>
@@ -43,8 +43,8 @@
                             </a>
                             <div class="collapse" id="collapsePages" aria-labelledby="headingTwo" data-bs-parent="#sidenavAccordion">
                                 <nav class="sb-sidenav-menu-nested nav">
-                                    <a class="nav-link" href="layout-static.html">商品管理</a>
-                                    <a class="nav-link" href="layout-static.html">訂單管理</a>
+                                    <a class="nav-link" href="<%=request.getContextPath()%>/frontend/sec_items/select_page.jsp">商品管理</a>
+                                    <a class="nav-link" href="<%=request.getContextPath()%>/frontend/sec_ord/listAllSecOrd.jsp">訂單管理</a>
                                 </nav>
                             </div>
 <!-- ------------------------------------------------------------------------------------------------- -->

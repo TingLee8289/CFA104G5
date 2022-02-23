@@ -42,7 +42,7 @@ pageContext.setAttribute("memOrdList", memOrdList);
 						<h2>會員檢視訂單資料</h2>
 						<h4>
 							<a
-								href="<%=request.getContextPath()%>/frontend/ser_ord/serOrdHome.jsp">回首頁</a>
+								href="<%=request.getContextPath()%>/frontend/member/memberCenter/buyerMemberCenter.jsp">回首頁</a>
 						</h4>
 					</caption>
 					<thead class="table-success">

@@ -20,7 +20,7 @@
                     <div class="sb-sidenav-menu">
                         <div class="nav">
                             <div class="sb-sidenav-menu-heading">管理專區</div>
-                            <a class="nav-link" href="index.html">
+                            <a class="nav-link" href="<%=request.getContextPath()%>/frontend/member/listOneMember.jsp">
                                 <div class="sb-nav-link-icon"><i class="fas fa-tachometer-alt"></i></div>
                                 會員資料管理
                             </a>
@@ -33,9 +33,9 @@
                             </a>
                             <div class="collapse" id="collapseLayouts" aria-labelledby="headingOne" data-bs-parent="#sidenavAccordion">
                                 <nav class="sb-sidenav-menu-nested nav">
-                                    <a class="nav-link" href="layout-static.html">預約單管理</a>
-                                    <a class="nav-link" href="layout-static.html">租賃單管理</a>
-                                    <a class="nav-link" href="layout-sidenav-light.html">收藏房源管理</a>
+                                    <a class="nav-link" href="<%=request.getContextPath()%>/frontend/ren_appointment/listRenAppByMEM.jsp">預約單管理</a>
+                                    <a class="nav-link" href="<%=request.getContextPath()%>/frontend/ren_lease/MEMlistOneLease.jsp">租賃單管理</a>
+                                    <a class="nav-link" href="<%=request.getContextPath()%>/frontend/ren_favorites/listOneRenFavorites.jsp">收藏房源管理</a>
                                 </nav>
                             </div>
 <!-- ------------------------------------------------------------------------------------------------- -->
@@ -57,9 +57,8 @@
                             </a>
                             <div class="collapse" id="collapsePages2" aria-labelledby="headingThree" data-bs-parent="#sidenavAccordion">
                                 <nav class="sb-sidenav-menu-nested nav">
-                                    <a class="nav-link" href="<%=request.getContextPath()%>/frontend/ser_dmd/getByDmdMemID.jsp">需求單管理</a>
-                                    <a class="nav-link" href="<%=request.getContextPath()%>/frontend/member/memberCenter/memberCenterBuyerQuo.jsp" data-id="232">估價單管理</a>
-                                    <a class="nav-link" href="<%=request.getContextPath()%>/frontend/member/memberCenter/memberCenterBuyerOrd.jsp" data-id="233">服務訂單管理</a>
+                                    <a class="nav-link" href="<%=request.getContextPath()%>/frontend/ser_dmd/getByDmdMemID.jsp">需求單/報價單管理</a>
+                                    <a class="nav-link" href="<%=request.getContextPath()%>/frontend/ser_ord/getOrdByMemID.jsp">服務訂單管理</a>
                                 </nav>
                             </div>
 <!-- ------------------------------------------------------------------------------------------------- -->
