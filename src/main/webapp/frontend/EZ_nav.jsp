@@ -13,12 +13,13 @@
 	<style>
 		#nav{
 			background-color: lightgrey;
+			z-index: 9999;
 		}
 		
 	</style>
 </head>
 <body>
-	<nav class="navbar navbar-expand-lg navbar-dark  " id="nav" style="padding: 0px;">
+	<nav class="navbar navbar-expand-lg navbar-dark  " id="nav" style="padding: 0px; height: 40px;">
 		<div class="container">
 <!-- 			<a class="navbar-brand" href="index.html"> <img -->
 <%-- 				src=" <%=request.getContextPath() %>/images/cmn/index/bannerLogo.jpg" alt="UI Kit" --%>
@@ -48,7 +49,7 @@
 							alt="Htmlstream"> John Doe <i class="fa fa-angle-down   "></i>
 					</a>
 						<div class="dropdown-menu" aria-labelledby="navbarDropdown">
-							<a class="dropdown-item" href="<%= request.getContextPath()%>/frontend/member/memberCenter/memberCenter.jsp">會員中心</a> 
+							<a class="dropdown-item" href="<%= request.getContextPath()%>/frontend/member/memberCenter/buyerMemberCenter.jsp">會員中心</a> 
 							<a class="dropdown-item" href="#">賣家中心</a> 
 							<a class="dropdown-item" href="<%=request.getContextPath()%>/frontend/chat/index.jsp">聊聊</a>
 							<a class="dropdown-item" href="<%=request.getContextPath()%>/frontend/sec_items/shoppingCart.jsp">購物車</a>
