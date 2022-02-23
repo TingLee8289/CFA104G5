@@ -18,13 +18,14 @@
 			height: 40px;
 			width:100%;
 			position: fixed;
+			
 		}
 		
 	</style>
 </head>
 <body>
 
-	<div class="navbar navbar-expand-lg navbar-dark  " id="nav">
+	<div class="navbar navbar-expand-lg navbar-dark" id="nav">
 		<div class="container">
 			<button class="navbar-toggler" type="button"
 				data-bs-toggle="collapse" data-bs-target="#navbarTogglerDemo03"
