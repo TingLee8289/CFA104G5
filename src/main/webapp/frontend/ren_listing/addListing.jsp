@@ -300,21 +300,21 @@
 			<br>
 			<tr>
 			 <td></td>
-			 <td>房源上架狀態</td>
-			 <td>
-			<select  name="lisStatus" ><option value='<%= (renListingVO==null)? "0": renListingVO.getLisStatus() %>'  selected >否</option>
+<!-- 			 <td>房源上架狀態</td> -->
+<!-- 			 <td> -->
+<%-- 			<select  name="lisStatus" ><option value='<%= (renListingVO==null)? "0": renListingVO.getLisStatus() %>'  selected >否</option> --%>
 				
-				<option value='1' >已下架</option>
-				</select>
-			</td>
-			<td>房源申請審核狀態<td>
-			<td>
-			<select  name="lisApproval" ><option value='<%= (renListingVO==null)? "0": renListingVO.getLisApproval() %>'  selected >否</option>
-				<option value='0' >審核中</option>
-				<option value='1' >已審核</option>
-				<option value='2' >審核未過</option>
-				</select>
-			</td>
+<!-- 				<option value='1' >已下架</option> -->
+<!-- 				</select> -->
+<!-- 			</td> -->
+<!-- 			<td>房源申請審核狀態<td> -->
+<!-- 			<td> -->
+<%-- 			<select  name="lisApproval" ><option value='<%= (renListingVO==null)? "0": renListingVO.getLisApproval() %>'  selected >否</option> --%>
+<!-- 				<option value='0' >審核中</option> -->
+<!-- 				<option value='1' >已審核</option> -->
+<!-- 				<option value='2' >審核未過</option> -->
+<!-- 				</select> -->
+<!-- 			</td> -->
 			<br>			
 			
 	<tr>

@@ -12,7 +12,7 @@
 %>
 
 <jsp:useBean id="renRoomtypeSvc" scope="page" class="ezs.ren_roomtype.model.RenRoomtypeService" />
-
+<jsp:useBean id="renLocationSvc" scope="page" class="ezs.ren_location.model.RenLocationService" />
 <!DOCTYPE html>
 <html>
 <head>
@@ -60,7 +60,7 @@
 <table id="table-1">
 	<tr><td>
 		<h3>房東房源管理 - listRenListing_ByLisLddID.jsp</h3>
-		<h4><a href="<%=request.getContextPath()%>/listing_select_page.jsp">回首頁</a></h4>
+		<h4><a href="listing_select_page.jsp">回首頁</a></h4>
 	</td></tr>
 
 </table>
@@ -111,8 +111,8 @@
 		<th>限女性</th>
 		<th>限學生</th>
 		<th>房源圖片</th>
-		<th>房源上架狀態</th>
-		<th>房源申請審核狀態</th>
+<!-- 		<th>房源上架狀態</th> -->
+<!-- 		<th>房源申請審核狀態</th> -->
 		<th>修改</th>
 		<th>刪除</th>
 	</tr>
@@ -128,7 +128,11 @@
                     </c:if>
                 </c:forEach>
 			</td>
-			<td>${renListingVO.lisAreaID}</td>
+			<td><c:forEach var="renLocationVO" items="${renLocationSvc.all}">
+                    <c:if test="${renListingVO.lisAreaID==renLocationVO.locID}">
+	                    ${renLocationVO.locID}${renLocationVO.locCity}${renLocationVO.locDist}
+                    </c:if>
+                </c:forEach></td>
 			<td>${renListingVO.lisTitle}</td>
 			<td>${renListingVO.lisAbt}</td>
 			<td>${renListingVO.lisAddress}</td>
@@ -140,35 +144,56 @@
 			<td>${renListingVO.lisRmNo}</td>
 			<td>${renListingVO.lisCmnArea}</td>
 			<td>${renListingVO.lisBrNo}</td>
-			<td>${renListingVO.lisEthernet}</td>
-			<td>${renListingVO.lisWifi}</td>
-			<td>${renListingVO.lisWh}</td>
-			<td>${renListingVO.lisShenc}</td>
-			<td>${renListingVO.lisAc}</td>
-			<td>${renListingVO.lisFridge}</td>
-			<td>${renListingVO.lisTv}</td>
-			<td>${renListingVO.lisWasher}</td>
-			<td>${renListingVO.lisDryer}</td>
-			<td>${renListingVO.lisTc}</td>
-			<td>${renListingVO.lisBed}</td>
-			<td>${renListingVO.lisCabinet}</td>
-			<td>${renListingVO.lisSofa}</td>
-			<td>${renListingVO.lisParking}</td>
-			<td>${renListingVO.lisCook}</td>
-			<td>${renListingVO.lisPet}</td>
-			<td>${renListingVO.lisSmoking}</td>
-			<td>${renListingVO.lisMonly}</td>
-			<td>${renListingVO.lisFonly}</td>
-			<td>${renListingVO.lisSonly}</td>
-			<td><img src="<%=request.getContextPath()%>/ren_listing/RenListing_pic_ReaderServlet.do?lspLisID=
+			<td><c:if test="${renListingVO.lisEthernet ==0}">沒有</c:if>
+		 <c:if test="${renListingVO.lisEthernet==1}">有</c:if></td>			
+			<td><c:if test="${renListingVO.lisWifi==0}">沒有</c:if>
+		 <c:if test="${renListingVO.lisWifi==1}">有</c:if></td>
+		 	<td><c:if test="${renListingVO.lisWh==0}">沒有</c:if>
+		 <c:if test="${renListingVO.lisWh==1}">有</c:if></td> 
+			<td><c:if test="${renListingVO.lisShenc==0}">沒有</c:if>
+		 <c:if test="${renListingVO.lisShenc==1}">有</c:if></td>
+			<td><c:if test="${renListingVO.lisAc==0}">沒有</c:if>
+		 <c:if test="${renListingVO.lisAc==1}">有</c:if></td>
+			<td><c:if test="${renListingVO.lisFridge==0}">沒有</c:if>
+		 <c:if test="${renListingVO.lisFridge==1}">有</c:if></td>
+			<td><c:if test="${renListingVO.lisTv==0}">沒有</c:if>
+		 <c:if test="${renListingVO.lisTv==1}">有</c:if></td>
+			<td><c:if test="${renListingVO.lisWasher==0}">沒有</c:if>
+		 <c:if test="${renListingVO.lisWasher==1}">有</c:if></td>
+			<td><c:if test="${renListingVO.lisDryer==0}">沒有</c:if>
+		 <c:if test="${renListingVO.lisDryer==1}">有</c:if></td>
+			<td><c:if test="${renListingVO.lisTc==0}">沒有</c:if>
+		 <c:if test="${renListingVO.lisTc==1}">有</c:if></td>
+			<td><c:if test="${renListingVO.lisBed==0}">沒有</c:if>
+		 <c:if test="${renListingVO.lisBed==1}">有</c:if></td>
+			<td><c:if test="${renListingVO.lisCabinet==0}">沒有</c:if>
+		 <c:if test="${renListingVO.lisCabinet==1}">有</c:if></td>
+			<td><c:if test="${renListingVO.lisSofa==0}">沒有</c:if>
+		 <c:if test="${renListingVO.lisSofa==1}">有</c:if></td>
+			<td><c:if test="${renListingVO.lisParking==0}">沒有</c:if>
+		 <c:if test="${renListingVO.lisParking==1}">有</c:if></td>
+			<td><c:if test="${renListingVO.lisCook==0}">不可以</c:if>
+		 <c:if test="${renListingVO.lisCook==1}">可以</c:if></td>
+			<td><c:if test="${renListingVO.lisPet==0}">不可以</c:if>
+		 <c:if test="${renListingVO.lisPet==1}">可以</c:if></td>
+			<td><c:if test="${renListingVO.lisSmoking==0}">不可以</c:if>
+		 <c:if test="${renListingVO.lisSmoking==1}">可以</c:if></td>
+			<td><c:if test="${renListingVO.lisMonly==0}">否</c:if>
+		 <c:if test="${renListingVO.lisMonly==1}">是</c:if></td>
+			<td><c:if test="${renListingVO.lisFonly==0}">否</c:if>
+		 <c:if test="${renListingVO.lisFonly==1}">是</c:if></td>
+			<td><c:if test="${renListingVO.lisSonly==0}">否</c:if>
+		 <c:if test="${renListingVO.lisSonly==1}">是</c:if></td>
+			<td><img src="<%=request.getContextPath()%>/ren_listing/RenListing_pic_ReaderServlet.do?LIS_ID=
 				 ${renListingVO.lisID}" width = 200px></td>
-			<td>${renListingVO.lisStatus}</td>
-			<td>${renListingVO.lisApproval}</td>
+<%-- 			<td>${renListingVO.lisStatus}</td> --%>
+<%-- 			<td>${renListingVO.lisApproval}</td> --%>
 			<td>
 				<FORM METHOD="post" ACTION="<%=request.getContextPath()%>/frontend/ren_listing/RenListingServlet.do" style="margin-bottom: 0px;">
 					<input type="submit" value="修改">
 					<input type="hidden" name="lisID" value="${renListingVO.lisID}">
 					<input type="hidden" name="action" value="getOne_For_Update">
+				
 				</FORM>
 			</td>
 			<td>
@@ -178,7 +203,7 @@
 			     	<input type="hidden" name="action" value="delete">
 			    </FORM>
 			 </td>
-		</tr>
+		
 	</c:forEach>
 	<%@ include file="page2.file" %>
 	

@@ -11,12 +11,13 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import ezs.ren_location.model.RenLocationService;
 import ezs.ren_listing.model.*;
 import ezs.ren_location.model.*;
 
-@WebServlet("/frontend/ren_location/RenLocationServlet.do")
+@WebServlet("/frontend/ren_listing/RenLocationServlet.do")
 public class RenLocationServlet extends HttpServlet {
 	
 	protected void doGet(HttpServletRequest req, HttpServletResponse res) 
@@ -40,11 +41,12 @@ public class RenLocationServlet extends HttpServlet {
 				System.out.print(1234);
 				/*************************** 2.開始查詢資料 ****************************************/
 				RenLocationService renLocationSvc = new RenLocationService();
-				Set<RenListingVO> set = renLocationSvc.getRenListingByLisAreaID(lisAreaID);
+				Set<RenListingVO> set1 = renLocationSvc.getRenListingByLisAreaID(lisAreaID);
 				/*************************** 3.查詢完成,準備轉交(Send the Success view) ************/
-				req.setAttribute("listLocations_BylisAreaID", set);    // 資料庫取出的list物件,存入request				
+				HttpSession session = req.getSession();
+				session.setAttribute("listRenListing_ByLisAreaID", set1);    // 資料庫取出的list物件,存入request				
 				String url = "/frontend/ren_location/listListing_ByLisAreaID.jsp";
-				
+				System.out.println(set1);
 				RequestDispatcher successView = req.getRequestDispatcher(url);
 				successView.forward(req, res);
 

@@ -134,9 +134,9 @@ public class InsertRenListingServlet extends HttpServlet {
 			Integer lisMonly = new Integer(req.getParameter("lisMonly").trim());
 			Integer lisFonly = new Integer(req.getParameter("lisFonly").trim());
 			Integer lisSonly = new Integer(req.getParameter("lisSonly").trim());
-			Integer lisStatus = new Integer(req.getParameter("lisStatus").trim());
-			Integer lisApproval = new Integer(req.getParameter("lisApproval").trim());
-			
+//			Integer lisStatus = new Integer(req.getParameter("lisStatus").trim());
+//			Integer lisApproval = new Integer(req.getParameter("lisApproval").trim());
+//			
 			RenListingVO renListingVO = new RenListingVO();
 			
 			renListingVO.setLisLddID(lisLddID);
@@ -173,8 +173,8 @@ public class InsertRenListingServlet extends HttpServlet {
 			renListingVO.setLisSmoking(lisSmoking);
 			renListingVO.setLisFonly(lisFonly);
 			renListingVO.setLisSonly(lisSonly);
-			renListingVO.setLisStatus(lisStatus);
-			renListingVO.setLisApproval(lisApproval);		
+//			renListingVO.setLisStatus(lisStatus);
+//			renListingVO.setLisApproval(lisApproval);		
 				
 			if (!errorMsgs.isEmpty()) {
 				req.setAttribute("renListingVO", renListingVO);
@@ -191,7 +191,7 @@ public class InsertRenListingServlet extends HttpServlet {
 					lisAddress,lisRent,lisMngFee,lisPfee,lisSqft,lisFlr,lisRmNo,
 					lisCmnArea,lisBrNo,lisEthernet,lisWifi,lisWh,lisShenc,lisAc,lisFridge,
 					lisTv,lisWasher,lisDryer,lisTc,lisBed,lisCabinet,lisSofa,lisParking,
-					lisCook,lisPet,lisSmoking,lisMonly,lisFonly,lisSonly,lisStatus,lisApproval);
+					lisCook,lisPet,lisSmoking,lisMonly,lisFonly,lisSonly);
 			
 			
 			/*****************************3.新增完成，準備轉交(send the Success view)*********/

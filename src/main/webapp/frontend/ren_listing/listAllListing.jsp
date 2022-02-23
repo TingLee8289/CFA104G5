@@ -78,52 +78,55 @@
 
 <table>
 	<tr>
-	    <td>房源ID</td>
-		<td>房東ID</td>
-		<td>房型ID</td>
-		<td>區域ID</td>
-		<td>房源標題</td>
-		<td>房源介紹</td>
-		<td>詳細地址</td>
-		<td>租金</td>
-		<td>管理費</td>
-		<td>停車費</td>
-		<td>坪數</td>
-		<td>樓層</td>
-		<td>房間數量</td>
-		<td>廳堂數量</td>
-		<td>衛浴數量</td>
-		<td>有線網路</td>
-		<td>WIFI</td>
-		<td>熱水器</td>
-		<td>乾溼分離</td>
-		<td>>冷氣</td>
-		<td>冰箱</td>
-		<td>電視</td>
-		<td>洗衣機</td>
-		<td>烘衣機</td>
-		<td>桌椅</td>
-		<td>床</td>
-		<td>櫃子</td>
-		<td>沙發</td>
-		<td>車位</td>
-		<td>可以開伙</td>
-		<td>可以養寵物</td>
-		<td>可以吸菸</td>
-		<td>限男性</td>
-		<td>限女性</td>
-		<td>限學生</td>
-		<td>房源圖片</td>
-		<td>房源上架狀態</td>
-		<td>房源申請審核狀態</td>
-		<td>修改</td>
-		<td>刪除</td>
+	    <th>房源ID</th>
+		<th>房東ID</th>
+		<th>房型ID</th>
+		<th>區域ID</th>
+		<th>房源標題</th>
+<!-- 		<th>房源介紹</th> -->
+		<th>詳細地址</th>
+		<th>租金</th>
+<!-- 		<th>管理費</th> -->
+<!-- 		<th>停車費</th> -->
+		<th>坪數</th>
+		<th>樓層</th>
+		<th>房間數量</th>
+		<th>廳堂數量</th>
+		<th>衛浴數量</th>
+<!-- 		<th>有線網路</th> -->
+<!-- 		<th>WIFI</th> -->
+<!-- 		<th>熱水器</th> -->
+<!-- 		<th>乾溼分離</th> -->
+<!-- 		<th>>冷氣</th> -->
+<!-- 		<th>冰箱</th> -->
+<!-- 		<th>電視</th> -->
+<!-- 		<th>洗衣機</th> -->
+<!-- 		<th>烘衣機</th> -->
+<!-- 		<th>桌椅</th> -->
+<!-- 		<th>床</th> -->
+<!-- 		<th>櫃子</th> -->
+<!-- 		<th>沙發</th> -->
+<!-- 		<th>車位</th> -->
+<!-- 		<th>可以開伙</th> -->
+<!-- 		<th>可以養寵物</th> -->
+<!-- 		<th>可以吸菸</th> -->
+<!-- 		<th>限男性</th> -->
+<!-- 		<th>限女性</th> -->
+<!-- 		<th>限學生</th> -->
+		<th>房源圖片</th>
+<!-- 		<th>房源上架狀態</th> -->
+<!-- 		<th>房源申請審核狀態</th> -->
+		<th>詳情</th>
+		<th>收藏</th>
 	</tr>
-<%-- 	<%@ include file="page1.file" %> --%>
-<%-- 	<c:forEach var="renListingVO" items="${list}" begin="<%=pageIndex %>" end="<%=pageIndex+rowsPerPage-1 %>"> --%>
+
+	<%@ include file="page3.file" %>
+	<c:forEach var="renListingVO" items="${list}" begin="<%=pageIndex %>" end="<%=pageIndex+rowsPerPage-1 %>">
+
 	
 		<tr>
 			<td>${renListingVO.lisID}</td>
+<%-- 			<td>${renListingVO.lisLddID}</td> --%>
 			<td>${renListingVO.lisLddID}</td>
 			<td><c:forEach var="renRoomtypeVO" items="${renRoomtypeSvc.all}">
                     <c:if test="${renListingVO.lisRtID==renRoomtypeVO.rtID}">
@@ -138,54 +141,54 @@
                 </c:forEach>
 			</td>			
 			<td>${renListingVO.lisTitle}</td>
-			<td>${renListingVO.lisAbt}</td>
+<%-- 			<td>${renListingVO.lisAbt}</td> --%>
 			<td>${renListingVO.lisAddress}</td>
 			<td>${renListingVO.lisRent}</td>
-			<td>${renListingVO.lisMngFee}</td>
-			<td>${renListingVO.lisPfee}</td>
+<%-- 			<td>${renListingVO.lisMngFee}</td> --%>
+<%-- 			<td>${renListingVO.lisPfee}</td> --%>
 			<td>${renListingVO.lisSqft}</td>
 			<td>${renListingVO.lisFlr}</td>
 			<td>${renListingVO.lisRmNo}</td>
 			<td>${renListingVO.lisCmnArea}</td>
 			<td>${renListingVO.lisBrNo}</td>
-			<td>${renListingVO.lisEthernet}</td>
-			<td>${renListingVO.lisWifi}</td>
-			<td>${renListingVO.lisWh}</td>
-			<td>${renListingVO.lisShenc}</td>
-			<td>${renListingVO.lisAc}</td>
-			<td>${renListingVO.lisFridge}</td>
-			<td>${renListingVO.lisTv}</td>
-			<td>${renListingVO.lisWasher}</td>
-			<td>${renListingVO.lisDryer}</td>
-			<td>${renListingVO.lisTc}</td>
-			<td>${renListingVO.lisBed}</td>
-			<td>${renListingVO.lisCabinet}</td>
-			<td>${renListingVO.lisSofa}</td>
-			<td>${renListingVO.lisParking}</td>
-			<td>${renListingVO.lisCook}</td>
-			<td>${renListingVO.lisPet}</td>
-			<td>${renListingVO.lisSmoking}</td>
-			<td>${renListingVO.lisMonly}</td>
-			<td>${renListingVO.lisFonly}</td>
-			<td>${renListingVO.lisSonly}</td>
+<%-- 			<td>${renListingVO.lisEthernet}</td> --%>
+<%-- 			<td>${renListingVO.lisWifi}</td> --%>
+<%-- 			<td>${renListingVO.lisWh}</td> --%>
+<%-- 			<td>${renListingVO.lisShenc}</td> --%>
+<%-- 			<td>${renListingVO.lisAc}</td> --%>
+<%-- 			<td>${renListingVO.lisFridge}</td> --%>
+<%-- 			<td>${renListingVO.lisTv}</td> --%>
+<%-- 			<td>${renListingVO.lisWasher}</td> --%>
+<%-- 			<td>${renListingVO.lisDryer}</td> --%>
+<%-- 			<td>${renListingVO.lisTc}</td> --%>
+<%-- 			<td>${renListingVO.lisBed}</td> --%>
+<%-- 			<td>${renListingVO.lisCabinet}</td> --%>
+<%-- 			<td>${renListingVO.lisSofa}</td> --%>
+<%-- 			<td>${renListingVO.lisParking}</td> --%>
+<%-- 			<td>${renListingVO.lisCook}</td> --%>
+<%-- 			<td>${renListingVO.lisPet}</td> --%>
+<%-- 			<td>${renListingVO.lisSmoking}</td> --%>
+<%-- 			<td>${renListingVO.lisMonly}</td> --%>
+<%-- 			<td>${renListingVO.lisFonly}</td> --%>
+<%-- 			<td>${renListingVO.lisSonly}</td> --%>
 			<td><img src="<%=request.getContextPath()%>/ren_listing/RenListing_pic_ReaderServlet.do?LIS_ID=
 				 ${renListingVO.lisID}" width = 200px></td>
-			<td>${renListingVO.lisStatus}</td>
-			<td>${renListingVO.lisApproval}</td>
+<%-- 			<td>${renListingVO.lisStatus}</td> --%>
+<%-- 			<td>${renListingVO.lisApproval}</td> --%>
 			<td>
-				<FORM METHOD="post" ACTION="<%=request.getContextPath()%>/frontend/ren_listing/RenListingServlet.do" style="margin-bottom: 0px;">
-					<input type="submit" value="修改">
+				<FORM METHOD="post" ACTION="<%=request.getContextPath()%>/frontend/ren_listing/GetOneRenListingServlet.do" style="margin-bottom: 0px;">
+					<input type="submit" value="詳情">
 					<input type="hidden" name="lisID" value="${renListingVO.lisID}">
-					<input type="hidden" name="action" value="getOne_For_Update">
+					<input type="hidden" name="action" value="getOne_For_Display_A">
 				</FORM>
 			</td>
-			<td>
-				<FORM METHOD="post" ACTION="<%=request.getContextPath()%>/frontend/ren_listing/RenListingServlet.do" style="margin-bottom: 0px;">
-			     	<input type="submit" value="刪除">
-			     	<input type="hidden" name="lisID"  value="${renListingVO.lisID}">
-			     	<input type="hidden" name="action" value="delete">
-			    </FORM>
-			 </td>
+<!-- 			<td> -->
+<%-- 				<FORM METHOD="post" ACTION="<%=request.getContextPath()%>/frontend/ren_listing/RenListingServlet.do" style="margin-bottom: 0px;"> --%>
+<!-- 			     	<input type="submit" value="收藏"> -->
+<%-- 			     	<input type="hidden" name="lisID"  value="${renListingVO.lisID}"> --%>
+<!-- 			     	<input type="hidden" name="action" value="delete"> -->
+<!-- 			    </FORM> -->
+<!-- 			 </td> -->
 		</tr>
 <%-- 	</c:forEach> --%>
 </table>

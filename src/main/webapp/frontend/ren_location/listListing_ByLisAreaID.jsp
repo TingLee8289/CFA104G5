@@ -8,13 +8,13 @@
 <%@ page import="ezs.ren_roomtype.model.RenRoomtypeService"%>
 <%@ page import="ezs.ren_location.model.*"%>
 
-<jsp:useBean id="listLocations_BylisAreaID" scope="request" type="java.util.Set<RenListingVO>" /> <!-- 於EL此行可省略 -->
-<jsp:useBean id="renLocationSvc" scope="page" class="ezs.ren_location.model.RenLocationService" />
-<% 
-	Set<RenListingVO> set = (Set<RenListingVO>)session.getAttribute("listRenListing_ByLisAreaID"); 
-	pageContext.setAttribute("set", set);
-%> 
 
+
+<% 
+	Set<RenListingVO> set1 = (Set<RenListingVO>)session.getAttribute("listRenListing_ByLisAreaID"); 
+	pageContext.setAttribute("set1", set1);
+%> 
+<jsp:useBean id="renLocationSvc" scope="page" class="ezs.ren_location.model.RenLocationService" />
 <!DOCTYPE html>
 <html>
 <head>
@@ -87,8 +87,8 @@
 		<th>詳情</th>
 		<th>加入收藏</th>
 	</tr>
-<%-- 	<%@ include file="page1.file"%> --%>
-<%-- 	<c:forEach var="renListingVO" items="${list}" begin="<%=pageIndex%>" end="<%=pageIndex+rowsPerPage-1%>"> --%>
+	<%@ include file="page1.file"%>
+	<c:forEach var="renListingVO" items="${set1}" begin="<%=pageIndex%>" end="<%=pageIndex+rowsPerPage-1%>">
 	
 		<tr>
 			<td>${renListingVO.lisID}</td>			
@@ -113,10 +113,10 @@
 					<input type="hidden" name="action" value="getOne_For_Display">
 				</FORM>
 			</td>	
-<%-- 	</c:forEach> --%>
+	</c:forEach>
+<%@ include file="page2.file" %>
 
 </table>
-<%-- <%@ include file="page2.file" %> --%>
 
 </body>
 </html>

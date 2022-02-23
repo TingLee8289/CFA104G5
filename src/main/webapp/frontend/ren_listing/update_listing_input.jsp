@@ -69,7 +69,7 @@ RenListingPicVO renListingPicVO = (RenListingPicVO) request.getAttribute("renLis
 	</ul>
 </c:if>
 
-<FORM METHOD="post" ACTION="RenListingServlet.do" name="form1">
+<FORM METHOD="post" enctype="multipart/form-data" ACTION="RenListingServlet.do" name="form1">
 <table>
 	<tr>
 		<td>房源編號:</td>
