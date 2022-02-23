@@ -6,7 +6,7 @@
 
 <head>
 <meta charset="UTF-8">
-<title>新增管理員</title>
+<title>EASY SPACE</title>
 
 <style>
   table {

@@ -19,7 +19,7 @@ RenLandlordVO renLandlordVO = (RenLandlordVO) request.getAttribute("renLandlordV
 <html>
 
 <head>
-<title>房東資料 - listOneLandlord.jsp</title>
+<title>EASY SPACE</title>
 </head>
 
 <body bgcolor='white'>

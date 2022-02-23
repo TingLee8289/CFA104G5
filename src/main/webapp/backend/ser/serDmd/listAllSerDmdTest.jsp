@@ -13,7 +13,7 @@ pageContext.setAttribute("list", list);
 <html>
 <head>
 <meta charset="UTF-8">
-<title>後台需求單管理</title>
+<title>EASY SPACE</title>
 <link
 	href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css"
 	rel="stylesheet"
