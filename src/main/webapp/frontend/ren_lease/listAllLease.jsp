@@ -26,7 +26,7 @@ pageContext.setAttribute("list2", list2);
 
 <html>
 <head>
-<title>所有租賃單資料</title>
+<title>EASY SPACE</title>
 
 </head>
 <body bgcolor='white'>

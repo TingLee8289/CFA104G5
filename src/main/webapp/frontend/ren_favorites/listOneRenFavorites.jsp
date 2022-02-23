@@ -33,7 +33,7 @@ RenListingPicVO renListingPicVO = (RenListingPicVO) request.getAttribute("renLis
 <head>
 <!--   <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/js/all.min.js" crossorigin="anonymous"></script> -->
   <script src="https://kit.fontawesome.com/1c2ccc4859.js" crossorigin="anonymous"></script>
-<title>收藏房源</title>
+<title>EASY SPACE</title>
 
 <style>
 table#table-1 {

@@ -20,7 +20,7 @@ SerQuoVO serQuoVO = (SerQuoVO) request.getAttribute("serQuoVO");
 <html>
 <head>
 <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
-<title>會員新增估價單(投遞需求單) - addQuoDmd.jsp</title>
+<title>EASY SPACE</title>
 
 <style>
 table#table-1 {

@@ -6,7 +6,7 @@
 
 <html>
 <head>
-<title>Easy House</title>
+<title>EASY SPACE</title>
 
 <style>
 table#table-1 {

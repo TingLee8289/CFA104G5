@@ -19,7 +19,7 @@ RenLeasePicService renLeasePicSvc = new RenLeasePicService();
 
 <head>
 
-<title>上傳租賃契約</title>
+<title>EASY SPACE</title>
 <link rel="stylesheet" type="text/css"
 	href="<%=request.getContextPath()%>/frontend/ren_landlord/2825.51680d86fe84cd4ddf65.css">
 </head>

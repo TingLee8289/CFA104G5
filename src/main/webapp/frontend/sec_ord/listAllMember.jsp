@@ -7,7 +7,7 @@
 
 <html>
 <head>
-<title>所有會員 - listAllMember.jsp</title>
+<title>EASY SPACE</title>
 
 <style>
   table#table-1 {

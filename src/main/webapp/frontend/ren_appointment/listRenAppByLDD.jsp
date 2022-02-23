@@ -14,7 +14,7 @@
 <html>
 <head>
 <script src="https://kit.fontawesome.com/1c2ccc4859.js" crossorigin="anonymous"></script>
-<title>房東 - 預約訂單管理</title>
+<title>EASY SPACE</title>
 
 <style>
   table#table-1 {

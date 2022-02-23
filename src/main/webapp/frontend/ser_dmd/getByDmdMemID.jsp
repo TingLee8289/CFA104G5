@@ -23,7 +23,7 @@ pageContext.setAttribute("serDmdList", serDmdList);
 <head>
 <meta charset="UTF-8">
  <script src="<%=request.getContextPath()%>/frontend/js/jquery-1.11.3.min.js"></script>
-<title>會員檢視需求單</title>
+<title>EASY SPACE</title>
 <link
 	href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css"
 	rel="stylesheet"
