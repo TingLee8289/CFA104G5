@@ -159,14 +159,13 @@ public class RenLandlordServlet extends HttpServlet {
 						/***********************1.接收請求參數 - 輸入格式的錯誤處理*************************/
 						RenLandlordVO renLandlordVO = new RenLandlordVO();
 						Integer lddMemId = new Integer(req.getParameter("lddMemId").trim());
-//						System.out.print(lddMemId);
 						Part part = req.getPart("lddPic");
 
 						byte[] lddPic = null;
 						if (part == null || part.getSize() == 0) {
 							req.setAttribute("renLandlordVO", renLandlordVO);
-							RenLandlordService memSvc2 = new RenLandlordService();
-							RenLandlordVO RenLandlordVO2 = memSvc2.getOneLandlord(lddMemId);
+							RenLandlordService renLandlordSvc2 = new RenLandlordService();
+							RenLandlordVO RenLandlordVO2 = renLandlordSvc2.getOneLandlord(lddMemId);
 							lddPic = RenLandlordVO2.getLddPic();
 
 						} else {

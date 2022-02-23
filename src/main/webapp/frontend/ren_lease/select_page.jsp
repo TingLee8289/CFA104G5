@@ -6,16 +6,28 @@
 
 <% request.setAttribute("memID", 6); 
 %>
- <%	RenLeaseService renLeaseSvc2 = new RenLeaseService();
+ <%	
+ 	
+	RenLeaseVO renLeaseVO =new RenLeaseVO();
+	 RenLeaseService renLeaseSvc2 = new RenLeaseService();
     List<RenLeaseVO> list = renLeaseSvc2.getAll();
     pageContext.setAttribute("list",list);
-	RenLeaseVO renLeaseVO =new RenLeaseVO(); 
+	
 	MemberService memberSvc = new MemberService();
 	Integer memID = (Integer)(request.getAttribute("memID"));
-	MemberVO memberVO= memberSvc.getOneMember(memID);
+	MemberVO memberVO = memberSvc.getOneMember(memID);
 	pageContext.setAttribute("memberVO", memberVO);
-%>
 
+	for(RenLeaseVO renLeaseVO1 : list) {
+	int lseMemId = (Integer) renLeaseVO1.getLseMemId();
+	int lseId = (Integer) renLeaseVO1.getLseId();
+		if(lseMemId == memID){
+		renLeaseVO = renLeaseSvc2.getOneRenLease(lseId);
+		pageContext.setAttribute("renLeaseVO", renLeaseVO);
+	}
+} 
+%>
+<td>我是會員 <%= memID%> 號</td>
 
 
 <html>
@@ -45,8 +57,10 @@
 	</c:if>
 
 	<ul>
-		<li><a href='<%=request.getContextPath()%>/frontend/ren_lease/listAllLease.jsp'>List</a> 查看所有的租賃單 <br> <br></li>
-
+		<li>
+				<b>查看所有的租賃單</b>
+		<a href='<%=request.getContextPath()%>/frontend/ren_lease/listAllLease.jsp'>點我</a> 
+				</li>
  		<li>
 			<FORM METHOD="post" ACTION="<%=request.getContextPath()%>/ren_lease/RenLeaseServlet.do">
 				<b>輸入租賃單編號 :</b>
@@ -101,19 +115,6 @@
 		</li>
 		
 
-			<li>
-			<FORM METHOD="post" ACTION="<%=request.getContextPath()%>/ren_lease/RenLeaseServlet.do">
-				<b>選擇房源編號 :</b>
-				<select size="1" name="lseLisId">
-					<option value="">請選擇</option>
-					<c:forEach var="renLeaseVO" items="${renLeaseSvc.all}">
-					<option value="${renLeaseVO.lseLisId}">${renLeaseVO.lseLisId}
-					</c:forEach>
-				</select>
-				<input type="hidden" name="action" value="getOne_For_Display">
-				<input type="submit" value="送出">
-			</FORM>
-		</li>
 	
 		</ul>
 		

@@ -21,7 +21,7 @@ public interface SecOrdDAO_interface {
 
     public void updateCancleOrder(Integer shOrdID) ;
     
-    public void updateOrderShippered(Integer shOrdID);
+    public void updateOrderStatus(SecOrdVO secOrdVO);
     
     public void insertWithSecOrdDetails(SecOrdVO secOrdVO , List<SecOrdDetailsVO> list);
     

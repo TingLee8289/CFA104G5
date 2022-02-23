@@ -87,10 +87,10 @@ th, td {
 			<th>訂單狀態</th>
 			<th>商品價格</th>
 			<th>訂單日期</th>
-			<th>買家評價賣家星數</th>
-			<th>買家評價賣家內容</th>
-			<th>賣家評價買家星數</th>
-			<th>賣家評價買家內容</th>
+<!-- 			<th>買家評價賣家星數</th> -->
+<!-- 			<th>買家評價賣家內容</th> -->
+<!-- 			<th>賣家評價買家星數</th> -->
+<!-- 			<th>賣家評價買家內容</th> -->
 			<th>撥款日期</th>
 			<th>買家備註</th>
 			<th>修改</th>
@@ -118,10 +118,10 @@ th, td {
 
 				<td>${secOrdVO.shPrice}</td>
 				<td>${secOrdVO.shDate}</td>
-				<td>${secOrdVO.shBuyerScore}</td>
-				<td>${secOrdVO.shBuyerTXT}</td>
-				<td>${secOrdVO.shSellerScore}</td>
-				<td>${secOrdVO.shSellerTXT}</td>
+<%-- 				<td>${secOrdVO.shBuyerScore}</td> --%>
+<%-- 				<td>${secOrdVO.shBuyerTXT}</td> --%>
+<%-- 				<td>${secOrdVO.shSellerScore}</td> --%>
+<%-- 				<td>${secOrdVO.shSellerTXT}</td> --%>
 				<td>${secOrdVO.shAPPDate}</td>
 				<td>${secOrdVO.shNotes}</td>
 				<td>

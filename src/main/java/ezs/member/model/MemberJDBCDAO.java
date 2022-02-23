@@ -29,6 +29,7 @@ public class MemberJDBCDAO implements MemberDAO_interface {
 	private static final String ADM_UPDATE = "UPDATE `CFA104G5`.`MEMBER` SET MEM_LANDLORD= ?,MEM_SUPPLIER=?,MEM_SELLER=?"
 			+ "MEM_STATUS=?,MEM_REPORTED=?,MEM_SUP_REPORTED=? WHERE MEM_ID = ?";
 
+
 	private static final String VERIFY_MEM_STMT = "UPDATE `CFA104G5`.`MEMBER` SET mem_status = 1 WHERE mem_name = ?;";
 
 	private static final String SEARCH_EMAIL = "SELECT * FROM `CFA104G5`.`MEMBER` WHERE MEM_EMAIL = ?";	
@@ -312,13 +313,16 @@ public class MemberJDBCDAO implements MemberDAO_interface {
 
 			con = DriverManager.getConnection(Util.URL, Util.USER, Util.PASSWORD);
 			pstmt = con.prepareStatement(SEARCH_EMAIL);
-
+			pstmt.setString(1, memEmail);
 			rs = pstmt.executeQuery();
 
 			while (rs.next()) {
 			
 				memberVO = new MemberVO();
 				memberVO.setMemEmail(rs.getString("MEM_EMAIL"));
+				
+				memberVO.setMemName(rs.getString("MEM_NAME"));
+				
 				memberVO.setMemID(rs.getInt("MEM_ID"));
 			}
 
@@ -372,9 +376,9 @@ public class MemberJDBCDAO implements MemberDAO_interface {
 			pstmt = con.prepareStatement(UPDATE_PASSWORD);
 						
 
+			pstmt.setString(1, memberVO.getMemPassword());
+			pstmt.setInt(2, memberVO.getMemID());
 			
-			pstmt.setInt(1, memberVO.getMemID());
-			pstmt.setString(2, memberVO.getMemPassword());
 			pstmt.executeUpdate();
 			
 

@@ -8,13 +8,13 @@ public class AdminPrivTest {
 		AdminPrivJDBCDAO dao = new AdminPrivJDBCDAO();
 
 // 		1. 新增
-		AdminPrivVO adminPrivVO1 = new AdminPrivVO();
-		adminPrivVO1.setAdmID(1);
+//		AdminPrivVO adminPrivVO1 = new AdminPrivVO();
+//		adminPrivVO1.setAdmID(1);
 //		adminPrivVO1.setFunID(7);
 //		adminPrivVO1.setFunID(8);
 //		adminPrivVO1.setFunID(9);
-		System.out.println("成功");
-		dao.insert(adminPrivVO1);
+//		System.out.println("成功");
+//		dao.insert(adminPrivVO1);
 
 //		2. 刪除
 //		dao.delete(3, 2);

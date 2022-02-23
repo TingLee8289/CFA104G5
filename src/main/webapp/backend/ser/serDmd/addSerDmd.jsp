@@ -5,16 +5,17 @@
 <%
 SerDmdVO serDmdVO = (SerDmdVO) request.getAttribute("serDmdVO");
 %>
-<%=serDmdVO == null%>
---${serDmdVO.dmdID}--
+
+
 <html>
 <head>
+ <script src="<%=request.getContextPath()%>/frontend/js/jquery-1.11.3.min.js"></script>
 <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
-<title>新增需求單 - addSerDmd.jsp</title>
+<title>新增需求單 </title>
 
 <style>
 table#table-1 {
-	width: 450px;
+	width: 500px;
 	background-color: #CCCCFF;
 	border: 2px solid black;
 	text-align: center;
@@ -40,7 +41,7 @@ table {
 }
 
 table, th, td {
-	width: 100%;
+	width: 900px;
 	border: 0px solid #CCCCFF;
 }
 
@@ -88,7 +89,7 @@ th, td {
 			</tr>
 			<tr>
 				<td>會員ID:</td>
-				<td><input type="TEXT" name="dmdMemID" size="50"
+				<td><input type="TEXT" name="dmdMemID" size="20"
 					value="<%=(serDmdVO == null) ? "2" : serDmdVO.getDmdMemID()%>" /></td>
 			</tr>
 			<jsp:useBean id="serCla" scope="page"
@@ -134,7 +135,7 @@ th, td {
 			</tr>
 			<tr>
 				<td>案場詳細地址:</td>
-				<td><input type="TEXT" name="dmdAddress" size="50"
+				<td><input type="TEXT" name="dmdAddress" size="20"
 					value="<%=(serDmdVO == null) ? "是鄰里123號" : serDmdVO.getDmdAddress()%>" /></td>
 			</tr>
 			<tr>
@@ -168,8 +169,12 @@ th, td {
 
 			<tr>
 				<td>照片:</td>
-				<td><input type="file" name="dmdPic"
-					value="<%=(serDmdVO == null) ? null : serDmdVO.getDmdPic()%>" /></td>
+				<td><input type="file" id="upfiles" name="dmdPic"
+					accept="image/gif, image/jpeg, image/png" multiple="multiple" />
+					<div id="previews">
+		
+					</div> 
+				
 			</tr>
 
 
@@ -270,5 +275,34 @@ th, td {
         //              return [true, ""];
         //      }});
         
+</script>
+<script>
+	// 	// // change這個event有只代表改變，並不代表有檔案。
+	// 	// 	如果要FileReader去讀檔案，必須給他一個檔案Object。
+	// 	// 	它拿到檔案Object後會驅動onload事件
+	// 	// 	藉由 FileReader 物件，Web 應用程式能以非同步（asynchronously）方式讀取儲存在用戶端的檔案（或原始資料暫存）內容
+	// 	// 裡面的input 就是我們丟進去的this，也就是<input type="file">，
+	// 	// 當<input type="file">被DOM變成Object的時候，如果他有選擇到檔案，
+	// 	// 會被放在input.files裡面，而且是一個Array(因為input如果寫成 <input type="file" multiple> 的時候是可以複選的)
+	$("#upfiles").change(function() {
+		$("#previews").html(""); // 清除預覽
+		readURL(this);
+	});
+	function readURL(input) {
+		if (input.files && input.files.length >= 0) {
+			for (var i = 0; i < input.files.length; i++) {
+				var reader = new FileReader();
+				reader.onload = function(e) {
+					var img = $("<img width='300' height='200'>").attr('src',
+							e.target.result);
+					$("#previews").append(img);
+				}
+				reader.readAsDataURL(input.files[i]);
+			}
+		} else {
+			var noPictures = $("<p>目前沒有圖片</p>");
+			$("#previews").append(noPictures);
+		}
+	}
 </script>
 </html>

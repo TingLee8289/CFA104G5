@@ -15,10 +15,14 @@ import javax.servlet.http.HttpServletResponse;
 import ezs.sec_items.model.SecItemsService;
 import ezs.sec_items.model.SecItemsVO;
 
+/**
+ * Servlet implementation class GetSecItemsStatusServlet
+ */
 @WebServlet("/sec_items/GetSecItemsStatusServlet.do")
 @MultipartConfig(fileSizeThreshold = 1024 * 1024, maxFileSize = 5 * 1024 * 1024, maxRequestSize = 5 * 5 * 1024 * 1024)
 public class GetSecItemsStatusServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
+  
 
 	synchronized public void doGet(HttpServletRequest req, HttpServletResponse res)
 			throws ServletException, IOException {
@@ -31,7 +35,7 @@ public class GetSecItemsStatusServlet extends HttpServlet {
 		req.setCharacterEncoding("UTF-8");
 		String action = req.getParameter("action");
 
-		if ("getOneStatus_For_Display".equals(action)) { // 來自select_page.jsp的請求
+		if ("getOne_For_Display".equals(action)) { // 來自select_page.jsp的請求
 
 			List<String> errorMsgs = new LinkedList<String>();
 			// Store this set in the request scope, in case we need to
@@ -42,7 +46,7 @@ public class GetSecItemsStatusServlet extends HttpServlet {
 				/*************************** 1.接收請求參數 - 輸入格式的錯誤處理 **********************/
 				String str = req.getParameter("shStatus");
 				if (str == null || (str.trim()).length() == 0) {
-					errorMsgs.add("請輸入商品狀態");
+					errorMsgs.add("請選擇商品狀態");
 				}
 				// Send the use back to the form, if there were errors
 				if (!errorMsgs.isEmpty()) {
@@ -55,11 +59,11 @@ public class GetSecItemsStatusServlet extends HttpServlet {
 				try {
 					shStatus = Integer.valueOf(str);
 				} catch (Exception e) {
-					errorMsgs.add("商品編號格式不正確");
+					errorMsgs.add("商品搜尋狀態別不正確");
 				}
-				
-							
-				
+
+				System.out.println(shStatus);
+
 				// Send the use back to the form, if there were errors
 				if (!errorMsgs.isEmpty()) {
 					RequestDispatcher failureView = req.getRequestDispatcher("/frontend/sec_items/select_page.jsp");
@@ -70,6 +74,7 @@ public class GetSecItemsStatusServlet extends HttpServlet {
 				/*************************** 2.開始查詢資料 *****************************************/
 				SecItemsService secItemsSvc = new SecItemsService();
 				List<SecItemsVO> secItemsVO = secItemsSvc.getByCategory(shStatus);
+				System.out.println(shStatus);
 				if (secItemsVO == null) {
 					errorMsgs.add("查無資料");
 				}
@@ -79,13 +84,13 @@ public class GetSecItemsStatusServlet extends HttpServlet {
 					failureView.forward(req, res);
 					return;// 程式中斷
 				}
-
+				System.out.println(shStatus);
 				/*************************** 3.查詢完成,準備轉交(Send the Success view) *************/
 				req.setAttribute("secItemsVO", secItemsVO); // 資料庫取出的secItemsVO物件,存入req
 				String url = "/frontend/sec_items/listOneSecItemsStatus.jsp";
 				RequestDispatcher successView = req.getRequestDispatcher(url); // 成功轉交 listOneEmp.jsp
 				successView.forward(req, res);
-
+				System.out.println(successView);
 				/*************************** 其他可能的錯誤處理 *************************************/
 			} catch (Exception e) {
 				e.printStackTrace();

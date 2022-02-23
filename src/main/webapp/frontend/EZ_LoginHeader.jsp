@@ -17,19 +17,29 @@
 		
 		.navbar{
 			display: flex;
-			background-color: white;
+			background-color: rgb(239,239,239);
+			position:fixed;
+			z-index:9999;
+			width:100%;		
+			margin-top: 40px;	
+
 		}
 		
 		a{
 			margin: 0px;
 		}
 		
-		.logintext{
+		.brand-text{
 			margin: auto 0px;
 			display: inline-block; 
 			font-size: 30px; 
 			font-family: sans-serif;
 			color: rgb(187,122,68);
+		}
+		
+		#logo{
+			max-height: 60px;
+			margin: auto 0px;
 		}
 		
 		
@@ -41,16 +51,14 @@
 
 <body>
 
-	<nav class="navbar navbar-light bg-white  navbar-expand-md ">
+	<nav class="navbar navbar-light  navbar-expand-md ">
 		<div class="header">
 			<div class="col-2 pl-md-0 text-left" style="display: inline-block;">
 				<a href="<%=request.getContextPath()%>/frontend/EZ_home.jsp"> 
-				<img
-					src="<%=request.getContextPath()%>/images/cmn/index/EASYSPACE.png"
-					height="70" alt="image">
+				<img src="<%=request.getContextPath()%>/images/cmn/index/EASYSPACE.png" alt="image" id="logo">
 				</a>
 			</div>
-			<div class="logintext">| EASY SPACE</div>
+			<div class="brand-text">| EASY SPACE</div>
 		</div>
 	</nav>
 

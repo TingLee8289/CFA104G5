@@ -73,7 +73,7 @@ public class AdminEmpServlet extends HttpServlet {
 				session.setAttribute("adminEmpVO", adminEmpVO); // 資料庫取出的adminEmpVO物件,存入req
 				session.setAttribute("admUsername", adminEmpVO.getAdmUsername());
 
-				String url = "/backend/loginsucess.jsp";
+				String url = "/backend/index.jsp";
 				RequestDispatcher successView = req.getRequestDispatcher(url); // 成功轉交 loginsucess.jsp
 				successView.forward(req, res);
 				/*************************** 其他可能的錯誤處理 *************************************/
@@ -102,6 +102,17 @@ public class AdminEmpServlet extends HttpServlet {
 					errorMsgs.add("管理員密碼: 請勿空白");
 				} else if (!admUsername.trim().matches(admUsernameReg)) { // 以下練習正則(規)表示式(regular-expression)
 					errorMsgs.add("管理員密碼: 只能是英文字母、數字和_ , 且長度必需在4到45之間");
+				}
+				
+				AdminEmpService adminEmpService = new AdminEmpService();
+				AdminEmpVO adminEmpVO1 = adminEmpService.Check(admUsername);
+				if (adminEmpVO1 != null) {
+					errorMsgs.add("管理員名稱:已被使用");
+				}
+				if (!errorMsgs.isEmpty()) {
+					RequestDispatcher failureView = req.getRequestDispatcher("/backend/adminEmp/addNewAdmin.jsp");
+					failureView.forward(req, res);
+					return;// 程式中斷
 				}
 
 				Integer admStatus = new Integer(req.getParameter("admStatus").trim());
