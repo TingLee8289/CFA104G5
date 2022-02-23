@@ -10,7 +10,7 @@
 <head>
 <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
  <script src="<%=request.getContextPath()%>/frontend/js/jquery-1.11.3.min.js"></script>
-<title>新增需求單 - addSerDmd.jsp</title>
+<title>EASY SPACE</title>
 
 <style>
   table#table-1 {

@@ -14,7 +14,7 @@ pageContext.setAttribute("list", list);
 
 <html>
 <head>
-<title>所有商品列表</title>
+<title>EASY SPACE</title>
 
 <style>
 table#table-1 {

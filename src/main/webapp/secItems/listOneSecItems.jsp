@@ -8,7 +8,7 @@
 
 <html>
 <head>
-<title>查詢單一商品</title>
+<title>EASY SPACE</title>
 
 <style>
   table#table-1 {

@@ -139,7 +139,7 @@ ul li{
 
 
 
-<title>最大私人聊天室</title>
+<title>EASY SPACE</title>
 </head>
 <body onload="connect();" onunload="disconnect();">
 	<h3 id="statusOutput" class="statusOutput"></h3>

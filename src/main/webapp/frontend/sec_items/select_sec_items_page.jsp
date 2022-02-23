@@ -3,7 +3,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-<title>Select Sec_Items Page</title>
+<title>EASY SPACE</title>
 <style></style>
 </head>
 <body bgcolor="lightblue">

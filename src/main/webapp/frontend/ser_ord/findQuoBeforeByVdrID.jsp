@@ -15,7 +15,7 @@ pageContext.setAttribute("vdrQuoList", vdrQuoList);
 <html>
 <head>
 <meta charset="UTF-8">
-<title>廠商估價單管理</title>
+<title>EASY SPACE</title>
 <link
 	href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css"
 	rel="stylesheet"

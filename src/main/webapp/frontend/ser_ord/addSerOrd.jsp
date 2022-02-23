@@ -19,7 +19,7 @@ pageContext.setAttribute("oneDmdVO", oneDmdVO);
 <html>
 <head>
 <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
-<title>新增服務服務訂單 - addOrder.jsp</title>
+<title>EASY SPACE</title>
 
 <style>
 table#table-1 {

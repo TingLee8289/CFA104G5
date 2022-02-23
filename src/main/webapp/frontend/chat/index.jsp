@@ -45,7 +45,7 @@ html, body {
 	margin: 20px 200px 0 -50px;
 }
 </style>
-<title>Join Us</title>
+<title>EASY SPACE</title>
 </head>
 <body>
 	<div id="outPopUp">

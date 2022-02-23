@@ -12,7 +12,7 @@ MemberVO memberVO = (MemberVO) request.getAttribute("memberVO");
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>更新密碼</title>
+<title>EASY SPACE</title>
 <link rel="stylesheet" href="/css/style.css">
 <script type="text/javascript" src="/js/jquery-3.3.1.min.js"></script>
 <script type="text/javascript" src="/js/jquery.validate.min.js"></script>
