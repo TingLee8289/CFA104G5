@@ -3,7 +3,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ page import="java.util.*"%>
 <%@ page import="ezs.ser_quo.model.*"%>
-<%-- <%session.setAttribute("memID", 5);%> --%>
+<%session.setAttribute("memID", 5);%>
 <%
 Integer memID = (Integer) session.getAttribute("memID");
 SerQuoService serQuoSvc = new SerQuoService();
@@ -39,7 +39,7 @@ pageContext.setAttribute("vdrQuoList", vdrQuoList);
 				<table
 					class="table table-striped table-hover align-middle text-center caption-top">
 					<caption>
-						<h2>所有估價單資料</h2>
+						<h2>所有接受報價估價單</h2>
 					</caption>
 					<thead class="table-success">
 						<tr class="text-nowrap">
