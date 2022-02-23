@@ -11,7 +11,7 @@ SerRepVO serRepVO = (SerRepVO) request.getAttribute("serRepVO"); //EmpServlet.ja
 
 <html>
 <head>
-<title>檢舉資料</title>
+<title>EASY SPACE</title>
 <link
 	href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css"
 	rel="stylesheet"

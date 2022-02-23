@@ -3,7 +3,7 @@
 
 <html>
 <head>
-<title>Ezs Member: Home</title>
+<title>EASY SPACE</title>
 
 <style>
   table#table-1 {

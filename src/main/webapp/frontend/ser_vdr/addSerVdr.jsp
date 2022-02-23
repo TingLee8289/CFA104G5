@@ -1,8 +1,9 @@
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ page import="ezs.ser_vdr.model.*"%>
-
+<%-- <% session.setAttribute("memID", 1);%> --%>
 <%
+Integer memID = (Integer)session.getAttribute("memID");
 SerVdrVO servdrVO = (SerVdrVO) request.getAttribute("servdrVO");
 %>
 
@@ -126,13 +127,12 @@ th, td {
 		<table>
 			<tr>
 				<td>廠商編號:</td>
-				<td><input type="TEXT" name="vdrID" size="45"
-					value="<%=(servdrVO == null) ? "4" : servdrVO.getVdrID()%>" /></td>
+				<td><input type="TEXT" name="vdrID" size="45" value="${memID}" disabled /></td>
 			</tr>
 			<tr>
 				<%-- <td>廠商狀態:</td>--%>
 
-				<td><input type="hidden" name="vdrStatus" size="45" value="0" /></td>
+				<td><input type="hidden" name="vdrStatus" size="45" value="1" /></td>
 
 			</tr>
 
@@ -215,8 +215,10 @@ th, td {
 			
 
 		</table>
-		<br> <input type="hidden" name="action" value="insert"> <input
-			type="submit" value="送出新增">
+		<br> 
+		<input type="hidden" name="action" value="insert"> 
+		<input type="submit" value="送出新增">
+		<input type="hidden" name="vdrID" size="45" value="${memID}" />
 	</FORM>
 <footer>
 			<section class="ccc website-map pt-5">

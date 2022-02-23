@@ -4,13 +4,11 @@
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="UTF-8">
-<title>login</title>
 <meta charset="utf-8" />
 <meta http-equiv="X-UA-Compatible" content="IE=edge" />
 <meta name="viewport"
 	content="width=device-width, initial-scale=1, shrink-to-fit=no" />
-<title>EASY SPACE 後台</title>
+<title>EASY SPACE後台管理系統</title>
 <link href="<%=request.getContextPath()%>/css/backendLogin.css"
 	rel="stylesheet" />
 <script

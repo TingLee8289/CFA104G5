@@ -54,7 +54,7 @@ pageContext.setAttribute("secItemslist", secItemslist);
         box-sizing: border-box;
       }
       :root{
-        --header-height: 60px;
+        --header-height: 100px;
         --aside-width: 180px;
       }
       body{
@@ -190,7 +190,7 @@ pageContext.setAttribute("secItemslist", secItemslist);
     </style>
   </head>
   <body>
-<%--   	<jsp:include page="/frontend/EZ_nav.jsp"/> --%>
+  	<jsp:include page="/frontend/EZ_nav.jsp"/>
     <jsp:include page="/frontend/EZ_LoginHeader.jsp" />
     <aside class="probootstrap-aside js-probootstrap-aside aside">
       <a href="#" class="probootstrap-close-menu js-probootstrap-close-menu d-md-none"><span class="oi oi-arrow-left"></span> Close</a>
@@ -205,7 +205,7 @@ pageContext.setAttribute("secItemslist", secItemslist);
             <li class="probootstrap-animate active" data-animate-effect="fadeInLeft"><a href="<%=request.getContextPath() %>/frontend/sec_items/secItemsViewPage.jsp">瀏覽全部商品</a></li>
             <c:forEach var="secCategoryVO" items="${secCategorylist}">
 	         	 <li class="probootstrap-animate" data-animate-effect="fadeInLeft">
-	         	 	<a href="<%=request.getContextPath() %>/frontend/sec_items/secItemsViewPageAJAX.jsp?shCateID=${secCategoryVO.shCateID}">${secCategoryVO.shCateName}</a>
+	         	 	<a style="text-decoration:none;" href="<%=request.getContextPath() %>/frontend/sec_items/secItemsViewPageAJAX.jsp?shCateID=${secCategoryVO.shCateID}">${secCategoryVO.shCateName}</a>
 	         	 </li>  
 	        </c:forEach>
 	        
@@ -224,7 +224,7 @@ pageContext.setAttribute("secItemslist", secItemslist);
 	<ul class="item_list" id="item_list">
 			<c:forEach var="secPicsVO" items="${secPicslist}">
 				<li style="list-style: none;">
-					<a href="<%=request.getContextPath()%>/sec_items/GetSecItemsServlet.do?shID=${secPicsVO.shID}&action=getOne_For_Display">
+					<a href="<%=request.getContextPath()%>/sec_items/GetSecItemsServlet.do?shID=${secPicsVO.shID}&action=getOneItem_For_Display">
 						<div class="img_block">
 							<img style="margin: 0px auto;"
 								src="<%= request.getContextPath()%>/sec_pics/SecPicsReader.do?sh_id=${secPicsVO.shID}">
@@ -238,7 +238,7 @@ pageContext.setAttribute("secItemslist", secItemslist);
 					<c:forEach var="secItemsVO" items="${secItemslist}">
 						<c:if test="${secItemsVO.shID==secPicsVO.shID}">
 							<form method="post" action="<%=request.getContextPath()%>/sec_items/ShoppingServlet.do">
-								<input type="submit" value="加入購物車">
+								<input type="submit" value="加入購物車" class="btn btn-outline-success text-nowrap">
 								<input type="hidden" name="shID" value="${secItemsVO.shID}">
 								<input type="hidden" name="shName" value="${secItemsVO.shName}">
 								<input type="hidden" name="shPrice" value="${secItemsVO.shPrice}">

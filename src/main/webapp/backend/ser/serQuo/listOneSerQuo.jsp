@@ -9,7 +9,7 @@ SerQuoVO serQuoVO = (SerQuoVO) request.getAttribute("serQuoVO");
 
 <html>
 <head>
-<title>資料 - listOneSerQuo.jsp</title>
+<title>EASY SPACE</title>
 
 <style>
 table#table-1 {

@@ -75,22 +75,22 @@ public class RenLeaseTest {
 //			System.out.println("---------------------");
 //		}
 		
-		List<RenLeaseVO> list = dao.getAll(6);
-		for (RenLeaseVO alease : list) {
-			System.out.print(alease.getLseId() + ",");
-			System.out.print(alease.getLseMemId() + ",");
-			System.out.println(alease.getLseLisId());
-			System.out.print(alease.getLseLddId() + ",");
-			System.out.print(alease.getLseLddScore() + ",");
-			System.out.println(alease.getLseLddTxt());
-			System.out.print(alease.getLseTntScore() + ",");
-			System.out.print(alease.getLseTntTxt() + ",");
-			System.out.println(alease.getLseStatus());
-			System.out.print(alease.getLseTimestamp() + ",");
-			System.out.print(alease.getLseStart() + ",");
-			System.out.println(alease.getLseEnd());
-			System.out.println("---------------------");
-		}
+//		List<RenLeaseVO> list = dao.getAll(6);
+//		for (RenLeaseVO alease : list) {
+//			System.out.print(alease.getLseId() + ",");
+//			System.out.print(alease.getLseMemId() + ",");
+//			System.out.println(alease.getLseLisId());
+//			System.out.print(alease.getLseLddId() + ",");
+//			System.out.print(alease.getLseLddScore() + ",");
+//			System.out.println(alease.getLseLddTxt());
+//			System.out.print(alease.getLseTntScore() + ",");
+//			System.out.print(alease.getLseTntTxt() + ",");
+//			System.out.println(alease.getLseStatus());
+//			System.out.print(alease.getLseTimestamp() + ",");
+//			System.out.print(alease.getLseStart() + ",");
+//			System.out.println(alease.getLseEnd());
+//			System.out.println("---------------------");
+//		}
 		
 
 	}

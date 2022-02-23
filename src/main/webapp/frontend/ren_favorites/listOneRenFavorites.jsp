@@ -9,10 +9,15 @@
 	RenFavoritesService renFavSvc = new RenFavoritesService();
     List<RenFavoritesVO> list = renFavSvc.getAll();
     pageContext.setAttribute("list",list);
+    
+
+	RenFavoritesVO renFavoritesVO = (RenFavoritesVO) request.getAttribute("renFavoritesVO");
+	Integer memID = (Integer)session.getAttribute("memID");
+
+	String favLisId = (String) request.getParameter("favLisId");
+    pageContext.setAttribute("favLisId", favLisId);
 %>
-<%
-RenFavoritesVO renFavoritesVO = (RenFavoritesVO) request.getAttribute("renFavoritesVO");
-%>
+
 
 <%
 RenListingPicVO renListingPicVO = (RenListingPicVO) request.getAttribute("renListingPicVO"); 
