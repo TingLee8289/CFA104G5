@@ -1,13 +1,6 @@
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ page import="java.util.*"%>
-<%@ page import="ezs.sec_ord.model.*"%>
-<%
-	SecOrdService secOrdSvc = new SecOrdService();
-	Integer memID = (Integer) session.getAttribute("memID");
-	Set<SecOrdVO> listSecOrds_ByShBuyerID = secOrdSvc.getSecOrdByShBuyerID(memID);
-%>
-
 <!DOCTYPE html>
 
 <html>
@@ -66,12 +59,6 @@
   }
 </style>
 <script src="https://kit.fontawesome.com/1c2ccc4859.js" crossorigin="anonymous"></script>
-
-<link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
-<script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
-<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.css" integrity="sha256-46qynGAkLSFpVbEBog43gvNhfrOj+BmwXdxFgVK/Kvc=" crossorigin="anonymous" />
-
 
 </head>
 <body class="sb-nav-fixed">
@@ -154,14 +141,8 @@
 				id="sidenavAccordion">
 				<div class="sb-sidenav-menu">
 					<div class="nav">
-						<div class="sb-sidenav-menu-heading">管理專區區</div>
-						<a class="nav-link" href="index.html">
-							<div class="sb-nav-link-icon">
-								<i class="fas fa-tachometer-alt"></i>
-							</div> 會員資料管理
-						</a>
 						<!-- ------------------------------------------------------------------------------------------------- -->
-						<div class="sb-sidenav-menu-heading">買家管理專區</div>
+						<div class="sb-sidenav-menu-heading">賣家管理專區</div>
 						<a class="nav-link collapsed" href="#" data-bs-toggle="collapse"
 							data-bs-target="#collapseLayouts" aria-expanded="false"
 							aria-controls="collapseLayouts">
@@ -175,9 +156,10 @@
 						<div class="collapse" id="collapseLayouts"
 							aria-labelledby="headingOne" data-bs-parent="#sidenavAccordion">
 							<nav class="sb-sidenav-menu-nested nav">
-								<a class="nav-link" href="<%=request.getContextPath()%>/frontend/ren_appointment/listRenAppByMEM.jsp">預約單管理</a>
-                                    <a class="nav-link" href="<%=request.getContextPath()%>/frontend/ren_lease/MEMlistOneLease.jsp">租賃單管理</a>
-                                    <a class="nav-link" href="<%=request.getContextPath()%>/frontend/ren_favorites/listOneRenFavorites.jsp">收藏房源管理</a>
+								 <a class="nav-link" href="layout-static.html">申請成為房東</a>
+                                    <a class="nav-link" href="layout-static.html">房源管理</a>
+                                    <a class="nav-link" href="<%=request.getContextPath()%>/frontend/ren_appointment/listRenAppByLDD.jsp">預約單管理</a>
+                                    <a class="nav-link" href="layout-sidenav-light.html">租賃單管理</a>
 							</nav>
 						</div>
 						<!-- ------------------------------------------------------------------------------------------------- -->
@@ -186,7 +168,7 @@
 							aria-controls="collapsePages">
 							<div class="sb-nav-link-icon">
 								<i class="fas fa-couch"></i>
-							</div> 二手家電管理
+							</div> 二手相關管理
 							<div class="sb-sidenav-collapse-arrow">
 								<i class="fas fa-angle-down"></i>
 							</div>
@@ -194,7 +176,8 @@
 						<div class="collapse" id="collapsePages"
 							aria-labelledby="headingTwo" data-bs-parent="#sidenavAccordion">
 							<nav class="sb-sidenav-menu-nested nav">
-								<a class="nav-link" href="<%=request.getContextPath()%>/frontend/sec_ord/listSecOrds_ByShBuyerID.jsp">二手訂單管理</a>
+								  <a class="nav-link" href="<%=request.getContextPath()%>/frontend/sec_items/select_page.jsp">商品管理</a>
+                                    <a class="nav-link" href="<%=request.getContextPath()%>/frontend/sec_ord/listAllSecOrd.jsp">訂單管理</a>
 							</nav>
 						</div>
 						<!-- ------------------------------------------------------------------------------------------------- -->
@@ -203,7 +186,7 @@
 							aria-controls="collapsePages">
 							<div class="sb-nav-link-icon">
 								<i class="fas fa-wrench"></i>
-							</div> 居家服務專區
+							</div> 服務相關管理
 							<div class="sb-sidenav-collapse-arrow">
 								<i class="fas fa-angle-down"></i>
 							</div>
@@ -211,8 +194,9 @@
 						<div class="collapse" id="collapsePages2"
 							aria-labelledby="headingThree" data-bs-parent="#sidenavAccordion">
 							<nav class="sb-sidenav-menu-nested nav">
-								<a class="nav-link" href="<%=request.getContextPath()%>/frontend/ser_dmd/getByDmdMemID.jsp">需求單/報價單管理</a>
-                                    <a class="nav-link" href="<%=request.getContextPath()%>/frontend/ser_ord/getOrdByMemID.jsp">服務訂單管理</a>
+								<a class="nav-link" href="layout-static.html">服務管理</a>
+                                    <a class="nav-link" href="layout-sidenav-light.html">需求單管理</a>
+                                    <a class="nav-link" href="layout-sidenav-light.html">訂單管理</a>
 							</nav>
 						</div>
 						<!-- ------------------------------------------------------------------------------------------------- -->
@@ -226,113 +210,109 @@
 			<main>
 				<div class="container-fluid px-4">
 <!-- 塞頁面從這裡開始--------------------------------------------------------------------------------- -->
+<table id="table-1">
+		<tr>
+			<td><h3>Easy House</h3>
+				<h4>( MVC )</h4></td>
+		</tr>
+	</table>
 
+	<p>This is the SecItems page for Easy House</p>
 
-		<%-- 錯誤表列 --%>
-		<c:if test="${not empty errorMsgs}">
-			<font style="color: red">請修正以下錯誤:</font>
-			<ul>
-				<c:forEach var="message" items="${errorMsgs}">
-					<li style="color: red">${message}</li>
-				</c:forEach>
-			</ul>
-		</c:if>
+	<h3>商品查詢:</h3>
 
-<div class="container">
-        				<div class="row">
-         				   <table class="table table-hover table-striped" id="cssTable">
-         				   <thead text-align: center;>
-             				   <tr class="thead-dark">
-				<th>訂單ID</th>
-				<th>買家ID</th>
-				<th>賣家ID</th>
-				<th>收件地址郵遞區號</th>
-				<th>收件地址縣市</th>
-				<th>收件地址鄉鎮區</th>
-				<th>收件地址路街弄等</th>
-				<th>付款方式</th>
-				<th>訂單狀態</th>
-				<th>訂單金額</th>
-				<th>訂單日期</th>
-<!-- 				<th>賣家評價買家星數</th> -->
-<!-- 				<th>賣家評價買家內容</th> -->
-<!-- 				<th>買家評價賣家星數</th> -->
-<!-- 				<th>買家評價賣家內容</th> -->
-<!-- 				<th>撥款日期</th> -->
-				<th>買家備註</th>
-				<th>查看訂單明細</th>
-				<th>完成訂單</th>
-				<th>申請退款</th>
-			</tr>
-							</thead>
-                <tbody>
-
-			<c:forEach var="secOrdVO" items="${listSecOrds_ByShBuyerID}">
-				<tr>
-				
-				
-				<c:if test="${memberVO.memStatus == 0}">未驗證</c:if>
-					<td>${secOrdVO.shOrdID}</td>
-					<td>${secOrdVO.shBuyerID}</td>
-					<td>${secOrdVO.shSellerID}</td>
-					<td>${secOrdVO.shPostcode}</td>
-					<td>${secOrdVO.shCounty}</td>
-					<td>${secOrdVO.shDist}</td>
-					<td>${secOrdVO.shRoad}</td>
-					<td>
-						<c:if test="${secOrdVO.shPayment == 10}">錢包付款</c:if>
-						<c:if test="${secOrdVO.shPayment == 11}">信用卡付款</c:if>
-						<c:if test="${secOrdVO.shPayment == 12}">匯款付款</c:if>
-					</td>
-					<td>
-						<c:if test="${secOrdVO.shOrdStatus == 1}">訂單未成立</c:if>
-						<c:if test="${secOrdVO.shOrdStatus == 2}">訂單已成立</c:if>
-						<c:if test="${secOrdVO.shOrdStatus == 8}">訂單取消</c:if>
-						<c:if test="${secOrdVO.shOrdStatus == 3}">訂單已出貨</c:if>
-						<c:if test="${secOrdVO.shOrdStatus == 6}">退款審核中</c:if>
-						<c:if test="${secOrdVO.shOrdStatus == 7}">訂單完成</c:if>
-					</td>
-					<td>${secOrdVO.shPrice}</td>
-					<td>${secOrdVO.shDate}</td>
-<%-- 					<td>${secOrdVO.shBuyerScore}</td> --%>
-<%-- 					<td>${secOrdVO.shBuyerTXT}</td> --%>
-<%-- 					<td>${secOrdVO.shSellerScore}</td> --%>
-<%-- 					<td>${secOrdVO.shSellerTXT}</td> --%>
-<%-- 					<td>${secOrdVO.shAPPDate}</td> --%>
-					<td>${secOrdVO.shNotes}</td>
-					<td>
-						<FORM METHOD="post"
-							ACTION="<%=request.getContextPath()%>/sec_ord/SecOrdServlet.do"
-							style="margin-bottom: 0px;">
-							<input type="submit" value="查看訂單明細"> <input type="hidden"
-								name="shOrdID" value="${secOrdVO.shOrdID}"> <input
-								type="hidden" name="action" value="getSecOrdDetails">
-						</FORM>
-					</td>
-					<td>
-						<FORM METHOD="post"
-							ACTION="<%=request.getContextPath()%>/sec_ord/SecOrdServlet.do"
-							style="margin-bottom: 0px;">
-							<input type="submit" value="完成訂單"> <input type="hidden"
-								name="secOrdID" value="${secOrdVO.shOrdID}"> <input
-								type="hidden" name="action" value="completeOrder">
-						</FORM>
-					</td>
-					<td>
-						<FORM METHOD="post"
-							ACTION="<%=request.getContextPath()%>/sec_ord/SecOrdServlet.do"
-							style="margin-bottom: 0px;">
-							<input type="submit" value="申請退款"> <input type="hidden"
-								name="secOrdID" value="${secOrdVO.shOrdID}"> <input
-								type="hidden" name="action" value="refundOrder">
-						</FORM>
-					</td>
-				</tr>
+	<%-- 錯誤表列 --%>
+	<c:if test="${not empty errorMsgs}">
+		<font style="color: red">請修正以下錯誤:</font>
+		<ul>
+			<c:forEach var="message" items="${errorMsgs}">
+				<li style="color: red">${message}</li>
 			</c:forEach>
-			</tbody>
-		</table>
-		</div>
-		</div>
+		</ul>
+	</c:if>
+
+	<%-- 查詢全部商品 --%>
+	<ul>
+		<li><a href='listAllSecItems.jsp'>搜尋</a> 查詢全部商品 <br> <br></li>
+
+
+		<li>
+<!-- 			未對應到商品ID -->
+<%-- <%=request.getContextPath()%> 對應專案路徑  +   annotation名稱 --%>
+			<FORM METHOD="post" ACTION="<%=request.getContextPath()%>/sec_items/GetSecItemsServlet.do">
+				<b>輸入商品名稱:</b> <input type="text" name="shID"> 
+				<input
+					type="hidden" name="action" value="getOne_For_Display"> <input
+					type="submit" value="送出">
+			</FORM>
+		</li>
+
+		<jsp:useBean id="secItemsSvc" scope="page"
+			class="ezs.sec_items.model.SecItemsService" />
+
+		<li>
+			<FORM METHOD="post" ACTION="<%=request.getContextPath()%>/sec_items/GetSecItemsServlet.do">
+				<b>選擇商品編號:</b> <select size="1" name="shID">
+					<c:forEach var="secItemsVO" items="${secItemsSvc.all}">
+						<option value="${secItemsVO.shID}">${secItemsVO.shID}
+					</c:forEach>
+				</select> <input type="hidden" name="action" value="getOne_For_Display">
+				<input type="submit" value="送出">
+			</FORM>
+		</li>
+
+		<jsp:useBean id="secCategorySvc" scope="page"
+			class="ezs.sec_category.model.SecCategoryService" />
+<!-- 			未對應到商品ID -->
+		<li>
+			<FORM METHOD="post" ACTION="<%=request.getContextPath()%>/sec_items/GetSecItemsCateServlet.do">
+				<b>選擇商品類別:</b> <select size="1" name="shCateID">
+					<c:forEach var="secCategoryVO" items="${secCategorySvc.all}">
+						<option value="${secCategoryVO.shCateID}">${secCategoryVO.shCateName}</option>
+					</c:forEach>
+				</select> <input type="hidden" name="action" value="getOneCate_For_Display">
+				<input type="submit" value="送出">
+			</FORM>
+		</li>
+
+
+		<li>
+			<FORM METHOD="post" ACTION="<%=request.getContextPath()%>/sec_items/GetSecItemsServlet.do">
+				<b>選擇商品名稱:</b> <select size="1" name="shID">
+					<c:forEach var="secItemsVO" items="${secItemsSvc.all}">
+						<option value="${secItemsVO.shID}">${secItemsVO.shName}
+					</c:forEach>
+				</select> <input type="hidden" name="action" value="getOne_For_Display">
+				<input type="submit" value="送出">
+			</FORM>
+		</li>
+		
+
+		<li>
+			<FORM METHOD="post" ACTION="<%=request.getContextPath()%>/sec_items/GetSecItemsStatusServlet.do">
+				<b>選擇商品狀態:</b> 
+				<select size="1" name="shStatus">
+				<option value="0">已出售</option>
+				<option value="1">上架</option>
+				<option value="2">違規下架</option>
+
+				</select> <input type="hidden" name="action" value="getOne_For_Display">
+				<input type="submit" value="送出">
+			</FORM>
+		</li>
+	</ul>
+
+
+	<h3>商品管理</h3>
+
+	<ul>
+		<li><a href="<%=request.getContextPath()%>/frontend/sec_items/addSecItems.jsp">新增</a> 新增商品</li>
+	</ul>
+
+
+
+
+
 
 <!-- 塞頁面從這裡結束--------------------------------------------------------------------------------- -->
 				</div>
