@@ -1,6 +1,13 @@
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ page import="java.util.*"%>
+<%@ page import="ezs.sec_ord.model.*"%>
+<%
+	SecOrdService secOrdSvc = new SecOrdService();
+	Integer memID = (Integer) session.getAttribute("memID");
+	Set<SecOrdVO> listSecOrds_ByShBuyerID = secOrdSvc.getSecOrdByShBuyerID(memID);
+%>
+
 <!DOCTYPE html>
 
 <html>
@@ -59,6 +66,12 @@
   }
 </style>
 <script src="https://kit.fontawesome.com/1c2ccc4859.js" crossorigin="anonymous"></script>
+
+<link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+<script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.css" integrity="sha256-46qynGAkLSFpVbEBog43gvNhfrOj+BmwXdxFgVK/Kvc=" crossorigin="anonymous" />
+
 
 </head>
 <body class="sb-nav-fixed">
@@ -214,14 +227,6 @@
 				<div class="container-fluid px-4">
 <!-- 塞頁面從這裡開始--------------------------------------------------------------------------------- -->
 
-<h4>此頁練習採用 EL 的寫法取值:</h4>
-		<table id="table-2">
-			<tr>
-				<td>
-					<h3>買家會員訂單 - listSecOrds_ByShBuyerID.jsp</h3>
-				</td>
-			</tr>
-		</table>
 
 		<%-- 錯誤表列 --%>
 		<c:if test="${not empty errorMsgs}">
@@ -233,8 +238,11 @@
 			</ul>
 		</c:if>
 
-		<table>
-			<tr>
+<div class="container">
+        				<div class="row">
+         				   <table class="table table-hover table-striped" id="cssTable">
+         				   <thead text-align: center;>
+             				   <tr class="thead-dark">
 				<th>訂單ID</th>
 				<th>買家ID</th>
 				<th>賣家ID</th>
@@ -246,16 +254,18 @@
 				<th>訂單狀態</th>
 				<th>訂單金額</th>
 				<th>訂單日期</th>
-				<th>賣家評價買家星數</th>
-				<th>賣家評價買家內容</th>
-				<th>買家評價賣家星數</th>
-				<th>買家評價賣家內容</th>
-				<th>撥款日期</th>
+<!-- 				<th>賣家評價買家星數</th> -->
+<!-- 				<th>賣家評價買家內容</th> -->
+<!-- 				<th>買家評價賣家星數</th> -->
+<!-- 				<th>買家評價賣家內容</th> -->
+<!-- 				<th>撥款日期</th> -->
 				<th>買家備註</th>
 				<th>查看訂單明細</th>
 				<th>完成訂單</th>
 				<th>申請退款</th>
 			</tr>
+							</thead>
+                <tbody>
 
 			<c:forEach var="secOrdVO" items="${listSecOrds_ByShBuyerID}">
 				<tr>
@@ -270,11 +280,11 @@
 					<td>${secOrdVO.shOrdStatus}</td>
 					<td>${secOrdVO.shPrice}</td>
 					<td>${secOrdVO.shDate}</td>
-					<td>${secOrdVO.shBuyerScore}</td>
-					<td>${secOrdVO.shBuyerTXT}</td>
-					<td>${secOrdVO.shSellerScore}</td>
-					<td>${secOrdVO.shSellerTXT}</td>
-					<td>${secOrdVO.shAPPDate}</td>
+<%-- 					<td>${secOrdVO.shBuyerScore}</td> --%>
+<%-- 					<td>${secOrdVO.shBuyerTXT}</td> --%>
+<%-- 					<td>${secOrdVO.shSellerScore}</td> --%>
+<%-- 					<td>${secOrdVO.shSellerTXT}</td> --%>
+<%-- 					<td>${secOrdVO.shAPPDate}</td> --%>
 					<td>${secOrdVO.shNotes}</td>
 					<td>
 						<FORM METHOD="post"
@@ -305,19 +315,10 @@
 					</td>
 				</tr>
 			</c:forEach>
+			</tbody>
 		</table>
-
-		<%
-		if (request.getAttribute("listSecOrdDetails_ByShOrdID") != null) {
-		%>
-		<jsp:include page="listSecOrdDetails_ByShOrdID.jsp" />
-		<%
-		}
-		%>
-
-
-
-
+		</div>
+		</div>
 
 <!-- 塞頁面從這裡結束--------------------------------------------------------------------------------- -->
 				</div>
