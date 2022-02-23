@@ -519,6 +519,7 @@ img {
 </style>
 </head>
 <body>
+
 		<%
 		@SuppressWarnings("unchecked")
 		Vector<SecItem> buylist = (Vector<SecItem>) session.getAttribute("shoppingcart");
@@ -553,16 +554,6 @@ img {
 						<div class="prodTotal cartSection">
 							<p>$<%=subtotal%></p>
 						</div>
-
-						<div class="cartSection removeWrap">
-							<form class="deleteForm" name="deleteForm"
-								action="<%=request.getContextPath()%>/sec_items/ShoppingServlet.do"
-								method="POST">
-								<input type="hidden" name="action" value="DELETE"> <input
-									type="hidden" name="del" value="<%=index%>">
-								<!-- 					              <input type="submit" class="remove" value="x"> -->
-							</form>
-						</div>
 					</div>
 				</li>
 				<%
@@ -576,11 +567,11 @@ img {
 		<div class="subtotal cf">
 			<ul>
 				<li class="totalRow"><span class="label">總價</span><span
-					class="value"><%=total%></span></li>
+					class="value">$<%=total%></span></li>
 				<li class="totalRow"><span class="label">運費</span><span
 					class="value">$0</span></li>
 				<li class="totalRow final"><span class="label">總金額</span><span
-					class="value"><%=total%></span></li>
+					class="value">$<%=total%></span></li>
 				<li class="totalRow">
 				</li>
 			</ul>
@@ -591,9 +582,9 @@ img {
 
 
 
-	<form method="post"
-		action="<%=request.getContextPath()%>/sec_ord/SecOrdServlet.do">
+	<form method="post"	action="<%=request.getContextPath()%>/sec_ord/SecOrdServlet.do">
 		<jsp:include page="/frontend/sec_items/shippingForm.jsp"></jsp:include>
+		<input type="hidden" name="action" value="insert">
 	</form>
 	
 	<script>

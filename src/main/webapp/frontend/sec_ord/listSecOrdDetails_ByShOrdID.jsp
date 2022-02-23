@@ -153,9 +153,6 @@
 	<!-- 上端導覽列結束--------------------------------------- -->
 
 	<!-- 側邊導覽列開始--------------------------------------- -->
-
-	
-
 	<div id="layoutSidenav">
 		<div id="layoutSidenav_nav">
 			<nav class="sb-sidenav accordion sb-sidenav-dark"
