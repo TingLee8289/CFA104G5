@@ -152,36 +152,22 @@
 
 <div>
 
-<button type="button" class="btn btn-outline-secondary" id="collection" value="${renListingVO.lisID}"
-										style="margin-right: 20px;">收藏</button>
-<button type="button" class="btn btn-outline-secondary" id="collection" value="${renFavoritesVO.favLisId}"
-										style="margin-right: 20px;">收藏</button>
-                 
-<form method="post" action="<%=request.getContextPath()%>/RenFavoritesServlet.do">
-	<input type="submit" value="加入收藏">
-	<input type="hidden" name="favLisId" value="${renFavoritesVO.favLisId}">
-	<input type="hidden" name="action" value="insert">
-</form>
 
+<button id="addFav" class="float-left submit-button" >收藏房源</button>
+<script type="text/javascript">
+    document.getElementById("addFav").onclick = function () {
+        location.href = "<%=request.getContextPath()%>/frontend/ren_favorites/addRenFavorites.jsp?favLisId=${renListingVO.lisID}";
+    };
+</script>
 
-</div>
-
-<div>
-</div>
 <button id="addApp" class="float-left submit-button" >預約看房</button>
 <script type="text/javascript">
     document.getElementById("addApp").onclick = function () {
-        location.href = "<%=request.getContextPath()%>/frontend/ren_appointment/addRenAppointment.jsp";
+        location.href = "<%=request.getContextPath()%>/frontend/ren_appointment/addRenAppointment.jsp?aptLisId=${renListingVO.lisID}&aptLddId=${renListingVO.lisLddID}";
     };
 </script>
-<div>
-<form method="post" action="<%=request.getContextPath()%>/RenAppointmentServlet.do">
-	<input type="submit" value="預約看房">
-	<input type="hidden" name="favLisId" value="${renListingVO.lisID}">
-	<input type="hidden" name="action" value="insert">
-</form>
-<a href='<%=request.getContextPath()%>/frontend/ren_appointment/addRenAppointment.jsp'>List</a> all Depts.
 </div>
+
 </body>
 </html>		
 		

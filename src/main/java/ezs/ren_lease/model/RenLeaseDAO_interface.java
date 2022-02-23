@@ -14,6 +14,8 @@ public interface RenLeaseDAO_interface {
   
     
     // **** 房客租賃單 ***
-    public List<RenLeaseVO> getLse(Integer lseMemId);
+
+    public List<RenLeaseVO> getAll(Integer lseMemId);
+		
 
 }

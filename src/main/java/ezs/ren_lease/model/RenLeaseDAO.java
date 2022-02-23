@@ -19,9 +19,11 @@ public class RenLeaseDAO implements RenLeaseDAO_interface {
 	private static final String DELETE = "DELETE FROM `CFA104G5`.`REN_LEASE` WHERE lse_mem_id = ?";
 	private static final String UPDATE = "UPDATE `CFA104G5`.`REN_LEASE` SET lse_mem_id=?, lse_lis_id=?, lse_ldd_id=?, lse_ldd_score=?, lse_ldd_txt=?, lse_tnt_score=?,lse_tnt_txt =?,lse_status =?,lse_timestamp=?,lse_start =?,lse_end =? WHERE lse_id = ?";
 
+
 	private static final String GET_PERSONAL = "SELECT lse_id,lse_mem_id,lse_lis_id,lse_ldd_id,lse_status,lse_timestamp,lse_start,lse_end,lse_price,lse_leasememid FROM `CFA104G5`.`REN_LEASE` WHERE lse_mem_id = ?";
 
 	private static  final String LSE = "SELECT lse_id,lse_mem_id,lse_lis_id,lse_ldd_id,lse_ldd_score,lse_ldd_txt,lse_tnt_score,lse_tnt_txt,lse_status,lse_timestamp,lse_start,lse_end FROM `CFA104G5`.`REN_LEASE` WHERE lse_mem_id = ?";
+
 
 
 	
@@ -146,6 +148,7 @@ public class RenLeaseDAO implements RenLeaseDAO_interface {
 			rs = pstmt.executeQuery();
 			
 			while (rs.next()) {
+
 				renLeaseVO = new RenLeaseVO();
 				renLeaseVO.setLseId(rs.getInt("lse_id"));
 				renLeaseVO.setLseMemId(rs.getInt("lse_mem_id"));
@@ -191,6 +194,7 @@ public class RenLeaseDAO implements RenLeaseDAO_interface {
 				renLeaseVO.setLseLeaseMemId(rs.getInt("lse_leasememid"));
 
 				list.add(renLeaseVO);
+
 			}
 		} catch (SQLException se) {
 			se.printStackTrace();
@@ -200,7 +204,7 @@ public class RenLeaseDAO implements RenLeaseDAO_interface {
 		return list;
 	}
 
-	public List<RenLeaseVO> getLse(Integer lseMemId) {
+	public List<RenLeaseVO> getAll(Integer lseMemId) {
 		List<RenLeaseVO> getLse = new ArrayList<RenLeaseVO>();
 		RenLeaseVO leaseVO = null;
 

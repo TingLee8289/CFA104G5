@@ -80,7 +80,7 @@
 				<td>${memberVO.memAddress}</td>
 				<td>${memberVO.memEmail}</td>
 				
-				<td><img src="<%=request.getContextPath()%>/DBGifReader?mem_ID=${memberVO.memID}" height=200px width=200px></td>
+				<td><img src="<%=request.getContextPath()%>/DBGifReader?mem_ID=${memberVO.memID}" height=150px width=150px></td>
 				
 				<td>
 					<c:choose>

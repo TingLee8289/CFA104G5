@@ -99,6 +99,21 @@
 				<input type="submit" value="送出">
 			</FORM>
 		</li>
+		
+		<li>
+			<FORM METHOD="post" ACTION="<%=request.getContextPath()%>/ren_lease/RenLeaseServletMEM.do">
+				<b>選擇會員編號 :</b>
+				<select size="1" name="lseMemId">
+					<option value="">請選擇</option>
+					<c:forEach var="renLeaseVO" items="${renLeaseSvc.all}">
+					<option value="${renLeaseVO.lseMemId}">${renLeaseVO.lseMemId}
+					</c:forEach>
+				</select>
+				<input type="hidden" name="action" value="MEMgetOne_For_Display">
+				<input type="submit" value="送出">
+			</FORM>
+		</li>
+		
 
 	
 		</ul>
