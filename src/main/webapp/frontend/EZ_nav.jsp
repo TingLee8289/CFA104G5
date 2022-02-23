@@ -37,7 +37,7 @@
 				<ul class="navbar-nav ms-auto me-sm-2 mt-2 mt-lg-0">
 					<li class="nav-item active me-3"><a class="nav-link text-dark" href="<%= request.getContextPath()%>/frontend/EZ_home.jsp">首頁
 					</a></li>
-					<li class="nav-item me-3"><a class="nav-link text-dark" href="#">租賃服務</a>
+					<li class="nav-item me-3"><a class="nav-link text-dark" href="<%=request.getContextPath()%>/frontend/ren_listing/listAllListing.jsp">租賃服務</a>
 					</li>
 					<li class="nav-item me-3"><a class="nav-link text-dark" href="<%= request.getContextPath()%>/frontend/sec_items/secItemsViewPage.jsp">二手家電</a>
 					</li>

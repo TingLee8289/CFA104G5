@@ -1,6 +1,10 @@
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ page import="java.util.*"%>
+<% 
+	Integer memID = (Integer) session.getAttribute("memID");
+%>
+
 <!DOCTYPE html>
 
 <html>
@@ -76,7 +80,7 @@
 					<li class="nav-item active me-3"><a class="nav-link text-dark"
 						href="<%=request.getContextPath()%>/frontend/EZ_home.jsp">首頁 </a></li>
 					<li class="nav-item me-3"><a class="nav-link text-dark"
-						href="#">租賃服務</a></li>
+						href="<%=request.getContextPath()%>/frontend/ren_listing/listAllListing.jsp">租賃服務</a></li>
 					<li class="nav-item me-3"><a class="nav-link text-dark"
 						href="<%=request.getContextPath()%>/frontend/sec_items/secItemsViewPage.jsp">二手家電</a>
 					</li>
@@ -181,7 +185,7 @@
 						<div class="collapse" id="collapsePages"
 							aria-labelledby="headingTwo" data-bs-parent="#sidenavAccordion">
 							<nav class="sb-sidenav-menu-nested nav">
-								<a class="nav-link" href="<%=request.getContextPath()%>/frontend/sec_ord/listSecOrds_ByShBuyerID.jsp">二手訂單管理</a>
+								<a class="nav-link" href="<%=request.getContextPath()%>/sec_ord/SecOrdServlet.do?action=listSecOrd_ByShBuyerID">二手訂單管理</a>
 							</nav>
 						</div>
 						<!-- ------------------------------------------------------------------------------------------------- -->
