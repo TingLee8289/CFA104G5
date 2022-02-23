@@ -34,9 +34,6 @@
 <table id="table-1">
 	<tr><td><h3>找租屋</h3></td></tr>
 </table>
-
-<p>This is the Home page for CFA104G5_20220129 Listing: Home</p>
-
 <h3>收尋房源</h3>
 
 <%-- 錯誤表列 --%>
@@ -50,7 +47,7 @@
 </c:if>
 
 <ul>
-	<li><a href='listAllListing.jsp'>List</a> all Listing.  <br><br></li>
+	<li>瀏覽房源<a href='listAllListing.jsp'>List</a> </li>
 
     <li>
       <FORM METHOD="post" ACTION="RenListingServlet.do">
@@ -89,7 +86,7 @@
      	  <b>選擇區域:</b>
      	  <select size="1" name="lisAreaID">
      		<c:forEach var="renLocationVO" items="${renLocationSvc.all}">
-     		  <option value="${renLocationVO.locID}">${renLocationVO.locCity}${renLocationVO.locDist}
+     		  <option value="${renLocationVO.locID}"${(renListingVO.lisAreaID == renLocationVO.locID)? 'selected':'' } >${renLocationVO.locCity}${renLocationVO.locDist}
      		</c:forEach>
      	  </select>
      	  <input type="hidden" name="action" value="listLocations_BylisAreaID">

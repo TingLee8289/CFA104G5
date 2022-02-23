@@ -18,9 +18,10 @@ public class RenListingPicJDBCDAO implements RenListingPicDAO_interface {
 	private static final String INSERT_STMT = "INSERT INTO `CFA104G5`.`REN_LISTING_PIC` (LSP_LIS_ID, LSP_PIC) VALUES (?,?)";
 	private static final String GET_ALL_STMT = "SELECT LSP_ID, LSP_LIS_ID, LSP_PIC FROM `CFA104G5`.`REN_LISTING_PIC` ORDER BY LSP_ID";
 	private static final String GET_ONE_STMT = "SELECT LSP_ID, LSP_LIS_ID, LSP_PIC FROM `CFA104G5`.`REN_LISTING_PIC` WHERE LSP_ID = ?";
-	private static final String DELETE = "DELETE FROM `CFA104G5`.`REN_LISTING_PIC` WHERE LSP_ID = ?";
+	private static final String DELETE = "DELETE FROM `CFA104G5`.`REN_LISTING_PIC` WHERE LSP_LIS_ID = ?";
 	private static final String UPDATE = "UPDATE `CFA104G5`.`REN_LISTING_PIC` SET LSP_LIS_ID = ?, LSP_PIC = ? WHERE LSP_ID = ?";
-	
+	private static final String GET_EACH_FIRST_STMT =  "SELECT * FROM (select *, row_number() over (partition by LSP_LIS_ID order by LSP_ID asc) sn from `CFA104G5`.`REN_LISTING_PIC`) r where r.sn=1";
+
 	static {
 		try {
 			Class.forName(Util.DRIVER);
@@ -76,12 +77,12 @@ public class RenListingPicJDBCDAO implements RenListingPicDAO_interface {
 	}
 
 	@Override
-	public void delete(Integer lspID) {
+	public void delete(Integer LSP_LIS_ID) {
 		try {
 			con = DriverManager.getConnection(Util.URL, Util.USER, Util.PASSWORD);
 			pstmt = con.prepareStatement(DELETE);
 
-			pstmt.setInt(1, lspID);
+			pstmt.setInt(1, LSP_LIS_ID);
 
 			pstmt.executeUpdate();
 		} catch (SQLException se) {
@@ -149,7 +150,32 @@ public class RenListingPicJDBCDAO implements RenListingPicDAO_interface {
 		fis.close();
 		return buffer;
 	}
+	
+	@Override
+	public List<RenListingPicVO> getEachListingFirstPic() {
+		List<RenListingPicVO> list = new ArrayList<RenListingPicVO>();
+		RenListingPicVO renListingPicVO = null;
 
-// Test *************************************
+		try {
+			con = DriverManager.getConnection(Util.URL, Util.USER, Util.PASSWORD);
+			pstmt = con.prepareStatement(GET_EACH_FIRST_STMT);
+			rs = pstmt.executeQuery();
+			
+			while (rs.next()) {
+				renListingPicVO = new RenListingPicVO();
+				renListingPicVO.setLspID(rs.getInt("LSP_ID"));
+				renListingPicVO.setLspLisID(rs.getInt("LSP_LIS_ID"));
+				renListingPicVO.setLspPic(rs.getBytes("LSP_PIC"));
+				list.add(renListingPicVO);
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			Util.closeResource(con, pstmt, rs);
+		}
+		return list;
+	}
+
+
 
 }

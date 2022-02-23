@@ -5,11 +5,15 @@
 <%@ page import="ezs.ren_listing_pic.model.*"%>
 <%@ page import="ezs.ren_roomtype.model.*"%>
 <%@ page import="ezs.ren_location.model.*"%>
+<%@ page import="ezs.ren_location.model.RenLocationVO"%>
+<%@ page import="ezs.ren_location.model.RenLocationService"%>
+<%@page import="ezs.ren_roomtype.model.RenRoomtypeVO"%>
+<%@page import="ezs.ren_roomtype.model.RenRoomtypeService"%>
 
 <%
-// RenListingPicService renListingPicSvc = new RenListingPicService();
-// List<RenListingPicVO> renListingPiclist = renListingPicSvc.getEachFirst();
-// pageContext.setAttribute("renListingPiclist", renListingPiclist);
+RenListingPicService renListingPicSvc = new RenListingPicService();
+List<RenListingPicVO> renListingPiclist = renListingPicSvc.getEachListingFirstPic();
+pageContext.setAttribute("renListingPiclist", renListingPiclist);
 
 RenListingService renListingSvc = new RenListingService();
 List<RenListingVO> renListinglist = renListingSvc.getAll();
@@ -192,34 +196,47 @@ pageContext.setAttribute("renLocationlist", renLocationlist);
     <main class="main">
 		<ul class="item_list" id="item_list">
 
-			<c:forEach var="secPicsVO" items="${secPicslist}">
+			<c:forEach var="renListingPicVO" items="${renListingPiclist}">
 				<li>
-					<a href="<%=request.getContextPath()%>/sec_items/GetSecItemsServlet.do?shID=${secPicsVO.shID}&action=getOne_For_Display">
+					<a href="<%= request.getContextPath()%>/ren_listing/RenListingServlet.do?lisID=${renListingVO.lisID}&action=getOne_For_Display">
 						<div class="img_block">
 							<img
-								src="<%= request.getContextPath()%>/sec_pics/SecPicsReader.do?sh_id=${secPicsVO.shID}">
-						</div> <c:forEach var="secItemsVO" items="${secItemslist}">
-							<c:if test="${secItemsVO.shID==secPicsVO.shID}">
-								<span class="item_text">${secItemsVO.shName}</span>
-								<span class="item_price">$${secItemsVO.shPrice}</span>
+								src="<%= request.getContextPath()%>/ren_listing/RenListing_pic_ReaderServlet.do?LIS_ID=
+										 ${renListingVO.lisID}" width = 200px">
+						</div> <c:forEach var="renListingVO" items="${renListinglist}">
+							<c:if test="${renListingVO.lisID==renListingPicVO.lspLisID}">
+								<span class="item_text">${renListingVO.lisTitle}</span>
+								<span class="item_text"><c:forEach var="renRoomtypeVO" items="${renRoomtypeSvc.all}">
+                    										<c:if test="${renListingVO.lisRtID==renRoomtypeVO.rtID}">
+	                    												${renRoomtypeVO.rtID}${renRoomtypeVO.rtType}
+                    										</c:if>
+                										</c:forEach>
+                				</span>
+								<span class="item_text">${renListingVO.lisAddress}</span>
+								<span class="item_text">${renListingVO.lisSqft}</span>
+								<span class="item_text">${renListingVO.lisFlr}</span>
+								<span class="item_text">${renListingVO.lisRmNo}</span>
+								<span class="item_text">${renListingVO.lisCmnArea}</span>
+								<span class="item_text">${renListingVO.lisBrNo}</span>
+								<span class="item_price">${renListingVO.lisRent}</span>
 							</c:if>
 						</c:forEach>
 					</a> 
-					<c:forEach var="secItemsVO" items="${secItemslist}">
-						<c:if test="${secItemsVO.shID==secPicsVO.shID}">
-<!-- 							<a class="btn btn-buy" -->
-<%-- 								href="<%=request.getContextPath()%>/sec_items/ShoppingServlet.do?shID=${secItemsVO.shID} --%>
-<%-- 								&shName=${secItemsVO.shName}&shPrice=${secItemsVO.shPrice}&shQTY=1&action=ADD">加入購物車</a> --%>
-							<form method="post" action="<%=request.getContextPath()%>/sec_items/ShoppingServlet.do">
-								<input type="submit" value="加入購物車">
-								<input type="hidden" name="shID" value="${secItemsVO.shID}">
-								<input type="hidden" name="shName" value="${secItemsVO.shName}">
-								<input type="hidden" name="shPrice" value="${secItemsVO.shPrice}">
-								<input type="hidden" name="shQTY" value="1">
-								<input type="hidden" name="action" value="ADD">
-							</form>
-						</c:if>
-					</c:forEach>
+<%-- 					<c:forEach var="renListingVO" items="${renListinglist}"> --%>
+<%-- 						<c:if test="${secItemsVO.shID==secPicsVO.shID}"> --%>
+<!-- <!-- 							<a class="btn btn-buy" --> -->
+<%-- <%-- 								href="<%=request.getContextPath()%>/sec_items/ShoppingServlet.do?shID=${secItemsVO.shID} --%> --%>
+<%-- <%-- 								&shName=${secItemsVO.shName}&shPrice=${secItemsVO.shPrice}&shQTY=1&action=ADD">加入購物車</a> --%> --%>
+<%-- 							<form method="post" action="<%=request.getContextPath()%>/sec_items/ShoppingServlet.do"> --%>
+<!-- 								<input type="submit" value="加入購物車"> -->
+<%-- 								<input type="hidden" name="shID" value="${secItemsVO.shID}"> --%>
+<%-- 								<input type="hidden" name="shName" value="${secItemsVO.shName}"> --%>
+<%-- 								<input type="hidden" name="shPrice" value="${secItemsVO.shPrice}"> --%>
+<!-- 								<input type="hidden" name="shQTY" value="1"> -->
+<!-- 								<input type="hidden" name="action" value="ADD"> -->
+<!-- 							</form> -->
+<%-- 						</c:if> --%>
+<%-- 					</c:forEach> --%>
 				</li>
 			</c:forEach>
 

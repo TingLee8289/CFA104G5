@@ -57,6 +57,7 @@ public class RenListingServlet extends HttpServlet {
 				if(!errorMsgs.isEmpty()) {
 					RequestDispatcher failureView = req
 							.getRequestDispatcher("/frontend/ren_listing/listing_select_page.jsp");
+							
 					failureView.forward(req, res);
 					return;
 				}
@@ -71,6 +72,7 @@ public class RenListingServlet extends HttpServlet {
 				if (!errorMsgs.isEmpty()) {
 					RequestDispatcher failureView = req
 							.getRequestDispatcher("/frontend/ren_listing/listing_select_page.jsp");
+							
 					failureView.forward(req, res);
 					return;
 				}
@@ -84,6 +86,7 @@ public class RenListingServlet extends HttpServlet {
 				if(!errorMsgs.isEmpty()) {
 					RequestDispatcher failureView = req
 							.getRequestDispatcher("/frontend/ren_listing/listing_select_page.jsp");
+									
 					failureView.forward(req, res);
 					return;
 				}
@@ -103,6 +106,7 @@ public class RenListingServlet extends HttpServlet {
 				errorMsgs.add("無法取得資料:" + e.getMessage());
 				RequestDispatcher failureView = req
 						.getRequestDispatcher("/frontend/ren_listing/listing_select_page.jsp");
+						
 				failureView.forward(req, res);
 			}
 		}
@@ -181,10 +185,13 @@ if("listRenListing_ByLisLddID".equals(action)) {
 			
 			try {
 				/***************************1.接收請求參數****************************************/
-		        Integer lisID =  new Integer(req.getParameter("lisID"));
+//		        System.out.println(lisID);
+				Integer lisID =  new Integer(req.getParameter("lisID"));
 		        /***************************2.開始查詢資料****************************************/
 		        RenListingService renListingSvc = new RenListingService();
+//		        System.out.println(lisID);
 		        RenListingVO renListingVO = renListingSvc.getOneRenListing(lisID);
+//		        System.out.println(renListingVO);
 		        /***************************3.查詢完成,準備轉交(Send the Success view)************/
 		        req.setAttribute("renListingVO", renListingVO);
 		        String url = "/frontend/ren_listing/update_listing_input.jsp";
@@ -514,8 +521,8 @@ if("listRenListing_ByLisLddID".equals(action)) {
 			Integer lisMonly = new Integer(req.getParameter("lisMonly").trim());
 			Integer lisFonly = new Integer(req.getParameter("lisFonly").trim());
 			Integer lisSonly = new Integer(req.getParameter("lisSonly").trim());
-			Integer lisStatus = new Integer(req.getParameter("lisStatus").trim());
-			Integer lisApproval = new Integer(req.getParameter("lisApproval").trim());
+//			Integer lisStatus = new Integer(req.getParameter("lisStatus").trim());
+//			Integer lisApproval = new Integer(req.getParameter("lisApproval").trim());
 			
 			//.....新增抓取圖片的code
 			
@@ -566,8 +573,8 @@ if("listRenListing_ByLisLddID".equals(action)) {
 			renListingVO.setLisSmoking(lisSmoking);
 			renListingVO.setLisFonly(lisFonly);
 			renListingVO.setLisSonly(lisSonly);
-			renListingVO.setLisStatus(lisStatus);
-			renListingVO.setLisApproval(lisApproval);	
+//			renListingVO.setLisStatus(lisStatus);
+//			renListingVO.setLisApproval(lisApproval);	
 			//圖片
 			RenListingPicVO renListingPicVO = new RenListingPicVO();
 			
@@ -589,7 +596,7 @@ if("listRenListing_ByLisLddID".equals(action)) {
 					lisAddress,lisRent,lisMngFee,lisPfee,lisSqft,lisFlr,lisRmNo,
 					lisCmnArea,lisBrNo,lisEthernet,lisWifi,lisWh,lisShenc,lisAc,lisFridge,
 					lisTv,lisWasher,lisDryer,lisTc,lisBed,lisCabinet,lisSofa,lisParking,
-					lisCook,lisPet,lisSmoking,lisMonly,lisFonly,lisSonly,lisStatus,lisApproval);
+					lisCook,lisPet,lisSmoking,lisMonly,lisFonly,lisSonly);
 			System.out.print(renListingPicVO);
 			renListingPicVO.setLspLisID(renListingVO.getLisID());
 			renListingSvc.addRenListing(renListingPicVO);
@@ -611,7 +618,7 @@ if("listRenListing_ByLisLddID".equals(action)) {
 			
 		}
 		
-		if ("delete".equals(action)) { // 來自listAllListing.jsp
+		if ("delete".equals(action)) { // 來自listRenListing_ByLisLddID.jsp
 
 			List<String> errorMsgs = new LinkedList<String>();
 			// Store this set in the request scope, in case we need to
@@ -620,16 +627,17 @@ if("listRenListing_ByLisLddID".equals(action)) {
 	
 			try {
 				/***************************1.接收請求參數***************************************/
-				Integer lisID = new Integer(req.getParameter("lisID"));
+				Integer lisID = Integer.valueOf(req.getParameter("lisID"));
 				
-				Integer lspID = new Integer(req.getParameter("lspID"));
-				lisID = lspID;
+				Integer lspLisID=lisID;
+				
+				
 				/***************************2.開始刪除資料***************************************/
 				RenListingService renListingSvc = new RenListingService();
 				RenListingPicService renListingPicSvc = new RenListingPicService();
 				renListingSvc.deleteRenListing(lisID);
 				
-				renListingPicSvc.deleteRenListingPic(lspID);
+				renListingPicSvc.deleteRenListingPic(lspLisID);
 				
 				/***************************3.刪除完成,準備轉交(Send the Success view)***********/								
 				String url = "/frontend/ren_listing/listAllListing.jsp";
@@ -640,7 +648,7 @@ if("listRenListing_ByLisLddID".equals(action)) {
 			} catch (Exception e) {
 				errorMsgs.add("刪除資料失敗:"+e.getMessage());
 				RequestDispatcher failureView = req
-						.getRequestDispatcher("/frontend/ren_listing/listAllListing.jsp");
+						.getRequestDispatcher("/frontend/ren_listing/listRenListing_ByLisLddID.jsp");
 				failureView.forward(req, res);
 			}
 		}

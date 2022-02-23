@@ -1,14 +1,14 @@
-<%@ page contentType="text/html; charset=UTF-8" pageEncoding="Big5"%>
+<%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 
   <%if (rowsPerPage<rowNumber) {%>
     <%if(pageIndex>=rowsPerPage){%>
-        <A href="<%=request.getRequestURI()%>?whichPage=1">¦Ü²Ä¤@­¶</A>&nbsp;
-        <A href="<%=request.getRequestURI()%>?whichPage=<%=whichPage-1%>">¤W¤@­¶ </A>&nbsp;
+        <A href="<%=request.getRequestURI()%>?whichPage=1">è‡³ç¬¬ä¸€é </A>&nbsp;
+        <A href="<%=request.getRequestURI()%>?whichPage=<%=whichPage-1%>">ä¸Šä¸€é  </A>&nbsp;
     <%}%>
   
     <%if(pageIndex<pageIndexArray[pageNumber-1]){%>
-        <A href="<%=request.getRequestURI()%>?whichPage=<%=whichPage+1%>">¤U¤@­¶ </A>&nbsp;
-        <A href="<%=request.getRequestURI()%>?whichPage=<%=pageNumber%>">¦Ü³Ì«á¤@­¶</A>&nbsp;
+        <A href="<%=request.getRequestURI()%>?whichPage=<%=whichPage+1%>">ä¸‹ä¸€é  </A>&nbsp;
+        <A href="<%=request.getRequestURI()%>?whichPage=<%=pageNumber%>">è‡³æœ€å¾Œä¸€é </A>&nbsp;
     <%}%>
   <%}%>  
 
@@ -18,9 +18,9 @@
     <FORM METHOD="post" ACTION="<%=request.getRequestURI()%>">   
        <select size="1" name="whichPage">
          <%for (int i=1; i<=pageNumber; i++){%>
-            <option value="<%=i%>">¸õ¦Ü²Ä<%=i%>­¶
+            <option value="<%=i%>">è·³è‡³ç¬¬<%=i%>é 
          <%}%> 
        </select>
-       <input type="submit" value="½T©w" >  
+       <input type="submit" value="ç¢ºå®š" >  
     </FORM>
   <%}%>

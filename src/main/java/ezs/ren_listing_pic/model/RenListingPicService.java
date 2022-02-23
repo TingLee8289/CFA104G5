@@ -37,8 +37,8 @@ public class RenListingPicService {
 		
 	}
 	
-	public void deleteRenListingPic(Integer lspID) {
-		dao.delete(lspID);
+	public void deleteRenListingPic(Integer lspLisID) {
+		dao.delete(lspLisID);
 	}
 	
 	public RenListingPicVO getOneRenListingPic(Integer lspID){
@@ -49,9 +49,10 @@ public class RenListingPicService {
 		return dao.getAll();
 	}
 		
-//		public List<SecPicsVO> getEachFirst() {
-//			return dao.getEachItemFirstPic();
-//		}
+    public List<RenListingPicVO> getEachListingFirstPic(){
+    	return dao.getEachListingFirstPic();
+    }
+//		
 //
 //		public List<SecPicsVO> getByShID(Integer shID) {
 //			return dao.getByShID(shID);

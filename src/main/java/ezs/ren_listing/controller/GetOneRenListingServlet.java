@@ -34,7 +34,7 @@ public class GetOneRenListingServlet extends HttpServlet {
 		req.setCharacterEncoding("UTF-8");   //<--- 已經由 SetCharacterEncodingFilter 濾器解決 Query String 之編碼問題了
 		String action = req.getParameter("action");
 		
-		if("getOne_For_Display".equals(action)) {
+		if("getOne_For_Display_A".equals(action)) {
 			
 			List<String> errorMsgs = new LinkedList<String>();
 			
@@ -48,8 +48,7 @@ public class GetOneRenListingServlet extends HttpServlet {
 				}
 				if(!errorMsgs.isEmpty()) {
 					RequestDispatcher failureView = req
-							.getRequestDispatcher("/frontend/ren_listing/listing_select_page.jsp");
-					failureView.forward(req, res);
+							.getRequestDispatcher("/frontend/ren_listing/listAllListing.jsp");					failureView.forward(req, res);
 					return;
 				}
 				
@@ -62,8 +61,7 @@ public class GetOneRenListingServlet extends HttpServlet {
 				
 				if (!errorMsgs.isEmpty()) {
 					RequestDispatcher failureView = req
-							.getRequestDispatcher("/frontend/ren_listing/listing_select_page.jsp");
-					failureView.forward(req, res);
+							.getRequestDispatcher("/frontend/ren_listing/listAllListing.jsp");					failureView.forward(req, res);
 					return;
 				}
 				/**********************2.開始查詢資料*************************/
@@ -75,7 +73,7 @@ public class GetOneRenListingServlet extends HttpServlet {
 				
 				if(!errorMsgs.isEmpty()) {
 					RequestDispatcher failureView = req
-							.getRequestDispatcher("/frontend/ren_listing/listing_select_page.jsp");
+							.getRequestDispatcher("/frontend/ren_listing/listAllListing.jsp");
 					failureView.forward(req, res);
 					return;
 				}
@@ -92,7 +90,7 @@ public class GetOneRenListingServlet extends HttpServlet {
 			} catch (Exception e) {
 				errorMsgs.add("無法取得資料:" + e.getMessage());
 				RequestDispatcher failureView = req
-						.getRequestDispatcher("/frontend/ren_listing/listing_select_page.jsp");
+						.getRequestDispatcher("/frontend/ren_listing/listAllListing.jsp");
 				failureView.forward(req, res);
 			}
 		}

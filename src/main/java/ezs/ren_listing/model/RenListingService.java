@@ -32,7 +32,7 @@ public class RenListingService  {
 			String lisAddress,BigDecimal lisRent,BigDecimal lisMngFee,BigDecimal lisPfee,Double lisSqft,String lisFlr,Integer lisRmNo,
 			Integer lisCmnArea,Integer lisBrNo,Integer lisEthernet,Integer lisWifi,Integer lisWh,Integer lisShenc,Integer lisAc,Integer lisFridge,
 			Integer lisTv,Integer lisWasher,Integer lisDryer,Integer lisTc,Integer lisBed,Integer lisCabinet,Integer lisSofa,Integer lisParking,
-			Integer lisCook,Integer lisPet,Integer lisSmoking,Integer lisMonly,Integer lisFonly,Integer lisSonly,Integer lisStatus,Integer lisApproval) {
+			Integer lisCook,Integer lisPet,Integer lisSmoking,Integer lisMonly,Integer lisFonly,Integer lisSonly) {
 		
 		RenListingVO renListingVO = new RenListingVO();
 		
@@ -70,8 +70,8 @@ public class RenListingService  {
 		renListingVO.setLisMonly(lisMonly);
 		renListingVO.setLisFonly(lisFonly);
 		renListingVO.setLisSonly(lisSonly);
-		renListingVO.setLisStatus(lisStatus);
-		renListingVO.setLisApproval(lisApproval);
+//		renListingVO.setLisStatus(lisStatus);
+//		renListingVO.setLisApproval(lisApproval);
 		
 		Integer lisID = dao.insert(renListingVO);
 		renListingVO.setLisID(lisID);

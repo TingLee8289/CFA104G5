@@ -7,43 +7,68 @@
 <%@ page import="ezs.ren_roomtype.model.*"%>
 
 <%
-// 	SecPicsService secPicsSvc = new SecPicsService();
-// 	List<SecPicsVO> secPicslist = secPicsSvc.getEachFirst();
-// 	pageContext.setAttribute("secPicslist", secPicslist);
+	RenListingPicService renListingPicSvc = new RenListingPicService();
+	List<RenListingPicVO> renListingPiclist = renListingPicSvc.getEachListingFirstPic();
+	pageContext.setAttribute("renListingPiclist", renListingPiclist);
 	
-// 	SecCategoryService secCategorySvc = new SecCategoryService();
-// 	List<SecCategoryVO> secCategorylist = secCategorySvc.getAll();
-// 	pageContext.setAttribute("secCategorylist", secCategorylist);
-	
-// 	SecItemsService secItemsSvc = new SecItemsService();
-// 	List<SecItemsVO> secItemslist = secItemsSvc.getAll();
-// 	pageContext.setAttribute("secItemslist", secItemslist);
+	RenListingService renListingSvc = new RenListingService();
+	List<RenListingVO> renListinglist = renListingSvc.getAll();
+	pageContext.setAttribute("renListinglist", renListinglist);
+
+	RenRoomtypeService renRoomtypeSvc = new RenRoomtypeService();
+	List<RenRoomtypeVO> renRoomtypelist = renRoomtypeSvc.getAll();
+	pageContext.setAttribute("renRoomtypelist", renRoomtypelist);
+
+	RenLocationService renLocationSvc = new RenLocationService();
+	List<RenLocationVO> renLocationlist = renLocationSvc.getAll();
+	pageContext.setAttribute("renLocationlist", renLocationlist);
 	
 	Class.forName("com.mysql.cj.jdbc.Driver");
 	String URL = "jdbc:mysql://localhost:3306/CFA104G5";
 	Connection con = DriverManager.getConnection(URL, "CFA104G5", "CFA104G5");
 
-	String SQL = "SELECT * FROM `CFA104G5`.`SEC_ITEMS` WHERE sh_cate_id = ?";
+	String SQL = "SELECT * FROM `CFA104G5`.`REN_LISTING` WHERE LIS_ID = ?";
 	PreparedStatement pstmt = con.prepareStatement(SQL);
-	Integer shCateID = Integer.valueOf(request.getParameter("shCateID"));
+	Integer shCateID = Integer.valueOf(request.getParameter("LisID"));
 	pstmt.setInt(1, shCateID);
 	ResultSet rs = pstmt.executeQuery();
 	
 	String str = "";
 	while(rs.next()){
 		str += "<li>";
-		str += "<a href=\"/CFA104G5/sec_items/GetSecItemsServlet.do?shID=";
-		str += rs.getInt("sh_id");
+		str += "<a href=\"/CFA104G5/frontend/ren_listing/RenListingServlet.do?lisID=";
+		str += rs.getInt("LIS_ID");
 		str += "&action=getOne_For_Display\">";
 		str += "<div class=\"img_block\">";
-		str += "<img src =\"/CFA104G5/sec_pics/SecPicsReader.do?sh_id=";
-		str += rs.getInt("sh_id")+"\">";
+		str += "<img src =\"/CFA104G5/ren_listing/RenListing_pic_ReaderServlet.do?lisID=";
+		str += rs.getInt("LIS_ID")+"\">";
 		str += "</div>";
 		str += "<span class='item_text'>";
-		str += rs.getString("sh_name");
+		str += rs.getString("LIS_TITLE");
+		str += "</span>";
+		str += "<span class='item_text'>";
+		str += rs.getString("LIS_AREA_ID");
+		str += "</span>";
+		str += "<span class='item_text'>";
+		str += rs.getString("LIS_ADDRESS");
+		str += "</span>";
+		str += "<span class='item_text'>";
+		str += rs.getString("LIS_SQFT");
+		str += "</span>";
+		str += "<span class='item_text'>";
+		str += rs.getString("LIS_FLR");
+		str += "</span>";
+		str += "<span class='item_text'>";
+		str += rs.getString("LIS_RM_NO");
+		str += "</span>";
+		str += "<span class='item_text'>";
+		str += rs.getString("LIS_CMN_AREA");
+		str += "</span>";
+		str += "<span class='item_text'>";
+		str += rs.getString("LIS_BR_NO");
 		str += "</span>";
 		str += "<span class='item_price'>";
-		str += rs.getInt("sh_price");
+		str += rs.getInt("LIS_RENT");
 		str += "</span>";
 		str += "</a><a class='btn btn-buy' href=\"/CFA104G5/sec_items/ShoppingServlet.do?shID=";
 		str += rs.getInt("sh_id");
@@ -52,7 +77,7 @@
 		str += "&shPrice=";
 		str += rs.getInt("sh_price");
 		str += "&shQTY=1&action=ADD\"";
-		str += ">加入購物車</a>";
+		str += ">詳情</a>";
 		str += "</li>";
 	}
 	
