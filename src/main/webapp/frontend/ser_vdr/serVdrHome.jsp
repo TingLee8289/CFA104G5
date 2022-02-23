@@ -10,29 +10,16 @@
 	integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3"
 	crossorigin="anonymous">
 
-<style>
 
-
-table#table-1 h4 {
-	color: red;
-	display: block;
-	margin-bottom: 1px;
-}
-
-h4 {
-	color: blue;
-	display: inline;
-}
-</style>
 
 </head>
 <body>
 	
+<%-- <jsp:include page="/frontend/member/memberCenter/sellerMemberCenter.jsp" /> --%>
 
 
 
-
-	<h2>前台</h2>
+	<h2>廠商</h2>
 
 	<%-- 錯誤表列 --%>
 	<c:if test="${not empty errorMsgs}">
@@ -53,11 +40,10 @@ h4 {
 		<li><a href='listOneSerVdr.jsp'>檢視廠商基本資料</a>  <br></li>
 		
 	</ul>
-	
-	
-	
-	
-	
+	<ul>
+		<li><a href='<%=request.getContextPath()%>/frontend/ser_ad/addSerAd.jsp'>刊登服務</a>  <br></li>
+		
+	</ul>
 	
 	<ul>
 		<li>
