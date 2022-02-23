@@ -33,60 +33,26 @@ pageContext.setAttribute("list2", list2);
 	crossorigin="anonymous"></script>
 
 <title>所有申請房東資料 - listAllLandlord.jsp</title>
+<link
+	href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css"
+	rel="stylesheet" id="bootstrap-css">
+<script
+	src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
+<script
+	src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<link rel="stylesheet"
+	href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.css"
+	integrity="sha256-46qynGAkLSFpVbEBog43gvNhfrOj+BmwXdxFgVK/Kvc="
+	crossorigin="anonymous" />
+
 <style>
-html {
-	font-family: sans-serif;
-	-ms-text-size-adjust: 100%;
-	-webkit-text-size-adjust: 100%;
-}
-
-body {
-	margin: 10px;
-}
-
-table {
-	border-collapse: collapse;
-	border-spacing: 0;
-}
-
-td, th {
-	padding: 0;
-}
-
-.pure-table {
-	border-collapse: collapse;
-	border-spacing: 0;
-	empty-cells: show;
-	border: 1px solid #cbcbcb;
-}
-
-.pure-table caption {
-	color: #000;
-	font: italic 85%/1 arial, sans-serif;
-	padding: 1em 0;
-	text-align: center;
-}
-
-.pure-table td, .pure-table th {
-	border-left: 1px solid #cbcbcb;
-	border-width: 0 0 0 1px;
-	font-size: inherit;
-	margin: 0;
-	overflow: visible;
-	padding: .5em 1em;
-}
-
-.pure-table thead {
-	background-color: #e0e0e0;
-	color: #000;
-	text-align: left;
-	vertical-align: bottom;
-}
-
-.pure-table td {
-	background-color: transparent;
+#cssTable td 
+{
+    vertical-align: middle;
+    text-align: center;
 }
 </style>
+
 </head>
 <body class="sb-nav-fixed">
 	<nav class="sb-topnav navbar navbar-expand navbar-dark bg-dark">
@@ -237,19 +203,8 @@ td, th {
             <div id="layoutSidenav_content">
                 <main>
                     <div class="container-fluid px-4">
-                        <h1 class="mt-4">Dashboard</h1>
-	<table id="table-1">
-	<tr>
-		<td>
-			<h3>所有房東資料 - listAllLandlord.jsp</h3>
-			<h4>
-				<a href="select.jsp"><img
-					src="<%=request.getContextPath()%>/images/ren/back_icon.png"
-					width="60" height="60" border="0">回首頁</a>
-			</h4>
-		</td>
-	</tr>
-</table>
+                        <h1 class="mt-4">所有房東資料</h1></div>
+	
 
 <%-- 錯誤表列 --%>
 <c:if test="${not empty errorMsgs}">
@@ -261,9 +216,11 @@ td, th {
 	</ul>
 </c:if>
 
-<table class="pure-table">
+<div class="container">
+<div class="row">
+	<table class="table table-hover table-striped" id="cssTable">
 	<thead>
-		<tr>
+		<tr class="thead-dark" style="text-align: left;">							
 			<th>房東編號</th>
 			<th>會員編號</th>
 			<th>會員名稱</th>
@@ -311,7 +268,8 @@ td, th {
 			</tr>
 		</c:forEach>
 	</tbody>
-</table>
+</table></div>
+				</div>
 <%@ include file="page2.file"%>
 
 

@@ -10,45 +10,31 @@
 
 <html>
 <head>
- <meta charset="utf-8" />
-        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+<meta charset="utf-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
 <title>會員資料管理</title>
- <link href="https://cdn.jsdelivr.net/npm/simple-datatables@latest/dist/style.css" rel="stylesheet" />
-        <link href="<%=request.getContextPath()%>/css/styles.css" rel="stylesheet" />
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/js/all.min.js" crossorigin="anonymous"></script>
+<link href="https://cdn.jsdelivr.net/npm/simple-datatables@latest/dist/style.css" rel="stylesheet" /> 
+<link href="<%=request.getContextPath()%>/css/styles.css" rel="stylesheet" />
+<script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/js/all.min.js" crossorigin="anonymous"></script>
+
+<link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+<script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.css" integrity="sha256-46qynGAkLSFpVbEBog43gvNhfrOj+BmwXdxFgVK/Kvc=" crossorigin="anonymous" />
+  
    
 <style>
-  table#table-1 {
-	background-color: #CCCCFF;
-    border: 2px solid black;
+#test{
+ color: white;
+    background-color: #212529;
+    border-color: #32383e;
     text-align: center;
-  }
-  table#table-1 h4 {
-    color: red;
-    display: block;
-    margin-bottom: 1px;
-  }
-  h4 {
-    color: blue;
-    display: inline;
-  }
-</style>
+}
 
-<style>
-  table {
-	width: 800px;
-	background-color: white;
-	margin-top: 5px;
-	margin-bottom: 5px;
-  }
-  table, th, td {
-    border: 1px solid #CCCCFF;
-  }
-  th, td {
-    padding: 5px;
-    text-align: center;
-  }
+table td {
+text-align: center;
+}
 </style>
 
 </head>
@@ -151,12 +137,7 @@
                         <h1 class="mt-4">會員資料管理</h1>
 
 <!--       ***********************code從這行開始************************************** -->
-      <table id="table-1">
-	<tr><td>
-		 <h3>${memberVO.memID}- ${memberVO.memUsername} 會員資料</h3>
-	</td></tr>
-</table>
-
+ 
 <%-- 錯誤表列 --%>
 <c:if test="${not empty errorMsgs}">
 	<font style="color:red">請修正以下錯誤:</font>
@@ -168,58 +149,61 @@
 </c:if>
 
 <FORM METHOD="post" ACTION="<%=request.getContextPath()%>/member/MemberServletUpdate.do" name="form1">
-<table>
+<div class="container">
+    <div class="row">
+	<table class="table table-hover table-striped">
+              					      
 	<tr>
-		<td>會員頭像</td>
+		<th id="test">會員頭像</th>
 		<td><img src="<%=request.getContextPath()%>/DBGifReader?mem_ID=${memberVO.memID}" height=200px width=200px></td>
 	</tr>
 	<tr>			
-		<td>會員編號:</td>
+		<th id="test">會員編號:</th>
 		<td>${memberVO.memID}</td>
 	</tr>
 	<tr>
-		<td>帳號:</td>
+		<th id="test">帳號:</th>
 		<td>${memberVO.memUsername}</td>
 	</tr>
 	<tr>
-		<td>姓名:</td>
+		<th id="test">姓名:</th>
 		<td>${memberVO.memName}</td>
 	</tr>
 	<tr>
-		<td>電話:</td>
+		<th id="test">電話:</th>
 		<td>${memberVO.memPhone}</td>
 	</tr>
 	<tr>
-		<td>地址:</td>
+		<th id="test">地址:</th>
 		<td>${memberVO.memAddress}</td>
 	</tr>
 	<tr>
-		<td>email:</td>
+		<th id="test">email:</th>
 		<td>${memberVO.memEmail}</td>
 	</tr>
 	<c:if test="${memberVO.memSupplier == 1}">
 	<tr>
-		<td>會員統一編號:</td>
+		<th id="test">會員統一編號:</th>
 		<td>${memberVO.memVatno}</td>
 	</tr>
 	</c:if>
 	<tr>
-		<td>會員狀態:</td>		
+		<th id="test">會員狀態:</th>		
 		<td>
 			<c:if test="${memberVO.memStatus == 0}">未驗證</c:if>
 				<c:if test="${memberVO.memStatus == 1}">已驗證</c:if>
 				<c:if test="${memberVO.memStatus == 2}">停權</c:if></td>
 	</tr>
 	<tr>
-		<td>被評價總數:</td>
+		<th id="test">被評價總數:</th>
 		<td>${memberVO.memRedCount}</td>
 	</tr>
 	<tr>
-		<td>被評價總分:</td>
+		<th id="test">被評價總分:</th>
 		<td>${memberVO.memRedScore}</td>
 	</tr>
 	<tr>
-		<td>被評價均分:</td>
+		<th id="test">被評價均分:</th>
 		<td>
 			<c:choose>
 				<c:when test="${(memberVO.memRedCount) == 0}">尚無評分</c:when>
@@ -229,35 +213,37 @@
 			</c:otherwise></c:choose></td>
 	</tr>
 	<tr>
-		<td>被檢舉數:</td>
+		<th id="test">被檢舉數:</th>
 		<td>${memberVO.memReported}</td>
 	</tr>
 	<tr>
-		<td>房東身分:</td>
+		<th id="test">房東身分:</th>
 		<td>
 			<c:if test="${memberVO.memLandlord == 0}">未驗證</c:if>
 				<c:if test="${memberVO.memLandlord == 1}">已驗證</c:if>
 				<c:if test="${memberVO.memLandlord == 2}">停權</c:if></td>
 	</tr>
 	<tr>
-		<td>廠商身分:</td>
+		<th id="test">廠商身分:</th>
 		<td>
 			<c:if test="${memberVO.memSupplier == 0}">停權</c:if>
 				<c:if test="${memberVO.memSupplier == 1}">啟用</c:if></td>
 	</tr>
 	<tr>
-		<td>賣家身分:</td>
+		<th id="test">賣家身分:</th>
 		<td>
 			<c:if test="${memberVO.memSeller == 0}">停權</c:if>
 				<c:if test="${memberVO.memSeller == 1}">啟用</c:if></td>
 	</tr>
 	<tr>
-		<td>廠商被檢舉數:</td>
+		<th id="test">廠商被檢舉數:</th>
 		<td>${memberVO.memReported}</td>
 	</tr>
 
 
 </table>
+</div>
+    </div>
 <br>
 <input type="hidden" name="action" value="getOneMemUpdate">
 <input type="hidden" name="memID" value="<%=memberVO.getMemID()%>">

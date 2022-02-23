@@ -14,59 +14,28 @@ pageContext.setAttribute("list", list);
 <head>
 <meta charset="utf-8" />
 <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-<meta name="viewport"
-	content="width=device-width, initial-scale=1, shrink-to-fit=no" />
-<link
-	href="https://cdn.jsdelivr.net/npm/simple-datatables@latest/dist/style.css"
-	rel="stylesheet" />
-<link href="<%=request.getContextPath()%>/css/styles.css"
-	rel="stylesheet" />
-<script
-	src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/js/all.min.js"
-	crossorigin="anonymous"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+<link href="https://cdn.jsdelivr.net/npm/simple-datatables@latest/dist/style.css" rel="stylesheet" />
+<link href="<%=request.getContextPath()%>/css/styles.css" rel="stylesheet" />
+<script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/js/all.min.js" crossorigin="anonymous"></script>
+	
+<link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+<script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.css" integrity="sha256-46qynGAkLSFpVbEBog43gvNhfrOj+BmwXdxFgVK/Kvc=" crossorigin="anonymous" />
+
 
 <title>所有會員資料</title>
-
 <style>
-table#table-1 {
-	background-color: #CCCCFF;
-	border: 2px solid black;
-	text-align: center;
-}
-
-table#table-1 h4 {
-	color: red;
-	display: block;
-	margin-bottom: 1px;
-}
-
-h4 {
-	color: blue;
-	display: inline;
+#cssTable
+{
+    vertical-align: middle; text-align: center;
 }
 </style>
 
-<style>
-table {
-	width: 800px;
-	background-color: white;
-	margin-top: 5px;
-	margin-bottom: 5px;
-}
-
-table, th, td {
-	border: 1px solid #CCCCFF;
-}
-
-th, td {
-	padding: 5px;
-	text-align: center;
-}
-</style>
-<script src="https://kit.fontawesome.com/1c2ccc4859.js"
-	crossorigin="anonymous"></script>
+<script src="https://kit.fontawesome.com/1c2ccc4859.js" crossorigin="anonymous"></script>
 </head>
-<body bgcolor='white'>
+
 <body class="sb-nav-fixed">
 	<nav class="sb-topnav navbar navbar-expand navbar-dark bg-dark">
 		<!-- Navbar Brand-->
@@ -211,10 +180,12 @@ th, td {
 							</c:forEach>
 						</ul>
 					</c:if>
-
-
-					<table>
-						<tr>
+					
+					<div class="container">
+        				<div class="row">
+         				   <table class="table table-hover table-striped" id="cssTable">
+             				   <thead text-align: center;>
+             				   <tr class="thead-dark">
 							<th>會員ID</th>
 							<th>帳號</th>
 							<th>姓名</th>
@@ -226,8 +197,9 @@ th, td {
 							<th>查看詳細資料</th>
 							<!-- 		<th>廠商被檢舉數</th> -->
 							<!-- 		<th>賣家被檢舉數</th> -->
-
-						</tr>
+							</tr>
+							</thead>
+                <tbody>
 						<%@ include file="page1.file"%>
 						<c:forEach var="memberVO" items="${list}" begin="<%=pageIndex%>"
 							end="<%=pageIndex+rowsPerPage-1%>">
@@ -263,8 +235,10 @@ th, td {
 								</td>
 							</tr>
 						</c:forEach>
-					</table>
-
+					 </tbody>
+            </table>
+        </div>
+    </div>
 
 					<%@ include file="page2.file"%>
 

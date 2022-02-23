@@ -27,7 +27,25 @@ RenLandlordVO renLandlordVO = (RenLandlordVO) request.getAttribute("renLandlordV
         <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/js/all.min.js" crossorigin="anonymous"></script>
   
 <title>房東資料 - listOneLandlord.jsp</title>
+
+<link
+	href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css"
+	rel="stylesheet" id="bootstrap-css">
+<script
+	src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
+<script
+	src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<link rel="stylesheet"
+	href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.css"
+	integrity="sha256-46qynGAkLSFpVbEBog43gvNhfrOj+BmwXdxFgVK/Kvc="
+	crossorigin="anonymous" />
 </head>
+<style>
+#cssTable td 
+{
+    vertical-align: middle;
+}
+</style>
 
  <body class="sb-nav-fixed">
         <nav class="sb-topnav navbar navbar-expand navbar-dark bg-dark">
@@ -125,27 +143,27 @@ RenLandlordVO renLandlordVO = (RenLandlordVO) request.getAttribute("renLandlordV
             <div id="layoutSidenav_content">
                 <main>
                     <div class="container-fluid px-4">
-                        <h1 class="mt-4">房東資料</h1>
+                        <h1 class="mt-4">房東資料</h1></div>
 
-	<table id="table-1">
-		<tr>
-			<td>
+	
 				<h4>
 					<a href="<%=request.getContextPath()%>/backend/ren/select.jsp"><img
 						src="<%=request.getContextPath()%>/images/ren/back_icon.png"
 						width="60" height="60" border="0">回首頁</a>
 				</h4>
-			</td>
-		</tr>
-	</table>
-
-	<table>
-		<tr>
+<div class="container">
+					<div class="row">
+						<table class="table table-hover table-striped" id="cssTable">
+							<thead>
+								<tr class="thead-dark" style="text-align: left;">
+									
 			<th>房東編號</th>
 			<th>會員編號</th>
 			<th>會員名稱</th>
 			<th>審核狀態</th>
 		</tr>
+		</thead>
+							<tbody>
 		<tr>
 			<td><%=renLandlordVO.getLddId()%></td>
 			<td><%=renLandlordVO.getLddMemId()%></td>
@@ -157,8 +175,8 @@ RenLandlordVO renLandlordVO = (RenLandlordVO) request.getAttribute("renLandlordV
 			<td><c:if test="${renLandlordVO.lddApproval == 0}"><c:out value="審核中"/></c:if>
 			<c:if test="${renLandlordVO.lddApproval == 1}"><c:out value="審核未過"/></c:if>
 			<c:if test="${renLandlordVO.lddApproval == 2}"><c:out value="審核已過"/></c:if>
-			</td>
-
+			</td></tr>
+	</tbody>
 	</table>
 	</div>
                 </main>

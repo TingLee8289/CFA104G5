@@ -116,7 +116,8 @@
 
 
 <h3>資料查詢:</h3>
-	
+<br>
+
 <!-- 錯誤表列-->
 <c:if test="${not empty errorMsgs}">
 	<font style="color:red">請修正以下錯誤:</font>
@@ -127,12 +128,12 @@
 	</ul>
 </c:if>
 
-<ul>
-  <li><a href='listAllLandlord.jsp'>List</a> all landlords  <br><br></li>
+
+  <a href='listAllLandlord.jsp'>List</a> all landlords  <br><br>
   
   <jsp:useBean id="renlandlordSvc" scope="page" class="ezs.ren_landlord.model.RenLandlordService" />
    
-  <li>
+  
      <FORM METHOD="post" ACTION="<%=request.getContextPath()%>/ren_landlord/RenLandlordServlet.do" >
        <b>選擇房東編號:</b>
        <select size="1" name="lddId">
@@ -143,8 +144,8 @@
        <input type="hidden" name="action" value="getOne_For_Display">
        <input type="submit" value="送出">
     </FORM>
-  </li>
-</ul> 
+  
+
 </div>
                 </main>
                 <footer class="py-4 bg-light mt-auto">

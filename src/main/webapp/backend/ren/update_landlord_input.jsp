@@ -22,6 +22,25 @@ RenLandlordVO renLandlordVO = (RenLandlordVO) request.getAttribute("renLandlordV
 	crossorigin="anonymous"></script>
 <title>房東資料修改 - update_landlord_input.jsp</title>
 
+<link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+<script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.css" integrity="sha256-46qynGAkLSFpVbEBog43gvNhfrOj+BmwXdxFgVK/Kvc=" crossorigin="anonymous" />
+  
+<style>
+#cssTable td 
+{
+    vertical-align: middle; text-align: left;
+}
+
+
+#test{
+ color: white;
+    background-color: #212529;
+    border-color: #32383e;
+}
+
+</style>
 </head>
 <body class="sb-nav-fixed">
 	<nav class="sb-topnav navbar navbar-expand navbar-dark bg-dark">
@@ -162,21 +181,12 @@ RenLandlordVO renLandlordVO = (RenLandlordVO) request.getAttribute("renLandlordV
 			<main>
 				<div class="container-fluid px-4">
 					<h1 class="mt-4">房東資料修改</h1>
-
-					<table id="table-1">
-						<tr>
-							<td>
-								<h3>員工資料修改 - update_landlord_input.jsp</h3>
 								<h4>
 									<a href="<%=request.getContextPath()%>/backend/ren/select.jsp"><img
 										src="<%=request.getContextPath()%>/images/ren/back_icon.png"
 										width="60" height="60" border="0">回首頁</a>
 								</h4>
-							</td>
-						</tr>
-					</table>
-
-					<h3>資料修改:</h3>
+			
 
 					<%-- 錯誤表列 --%>
 					<c:if test="${not empty errorMsgs}">
@@ -191,18 +201,21 @@ RenLandlordVO renLandlordVO = (RenLandlordVO) request.getAttribute("renLandlordV
 					<FORM METHOD="post"
 						ACTION="<%=request.getContextPath()%>/ren_landlord/RenLandlordServlet.do"
 						name="form1">
-						<table>
+						<div class="container">
+       						<div class="row">
+           						<table class="table table-hover table-striped">
+              				
 							<tr>
-								<td>房東編號:<font color=red><b>*</b></font></td>
+								<th id="test">房東編號:<font color=red><b>*</b></font></th>
 								<td><%=renLandlordVO.getLddId()%></td>
 							</tr>
 							<tr>
-								<td>會員編號:</td>
+								<th id="test">會員編號:</th>
 								<td><input type="TEXT" name="lddMemId" size="45"
 									value="<%=renLandlordVO.getLddMemId()%>" /></td>
 							</tr>
 							<tr>
-								<td>審核狀態:</td>
+								<th id="test">審核狀態:</th>
 								<td><select name="lddApproval">
 										<option value="0"
 											<c:if test="${renLandlordVO.lddApproval == 0}">selected</c:if>>審核中</option>
@@ -212,7 +225,7 @@ RenLandlordVO renLandlordVO = (RenLandlordVO) request.getAttribute("renLandlordV
 											<c:if test="${renLandlordVO.lddApproval == 2}">selected</c:if>>審核已過</option>
 								</select></td>
 							</tr>
-						</table>
+						</table></div>
 
 						<br> <input type="hidden" name="action" value="update">
 						<input type="hidden" name="lddId"

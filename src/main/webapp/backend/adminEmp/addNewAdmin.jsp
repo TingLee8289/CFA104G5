@@ -1,41 +1,36 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html>
 
 <head>
 <meta charset="UTF-8">
-<meta charset="utf-8" />
 <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-<meta name="viewport"
-	content="width=device-width, initial-scale=1, shrink-to-fit=no" />
-<link
-	href="https://cdn.jsdelivr.net/npm/simple-datatables@latest/dist/style.css"
-	rel="stylesheet" />
-<link href="<%=request.getContextPath()%>/css/styles.css"
-	rel="stylesheet" />
-<script
-	src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/js/all.min.js"
-	crossorigin="anonymous"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+<link href="https://cdn.jsdelivr.net/npm/simple-datatables@latest/dist/style.css" rel="stylesheet" />
+<link href="<%=request.getContextPath()%>/css/styles.css" rel="stylesheet" />
+<script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/js/all.min.js" crossorigin="anonymous"></script>
 
+<link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+<script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.css" integrity="sha256-46qynGAkLSFpVbEBog43gvNhfrOj+BmwXdxFgVK/Kvc=" crossorigin="anonymous" />
+  
 <title>新增管理員</title>
 
 <style>
-table {
-	width: 450px;
-	background-color: white;
-	margin-top: 1px;
-	margin-bottom: 1px;
+#cssTable td 
+{
+    vertical-align: middle; text-align: left;
 }
 
-table, tr, td {
-	border: 0px solid #CCCCFF;
+
+#test{
+ color: white;
+    background-color: #212529;
+    border-color: #32383e;
 }
 
-tr, td {
-	padding: 1px;
-}
 </style>
 
 </head>
@@ -180,27 +175,31 @@ tr, td {
 				<div class="container-fluid px-4">
 					<h1 class="mt-4">新增管理員</h1>
 
-					<a
-						href="<%=request.getContextPath()%>/backend/adminEmp/adminEmp.jsp">回首頁</a>
-					<form method="post"
-						action="<%=request.getContextPath()%>/admin_emp/AdminEmpServlet.do">
-						<table>
+					<a href="<%=request.getContextPath()%>/backend/adminEmp/adminEmp.jsp">回首頁</a>
+					
+					<form method="post" action="<%=request.getContextPath()%>/admin_emp/AdminEmpServlet.do">
+						<div class="container">
+       						<div class="row">
+           						<table class="table table-hover table-striped">
+              					                 				
+                   
 							<tr>
-								<td>管理員名稱:</td>
+								<th id="test">管理員名稱:</th>
 								<td><input type="TEXT" name="admUsername" size="45" /></td>
 							</tr>
 							<tr>
-								<td>管理員密碼:</td>
+								<th id="test">管理員密碼:</th>
 								<td><input type="TEXT" name="admPassword" size="45" /></td>
 							</tr>
 							<tr>
-								<td>管理員狀態:</td>
+								<th id="test">管理員狀態:</th>
 								<td><select name="admStatus">
 										<option value="1">在職</option>
 										<option value="0">離職</option>
 								</select></td>
 							</tr>
-						</table>
+						</table></div>
+    </div>
 						<td><input type="hidden" name="action" value="insert">
 							<input type="submit" value="確認新增"></td>
 					</form>

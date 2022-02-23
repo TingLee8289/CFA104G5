@@ -35,10 +35,27 @@ pageContext.setAttribute("funList", funList);
 <script
 	src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/js/all.min.js"
 	crossorigin="anonymous"></script>
-
-<meta charset="UTF-8">
 <title>員工管理</title>
+
+<link
+	href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css"
+	rel="stylesheet" id="bootstrap-css">
+<script
+	src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
+<script
+	src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<link rel="stylesheet"
+	href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.css"
+	integrity="sha256-46qynGAkLSFpVbEBog43gvNhfrOj+BmwXdxFgVK/Kvc="
+	crossorigin="anonymous" />
 </head>
+<style>
+#cssTable td 
+{
+    vertical-align: middle;
+}
+</style>
+
 <body class="sb-nav-fixed">
 	<nav class="sb-topnav navbar navbar-expand navbar-dark bg-dark">
 		<!-- Navbar Brand-->
@@ -174,77 +191,90 @@ pageContext.setAttribute("funList", funList);
 				<div class="sb-sidenav-footer"></div>
 			</nav>
 		</div>
+
 		<div id="layoutSidenav_content">
 			<main>
 				<div class="container-fluid px-4">
 					<h1 class="mt-4">員工管理</h1>
 				</div>
-				<table>
-					<tr>
-						<th>管理員ID</th>
-						<th>管理員帳號</th>
-						<th>管理員密碼</th>
-						<th>管理員狀態</th>
-						<th>管理員權限</th>
+				<div class="container">
+					<div class="row">
+						<table class="table table-hover table-striped" id="cssTable">
+							<thead>
+								<tr class="thead-dark" style="text-align: left;">
+									<th>管理員ID</th>
+									<th>管理員帳號</th>
+									<th>管理員密碼</th>
+									<th>管理員狀態</th>
+									<th>管理員權限</th>
+									<th></th>
+									<th></th>
+								</tr>
+							</thead>
+							<tbody>
 
-					</tr>
-					<%@ include file="page1.file"%>
-					<c:forEach var="adminEmpVO" items="${list}" begin="<%=pageIndex%>"
-						end="<%=pageIndex+rowsPerPage-1%>">
-						<tr>
-							<td>${adminEmpVO.admID}</td>
-							<td>${adminEmpVO.admUsername}</td>
-							<td>${adminEmpVO.admPassword}</td>
-							<td>${adminEmpVO.admStatus}</td>
+								<%@ include file="page1.file"%>
+								<c:forEach var="adminEmpVO" items="${list}"
+									begin="<%=pageIndex%>" end="<%=pageIndex+rowsPerPage-1%>">
+									<tr>
+										<td>${adminEmpVO.admID}</td>
+										<td>${adminEmpVO.admUsername}</td>
+										<td>${adminEmpVO.admPassword}</td>
+										<td>${adminEmpVO.admStatus}</td>
 
-							<!-- 				<td> -->
-							<%-- 				<c:forEach var="adminPrivVO" items="${adminEmpVO.authlist}"> --%>
-							<%-- 						<br>${adminFunSvc.getoneAdminFunc(adminPrivVO.funID).funName} --%>
-							<%-- 					</c:forEach> --%>
-							<!-- 				</td> -->
-							<FORM METHOD="post"
-								ACTION="<%=request.getContextPath()%>/admin_priv/AdminPrivServlet.do"
-								style="margin-bottom: 0px;">
-								<td><c:forEach var="funElment" items="${funList}">
-										<%-- 					<input type=hidden name="${funElment.funName}" value="${funElment.funID}" checked> --%>
-										<br>
+										<!-- 				<td> -->
+										<%-- 				<c:forEach var="adminPrivVO" items="${adminEmpVO.authlist}"> --%>
+										<%-- 						<br>${adminFunSvc.getoneAdminFunc(adminPrivVO.funID).funName} --%>
+										<%-- 					</c:forEach> --%>
+										<!-- 				</td> -->
+										<FORM METHOD="post"
+											ACTION="<%=request.getContextPath()%>/admin_priv/AdminPrivServlet.do"
+											style="margin-bottom: 0px;">
+											<td style="
+    text-align: left;
+"><c:forEach var="funElment" items="${funList}">
+													<%-- 					<input type=hidden name="${funElment.funName}" value="${funElment.funID}" checked> --%>
+													<br>
 
-										<c:set var="check" value="0" />
-										<c:forEach var="adminPrivVO" items="${adminEmpVO.authlist}">
-											<c:if test="${adminPrivVO.funID == funElment.funID }">
-												<c:set var="check" value="1" />
-											</c:if>
-										</c:forEach>
+													<c:set var="check" value="0" />
+													<c:forEach var="adminPrivVO" items="${adminEmpVO.authlist}">
+														<c:if test="${adminPrivVO.funID == funElment.funID }">
+															<c:set var="check" value="1" />
+														</c:if>
+													</c:forEach>
 
-										<c:if test="${ check == 1 }">
-											<input type="checkbox" name="funID"
-												value="${funElment.funID}" checked> ${funElment.funName}
+													<c:if test="${ check == 1 }">
+														<input type="checkbox" name="funID"
+															value="${funElment.funID}" checked> ${funElment.funName}
 					</c:if>
-										<c:if test="${ check != 1 }">
-											<input type="checkbox" name="funID"
-												value="${funElment.funID}"> ${funElment.funName}
+													<c:if test="${ check != 1 }">
+														<input type="checkbox" name="funID"
+															value="${funElment.funID}"> ${funElment.funName}
 					</c:if>
-									</c:forEach></td>
+												</c:forEach></td>
 
 
 
 
-								<td><input type="submit" value="修改權限"> <input
-									type="hidden" name="admID" value="${adminEmpVO.admID}">
-									<input type="hidden" name="action" value="update"></td>
-							</FORM>
-							<td>
-								<FORM METHOD="post"
-									ACTION="<%=request.getContextPath()%>/admin_priv/AdminPrivServlet.do"
-									style="margin-bottom: 0px;">
-									<input type="submit" value="刪除"> <input type="hidden"
-										name="admID" value="${adminEmpVO.admID}"> <input
-										type="hidden" name="action" value="delete">
-								</FORM>
-							</td>
-						</tr>
-					</c:forEach>
-				</table>
+											<td><input type="submit" value="修改權限"> <input
+												type="hidden" name="admID" value="${adminEmpVO.admID}">
+												<input type="hidden" name="action" value="update"></td>
+										</FORM>
+										<td>
+											<FORM METHOD="post"
+												ACTION="<%=request.getContextPath()%>/admin_priv/AdminPrivServlet.do"
+												style="margin-bottom: 0px;">
+												<input type="submit" value="刪除"> <input
+													type="hidden" name="admID" value="${adminEmpVO.admID}">
+												<input type="hidden" name="action" value="delete">
+											</FORM>
+										</td>
+									</tr>
+								</c:forEach>
+							</tbody>
+						</table>
+					</div>
+				</div>
 				<%@ include file="page2.file"%>
 				<%-- 錯誤表列 --%>
 				<c:if test="${not empty errorMsgs}">
