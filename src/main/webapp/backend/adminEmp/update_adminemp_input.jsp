@@ -10,7 +10,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>更改權限</title>
+<title>EASY SPACE</title>
 </head>
 
 <body>

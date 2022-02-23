@@ -4,7 +4,7 @@
 <html>
 
 <head>
-<title>Home</title>
+<title>EASY SPACE</title>
 </head>
 
 <body bgcolor='white'>

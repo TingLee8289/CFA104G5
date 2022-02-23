@@ -9,7 +9,7 @@ RenLandlordVO renLandlordVO = (RenLandlordVO) request.getAttribute("renLandlordV
 <html>
 <head>
 <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
-<title>房東資料修改 - update_landlord_input.jsp</title>
+<title>EASY SPACE</title>
 
 </head>
 <body bgcolor='white'>

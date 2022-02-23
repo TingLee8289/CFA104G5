@@ -19,7 +19,7 @@ pageContext.setAttribute("list2", list2);
 
 <html>
 <head>
-<title>所有申請房東資料 - listAllLandlord.jsp</title>
+<title>EASY SPACE</title>
 <style>
 html {
     font-family: sans-serif;

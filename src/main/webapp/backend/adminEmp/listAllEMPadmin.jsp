@@ -5,7 +5,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>EASY SPACE</title>
 </head>
 <body>
 <%-- 錯誤表列 --%>

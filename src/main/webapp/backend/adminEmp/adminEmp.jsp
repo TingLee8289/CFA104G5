@@ -24,7 +24,7 @@ pageContext.setAttribute("funList", funList);
 <html>
 <head>
 <meta charset="UTF-8">
-<title>員工管理</title>
+<title>EASY SPACE</title>
 </head>
 <body>
 	<table>

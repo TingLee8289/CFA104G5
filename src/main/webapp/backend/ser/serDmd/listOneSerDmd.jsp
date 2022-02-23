@@ -10,7 +10,7 @@ SerDmdVO serDmdVO = (SerDmdVO) request.getAttribute("serDmdVO"); //SerDmdServlet
 
 <html>
 <head>
-<title>需求單資料</title>
+<title>EASY SPACE</title>
 <link
 	href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css"
 	rel="stylesheet"
