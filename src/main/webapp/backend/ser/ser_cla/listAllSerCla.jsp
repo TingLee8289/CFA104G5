@@ -98,6 +98,9 @@ pageContext.setAttribute("list", list);
 						<tr class="text-nowrap">
 							<th>類別編號</th>
 							<th>類別名稱</th>
+							<th></th>
+							<th></th>
+							
 						</tr>
 					</thead>
 					<tbody id="show-list">

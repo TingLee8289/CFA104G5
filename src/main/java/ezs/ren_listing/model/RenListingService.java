@@ -2,6 +2,7 @@ package ezs.ren_listing.model;
 
 import java.math.BigDecimal;
 import java.util.List;
+import java.util.Set;
 
 import ezs.ren_listing_pic.model.RenListingPicDAO_interface;
 import ezs.ren_listing_pic.model.RenListingPicJNDIDAO;
@@ -134,6 +135,9 @@ public class RenListingService  {
 	
 	public RenListingVO getOneRenListing(Integer lisID) {
 		return dao.findByPrimaryKey(lisID);
+	}
+	public Set<RenListingVO>getRenListingByLisLddID(Integer lisLddID){
+		return dao.getRenListingByLisLddID(lisLddID);
 	}
 	
 	public List<RenListingVO> getAll(){

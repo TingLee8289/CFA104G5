@@ -115,8 +115,11 @@ pageContext.setAttribute("list", list);
 							<th>營業時間</th>
 							<th>廠商簡介</th>
 							<th>廠商圖片</th>
-							<th>廠商評價總人數</th>
-							<th>廠商評價總星數</th>
+					<%-- 	<th>廠商評價總人數</th>
+							<th>廠商評價總星數</th> --%>
+							<th></th>
+							<th></th>
+							
 
 						</tr>
 					</thead>
@@ -139,8 +142,8 @@ pageContext.setAttribute("list", list);
 								<td><img
 									src="<%=request.getContextPath()%>/ser_vdr/DBGifReader4.do?vdr_id=${serVdrVO.vdrID}"
 									width=200px></td>
-								<td>${serVdrVO.vdrRevCount}</td>
-								<td>${serVdrVO.vdrRevScore}</td>
+					<%-- 		<td>${serVdrVO.vdrRevCount}</td>
+								<td>${serVdrVO.vdrRevScore}</td> --%>
 								<td>
 									<FORM METHOD="post"
 										ACTION="<%=request.getContextPath()%>/frontend/ser_vdr/GetOneForUpdateSerVdrServlet.do"

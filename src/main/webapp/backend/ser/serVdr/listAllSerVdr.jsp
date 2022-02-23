@@ -154,7 +154,7 @@ pageContext.setAttribute("list", list);
 								</td>
 								<td>
 									<FORM METHOD="post"
-										ACTION="<%=request.getContextPath()%>/frontend/ser_vdr/DeleteSerVdrServlet.do"
+										ACTION="<%=request.getContextPath()%>/ser_vdr/BackDeleteSerVdrServlet.do"
 										style="margin-bottom: 0px;">
 										<input type="submit" value="刪除"> <input type="hidden"
 											name="vdrID" value="${serVdrVO.vdrID}"> <input

@@ -29,7 +29,7 @@ public class ResetPasswordMailService {
 				// ●設定 gmail 的帳號 & 密碼 (將藉由你的Gmail來傳送Email)
 				// ●須將myGmail的【安全性較低的應用程式存取權】打開
 				final String myGmail = "rr965234@gmail.com";
-				final String myGmail_password = "";
+				final String myGmail_password = "OOPP098123";
 				Session session = Session.getInstance(props, new Authenticator() {
 					protected PasswordAuthentication getPasswordAuthentication() {
 						return new PasswordAuthentication(myGmail, myGmail_password);
@@ -45,6 +45,7 @@ public class ResetPasswordMailService {
 				// 設定信中的內容
 				message.setText(messageText);
 
+				
 				Transport.send(message);
 				System.out.println("會員忘記密碼驗證信傳送成功!");
 			} catch (MessagingException e) {
@@ -53,21 +54,24 @@ public class ResetPasswordMailService {
 			}
 		}
 
-		public static void main(String args[]) {
-
-			String to = "rr965234@gmail.com";
-
-			String subject = "密碼重新設定通知";
-
-			String ch_name = "客戶";
-
-			String messageText = "親愛的 " + ch_name +"您好!"+ " 請立即開啟連結，完成密碼變更 " +  "\n" 
-					+ "貼心提醒：\r\n"
-					+ "1.此密碼有效時間為30分鐘，如逾時失效，請至EASY SPACE重新申請「忘記密碼」，系統將重新派送。\r\n"
-					+ "2.密碼變更完成後，請使用新密碼重新登入，並請妥善保管您的個人資料，切勿提供他人，以保障您的帳號安全。";
-
-			ResetPasswordMailService mailService = new ResetPasswordMailService();
-			mailService.sendMail(to, subject, messageText);
-
-		}
+//		public static void main(String args[]) {
+//
+//			String to = "rr965234@gmail.com";
+//
+//			String subject = "密碼重新設定通知";
+//
+//			String ch_name = "客戶";
+//
+//			String link = req.getContextPath()+
+//					"/member/updateMemberPassword.jsp?memid="; 
+//			
+//			String messageText = "親愛的 " + ch_name +"您好!"+ " 請立即開啟連結，完成密碼變更 " +  "\n" 
+//					+ "貼心提醒：\r\n"
+//					+ "1.此密碼有效時間為30分鐘，如逾時失效，請至EASY SPACE重新申請「忘記密碼」，系統將重新派送。\r\n"
+//					+ "2.密碼變更完成後，請使用新密碼重新登入，並請妥善保管您的個人資料，切勿提供他人，以保障您的帳號安全。";
+//
+//			ResetPasswordMailService mailService = new ResetPasswordMailService();
+//			mailService.sendMail(to, subject, messageText);
+//
+//		}
 }
