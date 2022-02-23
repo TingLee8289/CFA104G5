@@ -10,7 +10,7 @@ SerOrdVO serOrdVO = (SerOrdVO) request.getAttribute("serOrdVO");
 <html>
 <head>
 <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
-<title>訂單資料修改 - updateSerOrd.jsp</title>
+<title>EASY SPACE</title>
 
 <style>
 table#table-1 {

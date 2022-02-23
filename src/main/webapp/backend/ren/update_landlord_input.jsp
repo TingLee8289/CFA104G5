@@ -8,6 +8,7 @@ RenLandlordVO renLandlordVO = (RenLandlordVO) request.getAttribute("renLandlordV
 
 <html>
 <head>
+
 <meta charset="utf-8" />
 <meta http-equiv="X-UA-Compatible" content="IE=edge" />
 <meta name="viewport"
@@ -20,7 +21,10 @@ RenLandlordVO renLandlordVO = (RenLandlordVO) request.getAttribute("renLandlordV
 <script
 	src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/js/all.min.js"
 	crossorigin="anonymous"></script>
-<title>房東資料修改 - update_landlord_input.jsp</title>
+
+
+<title>EASY SPACE</title>
+
 
 <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
 <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>

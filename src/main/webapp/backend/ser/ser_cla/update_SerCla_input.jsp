@@ -9,7 +9,7 @@ SerClaVO serClaVO = (SerClaVO) request.getAttribute("serClaVO"); //EmpServlet.ja
 <html>
 <head>
 <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
-<title>服務類別修改 - update_SerCla_input.jsp</title>
+<title>EASY SPACE</title>
 <link
 	href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css"
 	rel="stylesheet"

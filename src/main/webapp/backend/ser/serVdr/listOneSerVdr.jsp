@@ -10,7 +10,7 @@ SerVdrVO serVdrVO = (SerVdrVO) request.getAttribute("serVdrVO"); //EmpServlet.ja
 
 <html>
 <head>
-<title>廠商資料</title>
+<title>EASY SPACE</title>
 <link
 	href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css"
 	rel="stylesheet"

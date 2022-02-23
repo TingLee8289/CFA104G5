@@ -182,6 +182,8 @@
 				ease-in-out, box-shadow 1.15s ease-in-out;
 		}
 	</style>
+
+
 </head>
 <body>
 <%-- 	<jsp:include page="/frontend/EZ_LoginHeader.jsp" /> --%>

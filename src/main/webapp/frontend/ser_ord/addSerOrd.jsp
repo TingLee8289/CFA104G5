@@ -86,7 +86,7 @@ th, td {
 		</ul>
 	</c:if>
 <div style= "width:500px; margin:auto; border:solid 1px red;">
-	<FORM METHOD="post" 
+		<FORM METHOD="post" 
 		ACTION="<%=request.getContextPath()%>/ser_ord/AddOrdServlet.do"
 		name="form1">
 		<table>
@@ -154,8 +154,9 @@ th, td {
 			</tr>
 			<tr>
 				<td>施工項目:</td>
-				<td><input type="TEXT" name="ordItem" size="50"
-					value="${oneQuoVO.quoItem}" /></td>
+				<td>
+					<textarea name="ordItem"rows="4" cols="50" >${oneQuoVO.quoItem}</textarea>
+				</td>
 			</tr>
 			<tr>
 				<td>總金額:</td>
@@ -164,8 +165,9 @@ th, td {
 			</tr>
 			<tr>
 				<td>備註:</td>
-				<td><input type="TEXT" name="ordNote"
-					value="<%=(serOrdVO == null) ? "" : serOrdVO.getOrdNote() %>" /></td>
+				<td>
+				<textarea name="ordNote"rows="4" cols="50" ></textarea>
+				</td>
 			</tr>
 			
 			

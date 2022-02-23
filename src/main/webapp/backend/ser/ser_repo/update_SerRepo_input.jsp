@@ -9,7 +9,7 @@ SerRepVO serRepVO = (SerRepVO) request.getAttribute("serRepVO"); //EmpServlet.ja
 <html>
 <head>
 <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
-<title>檢舉單修改</title>
+<title>EASY SPACE</title>
 
 <style>
 table#table-1 {

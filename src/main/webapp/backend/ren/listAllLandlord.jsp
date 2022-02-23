@@ -19,6 +19,7 @@ pageContext.setAttribute("list2", list2);
 
 <html>
 <head>
+
 <meta charset="utf-8" />
 <meta http-equiv="X-UA-Compatible" content="IE=edge" />
 <meta name="viewport"
@@ -32,7 +33,6 @@ pageContext.setAttribute("list2", list2);
 	src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/js/all.min.js"
 	crossorigin="anonymous"></script>
 
-<title>所有申請房東資料 - listAllLandlord.jsp</title>
 <link
 	href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css"
 	rel="stylesheet" id="bootstrap-css">
@@ -44,6 +44,8 @@ pageContext.setAttribute("list2", list2);
 	href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.css"
 	integrity="sha256-46qynGAkLSFpVbEBog43gvNhfrOj+BmwXdxFgVK/Kvc="
 	crossorigin="anonymous" />
+
+<title>EASY SPACE</title>
 
 <style>
 #cssTable td 
