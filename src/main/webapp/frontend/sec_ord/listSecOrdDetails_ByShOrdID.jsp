@@ -1,18 +1,18 @@
-<%@ page contentType="text/html; charset=UTF-8" pageEncoding="Big5"%>
+<%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ page import="ezs.sec_ord.model.*"%>
 <%@ page import="ezs.sec_ord_details.model.*"%>
 
-<jsp:useBean id="listSecOrdDetails_ByShOrdID" scope="request"
-	type="java.util.List<SecOrdDetailsVO>" />
-<!-- ©óEL¦¹¦æ¥i¬Ù²¤ -->
+<jsp:useBean id="list" scope="request"
+	type="java.util.Set<SecOrdDetailsVO>" />
+<!-- æ–¼ELæ­¤è¡Œå¯çœç•¥ -->
 <jsp:useBean id="secOrdSvc" scope="page"
 	class="ezs.sec_ord.model.SecOrdService" />
 
 
 <html>
 <head>
-<title>­q³æ©ú²Ó - listSecOrdDetails_ByShOrdID.jsp</title>
+<title>è¨‚å–®æ˜ç´° - listSecOrdDetails_BySecOrd.jsp</title>
 
 <style>
 table#table-2 {
@@ -35,7 +35,7 @@ h4 {
 
 <style>
 table {
-	width: 800px;
+	width: 1000px;
 	background-color: white;
 	margin-top: 5px;
 	margin-bottom: 5px;
@@ -54,23 +54,23 @@ th, td {
 </head>
 <body bgcolor='white'>
 
-	<h4>¦¹­¶½m²ß±Ä¥Î EL ªº¼gªk¨ú­È:</h4>
+	<h4>æ­¤é ç·´ç¿’æ¡ç”¨ EL çš„å¯«æ³•å–å€¼:</h4>
 	<table id="table-2">
 		<tr>
 			<td>
-				<h3>­q³æ©ú²Ó - listSecOrdDetails_ByShOrd.jsp</h3>
+				<h3>è¨‚å–®æ˜ç´° - listSecOrdDetails_ByShOrdID.jsp</h3>
 				<h4>
 					<a
 						href="<%=request.getContextPath()%>/frontend/sec_ord/secOrdHomeSeller.jsp"><img
-						src="images/back1.gif" width="100" height="32" border="0">¦^­º­¶</a>
+						src="images/sec/sh_pic/" width="100" height="32" border="0">å›é¦–é </a>
 				</h4>
 			</td>
 		</tr>
 	</table>
 
-	<%-- ¿ù»~ªí¦C --%>
+	<%-- éŒ¯èª¤è¡¨åˆ— --%>
 	<c:if test="${not empty errorMsgs}">
-		<font style="color: red">½Ğ­×¥¿¥H¤U¿ù»~:</font>
+		<font style="color: red">è«‹ä¿®æ­£ä»¥ä¸‹éŒ¯èª¤:</font>
 		<ul>
 			<c:forEach var="message" items="${errorMsgs}">
 				<li style="color: red">${message}</li>
@@ -80,17 +80,17 @@ th, td {
 
 	<table>
 		<tr>
-			<th>­q³æ½s¸¹</th>
-			<th>°Ó«~½s¸¹</th>
-			<th>°Ó«~¦WºÙ</th>
-			<th>­q³æª÷ÃB</th>
-			<th>°Ó«~¼Æ¶q</th>
+			<th>è¨‚å–®ç·¨è™Ÿ</th>
+			<th>å•†å“ç·¨è™Ÿ</th>
+			<th>å•†å“åç¨±</th>
+			<th>è¨‚å–®é‡‘é¡</th>
+			<th>å•†å“æ•¸é‡</th>
 
 		</tr>
 
 
 		<c:forEach var="secOrdDetailsVO"
-			items="${listSecOrdDetails_ByShOrdID}">
+			items="${list}">
 			<tr>
 				<td>${secOrdDetailsVO.shOrdID}</td>
 				<td>${secOrdDetailsVO.shID}</td>
@@ -100,7 +100,17 @@ th, td {
 			</tr>
 		</c:forEach>
 
+
+
+
+
 	</table>
+
+	<br>æœ¬ç¶²é çš„è·¯å¾‘:
+	<br>
+	<b> <font color=blue>request.getServletPath():</font> <%=request.getServletPath()%><br>
+		<font color=blue>request.getRequestURI(): </font> <%=request.getRequestURI()%>
+	</b>
 
 </body>
 </html>

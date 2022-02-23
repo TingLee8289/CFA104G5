@@ -1,4 +1,4 @@
-<%@ page contentType="text/html; charset=UTF-8" pageEncoding="Big5"%>
+<%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ page import="java.util.*"%>
 <%@ page import="ezs.sec_ord_details.model.*"%>
@@ -8,7 +8,7 @@
 
 <html>
 <head>
-<title>©Ò¦³­q³æ - listAllSecOrd.jsp</title>
+<title>æ‰€æœ‰è¨‚å–® - listAllSecOrd.jsp</title>
 
 <style>
 table#table-1 {
@@ -31,7 +31,7 @@ h4 {
 
 <style>
 table {
-	width: 800px;
+	width: 1000px;
 	background-color: white;
 	margin-top: 5px;
 	margin-bottom: 5px;
@@ -50,23 +50,23 @@ th, td {
 </head>
 <body bgcolor='white'>
 
-	<h4>¦¹­¶½m²ß±Ä¥Î EL ªº¼gªk¨ú­È:</h4>
+	<h4>æ­¤é ç·´ç¿’æŽ¡ç”¨ EL çš„å¯«æ³•å–å€¼:</h4>
 	<table id="table-1">
 		<tr>
 			<td>
-				<h3>©Ò¦³­q³æ - listAllSecOrd.jsp</h3>
+				<h3>æ‰€æœ‰è¨‚å–® - listAllSecOrd.jsp</h3>
 				<h4>
 					<a
 						href="<%=request.getContextPath()%>/frontend/sec_ord/secOrdHomeSeller.jsp"><img
-						src="images/back1.gif" width="100" height="32" border="0">¦^­º­¶</a>
+						src="images/back1.gif" width="100" height="32" border="0">å›žé¦–é </a>
 				</h4>
 			</td>
 		</tr>
 	</table>
 
-	<%-- ¿ù»~ªí¦C --%>
+	<%-- éŒ¯èª¤è¡¨åˆ— --%>
 	<c:if test="${not empty errorMsgs}">
-		<font style="color: red">½Ð­×¥¿¥H¤U¿ù»~:</font>
+		<font style="color: red">è«‹ä¿®æ­£ä»¥ä¸‹éŒ¯èª¤:</font>
 		<ul>
 			<c:forEach var="message" items="${errorMsgs}">
 				<li style="color: red">${message}</li>
@@ -76,26 +76,26 @@ th, td {
 
 	<table>
 		<tr>
-			<th>°Ó«~­q³æ½s¸¹</th>
-			<th>¶R®a½s¸¹</th>
-			<th>½æ®a½s¸¹</th>
-			<th>¦¬¥ó¦a§}¶l»¼°Ï¸¹</th>
-			<th>¦¬¥ó¿¤¥«</th>
-			<th>¦¬¥ó¶mÂí°Ï</th>
-			<th>¦¬¥ó¦a§}</th>
-			<th>¥I´Ú¤è¦¡</th>
-			<th>­q³æª¬ºA</th>
-			<th>°Ó«~»ù®æ</th>
-			<th>­q³æ¤é´Á</th>
-<!-- 			<th>¶R®aµû»ù½æ®a¬P¼Æ</th> -->
-<!-- 			<th>¶R®aµû»ù½æ®a¤º®e</th> -->
-<!-- 			<th>½æ®aµû»ù¶R®a¬P¼Æ</th> -->
-<!-- 			<th>½æ®aµû»ù¶R®a¤º®e</th> -->
-			<th>¼·´Ú¤é´Á</th>
-			<th>¶R®a³Æµù</th>
-			<th>­×§ï</th>
-			<th>¨ú®ø­q³æ<font color=red>(ÃöÁp´ú¸Õ»P¥æ©ö-¤p¤ß)</font></th>
-			<th>¬d¸ß­q³æ©ú²Ó</th>
+			<th>å•†å“è¨‚å–®ç·¨è™Ÿ</th>
+			<th>è²·å®¶ç·¨è™Ÿ</th>
+			<th>è³£å®¶ç·¨è™Ÿ</th>
+			<th>æ”¶ä»¶åœ°å€éƒµéžå€è™Ÿ</th>
+			<th>æ”¶ä»¶ç¸£å¸‚</th>
+			<th>æ”¶ä»¶é„‰éŽ®å€</th>
+			<th>æ”¶ä»¶åœ°å€</th>
+			<th>ä»˜æ¬¾æ–¹å¼</th>
+			<th>è¨‚å–®ç‹€æ…‹</th>
+			<th>å•†å“åƒ¹æ ¼</th>
+			<th>è¨‚å–®æ—¥æœŸ</th>
+			<!-- 			<th>è²·å®¶è©•åƒ¹è³£å®¶æ˜Ÿæ•¸</th> -->
+			<!-- 			<th>è²·å®¶è©•åƒ¹è³£å®¶å…§å®¹</th> -->
+			<!-- 			<th>è³£å®¶è©•åƒ¹è²·å®¶æ˜Ÿæ•¸</th> -->
+			<!-- 			<th>è³£å®¶è©•åƒ¹è²·å®¶å…§å®¹</th> -->
+			<th>æ’¥æ¬¾æ—¥æœŸ</th>
+			<th>è²·å®¶å‚™è¨»</th>
+			<th>ä¿®æ”¹</th>
+			<th>å–æ¶ˆè¨‚å–®<font color=red>(é—œè¯æ¸¬è©¦èˆ‡äº¤æ˜“-å°å¿ƒ)</font></th>
+			<th>æŸ¥è©¢è¨‚å–®æ˜Žç´°</th>
 		</tr>
 
 		<c:forEach var="secOrdVO" items="${secOrdSvc.all}">
@@ -109,26 +109,26 @@ th, td {
 				<td>${secOrdVO.shRoad}</td>
 				<td>${secOrdVO.shPayment}</td>
 
-				<td><c:if test="${secOrdVO.shOrdStatus == 8}">¨ú®ø­q³æ</c:if> <c:if
-						test="${secOrdVO.shOrdStatus == 2}">«Ý¥X³f</c:if> <c:if
-						test="${secOrdVO.shOrdStatus == 3}">¤w¥X³f</c:if> <c:if
-						test="${secOrdVO.shOrdStatus == 6}">°h´Ú¼f®Ö¤¤</c:if> <c:if
-						test="${secOrdVO.shOrdStatus == 7}">­q³æ§¹¦¨</c:if></td>
+				<td><c:if test="${secOrdVO.shOrdStatus == 8}">å–æ¶ˆè¨‚å–®</c:if> <c:if
+						test="${secOrdVO.shOrdStatus == 2}">å¾…å‡ºè²¨</c:if> <c:if
+						test="${secOrdVO.shOrdStatus == 3}">å·²å‡ºè²¨</c:if> <c:if
+						test="${secOrdVO.shOrdStatus == 6}">é€€æ¬¾å¯©æ ¸ä¸­</c:if> <c:if
+						test="${secOrdVO.shOrdStatus == 7}">è¨‚å–®å®Œæˆ</c:if></td>
 
 
 				<td>${secOrdVO.shPrice}</td>
 				<td>${secOrdVO.shDate}</td>
-<%-- 				<td>${secOrdVO.shBuyerScore}</td> --%>
-<%-- 				<td>${secOrdVO.shBuyerTXT}</td> --%>
-<%-- 				<td>${secOrdVO.shSellerScore}</td> --%>
-<%-- 				<td>${secOrdVO.shSellerTXT}</td> --%>
+				<%-- 				<td>${secOrdVO.shBuyerScore}</td> --%>
+				<%-- 				<td>${secOrdVO.shBuyerTXT}</td> --%>
+				<%-- 				<td>${secOrdVO.shSellerScore}</td> --%>
+				<%-- 				<td>${secOrdVO.shSellerTXT}</td> --%>
 				<td>${secOrdVO.shAPPDate}</td>
 				<td>${secOrdVO.shNotes}</td>
 				<td>
 					<FORM METHOD="post"
 						ACTION="<%=request.getContextPath()%>/sec_ord/UpdateSecOrdBySellerServlet.do"
 						style="margin-bottom: 0px;">
-						<input type="submit" value="­×§ï"> <input type="hidden"
+						<input type="submit" value="ä¿®æ”¹"> <input type="hidden"
 							name="shOrdID" value="${secOrdVO.shOrdID}"> <input
 							type="hidden" name="action" value="getOne_For_Update">
 					</FORM>
@@ -137,7 +137,7 @@ th, td {
 					<FORM METHOD="post"
 						ACTION="<%=request.getContextPath()%>/sec_ord/GetSecOrdDetailsBySellerServlet.do"
 						style="margin-bottom: 0px;">
-						<input type="submit" value="¨ú®ø­q³æ"> <input type="hidden"
+						<input type="submit" value="å–æ¶ˆè¨‚å–®"> <input type="hidden"
 							name="shOrdID" value="${secOrdVO.shOrdID}"> <input
 							type="hidden" name="action" value="delete_secord">
 					</FORM>
@@ -146,22 +146,20 @@ th, td {
 					<FORM METHOD="post"
 						ACTION="<%=request.getContextPath()%>/sec_ord/GetSecOrdDetailsBySellerServlet.do"
 						style="margin-bottom: 0px;">
-						<input type="submit" value="°e¥X¬d¸ß"> <input type="hidden"
+						<input type="submit" value="é€å‡ºæŸ¥è©¢"> <input type="hidden"
 							name="shOrdID" value="${secOrdVO.shOrdID}"> <input
-							type="hidden" name="action" value="listSecOrdDetails_BySecOrd_B">
+							type="hidden" name="action" value="listSecOrdDetails_BySecOrd_A">
 					</FORM>
 				</td>
 			</tr>
 		</c:forEach>
 	</table>
 
-	<%
-	if (request.getAttribute("listSecOrdDetails_ByShOrdID") != null) {
-	%>
-	<jsp:include page="listSecOrdDetails_ByShOrdID.jsp" />
-	<%
-	}
-	%>
+
+<%if (request.getAttribute("listSecOrdDetails_ByShOrdID")!=null){%>
+       <jsp:include page="listSecOrdDetails_ByShOrdID.jsp" />
+<%} %>
+
 
 </body>
 </html>
