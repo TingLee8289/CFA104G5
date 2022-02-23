@@ -190,7 +190,7 @@
 <!-- 			    </FORM> -->
 <!-- 			 </td> -->
 		</tr>
-<%-- 	</c:forEach> --%>
+ 	</c:forEach> 
 </table>
 <%-- <%@ include file="page2.file" %> --%>
 
