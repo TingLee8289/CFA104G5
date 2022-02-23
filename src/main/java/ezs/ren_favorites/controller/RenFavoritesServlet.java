@@ -178,12 +178,12 @@ public class RenFavoritesServlet extends HttpServlet {
 
 			try {
 				/*********************** 1.接收請求參數 - 輸入格式的錯誤處理 *************************/
-				MemberVO memberVO = (MemberVO) req.getSession().getAttribute("memberVO");
-				Integer favMemId =	memberVO.getMemID();
+//				MemberVO memberVO = (MemberVO) req.getSession().getAttribute("memberVO");
+//				Integer favMemId =	memberVO.getMemID();				
+//				Integer favLisId = new Integer(req.getParameter("favLisId").trim());
 				
-				
+				Integer favMemId = new Integer(req.getParameter("favMemId").trim());
 				Integer favLisId = new Integer(req.getParameter("favLisId").trim());
-//				Integer favMemId = new Integer(req.getParameter("favMemId").trim());
 
 
 				java.sql.Timestamp favAddTime = null;

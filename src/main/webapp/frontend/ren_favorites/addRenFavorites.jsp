@@ -5,8 +5,13 @@
 
 <%
 	RenFavoritesVO renFavoritesVO = (RenFavoritesVO) request.getAttribute("renFavoritesVO");
+	Integer memID = (Integer)session.getAttribute("memID");
+	RenFavoritesService renFavSvc = new RenFavoritesService();
+
+	String favLisId = (String) request.getParameter("favLisId");
+    pageContext.setAttribute("favLisId", favLisId);
 %>
-<%= renFavoritesVO==null %>--${renFavoritesVO.favMemId}--
+
 <html>
 <head>
 <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
@@ -70,14 +75,13 @@
 <FORM METHOD="post" ACTION="<%=request.getContextPath()%>/RenFavoritesServlet.do" name="form1">
 <table>
 	<tr>
-		<td>房源編號:</td>
-		<td><input type="TEXT" name="favLisId"
-			 value="<%= (renFavoritesVO==null)? "" : renFavoritesVO.getFavLisId()%>" /></td>
+		<td>房源編號:<font color=red><b>*</b></font></td>
+		<td><input type="TEXT" readonly="readonly" name="favLisId"
+			 value="${favLisId}" /></td>
 	</tr>
 	<tr>
-		<td>會員編號:</td>
-		<td><input type="TEXT" name="favMemId"
-			 value="<%= (renFavoritesVO==null)? "" : renFavoritesVO.getFavMemId()%>" /></td>
+<!-- 		<td>會員編號:</td> -->
+		<td><input type="hidden" name="favMemId" value="${memID}" /></td>
 	</tr>
 	
 
@@ -90,7 +94,7 @@
 </table>
 <br>
 <input type="hidden" name="action" value="insert">
-<input type="submit" value="送出新增"></FORM>
+<input type="submit" value="加入收藏"></FORM>
 <jsp:include page="/frontend/EZ_footer.jsp"></jsp:include>
 
 </body>

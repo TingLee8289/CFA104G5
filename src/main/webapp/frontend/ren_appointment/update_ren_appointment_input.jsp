@@ -6,6 +6,7 @@
 	RenAppointmentVO renAppointmentVO = (RenAppointmentVO) request.getAttribute("renAppointmentVO");
 %>
 
+
 <jsp:useBean id="memSvc" scope="page" class="ezs.member.model.MemberService" />
 <jsp:useBean id="renLDDSvc" scope="page" class="ezs.ren_landlord.model.RenLandlordService" />
 <jsp:useBean id="renLisSvc" scope="page" class="ezs.ren_listing.model.RenListingService" />
@@ -14,6 +15,7 @@
 <head>
 <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
 <title>預約訂單資料修改</title>
+
 
 <style>
 table#table-1 {
@@ -107,6 +109,7 @@ th, td {
 			<tr>
 				<td>預約單狀態:</td>
 				<td>
+					<c:if test="${renAppointmentVO.aptStatus == 0}">預約確認中</c:if> 
 					<c:if test="${renAppointmentVO.aptStatus == 1}">已確認預約</c:if> 
 					<c:if test="${renAppointmentVO.aptStatus == 2}">已取消</c:if>
 					<c:if test="${renAppointmentVO.aptStatus == 3}">預約時間已變更</c:if></td>

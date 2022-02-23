@@ -89,7 +89,7 @@ th, td {
 		<c:forEach var="renFavoritesVO" items="${listOneRenFavorites}">
 			<tr align='center' valign='middle'>
 				<td>${renFavoritesVO.favLisId}</td>
-				<td><img src="<%=request.getContextPath()%>/DBGifReader4?fav_lis_id=${renFavoritesVO.favLisId}"></td>
+				<td><img src="<%=request.getContextPath()%>/DBGifReader4?fav_lis_id=${renFavoritesVO.favLisId}" height=100px width=150px></td>
 				
 				
 				<td><c:forEach var="renLisVO" items="${renLisSvc.all}">
