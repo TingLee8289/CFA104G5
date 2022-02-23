@@ -7,7 +7,11 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 <!-- <link rel="stylesheet" href="frontend/chat/friendchat.css" type="text/css" /> -->
 
+<%
+	Integer memID = (Integer)session.getAttribute("memID");
+	String memUsername = (String)session.getAttribute("memUsername");
 
+%>
 
 <style type="text/css">
 * {

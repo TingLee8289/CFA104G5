@@ -1,5 +1,5 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+<%@page import="ezs.member.model.MemberVO"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ page import="ezs.ren_appointment.model.*"%>
 <%@ page import="java.util.*"%>
@@ -8,9 +8,17 @@
 <jsp:useBean id="memSvc" scope="page" class="ezs.member.model.MemberService" />
 <jsp:useBean id="renLDDSvc" scope="page" class="ezs.ren_landlord.model.RenLandlordService" />
 <jsp:useBean id="renLisSvc" scope="page" class="ezs.ren_listing.model.RenListingService" />
-<jsp:useBean id="listRenAppByMEM" scope="request" type="java.util.List<RenAppointmentVO>" />
+<%-- <jsp:useBean id="listRenAppByMEM" scope="request" type="java.util.List<RenAppointmentVO>" /> --%>
 <%-- <jsp:useBean id="listRenAppByLDD" scope="request" type="java.util.List<RenAppointmentVO>" /> --%>
-
+<%
+	Integer memID = (Integer) session.getAttribute("memID");
+	String apt_mem_id = String.valueOf(memID);
+	RenAppointmentService renAppSvc = new RenAppointmentService();
+	Map<String, String[]> map = new TreeMap<String, String[]>();
+	map.put("apt_mem_id", new String[]{apt_mem_id});
+	map.put("action", new String[] { "getXXX" });
+	List<RenAppointmentVO> listRenAppByMEM = renAppSvc.getAll(map);
+%>
 
 <html>
 <head>
@@ -52,16 +60,12 @@
 
 </head>
 <body bgcolor='white'>
-<jsp:include page="/frontend/EZ_header.jsp"></jsp:include>
-
-
 <table id="table-1">
 	<tr><td>
 		 <h3>房客預約訂單管理</h3>
 		 <h4><a href="<%=request.getContextPath()%>/frontend/ren_appointment/select_page.jsp">回首頁</a></h4>
 	</td></tr>
 </table>
-
 
 <table>
 	<tr>
@@ -163,6 +167,5 @@
 		</tr>
 	</c:forEach>
 </table>
-<jsp:include page="/frontend/EZ_footer.jsp"></jsp:include>
 </body>
 </html>

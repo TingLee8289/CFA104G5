@@ -7,12 +7,10 @@ public class jdbcUtil_CompositeQuery_RenApp {
 	public static String get_aCondition_For_myDB(String columnName, String value) {
 
 		String aCondition = null;
-
 		if ("apt_id".equals(columnName) || "apt_mem_id".equals(columnName) || "apt_ldd_id".equals(columnName)) 
 			aCondition = columnName + "=" + value;
 		else if ("aptTimestamp".equals(columnName))                       
 			aCondition = columnName + "=" + "'"+ value +"'";                         
-	
 		return aCondition + " ";
 	}
 
@@ -30,7 +28,6 @@ public class jdbcUtil_CompositeQuery_RenApp {
 					whereCondition.append(" where " + aCondition);
 				else
 					whereCondition.append(" and " + aCondition);
-
 //				System.out.println("有送出查詢資料的欄位數count = " + count);
 			}
 		}

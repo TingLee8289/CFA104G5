@@ -52,13 +52,10 @@ pageContext.setAttribute("funList", funList);
 	integrity="sha256-46qynGAkLSFpVbEBog43gvNhfrOj+BmwXdxFgVK/Kvc="
 	crossorigin="anonymous" />
 
-<title>EASY SPACE</title>
-
 </head>
 <style>
-#cssTable td 
-{
-    vertical-align: middle;
+#cssTable td {
+	vertical-align: middle;
 }
 </style>
 
@@ -236,9 +233,8 @@ pageContext.setAttribute("funList", funList);
 										<FORM METHOD="post"
 											ACTION="<%=request.getContextPath()%>/admin_priv/AdminPrivServlet.do"
 											style="margin-bottom: 0px;">
-											<td style="
-    text-align: left;
-"><c:forEach var="funElment" items="${funList}">
+											<td style="text-align: left;"><c:forEach var="funElment"
+													items="${funList}">
 													<%-- 					<input type=hidden name="${funElment.funName}" value="${funElment.funID}" checked> --%>
 													<br>
 
