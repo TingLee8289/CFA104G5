@@ -46,7 +46,7 @@
                             </a>
                             <div class="collapse" id="collapsePages" aria-labelledby="headingTwo" data-bs-parent="#sidenavAccordion">
                                 <nav class="sb-sidenav-menu-nested nav">
-                                    <a class="nav-link" href="layout-static.html">二手訂單管理</a>
+                                    <a class="nav-link" href="<%=request.getContextPath()%>/frontend/sec_ord/listSecOrds_ByShBuyerID.jsp">二手訂單管理</a>
                                 </nav>
                             </div>
 <!-- ------------------------------------------------------------------------------------------------- -->
@@ -57,9 +57,9 @@
                             </a>
                             <div class="collapse" id="collapsePages2" aria-labelledby="headingThree" data-bs-parent="#sidenavAccordion">
                                 <nav class="sb-sidenav-menu-nested nav">
-                                    <a class="nav-link" href="layout-static.html">需求單管理</a>
-                                    <a class="nav-link" href="layout-sidenav-light.html">估價單管理</a>
-                                    <a class="nav-link" href="layout-sidenav-light.html">服務訂單管理</a>
+                                    <a class="nav-link" href="<%=request.getContextPath()%>/frontend/ser_dmd/getByDmdMemID.jsp">需求單管理</a>
+                                    <a class="nav-link" href="<%=request.getContextPath()%>/frontend/member/memberCenter/memberCenterBuyerQuo.jsp" data-id="232">估價單管理</a>
+                                    <a class="nav-link" href="<%=request.getContextPath()%>/frontend/member/memberCenter/memberCenterBuyerOrd.jsp" data-id="233">服務訂單管理</a>
                                 </nav>
                             </div>
 <!-- ------------------------------------------------------------------------------------------------- -->
