@@ -1,9 +1,13 @@
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ page import="ezs.ser_vdr.model.*"%>
-
+<%-- <% session.setAttribute("memID", 1);%> --%>
 <%
-SerVdrVO serVdrVO = (SerVdrVO) request.getAttribute("serVdrVO"); //EmpServlet.java (Concroller) 存入req的empVO物件 (包括幫忙取出的empVO, 也包括輸入資料錯誤時的empVO物件)
+Integer memID = (Integer) session.getAttribute("memID");
+SerVdrService serVdrSvc = new SerVdrService();
+SerVdrVO serVdrVO = serVdrSvc.getoneSerVdr(memID);
+// SerVdrVO serVdrVO = (SerVdrVO) request.getAttribute("serVdrVO"); //EmpServlet.java (Concroller) 存入req的empVO物件 (包括幫忙取出的empVO, 也包括輸入資料錯誤時的empVO物件)
+pageContext.setAttribute("serVdrVO", serVdrVO);
 %>
 
 <html>
@@ -99,7 +103,7 @@ th, td {
 	<table id="table-1">
 		<tr>
 			<td>
-				<h3>廠商資料修改</h3>
+				<h3>廠商資料新增</h3>
 				<h4>
 					<a href="serVdrHome.jsp">回首頁</a>
 				</h4>
@@ -124,62 +128,63 @@ th, td {
 		name="form1">
 		<table>
 			<tr>
-				<td>廠商編號:<font color=red><b>*</b></font></td>
+				<td>廠商編號:<font color=red></font></td>
 
-				<td><%=serVdrVO.getVdrID()%></td>
+				<td>${memID}</td>
 			</tr>
-			<tr>
-				<td>廠商狀態:</td>
-				<td><%=serVdrVO.getVdrStatus()%></td>
+<!-- 			<tr> -->
+<!-- 				<td>廠商狀態:</td> -->
+<%-- 				<td>${serVdrVO.vdrStatus}</td> --%>
 				
-			</tr>
+<!-- 			</tr> -->
 			<tr>
 				<td>廠商姓名:</td>
-				<td><input type="TEXT" name="vdrName" size="50"
-					value="<%=serVdrVO.getVdrName()%>" /></td>
+				<td><input type="TEXT" name="vdrName" size="50" value="${serVdrVO.vdrName}" /></td>
 			</tr>
 
 			<tr>
 				<td>廠商電話:</td>
 				<td><input type="TEXT" name="vdrTel" size="50"
-					value="<%=serVdrVO.getVdrTel()%>" /></td>
+					value="${serVdrVO.vdrTel}" /></td>
 			</tr>
 
 
 			<tr>
 				<td>廠商統一編號:</td>
 				<td><input type="TEXT" name="vdrVatno" size="50"
-					value="${serVdrVO.getVdrVatno()}" /></td>
+					value="${serVdrVO.vdrVatno}" /></td>
 			</tr>
 
 			<tr>
 				<td>縣市:</td>
 				<td><input type="TEXT" name="vdrCounty" size="50"
-					value="<%=serVdrVO.getVdrCounty()%>" /></td>
+					value="${serVdrVO.vdrCounty}" /></td>
 			</tr>
 
 			<tr>
 				<td>地區:</td>
 				<td><input type="TEXT" name="vdrDist" size="50"
-					value="<%=serVdrVO.getVdrDist()%>" /></td>
+					value="${serVdrVO.vdrDist}" /></td>
 			</tr>
 
 			<tr>
 				<td>詳細地址:</td>
 				<td><input type="TEXT" name="vdrAddr" size="50"
-					value="<%=serVdrVO.getVdrAddr()%>" /></td>
+					value="${serVdrVO.vdrAddr}" /></td>
 			</tr>
 
 			<tr>
 				<td>營業時間:</td>
 				<td><input type="TEXT" name="vdrOpen" size="50"
-					value="<%=serVdrVO.getVdrOpen()%>" /></td>
+					value="${serVdrVO.vdrOpen}" /></td>
 			</tr>
 
 			<tr>
 				<td>廠商簡介:</td>
-				<td><input type="TEXT" name="vdrIntro" size="50"
-					value="<%=serVdrVO.getVdrIntro()%>" /></td>
+				<td>
+				<textarea name="vdrIntro"rows="4" cols="50" >${serVdrVO.vdrIntro}</textarea>
+<%-- 					<input type="TEXT" name="vdrIntro" size="50" value="<%=serVdrVO.getVdrIntro()%>" /> --%>
+				</td>
 			</tr>
 
 			<tr>
@@ -194,13 +199,13 @@ th, td {
 			<tr>
 				<%-- <td>廠商評價人數:</td> --%>
 				<td><input type="hidden" name="vdrRevCount" size="50"
-					value="<%=serVdrVO.getVdrRevCount()%>" /></td>
+					value="0" /></td>
 			</tr>
 
 			<tr>
 				<%-- <td>廠商評價星數:</td>--%>
 				<td><input type="hidden" name="vdrRevScore" size="50"
-					value="<%=serVdrVO.getVdrRevScore()%>" /></td>
+					value="0" /></td>
 			</tr>
 
 
@@ -209,8 +214,8 @@ th, td {
 		</table>
 		<br>
 		 <input type="hidden" name="action" value="update"> 
-		 <input type="hidden" name="vdrID" value="<%=serVdrVO.getVdrID()%>">
-		 <input	type="hidden" name="vdrStatus" value="<%=serVdrVO.getVdrStatus()%>"> 
+		 <input type="hidden" name="vdrID" value="${memID}">
+		 <input	type="hidden" name="vdrStatus" value="1"> 
 		 <input type="submit" value="送出修改">
 	</FORM>
 	

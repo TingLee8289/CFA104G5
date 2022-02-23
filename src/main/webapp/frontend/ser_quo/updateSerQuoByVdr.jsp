@@ -231,8 +231,10 @@ SerQuoVO serQuoVO = (SerQuoVO) request.getAttribute("serQuoVO");
 			</tr>
 			<tr>
 				<td>估價項目:</td>
-				<td><input type="TEXT" name="quoItem" size="8"
-					value="<%=serQuoVO.getQuoItem()%>" /></td>
+				<td>
+				<textarea name="quoItem"rows="4" cols="50" >${ serQuoVO.quoItem}</textarea>
+				
+				</td>
 			</tr>
 			<tr>
 				<td>估價總金額:</td>

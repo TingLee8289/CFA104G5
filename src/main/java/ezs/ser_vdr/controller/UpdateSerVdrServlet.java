@@ -72,7 +72,7 @@ public class UpdateSerVdrServlet extends HttpServlet {
 				}
 
 				String vdrDist = req.getParameter("vdrDist").trim();
-				String distReg = "^[(\\u4e00-\\u9fa5)]{3,20}$";// 檢查地區三個字?
+				String distReg = "^[(\\u4e00-\\u9fa5)]{2,20}$";// 檢查地區三個字?
 				if (vdrDist == null || vdrDist.trim().length() == 0) {
 					errorMsgs.add("地區請勿空白");
 				} else if (!vdrDist.trim().matches(distReg)) { // 以下練習正則(規)表示式(regular-expression)
@@ -112,9 +112,9 @@ public class UpdateSerVdrServlet extends HttpServlet {
 					in.close();
 				}
 
-				Integer vdrRevCount = new Integer(req.getParameter("vdrRevCount").trim());
+				Integer vdrRevCount = new Integer(req.getParameter("vdrRevCount"));
 
-				Integer vdrRevScore = new Integer(req.getParameter("vdrRevScore").trim());
+				Integer vdrRevScore = new Integer(req.getParameter("vdrRevScore"));
 
 				SerVdrVO serVdrVO = new SerVdrVO();
 				serVdrVO.setVdrID(vdrID);
