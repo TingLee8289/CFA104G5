@@ -3,7 +3,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ page import="java.util.*"%>
 <%@ page import="ezs.ser_quo.model.*"%>
-<%-- <%session.setAttribute("memID", 5);%> --%>
+<%session.setAttribute("memID", 5);%>
 <%
 Integer memID = (Integer) session.getAttribute("memID");
 SerQuoService serQuoSvc = new SerQuoService();
@@ -52,8 +52,8 @@ pageContext.setAttribute("vdrQuoList", vdrQuoList);
 							<th>有效限期</th>
 							<th>估價項目</th>
 							<th>估價總價</th>
-							<th>修改</th>
-							<th>刪除</th>
+							<th></th>
+							<th></th>
 						</tr>
 					</thead>
 					<tbody id="show-list">
@@ -77,7 +77,7 @@ pageContext.setAttribute("vdrQuoList", vdrQuoList);
 									<FORM METHOD="post"
 										ACTION="<%=request.getContextPath()%>/ser_quo/UpdateQuoByVdrServlet.do"
 										style="margin-bottom: 0px;">
-										<input type="submit" value="修改報價"> <input type="hidden"
+										<input type="submit" value="回覆報價"> <input type="hidden"
 											name="quoID" value="${serQuoVO.quoID}"> <input
 											type="hidden" name="action" value="updateOneQuo">
 									</FORM>

@@ -3,9 +3,13 @@
 <%@ page import="java.util.*"%>
 <%@ page import="ezs.ser_vdr.model.*"%>
 <%-- 此頁暫練習採用 Script 的寫法取值 --%>
-
+<%-- <% session.setAttribute("memID", 1);%> --%>
 <%
-SerVdrVO serVdrVO = (SerVdrVO) request.getAttribute("serVdrVO"); //EmpServlet.java(Concroller), 存入req的empVO物件
+Integer memID = (Integer) session.getAttribute("memID");
+SerVdrService serVdrSvc = new SerVdrService();
+SerVdrVO serVdrVO = serVdrSvc.getoneSerVdr(memID);
+// SerVdrVO serVdrVO = (SerVdrVO) request.getAttribute("serVdrVO"); //EmpServlet.java (Concroller) 存入req的empVO物件 (包括幫忙取出的empVO, 也包括輸入資料錯誤時的empVO物件)
+pageContext.setAttribute("serVdrVO", serVdrVO);
 %>
 
 <html>
@@ -95,26 +99,34 @@ SerVdrVO serVdrVO = (SerVdrVO) request.getAttribute("serVdrVO"); //EmpServlet.ja
 							<th>營業時間</th>
 							<th>廠商簡介</th>
 							<th>廠商圖片</th>
+							<th>修改</th>
 					<%-- 	<th>廠商評價總人數</th>
 							<th>廠商評價總星數</th> --%>
 						</tr>
 					</thead>
 					<tbody id="show-list">
 						<tr>
-							<td><%=serVdrVO.getVdrID()%></td>
+							<td>${serVdrVO.vdrID}</td>
 							<td><c:if test="${serVdrVO.vdrStatus == 0}">停權</c:if> <c:if
 									test="${serVdrVO.vdrStatus == 1}">正常</c:if></td>
-							<td><%=serVdrVO.getVdrName()%></td>
-							<td><%=serVdrVO.getVdrTel()%></td>
-							<td>${serVdrVO.getVdrVatno()}</td>
-							<td><%=serVdrVO.getVdrCounty()%></td>
-							<td><%=serVdrVO.getVdrDist()%></td>
-							<td><%=serVdrVO.getVdrAddr()%></td>
-							<td><%=serVdrVO.getVdrOpen()%></td>
-							<td><%=serVdrVO.getVdrIntro()%></td>
+							<td>${serVdrVO.vdrName}</td>
+							<td>${serVdrVO.vdrTel}</td>
+							<td>${serVdrVO.vdrVatno}</td>
+							<td>${serVdrVO.vdrCounty}</td>
+							<td>${serVdrVO.vdrDist}</td>
+							<td>${serVdrVO.vdrAddr}</td>
+							<td>${serVdrVO.vdrOpen}</td>
+							<td>${serVdrVO.vdrIntro}</td>
 							<td><img
 								src="<%=request.getContextPath()%>/ser_vdr/DBGifReader4.do?vdr_id=${serVdrVO.vdrID}"
 								width=200px></td>
+							<td>
+								<FORM METHOD="post" ACTION="<%=request.getContextPath()%>/frontend/ser_vdr/GetOneForUpdateSerVdrServlet.do" style="margin-bottom: 0px;">
+									<input type="submit" value="修改"> 
+									<input type="hidden" name="vdrID" value="${serVdrVO.vdrID}"> 
+									<input type="hidden" name="action" value="getOne_For_Update">
+									</FORM>
+							</td>
 					<%-- 		<td><%=serVdrVO.getVdrRevCount()%></td>
 							<td><%=serVdrVO.getVdrRevScore()%></td> --%>
 						</tr>

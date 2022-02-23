@@ -83,21 +83,43 @@ h4 {
 	</c:if>
 
 	<ul>
-		<li><a href='listAllSerVdr.jsp'>廠商修改資料</a>  <br></li></ul>
-		
-		
-		
-		<ul>
-		<li><a href='addSerVdr.jsp'>廠商新增資料</a> </li>
+		<li><a href='update_SerVdr_input.jsp'>新增廠商資料</a> </li>
 	</ul>
 	
-	<ul>
-		<li><a href='viewSerVdr.jsp'>會員檢視廠商資料</a> </li>
-	</ul>
 	
 	<ul>
-		<li><a href='readSerVdr.jsp'>會員檢視廠商資料(依條件)</a> </li>
+		<li><a href='listOneSerVdr.jsp'>檢視廠商基本資料</a>  <br></li>
+		
 	</ul>
+	
+	
+	
+	
+	
+	
+	<ul>
+		<li>
+		<a href="<%=request.getContextPath()%>/frontend/ser_quo/getQuoByVdrID.jsp">廠商檢視估價單</a>
+		</li>
+	</ul>
+	
+	
+	
+	
+	
+	
+	
+	
+<!-- 	<ul> -->
+<!-- 		<li><a href='listAllSerVdr.jsp'>廠商修改資料</a>  <br></li> -->
+<!-- 	</ul> -->
+<!-- 	<ul> -->
+<!-- 		<li><a href='viewSerVdr.jsp'>會員檢視廠商資料</a> </li> -->
+<!-- 	</ul> -->
+	
+<!-- 	<ul> -->
+<!-- 		<li><a href='readSerVdr.jsp'>會員檢視廠商資料(依條件)</a> </li> -->
+<!-- 	</ul> -->
 	
 	
 

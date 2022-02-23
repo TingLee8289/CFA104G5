@@ -3,15 +3,18 @@
 <%@ page import="ezs.ser_vdr.model.*"%>
 <%-- <% session.setAttribute("memID", 1);%> --%>
 <%
-Integer memID = (Integer)session.getAttribute("memID");
-SerVdrVO servdrVO = (SerVdrVO) request.getAttribute("servdrVO");
+Integer memID = (Integer) session.getAttribute("memID");
+SerVdrService serVdrSvc = new SerVdrService();
+SerVdrVO serVdrVO = serVdrSvc.getoneSerVdr(memID);
+// SerVdrVO serVdrVO = (SerVdrVO) request.getAttribute("serVdrVO"); //EmpServlet.java (Concroller) 存入req的empVO物件 (包括幫忙取出的empVO, 也包括輸入資料錯誤時的empVO物件)
+pageContext.setAttribute("serVdrVO", serVdrVO);
 %>
 
 <html>
 <head>
- <script src="<%=request.getContextPath()%>/frontend/js/jquery-1.11.3.min.js"></script>
+<script src="<%=request.getContextPath()%>/frontend/js/jquery-1.11.3.min.js"></script>
 <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
-<title>廠商資料新增</title>
+<title>廠商資料修改</title>
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
 <style>
 table#table-1 {
@@ -34,7 +37,7 @@ h4 {
 
 <style>
 table {
-	width: 550px;
+	width: 600px;
 	background-color: white;
 	margin-top: 1px;
 	margin-bottom: 1px;
@@ -52,10 +55,7 @@ th, td {
 </head>
 <body>
 
-
-
-
-<header>
+	<header>
 			<div class="container">
 				<div class="navbar d-flex flex-nowrap py-3">
 					<a href="#"> <img
@@ -95,14 +95,15 @@ th, td {
 				</div>
 			</div>
 		</header>
+
+
+
 	
 
-	<table>
+	<table id="table-1">
 		<tr>
 			<td>
-				<h2>廠商資料新增</h2>
-			</td>
-			<td>
+				<h3>廠商資料新增</h3>
 				<h4>
 					<a href="serVdrHome.jsp">回首頁</a>
 				</h4>
@@ -110,7 +111,7 @@ th, td {
 		</tr>
 	</table>
 
-	
+	<h3>資料修改:</h3>
 
 	<%-- 錯誤表列 --%>
 	<c:if test="${not empty errorMsgs}">
@@ -123,84 +124,67 @@ th, td {
 	</c:if>
 
 	<FORM METHOD="post" enctype="multipart/form-data"
-		ACTION="InsertSerVdrServlet.do" name="form1">
+		ACTION="<%=request.getContextPath()%>/frontend/ser_vdr/UpdateSerVdrServlet.do"
+		name="form1">
 		<table>
 			<tr>
-				<td>廠商編號:</td>
-				<td><input type="TEXT" name="vdrID" size="45" value="${memID}" disabled /></td>
+				<td>廠商編號:<font color=red></font></td>
+
+				<td>${serVdrVO.vdrID}</td>
 			</tr>
-			<tr>
-				<%-- <td>廠商狀態:</td>--%>
-
-				<td><input type="hidden" name="vdrStatus" size="45" value="1" /></td>
-
-			</tr>
-
-
-
+<!-- 			<tr> -->
+<!-- 				<td>廠商狀態:</td> -->
+<%-- 				<td>${serVdrVO.vdrStatus}</td> --%>
+				
+<!-- 			</tr> -->
 			<tr>
 				<td>廠商姓名:</td>
-				<td><input type="TEXT" name="vdrName" size="45"
-					value="<%=(servdrVO == null) ? "蔡英文" : servdrVO.getVdrName()%>" /></td>
+				<td><input type="TEXT" name="vdrName" size="50" value="${serVdrVO.vdrName}" /></td>
 			</tr>
-
 
 			<tr>
 				<td>廠商電話:</td>
-				<td><input type="TEXT" name="vdrTel" size="45"
-					value="<%=(servdrVO == null) ? "0944556889" : servdrVO.getVdrTel()%>" /></td>
+				<td><input type="TEXT" name="vdrTel" size="50"
+					value="${serVdrVO.vdrTel}" /></td>
 			</tr>
+
 
 			<tr>
 				<td>廠商統一編號:</td>
-				<td><input type="TEXT" name="vdrVatno" size="45"
-					value="<%=(servdrVO == null) ? "" : servdrVO.getVdrVatno()%>" /></td>
+				<td><input type="TEXT" name="vdrVatno" size="50"
+					value="${serVdrVO.vdrVatno}" /></td>
 			</tr>
 
 			<tr>
 				<td>縣市:</td>
-				<td><input type="TEXT" name="vdrCounty" size="45"
-					value="<%=(servdrVO == null) ? "台北市" : servdrVO.getVdrCounty()%>" /></td>
+				<td><input type="TEXT" name="vdrCounty" size="50"
+					value="${serVdrVO.vdrCounty}" /></td>
 			</tr>
 
 			<tr>
 				<td>地區:</td>
-				<td><input type="TEXT" name="vdrDist" size="45"
-					value="<%=(servdrVO == null) ? "大安區" : servdrVO.getVdrDist()%>" /></td>
+				<td><input type="TEXT" name="vdrDist" size="50"
+					value="${serVdrVO.vdrDist}" /></td>
 			</tr>
-
 
 			<tr>
 				<td>詳細地址:</td>
-				<td><input type="TEXT" name="vdrAddr" size="45"
-					value="<%=(servdrVO == null) ? "羅斯福路一段一號" : servdrVO.getVdrAddr()%>" /></td>
+				<td><input type="TEXT" name="vdrAddr" size="50"
+					value="${serVdrVO.vdrAddr}" /></td>
 			</tr>
-
 
 			<tr>
 				<td>營業時間:</td>
-				<td><input type="TEXT" name="vdrOpen" size="45"
-					value="<%=(servdrVO == null) ? "8:00-18:00" : servdrVO.getVdrOpen()%>" /></td>
+				<td><input type="TEXT" name="vdrOpen" size="50"
+					value="${serVdrVO.vdrOpen}" /></td>
 			</tr>
-
 
 			<tr>
 				<td>廠商簡介:</td>
-				<td><input type="TEXT" name="vdrIntro" size="45"
-					value="<%=(servdrVO == null) ? "哈囉!" : servdrVO.getVdrIntro()%>" /></td>
-			</tr>
-			
-			
-			<tr>
-				<%-- <td>廠商評價人數:</td>--%>
-				<td><input type="hidden" name="vdrRevCount" size="45"
-					value="<%=(servdrVO == null) ? "0" : servdrVO.getVdrRevCount()%>" /></td>
-			</tr>
-
-			<tr>
-				<%-- <td>廠商評價星數:</td>--%>
-				<td><input type="hidden" name="vdrRevScore" size="45"
-					value="<%=(servdrVO == null) ? "0" : servdrVO.getVdrRevScore()%>" /></td>
+				<td>
+				<textarea name="vdrIntro"rows="4" cols="50" value="${ serVdrVO.vdrIntro}"></textarea>
+<%-- 					<input type="TEXT" name="vdrIntro" size="50" value="<%=serVdrVO.getVdrIntro()%>" /> --%>
+				</td>
 			</tr>
 
 			<tr>
@@ -209,18 +193,34 @@ th, td {
 					accept="image/gif, image/jpeg, image/png" multiple="multiple" />
 					<div id="previews">
 						<p>圖片預覽</p>
-					</div>
+					</div> </td>
 			</tr>
 
-			
+			<tr>
+				<%-- <td>廠商評價人數:</td> --%>
+				<td><input type="hidden" name="vdrRevCount" size="50"
+					value="<%=serVdrVO.getVdrRevCount()%>" /></td>
+			</tr>
+
+			<tr>
+				<%-- <td>廠商評價星數:</td>--%>
+				<td><input type="hidden" name="vdrRevScore" size="50"
+					value="<%=serVdrVO.getVdrRevScore()%>" /></td>
+			</tr>
+
+
+
 
 		</table>
-		<br> 
-		<input type="hidden" name="action" value="insert"> 
-		<input type="submit" value="送出新增">
-		<input type="hidden" name="vdrID" size="45" value="${memID}" />
+		<br>
+		 <input type="hidden" name="action" value="update"> 
+		 <input type="hidden" name="vdrID" value="${serVdrVO.vdrID}">
+		 <input	type="hidden" name="vdrStatus" value="1"> 
+		 <input type="submit" value="送出修改">
 	</FORM>
-<footer>
+	
+	
+	<footer>
 			<section class="ccc website-map pt-5">
 				<div class="container">
 					<div class="row">
@@ -279,39 +279,35 @@ th, td {
 				</div>
 			</section>
 		</footer>
+	
+
+	<script>
+		$("#upfiles").change(function() {
+			$("#errorMessage").html(""); // 清除錯誤訊息
+			$("#previews").html(""); // 清除預覽
+			readURL(this);
+		});
+
+		function readURL(input) {
+			if (input.files && input.files.length >= 0) {
+				for (var i = 0; i < input.files.length; i++) {
+					var reader = new FileReader();
+					reader.onload = function(e) {
+						var img = $("<img width='143' height='100'>").attr(
+								'src', e.target.result);
+						$("#previews").append(img);
+					}
+					reader.readAsDataURL(input.files[i]);
+				}
+			} else {
+				var noPictures = $("<p>目前沒有圖片</p>");
+				$("#previews").append(noPictures);
+			}
+		}
+	</script>
 
 
 </body>
-
-<script>
-	// 	// // change這個event有只代表改變，並不代表有檔案。
-	// 	// 	如果要FileReader去讀檔案，必須給他一個檔案Object。
-	// 	// 	它拿到檔案Object後會驅動onload事件
-	// 	// 	藉由 FileReader 物件，Web 應用程式能以非同步（asynchronously）方式讀取儲存在用戶端的檔案（或原始資料暫存）內容
-	// 	// 裡面的input 就是我們丟進去的this，也就是<input type="file">，
-	// 	// 當<input type="file">被DOM變成Object的時候，如果他有選擇到檔案，
-	// 	// 會被放在input.files裡面，而且是一個Array(因為input如果寫成 <input type="file" multiple> 的時候是可以複選的)
-	$("#upfiles").change(function() {
-		$("#previews").html(""); // 清除預覽
-		readURL(this);
-	});
-	function readURL(input) {
-		if (input.files && input.files.length >= 0) {
-			for (var i = 0; i < input.files.length; i++) {
-				var reader = new FileReader();
-				reader.onload = function(e) {
-					var img = $("<img width='300' height='200'>").attr('src',
-							e.target.result);
-					$("#previews").append(img);
-				}
-				reader.readAsDataURL(input.files[i]);
-			}
-		} else {
-			var noPictures = $("<p>目前沒有圖片</p>");
-			$("#previews").append(noPictures);
-		}
-	}
-</script>
 
 
 
