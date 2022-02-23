@@ -5,9 +5,7 @@
 <%@ page import="ezs.ser_dmd.model.*"%>
 <%@ page import="ezs.ser_quo.model.*"%>
 
-<%
-session.setAttribute("memID", 2);
-%>
+<%-- <%session.setAttribute("memID", 2);%> --%>
 <%
 Integer memID = (Integer) session.getAttribute("memID");
 SerDmdService serDmdSvc = new SerDmdService();

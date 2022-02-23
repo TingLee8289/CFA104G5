@@ -3,7 +3,7 @@
 <%@ page import="java.util.*"%>
 <%@ page import="ezs.ser_quo.model.*"%>
 <%@ page import="ezs.ser_dmd.model.*"%>
-<% session.setAttribute("memID", 2);%>
+<%-- <% session.setAttribute("memID", 2);%> --%>
 <%
 SerQuoVO serQuoVO = (SerQuoVO) request.getAttribute("serQuoVO");
 %>
@@ -115,7 +115,7 @@ th, td {
 
 			<tr>
 				<td>廠商編號:</td>
-				<td><input type="TEXT" name="quoVdrID" size="50" value="${quoVdrID}" /></td>
+				<td><input type="TEXT" name="quoVdrID" size="50" value="${quoVdrID}" disabled/></td>
 			</tr>
 			<tr>
 
@@ -139,8 +139,10 @@ th, td {
 
 
 		</table>
-		<br> <input type="hidden" name="action" value="insert"> <input
-			type="submit" value="送出新增">
+		<br> 
+		<input type="hidden" name="action" value="insert"> 
+		<input type="hidden" name="quoVdrID" size="50" value="${quoVdrID}" />
+		<input type="submit" value="送出新增">
 	</FORM>
 </body>
 

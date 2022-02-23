@@ -3,9 +3,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ page import="java.util.*"%>
 <%@ page import="ezs.ser_ord.model.*"%>
-<%
-session.setAttribute("memID", 2);
-%>
+<%-- <%session.setAttribute("memID", 2);%> --%>
 <%
 Integer memID = (Integer) session.getAttribute("memID");
 SerOrdService serOrdSvc = new SerOrdService();
