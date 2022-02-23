@@ -10,17 +10,21 @@ import javax.naming.Context;
 import javax.naming.InitialContext;
 import javax.naming.NamingException;
 import javax.sql.DataSource;
-
 import util.Util;
 
 public class RenLeaseDAO implements RenLeaseDAO_interface {
-	private static final String INSERT_STMT = "INSERT INTO `CFA104G5`.`REN_LEASE` (lse_mem_id,lse_lis_id,lse_ldd_id,lse_price,lse_start,lse_end) VALUES (?, ?, ?, ?, ?, ?)";
+	private static final String INSERT_STMT = "INSERT INTO `CFA104G5`.`REN_LEASE` (lse_mem_id,lse_lis_id,lse_ldd_id,lse_price,lse_start,lse_end,lse_pic,lse_leasememid) VALUES (?, ?, ?, ?, ?,?, ?,?)";
 	private static final String GET_ALL_STMT = "SELECT * FROM `CFA104G5`.`REN_LEASE`";
-	private static final String GET_ONE_STMT = "SELECT lse_id,lse_mem_id,lse_lis_id,lse_ldd_id,lse_ldd_score,lse_ldd_txt,lse_tnt_score,lse_tnt_txt,lse_status,lse_timestamp,lse_start,lse_end,lse_price FROM `CFA104G5`.`REN_LEASE` WHERE lse_id = ?";
-	private static final String DELETE = "DELETE FROM `CFA104G5`.`REN_LEASE` WHERE lse_id = ?";
+	private static final String GET_ONE_STMT = "SELECT lse_id,lse_mem_id,lse_lis_id,lse_ldd_id,lse_status,lse_timestamp,lse_start,lse_end,lse_price,lse_leasememid FROM `CFA104G5`.`REN_LEASE` WHERE lse_id = ?";
+	private static final String DELETE = "DELETE FROM `CFA104G5`.`REN_LEASE` WHERE lse_mem_id = ?";
 	private static final String UPDATE = "UPDATE `CFA104G5`.`REN_LEASE` SET lse_mem_id=?, lse_lis_id=?, lse_ldd_id=?, lse_ldd_score=?, lse_ldd_txt=?, lse_tnt_score=?,lse_tnt_txt =?,lse_status =?,lse_timestamp=?,lse_start =?,lse_end =? WHERE lse_id = ?";
+
+	private static final String GET_PERSONAL = "SELECT lse_id,lse_mem_id,lse_lis_id,lse_ldd_id,lse_status,lse_timestamp,lse_start,lse_end,lse_price,lse_leasememid FROM `CFA104G5`.`REN_LEASE` WHERE lse_mem_id = ?";
+
 	private static  final String LSE = "SELECT lse_id,lse_mem_id,lse_lis_id,lse_ldd_id,lse_ldd_score,lse_ldd_txt,lse_tnt_score,lse_tnt_txt,lse_status,lse_timestamp,lse_start,lse_end FROM `CFA104G5`.`REN_LEASE` WHERE lse_mem_id = ?";
 
+
+	
 	private static  DataSource ds = null;
 	static {
 		try {
@@ -44,14 +48,10 @@ public class RenLeaseDAO implements RenLeaseDAO_interface {
 			pstmt.setInt(2, leaseVO.getLseLisId());
 			pstmt.setInt(3, leaseVO.getLseLddId());
 			pstmt.setInt(4, leaseVO.getLsePrice());
-//			pstmt.setInt(4, leaseVO.getLseLddScore());
-//			pstmt.setString(5, leaseVO.getLseLddTxt());
-//			pstmt.setInt(6, leaseVO.getLseTntScore());
-//			pstmt.setString(7, leaseVO.getLseTntTxt());
-//			pstmt.setInt(8, leaseVO.getLseStatus());
-//			pstmt.setTimestamp(5,leaseVO.getLseTimestamp());
 			pstmt.setDate(5, leaseVO.getLseStart());
 			pstmt.setDate(6, leaseVO.getLseEnd());
+			pstmt.setBytes(7, leaseVO.getLsePic());
+			pstmt.setInt(8, leaseVO.getLseLeaseMemId());
 
 
 			
@@ -73,10 +73,6 @@ public class RenLeaseDAO implements RenLeaseDAO_interface {
 			pstmt.setInt(1, leaseVO.getLseMemId());
 			pstmt.setInt(2, leaseVO.getLseLisId());
 			pstmt.setInt(3, leaseVO.getLseLddId());
-			pstmt.setInt(4, leaseVO.getLseLddScore());
-			pstmt.setString(5, leaseVO.getLseLddTxt());
-			pstmt.setInt(6, leaseVO.getLseTntScore());
-			pstmt.setString(7, leaseVO.getLseTntTxt());
 			pstmt.setInt(8, leaseVO.getLseStatus());
 			pstmt.setTimestamp(9, leaseVO.getLseTimestamp());
 			pstmt.setDate(10, leaseVO.getLseStart());
@@ -125,15 +121,11 @@ public class RenLeaseDAO implements RenLeaseDAO_interface {
 				leaseVO.setLseMemId(rs.getInt("lse_mem_id"));
 				leaseVO.setLseLisId(rs.getInt("lse_lis_id"));
 				leaseVO.setLseLddId(rs.getInt("lse_ldd_id"));
-				leaseVO.setLseLddScore(rs.getInt("lse_ldd_score"));
-				leaseVO.setLseLddTxt(rs.getString("lse_ldd_txt"));
-				leaseVO.setLseTntScore(rs.getInt("lse_tnt_score"));
-				leaseVO.setLseTntTxt(rs.getString("lse_tnt_txt"));
-				leaseVO.setLseStatus(rs.getInt("lse_status"));
 				leaseVO.setLseTimestamp(rs.getTimestamp("lse_timestamp"));
 				leaseVO.setLseStart(rs.getDate("lse_start"));
 				leaseVO.setLseEnd(rs.getDate("lse_end"));
 				leaseVO.setLsePrice(rs.getInt("lse_price"));
+				leaseVO.setLseLeaseMemId(rs.getInt("lse_leasememid"));
 
 			}
 		} catch (SQLException se) {
@@ -147,30 +139,26 @@ public class RenLeaseDAO implements RenLeaseDAO_interface {
 	@Override
 	public List<RenLeaseVO> getAll() {
 		List<RenLeaseVO> list = new ArrayList<RenLeaseVO>();
-		RenLeaseVO leaseVO = null;
-
+		RenLeaseVO renLeaseVO = null;
 		try {
 			con = ds.getConnection();
 			pstmt = con.prepareStatement(GET_ALL_STMT);
 			rs = pstmt.executeQuery();
-
+			
 			while (rs.next()) {
-				leaseVO = new RenLeaseVO();
-				leaseVO.setLseId(rs.getInt("lse_id"));
-				leaseVO.setLseMemId(rs.getInt("lse_mem_id"));
-				leaseVO.setLseLisId(rs.getInt("lse_lis_id"));
-				leaseVO.setLseLddId(rs.getInt("lse_ldd_id"));
-				leaseVO.setLseLddScore(rs.getInt("lse_ldd_score"));
-				leaseVO.setLseLddTxt(rs.getString("lse_ldd_txt"));
-				leaseVO.setLseTntScore(rs.getInt("lse_tnt_score"));
-				leaseVO.setLseTntTxt(rs.getString("lse_tnt_txt"));
-				leaseVO.setLseStatus(rs.getInt("lse_status"));
-				leaseVO.setLseTimestamp(rs.getTimestamp("lse_timestamp"));
-				leaseVO.setLseStart(rs.getDate("lse_start"));
-				leaseVO.setLseEnd(rs.getDate("lse_end"));
-				leaseVO.setLsePrice(rs.getInt("lse_price"));
+				renLeaseVO = new RenLeaseVO();
+				renLeaseVO.setLseId(rs.getInt("lse_id"));
+				renLeaseVO.setLseMemId(rs.getInt("lse_mem_id"));
+				renLeaseVO.setLseLisId(rs.getInt("lse_lis_id"));
+				renLeaseVO.setLseLddId(rs.getInt("lse_ldd_id"));
+				renLeaseVO.setLseStatus(rs.getInt("lse_status"));
+				renLeaseVO.setLseTimestamp(rs.getTimestamp("lse_timestamp"));
+				renLeaseVO.setLseStart(rs.getDate("lse_start"));
+				renLeaseVO.setLseEnd(rs.getDate("lse_end"));
+				renLeaseVO.setLsePrice(rs.getInt("lse_price"));
+				renLeaseVO.setLseLeaseMemId(rs.getInt("lse_leasememid"));
 
-				list.add(leaseVO);
+				list.add(renLeaseVO);
 			}
 		} catch (SQLException se) {
 			se.printStackTrace();
@@ -179,7 +167,38 @@ public class RenLeaseDAO implements RenLeaseDAO_interface {
 		}
 		return list;
 	}
+	
+@Override 
+	public List<RenLeaseVO> getGetPersonal() {
+		List<RenLeaseVO> list = new ArrayList<RenLeaseVO>();
+		RenLeaseVO renLeaseVO = null;
+		try {
+			con = ds.getConnection();
+			pstmt = con.prepareStatement(GET_PERSONAL);
+			rs = pstmt.executeQuery("SELECT lse_id,lse_mem_id,lse_lis_id,lse_ldd_id,lse_status,lse_timestamp,lse_start,lse_end,lse_price,lse_leasememid FROM `CFA104G5`.`REN_LEASE` WHERE lse_mem_id = 6");
+			
+			while (rs.next()) {
+				renLeaseVO = new RenLeaseVO();
+				renLeaseVO.setLseId(rs.getInt("lse_id"));
+				renLeaseVO.setLseMemId(rs.getInt("lse_mem_id"));
+				renLeaseVO.setLseLisId(rs.getInt("lse_lis_id"));
+				renLeaseVO.setLseLddId(rs.getInt("lse_ldd_id"));
+				renLeaseVO.setLseStatus(rs.getInt("lse_status"));
+				renLeaseVO.setLseTimestamp(rs.getTimestamp("lse_timestamp"));
+				renLeaseVO.setLseStart(rs.getDate("lse_start"));
+				renLeaseVO.setLseEnd(rs.getDate("lse_end"));
+				renLeaseVO.setLsePrice(rs.getInt("lse_price"));
+				renLeaseVO.setLseLeaseMemId(rs.getInt("lse_leasememid"));
 
+				list.add(renLeaseVO);
+			}
+		} catch (SQLException se) {
+			se.printStackTrace();
+		} finally {
+			Util.closeResource(con, pstmt, rs);
+		}
+		return list;
+	}
 
 	public List<RenLeaseVO> getLse(Integer lseMemId) {
 		List<RenLeaseVO> getLse = new ArrayList<RenLeaseVO>();

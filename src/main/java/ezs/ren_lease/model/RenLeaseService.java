@@ -1,7 +1,6 @@
 package ezs.ren_lease.model;
 
 import java.sql.Date;
-import java.sql.Timestamp;
 import java.util.List;
 
 public class RenLeaseService {
@@ -12,8 +11,7 @@ public class RenLeaseService {
 		dao = new RenLeaseDAO();
 	}
 
-	public RenLeaseVO addRenLease(Integer lseMemId, Integer lseLisId, Integer lseLddId,Integer lsePrice, Date lseStart, Date lseEnd) {
-// String lseLddTxt, Integer lseTntScore, String lseTntTxt, Integer lseStatus
+	public RenLeaseVO addRenLease(Integer lseMemId, Integer lseLisId, Integer lseLddId,Integer lsePrice, Date lseStart, Date lseEnd,byte[] lsePic,Integer lseLeaseMemId) {
 		RenLeaseVO renLeaseVO = new RenLeaseVO();
 
 		renLeaseVO.setLseMemId(lseMemId);
@@ -22,7 +20,9 @@ public class RenLeaseService {
 		renLeaseVO.setLsePrice(lsePrice);
 		renLeaseVO.setLseStart(lseStart);
 		renLeaseVO.setLseEnd(lseEnd);
-		
+		renLeaseVO.setLsePic(lsePic);
+		renLeaseVO.setLseLeaseMemId(lseLeaseMemId);
+
 		dao.insert(renLeaseVO);
 
 		return renLeaseVO;
@@ -54,6 +54,10 @@ public class RenLeaseService {
 
 	public List<RenLeaseVO> getAll() {
 		return dao.getAll();
+	}
+
+	public List<RenLeaseVO> getOne() {
+		return dao.getGetPersonal();
 	}
 	
 
