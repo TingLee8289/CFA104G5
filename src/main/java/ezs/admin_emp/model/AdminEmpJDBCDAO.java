@@ -22,8 +22,10 @@ public class AdminEmpJDBCDAO implements AdminEmpDAO_interface {
 
 	private static final String GET_ONE_STMT = "SELECT adm_id, adm_username, adm_password, adm_status FROM `CFA104G5`.`ADMIN_EMP` WHERE adm_id = ?";
 	
-	private static final String Search = "SELECT adm_username, adm_password FROM `CFA104G5`.`ADMIN_EMP` WHERE (adm_username, adm_password) = (?, ?)";
+	private static final String Search = "SELECT adm_id, adm_username, adm_password, adm_status FROM `CFA104G5`.`ADMIN_EMP` WHERE (adm_username, adm_password) = (?, ?)";
 
+	private static final String Check = "SELECT adm_username FROM `CFA104G5`.`ADMIN_EMP` WHERE adm_username = ?";
+	
 	private static final String DELETE = "DELETE FROM `CFA104G5`.`ADMIN_EMP` WHERE adm_id = ?";
 
 	private static final String UPDATE = "UPDATE `CFA104G5`.`ADMIN_EMP` SET adm_username=?, adm_password=?, adm_status=? WHERE adm_id = ?";
@@ -145,10 +147,10 @@ public class AdminEmpJDBCDAO implements AdminEmpDAO_interface {
 
 			while (rs.next()) {
 				adminEmpVO = new AdminEmpVO();
-//				adminEmpVO.setAdmID(rs.getInt("ADM_ID"));
+				adminEmpVO.setAdmID(rs.getInt("ADM_ID"));
 				adminEmpVO.setAdmUsername(rs.getString("ADM_USERNAME"));
 				adminEmpVO.setAdmPassword(rs.getString("ADM_PASSWORD"));
-//				adminEmpVO.setAdmStatus(rs.getInt("ADM_STATUS"));
+				adminEmpVO.setAdmStatus(rs.getInt("ADM_STATUS"));
 			}
 
 		} catch (SQLException se) {
@@ -184,6 +186,55 @@ public class AdminEmpJDBCDAO implements AdminEmpDAO_interface {
 			Util.closeResource(con, pstmt, rs);
 		}
 		return list;
+	}
+	@Override
+	public List<AdminEmpVO> getAll1() {
+		List<AdminEmpVO> list = new ArrayList<AdminEmpVO>();
+		AdminEmpVO adminEmpVO = null;
+		
+		try {
+			con = DriverManager.getConnection(Util.URL, Util.USER, Util.PASSWORD);
+			pstmt = con.prepareStatement(GET_ALL_STMT);
+			rs = pstmt.executeQuery();
+			
+			while (rs.next()) {
+				adminEmpVO = new AdminEmpVO();
+				adminEmpVO.setAdmID(rs.getInt("ADM_ID"));
+				adminEmpVO.setAdmUsername(rs.getString("ADM_USERNAME"));
+				adminEmpVO.setAdmPassword(rs.getString("ADM_PASSWORD"));
+				adminEmpVO.setAdmStatus(rs.getInt("ADM_STATUS"));
+				list.add(adminEmpVO); // Store the row in the list
+			}
+			
+		} catch (SQLException se) {
+			throw new RuntimeException("A database error occured. " + se.getMessage());
+		} finally {
+			Util.closeResource(con, pstmt, rs);
+		}
+		return list;
+	}
+
+	@Override
+	public AdminEmpVO CheckAdmUsername(String admUsername) {
+		AdminEmpVO adminEmpVO = null;
+
+		try {
+			con = DriverManager.getConnection(Util.URL, Util.USER, Util.PASSWORD);
+			pstmt = con.prepareStatement(Check);
+			pstmt.setString(1, admUsername);
+			rs = pstmt.executeQuery();
+
+			while (rs.next()) {
+				adminEmpVO = new AdminEmpVO();
+				adminEmpVO.setAdmUsername(rs.getString("ADM_USERNAME"));
+			}
+
+		} catch (SQLException se) {
+			throw new RuntimeException("A database error occured. " + se.getMessage());
+		} finally {
+			Util.closeResource(con, pstmt, rs);
+		}
+		return adminEmpVO;
 	}
 
 }

@@ -105,6 +105,7 @@ td,th {
 			<th>房東編號</th>
 			<th>會員編號</th>
 			<th>會員名稱</th>
+			<th>申請照片</th>
 			<th>審核狀態</th>
 			<th>修改</th>
 			<th>刪除</th>
@@ -117,12 +118,13 @@ td,th {
 			<tr>
 				<td>${renLandlordVO.lddId}</td>
 				<td>${renLandlordVO.lddMemId}</td>
-		
-		<td>
-		<c:forEach var="memberVO" items="${list2}">
-		<c:if test="${renLandlordVO.lddMemId == memberVO.memID}">${memberVO.memName}</c:if>
-		</c:forEach>
-		</td>		
+				<td>
+					<c:forEach var="memberVO" items="${list2}">
+					<c:if test="${renLandlordVO.lddMemId == memberVO.memID}">${memberVO.memName}</c:if>
+					</c:forEach>
+				</td>	
+				<td><img src="<%= request.getContextPath() %>/ren_landlord/LddPicReader?lddId=${renLandlordVO.lddId}" width="130" height="150" class="item-images" style=" margin: auto;" ></td>
+				
 				<td>
 					<c:if test="${renLandlordVO.lddApproval == 0}">審核中</c:if>
 					<c:if test="${renLandlordVO.lddApproval == 1}">審核未過</c:if> 
@@ -142,8 +144,8 @@ td,th {
 						ACTION="<%=request.getContextPath()%>/ren_landlord/RenLandlordServlet.do"
 						style="margin-bottom: 0px;">
 						<input type="submit" value="刪除"> <input type="hidden"
-							name="lddId" value="${renLandlordVO.lddId}"> <input
-							type="hidden" name="action" value="delete">
+							name="lddId" value="${renLandlordVO.lddId}">
+							 <input	type="hidden" name="action" value="delete">
 					</FORM>
 				</td>
 			</tr>

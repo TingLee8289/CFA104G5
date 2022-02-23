@@ -1,10 +1,25 @@
+<%@page import="ezs.ren_favorites.model.RenFavoritesService"%>
+<%@page import="ezs.ren_favorites.model.RenFavoritesVO"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ page import="ezs.ren_listing.model.*"%>
-
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ page import="java.util.*"%>
 <%
  RenListingVO renListingVO = (RenListingVO) request.getAttribute("renListingVO");
 %>
+<%
+ RenFavoritesVO renFavoritesVO = (RenFavoritesVO) request.getAttribute("renFavoritesVO");
+
+%>
+
+<%
+	RenFavoritesService renFavSvc = new RenFavoritesService();
+    List<RenFavoritesVO> list = renFavSvc.getAll();
+    pageContext.setAttribute("list",list);
+%>
+
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -134,6 +149,24 @@
 		<td><%=renListingVO.getLisApproval()%></td>
 	</tr>
 </table>
+
+<div>
+
+
+<button id="addFav" class="float-left submit-button" >收藏房源</button>
+<script type="text/javascript">
+    document.getElementById("addFav").onclick = function () {
+        location.href = "<%=request.getContextPath()%>/frontend/ren_favorites/addRenFavorites.jsp?favLisId=${renListingVO.lisID}";
+    };
+</script>
+
+<button id="addApp" class="float-left submit-button" >預約看房</button>
+<script type="text/javascript">
+    document.getElementById("addApp").onclick = function () {
+        location.href = "<%=request.getContextPath()%>/frontend/ren_appointment/addRenAppointment.jsp?aptLisId=${renListingVO.lisID}&aptLddId=${renListingVO.lisLddID}";
+    };
+</script>
+</div>
 
 </body>
 </html>		

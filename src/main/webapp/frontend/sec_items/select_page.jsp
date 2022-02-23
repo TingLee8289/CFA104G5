@@ -3,11 +3,9 @@
 <%@ page import="ezs.sec_items.model.*"%>
 <%@ page import="ezs.sec_category.model.*"%>
 <%
-SecItemsVO secItemsVO = (SecItemsVO) request.getAttribute("secItemsVO");
+// SecItemsVO secItemsVO = (SecItemsVO) request.getAttribute("secItemsVO");
 %>
-<%
-SecCategoryVO secCategoryVO = (SecCategoryVO) request.getAttribute("secCategoryVO");
-%>
+
 
 <html>
 <head>
@@ -94,12 +92,12 @@ h4 {
 			class="ezs.sec_category.model.SecCategoryService" />
 <!-- 			未對應到商品ID -->
 		<li>
-			<FORM METHOD="post" ACTION="<%=request.getContextPath()%>/sec_items/GetSecItemsServlet.do">
-				<b>選擇商品類別:</b> <select size="1" name="shID">
+			<FORM METHOD="post" ACTION="<%=request.getContextPath()%>/sec_items/GetSecItemsCateServlet.do">
+				<b>選擇商品類別:</b> <select size="1" name="shCateID">
 					<c:forEach var="secCategoryVO" items="${secCategorySvc.all}">
 						<option value="${secCategoryVO.shCateID}">${secCategoryVO.shCateName}</option>
 					</c:forEach>
-				</select> <input type="hidden" name="action" value="getOne_For_Display">
+				</select> <input type="hidden" name="action" value="getOneCate_For_Display">
 				<input type="submit" value="送出">
 			</FORM>
 		</li>
@@ -125,7 +123,7 @@ h4 {
 				<option value="1">上架</option>
 				<option value="2">違規下架</option>
 
-				</select> <input type="hidden" name="action" value="getOneStatus_For_Display">
+				</select> <input type="hidden" name="action" value="getOne_For_Display">
 				<input type="submit" value="送出">
 			</FORM>
 		</li>
@@ -140,3 +138,4 @@ h4 {
 
 </body>
 </html>
+

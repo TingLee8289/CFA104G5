@@ -21,6 +21,7 @@
 </script>
 <meta charset="UTF-8">
 <title>會員資料修改</title>
+<script src="https://code.jquery.com/jquery-1.12.4.min.js" integrity="sha256-ZosEbRLbNQzLpnKIkEdrPv7lOy9C27hHQ+Xp8a4MxAQ=" crossorigin="anonymous"></script>
 
 <style>
   table#table-1 {
@@ -127,11 +128,18 @@
 			
 			
 			
-			<input type="file" name="cpic"
-			 value="<%= (memberVO==null)? "" : memberVO.getMemHeadshot()%>"
-			 onchange="document.getElementById('blah').src = window.URL.createObjectURL(this.files[0])"/>
-			 <img src="<%=request.getContextPath()%>/DBGifReader?mem_ID=<%=memberVO.getMemID()%>" width=200px>
-	 </td>
+<!-- 				<p>圖片預覽</p>			  -->
+			<input type="file" id="upfiles" name="mempic"
+			>
+			 <div id="previews">
+			 	<img src="<%=request.getContextPath()%>/DBGifReader?mem_ID=${memberVO.memID}" width=150px>
+			 </div></td>
+			 
+<!-- 			<input type="file" id="upfiles" name="mempic" -->
+<%-- 			 value="<%= (memberVO==null)? "" : memberVO.getMemHeadshot()%>" --%>
+<!-- 			 onchange="document.getElementById('blah').src = window.URL.createObjectURL(this.files[0])"/> -->
+<%-- 			 <img src="<%=request.getContextPath()%>/DBGifReader?mem_ID=<%=memberVO.getMemID()%>" width=200px> --%>
+<!-- 	 </td> -->
 		</tr>
 	</table>
 
@@ -145,7 +153,36 @@
 		
 	
 </body>
+<script>
+	// 	// // change這個event有只代表改變，並不代表有檔案。
+	// 	// 	如果要FileReader去讀檔案，必須給他一個檔案Object。
+	// 	// 	它拿到檔案Object後會驅動onload事件
+	// 	// 	藉由 FileReader 物件，Web 應用程式能以非同步（asynchronously）方式讀取儲存在用戶端的檔案（或原始資料暫存）內容
+	// 	// 裡面的input 就是我們丟進去的this，也就是<input type="file">，
+	// 	// 當<input type="file">被DOM變成Object的時候，如果他有選擇到檔案，
+	// 	// 會被放在input.files裡面，而且是一個Array(因為input如果寫成 <input type="file" multiple> 的時候是可以複選的)
+	$("#upfiles").change(function() {
+		$("#previews").html(""); // 清除預覽
+		readURL(this);
+	});
 
+	function readURL(input) {
+		if (input.files && input.files.length >= 0) {
+			for (var i = 0; i < input.files.length; i++) {
+				var reader = new FileReader();
+				reader.onload = function(e) {
+					var img = $("<img width='150' height='150'>").attr('src',
+							e.target.result);
+					$("#previews").append(img);
+				}
+				reader.readAsDataURL(input.files[i]);
+			}
+		} else {
+			var noPictures = $("<p>目前沒有圖片</p>");
+			$("#previews").append(noPictures);
+		}
+	}
+</script>
 
 
 

@@ -45,7 +45,6 @@ public class SecItemsDAO implements SecItemsDAO_interface {
 	public Integer insert(SecItemsVO secItemsVO) {
 		Integer key = 0;
 		try {
-//			con = DriverManager.getConnection(Util.URL, Util.USER, Util.PASSWORD);
 			con = ds.getConnection();
 			pstmt = con.prepareStatement(INSERT_STMT,Statement.RETURN_GENERATED_KEYS);
 			pstmt.setInt(1, secItemsVO.getShCateID());
@@ -209,8 +208,8 @@ public class SecItemsDAO implements SecItemsDAO_interface {
 
 			while (rs.next()) {
 				secItemsVO = new SecItemsVO();
-				secItemsVO.setShID(rs.getInt("sh_id"));
 				secItemsVO.setShCateID(rs.getInt("sh_cate_id"));
+				secItemsVO.setShID(rs.getInt("sh_id"));
 				secItemsVO.setShSellerID(rs.getInt("sh_sellerid"));
 				secItemsVO.setShName(rs.getString("sh_name"));
 				secItemsVO.setShPrice(rs.getBigDecimal("sh_price"));
@@ -232,11 +231,47 @@ public class SecItemsDAO implements SecItemsDAO_interface {
 		}
 		return list;
 	}
+	@Override
+	public List<SecItemsVO> findByStatus(Integer shStatus) {
+		List<SecItemsVO> list = new ArrayList<SecItemsVO>();
+		SecItemsVO secItemsVO = null;
+		
+		try {
+			con = ds.getConnection();
+			pstmt = con.prepareStatement(GET_STATUS_STMT);
+			pstmt.setInt(1, shStatus);
+			rs = pstmt.executeQuery();
+			
+			while (rs.next()) {
+				secItemsVO = new SecItemsVO();
+				secItemsVO.setShStatus(rs.getInt("sh_status"));
+				secItemsVO.setShCateID(rs.getInt("sh_cate_id"));
+				secItemsVO.setShID(rs.getInt("sh_id"));
+				secItemsVO.setShSellerID(rs.getInt("sh_sellerid"));
+				secItemsVO.setShName(rs.getString("sh_name"));
+				secItemsVO.setShPrice(rs.getBigDecimal("sh_price"));
+				secItemsVO.setShQTY(rs.getInt("sh_qty"));
+				secItemsVO.setShSize(rs.getString("sh_size"));
+				secItemsVO.setShDescription(rs.getString("sh_description"));
+				secItemsVO.setShCondition(rs.getString("sh_condition"));
+				secItemsVO.setShTime(rs.getString("sh_time"));
+				secItemsVO.setShGuarantee(rs.getString("sh_guarantee"));
+				secItemsVO.setShCounty(rs.getString("sh_county"));
+				secItemsVO.setShDist(rs.getString("sh_dist"));
+				list.add(secItemsVO);
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			Util.closeResource(con, pstmt, rs);
+		}
+		return list;
+	}
 	
 	
 	@Override
-	public List<SecItemsVO> getShStatusAll(Integer shStatus) {
-		List<SecItemsVO> list = new ArrayList<SecItemsVO>();
+	public SecItemsVO getShStatusAll(Integer shStatus) {
+	
 		SecItemsVO secItemsVO = null;
 		
 		try {
@@ -261,7 +296,7 @@ public class SecItemsDAO implements SecItemsDAO_interface {
 				secItemsVO.setShGuarantee(rs.getString("sh_guarantee"));
 				secItemsVO.setShCounty(rs.getString("sh_county"));
 				secItemsVO.setShDist(rs.getString("sh_dist"));
-				list.add(secItemsVO);
+				
 			}
 	
 		} catch (SQLException e) {
@@ -269,7 +304,7 @@ public class SecItemsDAO implements SecItemsDAO_interface {
 		} finally {
 			Util.closeResource(con, pstmt, rs);
 		}
-		return list;
+		return null;
 	}
 
 }

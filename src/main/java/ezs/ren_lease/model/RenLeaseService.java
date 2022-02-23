@@ -1,7 +1,6 @@
 package ezs.ren_lease.model;
 
 import java.sql.Date;
-import java.sql.Timestamp;
 import java.util.List;
 
 public class RenLeaseService {
@@ -12,45 +11,32 @@ public class RenLeaseService {
 		dao = new RenLeaseDAO();
 	}
 
-	public RenLeaseVO addRenLease(Integer lseMemId, Integer lseLisId, Integer LseLddId, Integer LseLddScore,
-			String lseLddTxt, Integer lseTntScore, String lseTntTxt, Integer lseStatus, Timestamp lseTimestamp,
-			Date lseStart, Date lseEnd) {
-
+	public RenLeaseVO addRenLease(Integer lseMemId, Integer lseLisId, Integer lseLddId,Integer lsePrice, Date lseStart, Date lseEnd,byte[] lsePic,Integer lseLeaseMemId) {
 		RenLeaseVO renLeaseVO = new RenLeaseVO();
 
 		renLeaseVO.setLseMemId(lseMemId);
 		renLeaseVO.setLseLisId(lseLisId);
-		renLeaseVO.setLseLddId(LseLddId);
-		renLeaseVO.setLseLddScore(LseLddScore);
-		renLeaseVO.setLseLddTxt(lseLddTxt);
-		renLeaseVO.setLseTntScore(lseTntScore);
-		renLeaseVO.setLseTntTxt(lseTntTxt);
-		renLeaseVO.setLseStatus(lseStatus);
-		renLeaseVO.setLseTimestamp(lseTimestamp);
+		renLeaseVO.setLseLddId(lseLddId);
+		renLeaseVO.setLsePrice(lsePrice);
 		renLeaseVO.setLseStart(lseStart);
 		renLeaseVO.setLseEnd(lseEnd);
+		renLeaseVO.setLsePic(lsePic);
+		renLeaseVO.setLseLeaseMemId(lseLeaseMemId);
 
 		dao.insert(renLeaseVO);
 
 		return renLeaseVO;
 	}
 
-	public RenLeaseVO updateEmp(Integer lseId, Integer lseMemId, Integer lseLisId, Integer LseLddId,
-			Integer LseLddScore, String lseLddTxt, Integer lseTntScore, String lseTntTxt, Integer lseStatus,
-			Timestamp lseTimestamp, Date lseStart, Date lseEnd) {
+	public RenLeaseVO updateLease(Integer lsePrice,Integer LseLddScore, String lseLddTxt, Integer lseTntScore, String lseTntTxt, Integer lseStatus, Date lseStart, Date lseEnd) {
 
 		RenLeaseVO renLeaseVO = new RenLeaseVO();
 
-		renLeaseVO.setLseId(lseId);
-		renLeaseVO.setLseMemId(lseMemId);
-		renLeaseVO.setLseLisId(lseLisId);
-		renLeaseVO.setLseLddId(LseLddId);
 		renLeaseVO.setLseLddScore(LseLddScore);
 		renLeaseVO.setLseLddTxt(lseLddTxt);
 		renLeaseVO.setLseTntScore(lseTntScore);
 		renLeaseVO.setLseTntTxt(lseTntTxt);
 		renLeaseVO.setLseStatus(lseStatus);
-		renLeaseVO.setLseTimestamp(lseTimestamp);
 		renLeaseVO.setLseStart(lseStart);
 		renLeaseVO.setLseEnd(lseEnd);
 		dao.update(renLeaseVO);
@@ -69,4 +55,14 @@ public class RenLeaseService {
 	public List<RenLeaseVO> getAll() {
 		return dao.getAll();
 	}
+
+	public List<RenLeaseVO> getOne() {
+		return dao.getGetPersonal();
+	}
+	
+
+	public List<RenLeaseVO> getAll(Integer lseMemId) {
+		return dao.getAll(lseMemId);
+	}
+
 }

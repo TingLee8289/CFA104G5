@@ -43,9 +43,9 @@ public class SecOrdDetailsTest {
 //
 //		System.out.println("---------------------");
 //
-////		5. 多筆查詢
-//		List<SecOrdDetailsVO> list = dao.getAll();
-//		for (SecOrdDetailsVO secOrdDetailsVO4 : list) {
+//		5. 多筆查詢
+//		List<SecOrdDetailsVO> list5 = dao.getAll();
+//		for (SecOrdDetailsVO secOrdDetailsVO4 : list5) {
 //
 //			System.out.print(secOrdDetailsVO4.getShOrdID() + ",");
 //			System.out.print(secOrdDetailsVO4.getShID() + ",");
@@ -55,5 +55,20 @@ public class SecOrdDetailsTest {
 //
 //			System.out.println();
 //		}
+		
+//		6. 以訂單編號查詢
+		List<SecOrdDetailsVO> list6 = dao.findByShOrdID(13);
+		for (SecOrdDetailsVO secOrdDetailsVO4 : list6) {
+			
+			System.out.print(secOrdDetailsVO4.getShOrdID() + ",");
+			System.out.print(secOrdDetailsVO4.getShID() + ",");
+			System.out.print(secOrdDetailsVO4.getShName() + ",");
+			System.out.print(secOrdDetailsVO4.getShPrice() + ",");
+			System.out.print(secOrdDetailsVO4.getShQty());
+			System.out.println();
+		}
+		
+		
+		
 	}
 }

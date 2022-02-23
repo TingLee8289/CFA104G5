@@ -52,18 +52,7 @@ img {
 }
 
 /* ==================== header 區域 ==================== */
-header.header {
-	border: 1px solid black;
-	width: 100%;
-	position: sticky;
-	top: 0;
-	height: var(- -header-height);
-	background-color: lightgray;
-}
 
-header.header button.btn_hamburger {
-	display: none;
-}
 /* ==================== aside 區域 ==================== */
 aside.aside {
 	border: 1px solid blue;
@@ -72,7 +61,7 @@ aside.aside {
 	left: 0;
 	height: calc(100% - var(- -header-height));
 	width: var(- -aside-width);
-	background-color: #efefef;
+	background-color: #ecb88a;
 	overflow-y: auto;
 	padding: 20px 0;
 	transition: all 1s;
@@ -124,14 +113,6 @@ body {
 	background-color: #ecb88a;
 }
 
-
-
-
-
-
-
-
-
 * {
 	margin: 0;
 	padding: 0;
@@ -142,9 +123,7 @@ body {
 	margin-left: 120px;
 }
 
-img {
-	outline: 2px solid blue;
-}
+
 
 .right-side {
 	outline: 2px solid red;
@@ -155,6 +134,19 @@ img {
 .bottom {
 	outline: 2px solid green;
 }
+.nav-item>a, a {
+	/*  去除連結線 */
+	text-decoration: none;
+	color: #373c3f;
+}
+
+.nav-item>a:hover, a:hover {
+	color: #31a0b7;
+}
+
+header {
+	outline: 1px solid black;
+}
 </style>
 </head>
 <body>
@@ -162,7 +154,7 @@ img {
 	<header>
 			<div class="container">
 				<div class="navbar d-flex flex-nowrap py-3">
-					<a href="#"> <img
+					<a href="<%=request.getContextPath()%>/frontend/EZ_home.jsp"> <img
 						src="<%= request.getContextPath()%>/images/cmn/index/EASYSPACE.png"
 						alt="brand-logo-image" class=" brand-logo" style="height: 130px">
 					</a>
@@ -171,12 +163,23 @@ img {
 							class="pages-login d-flex flex-row align-items-center col-12 justify-content-between mx-auto">
 							<ul
 								class="nav nav-items justify-content-between align-items-center col-9">
-								<li class="nav-item"><a class="nav-link" role="button" href="#">房屋租賃</a></li>
-								<li class="nav-item"><a class="nav-link" href="#">居家服務</a></li>
-								<li class="nav-item"><a class="nav-link" href="#">二手家電</a></li>
+								<li class="nav-item">
+									<a class="nav-link" role="button" href="<%= request.getContextPath()%>">房屋租賃</a>
+								</li>
+								<li class="nav-item">
+									<a class="nav-link" href="<%= request.getContextPath()%>/frontend/ser_ad/serAdViewPage.jsp">居家服務</a>
+								</li>
+								<li class="nav-item">
+									<a class="nav-link" href="<%= request.getContextPath()%>">二手家電</a>
+								</li>
+								
+								<li class="nav-item">
+									<a class="nav-link" href="<%= request.getContextPath()%>/frontend/member/memberCenter/memberCenter.jsp">會員中心</a>
+								</li>
+								
 							</ul>
-							<div
-								class="nav-menu-shopping-bag d-flex col-3 justify-content-sm-end  align-items-center">
+							<div class="nav-menu-shopping-bag d-flex col-3 justify-content-sm-end  align-items-center">
+								
 								<a href="#"><i class="bi bi-cart3 mx-2"
 									style="font-size: 3rem; color: #8C4E37;"></i></a> <a class="btn"
 									href="#" role="button" style="background-color: #FD9843">會員登入</a>

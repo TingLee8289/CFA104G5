@@ -97,7 +97,10 @@
     </FORM>
   </li>
 
+
 </ul>
+
+<a href='<%=request.getContextPath()%>/frontend/ren_appointment/addRenAppointment.jsp'>Add</a> a new RenAppointment.
 
 <!-- <ul>   -->
 <!--   <li>    -->

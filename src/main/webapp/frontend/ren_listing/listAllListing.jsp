@@ -119,8 +119,10 @@
 		<th>詳情</th>
 		<th>收藏</th>
 	</tr>
+
 	<%@ include file="page3.file" %>
 	<c:forEach var="renListingVO" items="${list}" begin="<%=pageIndex %>" end="<%=pageIndex+rowsPerPage-1 %>">
+
 	
 		<tr>
 			<td>${renListingVO.lisID}</td>
@@ -188,9 +190,9 @@
 <!-- 			    </FORM> -->
 <!-- 			 </td> -->
 		</tr>
-	</c:forEach>
+<%-- 	</c:forEach> --%>
 </table>
-<%@ include file="page2.file" %>
+<%-- <%@ include file="page2.file" %> --%>
 
 </body>
 </html>

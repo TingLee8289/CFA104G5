@@ -18,6 +18,7 @@ pageContext.setAttribute("serDmdList", serDmdList);
 <html>
 <head>
 <meta charset="UTF-8">
+ <script src="<%=request.getContextPath()%>/frontend/js/jquery-1.11.3.min.js"></script>
 <title>後台需求單管理</title>
 <link
 	href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css"
@@ -43,6 +44,10 @@ pageContext.setAttribute("serDmdList", serDmdList);
 					class="table table-striped table-hover align-middle text-center caption-top">
 					<caption>
 						<h2>所有需求單資料</h2>
+						<h4>
+							<a
+								href="<%=request.getContextPath()%>/frontend/member/memberCenter/memberCenterBuyerDmd.jsp">回首頁</a>
+						</h4>
 					</caption>
 					<thead class="table-success">
 						<tr class="text-nowrap">
@@ -94,11 +99,11 @@ pageContext.setAttribute("serDmdList", serDmdList);
 									width=200px></td>
 								<td>
 									<FORM METHOD="post"
-										ACTION="<%=request.getContextPath()%>/ser_dmd/SerDmdServlet.do"
+										ACTION="<%=request.getContextPath()%>/ser_dmd/UpdateSerDmdServlet.do"
 										style="margin-bottom: 0px;">
 										<input type="submit" value="修改"> <input type="hidden"
 											name="dmdID" value="${serDmdVO.dmdID}"> <input
-											type="hidden" name="action" value="getOne_For_Update">
+											type="hidden" name="action" value="UpdateDmd">
 									</FORM>
 								</td>
 								<td>

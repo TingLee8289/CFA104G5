@@ -55,7 +55,7 @@ public class GetSecOrdBySellerServlet extends HttpServlet {
 				} catch (Exception e) {
 					errorMsgs.add("訂單單號格式不正確");
 				}
-							
+				System.out.println(shOrdID);			
 				
 				// Send the use back to the form, if there were errors
 				if (!errorMsgs.isEmpty()) {
@@ -70,6 +70,9 @@ public class GetSecOrdBySellerServlet extends HttpServlet {
 				if (secOrdVO == null) {
 					errorMsgs.add("查無資料");
 				}
+				
+				System.out.println(shOrdID);
+				
 				// Send the use back to the form, if there were errors
 				if (!errorMsgs.isEmpty()) {
 					RequestDispatcher failureView = req.getRequestDispatcher("/frontend/sec_ord/secOrdHomeSeller.jsp");
@@ -79,10 +82,11 @@ public class GetSecOrdBySellerServlet extends HttpServlet {
 
 				/*************************** 3.查詢完成,準備轉交(Send the Success view) *************/
 				req.setAttribute("secOrdVO", secOrdVO); // 資料庫取出的secOrdVO物件,存入req
-				String url = "/frontend/sec_ord/listSecOrdsByShSeller.jsp";
+				String url = "/frontend/sec_ord/listAllSecOrd.jsp";
 				RequestDispatcher successView = req.getRequestDispatcher(url); // 成功轉交 listOneEmp.jsp
 				successView.forward(req, res);
-
+				System.out.println(successView);
+				
 				/*************************** 其他可能的錯誤處理 *************************************/
 			} catch (Exception e) {
 				e.printStackTrace();

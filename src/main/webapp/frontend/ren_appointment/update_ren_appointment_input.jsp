@@ -6,6 +6,7 @@
 	RenAppointmentVO renAppointmentVO = (RenAppointmentVO) request.getAttribute("renAppointmentVO");
 %>
 
+
 <jsp:useBean id="memSvc" scope="page" class="ezs.member.model.MemberService" />
 <jsp:useBean id="renLDDSvc" scope="page" class="ezs.ren_landlord.model.RenLandlordService" />
 <jsp:useBean id="renLisSvc" scope="page" class="ezs.ren_listing.model.RenListingService" />
@@ -15,19 +16,18 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
 <title>預約訂單資料修改</title>
 
+
 <style>
 table#table-1 {
 	background-color: #CCCCFF;
 	border: 2px solid black;
 	text-align: center;
 }
-
 table#table-1 h4 {
 	color: red;
 	display: block;
 	margin-bottom: 1px;
 }
-
 h4 {
 	color: blue;
 	display: inline;
@@ -41,11 +41,9 @@ table {
 	margin-top: 1px;
 	margin-bottom: 1px;
 }
-
 table, th, td {
 	border: 0px solid #CCCCFF;
 }
-
 th, td {
 	padding: 1px;
 }
@@ -111,6 +109,7 @@ th, td {
 			<tr>
 				<td>預約單狀態:</td>
 				<td>
+					<c:if test="${renAppointmentVO.aptStatus == 0}">預約確認中</c:if> 
 					<c:if test="${renAppointmentVO.aptStatus == 1}">已確認預約</c:if> 
 					<c:if test="${renAppointmentVO.aptStatus == 2}">已取消</c:if>
 					<c:if test="${renAppointmentVO.aptStatus == 3}">預約時間已變更</c:if></td>
@@ -148,7 +147,6 @@ th, td {
 .xdsoft_datetimepicker .xdsoft_datepicker {
 	width: 300px; /* width:  300px; */
 }
-
 .xdsoft_datetimepicker .xdsoft_timepicker .xdsoft_time_box {
 	height: 151px; /* height:  151px; */
 }

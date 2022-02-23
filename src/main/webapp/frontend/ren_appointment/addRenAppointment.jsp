@@ -2,11 +2,20 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ page import="ezs.ren_appointment.model.*"%>
+<%@ page import="java.util.*"%>
 
 <%
 	RenAppointmentVO renAppointmentVO = (RenAppointmentVO) request.getAttribute("renAppointmentVO");
 %>
-<%= renAppointmentVO==null %>--${renAppointmentVO.aptId}--
+<%
+    Integer memID = (Integer)session.getAttribute("memID");
+    RenAppointmentService renAppSvc = new RenAppointmentService();
+
+    String aptLisId = (String) request.getParameter("aptLisId");
+    pageContext.setAttribute("aptLisId", aptLisId);
+    String aptLddId = (String) request.getParameter("aptLddId");
+    pageContext.setAttribute("aptLddId", aptLddId);
+%>
 
 <jsp:useBean id="memSvc" scope="page" class="ezs.member.model.MemberService" />
 <jsp:useBean id="renLDDSvc" scope="page" class="ezs.ren_landlord.model.RenLandlordService" />
@@ -15,7 +24,7 @@
 <html>
 <head>
 <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
-<title>房東 - 新增預約訂單</title>
+<title>新增預約訂單</title>
 
 <style>
   table#table-1 {
@@ -77,18 +86,17 @@
 <table>
 
 	<tr>
-		<td>預約會員帳號:</td>
-		<td><input type="TEXT" name="aptMemName" /></td>
+<!-- 		<td>預約會員編號:</td> -->
+		<td><input type="hidden" name="aptMemId" value="${memID}"/></td>
 	</tr>
-<!-- 	<tr> -->
-<!-- 		<td>房東編號:</td> -->
-<!-- 		<td><input type="TEXT" name="aptLddId"  -->
-<%-- 			 value="<%= (renAppointmentVO==null)? "" : renAppointmentVO.getAptLddId()%>" /></td> --%>
-<!-- 	</tr> -->
 	<tr>
-		<td>房源編號:</td>
-		<td><input type="TEXT" name="aptLisId"
-			 value="<%= (renAppointmentVO==null)? "" : renAppointmentVO.getAptLisId()%>" /></td>
+<!-- 		<td>房東編號:</td> -->
+		<td><input type="hidden" name="aptLddId" value="${aptLddId}"/></td>
+	</tr>
+	<tr>
+		<td>房源編號:<font color=red><b>*</b></font></td>
+		<td><input type="TEXT" readonly="readonly" name="aptLisId"
+			 value="${aptLisId}" /></td>
 	</tr>
 	<tr>
 		<td>預約時間:</td>

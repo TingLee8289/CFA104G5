@@ -80,17 +80,29 @@ th, td {
 		</ul>
 	</c:if>
 
-	<FORM METHOD="post" enctype="multipart/form-data"
+	<FORM METHOD="post"
 		ACTION="<%=request.getContextPath()%>/sec_ord/UpdateSecOrdBySellerServlet.do"
-		name="form1">
+		style="margin-bottom: 0px;">
+
 		<table>
 			<tr>
 				<td>訂單編號:<font color=red><b>*</b></font></td>
 				<td><%=secOrdVO.getShOrdID()%></td>
-				<td><input name="shOrdID" /></td>
+			
 
 			</tr>
 
+			<tr>
+				<td>訂單狀態:</td>
+
+
+				<td><input type="radio" name="shOrdStatus" value="2"
+					<%=(secOrdVO.getShOrdStatus() == 2) ? "checked" : ""%> />已出貨 <input
+					type="radio" name="shOrdStatus" value="8"
+					<%=(secOrdVO.getShOrdStatus() == 8) ? "checked" : ""%> />訂單取消</td>
+
+
+			</tr>
 			<tr>
 				<!-- 		<td>買家編號:</td> -->
 				<td><input type="hidden" name="shBuyerID"
@@ -122,30 +134,7 @@ th, td {
 				<td>付款方式:</td>
 				<td><%=secOrdVO.getShPayment()%></td>
 			</tr>
-			<tr>
-				<td>訂單狀態:</td>
 
-
-				<td><input type="radio" name="shOrdStatus" value="2"
-					<%=(secOrdVO.getShOrdStatus() == 2) ? "checked" : ""%> />已出貨 <input
-					type="radio" name="shOrdStatus" value="8"
-					<%=(secOrdVO.getShOrdStatus() == 8) ? "checked" : ""%> />訂單取消 </td>
-
-
-<!-- 				<td><input type="radio" name="shOrdStatus" value="0" -->
-<%-- 					<%=(secOrdVO.getShOrdStatus() == 0) ? "checked" : ""%> />待出貨 <input --%>
-<!-- 					type="radio" name="shOrdStatus" value="1" -->
-<%-- 					<%=(secOrdVO.getShOrdStatus() == 1) ? "checked" : ""%> />未成立 <input --%>
-<!-- 					type="radio" name="shOrdStatus" value="2" -->
-<%-- 					<%=(secOrdVO.getShOrdStatus() == 2) ? "checked" : ""%> />已成立 <input --%>
-<!-- 					type="radio" name="shOrdStatus" value="3" -->
-<%-- 					<%=(secOrdVO.getShOrdStatus() == 3) ? "checked" : ""%> />已出貨 <input --%>
-<!-- 					type="radio" name="shOrdStatus" value="4" -->
-<%-- 					<%=(secOrdVO.getShOrdStatus() == 4) ? "checked" : ""%> />退款審核 <input --%>
-<!-- 					type="radio" name="shOrdStatus" value="5" -->
-<%-- 					<%=(secOrdVO.getShOrdStatus() == 5) ? "checked" : ""%> />訂單取消</td> --%>
-
-			</tr>
 			<tr>
 				<td>訂單金額:</td>
 				<td><%=secOrdVO.getShPrice()%></td>
@@ -161,10 +150,15 @@ th, td {
 
 
 		</table>
+
+
 		<br> <input type="hidden" name="action" value="update"> <input
 			type="hidden" name="shOrdID" value="<%=secOrdVO.getShOrdID()%>">
-		<input type="submit" value="送出修改">
+		<input type="submit" value="修改">
+
+
 	</FORM>
+
 </body>
 
 </html>

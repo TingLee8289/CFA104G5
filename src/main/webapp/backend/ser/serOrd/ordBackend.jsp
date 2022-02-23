@@ -5,40 +5,13 @@
 <head>
 <title>Ezs Service Order: Home</title>
 
-<style>
-table#table-1 {
-	width: 450px;
-	background-color: #CCCCFF;
-	margin-top: 5px;
-	margin-bottom: 10px;
-	border: 3px ridge Gray;
-	height: 80px;
-	text-align: center;
-}
-
-table#table-1 h4 {
-	color: red;
-	display: block;
-	margin-bottom: 1px;
-}
-
-h4 {
-	color: blue;
-	display: inline;
-}
-</style>
 
 </head>
-<body bgcolor='white'>
+<body>
 
-	<table id="table-1">
-		<tr>
-			<td><h3>Ezs Service Order: Home</h3>
-				<h4>( MVC )</h4></td>
-		</tr>
-	</table>
+	
 
-	<p>This is the Home page for Ezs Service Order: Home</p>
+
 
 	<h3>後台訂單管理</h3>
 
@@ -54,7 +27,7 @@ h4 {
 
 	<ul>
 		<li><a href='<%=request.getContextPath()%>/backend/ser/serOrd/listAllSerOrd.jsp'>檢視所有訂單</a>
-			all Ord. <br> <br></li>
+		 <br> <br></li>
 
 		<li>
 			<FORM METHOD="post"
