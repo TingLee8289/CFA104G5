@@ -15,13 +15,22 @@
 	<link rel="icon" href="favicon.ico">
 	<style>
 		
-		.navbar{
+		body{
+			margin: 0;
+		}
+		
+		*{
+        box-sizing: border-box;
+   		}
+		
+		.header{
 			display: flex;
 			background-color: rgb(239,239,239);
 			position:fixed;
 			z-index:9999;
 			width:100%;		
 			margin-top: 40px;	
+			border:1px solid black;
 
 		}
 		
@@ -51,7 +60,7 @@
 
 <body>
 
-	<nav class="navbar navbar-light  navbar-expand-md ">
+	<div class="header">
 		<div class="header">
 			<div class="col-2 pl-md-0 text-left" style="display: inline-block;">
 				<a href="<%=request.getContextPath()%>/frontend/EZ_home.jsp"> 
@@ -60,7 +69,7 @@
 			</div>
 			<div class="brand-text">| EASY SPACE</div>
 		</div>
-	</nav>
+	</div>
 
 
 

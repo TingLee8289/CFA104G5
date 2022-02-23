@@ -19,7 +19,7 @@
 	</style>
 </head>
 <body>
-	<nav class="navbar navbar-expand-lg navbar-dark  " id="nav" style="padding: 0px; height: 40px;">
+	<div class="navbar navbar-expand-lg navbar-dark  " id="nav" style="padding: 0px; height: 40px;">
 		<div class="container">
 <!-- 			<a class="navbar-brand" href="index.html"> <img -->
 <%-- 				src=" <%=request.getContextPath() %>/images/cmn/index/bannerLogo.jpg" alt="UI Kit" --%>
@@ -43,24 +43,24 @@
 					</li>
 					<li class="nav-item dropdown"><a class="nav-link text-dark" href="#"
 						id="navbarDropdown" role="button" data-bs-toggle="dropdown"
-						aria-haspopup="true" aria-expanded="false"> <img
-							class="rounded-circle u-box-shadow-sm me-2 text-dark" width="25"
+						aria-haspopup="true" aria-expanded="false"> 
+						<img class="rounded-circle u-box-shadow-sm me-2 text-dark" width="25"
 							height="25" src=" https://dummyimage.com/100/007bff/efefef"
-							alt="Htmlstream"> John Doe <i class="fa fa-angle-down   "></i>
-					</a>
+							alt="Htmlstream"> John Doe <i class="fa fa-angle-down   "></i></a>
 						<div class="dropdown-menu" aria-labelledby="navbarDropdown">
 							<a class="dropdown-item" href="<%= request.getContextPath()%>/frontend/member/memberCenter/buyerMemberCenter.jsp">會員中心</a> 
-							<a class="dropdown-item" href="#">賣家中心</a> 
+							<a class="dropdown-item" href="<%= request.getContextPath()%>/frontend/member/memberCenter/sellerMemberCenter.jsp">賣家中心</a> 
 							<a class="dropdown-item" href="<%=request.getContextPath()%>/frontend/chat/index.jsp">聊聊</a>
 							<a class="dropdown-item" href="<%=request.getContextPath()%>/frontend/sec_items/shoppingCart.jsp">購物車</a>
 							<div class="dropdown-divider"></div>
-							<a class="dropdown-item" href="#">登出</a>
-						</div></li>
+							<a class="dropdown-item" href="<%=request.getContextPath()%>/member/MemberServlet.do?action=logout">登出</a>
+						</div>
+					</li>
 				</ul>
 
 			</div>
 		</div>
-	</nav>
+	</div>
 
 
 	<section></section>

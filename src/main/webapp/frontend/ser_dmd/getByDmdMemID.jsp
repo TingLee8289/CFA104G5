@@ -46,7 +46,7 @@ pageContext.setAttribute("serDmdList", serDmdList);
 						<h2>所有需求單資料</h2>
 						<h4>
 							<a
-								href="<%=request.getContextPath()%>/frontend/member/memberCenter/memberCenterBuyerDmd.jsp">回首頁</a>
+								href="<%=request.getContextPath()%>/frontend/member/memberCenter/buyerMemberCenter.jsp">回前頁</a>
 						</h4>
 					</caption>
 					<thead class="table-success">
