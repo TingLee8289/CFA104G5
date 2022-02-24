@@ -39,7 +39,7 @@
 	margin-bottom: 1px;
 	margin: 0 auto;
   }
-  table, th, td {
+  table {
     border: 0px solid #CCCCFF;
   }
   th, td {

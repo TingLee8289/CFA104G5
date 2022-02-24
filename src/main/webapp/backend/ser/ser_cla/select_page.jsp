@@ -167,7 +167,7 @@ figure img {
 		<div id="layoutSidenav_content">
 			<main>
 				<div class="container-fluid px-4">
-					<h1 class="mt-4">Easy Space 後台管理系統</h1>
+					<h1 class="mt-4">服務類別管理</h1>
 					
 
 
