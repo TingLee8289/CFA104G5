@@ -28,7 +28,7 @@ public class MemberVerificationServlet extends HttpServlet {
 		req.setCharacterEncoding("UTF-8");
 		String action = req.getParameter("action");
 		HttpSession session = req.getSession();
-		String memUserName = (String) session.getAttribute("memUserName");
+		String memUserName = (String) session.getAttribute("memUsername");
 		String verifCode = req.getParameter("verifCode");
 		
 		System.out.println(memUserName);

@@ -30,41 +30,74 @@
 	
 	String str = "";
 	while(rs.next()){
-		str += "<li>";
-		str += "<a href=\"/CFA104G5/sec_items/GetSecItemsServlet.do?shID=";
+		str += "<li style='list-style: none;'>";
+		str += "<a href='/CFA104G5/sec_items/GetSecItemsServlet.do?shID=";
 		str += rs.getInt("sh_id");
-		str += "&action=getOne_For_Display\">";
-		str += "<div class=\"img_block\">";
-		str += "<img src =\"/CFA104G5/sec_pics/SecPicsReader.do?sh_id=";
-		str += rs.getInt("sh_id")+"\">";
+		str += "&action=getOneItem_For_Display'>";
+//	 	<li style="list-style: none;">
+//	     <a href="/CFA104G5/sec_items/GetSecItemsServlet.do?shID=1&action=getOneItem_For_Display">
+		str += "<div class='img_block'>";
+		str += "<img style='margin: 0px auto;' src ='/CFA104G5/sec_pics/SecPicsReader.do?sh_id=";
+		str += rs.getInt("sh_id")+"'>";
 		str += "</div>";
+// 		<div class="img_block">
+//      	<img style="margin: 0px auto;" src="/CFA104G5/sec_pics/SecPicsReader.do?sh_id=1">
+//      </div>
 		str += "<span class='item_text'>";
 		str += rs.getString("sh_name");
 		str += "</span>";
 		str += "<span class='item_price'>";
 		str += rs.getInt("sh_price");
 		str += "</span>";
-		str += "</a><a class='btn btn-buy' href=\"/CFA104G5/sec_items/ShoppingServlet.do?shID=";
-		str += rs.getInt("sh_id");
-		str += "&shName=";
+		str += "</a>";
+// 		<span class="item_text">電暖器</span>
+//      <span class="item_price">$1100</span>
+//  	</a>
+		str += "<form method='post' action='/CFA104G5/sec_items/ShoppingServlet.do'>";
+//	     <form method="post" action="/CFA104G5/sec_items/ShoppingServlet.do">		
+//         <input type="submit" value="加入購物車" class="btn btn-outline-success text-nowrap">
+//         <input type="hidden" name="shID" value="1">
+//         <input type="hidden" name="shName" value="電暖器">
+//         <input type="hidden" name="shPrice" value="1100">
+//         <input type="hidden" name="shQTY" value="1">
+//         <input type="hidden" name="action" value="ADD">
+//		 </form>
+//		</li>
+		str += "<input type='submit' value='加入購物車' class='btn btn-outline-success text-nowrap'>";
+		str += "<input type='hidden' name='shID' value='";
+		str += rs.getInt("sh_id");;
+		str += "'>";
+		str += "<input type='hidden' name='shName' value='";
 		str += rs.getString("sh_name");
-		str += "&shPrice=";
+		str += "'>";
+		str += "<input type='hidden' name='shPrice' value='";
 		str += rs.getInt("sh_price");
-		str += "&shQTY=1&action=ADD\"";
-		str += ">加入購物車</a>";
+		str += "'>";
+		str += "<input type='hidden' name='shQTY' value='1'>";
+		str += "<input type='hidden' name='action' value='ADD'>";
+		str += "</form>";
 		str += "</li>";
+		
+		
 	}
 	
-// 	<li>
-// 		<a href="/CFA104G5/sec_items/GetSecItemsServlet.do?shID=1&action=getOne_For_Display">
-// 	   	 	<div class="img_block">
-// 	    	    <img src="/CFA104G5/sec_pics/SecPicsReader.do?sh_id=1">
-// 	    	</div>
-// 	   	 <span class="item_text">三菱16L高效節能清淨除濕機 MJ-E160HN-TW</span>
-// 	   	 <span class="item_price">$9000</span>
-// 			 </a>
-// 		<a class="btn btn-buy" href="/CFA104G5/sec_items/ShoppingServlet.do?shID=1&shName=三菱16L高效節能清淨除濕機 MJ-E160HN-TW&shPrice=9000&shQTY=1&action=ADD">加入購物車</a>
-// 	</li>	
+// 	<li style="list-style: none;">
+//     <a href="/CFA104G5/sec_items/GetSecItemsServlet.do?shID=1&action=getOneItem_For_Display">
+//         <div class="img_block">
+//             <img style="margin: 0px auto;" src="/CFA104G5/sec_pics/SecPicsReader.do?sh_id=1">
+//         </div>
+//         <span class="item_text">電暖器</span>
+//         <span class="item_price">$1100</span>
+//     </a>
+//     <form method="post" action="/CFA104G5/sec_items/ShoppingServlet.do">
+//         <input type="submit" value="加入購物車" class="btn btn-outline-success text-nowrap">
+//         <input type="hidden" name="shID" value="1">
+//         <input type="hidden" name="shName" value="電暖器">
+//         <input type="hidden" name="shPrice" value="1100">
+//         <input type="hidden" name="shQTY" value="1">
+//         <input type="hidden" name="action" value="ADD">
+//     </form>
+// </li>
 	
 	
 	out.print(str);
