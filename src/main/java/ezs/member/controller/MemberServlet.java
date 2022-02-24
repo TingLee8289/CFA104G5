@@ -118,6 +118,11 @@ public class MemberServlet extends HttpServlet {
 			/*************************** 1.接收請求參數 - 輸入格式的錯誤處理 **********************/
 
 			try {
+				String memPhoneReg = "/^09[0-9]{8}$/";
+				String memPIDReg = "/^[A-Za-z][12]\\d{8}$/";
+				String memEmailReg = "/^(\\w)+(\\.\\w+)*@(\\w)+((\\.\\w))$/;";
+				
+				
 				String memUsername = req.getParameter("memUsername");
 				if (memUsername == null || memUsername.trim().length() == 0) {
 					errorMsgs.add("帳號請勿空白");
@@ -135,6 +140,8 @@ public class MemberServlet extends HttpServlet {
 				String memPhone = req.getParameter("memPhone");
 				if (memPhone == null || memPhone.trim().length() == 0) {
 					errorMsgs.add("電話請勿空白");
+				} else if (!memPhone.trim().matches(memPhoneReg)) {
+					errorMsgs.add("電話格式不符，請重新輸入");
 				}
 				String memAddress = req.getParameter("memAddress");
 				if (memAddress == null || memAddress.trim().length() == 0) {
@@ -143,10 +150,15 @@ public class MemberServlet extends HttpServlet {
 				String memEmail = req.getParameter("memEmail");
 				if (memEmail == null || memEmail.trim().length() == 0) {
 					errorMsgs.add("email請勿空白");
+				}else if (!memEmail.trim().matches(memEmailReg)){
+					errorMsgs.add("身分證字號格式不符，請重新輸入");
 				}
+				
 				String memPID = req.getParameter("memPID");
 				if (memPID == null || memPID.trim().length() == 0) {
 					errorMsgs.add("身分證字號請勿空白");
+				} else if (!memPID.trim().matches(memPIDReg)){
+					errorMsgs.add("身分證字號格式不符，請重新輸入");
 				}
 				
 				byte[] memHeadshot = null;
@@ -187,7 +199,9 @@ public class MemberServlet extends HttpServlet {
 //				serVdrSvc.addSerVdr(memID, 0, null, null, null, null, null, null, null, null, null, null, null);
 				
 				/*************************** 3.新增完成,準備轉交(Send the Success view) ***********/
-				req.setAttribute("memberVO", memberVO);
+//				HttpSession session = req.getSession();
+//				session.setAttribute("memberVO", memberVO);
+//				System.out.println(memberVO.getMemUsername());
 				
 				RequestDispatcher successView = req.getRequestDispatcher("/member/RegisterMailServlet.do"); 
 				successView.forward(req, res);
