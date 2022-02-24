@@ -72,6 +72,7 @@ pageContext.setAttribute("memOrdList", memOrdList);
 							<th>備註</th>
 							<th></th>
 							<th></th>
+							<th></th>
 						</tr>
 					</thead>
 					<tbody id="show-list">
@@ -113,18 +114,10 @@ pageContext.setAttribute("memOrdList", memOrdList);
 								<td>${serOrdVO.ordTotalPrice}</td>
 								<td>${serOrdVO.ordMemVatno}</td>
 								<td>${serOrdVO.ordVdrVatno}</td>
-<%-- 								<td>${serOrdVO.ordBuyerScore}</td> --%>
-<%-- 								<td>${serOrdVO.ordBuyerTxt}</td> --%>
+							
 								
 								<td>${serOrdVO.ordNote}</td>
 								<td>
-<!-- 									<FORM METHOD="post" -->
-<%-- 										ACTION="<%=request.getContextPath()%>/frontend/ser_ord/creditPay.jsp?" --%>
-<!-- 										style="margin-bottom: 0px;"> -->
-<!-- 										<input type="submit" value="線上付款">  -->
-<%-- 										<input type="hidden" name="ordID" value="${serOrdVO.ordID}">  --%>
-<!-- 										<input type="hidden" name="action" value="CreditPay"> -->
-<!-- 									</FORM> -->
 									<a href="<%=request.getContextPath()%>/frontend/ser_ord/creditPay.jsp?ordID=${serOrdVO.ordID}" class="btn btn-outline-success text-nowrap">線上付款</a>
 								</td>
 								<td>
@@ -135,6 +128,8 @@ pageContext.setAttribute("memOrdList", memOrdList);
 											name="ordID" value="${serOrdVO.ordID}"> <input
 											type="hidden" name="action" value="FinishOrd">
 									</FORM>
+								<td>
+									<a href="<%=request.getContextPath()%>/frontend/ser_repo/addSerRepo.jsp?ordID=${serOrdVO.ordID}" class="btn btn-danger text-nowrap">檢舉</a>
 								</td>
 							</tr>
 						</c:forEach>
