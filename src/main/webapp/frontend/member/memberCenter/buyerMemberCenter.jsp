@@ -148,8 +148,7 @@
 					<div class="nav">
 
 						<div class="sb-sidenav-menu-heading">管理專區</div>
-						<a class="nav-link" href="<%=request.getContextPath()%>/frontend/member/listOneMember.jsp">
-
+						<a class="nav-link" href="<%= request.getContextPath()%>/frontend/member/listOneMember.jsp">
 							<div class="sb-nav-link-icon">
 								<i class="fas fa-tachometer-alt"></i>
 							</div> 會員資料管理

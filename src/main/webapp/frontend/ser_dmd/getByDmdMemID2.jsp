@@ -1,27 +1,27 @@
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-
-<%@ page import="ezs.sec_ord.model.*"%>
-<%@ page import="ezs.sec_ord_details.model.*"%>
-
-<jsp:useBean id="list" scope="request"
-	type="java.util.Set<SecOrdDetailsVO>" />
-<!-- 於EL此行可省略 -->
-<jsp:useBean id="secOrdSvc" scope="page"
-	class="ezs.sec_ord.model.SecOrdService" />
-
 <%@ page import="java.util.*"%>
-<% 
-	Integer memID = (Integer) session.getAttribute("memID");
-%>
+<%@ page import="ezs.ser_dmd.model.*"%>
+<%@ page import="ezs.ser_quo.model.*"%>
 
+<%
+Integer memID = (Integer) session.getAttribute("memID");
+System.out.println(memID);
+SerDmdService serDmdSvc = new SerDmdService();
+List<SerDmdVO> serDmdList = serDmdSvc.findByMemID(memID);
+//如何動態取值
+pageContext.setAttribute("serDmdList", serDmdList);
+%>
+<%
+    List<SerDmdVO> OneMemDmdList = serDmdSvc.findByMemID(memID);
+     									//如何動態取值
+    pageContext.setAttribute("OneMemDmdList",OneMemDmdList);
+%>
 
 <!DOCTYPE html>
 
 <html>
 <head>
-
-
 <meta charset="utf-8" />
 <meta http-equiv="X-UA-Compatible" content="IE=edge" />
 <meta name="viewport"
@@ -32,7 +32,6 @@
 <script	src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/js/all.min.js"></script>
 <link rel="stylesheet"href=" https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css ">
 <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.2.0/css/all.css">
-
 
 <style>
 #nav {
@@ -62,10 +61,8 @@
 </style>
 
 <style>
-
   table {
 	width: 800px;
-
 	background-color: white;
 	margin-top: 5px;
 	margin-bottom: 5px;
@@ -103,7 +100,6 @@
 					<li class="nav-item me-3"><a class="nav-link text-dark"
 						href="<%=request.getContextPath()%>/frontend/ser_ad/serAdViewPage.jsp">居家服務</a>
 					</li>
-
 
 					<%
 					String memUsername = (String) session.getAttribute("memUsername");
@@ -153,6 +149,9 @@
 	<!-- 上端導覽列結束--------------------------------------- -->
 
 	<!-- 側邊導覽列開始--------------------------------------- -->
+
+	
+
 	<div id="layoutSidenav">
 		<div id="layoutSidenav_nav">
 			<nav class="sb-sidenav accordion sb-sidenav-dark"
@@ -232,9 +231,7 @@
 				<div class="container-fluid px-4">
 <!-- 塞頁面從這裡開始--------------------------------------------------------------------------------- -->
 
-
-
-	<%-- 錯誤表列 --%>
+<%-- 錯誤表列 --%>
 	<c:if test="${not empty errorMsgs}">
 		<font style="color: red">請修正以下錯誤:</font>
 		<ul>
@@ -244,34 +241,107 @@
 		</ul>
 	</c:if>
 
-	<table>
-		<tr>
-			<th>訂單編號</th>
-			<th>商品編號</th>
-			<th>商品名稱</th>
-			<th>訂單金額</th>
-			<th>商品數量</th>
+	<div class="container-fluid m-3 mx-auto">
+		<main>
+			<div id="data-panel" class="table-responsive ">
+				<table
+					class="table table-striped table-hover align-middle text-center caption-top">
+					<caption>
+						<h2>所有需求單資料</h2>
+						<h4>
+							<a
+								href="<%=request.getContextPath()%>/frontend/member/memberCenter/buyerMemberCenter.jsp">回前頁</a>
+						</h4>
+					</caption>
+					<thead class="table-success">
+						<tr class="text-nowrap">
+							<!--   insert data         -->
+							<th>需求單ID</th>
+							<th>需求單狀態</th>
+							<th>會員ID</th>
+							<th>服務類別ID</th>
+							<th>需求人姓名</th>
+							<th>需求人電話</th>
+							<th>需求人信箱</th>
+							<th>案場縣市</th>
+							<th>案場地區</th>
+							<th>案場詳細地址</th>
+							<th>空間類別</th>
+							<th>坪數</th>
+							<th>預算</th>
+							<th>需求簡介</th>
+							<th>照片</th>
+							<th>檢視估價單</th>
+							<th>修改</th>
+							<th>刪除</th>
+						</tr>
+					</thead>
+					<tbody id="show-list">
 
-		</tr>
+						<%-- 						<%@ include file="page1.file"%> --%>
+						<c:forEach var="serDmdVO" items="${serDmdList}">
+							<%-- 						<c:forEach var="serDmdVO" items="${list}" begin="<%=pageIndex%>"end="<%=pageIndex+rowsPerPage-1%>"> --%>
 
-
-		<c:forEach var="secOrdDetailsVO"
-			items="${list}">
-			<tr>
-				<td>${secOrdDetailsVO.shOrdID}</td>
-				<td>${secOrdDetailsVO.shID}</td>
-				<td>${secOrdDetailsVO.shName}</td>
-				<td>${secOrdDetailsVO.shPrice}</td>
-				<td>${secOrdDetailsVO.shQty}</td>
-			</tr>
-		</c:forEach>
-
-
-
-
-
-	</table>
-
+							<tr>
+								<td>${serDmdVO.dmdID}</td>
+								<td><c:if test="${serDmdVO.dmdStatus == 0}">未投遞</c:if> <c:if
+										test="${serDmdVO.dmdStatus == 1}">投遞中</c:if> <c:if
+										test="${serDmdVO.dmdStatus == 2}">訂單成立</c:if></td>
+								<td>${serDmdVO.dmdMemID}</td>
+								<td>${serDmdVO.dmdSerClaID}</td>
+								<td>${serDmdVO.dmdName}</td>
+								<td>${serDmdVO.dmdTel}</td>
+								<td>${serDmdVO.dmdMail}</td>
+								<td>${serDmdVO.dmdCounty}</td>
+								<td>${serDmdVO.dmdRegion}</td>
+								<td>${serDmdVO.dmdAddress}</td>
+								<td>${serDmdVO.dmdSpaceClass}</td>
+								<td>${serDmdVO.dmdSquare}</td>
+								<td>${serDmdVO.dmdBudget}</td>
+								<td>${serDmdVO.dmdIntro}</td>
+								<td><img src="<%=request.getContextPath()%>/ser_dmd/DBGifReader4?dmdID=${serDmdVO.dmdID}" width=200px></td>
+								
+									
+										
+								<td>
+									<FORM METHOD="post" ACTION="<%=request.getContextPath()%>/ser_quo/FindByQuoDmdIDServlet.do" name="form1">
+									
+									
+									<input type="hidden" name="quoDmdID" value="${serDmdVO.dmdID}">
+										
+									<input type="hidden" name="action" value="findByDmdID"> 
+									<input type="submit" value="檢視報價">
+									</FORM>
+								</td>
+								
+								
+								<td>
+									<FORM METHOD="post"
+										ACTION="<%=request.getContextPath()%>/ser_dmd/UpdateSerDmdServlet.do"
+										style="margin-bottom: 0px;">
+										<input type="submit" value="修改"> 
+										<input type="hidden" name="dmdID" value="${serDmdVO.dmdID}"> 
+										<input type="hidden" name="action" value="UpdateDmd">
+									</FORM>
+								</td>
+								<td>
+									<FORM METHOD="post"
+										ACTION="<%=request.getContextPath()%>/ser_dmd/SerDmdServlet.do"
+										style="margin-bottom: 0px;">
+										<input type="submit" value="刪除"> <input type="hidden"
+											name="dmdID" value="${serDmdVO.dmdID}"> <input
+											type="hidden" name="action" value="delete">
+									</FORM>
+								</td>
+							</tr>
+						</c:forEach>
+					</tbody>
+					<%-- 					<%@ include file="page2.file"%> --%>
+					<!--   insert data         -->
+				</table>
+			</div>
+		</main>
+	</div>
 
 
 
@@ -298,6 +368,5 @@
 
 	<!-- 側邊導覽列結束--------------------------------------- -->
 	<main></main>
-
 </body>
 </html>

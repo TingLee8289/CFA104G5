@@ -148,14 +148,14 @@ public class GetSecItemsServlet extends HttpServlet {
 				/*************************** 3.查詢完成,準備轉交(Send the Success view) *************/
 				req.setAttribute("secItemsVO", secItemsVO); // 資料庫取出的secItemsVO物件,存入req
 				String url = "/frontend/sec_items/showOneSecItems.jsp";
-				RequestDispatcher successView = req.getRequestDispatcher(url); // 成功轉交 listOneEmp.jsp
+				RequestDispatcher successView = req.getRequestDispatcher(url);
 				successView.forward(req, res);
 				
 				/*************************** 其他可能的錯誤處理 *************************************/
 			} catch (Exception e) {
 				e.printStackTrace();
 				errorMsgs.add("無法取得資料:" + e.getMessage());
-				RequestDispatcher failureView = req.getRequestDispatcher("/frontend/sec_items/select_page.jsp");
+				RequestDispatcher failureView = req.getRequestDispatcher("/frontend/sec_items/secItemsViewPage.jsp");
 				failureView.forward(req, res);
 			}
 		}
