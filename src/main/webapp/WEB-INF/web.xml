@@ -21,12 +21,17 @@
 	</resource-ref>
 	
 	<filter>
-		<filter-name>LoginFilter</filter-name>
+		<filter-name>BackendLoginFilter</filter-name>
 		<filter-class>filters.BackendLoginFilter</filter-class>
 	</filter>
 	<filter-mapping>
-		<filter-name>LoginFilter</filter-name>
-		<url-pattern>/backend/loginsucess.jsp</url-pattern>
+		<filter-name>BackendLoginFilter</filter-name>
+		<url-pattern>/backend/index.jsp</url-pattern>
+		<url-pattern>/backend/adminEmp/*</url-pattern>
+		<url-pattern>/backend/member/*</url-pattern>
+		<url-pattern>/backend/ren/*</url-pattern>
+		<url-pattern>/backend/sec_items/*</url-pattern>
+		<url-pattern>/backend/ser/*</url-pattern>
 		<dispatcher>REQUEST</dispatcher>
 		<dispatcher>FORWARD</dispatcher>
 		<dispatcher>INCLUDE</dispatcher>
@@ -39,7 +44,86 @@
 	</filter>
 	<filter-mapping>
 		<filter-name>FronendLoginFilter</filter-name>
-		<url-pattern>/frontend/member/loginsuccess.jsp</url-pattern>
+		<url-pattern>/frontend/member/memberCenter/sellerMemberCenter.jsp</url-pattern>
+		<url-pattern>/frontend/member/memberCenter/buyerMemberCenter.jsp</url-pattern>
+		<dispatcher>REQUEST</dispatcher>
+		<dispatcher>FORWARD</dispatcher>
+		<dispatcher>INCLUDE</dispatcher>
+		<dispatcher>ERROR</dispatcher>
+		<dispatcher>ASYNC</dispatcher>
+	</filter-mapping>
+	<filter>
+		<filter-name>BackendSecurityAdminEmp</filter-name>
+		<filter-class>filters.BackendSecurityAdminEmp</filter-class>
+	</filter>
+	<filter-mapping>
+		<filter-name>BackendSecurityAdminEmp</filter-name>
+		<url-pattern>/backend/adminEmp/*</url-pattern>
+		<dispatcher>REQUEST</dispatcher>
+		<dispatcher>FORWARD</dispatcher>
+		<dispatcher>INCLUDE</dispatcher>
+		<dispatcher>ERROR</dispatcher>
+		<dispatcher>ASYNC</dispatcher>
+	</filter-mapping>
+	<filter>
+		<filter-name>BackendSecurityMember</filter-name>
+		<filter-class>filters.BackendSecurityMember</filter-class>
+	</filter>
+	<filter-mapping>
+		<filter-name>BackendSecurityMember</filter-name>
+		<url-pattern>/backend/member/*</url-pattern>
+		<dispatcher>REQUEST</dispatcher>
+		<dispatcher>FORWARD</dispatcher>
+		<dispatcher>INCLUDE</dispatcher>
+		<dispatcher>ERROR</dispatcher>
+		<dispatcher>ASYNC</dispatcher>
+	</filter-mapping>
+	<filter>
+		<filter-name>BackendSecurityRen</filter-name>
+		<filter-class>filters.BackendSecurityRen</filter-class>
+	</filter>
+	<filter-mapping>
+		<filter-name>BackendSecurityRen</filter-name>
+		<url-pattern>/backend/ren/*</url-pattern>
+		<dispatcher>REQUEST</dispatcher>
+		<dispatcher>FORWARD</dispatcher>
+		<dispatcher>INCLUDE</dispatcher>
+		<dispatcher>ERROR</dispatcher>
+		<dispatcher>ASYNC</dispatcher>
+	</filter-mapping>
+	<filter>
+		<filter-name>BackendSecuritySerRepo</filter-name>
+		<filter-class>filters.BackendSecuritySerRepo</filter-class>
+	</filter>
+	<filter-mapping>
+		<filter-name>BackendSecuritySerRepo</filter-name>
+		<url-pattern>/backend/ser/ser_repo/*</url-pattern>
+		<dispatcher>REQUEST</dispatcher>
+		<dispatcher>FORWARD</dispatcher>
+		<dispatcher>INCLUDE</dispatcher>
+		<dispatcher>ERROR</dispatcher>
+		<dispatcher>ASYNC</dispatcher>
+	</filter-mapping>
+	<filter>
+		<filter-name>BackendSecuritySerAD</filter-name>
+		<filter-class>filters.BackendSecuritySerAD</filter-class>
+	</filter>
+	<filter-mapping>
+		<filter-name>BackendSecuritySerAD</filter-name>
+		<url-pattern>/backend/ser/serAd/*</url-pattern>
+		<dispatcher>REQUEST</dispatcher>
+		<dispatcher>FORWARD</dispatcher>
+		<dispatcher>INCLUDE</dispatcher>
+		<dispatcher>ERROR</dispatcher>
+		<dispatcher>ASYNC</dispatcher>
+	</filter-mapping>
+	<filter>
+		<filter-name>BackendSecuritySerCla</filter-name>
+		<filter-class>filters.BackendSecuritySerCla</filter-class>
+	</filter>
+	<filter-mapping>
+		<filter-name>BackendSecuritySerCla</filter-name>
+		<url-pattern>/backend/ser/ser_cla/*</url-pattern>
 		<dispatcher>REQUEST</dispatcher>
 		<dispatcher>FORWARD</dispatcher>
 		<dispatcher>INCLUDE</dispatcher>
