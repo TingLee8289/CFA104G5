@@ -289,17 +289,7 @@ SerQuoVO serQuoVO = (SerQuoVO) request.getAttribute("serQuoVO");
 					</c:forEach>
 				</td>
 			</tr>
-			<tr>
-				<td>廠商編號:</td>
-				<td>
-					<c:forEach var="serVdrVO" items="${serVdrVO.all}">
-								<c:if test="${quoVdrID==serVdrVO.vdrID}">
-											${serVdrVO.vdrIntro}
-								</c:if>
-					</c:forEach>
-				</td>
-			</tr>
-
+			
 
 
 			
