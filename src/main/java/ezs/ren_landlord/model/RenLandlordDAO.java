@@ -156,6 +156,18 @@ public class RenLandlordDAO implements RenLandlordDAO_interface {
 		return list;
 	}
 
+	
+	public Integer findByMEM(Integer lddMemId) {
+		RenLandlordVO renLandlordVO = null;
+		System.out.println("check one");
+
+		System.out.println(lddMemId);
+
+		try {
+			con = ds.getConnection();
+			pstmt = con.prepareStatement(GET_BY_MEMID);
+
+
 //
 	@Override
 	public List<RenLandlordVO> findByMemID(Integer lddmemID ) {
