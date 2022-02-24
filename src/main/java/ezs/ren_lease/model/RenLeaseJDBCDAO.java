@@ -20,7 +20,7 @@ public class RenLeaseJDBCDAO implements RenLeaseDAO_interface {
 	private static final String DELETE = "DELETE FROM `CFA104G5`.`REN_LEASE` WHERE lse_id = ?";
 	private static final String UPDATE = "UPDATE `CFA104G5`.`REN_LEASE` SET lse_mem_id=?, lse_lis_id=?, lse_ldd_id=?, lse_ldd_score=?, lse_ldd_txt=?, lse_tnt_score=?,lse_tnt_txt =?,lse_status =?,lse_timestamp=?,lse_start =?,lse_end =? WHERE lse_id = ?";
 	
-	private static final String GET_ONE_MEM = "SELECT * FROM `CFA104G5`.`REN_LEASE` WHERE lse_mem_id = ?";
+	private static final String GET_ONE_MEM = "SELECT * FROM `CFA104G5`.`REN_LEASE` WHERE lse_leasememid = ?";
 
 	static {
 		try {
@@ -179,13 +179,13 @@ public class RenLeaseJDBCDAO implements RenLeaseDAO_interface {
 	}
 	
 	@Override
-	public List<RenLeaseVO> getAllMEM(Integer lseMemId) {
+	public List<RenLeaseVO> getAllMEM(Integer lseLeaseMemId) {
 		List<RenLeaseVO> list = new ArrayList<RenLeaseVO>();
 		RenLeaseVO renLeaseVO = null;
 		try {
 			con = DriverManager.getConnection(Util.URL, Util.USER, Util.PASSWORD);
 			pstmt = con.prepareStatement(GET_ONE_MEM);
-			pstmt.setInt(1, lseMemId);
+			pstmt.setInt(1, lseLeaseMemId);
 			rs = pstmt.executeQuery();
 			
 			while (rs.next()) {

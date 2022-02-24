@@ -65,10 +65,7 @@ pageContext.setAttribute("list", list);
 					class="fas fa-user fa-fw"></i></a>
 				<ul class="dropdown-menu dropdown-menu-end"
 					aria-labelledby="navbarDropdown">
-					<li><a class="dropdown-item" href="#!">設定</a></li>
-					<li><a class="dropdown-item" href="#!">Activity Log</a></li>
-					<li><hr class="dropdown-divider" /></li>
-					<li><a class="dropdown-item" href="#!">登出</a></li>
+					<li><a class="dropdown-item" href="<%= request.getContextPath()%>/admin_emp/AdminEmpServlet.do?action=logout">登出</a></li>
 				</ul></li>
 		</ul>
 	</nav>
@@ -79,7 +76,7 @@ pageContext.setAttribute("list", list);
 				<div class="sb-sidenav-menu">
 					<div class="nav">
 						<div class="sb-sidenav-menu-heading">後台管理專區</div>
-						<a class="nav-link" href="index.html">
+						<a class="nav-link" href="<%=request.getContextPath()%>/backend/adminEmp/adminEmp.jsp">
 							<div class="sb-nav-link-icon">
 								<i class="fas fa-tachometer-alt"></i>
 							</div> 員工管理
@@ -99,8 +96,8 @@ pageContext.setAttribute("list", list);
 						<div class="collapse" id="collapseLayouts"
 							aria-labelledby="headingOne" data-bs-parent="#sidenavAccordion">
 							<nav class="sb-sidenav-menu-nested nav">
-								<a class="nav-link" href="layout-static.html">審核房源</a> <a
-									class="nav-link" href="layout-sidenav-light.html">審核房東</a>
+								<a class="nav-link" href="<%=request.getContextPath()%>/backend/index.jsp">審核房源</a> <a
+									class="nav-link" href="<%=request.getContextPath()%>/backend/ren/select.jsp">審核房東</a>
 							</nav>
 						</div>
 						<!-- ------------------------------------------------------------------------------------------------- -->
@@ -117,8 +114,8 @@ pageContext.setAttribute("list", list);
 						<div class="collapse" id="collapsePages"
 							aria-labelledby="headingTwo" data-bs-parent="#sidenavAccordion">
 							<nav class="sb-sidenav-menu-nested nav">
-								<a class="nav-link" href="layout-static.html">退款審核</a> <a
-									class="nav-link" href="layout-sidenav-light.html">商品下架</a>
+								<a class="nav-link" href="<%=request.getContextPath()%>/backend/index.jsp">退款審核</a> <a
+									class="nav-link" href="<%=request.getContextPath()%>/backend/sec_items/secitems.jsp">商品下架</a>
 							</nav>
 						</div>
 						<!-- ------------------------------------------------------------------------------------------------- -->
@@ -159,7 +156,6 @@ pageContext.setAttribute("list", list);
 							<nav class="sb-sidenav-menu-nested nav">
 								<a class="nav-link"
 									href="<%=request.getContextPath()%>/backend/member/listAllMember.jsp">會員資料管理</a>
-								<!--                                     <a class="nav-link" href="layout-static.html">會員資料管理</a> -->
 							</nav>
 						</div>
 						<!-- ------------------------------------------------------------------------------------------------- -->

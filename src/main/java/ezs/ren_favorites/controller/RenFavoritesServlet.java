@@ -233,7 +233,7 @@ public class RenFavoritesServlet extends HttpServlet {
 			// Store this set in the request scope, in case we need to
 			// send the ErrorPage view.
 			req.setAttribute("errorMsgs", errorMsgs);
-
+		
 			try {
 				/*************************** 1.接收請求參數 ***************************************/
 				Integer favLisId = new Integer(req.getParameter("favLisId"));
@@ -244,14 +244,14 @@ public class RenFavoritesServlet extends HttpServlet {
 				renFavSvc.deleteRenFav(favLisId, favMemId);
 
 				/*************************** 3.刪除完成,準備轉交(Send the Success view) ***********/
-				String url = "/frontend/ren_favorites/select_page.jsp";
+				String url = "/frontend/ren_favorites/listOneRenFavorites.jsp";
 				RequestDispatcher successView = req.getRequestDispatcher(url);// 刪除成功後,轉交回送出刪除的來源網頁
 				successView.forward(req, res);
 
 				/*************************** 其他可能的錯誤處理 **********************************/
 			} catch (Exception e) {
 				errorMsgs.add("刪除資料失敗:" + e.getMessage());
-				RequestDispatcher failureView = req.getRequestDispatcher("/frontend/ren_favorites/select_page.jsp");
+				RequestDispatcher failureView = req.getRequestDispatcher("/frontend/ren_favorites/listOneRenFavorites.jsp");
 				failureView.forward(req, res);
 			}
 		}

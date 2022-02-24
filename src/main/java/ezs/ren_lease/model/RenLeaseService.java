@@ -55,9 +55,10 @@ public class RenLeaseService {
 	public List<RenLeaseVO> getAll() {
 		return dao.getAll();
 	}
-	
-	public List<RenLeaseVO> getAllMEM(Integer lseMemId){
-		return dao.getAllMEM(lseMemId);
+
+
+	public List<RenLeaseVO> getAllMEM(Integer lseLeaseMemId){
+		return dao.getAllMEM(lseLeaseMemId);
 	}
 
 	public List<RenLeaseVO> getAllLease(Integer lse_mem_id) {

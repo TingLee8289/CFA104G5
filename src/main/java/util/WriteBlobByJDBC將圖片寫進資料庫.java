@@ -40,19 +40,19 @@ public class WriteBlobByJDBC將圖片寫進資料庫 {
 //
 //			System.out.println("二手商品圖片新增成功");
 			
-//			pstmt = con.prepareStatement("UPDATE Member SET mem_Headshot = ? WHERE mem_ID = ? ");
-//
-//			File file2 = new File("src/main/webapp/images/cmn/member_pic/");
-//			File[] listFile2 = file2.listFiles();
-//			for (int i = 0; i < file2.listFiles().length; i++) {
-//				String url = listFile2[i].toString();
-//				System.out.println(url);
-//				byte[] pic = getPictureByteArray(url);
-//				pstmt.setBytes(1, pic);
-//				pstmt.setInt(2, i+1);
-//				pstmt.executeUpdate();
-//			}
-//      System.out.println("會員頭相新增成功");
+			pstmt = con.prepareStatement("UPDATE Member SET mem_Headshot = ? WHERE mem_ID = ? ");
+
+			File file2 = new File("src/main/webapp/images/cmn/member_pic/");
+			File[] listFile2 = file2.listFiles();
+			for (int i = 0; i < file2.listFiles().length; i++) {
+				String url = listFile2[i].toString();
+				System.out.println(url);
+				byte[] pic = getPictureByteArray(url);
+				pstmt.setBytes(1, pic);
+				pstmt.setInt(2, i+1);
+				pstmt.executeUpdate();
+			}
+      System.out.println("會員頭相新增成功");
 
 
 			// 請先到SQL下指令找出你的PIC欄位
