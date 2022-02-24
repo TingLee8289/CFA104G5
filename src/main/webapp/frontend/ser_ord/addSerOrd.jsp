@@ -19,7 +19,7 @@ pageContext.setAttribute("oneDmdVO", oneDmdVO);
 <html>
 <head>
 <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
-<title>新增服務服務訂單 - addOrder.jsp</title>
+<title>EASY SPACE</title>
 
 <style>
 table#table-1 {
@@ -86,9 +86,7 @@ th, td {
 		</ul>
 	</c:if>
 <div style= "width:500px; margin:auto; border:solid 1px red;">
-		<FORM METHOD="post" 
-		ACTION="<%=request.getContextPath()%>/ser_ord/AddOrdServlet.do"
-		name="form1">
+		<FORM METHOD="post" ACTION="<%=request.getContextPath()%>/ser_ord/AddOrdServlet.do" name="form1">
 		<table>
 			<tr>
 				
@@ -160,8 +158,7 @@ th, td {
 			</tr>
 			<tr>
 				<td>總金額:</td>
-				<td><input type="TEXT" name="ordTotalPrice"
-					value="${oneQuoVO.quoTotalPrice}" /></td>
+				<td><input type="TEXT" name="ordTotalPrice" value="${oneQuoVO.quoTotalPrice}" /></td>
 			</tr>
 			<tr>
 				<td>備註:</td>

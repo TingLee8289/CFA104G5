@@ -11,7 +11,7 @@ SerDmdVO serDmdVO = (SerDmdVO) request.getAttribute("serDmdVO");
 <head>
 <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
 <script src="<%=request.getContextPath()%>/frontend/js/jquery-1.11.3.min.js"></script>
-<title>需求單資料修改 - update_serDmd_input.jsp</title>
+<title>EASY SPACE</title>
 
 <style>
   table#table-1 {
@@ -61,10 +61,6 @@ SerDmdVO serDmdVO = (SerDmdVO) request.getAttribute("serDmdVO");
 	</td></tr>
 </table>
 <div style="text-align: center">
-<h3>資料修改</h3>
-</div>
-
-
 <%-- 錯誤表列 --%>
 <c:if test="${not empty errorMsgs}">
 	<font style="color:red">請修正以下錯誤:</font>
@@ -74,29 +70,33 @@ SerDmdVO serDmdVO = (SerDmdVO) request.getAttribute("serDmdVO");
 		</c:forEach>
 	</ul>
 </c:if>
+</div>
 
-<FORM METHOD="post" enctype="multipart/form-data" ACTION="<%=request.getContextPath()%>/ser_dmd/SerDmdServlet.do" name="form1">
+
+
+
+<FORM METHOD="post" enctype="multipart/form-data" ACTION="<%=request.getContextPath()%>/ser_dmd/UpdateSerDmdServlet.do" name="form1">
 <table>
 	<tr>
 		<td>需求單ID:</td>
-		<td><input type="TEXT" name="dmdID" size="8"
-			 value="<%= serDmdVO.getDmdID() %>" /></td>
+		<td><input type="TEXT" name="dmdID" size="8" value="<%= serDmdVO.getDmdID() %>" disabled /></td>
 	</tr>
-	<tr>
-		<td>需求單狀態:</td>
-		<td><input type="TEXT" name="dmdStatus" size="8"
-			 value="<%= serDmdVO.getDmdStatus() %>" /></td>
-	</tr>
-	<tr>
-		<td>會員ID:</td>
-		<td><input type="TEXT" name="dmdMemID" size="50"
-			 value="<%= serDmdVO.getDmdMemID() %>"/></td>
-	</tr>
+<!-- 	<tr> -->
+		
+<%-- 		<td><input type="hidden" name="dmdStatus" size="8" value="<%= serDmdVO.getDmdStatus() %>" /></td> --%>
+<!-- 	</tr> -->
 	
+	<jsp:useBean id="serClaSvc" scope="page" class="ezs.ser_cla.model.SerClaService" />
 	<tr>
-		<td>服務類別ID:</td>
-		<td><input type="TEXT" name="dmdSerClaID" size="8"
-			 value="<%= serDmdVO.getDmdSerClaID() %>"/></td>
+		<td>服務類別:</td>
+		<td>
+			<c:forEach var="serClaVO" items="${serClaSvc.all}">
+				<c:if test="${serDmdVO.dmdSerClaID==serClaVO.serClaID}">
+					${serClaVO.serClaName}
+				</c:if>
+			</c:forEach>
+		<input type="hidden" name="dmdSerClaID" size="8" value="<%= serDmdVO.getDmdSerClaID() %>"/>
+		</td>
 	</tr>
 	<tr>
 		<td>需求人姓名:</td>
@@ -110,8 +110,7 @@ SerDmdVO serDmdVO = (SerDmdVO) request.getAttribute("serDmdVO");
 	</tr>
 	<tr>
 		<td>需求人信箱:</td>
-		<td><input type="EMAIL" name="dmdMail" 
-			 value="<%=  serDmdVO.getDmdMail() %>"/></td>
+		<td><input type="EMAIL" name="dmdMail" size="20" value="<%=  serDmdVO.getDmdMail() %>"/></td>
 	</tr>
 	<tr>
 		<td>案場縣市:</td>
@@ -169,6 +168,10 @@ SerDmdVO serDmdVO = (SerDmdVO) request.getAttribute("serDmdVO");
 <br>
 <input type="hidden" name="action" value="update">
 <input type="hidden" name="dmdID" value="<%=serDmdVO.getDmdID()%>">
+<input type="hidden" name="dmdStatus" size="8" value="<%= serDmdVO.getDmdStatus() %>" />
+<input type="hidden" name="dmdMemID" size="8" value="<%= serDmdVO.getDmdMemID() %>"/>
+<input type="hidden" name="dmdSerClaID" size="8" value="<%= serDmdVO.getDmdSerClaID() %>"/>
+
 </FORM>
 </body>
 <script>

@@ -48,18 +48,19 @@ public class GetSecOrdDetailsBySellerServlet extends HttpServlet {
 				Set<SecOrdDetailsVO> set = secOrdSvc.getSecAllOrdDeatails(shOrdID);
 					System.out.println(shOrdID);				
 				/*************************** 3.查詢完成,準備轉交(Send the Success view) ************/
-				req.setAttribute("listSecOrdDetails_BySecOrd", set); // 資料庫取出的list物件,存入request
+				req.setAttribute("list", set); // 資料庫取出的list物件,存入request
 
 				String url = null;
-				if ("listSecOrdDetails_BySecOrd_A".equals(action))
-					url = "/frontend/sec_ord/listSecOrdDetails_BySecOrd.jsp"; // 成功轉交
-																				// /frontend/sec_ord/listSecOrdDetails_BySecOrd.jsp
-				else if ("listSecOrdDetails_BySecOrd_B".equals(action))
+				if ("listSecOrdDetails_BySecOrd_A".equals(action)) 
+					url = "/frontend/sec_ord/listSecOrdDetails_ByShOrdID.jsp"; // 成功轉交
+				
+															// /frontend/sec_ord/listSecOrdDetails_BySecOrd.jsp
+				else if ("listSecOrdDetails_BySecOrd_B".equals(action)) 
 					url = "/frontend/sec_ord/listAllSecOrd.jsp"; // 成功轉交 /frontend/sec_ord/listAllDept.jsp
-
+				
 				RequestDispatcher successView = req.getRequestDispatcher(url);
 				successView.forward(req, res);
-
+				System.out.println(successView);
 				/*************************** 其他可能的錯誤處理 ***********************************/
 			} catch (Exception e) {
 				e.printStackTrace();

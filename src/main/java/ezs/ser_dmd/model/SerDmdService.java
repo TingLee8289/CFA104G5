@@ -70,4 +70,8 @@ public class SerDmdService {
 	public List<SerDmdVO> getAll() {
 		return dao.getAll();
 	}
+	
+	public void setDmdStatus(Integer dmdID) {
+		dao.setDmdStatus(dmdID);
+		}
 }

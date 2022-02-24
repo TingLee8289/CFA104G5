@@ -15,9 +15,6 @@
         <link href="<%=request.getContextPath()%>/css/styles.css" rel="stylesheet" />
         <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/js/all.min.js" crossorigin="anonymous"></script>
   
-
-<title>EASY SPACE</title>
-
 </head>
 
     <body class="sb-nav-fixed">
@@ -89,8 +86,12 @@
                             </a>
                             <div class="collapse" id="collapsePages2" aria-labelledby="headingThree" data-bs-parent="#sidenavAccordion">
                                 <nav class="sb-sidenav-menu-nested nav">
-                                    <a class="nav-link" href="<%=request.getContextPath()%>/backend/index.jsp">管理服務檢舉</a>
-                                    <a class="nav-link" href="<%=request.getContextPath()%>/backend/index.jsp">管理服務類別</a>
+                                    <a class="nav-link"
+									href="<%=request.getContextPath()%>/backend/ser/ser_repo/select_page.jsp">服務檢舉管理</a>
+								<a class="nav-link"
+									href="<%=request.getContextPath()%>/backend/ser/ser_cla/select_page.jsp">服務類別管理</a>
+								<a class="nav-link"
+									href="<%=request.getContextPath()%>/backend/ser/serAd/select_page.jsp">刊登服務管理</a>
                                 </nav>
                             </div>
 <!-- ------------------------------------------------------------------------------------------------- -->

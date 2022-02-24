@@ -39,8 +39,11 @@ public class InsertSerRepoServlet extends HttpServlet {
 				Integer rpMemID = new Integer(req.getParameter("rpMemID").trim());
 
 				String rpTxt = req.getParameter("rpTxt").trim();
+				String txtReg = "^[(\\u4e00-\\u9fa5)(0-9)]{5,50}$";
 				if (rpTxt == null || rpTxt.trim().length() == 0) {
 					errorMsgs.add("檢舉內容請勿空白");
+				}else if (!rpTxt.trim().matches(txtReg)) { // 以下練習正則(規)表示式(regular-expression)
+					errorMsgs.add("請重新輸入檢舉內容，最少五個字");
 				}
 
 				java.sql.Date rpDate = null;

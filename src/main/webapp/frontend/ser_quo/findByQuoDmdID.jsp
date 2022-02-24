@@ -3,7 +3,7 @@
 <%@ page import="java.util.*"%>
 <%@ page import="ezs.ser_quo.model.*"%>
 <%@ page import="ezs.ser_dmd.model.*"%>
-<% session.setAttribute("memID", 2);%>
+<%-- <% session.setAttribute("memID", 2);%> --%>
 <% 
 SerQuoVO serQuoVO = (SerQuoVO) request.getAttribute("serQuoVO");
 %>
@@ -17,7 +17,7 @@ SerQuoVO serQuoVO = (SerQuoVO) request.getAttribute("serQuoVO");
 <html>
 <head>
 <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
-<title>會員檢視估價單 - findByDmdID.jsp</title>
+<title>EASY SPACE</title>
 
 
 

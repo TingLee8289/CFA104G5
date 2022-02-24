@@ -43,11 +43,6 @@ public class RegisterMailServlet extends HttpServlet {
 		String VerifLink = req.getScheme()+"://"+req.getServerName()+":"+req.getServerPort()+req.getContextPath()+
 				"/member/MemberVerificationServlet.do?action=verify&memUserName="+memberVO.getMemUsername()+"&verifCode="+passRandom; // mail內的連結
 
-		
-		
-		
-		
-		
 		Jedis jedis = new Jedis("localhost", 6379);
 		jedis.set(memberVO.getMemUsername(), passRandom);
 		jedis.close();
@@ -60,6 +55,7 @@ public class RegisterMailServlet extends HttpServlet {
 		RegisterMailServlet mailService = new RegisterMailServlet();
 		mailService.sendMail(to, subject, messageText);
 		
+		req.setAttribute("memberVO", memberVO);
 		String url = "/frontend/member/memberVerificationPage.jsp";
 		RequestDispatcher successView = req.getRequestDispatcher(url); 
 		successView.forward(req, res);

@@ -142,9 +142,11 @@
 							aria-labelledby="headingThree" data-bs-parent="#sidenavAccordion">
 							<nav class="sb-sidenav-menu-nested nav">
 								<a class="nav-link"
-									href="<%=request.getContextPath()%>/backend/index.jsp">管理服務檢舉</a>
+									href="<%=request.getContextPath()%>/backend/ser/ser_repo/select_page.jsp">服務檢舉管理</a>
 								<a class="nav-link"
-									href="<%=request.getContextPath()%>/backend/index.jsp">管理服務類別</a>
+									href="<%=request.getContextPath()%>/backend/ser/ser_cla/select_page.jsp">服務類別管理</a>
+								<a class="nav-link"
+									href="<%=request.getContextPath()%>/backend/ser/serAd/select_page.jsp">刊登服務管理</a>
 							</nav>
 						</div>
 						<!-- ------------------------------------------------------------------------------------------------- -->

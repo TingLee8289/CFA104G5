@@ -15,11 +15,15 @@
 	pageContext.setAttribute("set1", set1);
 %> 
 <jsp:useBean id="renLocationSvc" scope="page" class="ezs.ren_location.model.RenLocationService" />
+<jsp:useBean id="renRoomtypeSvc" scope="page" class="ezs.ren_roomtype.model.RenRoomtypeService" />
+<jsp:useBean id="renLandlordSvc" scope="page" class="ezs.ren_landlord.model.RenLandlordService" />
+<jsp:useBean id="memberSvc" scope="page" class="ezs.member.model.MemberService" />
+
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
-<title>本區域房源</title>
+<title>EASY SPACE</title>
 <style>
   table#table-2 {
 	background-color: #CCCCFF;
@@ -59,7 +63,7 @@
 <table id="table-2">
 	<tr><td>
 		 <h3>此區房源 - listListing_ByLisAreaID.jsp</h3>
-			<h4><a href="<%=request.getContextPath()%>/listing_select_page.jsp">回首頁</a></h4>	</td></tr>
+			<h4><a href="listing_select_page.jsp">回首頁</a></h4>	</td></tr>
 </table>
 
 <%-- 錯誤表列 --%>
@@ -75,7 +79,7 @@
 <table>
 	<tr>
 		<th>物件編號</th>
-		<th>房東編號</th>
+		<th>房東</th>
 		<th>房型</th>
 		<th>廣告標題</th>
 		<th>租金</th>
@@ -85,14 +89,22 @@
 		<th>廳</th>
 		<th>衛</th>
 		<th>詳情</th>
-		<th>加入收藏</th>
+<!-- 		<th>加入收藏</th> -->
 	</tr>
 	<%@ include file="page1.file"%>
 	<c:forEach var="renListingVO" items="${set1}" begin="<%=pageIndex%>" end="<%=pageIndex+rowsPerPage-1%>">
 	
 		<tr>
 			<td>${renListingVO.lisID}</td>			
-			<td>${renListingVO.lisLddID}</td>
+			<td><c:forEach var="renLandlordVO" items="${renLandlordSvc.all}">
+                    <c:if test="${renListingVO.lisLddID==renLandlordVO.lddId}">
+			<c:forEach var="memberVO" items="${memberSvc.all}">
+                    		<c:if test="${renLandlordVO.lddId==memberVO.memID}">
+                    		 	${memberVO.memID}${memberVO.memName}
+                      	 </c:if>
+                       </c:forEach>
+                   </c:if>
+                </c:forEach></td>
 			<td><c:forEach var="renRoomtypeVO" items="${renRoomtypeSvc.all}">
                     <c:if test="${renListingVO.lisRtID==renRoomtypeVO.rtID}">
 	                    ${renRoomtypeVO.rtID}${renRoomtypeVO.rtType}
@@ -106,6 +118,8 @@
 			<td>${renListingVO.lisRmNo}</td>
 			<td>${renListingVO.lisCmnArea}</td>
 			<td>${renListingVO.lisBrNo}</td>
+			<td><img src="<%=request.getContextPath()%>/ren_listing/RenListing_pic_ReaderServlet.do?LIS_ID=
+				 ${renListingVO.lisID}" width = 200px></td>
 			<td>
 				<FORM METHOD="post" ACTION="<%=request.getContextPath()%>/frontend/ren_listing/RenListingServlet.do" style="margin-bottom: 0px;">
 					<input type="submit" value="詳情">

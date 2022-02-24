@@ -26,7 +26,7 @@ System.out.println(list1.size());
 
 <html>
 <head>
-<title>所有租賃單資料</title>
+<title>EASY SPACE</title>
 
 </head>
 <body bgcolor='white'>

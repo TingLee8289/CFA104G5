@@ -10,8 +10,11 @@ public interface SerDmdDAO_interface {
 	public void delete(Integer dmdID);
 
 	public SerDmdVO findByPrimaryKey(Integer dmdID);
+
 	public List<SerDmdVO> findByMemID(Integer dmdMemID);
 
 	public List<SerDmdVO> getAll();
+	
+	public void setDmdStatus(Integer dmdID);
 
 }

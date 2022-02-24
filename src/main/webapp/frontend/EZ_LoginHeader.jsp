@@ -48,7 +48,7 @@
 		
 		#logo{
 			max-height: 60px;
-			margin: auto 0px;
+			margin: auto 20px;
 		}
 		
 		
@@ -62,7 +62,7 @@
 
 	<div class="header">
 		<div class="header">
-			<div class="col-2 pl-md-0 text-left" style="display: inline-block;">
+			<div class="col-2 pl-md-0 text-left" style="display: inline-block; width:100px">
 				<a href="<%=request.getContextPath()%>/frontend/EZ_home.jsp"> 
 				<img src="<%=request.getContextPath()%>/images/cmn/index/EASYSPACE.png" alt="image" id="logo">
 				</a>

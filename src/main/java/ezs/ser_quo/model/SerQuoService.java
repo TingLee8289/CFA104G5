@@ -61,4 +61,6 @@ public class SerQuoService {
 	public List<SerQuoVO> findByDmdID(Integer dmdID) {
 		return dao.findByDmdID(dmdID);
 	}
+	
+	
 }

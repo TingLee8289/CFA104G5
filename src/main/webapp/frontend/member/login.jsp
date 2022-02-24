@@ -7,7 +7,7 @@
 <meta charset="UTF-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Document</title>
+<title>EASY SPACE</title>
 <link
 	href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
 	rel="stylesheet" id="bootstrap-css">
@@ -227,6 +227,14 @@ a {
 		<front style="color: red">請修正以下錯誤:</front>
 		<ul>
 			<c:forEach var="message" items="${errorMsgs}">
+				<p style="color: red">${message}</p>
+			</c:forEach>
+		</ul>
+	</c:if>
+	<%-- 檢舉錯誤表列 --%>
+	<c:if test="${not empty repo}">
+		<ul>
+			<c:forEach var="message" items="${repo}">
 				<p style="color: red">${message}</p>
 			</c:forEach>
 		</ul>

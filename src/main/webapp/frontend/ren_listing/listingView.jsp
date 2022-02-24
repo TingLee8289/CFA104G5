@@ -1,42 +1,60 @@
+<%@page import="ezs.ren_roomtype.model.RenRoomtypeVO"%>
+<%@page import="ezs.ren_roomtype.model.RenRoomtypeService"%>
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ page import="java.util.*"%>
 <%@ page import="ezs.ren_listing.model.*"%>
-<%@ page import="ezs.ren_listing_pic.model.*"%>
 <%@ page import="ezs.ren_roomtype.model.*"%>
 <%@ page import="ezs.ren_location.model.*"%>
+<%@ page import="ezs.ren_listing_pic.model.*"%>
 <%@ page import="ezs.ren_location.model.RenLocationVO"%>
 <%@ page import="ezs.ren_location.model.RenLocationService"%>
-<%@page import="ezs.ren_roomtype.model.RenRoomtypeVO"%>
-<%@page import="ezs.ren_roomtype.model.RenRoomtypeService"%>
+
 
 <%
-RenListingPicService renListingPicSvc = new RenListingPicService();
-List<RenListingPicVO> renListingPiclist = renListingPicSvc.getEachListingFirstPic();
-pageContext.setAttribute("renListingPiclist", renListingPiclist);
-
-RenListingService renListingSvc = new RenListingService();
-List<RenListingVO> renListinglist = renListingSvc.getAll();
-pageContext.setAttribute("renListinglist", renListinglist);
-
-RenRoomtypeService renRoomtypeSvc = new RenRoomtypeService();
-List<RenRoomtypeVO> renRoomtypelist = renRoomtypeSvc.getAll();
-pageContext.setAttribute("renRoomtypelist", renRoomtypelist);
-
-RenLocationService renLocationSvc = new RenLocationService();
-List<RenLocationVO> renLocationlist = renLocationSvc.getAll();
-pageContext.setAttribute("renLocationlist", renLocationlist);
-
+	RenListingService renListingSvc = new RenListingService();
+	List<RenListingVO> renListinglist = renListingSvc.getAll();
+	pageContext.setAttribute("renListinglist",renListinglist);
+	
+	RenListingPicService renListingPicSvc = new RenListingPicService();
+	List<RenListingPicVO> renListingPiclist = renListingPicSvc.getEachListingFirstPic();
+	pageContext.setAttribute("renListingPiclist", renListingPiclist);
 
 %>
 
+<jsp:useBean id="renRoomtypeSvc" scope="page" class="ezs.ren_roomtype.model.RenRoomtypeService" />
+<jsp:useBean id="renLocationSvc" scope="page" class="ezs.ren_location.model.RenLocationService" />
+<jsp:useBean id="renLandlordSvc" scope="page" class="ezs.ren_landlord.model.RenLandlordService" />
+<jsp:useBean id="memberSvc" scope="page" class="ezs.member.model.MemberService" />
+
 <!DOCTYPE html>
 <html>
-<head>
-    <meta charset="utf-8">
+  <head>
+    <!-- 
+    More Templates Visit ==> ProBootstrap.com
+    Free Template by ProBootstrap.com under the License Creative Commons 3.0 ==> (probootstrap.com/license)
+
+    IMPORTANT: You can do whatever you want with this template but you need to keep the footer link back to ProBootstrap.com
+    -->
     <title>EASY SPACE</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
-    <style>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="Free HTML5 Website Template by ProBootstrap.com" />
+    <meta name="keywords" content="free bootstrap 4, free bootstrap 4 template, free website templates, free html5, free template, free website template, html5, css3, mobile first, responsive" />
+    <meta name="author" content="ProBootstrap.com" />
+    
+    <!-- <link href="https://fonts.googleapis.com/css?family=Work+Sans" rel="stylesheet"> -->
+
+    <link rel="stylesheet" href="<%=request.getContextPath() %>/css/bootstrap.min.css">
+    <link rel="stylesheet" href="<%=request.getContextPath() %>/css/open-iconic-bootstrap.min.css">
+    
+    <link rel="stylesheet" href="<%=request.getContextPath() %>/css/owl.carousel.min.css">
+    <link rel="stylesheet" href="<%=request.getContextPath() %>/css/owl.theme.default.min.css">
+
+    <link rel="stylesheet" href="<%=request.getContextPath() %>/css/icomoon.css">
+    <link rel="stylesheet" href="<%=request.getContextPath() %>/css/animate.css">
+    <link rel="stylesheet" href="<%=request.getContextPath() %>/css/viewPage.css">
+<style>
       *{
         box-sizing: border-box;
       }
@@ -66,9 +84,9 @@ pageContext.setAttribute("renLocationlist", renLocationlist);
       }
       /* ==================== aside 區域 ==================== */
       aside.aside{
-        border: 1px solid blue;
+/*         border: 1px solid blue; */
         position: fixed;
-        top: var(--header-height)+100px;
+        top: var(--header-height)+100px; 
         left: 0;
         height: calc(100% - var(--header-height));
         width: var(--aside-width);
@@ -76,6 +94,7 @@ pageContext.setAttribute("renLocationlist", renLocationlist);
         overflow-y: auto;
         padding: 20px 0;
         transition: all 1s;
+        margin-top: 1
       }
       aside.aside button.btn_hamburger{
         display: none;
@@ -101,20 +120,21 @@ pageContext.setAttribute("renLocationlist", renLocationlist);
       }
       aside.aside > nav.nav > ul.nav_list > li > a{
         display: inline-block;
-        border: 1px solid lightblue;
+/*         border: 1px solid lightblue; */
         width: 100%;
         padding: 3px 10px;
       }
 
       /* ==================== main 區域 ==================== */
       main.main{
-        border: 1px solid red;
+/*         border: 1px solid red; */
         margin-left: var(--aside-width);
         width: calc(100% - var(--aside-width));
         padding: 20px;
-        background-color: hsl(34, 100%, 84%);
+        background-color: white;
         min-height: calc(100vh - var(--header-height));
         transition: all 1s;
+        margin-top: 80px;
       }
       @media screen and (max-width: 767px){
         main.main{
@@ -149,209 +169,133 @@ pageContext.setAttribute("renLocationlist", renLocationlist);
       }
       main.main ul.item_list > li > a{
         display: inline-block;
-        border: 1px solid red;
+/*         border: 1px solid red;  */
         text-decoration: none;
         width: 100%;
       }
       main.main ul.item_list > li > a div.img_block{
-        border: 1px solid blue;
+        border: 1px solid #e1e1e1;
         font-size: 0;
         height: 200px;
+        display: flex;
       }
       main.main ul.item_list > li > a span.item_text{
-        border: 1px solid blue;
+/*         border: 1px solid blue;  */
         white-space: nowrap;
         overflow: hidden;
         text-overflow: ellipsis;
         display: block;
         width: 100%;
       }
+      main.main ul.item_list > li > a span.item_price{
+/*         border: 1px solid blue;  */
+        display: block;
+        width: 100%;
+      }
     </style>
-</head>
+  </head>
 <body>
-<!-- 	header 開始------------------------------------------------------ -->
-    <header class="header">
-      <button type="button" class="btn_hamburger">按鈕</button>這是 header
-    </header>
-<!-- 	header 結束------------------------------------------------------ -->
-<!-- 	側邊欄 開始-------------------------------------------------------- -->
-    <aside class="aside">
-      <nav class="nav">
-        <button type="button" class="btn_hamburger">按鈕</button>
-        <ul class="nav_list">
-	        <c:forEach var="renListingVO" items="${renListinglist}">
-	         	 <li>
-	         	 	<form method="get" action="<%=request.getContextPath() %>/frontend/renListing/secItemsViewPageAJAX.jsp">
-		         	 	<button type="button" id="Cate${secCategoryVO.shCateID}">${secCategoryVO.shCateName}</button>
-		         	 	<input type="hidden" name="shCateID" value="${secCategoryVO.shCateID}">
-	         	 	</form>
-	         	 </li>  
-	        </c:forEach>
-        </ul>
-      </nav>
+<%--   	<jsp:include page="/frontend/EZ_nav.jsp"/> --%>
+    <jsp:include page="/frontend/EZ_LoginHeader.jsp" />
+    <aside class="probootstrap-aside js-probootstrap-aside aside">
+      <a href="#" class="probootstrap-close-menu js-probootstrap-close-menu d-md-none"><span class="oi oi-arrow-left"></span> Close</a>
+      <div class="probootstrap-site-logo probootstrap-animate" data-animate-effect="fadeInLeft">
+        
+        <a href="<%=request.getContextPath() %>/frontend/ren_listing/listingView.jsp" class="mb-2 d-block probootstrap-logo">找租屋</a>
+<!--         <p class="mb-0">這是說明文字這是說明文字這是說明文字這是說明文字 </p> -->
+      </div>
+      <div class="probootstrap-overflow">
+        <nav class="probootstrap-nav">
+          <ul>
+            <li class="probootstrap-animate active" data-animate-effect="fadeInLeft"><a href="<%=request.getContextPath() %>/frontend/ren_listing/listingView.jsp">瀏覽租屋案件</a></li>
+            <li>
+      <FORM METHOD="post" ACTION="RenListingServlet.do">
+      	<b>輸入房源ID:</b>
+      	<input type="text" name="lisID">
+      	<input type="hidden" name="action" value="getOne_For_Display">
+        <input type="submit" name="送出">      
+      </FORM>
+     </li>
+     
+     
+	    <li>
+     	<FORM METHOD="post" ACTION="RenLocationServlet.do">     	
+     	  <b>選擇區域:</b>
+     	  <select size="1" name="lisAreaID">
+     		<c:forEach var="renLocationVO" items="${renLocationSvc.all}">
+     		  <option value="${renLocationVO.locID}"${(renListingVO.lisAreaID == renLocationVO.locID)? 'selected':'' } >${renLocationVO.locCity}${renLocationVO.locDist}
+     		</c:forEach>
+     	  </select>
+     	  <input type="hidden" name="action" value="listLocations_BylisAreaID">
+     	  <input type="submit" value="送出">
+       </FORM>
+	</li>
+          </ul>
+        </nav>
+      </div>
     </aside>
-<!-- 	側邊欄 結束-------------------------------------------------------- -->
-<!-- 	main 開始-------------------------------------------------------- -->
 
+
+      <div class="probootstrap-bar">
+        <a href="#" class="probootstrap-toggle js-probootstrap-toggle" style="margin-left:20px;"><span class="oi oi-menu"></span></a>
+        <div class="probootstrap-main-site-logo"></div>
+      </div>
     <main class="main">
 		<ul class="item_list" id="item_list">
 
-			<c:forEach var="renListingPicVO" items="${renListingPiclist}">
-				<li>
-					<a href="<%= request.getContextPath()%>/ren_listing/RenListingServlet.do?lisID=${renListingVO.lisID}&action=getOne_For_Display">
+			<c:forEach var="renListingVO" items="${renListinglist}">
+				<li style="list-style: none;">
+					<a href="<%=request.getContextPath()%>/frontend/ren_listing/GetOneRenListingServlet.do?lisID=${renListingVO.lisID}&action=getOne_For_Display_A">
 						<div class="img_block">
-							<img
-								src="<%= request.getContextPath()%>/ren_listing/RenListing_pic_ReaderServlet.do?LIS_ID=
-										 ${renListingVO.lisID}" width = 200px">
-						</div> <c:forEach var="renListingVO" items="${renListinglist}">
-							<c:if test="${renListingVO.lisID==renListingPicVO.lspLisID}">
+							<img src="<%=request.getContextPath()%>/ren_listing/RenListing_pic_ReaderServlet.do?LIS_ID=${renListingVO.lisID}" width = 200px>
+						</div> 
+								<span class="item_text">房源編號:${renListingVO.lisID}</span>
 								<span class="item_text">${renListingVO.lisTitle}</span>
 								<span class="item_text"><c:forEach var="renRoomtypeVO" items="${renRoomtypeSvc.all}">
                     										<c:if test="${renListingVO.lisRtID==renRoomtypeVO.rtID}">
-	                    												${renRoomtypeVO.rtID}${renRoomtypeVO.rtType}
+	                    												${renRoomtypeVO.rtType}
                     										</c:if>
                 										</c:forEach>
                 				</span>
-								<span class="item_text">${renListingVO.lisAddress}</span>
-								<span class="item_text">${renListingVO.lisSqft}</span>
-								<span class="item_text">${renListingVO.lisFlr}</span>
-								<span class="item_text">${renListingVO.lisRmNo}</span>
-								<span class="item_text">${renListingVO.lisCmnArea}</span>
-								<span class="item_text">${renListingVO.lisBrNo}</span>
-								<span class="item_price">${renListingVO.lisRent}</span>
-							</c:if>
-						</c:forEach>
+                				<span class="item_text"><c:forEach var="renLocationVO" items="${renLocationSvc.all}">
+                    											<c:if test="${renListingVO.lisAreaID==renLocationVO.locID}">
+	                    												${renLocationVO.locCity}${renLocationVO.locDist}
+                    											</c:if>
+                										</c:forEach>
+                				</span>
+								<span class="item_text">地址:${renListingVO.lisAddress}</span>
+								<span class="item_text">坪數:${renListingVO.lisSqft}</span>
+								<span class="item_text">樓層:${renListingVO.lisFlr}</span>
+								<span class="item_text">${renListingVO.lisRmNo}房</span>
+								<span class="item_text">${renListingVO.lisCmnArea}廳</span>
+								<span class="item_text">${renListingVO.lisBrNo}衛</span>
+								<span class="item_price">租金${renListingVO.lisRent}</span>
+							
 					</a> 
-<%-- 					<c:forEach var="renListingVO" items="${renListinglist}"> --%>
-<%-- 						<c:if test="${secItemsVO.shID==secPicsVO.shID}"> --%>
-<!-- <!-- 							<a class="btn btn-buy" --> -->
-<%-- <%-- 								href="<%=request.getContextPath()%>/sec_items/ShoppingServlet.do?shID=${secItemsVO.shID} --%> --%>
-<%-- <%-- 								&shName=${secItemsVO.shName}&shPrice=${secItemsVO.shPrice}&shQTY=1&action=ADD">加入購物車</a> --%> --%>
-<%-- 							<form method="post" action="<%=request.getContextPath()%>/sec_items/ShoppingServlet.do"> --%>
-<!-- 								<input type="submit" value="加入購物車"> -->
-<%-- 								<input type="hidden" name="shID" value="${secItemsVO.shID}"> --%>
-<%-- 								<input type="hidden" name="shName" value="${secItemsVO.shName}"> --%>
-<%-- 								<input type="hidden" name="shPrice" value="${secItemsVO.shPrice}"> --%>
-<!-- 								<input type="hidden" name="shQTY" value="1"> -->
-<!-- 								<input type="hidden" name="action" value="ADD"> -->
-<!-- 							</form> -->
-<%-- 						</c:if> --%>
-<%-- 					</c:forEach> --%>
+					
 				</li>
 			</c:forEach>
 
 		</ul>
+		
+		
+		<div class="container-fluid d-md-none">
+        <div class="row">
+          <div class="col-md-12">
+            <p>&copy; 2022 <a href="#">EASY SPACE</a> <br> All Rights Reserved. Designed by CFA104G5</p>
+          </div>
+        </div>
+      </div>
 	</main>
 
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-<script src="http://code.jquery.com/jquery-3.6.0.min.js"></script>
-<script>
-      $(function(){
+<script src="<%=request.getContextPath() %>/js/jquery-3.2.1.slim.min.js"></script>
+    <script src="<%=request.getContextPath() %>/js/popper.min.js"></script>
+    <script src="<%=request.getContextPath() %>/js/bootstrap.min.js"></script>
+    <script src="<%=request.getContextPath() %>/js/owl.carousel.min.js"></script>
+    <script src="<%=request.getContextPath() %>/js/jquery.waypoints.min.js"></script>
+    <script src="<%=request.getContextPath() %>/js/imagesloaded.pkgd.min.js"></script>
+    <script src="<%=request.getContextPath() %>/js/imagesloaded.pkgd.min.js"></script>
+    <script src="<%=request.getContextPath() %>/js/main.js"></script>
 
-        $("button.btn_hamburger").on("click", function(){
-          $("aside.aside").toggleClass("-on");
-        });
-
-      });
-</script>
-<script>
-		$('#Cate1').click(function() {
-			$.ajax({
-				type: "get",
-				url: "<%= request.getContextPath()%>/frontend/sec_items/secItemsViewPageAJAX.jsp",
-				data: {"shCateID": 1},
-				success: function(data){
-					showItems(data);
-				}
-			});
-		});
-		$('#Cate2').click(function() {
-			$.ajax({
-				type: "get",
-				url: "<%= request.getContextPath()%>/frontend/sec_items/secItemsViewPageAJAX.jsp",
-				data: {"shCateID": 2},
-				success: function(data){
-					showItems(data);
-				}
-			});
-		});
-		$('#Cate3').click(function() {
-			$.ajax({
-				type: "get",
-				url: "<%= request.getContextPath()%>/frontend/sec_items/secItemsViewPageAJAX.jsp",
-				data: {"shCateID": 3},
-				success: function(data){
-					showItems(data);
-				}
-			});
-		});
-		$('#Cate4').click(function() {
-			$.ajax({
-				type: "get",
-				url: "<%= request.getContextPath()%>/frontend/sec_items/secItemsViewPageAJAX.jsp",
-				data: {"shCateID": 4},
-				success: function(data){
-					showItems(data);
-				}
-			});
-		});
-		$('#Cate5').click(function() {
-			$.ajax({
-				type: "get",
-				url: "<%= request.getContextPath()%>/frontend/sec_items/secItemsViewPageAJAX.jsp",
-				data: {"shCateID": 5},
-				success: function(data){
-					showItems(data);
-				}
-			});
-		});
-		
-		
-		function showItems(data){
-			
-		//		console.log(data)
-			$("#item_list").html("");
-			$("#item_list").html(data);
-		}
-
-
-	
-
-	
-// 	$.ajax({
-// 	    // 進行要求的網址(URL)
-<%-- 	    url: '<%= request.getContextPath()%>/sec_items/GetSecItemsServlet.do', --%>
-// 	    // 要送出的資料 (會被自動轉成查詢字串)
-// 	    data: {
-// 	        shCateID: 
-// 	    },
-// 	    // 要使用的要求method(方法)，POST 或 GET
-// 	    type: 'GET',
-// 	    // 資料的類型
-// 	    dataType : 'json',
-// 	})
-// 	  // 要求成功時要執行的程式碼
-// 	  // 回應會被傳遞到回調函式的參數
-// 	  .done(function( json ) {
-// 	     $( '<h1>' ).text( json.title ).appendTo( 'body' );
-// 	     $( '<div class=\'content\'>').html( json.html ).appendTo( 'body' );
-// 	  })
-// 	  // 要求失敗時要執行的程式碼
-// 	  // 狀態碼會被傳遞到回調函式的參數
-// 	  .fail(function( xhr, status, errorThrown ) {
-// 	    console.log( '出現錯誤，無法完成!' )
-// 	    console.log( 'Error: ' + errorThrown )
-// 	    console.log( 'Status: ' + status )
-// 	    console.dir( xhr )
-// 	  })
-// 	  // 不論成功或失敗都會執行的回調函式
-// 	  .always(function( xhr, status ) {
-// 	    console.log( '要求已完成!' )
-// 	  })
-</script>
-
-
-
-<!-- 	main 結束-------------------------------------------------------- -->
 </body>
 </html>

@@ -169,7 +169,7 @@ public class UpdateSerDmdServlet extends HttpServlet {
 				// Send the use back to the form, if there were errors
 				if (!errorMsgs.isEmpty()) {
 					req.setAttribute("serDmdVO", serDmdVO); // 含有輸入格式錯誤的VO物件,也存入req
-					RequestDispatcher failureView = req.getRequestDispatcher("/backend/ser/serDmd/addSerDmd.jsp");
+					RequestDispatcher failureView = req.getRequestDispatcher("/frontend/ser_dmd/update_serDmd.jsp");
 					failureView.forward(req, res);
 					return;
 				}
@@ -183,11 +183,11 @@ public class UpdateSerDmdServlet extends HttpServlet {
 				String url = "/frontend/ser_dmd/getByDmdMemID.jsp";
 				RequestDispatcher successView = req.getRequestDispatcher(url); // 新增成功後轉交listAllEmp.jsp
 				successView.forward(req, res);
-
+				
 			} catch (Exception e) {
 				e.printStackTrace();
 				errorMsgs.add(e.getMessage());
-				RequestDispatcher failureView = req.getRequestDispatcher("/backend/ser/serDmd/addSerDmd.jsp");
+				RequestDispatcher failureView = req.getRequestDispatcher("/frontend/ser_dmd/update_serDmd.jsp");
 				failureView.forward(req, res);
 			}
 

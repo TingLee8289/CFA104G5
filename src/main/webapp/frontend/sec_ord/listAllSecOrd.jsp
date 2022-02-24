@@ -1,72 +1,224 @@
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="Big5"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<%@ page import="java.util.*"%>
-<%@ page import="ezs.sec_ord_details.model.*"%>
-
-<jsp:useBean id="secOrdSvc" scope="page"
-	class="ezs.sec_ord.model.SecOrdService" />
+<%@ page import="ezs.sec_ord.model.*"%>
+<!DOCTYPE html>
 
 <html>
 <head>
-<title>©Ò¦³­q³æ - listAllSecOrd.jsp</title>
+
+<meta charset="utf-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport"
+	content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+<title>EASY SPACE</title>
+<link href="https://cdn.jsdelivr.net/npm/simple-datatables@latest/dist/style.css" rel="stylesheet" />
+<link href="<%=request.getContextPath()%>/css/member.center.styles.css"	rel="stylesheet" />
+<script	src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/js/all.min.js"></script>
+<link rel="stylesheet"href=" https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css ">
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.2.0/css/all.css">
+
 
 <style>
-table#table-1 {
-	background-color: orange;
-	border: 2px solid black;
-	text-align: center;
+#nav {
+	background-color: lightgrey;
+	z-index: 9999;
+	padding: 0px;
+	height: 40px;
+	width: 100%;
+	position: fixed;
 }
-
-table#table-1 h4 {
-	color: red;
-	display: block;
-	margin-bottom: 1px;
-}
-
-h4 {
-	color: blue;
-	display: inline;
-}
+</style>
+<style>
+  table#table-1 {
+	background-color: #CCCCFF;
+    border: 2px solid black;
+    text-align: center;
+  }
+  table#table-1 h4 {
+    color: red;
+    display: block;
+    margin-bottom: 1px;
+  }
+  h4 {
+    color: blue;
+    display: inline;
+  }
 </style>
 
 <style>
-table {
+  table {
 	width: 800px;
 	background-color: white;
 	margin-top: 5px;
 	margin-bottom: 5px;
-}
-
-table, th, td {
-	border: 1px solid #CCCCFF;
-}
-
-th, td {
-	padding: 5px;
-	text-align: center;
-}
+  }
+  table, th, td {
+    border: 1px solid #CCCCFF;
+  }
+  th, td {
+    padding: 5px;
+    text-align: center;
+  }
 </style>
+<script src="https://kit.fontawesome.com/1c2ccc4859.js" crossorigin="anonymous"></script>
 
 </head>
-<body bgcolor='white'>
+<body class="sb-nav-fixed">
+	<!-- ï¿½Wï¿½Ý¾ï¿½ï¿½ï¿½Cï¿½}ï¿½l--------------------------------------- -->
+	<div class="navbar navbar-expand-lg navbar-dark" id="nav">
+		<div class="container">
+			<button class="navbar-toggler" type="button"
+				data-bs-toggle="collapse" data-bs-target="#navbarTogglerDemo03"
+				aria-controls="navbarTogglerDemo03" aria-expanded="false"
+				aria-label="Toggle navigation">
+				<span class="navbar-toggler-icon"></span>
+			</button>
+			<div class="collapse navbar-collapse" id="navbarTogglerDemo03">
+				<ul class="navbar-nav ms-auto me-sm-2 mt-2 mt-lg-0">
+					<li class="nav-item active me-3"><a class="nav-link text-dark"
+						href="<%=request.getContextPath()%>/frontend/EZ_home.jsp">ï¿½ï¿½ï¿½ï¿½ </a></li>
+					<li class="nav-item me-3"><a class="nav-link text-dark"
+						href="#">ï¿½ï¿½ï¿½ï¿½Aï¿½ï¿½</a></li>
+					<li class="nav-item me-3"><a class="nav-link text-dark"
+						href="<%=request.getContextPath()%>/frontend/sec_items/secItemsViewPage.jsp">ï¿½Gï¿½ï¿½aï¿½q</a>
+					</li>
+					<li class="nav-item me-3"><a class="nav-link text-dark"
+						href="<%=request.getContextPath()%>/frontend/ser_ad/serAdViewPage.jsp">ï¿½~ï¿½aï¿½Aï¿½ï¿½</a>
+					</li>
 
-	<h4>¦¹­¶½m²ß±Ä¥Î EL ªº¼gªk¨ú­È:</h4>
-	<table id="table-1">
-		<tr>
-			<td>
-				<h3>©Ò¦³­q³æ - listAllSecOrd.jsp</h3>
-				<h4>
-					<a
-						href="<%=request.getContextPath()%>/frontend/sec_ord/secOrdHomeSeller.jsp"><img
-						src="images/back1.gif" width="100" height="32" border="0">¦^­º­¶</a>
-				</h4>
-			</td>
-		</tr>
-	</table>
+					<%
+					String memUsername = (String) session.getAttribute("memUsername");
 
-	<%-- ¿ù»~ªí¦C --%>
+					if (memUsername != null) {
+					%>
+					<li class="nav-item dropdown"><a class="nav-link text-dark"
+						href="#" id="navbarDropdown" role="button"
+						data-bs-toggle="dropdown" aria-haspopup="true"
+						aria-expanded="false"> <img
+							class="rounded-circle u-box-shadow-sm me-2 text-dark" width="25"
+							height="25" src=" https://dummyimage.com/100/007bff/efefef"
+							alt="Htmlstream"> ${memUsername} <i
+							class="fa fa-angle-down   "></i></a>
+						<div class="dropdown-menu" aria-labelledby="navbarDropdown">
+							<a class="dropdown-item"
+								href="<%=request.getContextPath()%>/frontend/member/memberCenter/buyerMemberCenter.jsp">ï¿½|ï¿½ï¿½ï¿½</a>
+							<a class="dropdown-item"
+								href="<%=request.getContextPath()%>/frontend/member/memberCenter/sellerMemberCenter.jsp">ï¿½ï¿½aï¿½ï¿½ï¿½ï¿½</a>
+							<a class="dropdown-item"
+								href="<%=request.getContextPath()%>/frontend/chat/index.jsp">ï¿½ï¿½ï¿½</a>
+							<a class="dropdown-item"
+								href="<%=request.getContextPath()%>/frontend/sec_items/shoppingCart.jsp">ï¿½Êªï¿½ï¿½ï¿½</a>
+							<div class="dropdown-divider"></div>
+							<a class="dropdown-item"
+								href="<%=request.getContextPath()%>/member/MemberServlet.do?action=logout">ï¿½nï¿½X</a>
+						</div></li>
+					<%
+					} else {
+					%>
+					<li class="nav-item me-3"><a class="nav-link text-dark"
+						href="<%=request.getContextPath()%>/frontend/member/login.jsp">ï¿½nï¿½J</a></li>
+					<%
+					}
+					%>
+				</ul>
+
+			</div>
+		</div>
+	</div>
+
+	<script
+		src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
+		integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
+		crossorigin="anonymous"></script>
+
+	<!-- ï¿½Wï¿½Ý¾ï¿½ï¿½ï¿½Cï¿½ï¿½ï¿½ï¿½--------------------------------------- -->
+
+	<!-- ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Cï¿½}ï¿½l--------------------------------------- -->
+
+	
+
+	<div id="layoutSidenav">
+		<div id="layoutSidenav_nav">
+			<nav class="sb-sidenav accordion sb-sidenav-dark"
+				id="sidenavAccordion">
+				<div class="sb-sidenav-menu">
+					<div class="nav">
+						<!-- ------------------------------------------------------------------------------------------------- -->
+						<div class="sb-sidenav-menu-heading">ï¿½ï¿½aï¿½Þ²zï¿½Mï¿½ï¿½</div>
+						<a class="nav-link collapsed" href="#" data-bs-toggle="collapse"
+							data-bs-target="#collapseLayouts" aria-expanded="false"
+							aria-controls="collapseLayouts">
+							<div class="sb-nav-link-icon">
+								<i class="fas fa-home"></i>
+							</div> ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Þ²z
+							<div class="sb-sidenav-collapse-arrow">
+								<i class="fas fa-angle-down"></i>
+							</div>
+						</a>
+						<div class="collapse" id="collapseLayouts"
+							aria-labelledby="headingOne" data-bs-parent="#sidenavAccordion">
+							<nav class="sb-sidenav-menu-nested nav">
+								 <a class="nav-link" href="layout-static.html">ï¿½Ó½Ð¦ï¿½ï¿½ï¿½ï¿½ÐªF</a>
+                                    <a class="nav-link" href="layout-static.html">ï¿½Ð·ï¿½ï¿½Þ²z</a>
+                                    <a class="nav-link" href="<%=request.getContextPath()%>/frontend/ren_appointment/listRenAppByLDD.jsp">ï¿½wï¿½ï¿½ï¿½Þ²z</a>
+                                    <a class="nav-link" href="layout-sidenav-light.html">ï¿½ï¿½ï¿½ï¿½ï¿½Þ²z</a>
+							</nav>
+						</div>
+						<!-- ------------------------------------------------------------------------------------------------- -->
+						<a class="nav-link collapsed" href="#" data-bs-toggle="collapse"
+							data-bs-target="#collapsePages" aria-expanded="false"
+							aria-controls="collapsePages">
+							<div class="sb-nav-link-icon">
+								<i class="fas fa-couch"></i>
+							</div> ï¿½Gï¿½ï¿½ï¿½ï¿½ï¿½Þ²z
+							<div class="sb-sidenav-collapse-arrow">
+								<i class="fas fa-angle-down"></i>
+							</div>
+						</a>
+						<div class="collapse" id="collapsePages"
+							aria-labelledby="headingTwo" data-bs-parent="#sidenavAccordion">
+							<nav class="sb-sidenav-menu-nested nav">
+								  <a class="nav-link" href="<%=request.getContextPath()%>/frontend/sec_items/select_page.jsp">ï¿½Ó«~ï¿½Þ²z</a>
+                                    <a class="nav-link" href="<%=request.getContextPath()%>/frontend/sec_ord/listAllSecOrd.jsp">ï¿½qï¿½ï¿½Þ²z</a>
+							</nav>
+						</div>
+						<!-- ------------------------------------------------------------------------------------------------- -->
+						<a class="nav-link collapsed" href="#" data-bs-toggle="collapse"
+							data-bs-target="#collapsePages2" aria-expanded="false"
+							aria-controls="collapsePages">
+							<div class="sb-nav-link-icon">
+								<i class="fas fa-wrench"></i>
+							</div> ï¿½Aï¿½È¬ï¿½ï¿½ï¿½Þ²z
+							<div class="sb-sidenav-collapse-arrow">
+								<i class="fas fa-angle-down"></i>
+							</div>
+						</a>
+						<div class="collapse" id="collapsePages2"
+							aria-labelledby="headingThree" data-bs-parent="#sidenavAccordion">
+							<nav class="sb-sidenav-menu-nested nav">
+								<a class="nav-link" href="layout-static.html">ï¿½Aï¿½ÈºÞ²z</a>
+                                    <a class="nav-link" href="layout-sidenav-light.html">ï¿½Ý¨Dï¿½ï¿½Þ²z</a>
+                                    <a class="nav-link" href="layout-sidenav-light.html">ï¿½qï¿½ï¿½Þ²z</a>
+							</nav>
+						</div>
+						<!-- ------------------------------------------------------------------------------------------------- -->
+					</div>
+				</div>
+
+			</nav>
+		</div>
+<!-- main ï¿½}ï¿½l--------------------------------------------------------------------------------- -->
+		<div id="layoutSidenav_content">
+			<main>
+				<div class="container-fluid px-4">
+<!-- ï¿½ë­¶ï¿½ï¿½ï¿½qï¿½oï¿½Ì¶}ï¿½l--------------------------------------------------------------------------------- -->
+
+
+	<h3>ï¿½ï¿½aï¿½qï¿½ï¿½sï¿½ï¿½ï¿½dï¿½ï¿½:</h3>
+
+	<%-- ï¿½ï¿½~ï¿½ï¿½C --%>
 	<c:if test="${not empty errorMsgs}">
-		<font style="color: red">½Ð­×¥¿¥H¤U¿ù»~:</font>
+		<font style="color: red">ï¿½Ð­×¥ï¿½ï¿½Hï¿½Uï¿½ï¿½~:</font>
 		<ul>
 			<c:forEach var="message" items="${errorMsgs}">
 				<li style="color: red">${message}</li>
@@ -74,94 +226,60 @@ th, td {
 		</ul>
 	</c:if>
 
-	<table>
-		<tr>
-			<th>°Ó«~­q³æ½s¸¹</th>
-			<th>¶R®a½s¸¹</th>
-			<th>½æ®a½s¸¹</th>
-			<th>¦¬¥ó¦a§}¶l»¼°Ï¸¹</th>
-			<th>¦¬¥ó¿¤¥«</th>
-			<th>¦¬¥ó¶mÂí°Ï</th>
-			<th>¦¬¥ó¦a§}</th>
-			<th>¥I´Ú¤è¦¡</th>
-			<th>­q³æª¬ºA</th>
-			<th>°Ó«~»ù®æ</th>
-			<th>­q³æ¤é´Á</th>
-<!-- 			<th>¶R®aµû»ù½æ®a¬P¼Æ</th> -->
-<!-- 			<th>¶R®aµû»ù½æ®a¤º®e</th> -->
-<!-- 			<th>½æ®aµû»ù¶R®a¬P¼Æ</th> -->
-<!-- 			<th>½æ®aµû»ù¶R®a¤º®e</th> -->
-			<th>¼·´Ú¤é´Á</th>
-			<th>¶R®a³Æµù</th>
-			<th>­×§ï</th>
-			<th>¨ú®ø­q³æ<font color=red>(ÃöÁp´ú¸Õ»P¥æ©ö-¤p¤ß)</font></th>
-			<th>¬d¸ß­q³æ©ú²Ó</th>
-		</tr>
 
-		<c:forEach var="secOrdVO" items="${secOrdSvc.all}">
-			<tr>
-				<td>${secOrdVO.shOrdID}</td>
-				<td>${secOrdVO.shBuyerID}</td>
-				<td>${secOrdVO.shSellerID}</td>
-				<td>${secOrdVO.shPostcode}</td>
-				<td>${secOrdVO.shCounty}</td>
-				<td>${secOrdVO.shDist}</td>
-				<td>${secOrdVO.shRoad}</td>
-				<td>${secOrdVO.shPayment}</td>
+	<jsp:useBean id="secOrdSvc" scope="page"
+		class="ezs.sec_ord.model.SecOrdService" />
+		
+		
 
-				<td><c:if test="${secOrdVO.shOrdStatus == 8}">¨ú®ø­q³æ</c:if> <c:if
-						test="${secOrdVO.shOrdStatus == 2}">«Ý¥X³f</c:if> <c:if
-						test="${secOrdVO.shOrdStatus == 3}">¤w¥X³f</c:if> <c:if
-						test="${secOrdVO.shOrdStatus == 6}">°h´Ú¼f®Ö¤¤</c:if> <c:if
-						test="${secOrdVO.shOrdStatus == 7}">­q³æ§¹¦¨</c:if></td>
+<li>
+		<FORM METHOD="post" ACTION="<%=request.getContextPath()%>/sec_ord/GetSecOrdBySellerServlet.do">
+			<b><font color=blue>ï¿½ï¿½Ü­qï¿½ï¿½sï¿½ï¿½:</font></b> 
+			<select size="1" name="shOrdID">
+			<c:forEach var="secOrdVO" items="${secOrdSvc.all}">
+				<option value="${secOrdVO.shOrdID}">${secOrdVO.shOrdID}
+			</c:forEach>
+			</select> <input type="submit" value="ï¿½eï¿½X"> <input type="hidden"
+				name="action" value="getOne_For_Display">
+		</FORM>
+
+	</li>
 
 
-				<td>${secOrdVO.shPrice}</td>
-				<td>${secOrdVO.shDate}</td>
-<%-- 				<td>${secOrdVO.shBuyerScore}</td> --%>
-<%-- 				<td>${secOrdVO.shBuyerTXT}</td> --%>
-<%-- 				<td>${secOrdVO.shSellerScore}</td> --%>
-<%-- 				<td>${secOrdVO.shSellerTXT}</td> --%>
-				<td>${secOrdVO.shAPPDate}</td>
-				<td>${secOrdVO.shNotes}</td>
-				<td>
-					<FORM METHOD="post"
-						ACTION="<%=request.getContextPath()%>/sec_ord/UpdateSecOrdBySellerServlet.do"
-						style="margin-bottom: 0px;">
-						<input type="submit" value="­×§ï"> <input type="hidden"
-							name="shOrdID" value="${secOrdVO.shOrdID}"> <input
-							type="hidden" name="action" value="getOne_For_Update">
-					</FORM>
-				</td>
-				<td>
-					<FORM METHOD="post"
-						ACTION="<%=request.getContextPath()%>/sec_ord/GetSecOrdDetailsBySellerServlet.do"
-						style="margin-bottom: 0px;">
-						<input type="submit" value="¨ú®ø­q³æ"> <input type="hidden"
-							name="shOrdID" value="${secOrdVO.shOrdID}"> <input
-							type="hidden" name="action" value="delete_secord">
-					</FORM>
-				</td>
-				<td>
-					<FORM METHOD="post"
-						ACTION="<%=request.getContextPath()%>/sec_ord/GetSecOrdDetailsBySellerServlet.do"
-						style="margin-bottom: 0px;">
-						<input type="submit" value="°e¥X¬d¸ß"> <input type="hidden"
-							name="shOrdID" value="${secOrdVO.shOrdID}"> <input
-							type="hidden" name="action" value="listSecOrdDetails_BySecOrd_B">
-					</FORM>
-				</td>
-			</tr>
-		</c:forEach>
-	</table>
 
-	<%
-	if (request.getAttribute("listSecOrdDetails_ByShOrdID") != null) {
-	%>
-	<jsp:include page="listSecOrdDetails_ByShOrdID.jsp" />
-	<%
-	}
-	%>
 
+		<h3>ï¿½ï¿½aï¿½qï¿½ï¿½dï¿½ï¿½:</h3>
+	
+
+	<ul>
+	<td>
+			  <FORM METHOD="post" ACTION="<%=request.getContextPath()%>/sec_ord/GetSecOrdBySellerServlet.do" style="margin-bottom: 0px;">
+			    <input type="submit" value="ï¿½ï¿½aï¿½qï¿½ï¿½dï¿½ï¿½"> 
+			    <input type="hidden" name="shSellerID" value="${memberVO.memID}">
+			    <input type="hidden" name="action" value="listSecOrd_ByShSellererID"></FORM>
+			</td>
+
+	</ul>
+<!-- ï¿½ë­¶ï¿½ï¿½ï¿½qï¿½oï¿½Ìµï¿½ï¿½ï¿½--------------------------------------------------------------------------------- -->
+				</div>
+			</main>
+		</div>
+<!-- main ï¿½ï¿½ï¿½ï¿½--------------------------------------------------------------------------------- -->
+	</div>
+
+
+
+	<script
+		src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+	<script src="js/scripts.js"></script>
+	<script
+		src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.min.js"></script>
+	<script src="assets/demo/chart-area-demo.js"></script>
+	<script src="assets/demo/chart-bar-demo.js"></script>
+	<script src="https://cdn.jsdelivr.net/npm/simple-datatables@latest"></script>
+	<script src="js/datatables-simple-demo.js"></script>
+
+	<!-- ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Cï¿½ï¿½ï¿½ï¿½--------------------------------------- -->
+	<main></main>
 </body>
 </html>

@@ -18,12 +18,14 @@
 
 <jsp:useBean id="renRoomtypeSvc" scope="page" class="ezs.ren_roomtype.model.RenRoomtypeService" />
 <jsp:useBean id="renLocationSvc" scope="page" class="ezs.ren_location.model.RenLocationService" />
+<jsp:useBean id="renLandlordSvc" scope="page" class="ezs.ren_landlord.model.RenLandlordService" />
+<jsp:useBean id="memberSvc" scope="page" class="ezs.member.model.MemberService" />
 
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
-<title>所有房源資料 - listingAllListing.jsp</title>
+<title>EASY SPACE</title>
 <style>
   table#table-1 {
 	background-color: #CCCCFF;
@@ -79,7 +81,7 @@
 <table>
 	<tr>
 	    <th>房源ID</th>
-		<th>房東ID</th>
+		<th>房東</th>
 		<th>房型ID</th>
 		<th>區域ID</th>
 		<th>房源標題</th>
@@ -117,7 +119,7 @@
 <!-- 		<th>房源上架狀態</th> -->
 <!-- 		<th>房源申請審核狀態</th> -->
 		<th>詳情</th>
-		<th>收藏</th>
+<!-- 		<th>收藏</th> -->
 	</tr>
 
 	<%@ include file="page3.file" %>
@@ -127,7 +129,16 @@
 		<tr>
 			<td>${renListingVO.lisID}</td>
 <%-- 			<td>${renListingVO.lisLddID}</td> --%>
-			<td>${renListingVO.lisLddID}</td>
+<%-- 			<td>${renListingVO.lisLddID}</td> --%>
+			<td><c:forEach var="renLandlordVO" items="${renLandlordSvc.all}">
+                    <c:if test="${renListingVO.lisLddID==renLandlordVO.lddId}">
+			<c:forEach var="memberVO" items="${memberSvc.all}">
+                    		<c:if test="${renLandlordVO.lddId==memberVO.memID}">
+                    		 	${memberVO.memID}${memberVO.memName}
+                      	 </c:if>
+                       </c:forEach>
+                   </c:if>
+                </c:forEach></td>
 			<td><c:forEach var="renRoomtypeVO" items="${renRoomtypeSvc.all}">
                     <c:if test="${renListingVO.lisRtID==renRoomtypeVO.rtID}">
 	                    ${renRoomtypeVO.rtID}${renRoomtypeVO.rtType}
@@ -192,7 +203,7 @@
 		</tr>
  	</c:forEach> 
 </table>
-<%-- <%@ include file="page2.file" %> --%>
+<%@ include file="page2.file" %>
 
 </body>
 </html>

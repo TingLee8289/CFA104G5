@@ -37,7 +37,7 @@
 			box-shadow: 2px 5px 5px 0px #eee;
 			max-width: 500px;
 			padding-top: 10px;
-			height: 500px;
+			height: 720px;
 			margin-top: 50px;
 			margin-bottom: 50px;
 		}
@@ -186,16 +186,8 @@
 
 </head>
 <body>
-<%-- 	<jsp:include page="/frontend/EZ_LoginHeader.jsp" /> --%>
-	<%-- 錯誤表列 --%>
-	<c:if test="${not empty errorMsgs}">
-		<font style="color: red">請修正以下錯誤:</font>
-		<ul>
-			<c:forEach var="message" items="${errorMsgs}">
-				<li style="color: red">${message}</li>
-			</c:forEach>
-		</ul>
-	</c:if>
+
+	
 	<div class="container">
 		<!---heading---->
 		<header class="heading">註冊會員資料</header>
@@ -208,7 +200,7 @@
 			<div class="col-sm-12">
 				<div class="row">
 					<div class="col-xs-4">
-						<label class="Username">帳號 :</label>
+						<label class="Username">帳號(*) :</label>
 					</div>
 					<div class="col-xs-8">
 						<input type="text" name="memUsername" id="memUsername"
@@ -221,7 +213,7 @@
 			<div class="col-sm-12">
 				<div class="row">
 					<div class="col-xs-4">
-						<label class="Password">密碼 :</label>
+						<label class="Password">密碼(*) :</label>
 					</div>
 					<div class="col-xs-8">
 						<input type="password" name="memPassword" id="memPassword"
@@ -234,7 +226,7 @@
 			<div class="col-sm-12">
 				<div class="row">
 					<div class="col-xs-4">
-						<label class="Name">會員名稱 :</label>
+						<label class="Name">會員名稱(*) :</label>
 					</div>
 					<div class="col-xs-8">
 						<input type="text" name="memName" id="memName"
@@ -247,7 +239,7 @@
 			<div class="col-sm-12">
 				<div class="row">
 					<div class="col-xs-4">
-						<label class="Phone">電話 :</label>
+						<label class="Phone">電話(*) :</label>
 					</div>
 					<div class="col-xs-8">
 						<input type="text" name="memPhone" id="memPhone"
@@ -260,7 +252,7 @@
 			<div class="col-sm-12">
 				<div class="row">
 					<div class="col-xs-4">
-						<label class="Address">地址 :</label>
+						<label class="Address">地址(*) :</label>
 					</div>
 					<div class="col-xs-8">
 						<input type="text" name="memAddress" id="memAddress"
@@ -273,7 +265,7 @@
 			<div class="col-sm-12">
 				<div class="row">
 					<div class="col-xs-4">
-						<label class="Email">email :</label>
+						<label class="Email">email(*) :</label>
 					</div>
 					<div class="col-xs-8">
 						<input type="email" name="memEmail" id="memEmail"
@@ -286,7 +278,7 @@
 			<div class="col-sm-12">
 				<div class="row">
 					<div class="col-xs-4">
-						<label class="PID">身分證字號 :</label>
+						<label class="PID">身分證字號(*) :</label>
 					</div>
 					<div class="col-xs-8">
 						<input type="text" name="memPID" id="memPID"
@@ -305,7 +297,7 @@
 						<input type="file" name="memHeadshot" id="memHeadshot" accept="image/gif, image/jpeg, image/png"
 							class="form-control "
 							value="<%=(memberVO == null) ? "" : memberVO.getMemHeadshot()%>">
-							<div id="previews" >
+							<div id="previews" style="text-align: left;">
        							<p>圖片預覽</p>
    							</div>
 					</div>
@@ -316,6 +308,17 @@
 			<input type="submit" value="送出新增" class="btn btn-submit">
 			
 		</form>
+		<%-- 錯誤表列 --%>
+		<c:if test="${not empty errorMsgs}">
+			<div style="margin: 0px auto;">
+				<font style="color: red">請修正以下錯誤:</font>
+				<ul style="list-style-type: none;">
+					<c:forEach var="message" items="${errorMsgs}">
+						<li style="color: red">${message}</li>
+					</c:forEach>
+				</ul>
+			</div>
+		</c:if>
 	</div>
 	
 

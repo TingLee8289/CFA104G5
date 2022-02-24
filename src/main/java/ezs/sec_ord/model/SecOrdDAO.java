@@ -33,8 +33,8 @@ public class SecOrdDAO implements SecOrdDAO_interface {
 			+ "WHERE sh_ord_id = ?";
 	private static final String GET_ONE_STMT = "SELECT * FROM `CFA104G5`.`SEC_ORD` WHERE sh_ord_id = ?";
 	private static final String GET_ALL_STMT = "SELECT * FROM `CFA104G5`.`SEC_ORD` ORDER BY sh_ord_id";
-	private static final String GET_ALL_BY_MEMID_STMT = "SELECT * FROM `CFA104G5`.`SEC_ORD` WHERE sh_buyerid = ? ORDER BY sh_date desc;";
-	private static final String GET_ALL_BY_SELLERID_STMT = "SELECT * FROM `CFA104G5`.`SEC_ORD` WHERE sh_sellerid = ? ORDER BY sh_date desc;";
+	private static final String GET_ALL_BY_MEMID_STMT = "SELECT * FROM `CFA104G5`.`SEC_ORD` WHERE sh_buyerid = ? ORDER BY sh_ord_id desc;";
+	private static final String GET_ALL_BY_SELLERID_STMT = "SELECT * FROM `CFA104G5`.`SEC_ORD` WHERE sh_sellerid = ? ORDER BY sh_ord_id desc;";
 	private static final String UPDATE_COMPLETE_ORDER_STMT = "UPDATE `CFA104G5`.`SEC_ORD` SET sh_ord_status = 7 WHERE sh_ord_id = ?; ";
 	private static final String UPDATE_REFUND_ORDER_STMT = "UPDATE `CFA104G5`.`SEC_ORD` SET sh_ord_status = 6 WHERE sh_ord_id = ?; ";
 	private static final String GET_ORDDETAILS_BYSECORD_STMT = "SELECT * FROM `CFA104G5`.`SEC_ORD_DETAILS` WHERE sh_ord_id = ?";
@@ -427,8 +427,8 @@ public class SecOrdDAO implements SecOrdDAO_interface {
 			// 2●設定於 pstmt.executeUpdate()之後
 			con.commit();
 			con.setAutoCommit(true);
-			System.out.println("list.size()-B=" + list.size());
-			System.out.println("新增訂單編號" + next_secOrdno + "時,共有訂單明細" + list.size() + "筆同時被新增");
+//			System.out.println("list.size()-B=" + list.size());
+//			System.out.println("新增訂單編號" + next_secOrdno + "時,共有訂單明細" + list.size() + "筆同時被新增");
 
 			// Handle any SQL errors
 		} catch (SQLException se) {

@@ -33,7 +33,7 @@
 
 <html>
 <head>
-<title>RenLease: Home</title>
+<title>EASY SPACE</title>
 </head>
 <body bgcolor='white'>
 

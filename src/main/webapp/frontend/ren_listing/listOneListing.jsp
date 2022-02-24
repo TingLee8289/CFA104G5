@@ -19,12 +19,15 @@
     pageContext.setAttribute("list",list);
 %>
 
-
+<jsp:useBean id="renRoomtypeSvc" scope="page" class="ezs.ren_roomtype.model.RenRoomtypeService" />
+<jsp:useBean id="renLocationSvc" scope="page" class="ezs.ren_location.model.RenLocationService" />
+<jsp:useBean id="renLandlordSvc" scope="page" class="ezs.ren_landlord.model.RenLandlordService" />
+<jsp:useBean id="memberSvc" scope="page" class="ezs.member.model.MemberService" />
 <!DOCTYPE html>
 <html>
 <head>
 
-<title>房源資料 - listOneListing.jsp</title>
+<title>EASY SPACE</title>
 
 <style>
   table#table-1 {
@@ -65,14 +68,14 @@
 
 <table id="table-1">
 	<tr><td>
-		<h3>員工資料 - ListOneListing.jsp</h3>
+		<h3>房屋詳情 - ListOneListing.jsp</h3>
 		<h4><a href="listing_select_page.jsp">回首頁</a></h4>
 	</td></tr>
 </table>
 <table>
 	<tr>
 		<th>房源ID</th>
-		<th>房東ID</th>
+		<th>房東</th>
 		<th>房型ID</th>
 		<th>區域ID</th>
 		<th>房源標題</th>
@@ -106,14 +109,32 @@
 		<th>限男性</th>
 		<th>限女性</th>
 		<th>限學生</th>
-		<th>房源上架狀態</th>
-		<th>房源申請審核狀態</th>
+		<th>房屋照片</th>		
+<!-- 		<th>房源上架狀態</th> -->
+<!-- 		<th>房源申請審核狀態</th> -->
 	</tr>
 	<tr>
 		<td><%=renListingVO.getLisID()%></td>
-		<td><%=renListingVO.getLisLddID()%></td>
-		<td><%=renListingVO.getLisRtID()%></td>
-		<td><%=renListingVO.getLisAreaID()%></td>
+		<td><c:forEach var="renLandlordVO" items="${renLandlordSvc.all}">
+                    <c:if test="${renListingVO.lisLddID==renLandlordVO.lddId}">
+			<c:forEach var="memberVO" items="${memberSvc.all}">
+                    		<c:if test="${renLandlordVO.lddId==memberVO.memID}">
+                    		 	${memberVO.memID}${memberVO.memName}
+                      	 </c:if>
+                       </c:forEach>
+                   </c:if>
+                </c:forEach></td>
+		<td><c:forEach var="renRoomtypeVO" items="${renRoomtypeSvc.all}">
+                    <c:if test="${renListingVO.lisRtID==renRoomtypeVO.rtID}">
+	                    ${renRoomtypeVO.rtID}${renRoomtypeVO.rtType}
+                    </c:if>
+                </c:forEach>
+			</td>
+			<td><c:forEach var="renLocationVO" items="${renLocationSvc.all}">
+                    <c:if test="${renListingVO.lisAreaID==renLocationVO.locID}">
+	                    ${renLocationVO.locID}${renLocationVO.locCity}${renLocationVO.locDist}
+                    </c:if>
+                </c:forEach></td>
 		<td><%=renListingVO.getLisTitle()%></td>
 		<td><%=renListingVO.getLisAbt()%></td>
 		<td><%=renListingVO.getLisAddress()%></td>
@@ -125,28 +146,50 @@
 		<td><%=renListingVO.getLisRmNo()%></td>
 		<td><%=renListingVO.getLisCmnArea()%></td>
 		<td><%=renListingVO.getLisBrNo()%></td>
-		<td><%=renListingVO.getLisEthernet()%></td>
-		<td><%=renListingVO.getLisWifi()%></td>
-		<td><%=renListingVO.getLisWh()%></td>
-		<td><%=renListingVO.getLisShenc()%></td>
-		<td><%=renListingVO.getLisAc()%></td>
-		<td><%=renListingVO.getLisFridge()%></td>
-		<td><%=renListingVO.getLisTv()%></td>
-		<td><%=renListingVO.getLisWasher()%></td>
-		<td><%=renListingVO.getLisDryer()%></td>
-		<td><%=renListingVO.getLisTc()%></td>
-		<td><%=renListingVO.getLisBed()%></td>
-		<td><%=renListingVO.getLisCabinet()%></td>
-		<td><%=renListingVO.getLisSofa()%></td>
-		<td><%=renListingVO.getLisParking()%></td>
-		<td><%=renListingVO.getLisCook()%></td>
-		<td><%=renListingVO.getLisPet()%></td>
-		<td><%=renListingVO.getLisSmoking()%></td>
-		<td><%=renListingVO.getLisMonly()%></td>
-		<td><%=renListingVO.getLisFonly()%></td>
-		<td><%=renListingVO.getLisSonly()%></td>
-		<td><%=renListingVO.getLisStatus()%></td>
-		<td><%=renListingVO.getLisApproval()%></td>
+		<td><c:if test="${renListingVO.lisEthernet ==0}">沒有</c:if>
+		 <c:if test="${renListingVO.lisEthernet==1}">有</c:if></td>			
+			<td><c:if test="${renListingVO.lisWifi==0}">沒有</c:if>
+		 <c:if test="${renListingVO.lisWifi==1}">有</c:if></td>
+		 	<td><c:if test="${renListingVO.lisWh==0}">沒有</c:if>
+		 <c:if test="${renListingVO.lisWh==1}">有</c:if></td> 
+			<td><c:if test="${renListingVO.lisShenc==0}">沒有</c:if>
+		 <c:if test="${renListingVO.lisShenc==1}">有</c:if></td>
+			<td><c:if test="${renListingVO.lisAc==0}">沒有</c:if>
+		 <c:if test="${renListingVO.lisAc==1}">有</c:if></td>
+			<td><c:if test="${renListingVO.lisFridge==0}">沒有</c:if>
+		 <c:if test="${renListingVO.lisFridge==1}">有</c:if></td>
+			<td><c:if test="${renListingVO.lisTv==0}">沒有</c:if>
+		 <c:if test="${renListingVO.lisTv==1}">有</c:if></td>
+			<td><c:if test="${renListingVO.lisWasher==0}">沒有</c:if>
+		 <c:if test="${renListingVO.lisWasher==1}">有</c:if></td>
+			<td><c:if test="${renListingVO.lisDryer==0}">沒有</c:if>
+		 <c:if test="${renListingVO.lisDryer==1}">有</c:if></td>
+			<td><c:if test="${renListingVO.lisTc==0}">沒有</c:if>
+		 <c:if test="${renListingVO.lisTc==1}">有</c:if></td>
+			<td><c:if test="${renListingVO.lisBed==0}">沒有</c:if>
+		 <c:if test="${renListingVO.lisBed==1}">有</c:if></td>
+			<td><c:if test="${renListingVO.lisCabinet==0}">沒有</c:if>
+		 <c:if test="${renListingVO.lisCabinet==1}">有</c:if></td>
+			<td><c:if test="${renListingVO.lisSofa==0}">沒有</c:if>
+		 <c:if test="${renListingVO.lisSofa==1}">有</c:if></td>
+			<td><c:if test="${renListingVO.lisParking==0}">沒有</c:if>
+		 <c:if test="${renListingVO.lisParking==1}">有</c:if></td>
+			<td><c:if test="${renListingVO.lisCook==0}">不可以</c:if>
+		 <c:if test="${renListingVO.lisCook==1}">可以</c:if></td>
+			<td><c:if test="${renListingVO.lisPet==0}">不可以</c:if>
+		 <c:if test="${renListingVO.lisPet==1}">可以</c:if></td>
+			<td><c:if test="${renListingVO.lisSmoking==0}">不可以</c:if>
+		 <c:if test="${renListingVO.lisSmoking==1}">可以</c:if></td>
+			<td><c:if test="${renListingVO.lisMonly==0}">否</c:if>
+		 <c:if test="${renListingVO.lisMonly==1}">是</c:if></td>
+			<td><c:if test="${renListingVO.lisFonly==0}">否</c:if>
+		 <c:if test="${renListingVO.lisFonly==1}">是</c:if></td>
+			<td><c:if test="${renListingVO.lisSonly==0}">否</c:if>
+		 <c:if test="${renListingVO.lisSonly==1}">是</c:if></td>
+			<td><img src="<%=request.getContextPath()%>/ren_listing/RenListing_pic_ReaderServlet.do?LIS_ID=
+				 ${renListingVO.lisID}" width = 200px></td>
+<%-- 		<td><%=renListingVO.getLisStatus()%></td> --%>
+<%-- 		<td><%=renListingVO.getLisApproval()%></td> --%>
 	</tr>
 </table>
 

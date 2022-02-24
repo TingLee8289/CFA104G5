@@ -25,6 +25,10 @@ public class AdminPrivTest {
 //		System.out.print(adminPrivVO3.getAdmID() + ",");
 //		System.out.print(adminPrivVO3.getFunID());
 //		System.out.println("---------------------");
+		
+		AdminPrivVO adminPrivVO = dao.findByPrimaryKey(1, 1);
+		System.out.println(adminPrivVO.getAdmID());
+		System.out.println(adminPrivVO.getFunID());
 
 //		4. 查詢單一ID的多筆
 //		List<AdminPrivVO> list = dao.getAllFromID(1);
