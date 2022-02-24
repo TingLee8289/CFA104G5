@@ -16,7 +16,7 @@ public class RenLeaseDAO implements RenLeaseDAO_interface {
 	private static final String INSERT_STMT = "INSERT INTO `CFA104G5`.`REN_LEASE` (lse_mem_id,lse_lis_id,lse_ldd_id,lse_price,lse_start,lse_end,lse_pic,lse_leasememid) VALUES (?, ?, ?, ?, ?,?, ?,?)";
 	private static final String GET_ALL_STMT = "SELECT * FROM `CFA104G5`.`REN_LEASE`";
 	private static final String GET_ONE_STMT = "SELECT lse_id,lse_mem_id,lse_lis_id,lse_ldd_id,lse_status,lse_timestamp,lse_start,lse_end,lse_price,lse_leasememid FROM `CFA104G5`.`REN_LEASE` WHERE lse_id = ?";
-	private static final String DELETE = "DELETE FROM `CFA104G5`.`REN_LEASE` WHERE lse_mem_id = ?";
+	private static final String DELETE = "DELETE FROM `CFA104G5`.`REN_LEASE` WHERE lse_id = ?";
 	private static final String UPDATE = "UPDATE `CFA104G5`.`REN_LEASE` SET lse_mem_id=?, lse_lis_id=?, lse_ldd_id=?, lse_ldd_score=?, lse_ldd_txt=?, lse_tnt_score=?,lse_tnt_txt =?,lse_status =?,lse_timestamp=?,lse_start =?,lse_end =? WHERE lse_id = ?";
 	private static final String GET_ALL_LEASE = "SELECT lse_id,lse_mem_id,lse_lis_id,lse_ldd_id,lse_status,lse_timestamp,lse_start,lse_end,lse_price,lse_leasememid FROM `CFA104G5`.`REN_LEASE` WHERE lse_mem_id = ?";
 
