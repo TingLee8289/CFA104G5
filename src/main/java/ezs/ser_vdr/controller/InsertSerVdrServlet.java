@@ -153,7 +153,7 @@ public class InsertSerVdrServlet extends HttpServlet {
 				servdrSvc.addSerVdr(vdrID, vdrStatus, vdrName, vdrTel, vdrVatno, vdrCounty, vdrDist, vdrAddr, vdrOpen, vdrIntro, vdrPic, vdrRevCount, vdrRevScore);
 
 				/*************************** 3.新增完成,準備轉交(Send the Success view) ***********/
-				String url = "/frontend/ser_vdr/listAllSerVdr.jsp";
+				String url = "/frontend/ser_vdr/listOneSerVdr.jsp";
 				RequestDispatcher successView = req.getRequestDispatcher(url); // 新增成功後轉交listAllEmp.jsp
 				successView.forward(req, res);
 
