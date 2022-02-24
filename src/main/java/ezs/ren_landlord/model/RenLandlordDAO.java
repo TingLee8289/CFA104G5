@@ -160,6 +160,7 @@ public class RenLandlordDAO implements RenLandlordDAO_interface {
 		System.out.println("check one");
 
 		System.out.println(lddMemId);
+		///fdskjsnjijwaflhflkwajdnhkhjewfgdhjbvcjdsbajxsw
 
 		try {
 			con = ds.getConnection();

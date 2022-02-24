@@ -42,7 +42,7 @@ public MemberVO addMember(String memUsername, String memPassword, String memName
 
 
 	public MemberVO updateMember(Integer memID, String memPassword, String memName,
-			String memPhone, String memAddress, String memEmail, byte[] memheadshot, String memVatno) {
+			String memPhone, String memAddress, String memEmail, byte[] memheadshot, String memVatno ) {
 		MemberVO memberVO = new MemberVO();
 
 		memberVO.setMemID(memID);

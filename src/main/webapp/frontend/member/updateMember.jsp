@@ -3,6 +3,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ page import="java.util.*"%>
 <%@ page import="ezs.member.model.*"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 
 <%
 	MemberVO memberVO = (MemberVO) request.getAttribute("memberVO");
@@ -21,51 +22,25 @@
 </script>
 <meta charset="UTF-8">
 <title>EASY SPACE</title>
-<script src="https://code.jquery.com/jquery-1.12.4.min.js" integrity="sha256-ZosEbRLbNQzLpnKIkEdrPv7lOy9C27hHQ+Xp8a4MxAQ=" crossorigin="anonymous"></script>
-
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.css" integrity="sha256-46qynGAkLSFpVbEBog43gvNhfrOj+BmwXdxFgVK/Kvc=" crossorigin="anonymous" />
+<link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+<script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>   
+<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 <style>
-  table#table-1 {
-	background-color: #CCCCFF;
-    border: 2px solid black;
+#test{
+ color: white;
+    background-color: #212529;
+    border-color: #32383e;
     text-align: center;
-  }
-  table#table-1 h4 {
-    color: red;
-    display: block;
-    margin-bottom: 1px;
-  }
-  h4 {
-    color: blue;
-    display: inline;
-  }
-</style>
+    vertical-align: middle;
+}
 
-<style>
-  table {
-	width: 450px;
-	background-color: white;
-	margin-top: 1px;
-	margin-bottom: 1px;
-  }
-  table, th, td {
-    border: 0px solid #CCCCFF;
-  }
-  th, td {
-    padding: 1px;
-  }
+table td {
+text-align: center;
+}
 </style>
-
 </head>
 <body bgcolor='white'>
-
-<table id="table-1">
-	<tr><td>
-		 <h3>會員資料修改</h3>
-		 <h4><a href="<%=request.getContextPath() %>/frontend/EZ_home.jsp">回首頁</a></h4>
-	</td></tr>
-</table>
-
-<h3>資料修改:</h3>
 
 <%-- 錯誤表列 --%>
 <c:if test="${not empty errorMsgs}">
@@ -79,75 +54,83 @@
 
 <body>
 <FORM METHOD="post" ACTION="<%=request.getContextPath()%>/member/MemberServletUpdate.do" name="form1" enctype="multipart/form-data" >
-	<table>
+	
+<div class="container">
+	    <div class="row">
+		    <table class="table table-hover table-striped">
+
 		<tr>
-			<td>會員編號:</td>
+			<th id="test">會員編號:</th>
 			<td><%=memberVO.getMemID()%></td>
 		</tr>
 		<tr>
-			<td>帳號:</td>
+			<th id="test">帳號:</th>
 			<td><%=memberVO.getMemUsername()%></td>
 		</tr>
 		<tr>
-			<td>密碼:</td>
+			<th id="test">密碼:</th>
 			<td><input type="TEXT" name="memPassword" size="20" value="<%=memberVO.getMemPassword()%>" /></td>
 		</tr>
 		<tr>
-			<td>名稱:</td>
+			<th id="test">姓名:</th>
 			<td><input type="TEXT" name="memName" size="20" value="<%=memberVO.getMemName()%>" /></td>
 		</tr>
 		<tr>
-			<td>電話:</td>
+			<th id="test">電話:</th>
 			<td><input type="TEXT" name="memPhone" size="10" value="<%=memberVO.getMemPhone()%>" /></td>
 		</tr>
 		<tr>
-			<td>地址:</td>
-			<td><input type="TEXT" name="memAddress" size="200" value="<%=memberVO.getMemAddress()%>" /></td>
+			<th id="test">地址:</th>
+			<td><input type="TEXT" name="memAddress" size="100" value="<%=memberVO.getMemAddress()%>" /></td>
 		</tr>
 		<tr>
-			<td>email帳號:</td>
+			<th id="test">email:</th>
 			<td><input type="TEXT" name="memEmail" size="50" value="<%=memberVO.getMemEmail()%>" /></td>
 		</tr>
 		
 		<c:if test="${memberVO.memSupplier == 1}">
 		<tr>
-			<td>統一編號:</td>
+			<th id="test">統一編號:</th>
 			<td><input type="TEXT" name="memVatno" size="8" value="<%=memberVO.getMemVatno()%>" /></td>
 		</tr>
 		</c:if>
-		
 		<tr>
-			<td>個人頭像:</td>
+		<th id="test">評價均分:</th>
+		<td>
+					<c:choose>
+						<c:when test="${(memberVO.memRedCount) == 0}">尚無評分</c:when>
+						<c:otherwise>
+							<fmt:formatNumber type="number" maxFractionDigits="1" 
+								value="${(memberVO.memRedScore/memberVO.memRedCount)}"/>
+						</c:otherwise>
+					</c:choose></td>
+	</tr>
+		<tr>
+			<th id="test">個人頭像:</th>
 			<td>
-			
-<!-- 			可以預覽圖片但無法上傳圖片至資料庫 -->
-<!-- 			<input type="file" accept="image/*" onchange="loadFile(event)" -->
-<%-- 			value="<%= (memberVO==null)? "" : memberVO.getMemHeadshot()%>"> --%>
-<!-- 				<img id="output"  -->
-<%-- 				src="<%=request.getContextPath()%>/DBGifReader?mem_ID=<%=memberVO.getMemID()%>" width=200px/> --%>
 			
 			
 			
 <!-- 				<p>圖片預覽</p>			  -->
-			<input type="file" id="upfiles" name="mempic"
-			>
+			<input type="file" id="upfiles" name="mempic">
 			 <div id="previews">
+			 <br>
 			 	<img src="<%=request.getContextPath()%>/DBGifReader?mem_ID=${memberVO.memID}" width=150px>
 			 </div></td>
-			 
-<!-- 			<input type="file" id="upfiles" name="mempic" -->
-<%-- 			 value="<%= (memberVO==null)? "" : memberVO.getMemHeadshot()%>" --%>
-<!-- 			 onchange="document.getElementById('blah').src = window.URL.createObjectURL(this.files[0])"/> -->
-<%-- 			 <img src="<%=request.getContextPath()%>/DBGifReader?mem_ID=<%=memberVO.getMemID()%>" width=200px> --%>
-<!-- 	 </td> -->
+
 		</tr>
 	</table>
 
+</div>
+    </div>
 
 
 <br>
 <input type="hidden" name="action" value="update">
 <input type="hidden" name="memID" value="<%=memberVO.getMemID()%>">
+<input type="hidden" name="memPassword" value="<%=memberVO.getMemPassword()%>">
+<input type="hidden" name="memRedCount" value="<%=memberVO.getMemRedCount()%>">
+<input type="hidden" name="memRedScore" value="<%=memberVO.getMemRedScore()%>">
 <input type="submit" value="送出修改">
 </FORM>
 		

@@ -260,6 +260,9 @@ public class MemberServletUpdate extends HttpServlet {
 			memberVO.setMemEmail(memEmail);
 			memberVO.setMemVatno(memVatno);
 			memberVO.setMemHeadshot(memHeadshot);
+			memberVO.setMemUsername(memUsername);
+			memberVO.setMemRedCount(memRedCount);
+			memberVO.setMemRedScore(memRedScore);
 
 			if (!errorMsgs.isEmpty()) {
 				req.setAttribute("memberVO", memberVO);
