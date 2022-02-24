@@ -237,7 +237,7 @@ pageContext.setAttribute("serClaList", serClaList);
 <%--   <jsp:include page="/frontend/EZ_nav.jsp"/> --%>
 
 <div class="navbar navbar-expand-lg navbar-dark" id="nav">
-		<div class="container">
+		<div class="container" style= "margin-left: 790px;">
 			<button class="navbar-toggler" type="button"
 				data-bs-toggle="collapse" data-bs-target="#navbarTogglerDemo03"
 				aria-controls="navbarTogglerDemo03" aria-expanded="false"
