@@ -267,15 +267,14 @@ th, td {
 </head>
 <body bgcolor='white'>
 
-	<h4>此頁練習採用 EL 的寫法取值:</h4>
+<!-- 	<h4>此頁練習採用 EL 的寫法取值:</h4> -->
 	<table id="table-1">
 		<tr>
 			<td>
-				<h3>所有訂單 - listAllSecOrd.jsp</h3>
+				<h3>所有訂單 </h3>
 				<h4>
 					<a
-						href="<%=request.getContextPath()%>/frontend/sec_ord/secOrdHomeSeller.jsp"><img
-						src="images/back1.gif" width="100" height="32" border="0">回首頁</a>
+						href="<%=request.getContextPath()%>/frontend/sec_ord/secOrdHomeSeller.jsp"><img src="<%=request.getContextPath() %>/images/cmn/index/EASYSPACE.png" width="100" height="60" border="0">回查詢首頁</a>
 				</h4>
 			</td>
 		</tr>
@@ -311,7 +310,7 @@ th, td {
 <!-- 			<th>撥款日期</th> -->
 <!-- 			<th>買家備註</th> -->
 			<th>修改</th>
-			<th>取消訂單<font color=red>(關聯測試與交易-小心)</font></th>
+			<th>取消訂單<font color=red></font></th>
 			<th>查詢訂單明細</th>
 		</tr>
 
@@ -373,9 +372,9 @@ th, td {
 	</table>
 
 
-<%if (request.getAttribute("listSecOrdDetails_ByShOrdID")!=null){%>
-       <jsp:include page="listSecOrdDetails_ByShOrdID.jsp" />
-<%} %>
+<%-- <%if (request.getAttribute("listSecOrdDetails_ByShOrdID")!=null){%> --%>
+<%--        <jsp:include page="listSecOrdDetails_ByShOrdID.jsp" /> --%>
+<%-- <%} %> --%>
 
 <!-- 塞頁面從這裡結束--------------------------------------------------------------------------------- -->
 				</div>
