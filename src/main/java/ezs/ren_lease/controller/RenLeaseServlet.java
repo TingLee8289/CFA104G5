@@ -2,7 +2,6 @@ package ezs.ren_lease.controller;
 
 import java.io.IOException;
 import java.io.InputStream;
-import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
 import javax.servlet.RequestDispatcher;
@@ -57,20 +56,6 @@ public class RenLeaseServlet extends HttpServlet {
 					errorMsgs.add("租賃單編號格式不正確");
 				}
 				
-//				RenLeaseService renLeaseSrv =new RenLeaseService();
-//				List<RenLeaseVO> list= renLeaseSrv.getAll();
-//				ArrayList<Integer> myNumbers = new ArrayList<Integer>();
-//				
-//				int memID = new Integer(req.getParameter("memID"));
-//				try {
-//					for(RenLeaseVO renLeaseVO : list) {
-//						if(renLeaseVO.getLseMemId()!= memID) {
-//							errorMsgs.add(renLeaseVO.getLseId());
-//						}
-//					}
-//				} catch (Exception e) {
-//					errorMsgs.add("查無此資料");
-//				}
 				
 				if (!errorMsgs.isEmpty()) {
 					RequestDispatcher failureView = req
@@ -111,7 +96,7 @@ public class RenLeaseServlet extends HttpServlet {
 			List<String> errorMsgs = new LinkedList<String>();
 			req.setAttribute("errorMsgs", errorMsgs);
 			Integer lseMemId = new Integer(req.getParameter("lseMemId"));
-//			try {
+			try {
 				/***************************1.接收請求參數 - 輸入格式的錯誤處理**********************/
 				if (!errorMsgs.isEmpty()) {
 					RequestDispatcher failureView = req
@@ -120,7 +105,7 @@ public class RenLeaseServlet extends HttpServlet {
 					return;//程式中斷
 				}
 				lseMemId = new Integer(lseMemId);
-//				/***************************2.開始查詢資料*****************************************/
+				/***************************2.開始查詢資料*****************************************/
 				RenLeaseService renLeaseSvc = new RenLeaseService();
 				List<RenLeaseVO> renLeaseVO = renLeaseSvc.getAllLease(lseMemId);
 				if (renLeaseVO == null) {
@@ -142,12 +127,12 @@ public class RenLeaseServlet extends HttpServlet {
 				successView.forward(req, res);
 
 				/***************************其他可能的錯誤處理*************************************/
-//			} catch (Exception e) {
-//				errorMsgs.add("無法取得資料:" + e.getMessage());
-//				RequestDispatcher failureView = req
-//						.getRequestDispatcher("/frontend/ren_lease/select_page.jsp");
-//				failureView.forward(req, res);
-//			}
+			} catch (Exception e) {
+				errorMsgs.add("無法取得資料:" + e.getMessage());
+				RequestDispatcher failureView = req
+						.getRequestDispatcher("/frontend/ren_lease/select_page.jsp");
+				failureView.forward(req, res);
+			}
 		}
 		
 		
