@@ -122,11 +122,11 @@ public class SecItemsService {
 		return dao.findByPrimaryKey(shSellerID, shID);
 	}
 
-	public List<SecItemsVO> getAll(Integer shSellerID) {
-		return dao.getAll(shSellerID);
+	public List<SecItemsVO> getAll() {
+		return dao.getAll();
 	}
-	public List<SecItemsVO> getAll2() {
-		return dao.getAll2();
+	public List<SecItemsVO> getAll2(Integer shSellerID) {
+		return dao.getAll2(shSellerID);
 	}
 	
 	public List<SecItemsVO> getByCategory(Integer shSellerID, Integer shCateID) {

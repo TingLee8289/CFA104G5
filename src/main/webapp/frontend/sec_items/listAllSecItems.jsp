@@ -9,7 +9,7 @@
 Integer memID = (Integer) session.getAttribute("memID");
 SecItemsService secItemsSvc = new SecItemsService();
 
-List<SecItemsVO> list = secItemsSvc.getAll(memID);
+List<SecItemsVO> list = secItemsSvc.getAll2(memID);
 pageContext.setAttribute("list", list);
 %>
 
