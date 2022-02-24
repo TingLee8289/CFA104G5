@@ -19,9 +19,9 @@ import ezs.admin_emp.model.AdminEmpVO;
 
 @WebServlet("/admin_emp/AdminEmpServlet.do")
 public class AdminEmpServlet extends HttpServlet {
-//	protected void doGet(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
-//		doPost(req, res);
-//	}
+	protected void doGet(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
+		doPost(req, res);
+	}
 
 	public void doPost(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
 
@@ -39,7 +39,7 @@ public class AdminEmpServlet extends HttpServlet {
 				String admPassword = req.getParameter("admPassword");
 
 				if (admUsername == null || (admUsername.trim()).length() == 0) {
-					errorMsgs.add("帳號密碼不得為空1");
+					errorMsgs.add("帳號密碼不得為空");
 				}
 				if (!errorMsgs.isEmpty()) {
 					RequestDispatcher failureView = req.getRequestDispatcher("/backend/login.jsp");
@@ -48,7 +48,7 @@ public class AdminEmpServlet extends HttpServlet {
 				}
 
 				if (admPassword == null || (admPassword.trim()).length() == 0) {
-					errorMsgs.add("帳號密碼不得為空2");
+					errorMsgs.add("帳號密碼不得為空");
 				}
 				if (!errorMsgs.isEmpty()) {
 					RequestDispatcher failureView = req.getRequestDispatcher("/backend/login.jsp");
@@ -59,7 +59,7 @@ public class AdminEmpServlet extends HttpServlet {
 				AdminEmpService adminEmpService = new AdminEmpService();
 				AdminEmpVO adminEmpVO = adminEmpService.Search(admUsername, admPassword);
 				if (adminEmpVO == null) {
-					errorMsgs.add("帳號或密碼有誤，請重新輸入3");
+					errorMsgs.add("帳號或密碼有誤，請重新輸入");
 				}
 				// Send the use back to the form, if there were errors
 				if (!errorMsgs.isEmpty()) {
@@ -72,6 +72,7 @@ public class AdminEmpServlet extends HttpServlet {
 				HttpSession session = req.getSession();
 				session.setAttribute("adminEmpVO", adminEmpVO); // 資料庫取出的adminEmpVO物件,存入req
 				session.setAttribute("admUsername", adminEmpVO.getAdmUsername());
+				session.setAttribute("admID", adminEmpVO.getAdmID());
 
 				String url = "/backend/index.jsp";
 				RequestDispatcher successView = req.getRequestDispatcher(url); // 成功轉交 loginsucess.jsp
