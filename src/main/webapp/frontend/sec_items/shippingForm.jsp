@@ -503,16 +503,16 @@
     </style>
 </head>
 <body>
-	<%-- 錯誤表列 --%>
-	<c:if test="${not empty errorMsgs}">
-		<font style="color: red">請修正以下錯誤:</font>
-		<ul>
-			<c:forEach var="message" items="${errorMsgs}">
-				<li style="color: red">${message}</li>
-			</c:forEach>
-		</ul>
-	</c:if>
-    
+
+    	<%-- 錯誤表列 --%>
+			<c:if test="${not empty errorMsgs}">
+				<font style="color: red">請修正以下錯誤:</font>
+				<ul>
+					<c:forEach var="message" items="${errorMsgs}">
+						<li style="color: red">${message}</li>
+					</c:forEach>
+				</ul>
+			</c:if>
 <!--  寄送資訊-------------------------------------------------------------- -->
 		<div class="container">
 	        <h1 style="text-align: center;">寄送資訊</h1>
@@ -552,6 +552,7 @@
 		        	
 		        </div>
 	     </div>
+	     
 	      <hr><hr><hr><hr><hr><hr><hr><hr><hr>
 <!--  信用卡資訊-------------------------------------------------------------- -->
 	<div class="payment-title">
