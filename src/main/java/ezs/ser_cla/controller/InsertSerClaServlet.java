@@ -35,9 +35,13 @@ public class InsertSerClaServlet extends HttpServlet {
 				/*********************** 1.接收請求參數 - 輸入格式的錯誤處理 *************************/
 
 				String serClaName = req.getParameter("serClaName");
+				String nameReg = "^[(\u4e00-\u9fa5)]{2,10}$";
 				if (serClaName == null || (serClaName.trim()).length() == 0) {
-					errorMsgs.add("請輸入服務編號");
+					errorMsgs.add("服務類別: 請勿空白");
+				}else if (!serClaName.trim().matches(nameReg)) { // 以下練習正則(規)表示式(regular-expression)
+					errorMsgs.add("服務類別名稱: 請輸入中文 , 且長度必需在2到10之間");
 				}
+
 
 				SerClaVO serClaVO = new SerClaVO();
 

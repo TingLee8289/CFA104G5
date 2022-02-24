@@ -37,6 +37,12 @@ public class UpdateSerClaServlet extends HttpServlet {
 				Integer serClaID = new Integer(req.getParameter("serClaID").trim());
 
 				String serClaName = req.getParameter("serClaName");
+				String nameReg = "^[(\u4e00-\u9fa5)]{2,10}$";
+				if (serClaName == null || serClaName.trim().length() == 0) {
+					errorMsgs.add("服務類別名稱: 請勿空白");
+				} else if (!serClaName.trim().matches(nameReg)) { // 以下練習正則(規)表示式(regular-expression)
+					errorMsgs.add("廠商名稱: 請輸入中文 , 且長度必需在2到10之間");
+				}
 
 				SerClaVO serClaVO = new SerClaVO();
 
