@@ -250,7 +250,7 @@
 		<li>
 			<FORM METHOD="post" ACTION="<%=request.getContextPath()%>/sec_items/GetSecItemsServlet.do">
 				<b>選擇商品編號:</b> <select size="1" name="shID">
-					<c:forEach var="secItemsVO" items="${secItemsSvc.all2}">
+					<c:forEach var="secItemsVO" items="${secItemsSvc.all}">
 						<option value="${secItemsVO.shID}">${secItemsVO.shID}
 					</c:forEach>
 				</select> <input type="hidden" name="action" value="getOne_For_Display">
@@ -276,7 +276,7 @@
 <!-- 		<li> -->
 <%-- 			<FORM METHOD="post" ACTION="<%=request.getContextPath()%>/sec_items/GetSecItemsServlet.do"> --%>
 <!-- 				<b>選擇商品名稱:</b> <select size="1" name="shID"> -->
-<%-- 					<c:forEach var="secItemsVO" items="${secItemsSvc.all2}"> --%>
+<%-- 					<c:forEach var="secItemsVO" items="${secItemsSvc.all}"> --%>
 <%-- 						<option value="${secItemsVO.shID}">${secItemsVO.shName} --%>
 <%-- 					</c:forEach> --%>
 <!-- 				</select> <input type="hidden" name="action" value="getOne_For_Display"> -->
