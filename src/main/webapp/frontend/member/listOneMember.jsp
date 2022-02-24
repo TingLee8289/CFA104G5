@@ -5,7 +5,13 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 
 <%
-	MemberVO memberVO = (MemberVO) request.getAttribute("memberVO");
+	Integer memID = (Integer)session.getAttribute("memID");
+	String memUsername = (String)session.getAttribute("memUsername");
+// 	MemberVO memberVO = (MemberVO)session.getAttribute("memberVO");
+	MemberService memSvc = new MemberService();
+    MemberVO memberVO = memSvc.getOneMember(memID);
+//     pageContext.setAttribute("list",list);
+ 
 %>
 
 <html>

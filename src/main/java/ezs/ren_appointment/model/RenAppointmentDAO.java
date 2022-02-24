@@ -34,6 +34,9 @@ public class RenAppointmentDAO implements RenAppointmentDAO_interface {
 	private static final String FIND_BY_PK = "SELECT * FROM `CFA104G5`.`REN_APPOINTMENT` WHERE apt_id = ?";
 	private static final String GET_ALL = "SELECT * FROM `CFA104G5`.`REN_APPOINTMENT` ORDER BY apt_id DESC";	
 
+	private static final String FIND_BY_LDD = "SELECT * FROM `CFA104G5`.`REN_APPOINTMENT` WHERE apt_ldd_id = ?";
+	private static final String FIND_BY_MEM = "SELECT * FROM `CFA104G5`.`REN_APPOINTMENT` WHERE apt_mem_id = ?";
+
 	Connection con = null;
 	PreparedStatement pstmt = null;
 	ResultSet rs = null;
@@ -203,5 +206,74 @@ public class RenAppointmentDAO implements RenAppointmentDAO_interface {
 		}
 		return list;
 	}
+	
+	
+	@Override
+	public List<RenAppointmentVO> getAllMEM(Integer aptMemId) {
+		List<RenAppointmentVO> appList = new ArrayList<>();
+		RenAppointmentVO app = null;
+		System.out.println(aptMemId);
+		
+		try {
+			
+			con = ds.getConnection();
+			pstmt = con.prepareStatement(FIND_BY_MEM);
+			pstmt.setInt(1, aptMemId);
+			rs = pstmt.executeQuery();
+
+			while (rs.next()) {
+				app = new RenAppointmentVO();
+				app.setAptId(rs.getInt("apt_id"));
+				app.setAptMemId(rs.getInt("apt_mem_id"));
+				app.setAptLddId(rs.getInt("apt_ldd_id"));
+				app.setAptLisId(rs.getInt("apt_lis_id"));
+				app.setAptStatus(rs.getInt("apt_status"));
+				app.setAptTime(rs.getTimestamp("apt_time"));
+				app.setAptTimestamp(rs.getTimestamp("apt_timestamp"));
+				appList.add(app);
+			}
+			
+		} catch (SQLException se) {
+			se.printStackTrace();
+		} finally {
+			Util.closeResource(con, pstmt, rs);
+		}
+		return appList;
+	}
+	
+	
+	@Override
+	public List<RenAppointmentVO> getAllLDD(Integer aptLddId) {
+		List<RenAppointmentVO> appList = new ArrayList<>();
+		RenAppointmentVO app = null;
+
+		try {
+			
+			con = ds.getConnection();
+			pstmt = con.prepareStatement(FIND_BY_LDD);
+			System.out.println(aptLddId);
+			pstmt.setInt(1, aptLddId);		
+			rs = pstmt.executeQuery();
+
+			while (rs.next()) {
+				app = new RenAppointmentVO();
+				app.setAptId(rs.getInt("apt_id"));
+				app.setAptMemId(rs.getInt("apt_mem_id"));
+				app.setAptLddId(rs.getInt("apt_ldd_id"));
+				app.setAptLisId(rs.getInt("apt_lis_id"));
+				app.setAptStatus(rs.getInt("apt_status"));
+				app.setAptTime(rs.getTimestamp("apt_time"));
+				app.setAptTimestamp(rs.getTimestamp("apt_timestamp"));
+				appList.add(app);
+			}
+			
+		} catch (SQLException se) {
+			se.printStackTrace();
+		} finally {
+			Util.closeResource(con, pstmt, rs);
+		}
+		return appList;
+	}
+
 
 }
