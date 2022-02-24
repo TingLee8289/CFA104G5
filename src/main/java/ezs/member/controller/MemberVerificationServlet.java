@@ -10,6 +10,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import ezs.member.model.MemberService;
 import redis.clients.jedis.Jedis;
@@ -26,7 +27,8 @@ public class MemberVerificationServlet extends HttpServlet {
 
 		req.setCharacterEncoding("UTF-8");
 		String action = req.getParameter("action");
-		String memUserName = req.getParameter("memUserName");
+		HttpSession session = req.getSession();
+		String memUserName = (String) session.getAttribute("memUserName");
 		String verifCode = req.getParameter("verifCode");
 		
 		System.out.println(memUserName);
