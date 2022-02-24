@@ -463,7 +463,7 @@ pageContext.setAttribute("serClaList", serClaList);
 		
         console.log(location.href.indexOf('serAdViewPage2.jsp'));
         if(location.href.indexOf('serAdViewPage2.jsp') > -1) {
-        	$("#Cla2").trigger('click');
+        	$("#Cla1").trigger('click');
         }
       });
 </script>

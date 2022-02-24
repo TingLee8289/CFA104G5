@@ -239,7 +239,6 @@ header {
 							<div class="p-2 w-70 company-profile d-inline-block text-truncate" style="max-width: 500px;">
 								<p class="text-nowrap">${serAdVO.adTxt}</p>
 							</div>
-<!-- 							<button type="button" class="btn btn-outline-success text-nowrap">投遞需求單</button> -->
 							<a href="<%=request.getContextPath()%>/frontend/ser_quo/addSerQuo.jsp?quoVdrID=${serAdVO.adVdrID}" class="btn btn-outline-success text-nowrap">投遞需求單</a>
 						</div>
 
@@ -318,8 +317,7 @@ header {
 				</div>
 			</section>
 		</footer>
-	<script
-		src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 	<script src="http://code.jquery.com/jquery-3.6.0.min.js"></script>
 	<script>
       $(function(){
@@ -330,7 +328,7 @@ header {
 		
         console.log(location.href.indexOf('serAdViewPage.jsp'));
         if(location.href.indexOf('serAdViewPage.jsp') > -1) {
-        	$("#Cla2").trigger('click');
+        	$("#Cla1").trigger('click');
         }
       });
 </script>
