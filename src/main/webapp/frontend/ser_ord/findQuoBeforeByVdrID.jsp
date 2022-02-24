@@ -76,7 +76,7 @@ pageContext.setAttribute("vdrQuoList", vdrQuoList);
 								<td>${serQuoVO.quoItem}</td>
 								<td>${serQuoVO.quoTotalPrice}</td>
 								<td>
-									<FORM METHOD="post" ACTION="<%=request.getContextPath()%>/frontend/ser_ord/addSerOrd3.jsp" style="margin-bottom: 0px;">
+									<FORM METHOD="post" ACTION="<%=request.getContextPath()%>/frontend/ser_ord/addSerOrd.jsp" style="margin-bottom: 0px;">
 										<input type="submit" value="新增訂單"> 
 										<input type="hidden" name="quoID" value="${serQuoVO.quoID}"> 
 									</FORM>

@@ -257,7 +257,7 @@ pageContext.setAttribute("serDmdList", serDmdList);
 							<!--   insert data         -->
 							<th>需求單ID</th>
 							<th>需求單狀態</th>
-							<th>會員ID</th>
+							
 							<th>服務類別ID</th>
 							<th>需求人姓名</th>
 							<th>需求人電話</th>
@@ -283,11 +283,19 @@ pageContext.setAttribute("serDmdList", serDmdList);
 
 							<tr>
 								<td>${serDmdVO.dmdID}</td>
-								<td><c:if test="${serDmdVO.dmdStatus == 0}">未投遞</c:if> <c:if
-										test="${serDmdVO.dmdStatus == 1}">已投遞</c:if> <c:if
-										test="${serDmdVO.dmdStatus == 2}">訂單成立</c:if></td>
-								<td>${serDmdVO.dmdMemID}</td>
-								<td>${serDmdVO.dmdSerClaID}</td>
+								<td>
+									<c:if test="${serDmdVO.dmdStatus == 0}">未投遞</c:if> 
+									<c:if test="${serDmdVO.dmdStatus == 1}">已投遞</c:if> 
+									<c:if test="${serDmdVO.dmdStatus == 2}">訂單成立</c:if>
+								</td>
+								<jsp:useBean id="serCla" scope="page" class="ezs.ser_cla.model.SerClaService" />
+								<td>
+									<c:forEach var="serClaVO" items="${serCla.all}">
+										<c:if test="${serDmdVO.dmdSerClaID==serClaVO.serClaID}">
+											${serClaVO.serClaName}
+										</c:if>
+									</c:forEach>
+								</td>
 								<td>${serDmdVO.dmdName}</td>
 								<td>${serDmdVO.dmdTel}</td>
 								<td>${serDmdVO.dmdMail}</td>
