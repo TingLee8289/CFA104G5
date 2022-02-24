@@ -20,10 +20,11 @@ public class SecItemsJNDIDAO implements SecItemsDAO_interface {
 	private static final String INSERT_STMT = "INSERT INTO `CFA104G5`.`SEC_ITEMS` (sh_cate_id, sh_sellerid, sh_name, sh_price, sh_qty, sh_size, sh_description, sh_condition, sh_time, sh_guarantee, sh_status, sh_county, sh_dist) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
 	private static final String DELETE_STMT = "DELETE FROM `CFA104G5`.`SEC_ITEMS` WHERE sh_id = ?";
 	private static final String UPDATE_STMT = "UPDATE `CFA104G5`.`SEC_ITEMS` SET sh_cate_id=?, sh_name=?, sh_price=?, sh_qty=?, sh_size=?, sh_description=?, sh_condition=?, sh_time=?, sh_guarantee=?, sh_county=?, sh_dist=? WHERE sh_id = ?";
-	private static final String GET_ONE_STMT = "SELECT * FROM `CFA104G5`.`SEC_ITEMS` WHERE sh_id = ?";
+	private static final String GET_ONE_STMT = "SELECT * FROM `CFA104G5`.`SEC_ITEMS` WHERE sh_sellerid =? AND sh_id = ?";
+	private static final String GET_ALL_STMT2 = "SELECT * FROM `CFA104G5`.`SEC_ITEMS` WHERE sh_sellerid = ? ORDER BY sh_id DESC";
 	private static final String GET_ALL_STMT = "SELECT * FROM `CFA104G5`.`SEC_ITEMS` ORDER BY sh_id DESC";
-	private static final String GET_BY_CATE_STMT = "SELECT * FROM `CFA104G5`.`SEC_ITEMS` WHERE sh_cate_id=?";
-	private static final String GET_STATUS_STMT = "SELECT * FROM `CFA104G5`.`SEC_ITEMS` WHERE sh_status = ?";
+	private static final String GET_BY_CATE_STMT = "SELECT * FROM `CFA104G5`.`SEC_ITEMS` WHERE sh_sellerid =? AND sh_cate_id=?";
+	private static final String GET_STATUS_STMT = "SELECT * FROM `CFA104G5`.`SEC_ITEMS` WHERE sh_sellerid =? AND sh_status = ?";
 
 	private static DataSource ds = null;
 	static {
@@ -121,14 +122,15 @@ public class SecItemsJNDIDAO implements SecItemsDAO_interface {
 	}
 
 	@Override
-	public SecItemsVO findByPrimaryKey(Integer shID) {
+	public SecItemsVO findByPrimaryKey(Integer shSellerID, Integer shID) {
 
 		SecItemsVO secItemsVO = null;
 
 		try {
 			con = ds.getConnection();
 			pstmt = con.prepareStatement(GET_ONE_STMT);
-			pstmt.setInt(1, shID);
+			pstmt.setInt(1, shSellerID);
+			pstmt.setInt(2, shID);
 			rs = pstmt.executeQuery();
 
 			while (rs.next()) {
@@ -148,13 +150,13 @@ public class SecItemsJNDIDAO implements SecItemsDAO_interface {
 				secItemsVO.setShCounty(rs.getString("sh_county"));
 				secItemsVO.setShDist(rs.getString("sh_dist"));
 			}
-			return secItemsVO;
+			
 		} catch (SQLException e) {
 			e.printStackTrace();
 		} finally {
 			Util.closeResource(con, pstmt, rs);
 		}
-		return null;
+		return secItemsVO;
 	}
 
 	@Override
@@ -165,6 +167,7 @@ public class SecItemsJNDIDAO implements SecItemsDAO_interface {
 		try {
 			con = ds.getConnection();
 			pstmt = con.prepareStatement(GET_ALL_STMT);
+			
 			rs = pstmt.executeQuery();
 
 			while (rs.next()) {
@@ -192,16 +195,53 @@ public class SecItemsJNDIDAO implements SecItemsDAO_interface {
 		}
 		return list;
 	}
+	@Override
+	public List<SecItemsVO> getAll2(Integer shSellerID) {
+		List<SecItemsVO> list = new ArrayList<SecItemsVO>();
+		SecItemsVO secItemsVO = null;
+		
+		try {
+			con = ds.getConnection();
+			pstmt = con.prepareStatement(GET_ALL_STMT2);
+			pstmt.setInt(1, shSellerID);
+			rs = pstmt.executeQuery();
+			
+			while (rs.next()) {
+				secItemsVO = new SecItemsVO();
+				secItemsVO.setShID(rs.getInt("sh_id"));
+				secItemsVO.setShCateID(rs.getInt("sh_cate_id"));
+				secItemsVO.setShSellerID(rs.getInt("sh_sellerid"));
+				secItemsVO.setShName(rs.getString("sh_name"));
+				secItemsVO.setShPrice(rs.getBigDecimal("sh_price"));
+				secItemsVO.setShQTY(rs.getInt("sh_qty"));
+				secItemsVO.setShSize(rs.getString("sh_size"));
+				secItemsVO.setShDescription(rs.getString("sh_description"));
+				secItemsVO.setShCondition(rs.getString("sh_condition"));
+				secItemsVO.setShTime(rs.getString("sh_time"));
+				secItemsVO.setShGuarantee(rs.getString("sh_guarantee"));
+				secItemsVO.setShStatus(rs.getInt("sh_status"));
+				secItemsVO.setShCounty(rs.getString("sh_county"));
+				secItemsVO.setShDist(rs.getString("sh_dist"));
+				list.add(secItemsVO);
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			Util.closeResource(con, pstmt, rs);
+		}
+		return list;
+	}
 
 	@Override
-	public List<SecItemsVO> findByShCategory(Integer shCateID) {
+	public List<SecItemsVO> findByShCategory(Integer shSellerID,Integer shCateID) {
 		List<SecItemsVO> list = new ArrayList<SecItemsVO>();
 		SecItemsVO secItemsVO = null;
 
 		try {
 			con = ds.getConnection();
 			pstmt = con.prepareStatement(GET_BY_CATE_STMT);
-			pstmt.setInt(1, shCateID);
+			pstmt.setInt(1, shSellerID);
+			pstmt.setInt(2, shCateID);
 			rs = pstmt.executeQuery();
 
 			while (rs.next()) {
@@ -231,14 +271,15 @@ public class SecItemsJNDIDAO implements SecItemsDAO_interface {
 		
 	}
 	@Override
-	public List<SecItemsVO> findByStatus(Integer shStatus) {
+	public List<SecItemsVO> findByStatus(Integer shSellerID,Integer shStatus) {
 		List<SecItemsVO> list = new ArrayList<SecItemsVO>();
 		SecItemsVO secItemsVO = null;
 		
 		try {
 			con = ds.getConnection();
 			pstmt = con.prepareStatement(GET_STATUS_STMT);
-			pstmt.setInt(1, shStatus);
+			pstmt.setInt(1, shSellerID);
+			pstmt.setInt(2, shStatus);
 			rs = pstmt.executeQuery();
 			
 			while (rs.next()) {
@@ -268,42 +309,42 @@ public class SecItemsJNDIDAO implements SecItemsDAO_interface {
 		
 	}
 
-	@Override
-	public SecItemsVO getShStatusAll(Integer shStatus) {
-	
-		SecItemsVO secItemsVO = null;
-
-		try {
-			con = ds.getConnection();
-			pstmt = con.prepareStatement(GET_STATUS_STMT);
-			pstmt.setInt(1, shStatus);
-			rs = pstmt.executeQuery();
-
-			while (rs.next()) {
-				secItemsVO = new SecItemsVO();
-				secItemsVO.setShStatus(rs.getInt("sh_status"));
-				secItemsVO.setShID(rs.getInt("sh_id"));
-				secItemsVO.setShCateID(rs.getInt("sh_cate_id"));
-				secItemsVO.setShSellerID(rs.getInt("sh_sellerid"));
-				secItemsVO.setShName(rs.getString("sh_name"));
-				secItemsVO.setShPrice(rs.getBigDecimal("sh_price"));
-				secItemsVO.setShQTY(rs.getInt("sh_qty"));
-				secItemsVO.setShSize(rs.getString("sh_size"));
-				secItemsVO.setShDescription(rs.getString("sh_description"));
-				secItemsVO.setShCondition(rs.getString("sh_condition"));
-				secItemsVO.setShTime(rs.getString("sh_time"));
-				secItemsVO.setShGuarantee(rs.getString("sh_guarantee"));
-				secItemsVO.setShCounty(rs.getString("sh_county"));
-				secItemsVO.setShDist(rs.getString("sh_dist"));
-				
-			}
-
-		} catch (SQLException e) {
-			e.printStackTrace();
-		} finally {
-			Util.closeResource(con, pstmt, rs);
-		}
-		return null;
-	}
+//	@Override
+//	public SecItemsVO getShStatusAll(Integer shStatus) {
+//	
+//		SecItemsVO secItemsVO = null;
+//
+//		try {
+//			con = ds.getConnection();
+//			pstmt = con.prepareStatement(GET_STATUS_STMT);
+//			pstmt.setInt(1, shStatus);
+//			rs = pstmt.executeQuery();
+//
+//			while (rs.next()) {
+//				secItemsVO = new SecItemsVO();
+//				secItemsVO.setShStatus(rs.getInt("sh_status"));
+//				secItemsVO.setShID(rs.getInt("sh_id"));
+//				secItemsVO.setShCateID(rs.getInt("sh_cate_id"));
+//				secItemsVO.setShSellerID(rs.getInt("sh_sellerid"));
+//				secItemsVO.setShName(rs.getString("sh_name"));
+//				secItemsVO.setShPrice(rs.getBigDecimal("sh_price"));
+//				secItemsVO.setShQTY(rs.getInt("sh_qty"));
+//				secItemsVO.setShSize(rs.getString("sh_size"));
+//				secItemsVO.setShDescription(rs.getString("sh_description"));
+//				secItemsVO.setShCondition(rs.getString("sh_condition"));
+//				secItemsVO.setShTime(rs.getString("sh_time"));
+//				secItemsVO.setShGuarantee(rs.getString("sh_guarantee"));
+//				secItemsVO.setShCounty(rs.getString("sh_county"));
+//				secItemsVO.setShDist(rs.getString("sh_dist"));
+//				
+//			}
+//
+//		} catch (SQLException e) {
+//			e.printStackTrace();
+//		} finally {
+//			Util.closeResource(con, pstmt, rs);
+//		}
+//		return null;
+//	}
 
 }

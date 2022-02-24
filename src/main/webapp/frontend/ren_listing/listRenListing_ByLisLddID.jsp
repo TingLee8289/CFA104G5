@@ -13,6 +13,8 @@
 
 <jsp:useBean id="renRoomtypeSvc" scope="page" class="ezs.ren_roomtype.model.RenRoomtypeService" />
 <jsp:useBean id="renLocationSvc" scope="page" class="ezs.ren_location.model.RenLocationService" />
+<jsp:useBean id="renLandlordSvc" scope="page" class="ezs.ren_landlord.model.RenLandlordService" />
+<jsp:useBean id="memberSvc" scope="page" class="ezs.member.model.MemberService" />
 <!DOCTYPE html>
 <html>
 <head>
@@ -76,7 +78,7 @@
 <table>
 	<tr>
 	    <th>房源ID</th>
-		<th>房東ID</th>
+		<th>房東</th>
 		<th>房型ID</th>
 		<th>區域ID</th>
 		<th>房源標題</th>
@@ -121,7 +123,15 @@
 	<c:forEach var="renListingVO" items="${set}" begin="<%=pageIndex %>" end="<%=pageIndex+rowsPerPage-1 %>">
 		<tr>
 			<td>${renListingVO.lisID}</td>
-			<td>${renListingVO.lisLddID}</td>
+			<td><c:forEach var="renLandlordVO" items="${renLandlordSvc.all}">
+                    <c:if test="${renListingVO.lisLddID==renLandlordVO.lddId}">
+			<c:forEach var="memberVO" items="${memberSvc.all}">
+                    		<c:if test="${renLandlordVO.lddId==memberVO.memID}">
+                    		 	${memberVO.memID}${memberVO.memName}
+                      	 </c:if>
+                       </c:forEach>
+                   </c:if>
+                </c:forEach></td>
 			<td><c:forEach var="renRoomtypeVO" items="${renRoomtypeSvc.all}">
                     <c:if test="${renListingVO.lisRtID==renRoomtypeVO.rtID}">
 	                    ${renRoomtypeVO.rtID}${renRoomtypeVO.rtType}

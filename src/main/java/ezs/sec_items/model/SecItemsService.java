@@ -118,20 +118,23 @@ public class SecItemsService {
 		dao.delete(shID);
 	}
 
-	public SecItemsVO getOneSecItems(Integer shID) {
-		return dao.findByPrimaryKey(shID);
+	public SecItemsVO getOneSecItems(Integer shSellerID, Integer shID) {
+		return dao.findByPrimaryKey(shSellerID, shID);
 	}
 
 	public List<SecItemsVO> getAll() {
 		return dao.getAll();
 	}
-	
-	public List<SecItemsVO> getByCategory(Integer shCateID) {
-		return dao.findByShCategory(shCateID);
+	public List<SecItemsVO> getAll2(Integer shSellerID) {
+		return dao.getAll2(shSellerID);
 	}
 	
-	public List<SecItemsVO> getByStatusy(Integer shStatus) {
-		return dao.findByStatus(shStatus);
+	public List<SecItemsVO> getByCategory(Integer shSellerID, Integer shCateID) {
+		return dao.findByShCategory(shSellerID, shCateID);
+	}
+	
+	public List<SecItemsVO> getByStatus(Integer shSellerID, Integer shStatus) {
+		return dao.findByStatus(shSellerID, shStatus);
 	}
 	
 	

@@ -19,7 +19,7 @@ public class RenListingPicJDBCDAO implements RenListingPicDAO_interface {
 	private static final String GET_ALL_STMT = "SELECT LSP_ID, LSP_LIS_ID, LSP_PIC FROM `CFA104G5`.`REN_LISTING_PIC` ORDER BY LSP_ID";
 	private static final String GET_ONE_STMT = "SELECT LSP_ID, LSP_LIS_ID, LSP_PIC FROM `CFA104G5`.`REN_LISTING_PIC` WHERE LSP_ID = ?";
 	private static final String DELETE = "DELETE FROM `CFA104G5`.`REN_LISTING_PIC` WHERE LSP_LIS_ID = ?";
-	private static final String UPDATE = "UPDATE `CFA104G5`.`REN_LISTING_PIC` SET LSP_LIS_ID = ?, LSP_PIC = ? WHERE LSP_ID = ?";
+	private static final String UPDATE = "UPDATE `CFA104G5`.`REN_LISTING_PIC` SET  LSP_PIC = ? WHERE LSP_LIS_ID = ?";
 	private static final String GET_EACH_FIRST_STMT =  "SELECT * FROM (select *, row_number() over (partition by LSP_LIS_ID order by LSP_ID asc) sn from `CFA104G5`.`REN_LISTING_PIC`) r where r.sn=1";
 
 	static {
@@ -61,17 +61,14 @@ public class RenListingPicJDBCDAO implements RenListingPicDAO_interface {
 			con = DriverManager.getConnection(Util.URL, Util.USER, Util.PASSWORD);
 			pstmt = con.prepareStatement(UPDATE);
 
-			pstmt.setInt(1, listingpicVO.getLspLisID());
-			byte[] pic = getPictureByteArray(path);
-			pstmt.setBytes(2, pic);
-			pstmt.setInt(3, listingpicVO.getLspID());
-
+			
+//		byte[] pic = getPictureByteArray(path);
+			pstmt.setBytes(1, listingpicVO.getLspPic());
+			pstmt.setInt(2, listingpicVO.getLspLisID());
 			pstmt.executeUpdate();
 		} catch (SQLException se) {
 			se.printStackTrace();
-		} catch (IOException e) {
-			e.printStackTrace();
-		} finally {
+		
 			Util.closeResource(con, pstmt, rs);
 		}
 	}

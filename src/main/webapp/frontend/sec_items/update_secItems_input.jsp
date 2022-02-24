@@ -16,8 +16,14 @@ SecPicsVO secPicsVO = (SecPicsVO) request.getAttribute("secPicsVO");
 <html>
 <head>
 <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+
+<script src="https://code.jquery.com/jquery-1.12.4.min.js"
+	integrity="sha256-ZosEbRLbNQzLpnKIkEdrPv7lOy9C27hHQ+Xp8a4MxAQ="
+	crossorigin="anonymous"></script>
+
 <title>EASY SPACE</title>
 <script src="https://code.jquery.com/jquery-1.12.4.min.js" integrity="sha256-ZosEbRLbNQzLpnKIkEdrPv7lOy9C27hHQ+Xp8a4MxAQ=" crossorigin="anonymous"></script>
+
 <style>
 table#table-1 {
 	background-color: #CCCCFF;
@@ -64,7 +70,8 @@ th, td {
 				<h4>
 					<a
 						href="<%=request.getContextPath()%>/frontend/sec_items/select_page.jsp"><img
-						src="images/back1.gif" width="100" height="32" border="0">回首頁</a>
+						src="<%=request.getContextPath()%>/images/cmn/index/EASYSPACE.png"
+						width="100" height="60" border="0">回查詢首頁 </a>
 				</h4>
 			</td>
 		</tr>
@@ -88,9 +95,9 @@ th, td {
 		<table>
 			<tr>
 				<td>商品編號:<font color=red><b>*</b></font></td>
-				
+
 				<td><%=secItemsVO.getShID()%></td>
-				
+
 			</tr>
 
 			<jsp:useBean id="secCategorySvc" scope="page"
@@ -103,7 +110,6 @@ th, td {
 
 						</c:forEach>
 				</select></td>
-		
 			<tr>
 			<tr>
 				<!-- 		<td>會員編號:</td> -->
@@ -180,19 +186,16 @@ th, td {
 					accept="image/gif, image/jpeg, image/png" multiple="multiple" />
 					<div id="previews">
 						<p>圖片預覽</p>
-						<img src="<%=request.getContextPath()%>/sec_items/SecItemsPicReaderServlet.do?sh_id=${secItemsVO.shID}" width=200px>
-					</div> 
-				
-<%-- 				<c:forEach --%>
-<%-- 						var="secPicsVO" items="${secPicsSvc.all}"> --%>
-<%-- 						<option value="${secPicsVO.getOneShID(secItemsVO.shID)}"> --%>
-<%-- 					</c:forEach>  --%>
-<!-- 					查詢到舊的 -->
-					</td>
-					
-					
-<%-- 					<td><img src="<%=request.getContextPath()%>/sec_items/SecItemsPicReaderServlet.do?sh_id= --%>
-<%-- 				 ${secItemsVO.shID}" width = 200px></td> --%>
+						<img
+							src="<%=request.getContextPath()%>/sec_items/SecItemsPicReaderServlet.do?sh_id=${secItemsVO.shID}"
+							width=200px>
+					</div> <%-- 				<c:forEach --%> <%-- 						var="secPicsVO" items="${secPicsSvc.all}"> --%>
+					<%-- 						<option value="${secPicsVO.getOneShID(secItemsVO.shID)}"> --%>
+					<%-- 					</c:forEach>  --%> <!-- 					查詢到舊的 --></td>
+
+
+				<%-- 					<td><img src="<%=request.getContextPath()%>/sec_items/SecItemsPicReaderServlet.do?sh_id= --%>
+				<%-- 				 ${secItemsVO.shID}" width = 200px></td> --%>
 
 			</tr>
 

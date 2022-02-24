@@ -23,39 +23,41 @@ public class WriteBlobByJDBC將圖片寫進資料庫 {
 			con = DriverManager.getConnection(Util.URL, Util.USER, Util.PASSWORD);
 
 			// 請先到SQL下指令找出你的PIC欄位
-			pstmt = con.prepareStatement("UPDATE sec_pics SET sh_pic = ? WHERE sh_pic_id = ? ");
 
-			File file = new File("src/main/webapp/images/sec/sh_pic/");
-			File[] listFile = file.listFiles();
-			for (int i = 0; i < file.listFiles().length; i++) {
-				String url = listFile[i].toString();
-				System.out.println(url);
-				// 2. setBytes 萬用做法
-				byte[] pic = getPictureByteArray(url);
-				pstmt.setBytes(1, pic);
-				pstmt.setInt(2, i + 1);
-				pstmt.executeUpdate();
-			}
+//			pstmt = con.prepareStatement("UPDATE sec_pics SET sh_pic = ? WHERE sh_pic_id = ? ");
+//
+//			File file = new File("src/main/webapp/images/sec/sh_pic/");
+//			File[] listFile = file.listFiles();
+//			for (int i = 0; i < file.listFiles().length; i++) {
+//				String url = listFile[i].toString();
+//				System.out.println(url);
+//				// 2. setBytes 萬用做法
+//				byte[] pic = getPictureByteArray(url);
+//				pstmt.setBytes(1, pic);
+//				pstmt.setInt(2, i+1);
+//				pstmt.executeUpdate();
+//			}
+//
+//			System.out.println("二手商品圖片新增成功");
+			
+//			pstmt = con.prepareStatement("UPDATE Member SET mem_Headshot = ? WHERE mem_ID = ? ");
+//
+//			File file2 = new File("src/main/webapp/images/cmn/member_pic/");
+//			File[] listFile2 = file2.listFiles();
+//			for (int i = 0; i < file2.listFiles().length; i++) {
+//				String url = listFile2[i].toString();
+//				System.out.println(url);
+//				byte[] pic = getPictureByteArray(url);
+//				pstmt.setBytes(1, pic);
+//				pstmt.setInt(2, i+1);
+//				pstmt.executeUpdate();
+//			}
+//      System.out.println("會員頭相新增成功");
 
-			System.out.println("二手商品圖片新增成功");
-
-			pstmt = con.prepareStatement("UPDATE `Member` SET mem_Headshot = ? WHERE mem_ID = ? ");
-
-			File file2 = new File("src/main/webapp/images/cmn/member_pic/");
-			File[] listFile2 = file2.listFiles();
-			for (int i = 0; i < file2.listFiles().length; i++) {
-				String url = listFile2[i].toString();
-				System.out.println(url);
-				byte[] pic = getPictureByteArray(url);
-				pstmt.setBytes(1, pic);
-				pstmt.setInt(2, i + 1);
-				pstmt.executeUpdate();
-			}
-			System.out.println("會員頭相新增成功");
 
 			// 請先到SQL下指令找出你的PIC欄位
-			pstmt = con.prepareStatement(
-					"UPDATE `CFA104G5`.`REN_LISTING_PIC` SET LSP_LIS_ID = ?, LSP_PIC = ? WHERE LSP_ID = ?");
+			pstmt = con.prepareStatement("UPDATE CFA104G5.REN_LISTING_PIC SET LSP_LIS_ID = ?, LSP_PIC = ? WHERE LSP_ID = ?");
+
 
 			File file1 = new File("src/main/webapp/images/ren/listingPic/");
 			File[] listFile1 = file1.listFiles();

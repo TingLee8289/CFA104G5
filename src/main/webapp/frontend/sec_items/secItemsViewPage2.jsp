@@ -6,17 +6,17 @@
 <%@ page import="ezs.sec_category.model.*"%>
 
 <%
-SecPicsService secPicsSvc = new SecPicsService();
-List<SecPicsVO> secPicslist = secPicsSvc.getEachFirst();
-pageContext.setAttribute("secPicslist", secPicslist);
-
-SecCategoryService secCategorySvc = new SecCategoryService();
-List<SecCategoryVO> secCategorylist = secCategorySvc.getAll();
-pageContext.setAttribute("secCategorylist", secCategorylist);
-
-SecItemsService secItemsSvc = new SecItemsService();
-List<SecItemsVO> secItemslist = secItemsSvc.getAll();
-pageContext.setAttribute("secItemslist", secItemslist);
+	SecPicsService secPicsSvc = new SecPicsService();
+	List<SecPicsVO> secPicslist = secPicsSvc.getEachFirst();
+	pageContext.setAttribute("secPicslist", secPicslist);
+	
+	SecCategoryService secCategorySvc = new SecCategoryService();
+	List<SecCategoryVO> secCategorylist = secCategorySvc.getAll();
+	pageContext.setAttribute("secCategorylist", secCategorylist);
+	
+	SecItemsService secItemsSvc = new SecItemsService();
+	List<SecItemsVO> secItemslist = secItemsSvc.getAll();
+	pageContext.setAttribute("secItemslist", secItemslist);
 
 %>
 
@@ -192,14 +192,14 @@ pageContext.setAttribute("secItemslist", secItemslist);
 
     <main class="main">
 		<ul class="item_list" id="item_list">
-
 			<c:forEach var="secPicsVO" items="${secPicslist}">
 				<li>
-					<a href="<%=request.getContextPath()%>/sec_items/GetSecItemsServlet.do?shID=${secPicsVO.shID}&action=getOne_For_Display">
+					<a href="<%=request.getContextPath()%>/sec_items/GetSecItemsServlet.do?shID=${secPicsVO.shID}&action=getOneItem_For_Display">
 						<div class="img_block">
 							<img style="margin: 0px auto;"
 								src="<%= request.getContextPath()%>/sec_pics/SecPicsReader.do?sh_id=${secPicsVO.shID}">
-						</div> <c:forEach var="secItemsVO" items="${secItemslist}">
+						</div> 
+						<c:forEach var="secItemsVO" items="${secItemslist}">
 							<c:if test="${secItemsVO.shID==secPicsVO.shID}">
 								<span class="item_text">${secItemsVO.shName}</span>
 								<span class="item_price">$${secItemsVO.shPrice}</span>
@@ -208,9 +208,6 @@ pageContext.setAttribute("secItemslist", secItemslist);
 					</a> 
 					<c:forEach var="secItemsVO" items="${secItemslist}">
 						<c:if test="${secItemsVO.shID==secPicsVO.shID}">
-<!-- 							<a class="btn btn-buy" -->
-<%-- 								href="<%=request.getContextPath()%>/sec_items/ShoppingServlet.do?shID=${secItemsVO.shID} --%>
-<%-- 								&shName=${secItemsVO.shName}&shPrice=${secItemsVO.shPrice}&shQTY=1&action=ADD">加入購物車</a> --%>
 							<form method="post" action="<%=request.getContextPath()%>/sec_items/ShoppingServlet.do">
 								<input type="submit" value="加入購物車">
 								<input type="hidden" name="shID" value="${secItemsVO.shID}">
@@ -226,7 +223,7 @@ pageContext.setAttribute("secItemslist", secItemslist);
 
 		</ul>
 	</main>
-
+<!-- 	main 結束-------------------------------------------------------- -->
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <script src="http://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script>
@@ -293,45 +290,12 @@ pageContext.setAttribute("secItemslist", secItemslist);
 		
 		function showItems(data){
 			
-		//		console.log(data)
+				console.log(data)
 			$("#item_list").html("");
 			$("#item_list").html(data);
 		}
 
 
-	
-
-	
-// 	$.ajax({
-// 	    // 進行要求的網址(URL)
-<%-- 	    url: '<%= request.getContextPath()%>/sec_items/GetSecItemsServlet.do', --%>
-// 	    // 要送出的資料 (會被自動轉成查詢字串)
-// 	    data: {
-// 	        shCateID: 
-// 	    },
-// 	    // 要使用的要求method(方法)，POST 或 GET
-// 	    type: 'GET',
-// 	    // 資料的類型
-// 	    dataType : 'json',
-// 	})
-// 	  // 要求成功時要執行的程式碼
-// 	  // 回應會被傳遞到回調函式的參數
-// 	  .done(function( json ) {
-// 	     $( '<h1>' ).text( json.title ).appendTo( 'body' );
-// 	     $( '<div class=\'content\'>').html( json.html ).appendTo( 'body' );
-// 	  })
-// 	  // 要求失敗時要執行的程式碼
-// 	  // 狀態碼會被傳遞到回調函式的參數
-// 	  .fail(function( xhr, status, errorThrown ) {
-// 	    console.log( '出現錯誤，無法完成!' )
-// 	    console.log( 'Error: ' + errorThrown )
-// 	    console.log( 'Status: ' + status )
-// 	    console.dir( xhr )
-// 	  })
-// 	  // 不論成功或失敗都會執行的回調函式
-// 	  .always(function( xhr, status ) {
-// 	    console.log( '要求已完成!' )
-// 	  })
 </script>
   <script src="js/jquery-3.2.1.slim.min.js"></script>
   <script src="js/popper.min.js"></script>

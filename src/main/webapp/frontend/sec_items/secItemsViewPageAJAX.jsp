@@ -99,7 +99,6 @@
 //     </form>
 // </li>
 	
-	
 	out.print(str);
 	
 	rs.close();
