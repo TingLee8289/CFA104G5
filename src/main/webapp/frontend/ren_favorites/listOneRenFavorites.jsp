@@ -6,24 +6,18 @@
 <%@ page import="java.util.*"%>
 
 <%
+	Integer favMemId = (Integer)session.getAttribute("memID");
 	RenFavoritesService renFavSvc = new RenFavoritesService();
-    List<RenFavoritesVO> list = renFavSvc.getAll();
+    List<RenFavoritesVO> list = renFavSvc.getAll(favMemId);
     pageContext.setAttribute("list",list);
-    
-
-	RenFavoritesVO renFavoritesVO = (RenFavoritesVO) request.getAttribute("renFavoritesVO");
-	Integer memID = (Integer)session.getAttribute("memID");
-
-	String favLisId = (String) request.getParameter("favLisId");
-    pageContext.setAttribute("favLisId", favLisId);
+ 
 %>
-
 
 <%
 RenListingPicVO renListingPicVO = (RenListingPicVO) request.getAttribute("renListingPicVO"); 
 %>
 
-<jsp:useBean id="listOneRenFavorites" scope="request" type="java.util.List<RenFavoritesVO>" />
+<%-- <jsp:useBean id="listOneRenFavorites" scope="request" type="java.util.List<RenFavoritesVO>" /> --%>
 
 <jsp:useBean id="renLisSvc" scope="page" class="ezs.ren_listing.model.RenListingService" />
 <jsp:useBean id="renLisPicSvc" scope="page" class="ezs.ren_listing_pic.model.RenListingPicService" />
@@ -79,8 +73,7 @@ th, td {
 	<table id="table-1">
 		<tr><td>
 			<h3>收藏房源</h3>
-			<h4><a href="<%=request.getContextPath()%>/frontend/ren_favorites/select_page.jsp">回首頁</a></h4>
-		</td>
+				</td>
 		</tr>
 	</table>
 
@@ -91,7 +84,7 @@ th, td {
 			<th>房源標題</th>		
 			<th>刪除</th>
 		</tr>
-		<c:forEach var="renFavoritesVO" items="${listOneRenFavorites}">
+		<c:forEach var="renFavoritesVO" items="${list}">
 			<tr align='center' valign='middle'>
 				<td>${renFavoritesVO.favLisId}</td>
 				<td><img src="<%=request.getContextPath()%>/DBGifReader4?fav_lis_id=${renFavoritesVO.favLisId}" height=100px width=150px></td>
