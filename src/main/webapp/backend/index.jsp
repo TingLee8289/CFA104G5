@@ -56,10 +56,8 @@ figure img {
 					class="fas fa-user fa-fw"></i></a>
 				<ul class="dropdown-menu dropdown-menu-end"
 					aria-labelledby="navbarDropdown">
-					<li><a class="dropdown-item" href="#!">設定</a></li>
-					<li><a class="dropdown-item" href="#!">Activity Log</a></li>
-					<li><hr class="dropdown-divider" /></li>
-					<li><a class="dropdown-item" href="#!">登出</a></li>
+<!-- 					<li><hr class="dropdown-divider" /></li> -->
+					<li><a class="dropdown-item" href="<%= request.getContextPath()%>//admin_emp/AdminEmpServlet.do?action=logout">登出</a></li>
 				</ul></li>
 		</ul>
 	</nav>
