@@ -7,10 +7,11 @@ public interface SecItemsDAO_interface {
 	public Integer insert(SecItemsVO secItemsVO);
     public void update(SecItemsVO secItemsVO);
     public void delete(Integer shID);
-    public SecItemsVO findByPrimaryKey(Integer shID);
-    public List<SecItemsVO> findByShCategory(Integer shCateID);
-    public List<SecItemsVO> findByStatus(Integer shStatus);
-    public List<SecItemsVO> getAll();
-    public SecItemsVO getShStatusAll(Integer shStatus);
+    public SecItemsVO findByPrimaryKey(Integer shSellerID, Integer shID);
+    public List<SecItemsVO> findByShCategory(Integer shSellerID,Integer shCateID);
+   
+    public List<SecItemsVO> getAll(Integer shSellerID);
+    public List<SecItemsVO> getAll2();
+    public List<SecItemsVO> findByStatus(Integer shSellerID,Integer shStatus);
 }
 

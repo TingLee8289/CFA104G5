@@ -11,6 +11,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import ezs.sec_items.model.SecItemsService;
 import ezs.sec_items.model.SecItemsVO;
@@ -22,7 +23,6 @@ import ezs.sec_items.model.SecItemsVO;
 @MultipartConfig(fileSizeThreshold = 1024 * 1024, maxFileSize = 5 * 1024 * 1024, maxRequestSize = 5 * 5 * 1024 * 1024)
 public class GetSecItemsStatusServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-  
 
 	synchronized public void doGet(HttpServletRequest req, HttpServletResponse res)
 			throws ServletException, IOException {
@@ -34,6 +34,7 @@ public class GetSecItemsStatusServlet extends HttpServlet {
 
 		req.setCharacterEncoding("UTF-8");
 		String action = req.getParameter("action");
+		HttpSession session = req.getSession(); // 取得session
 
 		if ("getOne_For_Display".equals(action)) { // 來自select_page.jsp的請求
 
@@ -44,23 +45,30 @@ public class GetSecItemsStatusServlet extends HttpServlet {
 			try {
 
 				/*************************** 1.接收請求參數 - 輸入格式的錯誤處理 **********************/
-				String str = req.getParameter("shStatus");
-				if (str == null || (str.trim()).length() == 0) {
-					errorMsgs.add("請選擇商品狀態");
-				}
-				// Send the use back to the form, if there were errors
-				if (!errorMsgs.isEmpty()) {
-					RequestDispatcher failureView = req.getRequestDispatcher("/frontend/sec_items/select_page.jsp");
-					failureView.forward(req, res);
-					return;// 程式中斷
-				}
+				Object seller = session.getAttribute("memID");
 
-				Integer shStatus = null;
-				try {
-					shStatus = Integer.valueOf(str);
-				} catch (Exception e) {
-					errorMsgs.add("商品搜尋狀態別不正確");
-				}
+				Integer shSellerID = (Integer) seller;
+				System.out.println(shSellerID);
+
+				Integer shStatus = Integer.valueOf(req.getParameter("shStatus"));
+
+//				String str = req.getParameter("shStatus");
+//				if (str == null || (str.trim()).length() == 0) {
+//					errorMsgs.add("請選擇商品狀態");
+//				}
+//				// Send the use back to the form, if there were errors
+//				if (!errorMsgs.isEmpty()) {
+//					RequestDispatcher failureView = req.getRequestDispatcher("/frontend/sec_items/select_page.jsp");
+//					failureView.forward(req, res);
+//					return;// 程式中斷
+//				}
+//
+//				Integer shStatus = null;
+//				try {
+//					shStatus = Integer.valueOf(str);
+//				} catch (Exception e) {
+//					errorMsgs.add("商品搜尋狀態別不正確");
+//				}
 
 				System.out.println(shStatus);
 
@@ -73,8 +81,8 @@ public class GetSecItemsStatusServlet extends HttpServlet {
 
 				/*************************** 2.開始查詢資料 *****************************************/
 				SecItemsService secItemsSvc = new SecItemsService();
-				List<SecItemsVO> secItemsVO = secItemsSvc.getByCategory(shStatus);
-				System.out.println(shStatus);
+				List<SecItemsVO> secItemsVO = secItemsSvc.getByStatus(shSellerID, shStatus);
+				System.out.println(shSellerID);
 				if (secItemsVO == null) {
 					errorMsgs.add("查無資料");
 				}
