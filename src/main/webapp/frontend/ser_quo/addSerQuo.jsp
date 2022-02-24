@@ -3,7 +3,6 @@
 <%@ page import="java.util.*"%>
 <%@ page import="ezs.ser_quo.model.*"%>
 <%@ page import="ezs.ser_dmd.model.*"%>
-<%-- <% session.setAttribute("memID", 2);%> --%>
 <%
 SerQuoVO serQuoVO = (SerQuoVO) request.getAttribute("serQuoVO");
 %>
@@ -61,10 +60,10 @@ th, td {
 </head>
 <body bgcolor='white'>
 
-	<table id="table-1">
+	<table id="table-1" style="margin:0 auto;">
 		<tr>
 			<td>
-				<h3>新增估價單 - addSerDmd.jsp</h3>
+				<h3>投遞需求單</h3>
 			</td>
 			<td style="text-align: center">
 				<h4>
@@ -75,7 +74,7 @@ th, td {
 		</tr>
 	</table>
 
-	<h3>新增估價單(投遞需求單):</h3>
+
 
 	<%-- 錯誤表列 --%>
 	<c:if test="${not empty errorMsgs}">
@@ -87,9 +86,7 @@ th, td {
 		</ul>
 	</c:if>
 
-	<FORM METHOD="post"
-		ACTION="<%=request.getContextPath()%>/ser_quo/AddQuoServlet.do"
-		name="form1">
+	<FORM METHOD="post" ACTION="<%=request.getContextPath()%>/ser_quo/AddQuoServlet.do" name="form1">
 		<table>
 			<tr>
 				<td><input type="hidden" type="TEXT" name="quoStatus" size="8"

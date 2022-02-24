@@ -94,7 +94,7 @@ public class SecOrdServlet extends HttpServlet {
 				throw new ServletException(e);
 			}
 		}
-// 買家會員新增訂單
+// 買家會員結帳並新增訂單 (接收來自Checkout.jsp請求)
 
 		if ("insert".equals(action)) {
 
@@ -102,9 +102,17 @@ public class SecOrdServlet extends HttpServlet {
 			req.setAttribute("errorMsgs", errorMsgs);
 			HttpSession session = req.getSession();
 			
+				/*************************** 0.確認使用者已登入 ****************************************/
+			try{
+				String memID = session.getAttribute("memID").toString();
+			} catch (Exception e) {
+				RequestDispatcher failureView = req.getRequestDispatcher("/frontend/member/login.jsp");
+				failureView.forward(req, res);
+				return;
+			}
+			
+			/*************************** 1.接收請求參數 ****************************************/
 			try {
-				/*************************** 1.接收請求參數 ****************************************/
-				
 				String shRecipName = (String) req.getParameter("shRecipName");
 				if (shRecipName == null || shRecipName.trim().length() == 0) {
 					errorMsgs.add("收件人姓名請勿空白");
@@ -118,11 +126,11 @@ public class SecOrdServlet extends HttpServlet {
 				
 				Integer shPostcode = null;
 				try {
-					shPostcode = Integer.valueOf(req.getParameter("shPostcode"));
-				} catch (Exception e) {
-					errorMsgs.add("郵遞區號格式不正確");
+					shPostcode = Integer.valueOf(req.getParameter("shRecipPhone"));
+				} catch (Exception e){
+					errorMsgs.add("郵遞區號請勿空白");
 				}
-				
+					
 				String shCounty = (String) req.getParameter("shCounty");
 					if (shCounty == null || shCounty.trim().length() == 0) {
 						errorMsgs.add("縣市請勿空白");

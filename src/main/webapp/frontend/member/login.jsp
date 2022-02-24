@@ -231,6 +231,14 @@ a {
 			</c:forEach>
 		</ul>
 	</c:if>
+	<%-- 檢舉錯誤表列 --%>
+	<c:if test="${not empty repo}">
+		<ul>
+			<c:forEach var="message" items="${repo}">
+				<p style="color: red">${message}</p>
+			</c:forEach>
+		</ul>
+	</c:if>
 
 
 	<div class="login-wrap">

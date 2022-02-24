@@ -3,6 +3,7 @@
 <%@ page import="ezs.ser_dmd.model.*"%>
 
 <%
+	Integer memID = (Integer)session.getAttribute("memID");
 	SerDmdVO serDmdVO = (SerDmdVO) request.getAttribute("serDmdVO");
 %>
 
@@ -55,16 +56,11 @@
 	<tr>
 		<td>
 		 <h3>新增需求單 - addSerDmd.jsp</h3></td><td style="text-align: center">
-		 <h4><a href="<%=request.getContextPath()%>/frontend/ser_dmd/serDmdHome.jsp">回首頁</a></h4>
+		 <h4><a href="<%=request.getContextPath()%>/frontend/member/memberCenter/buyerMemberCenter.jsp">回前頁</a></h4>
 		</td>
 	</tr>
 </table>
-<table>
-<th>
-<h3>資料新增:</h3>
-</th>
 
-</table>
 
 
 <%-- 錯誤表列 --%>
@@ -81,23 +77,12 @@
 <table>
 	<tr>
 		
-		<td><input type="hidden" name="dmdStatus" size="8"
-			 value=0 /></td>
+		<td><input type="hidden" name="dmdStatus" size="8" value=0 /></td>
 	</tr>
 	<tr>
 		<td>會員ID:</td>
-		<td><input type="TEXT" name="dmdMemID" size="50"
-			 value="<%= (serDmdVO==null)? "2" : serDmdVO.getDmdMemID() %>"/></td>
+		<td><input type="TEXT" name="dmdMemID" size="10" value="${memID}" disabled/></td>
 	</tr>
-	
-<!-- 	<tr> -->
-<!-- 		<td>服務類別ID:</td> -->
-<!-- 		<td><input type="TEXT" name="dmdSerClaID" size="8" -->
-<%-- 			 value="<%= (serDmdVO==null)? "2" : serDmdVO.getDmdSerClaID() %>"/></td> --%>
-<!-- 	</tr> -->
-	
-	
-	
 	<jsp:useBean id="serCla" scope="page" class="ezs.ser_cla.model.SerClaService" />
 	<tr>
 		<td>服務類別:<font color=red><b>*</b></font></td>
@@ -107,13 +92,6 @@
 			</c:forEach>
 		</select></td>
 	</tr>
-	
-	
-	
-	
-	
-	
-	
 	
 	<tr>
 		<td>需求人姓名:</td>
@@ -186,6 +164,7 @@
 </table>
 <br>
 <input type="hidden" name="action" value="insert">
+<input type="hidden" name="dmdMemID" size="10" value="${ memID}"/>
 </FORM>
 </body>
 

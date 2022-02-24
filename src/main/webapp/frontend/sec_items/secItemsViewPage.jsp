@@ -274,6 +274,74 @@ pageContext.setAttribute("secItemslist", secItemslist);
     <script src="<%=request.getContextPath() %>/js/imagesloaded.pkgd.min.js"></script>
     <script src="<%=request.getContextPath() %>/js/main.js"></script>
 
+
+
+<script>
+	$('#Cate1').click(function() {
+		$.ajax({
+			type: "get",
+			url: "<%= request.getContextPath()%>/frontend/sec_items/secItemsViewPageAJAX.jsp",
+			data: {"shCateID": 1},
+			success: function(data){
+				showItems(data);
+			}
+		});
+	});
+	$('#Cate2').click(function() {
+		$.ajax({
+			type: "get",
+			url: "<%= request.getContextPath()%>/frontend/sec_items/secItemsViewPageAJAX.jsp",
+			data: {"shCateID": 2},
+			success: function(data){
+				showItems(data);
+			}
+		});
+	});
+	$('#Cate3').click(function() {
+		$.ajax({
+			type: "get",
+			url: "<%= request.getContextPath()%>/frontend/sec_items/secItemsViewPageAJAX.jsp",
+			data: {"shCateID": 3},
+			success: function(data){
+				showItems(data);
+			}
+		});
+	});
+	$('#Cate4').click(function() {
+		$.ajax({
+			type: "get",
+			url: "<%= request.getContextPath()%>/frontend/sec_items/secItemsViewPageAJAX.jsp",
+			data: {"shCateID": 4},
+			success: function(data){
+				showItems(data);
+			}
+		});
+	});
+	$('#Cate5').click(function() {
+		$.ajax({
+			type: "get",
+			url: "<%= request.getContextPath()%>/frontend/sec_items/secItemsViewPageAJAX.jsp",
+			data: {"shCateID": 5},
+			success: function(data){
+				showItems(data);
+			}
+		});
+	});
+	
+	
+	function showItems(data){
+		
+		$("#item_list").html("");
+		$("#item_list").html(data);
+	}
+</script>
+  <script src="js/jquery-3.2.1.slim.min.js"></script>
+  <script src="js/popper.min.js"></script>
+  <script src="js/bootstrap.min.js"></script>
+  <script src="js/owl.carousel.min.js"></script>
+  <script src="js/jquery.waypoints.min.js"></script>
+  <script src="js/imagesloaded.pkgd.min.js"></script>
+  <script src="js/main.js"></script>
     
   </body>
 </html>

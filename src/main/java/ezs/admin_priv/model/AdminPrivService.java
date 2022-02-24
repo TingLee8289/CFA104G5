@@ -34,6 +34,9 @@ public class AdminPrivService {
 	public List<AdminPrivVO> getAllFromID (Integer adminID){
 		return dao.getAllFromID(adminID);
 	}
+//	public List<AdminPrivVO> getAllFromID (Objectb adminID){
+//		return dao.getAllFromID(adminID);
+//	}
 	
 	public  List<AdminPrivVO> getAll() {
 		return dao.getAll();

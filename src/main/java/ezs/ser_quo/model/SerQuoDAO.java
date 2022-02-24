@@ -23,7 +23,7 @@ public class SerQuoDAO implements SerQuoDAO_interface {
 	private static final String UPDATE = "UPDATE `ser_quo` set QUO_STATUS=?, QUO_DMD_ID=?, QUO_VDR_ID=?, QUO_DATE=?, QUO_EXPIRYDATE=?, QUO_ITEM=?, QUO_TOTALPRICE=? where QUO_ID = ?";
 	public static final String FIND_BY_QUO_VDRID = "SELECT * FROM ser_quo WHERE quo_vdr_id = ?";
 	public static final String FIND_QUO_BY_DMDID = "select * from  SER_DMD  d  join SER_QUO q on d.DMD_ID = q.QUO_DMD_ID where d.DMD_ID = ?";
-
+	
 	// 一個應用程式中,針對一個資料庫 ,共用一個DataSource即可
 	private static DataSource ds = null;
 	static {
@@ -227,4 +227,6 @@ public class SerQuoDAO implements SerQuoDAO_interface {
 		}
 		return list;
 	}
+
+	
 }
