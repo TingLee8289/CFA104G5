@@ -173,8 +173,8 @@ th, td {
 				id="sidenavAccordion">
 				<div class="sb-sidenav-menu">
 					<div class="nav">
-						<div class="sb-sidenav-menu-heading">管理專區區</div>
-						<a class="nav-link" href="index.html">
+						<div class="sb-sidenav-menu-heading">管理專區</div>
+						<a class="nav-link" href="<%= request.getContextPath() %>/frontend/member/listOneMember.jsp">
 							<div class="sb-nav-link-icon">
 								<i class="fas fa-tachometer-alt"></i>
 							</div> 會員資料管理
@@ -268,8 +268,8 @@ th, td {
 							<table class="table table-hover table-striped" id="cssTable">
 								<thead text-align:center;>
 									<tr class="thead-dark">
-										<th>訂單ID</th>
-										<th>買家ID</th>
+<!-- 										<th>訂單ID</th> -->
+<!-- 										<th>買家ID</th> -->
 										<th>賣家ID</th>
 										<th>收件地址郵遞區號</th>
 										<th>收件地址縣市</th>
@@ -294,11 +294,8 @@ th, td {
 
 									<c:forEach var="secOrdVO" items="${listSecOrds_ByShBuyerID}">
 										<tr>
-
-
-											<c:if test="${memberVO.memStatus == 0}">未驗證</c:if>
-											<td>${secOrdVO.shOrdID}</td>
-											<td>${secOrdVO.shBuyerID}</td>
+<%-- 											<td>${secOrdVO.shOrdID}</td> --%>
+<%-- 											<td>${secOrdVO.shBuyerID}</td> --%>
 											<td>${secOrdVO.shSellerID}</td>
 											<td>${secOrdVO.shPostcode}</td>
 											<td>${secOrdVO.shCounty}</td>
