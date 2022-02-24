@@ -223,7 +223,14 @@ pageContext.setAttribute("funList", funList);
 										<td>${adminEmpVO.admID}</td>
 										<td>${adminEmpVO.admUsername}</td>
 										<td>${adminEmpVO.admPassword}</td>
-										<td>${adminEmpVO.admStatus}</td>
+<%-- 										<td>${adminEmpVO.admStatus}</td> --%>
+										
+										<td>
+										<c:if test="${adminEmpVO.admStatus==1}">
+										在職</c:if> 
+										<c:if test="${adminEmpVO.admStatus==0}">
+										離職</c:if> 
+										</td>
 
 										<!-- 				<td> -->
 										<%-- 				<c:forEach var="adminPrivVO" items="${adminEmpVO.authlist}"> --%>
