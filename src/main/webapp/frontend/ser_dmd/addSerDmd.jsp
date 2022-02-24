@@ -56,16 +56,11 @@
 	<tr>
 		<td>
 		 <h3>新增需求單 - addSerDmd.jsp</h3></td><td style="text-align: center">
-		 <h4><a href="<%=request.getContextPath()%>/frontend/ser_dmd/serDmdHome.jsp">回首頁</a></h4>
+		 <h4><a href="<%=request.getContextPath()%>/frontend/member/memberCenter/buyerMemberCenter.jsp">回前頁</a></h4>
 		</td>
 	</tr>
 </table>
-<table>
-<th>
-<h3>資料新增:</h3>
-</th>
 
-</table>
 
 
 <%-- 錯誤表列 --%>
