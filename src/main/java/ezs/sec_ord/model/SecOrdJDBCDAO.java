@@ -407,14 +407,14 @@ public class SecOrdJDBCDAO implements SecOrdDAO_interface {
 			ResultSet rs = pstmt.getGeneratedKeys();
 			if (rs.next()) {
 				next_secOrdno = rs.getString(1);
-				System.out.println("自增主鍵值= " + next_secOrdno + "(剛新增成功的訂單編號)");
+//				System.out.println("自增主鍵值= " + next_secOrdno + "(剛新增成功的訂單編號)");
 			} else {
 				System.out.println("未取得自增主鍵值");
 			}
 			rs.close();
 			// 再同時新增訂單明細
 			SecOrdDetailsJDBCDAO dao = new SecOrdDetailsJDBCDAO();
-			System.out.println("list.size()-A=" + list.size());
+//			System.out.println("list.size()-A=" + list.size());
 			for (SecOrdDetailsVO aSecOrdDetails : list) {
 				aSecOrdDetails.setShOrdID(Integer.valueOf(next_secOrdno));
 				dao.insert2(aSecOrdDetails, con);
@@ -423,8 +423,8 @@ public class SecOrdJDBCDAO implements SecOrdDAO_interface {
 			// 2●設定於 pstmt.executeUpdate()之後
 			con.commit();
 			con.setAutoCommit(true);
-			System.out.println("list.size()-B=" + list.size());
-			System.out.println("新增訂單編號" + next_secOrdno + "時,共有訂單明細" + list.size() + "筆同時被新增");
+//			System.out.println("list.size()-B=" + list.size());
+//			System.out.println("新增訂單編號" + next_secOrdno + "時,共有訂單明細" + list.size() + "筆同時被新增");
 
 			// Handle any SQL errors
 		} catch (SQLException se) {

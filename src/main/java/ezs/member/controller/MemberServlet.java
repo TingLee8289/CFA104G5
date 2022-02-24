@@ -118,9 +118,9 @@ public class MemberServlet extends HttpServlet {
 			/*************************** 1.接收請求參數 - 輸入格式的錯誤處理 **********************/
 
 			try {
-				String memPhoneReg = "/^09[0-9]{8}$/";
-				String memPIDReg = "/^[A-Za-z][12]\\d{8}$/";
-				String memEmailReg = "/^(\\w)+(\\.\\w+)*@(\\w)+((\\.\\w))$/;";
+				String memPhoneReg = "^09[0-9]{8}$";
+				String memPIDReg = "^[A-Za-z][12]\\d{8}$";
+				String memEmailReg = "^\\w+((-\\w+)|(\\.\\w+))*\\@[A-Za-z0-9]+((\\.|-)[A-Za-z0-9]+)*\\.[A-Za-z]+$";
 				
 				
 				String memUsername = req.getParameter("memUsername");
@@ -151,7 +151,7 @@ public class MemberServlet extends HttpServlet {
 				if (memEmail == null || memEmail.trim().length() == 0) {
 					errorMsgs.add("email請勿空白");
 				}else if (!memEmail.trim().matches(memEmailReg)){
-					errorMsgs.add("身分證字號格式不符，請重新輸入");
+					errorMsgs.add("email格式不符，請重新輸入");
 				}
 				
 				String memPID = req.getParameter("memPID");
@@ -199,10 +199,13 @@ public class MemberServlet extends HttpServlet {
 //				serVdrSvc.addSerVdr(memID, 0, null, null, null, null, null, null, null, null, null, null, null);
 				
 				/*************************** 3.新增完成,準備轉交(Send the Success view) ***********/
+//				<法一> 存在session
 //				HttpSession session = req.getSession();
 //				session.setAttribute("memberVO", memberVO);
 //				System.out.println(memberVO.getMemUsername());
 				
+//				<法二> 先暫放在req
+				req.setAttribute("memberVO", memberVO);
 				RequestDispatcher successView = req.getRequestDispatcher("/member/RegisterMailServlet.do"); 
 				successView.forward(req, res);
 
