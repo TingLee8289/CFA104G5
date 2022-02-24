@@ -11,6 +11,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import ezs.sec_items.model.SecItemsService;
 import ezs.sec_items.model.SecItemsVO;
@@ -35,6 +36,7 @@ public class GetOneForUpdateSecItemsServlet extends HttpServlet {
 
 		req.setCharacterEncoding("UTF-8");
 		String action = req.getParameter("action");
+		HttpSession session = req.getSession(); // 取得session
 		if ("getOne_For_Update".equals(action)) { // 來自listAllSecItems.jsp的請求
 
 			List<String> errorMsgs = new LinkedList<String>();
@@ -44,11 +46,18 @@ public class GetOneForUpdateSecItemsServlet extends HttpServlet {
 
 			try {
 				/*************************** 1.接收請求參數 ****************************************/
+				Object seller = session.getAttribute("memID");
+
+				Integer shSellerID = (Integer) seller;
+				System.out.println(shSellerID);
+				
+				
+				
 				Integer shID = Integer.valueOf(req.getParameter("shID"));
 //				System.out.println(shID);
 				/*************************** 2.開始查詢資料 ****************************************/
 				SecItemsService secItemsSvc = new SecItemsService();
-				SecItemsVO secItemsVO = secItemsSvc.getOneSecItems(shID);
+				SecItemsVO secItemsVO = secItemsSvc.getOneSecItems(shSellerID,shID);
 
 				/*************************** 3.查詢完成,準備轉交(Send the Success view) ************/
 				req.setAttribute("secItemsVO", secItemsVO); // 資料庫取出的secItems物件,存入req

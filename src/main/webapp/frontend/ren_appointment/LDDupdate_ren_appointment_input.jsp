@@ -56,8 +56,7 @@ th, td {
 	<table id="table-1">
 		<tr> <td>
 				<h3>預約訂單資料修改</h3>
-				<h4> <a href="<%=request.getContextPath()%>/frontend/ren_appointment/select_page.jsp">回首頁</a></h4>
-			</td>
+				</td>
 		</tr>
 	</table>
 
@@ -121,7 +120,7 @@ th, td {
 		</table>
 
 		<br> 
-		<input type="hidden" name="action" value="update"> 
+		<input type="hidden" name="action" value="LDDupdate"> 
 		<input type="hidden" name="aptId" value="<%=renAppointmentVO.getAptId()%>">
 		<input type="hidden" name="aptMemId" value="<%=renAppointmentVO.getAptMemId()%>">
 		<input type="hidden" name="aptLddId" value="<%=renAppointmentVO.getAptLddId()%>">

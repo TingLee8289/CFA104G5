@@ -22,6 +22,8 @@ public class RenLeaseDAO implements RenLeaseDAO_interface {
 
 //	private static final String GET_PERSONAL = "SELECT lse_id,lse_mem_id,lse_lis_id,lse_ldd_id,lse_status,lse_timestamp,lse_start,lse_end,lse_price,lse_leasememid FROM `CFA104G5`.`REN_LEASE` WHERE lse_mem_id = ?";
 
+	private static final String GET_ONE_MEM = "SELECT * FROM `CFA104G5`.`REN_LEASE` WHERE lse_mem_id = ?";
+
 	private static  DataSource ds = null;
 	static {
 		try {
@@ -140,6 +142,41 @@ public class RenLeaseDAO implements RenLeaseDAO_interface {
 		try {
 			con = ds.getConnection();
 			pstmt = con.prepareStatement(GET_ALL_STMT);
+			rs = pstmt.executeQuery();
+			
+			while (rs.next()) {
+
+				renLeaseVO = new RenLeaseVO();
+				renLeaseVO.setLseId(rs.getInt("lse_id"));
+				renLeaseVO.setLseMemId(rs.getInt("lse_mem_id"));
+				renLeaseVO.setLseLisId(rs.getInt("lse_lis_id"));
+				renLeaseVO.setLseLddId(rs.getInt("lse_ldd_id"));
+				renLeaseVO.setLseStatus(rs.getInt("lse_status"));
+				renLeaseVO.setLseTimestamp(rs.getTimestamp("lse_timestamp"));
+				renLeaseVO.setLseStart(rs.getDate("lse_start"));
+				renLeaseVO.setLseEnd(rs.getDate("lse_end"));
+				renLeaseVO.setLsePrice(rs.getInt("lse_price"));
+				renLeaseVO.setLseLeaseMemId(rs.getInt("lse_leasememid"));
+
+				list.add(renLeaseVO);
+			}
+		} catch (SQLException se) {
+			se.printStackTrace();
+		} finally {
+			Util.closeResource(con, pstmt, rs);
+		}
+		return list;
+	}
+	
+	
+	@Override
+	public List<RenLeaseVO> getAllMEM(Integer lseMemId) {
+		List<RenLeaseVO> list = new ArrayList<RenLeaseVO>();
+		RenLeaseVO renLeaseVO = null;
+		try {
+			con = ds.getConnection();
+			pstmt = con.prepareStatement(GET_ONE_MEM);
+			pstmt.setInt(1, lseMemId);
 			rs = pstmt.executeQuery();
 			
 			while (rs.next()) {

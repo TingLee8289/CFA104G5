@@ -60,7 +60,7 @@ th, td {
 	<table id="table-1">
 		<tr><td>
 			<h3>預約訂單資料 - listOneRenAppointment.jsp</h3>
-			<h4><a href="frontend/ren_appointment/listRenAppByMEM.jsp">回預約單首頁</a></h4>
+			<h4><a href="frontend/ren_appointment/listRenAppByLDD.jsp">回預約單首頁</a></h4>
 		</td></tr>
 	</table>
 

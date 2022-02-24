@@ -1,3 +1,6 @@
+<%@page import="ezs.ren_listing.model.RenListingService"%>
+<%@page import="ezs.member.model.MemberService"%>
+<%@page import="ezs.ren_landlord.model.RenLandlordService"%>
 <%@page import="ezs.member.model.MemberVO"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
@@ -5,20 +8,18 @@
 <%@ page import="java.util.*"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 
+<%
+	Integer aptMemId = (Integer)session.getAttribute("memID");
+	RenAppointmentService renAppSvc = new RenAppointmentService();
+    List<RenAppointmentVO> list = renAppSvc.getAllMEM(aptMemId);
+    pageContext.setAttribute("list",list);
+ 
+%>
+
 <jsp:useBean id="memSvc" scope="page" class="ezs.member.model.MemberService" />
 <jsp:useBean id="renLDDSvc" scope="page" class="ezs.ren_landlord.model.RenLandlordService" />
 <jsp:useBean id="renLisSvc" scope="page" class="ezs.ren_listing.model.RenListingService" />
-<%-- <jsp:useBean id="listRenAppByMEM" scope="request" type="java.util.List<RenAppointmentVO>" /> --%>
-<%-- <jsp:useBean id="listRenAppByLDD" scope="request" type="java.util.List<RenAppointmentVO>" /> --%>
-<%
-	Integer memID = (Integer) session.getAttribute("memID");
-	String apt_mem_id = String.valueOf(memID);
-	RenAppointmentService renAppSvc = new RenAppointmentService();
-	Map<String, String[]> map = new TreeMap<String, String[]>();
-	map.put("apt_mem_id", new String[]{apt_mem_id});
-	map.put("action", new String[] { "getXXX" });
-	List<RenAppointmentVO> listRenAppByMEM = renAppSvc.getAll(map);
-%>
+
 
 <html>
 <head>
@@ -60,6 +61,7 @@
 
 </head>
 <body bgcolor='white'>
+<% %>
 <table id="table-1">
 	<tr><td>
 		 <h3>房客預約訂單管理</h3>
@@ -80,7 +82,7 @@
 		<th>取消預約</th>
 		<th>刪除預約單</th>
 	</tr>
-	<c:forEach var="renAppointmentVO" items="${listRenAppByMEM}">
+	<c:forEach var="renAppointmentVO" items="${list}">
 		<tr align='center' valign='middle'>
 			<td>${renAppointmentVO.aptId}</td>		
 			
@@ -139,6 +141,7 @@
 <!-- 					<input type="submit" value="修改">  -->
 					<input type="hidden" name="aptId" value="${renAppointmentVO.aptId}"> 
 					<input type="hidden" name="action" value="getOne_For_Update">
+					<input type="hidden" name="requestURL" value="<%=request.getServletPath()%>">
 					<button id ="submit" onclick="submit"><i class="fa-solid fa-pen-to-square"></i></button> 
 				</FORM></c:if>
 			</td>

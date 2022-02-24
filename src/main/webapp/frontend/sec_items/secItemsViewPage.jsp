@@ -1,4 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ page import="java.util.*"%>
 <%@ page import="ezs.sec_items.model.*"%>
@@ -6,31 +6,23 @@
 <%@ page import="ezs.sec_category.model.*"%>
 
 <%
-SecPicsService secPicsSvc = new SecPicsService();
-List<SecPicsVO> secPicslist = secPicsSvc.getEachFirst();
-pageContext.setAttribute("secPicslist", secPicslist);
-
-SecCategoryService secCategorySvc = new SecCategoryService();
-List<SecCategoryVO> secCategorylist = secCategorySvc.getAll();
-pageContext.setAttribute("secCategorylist", secCategorylist);
-
-SecItemsService secItemsSvc = new SecItemsService();
-List<SecItemsVO> secItemslist = secItemsSvc.getAll();
-pageContext.setAttribute("secItemslist", secItemslist);
+	SecPicsService secPicsSvc = new SecPicsService();
+	List<SecPicsVO> secPicslist = secPicsSvc.getEachFirst();
+	pageContext.setAttribute("secPicslist", secPicslist);
+	
+	SecCategoryService secCategorySvc = new SecCategoryService();
+	List<SecCategoryVO> secCategorylist = secCategorySvc.getAll();
+	pageContext.setAttribute("secCategorylist", secCategorylist);
+	
+	SecItemsService secItemsSvc = new SecItemsService();
+	List<SecItemsVO> secItemslist = secItemsSvc.getAll();
+	pageContext.setAttribute("secItemslist", secItemslist);
 
 %>
-
-
 
 <!DOCTYPE html>
 <html>
   <head>
-    <!-- 
-    More Templates Visit ==> ProBootstrap.com
-    Free Template by ProBootstrap.com under the License Creative Commons 3.0 ==> (probootstrap.com/license)
-
-    IMPORTANT: You can do whatever you want with this template but you need to keep the footer link back to ProBootstrap.com
-    -->
     <title>EASY SPACE</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -38,7 +30,6 @@ pageContext.setAttribute("secItemslist", secItemslist);
     <meta name="keywords" content="free bootstrap 4, free bootstrap 4 template, free website templates, free html5, free template, free website template, html5, css3, mobile first, responsive" />
     <meta name="author" content="ProBootstrap.com" />
     
-    <!-- <link href="https://fonts.googleapis.com/css?family=Work+Sans" rel="stylesheet"> -->
 
     <link rel="stylesheet" href="<%=request.getContextPath() %>/css/bootstrap.min.css">
     <link rel="stylesheet" href="<%=request.getContextPath() %>/css/open-iconic-bootstrap.min.css">
@@ -203,9 +194,27 @@ pageContext.setAttribute("secItemslist", secItemslist);
         <nav class="probootstrap-nav">
           <ul>
             <li class="probootstrap-animate active" data-animate-effect="fadeInLeft"><a href="<%=request.getContextPath() %>/frontend/sec_items/secItemsViewPage.jsp">瀏覽全部商品</a></li>
-            <c:forEach var="secCategoryVO" items="${secCategorylist}">
+            	<c:forEach var="secCategoryVO" items="${secCategorylist}">
 	         	 <li class="probootstrap-animate" data-animate-effect="fadeInLeft">
-	         	 	<a style="text-decoration:none;" href="<%=request.getContextPath() %>/frontend/sec_items/secItemsViewPageAJAX.jsp?shCateID=${secCategoryVO.shCateID}">${secCategoryVO.shCateName}</a>
+<!-- 	         	 	<form> -->
+<%-- 	         	 		<a style="text-decoration:none;" href="<%=request.getContextPath() %>/frontend/sec_items/secItemsViewPageAJAX.jsp"> --%>
+<%-- 	         	 		<input type="button" value="${secCategoryVO.shCateName}"> --%>
+<%-- 	         	 		<input type="hidden" name="shCateID" value="${secCategoryVO.shCateID}"> --%>
+<!-- 	         	 		</a> -->
+<!-- 	         	 	</form> -->
+	         	 	
+<!-- 	         	 		對的版本但很醜 -->
+	         	 	<form method="get" action="<%=request.getContextPath() %>/frontend/sec_items/secItemsViewPageAJAX.jsp">
+		         	 	<button type="button" id="Cate${secCategoryVO.shCateID}">${secCategoryVO.shCateName}</button>
+		         	 	<input type="hidden" name="shCateID" value="${secCategoryVO.shCateID}">
+	         	 	</form>
+
+<!-- 						不對的版本但很美 -->
+<!-- 						<form> -->
+<%-- 	         	 			<a style="text-decoration:none;" href="<%=request.getContextPath() %>/frontend/sec_items/secItemsViewPageAJAX.jsp?shCateID=${secCategoryVO.shCateID}">${secCategoryVO.shCateName} --%>
+<!-- 	         	 			</a> -->
+<!-- 	         	 		</form> -->
+
 	         	 </li>  
 	        </c:forEach>
 	        
@@ -214,14 +223,14 @@ pageContext.setAttribute("secItemslist", secItemslist);
       </div>
     </aside>
 
-
+<!-- 	側邊欄 結束-------------------------------------------------------- -->
+<!-- 	main 開始-------------------------------------------------------- -->
       <div class="probootstrap-bar">
         <a href="#" class="probootstrap-toggle js-probootstrap-toggle" style="margin-left:20px;"><span class="oi oi-menu"></span></a>
         <div class="probootstrap-main-site-logo"></div>
       </div>
     <main role="main" class="main">
-
-	<ul class="item_list" id="item_list">
+		<ul class="item_list" id="item_list">
 			<c:forEach var="secPicsVO" items="${secPicslist}">
 				<li style="list-style: none;">
 					<a href="<%=request.getContextPath()%>/sec_items/GetSecItemsServlet.do?shID=${secPicsVO.shID}&action=getOneItem_For_Display">
@@ -253,17 +262,17 @@ pageContext.setAttribute("secItemslist", secItemslist);
 
 
 
-      <div class="container-fluid d-md-none">
-        <div class="row">
-          <div class="col-md-12">
-            <p>&copy; 2022 <a href="#">EASY SPACE</a> <br> All Rights Reserved. Designed by CFA104G5</p>
-          </div>
-        </div>
-      </div>
+	      <div class="container-fluid d-md-none">
+	        <div class="row">
+	          <div class="col-md-12">
+	            <p>&copy; 2022 <a href="#">EASY SPACE</a> <br> All Rights Reserved. Designed by CFA104G5</p>
+	          </div>
+	        </div>
+	      </div>
 
     </main>
 
-    
+<!-- 	main 結束-------------------------------------------------------- -->
 
     <script src="<%=request.getContextPath() %>/js/jquery-3.2.1.slim.min.js"></script>
     <script src="<%=request.getContextPath() %>/js/popper.min.js"></script>

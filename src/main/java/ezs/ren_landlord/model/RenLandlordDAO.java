@@ -24,6 +24,8 @@ public class RenLandlordDAO implements RenLandlordDAO_interface {
 	private static final String UPDATE = "UPDATE `CFA104G5`.`REN_LANDLORD` set ldd_mem_id =?, ldd_approval=? WHERE ldd_id =?";
 	private static final String UPDATESTATUS = "UPDATE `member` set mem_landlord = ? where mem_id =?";
 
+	private static final String GET_BY_MEMID = "SELECT ldd_id, ldd_mem_id, ldd_approval FROM `CFA104G5`.`REN_LANDLORD` WHERE ldd_mem_id = ?";
+
 	private static  DataSource ds = null;
 	static {
 		try {
@@ -151,6 +153,39 @@ public class RenLandlordDAO implements RenLandlordDAO_interface {
 			Util.closeResource(con, pstmt, rs);
 		}
 		return list;
+	}
+	
+	public Integer findByMEM(Integer lddMemId) {
+		RenLandlordVO renLandlordVO = null;
+		System.out.println("check one");
+
+		System.out.println(lddMemId);
+
+		try {
+			con = ds.getConnection();
+			pstmt = con.prepareStatement(GET_BY_MEMID);
+
+			pstmt.setInt(1, lddMemId);
+
+			rs = pstmt.executeQuery();
+			System.out.println("check again");
+
+			System.out.println(lddMemId);
+
+
+			while (rs.next()) {
+				renLandlordVO = new RenLandlordVO();
+				System.out.println("check three");
+				renLandlordVO.setLddMemId(rs.getInt("ldd_mem_id"));
+				renLandlordVO.setLddApproval(rs.getInt("ldd_approval"));
+				renLandlordVO.setLddId(rs.getInt("ldd_id"));
+			}
+		} catch (SQLException se) {
+			se.printStackTrace();
+		} finally {
+			Util.closeResource(con, pstmt, rs);
+		}
+		return renLandlordVO.getLddId();
 	}
 
 }
