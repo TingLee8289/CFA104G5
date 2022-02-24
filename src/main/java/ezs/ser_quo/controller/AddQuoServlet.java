@@ -71,7 +71,7 @@ public class AddQuoServlet extends HttpServlet {
 				SerQuoService serQuoSvc = new SerQuoService();
 				serQuoVO= serQuoSvc.addSerQuo(quoStatus, quoDmdID, quoVdrID, quoDate, quoExpiryDate, quoItem, quoTotalPrice);
 						//3.新增完成，轉交
-				String url = "/frontend/ser_quo/serQuoHome.jsp";
+				String url = "/frontend/ser_dmd/getByDmdMemID.jsp";
 				RequestDispatcher successView = req.getRequestDispatcher(url); // 新增成功後轉交listAllEmp.jsp
 				successView.forward(req, res);
 			} catch (Exception e) {

@@ -3,7 +3,6 @@
 <%@ page import="java.util.*"%>
 <%@ page import="ezs.ser_quo.model.*"%>
 <%@ page import="ezs.ser_dmd.model.*"%>
-<%-- <% session.setAttribute("memID", 2);%> --%>
 <%
 SerQuoVO serQuoVO = (SerQuoVO) request.getAttribute("serQuoVO");
 %>

@@ -38,7 +38,7 @@ pageContext.setAttribute("serClaList", serClaList);
     <meta name="author" content="ProBootstrap.com" />
     
     <!-- <link href="https://fonts.googleapis.com/css?family=Work+Sans" rel="stylesheet"> -->
-
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
     <link rel="stylesheet" href="<%=request.getContextPath() %>/css/bootstrap.min.css">
     <link rel="stylesheet" href="<%=request.getContextPath() %>/css/open-iconic-bootstrap.min.css">
     
@@ -185,10 +185,130 @@ pageContext.setAttribute("serClaList", serClaList);
         display: block;
         width: 100%;
       }
+      
+      #nav{
+			background-color: lightgrey;
+			z-index: 9999;
+			padding: 0px;
+			height: 40px;
+			width:100%;
+			
+			
+		}
+				body{
+			margin: 0;
+		}
+		
+		*{
+        box-sizing: border-box;
+   		}
+		
+		.header{
+			position: fixed;
+			margin-top: 0px;
+			background-color: rgb(239,239,239);
+			z-index:995;
+			width:100%;		
+/*  			margin-top: 19px;	  */
+/* 			border:1px solid black; */
+
+		}
+		
+		a{
+			margin: 0px;
+		}
+		
+		.brand-text{
+			margin: auto 0px;
+			display: inline-block; 
+			font-size: 30px; 
+			font-family: sans-serif;
+			color: rgb(187,122,68);
+		}
+		
+		#logo{
+			max-height: 60px;
+			margin: auto 20px;
+		}
+		
     </style>
   </head>
   <body>
-    <jsp:include page="/frontend/EZ_LoginHeader.jsp" />
+<%--   <jsp:include page="/frontend/EZ_nav.jsp"/> --%>
+
+<div class="navbar navbar-expand-lg navbar-dark" id="nav">
+		<div class="container">
+			<button class="navbar-toggler" type="button"
+				data-bs-toggle="collapse" data-bs-target="#navbarTogglerDemo03"
+				aria-controls="navbarTogglerDemo03" aria-expanded="false"
+				aria-label="Toggle navigation">
+				<span class="navbar-toggler-icon"></span>
+			</button>
+			<div class="collapse navbar-collapse" id="navbarTogglerDemo03">
+				<ul class="navbar-nav ms-auto me-sm-2 mt-2 mt-lg-0">
+					<li class="nav-item active me-3"><a class="nav-link text-dark" href="<%= request.getContextPath()%>/frontend/EZ_home.jsp">首頁
+					</a></li>
+					<li class="nav-item me-3"><a class="nav-link text-dark" href="<%=request.getContextPath()%>/frontend/ren_listing/listingView.jsp">租賃服務</a>
+					</li>
+					<li class="nav-item me-3"><a class="nav-link text-dark" href="<%= request.getContextPath()%>/frontend/sec_items/secItemsViewPage.jsp">二手家電</a>
+					</li>
+					<li class="nav-item me-3"><a class="nav-link text-dark" href="<%= request.getContextPath()%>/frontend/ser_ad/serAdViewPage.jsp">居家服務</a>
+					</li>
+					
+					<% 
+					String memUsername = (String) session.getAttribute("memUsername");
+						
+						if (memUsername!=null){%>
+							<li class="nav-item dropdown"><a class="nav-link text-dark" href="<%= request.getContextPath()%>"
+								id="navbarDropdown" role="button" data-bs-toggle="dropdown"
+								aria-haspopup="true" aria-expanded="false"> 
+								<img class="rounded-circle u-box-shadow-sm me-2 text-dark" width="25"
+									height="25" src=" https://dummyimage.com/100/007bff/efefef"
+									alt="Htmlstream"> ${memUsername} <i class="fa fa-angle-down   "></i></a>
+								<div class="dropdown-menu" aria-labelledby="navbarDropdown">
+									<a class="dropdown-item" href="<%= request.getContextPath()%>/frontend/member/memberCenter/buyerMemberCenter.jsp">會員中心</a> 
+									<a class="dropdown-item" href="<%= request.getContextPath()%>/frontend/member/memberCenter/sellerMemberCenter.jsp">賣家中心</a> 
+									<a class="dropdown-item" href="<%=request.getContextPath()%>/frontend/chat/index.jsp">聊聊</a>
+									<a class="dropdown-item" href="<%=request.getContextPath()%>/frontend/sec_items/shoppingCart.jsp">購物車</a>
+									<div class="dropdown-divider"></div>
+									<a class="dropdown-item" href="<%=request.getContextPath()%>/member/MemberServlet.do?action=logout">登出</a>
+								</div>
+							</li>
+						<%} else {%>
+							<li class="nav-item me-3"><a class="nav-link text-dark" href="<%= request.getContextPath()%>/frontend/member/login.jsp">登入</a></li>
+						<% }%>
+				</ul>
+
+			</div>
+		</div>
+	</div>
+<%--     <jsp:include page="/frontend/EZ_LoginHeader.jsp" /> --%>
+    
+    <div class="header">
+		<div class="header">
+			<div class="col-2 pl-md-0 text-left" style="display: inline-block; width:100px">
+				<a href="<%=request.getContextPath()%>/frontend/EZ_home.jsp"> 
+				<img src="<%=request.getContextPath()%>/images/cmn/index/EASYSPACE.png" alt="image" id="logo">
+				</a>
+			</div>
+			<div class="brand-text">| EASY SPACE</div>
+		</div>
+	</div>
+    
+    
+	
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
     <aside class="probootstrap-aside js-probootstrap-aside aside">
       <a href="#" class="probootstrap-close-menu js-probootstrap-close-menu d-md-none"><span class="oi oi-arrow-left"></span> Close</a>
       <div class="probootstrap-site-logo probootstrap-animate" data-animate-effect="fadeInLeft">
@@ -197,7 +317,7 @@ pageContext.setAttribute("serClaList", serClaList);
        
       </div>
       <div class="probootstrap-overflow">
-        <nav class="probootstrap-nav">
+<!--         <nav class="probootstrap-nav"> -->
           <ul>
           	 <c:forEach var="serClaVO" items="${serClaList}">
 				<li>
@@ -209,18 +329,18 @@ pageContext.setAttribute("serClaList", serClaList);
 			</c:forEach>
 	        
           </ul>
-        </nav>
-        <footer class="probootstrap-aside-footer probootstrap-animate" data-animate-effect="fadeInLeft">
+<!--         </nav> -->
+<!--         <footer class="probootstrap-aside-footer probootstrap-animate" data-animate-effect="fadeInLeft"> -->
 <!--           <p>&copy; 2022 <a href="#">EASY SPACE</a>. <br> All Rights Reserved.</p> -->
-        </footer>
+<!--         </footer> -->
       </div>
-    </aside>
-
-
       <div class="probootstrap-bar">
         <a href="#" class="probootstrap-toggle js-probootstrap-toggle" style="margin-left:20px;"><span class="oi oi-menu"></span></a>
         <div class="probootstrap-main-site-logo"></div>
       </div>
+    </aside>
+
+
    <main class="main">
 
 		<c:forEach var="serAdVO" items="${serAdVO}">
