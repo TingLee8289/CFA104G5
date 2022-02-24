@@ -15,7 +15,7 @@ pageContext.setAttribute("vdrQuoList", vdrQuoList);
 <html>
 <head>
 <meta charset="UTF-8">
-<title>廠商估價單管理</title>
+<title>EASY SPACE</title>
 <link
 	href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css"
 	rel="stylesheet"
@@ -39,7 +39,8 @@ pageContext.setAttribute("vdrQuoList", vdrQuoList);
 				<table
 					class="table table-striped table-hover align-middle text-center caption-top">
 					<caption>
-						<h2>所有估價單資料</h2>
+						<h3>所有需求單資料</h3>
+						 <h4><a href="<%=request.getContextPath()%>/frontend/member/memberCenter/sellerMemberCenter.jsp">回前頁</a></h4>
 					</caption>
 					<thead class="table-success">
 						<tr class="text-nowrap">

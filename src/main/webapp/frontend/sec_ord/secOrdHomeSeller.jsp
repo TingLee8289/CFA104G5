@@ -222,7 +222,10 @@ Set<SecOrdVO> listAllSecOrd = secOrdSvc.getSecOrdByShSellerID(memID);
 
 <html>
 <head>
-<title>所有訂單 - listAllSecOrd.jsp</title>
+
+
+<title>EASY SPACE</title>
+
 
 <style>
 table#table-1 {

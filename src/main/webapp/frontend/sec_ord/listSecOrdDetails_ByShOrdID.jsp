@@ -153,17 +153,14 @@
 	<!-- 上端導覽列結束--------------------------------------- -->
 
 	<!-- 側邊導覽列開始--------------------------------------- -->
-
-	
-
 	<div id="layoutSidenav">
 		<div id="layoutSidenav_nav">
 			<nav class="sb-sidenav accordion sb-sidenav-dark"
 				id="sidenavAccordion">
 				<div class="sb-sidenav-menu">
 					<div class="nav">
-						<div class="sb-sidenav-menu-heading">管理專區區</div>
-						<a class="nav-link" href="index.html">
+						<div class="sb-sidenav-menu-heading">管理專區</div>
+						<a class="nav-link" href="<%= request.getContextPath() %>/frontend/member/listOneMember.jsp">
 							<div class="sb-nav-link-icon">
 								<i class="fas fa-tachometer-alt"></i>
 							</div> 會員資料管理

@@ -9,6 +9,7 @@ public interface RenLeaseDAO_interface {
     public RenLeaseVO findByPrimaryKey(Integer leaseVO);
 	public List<RenLeaseVO> getAll();
 
+	public List<RenLeaseVO> getAllMEM(Integer lseMemId);
 		
 
 }

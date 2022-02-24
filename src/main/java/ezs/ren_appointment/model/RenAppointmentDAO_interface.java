@@ -10,5 +10,8 @@ public interface RenAppointmentDAO_interface {
 	public RenAppointmentVO findByPK(Integer aptId);
 	public List<RenAppointmentVO> getAll();
 	public List<RenAppointmentVO> getAll(Map<String, String[]> map);
+	
+	public List<RenAppointmentVO> getAllLDD(Integer aptLddId);
+	public List<RenAppointmentVO> getAllMEM(Integer aptMemId);
 
 }

@@ -52,13 +52,10 @@ pageContext.setAttribute("funList", funList);
 	integrity="sha256-46qynGAkLSFpVbEBog43gvNhfrOj+BmwXdxFgVK/Kvc="
 	crossorigin="anonymous" />
 
-<title>EASY SPACE</title>
-
 </head>
 <style>
-#cssTable td 
-{
-    vertical-align: middle;
+#cssTable td {
+	vertical-align: middle;
 }
 </style>
 
@@ -91,10 +88,8 @@ pageContext.setAttribute("funList", funList);
 					class="fas fa-user fa-fw"></i></a>
 				<ul class="dropdown-menu dropdown-menu-end"
 					aria-labelledby="navbarDropdown">
-					<li><a class="dropdown-item" href="#!">設定</a></li>
-					<li><a class="dropdown-item" href="#!">Activity Log</a></li>
-					<li><hr class="dropdown-divider" /></li>
-					<li><a class="dropdown-item" href="#!">登出</a></li>
+<!-- 					<li><hr class="dropdown-divider" /></li> -->
+					<li><a class="dropdown-item" href="<%= request.getContextPath()%>//admin_emp/AdminEmpServlet.do?action=logout">登出</a></li>
 				</ul></li>
 		</ul>
 	</nav>
@@ -167,9 +162,11 @@ pageContext.setAttribute("funList", funList);
 							aria-labelledby="headingThree" data-bs-parent="#sidenavAccordion">
 							<nav class="sb-sidenav-menu-nested nav">
 								<a class="nav-link"
-									href="<%=request.getContextPath()%>/backend/index.jsp">管理服務檢舉</a>
+									href="<%=request.getContextPath()%>/backend/ser/ser_repo/select_page.jsp">服務檢舉管理</a>
 								<a class="nav-link"
-									href="<%=request.getContextPath()%>/backend/index.jsp">管理服務類別</a>
+									href="<%=request.getContextPath()%>/backend/ser/ser_cla/select_page.jsp">服務類別管理</a>
+								<a class="nav-link"
+									href="<%=request.getContextPath()%>/backend/ser/serAd/select_page.jsp">刊登服務管理</a>
 							</nav>
 						</div>
 						<!-- ------------------------------------------------------------------------------------------------- -->
@@ -236,9 +233,8 @@ pageContext.setAttribute("funList", funList);
 										<FORM METHOD="post"
 											ACTION="<%=request.getContextPath()%>/admin_priv/AdminPrivServlet.do"
 											style="margin-bottom: 0px;">
-											<td style="
-    text-align: left;
-"><c:forEach var="funElment" items="${funList}">
+											<td style="text-align: left;"><c:forEach var="funElment"
+													items="${funList}">
 													<%-- 					<input type=hidden name="${funElment.funName}" value="${funElment.funID}" checked> --%>
 													<br>
 

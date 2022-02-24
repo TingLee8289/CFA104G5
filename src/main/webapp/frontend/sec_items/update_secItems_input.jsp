@@ -16,10 +16,14 @@ SecPicsVO secPicsVO = (SecPicsVO) request.getAttribute("secPicsVO");
 <html>
 <head>
 <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
-<title>商品資料修改 - update_secItems_input.jsp</title>
+
 <script src="https://code.jquery.com/jquery-1.12.4.min.js"
 	integrity="sha256-ZosEbRLbNQzLpnKIkEdrPv7lOy9C27hHQ+Xp8a4MxAQ="
 	crossorigin="anonymous"></script>
+
+<title>EASY SPACE</title>
+<script src="https://code.jquery.com/jquery-1.12.4.min.js" integrity="sha256-ZosEbRLbNQzLpnKIkEdrPv7lOy9C27hHQ+Xp8a4MxAQ=" crossorigin="anonymous"></script>
+
 <style>
 table#table-1 {
 	background-color: #CCCCFF;

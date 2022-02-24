@@ -5,7 +5,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>找租屋</title>
+<title>EASY SPACE</title>
 
 <style>
   table#table-1 {

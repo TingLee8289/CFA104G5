@@ -9,5 +9,7 @@ public interface RenLandlordDAO_interface {
     public void delete(Integer lddId);
     public RenLandlordVO findByPrimaryKey(Integer lddId);
     public List<RenLandlordVO> getAll();
+    
+    public Integer findByMEM(Integer lddMemId);
 }
 

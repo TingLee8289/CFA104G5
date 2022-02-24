@@ -5,6 +5,7 @@
 
 <html>
 <head>
+
 <meta charset="utf-8" />
 <meta http-equiv="X-UA-Compatible" content="IE=edge" />
 <meta name="viewport"
@@ -15,6 +16,7 @@
 <script	src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/js/all.min.js"></script>
 <link rel="stylesheet"href=" https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css ">
 <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.2.0/css/all.css">
+
 
 <style>
 #nav {
@@ -62,7 +64,7 @@
 
 </head>
 <body class="sb-nav-fixed">
-	<!-- ¤WºÝ¾ÉÄý¦C¶}©l--------------------------------------- -->
+	<!-- ï¿½Wï¿½Ý¾ï¿½ï¿½ï¿½Cï¿½}ï¿½l--------------------------------------- -->
 	<div class="navbar navbar-expand-lg navbar-dark" id="nav">
 		<div class="container">
 			<button class="navbar-toggler" type="button"
@@ -74,14 +76,14 @@
 			<div class="collapse navbar-collapse" id="navbarTogglerDemo03">
 				<ul class="navbar-nav ms-auto me-sm-2 mt-2 mt-lg-0">
 					<li class="nav-item active me-3"><a class="nav-link text-dark"
-						href="<%=request.getContextPath()%>/frontend/EZ_home.jsp">­º­¶ </a></li>
+						href="<%=request.getContextPath()%>/frontend/EZ_home.jsp">ï¿½ï¿½ï¿½ï¿½ </a></li>
 					<li class="nav-item me-3"><a class="nav-link text-dark"
-						href="#">¯²¸îªA°È</a></li>
+						href="#">ï¿½ï¿½ï¿½ï¿½Aï¿½ï¿½</a></li>
 					<li class="nav-item me-3"><a class="nav-link text-dark"
-						href="<%=request.getContextPath()%>/frontend/sec_items/secItemsViewPage.jsp">¤G¤â®a¹q</a>
+						href="<%=request.getContextPath()%>/frontend/sec_items/secItemsViewPage.jsp">ï¿½Gï¿½ï¿½aï¿½q</a>
 					</li>
 					<li class="nav-item me-3"><a class="nav-link text-dark"
-						href="<%=request.getContextPath()%>/frontend/ser_ad/serAdViewPage.jsp">©~®aªA°È</a>
+						href="<%=request.getContextPath()%>/frontend/ser_ad/serAdViewPage.jsp">ï¿½~ï¿½aï¿½Aï¿½ï¿½</a>
 					</li>
 
 					<%
@@ -99,22 +101,22 @@
 							class="fa fa-angle-down   "></i></a>
 						<div class="dropdown-menu" aria-labelledby="navbarDropdown">
 							<a class="dropdown-item"
-								href="<%=request.getContextPath()%>/frontend/member/memberCenter/buyerMemberCenter.jsp">·|­û¤¤¤ß</a>
+								href="<%=request.getContextPath()%>/frontend/member/memberCenter/buyerMemberCenter.jsp">ï¿½|ï¿½ï¿½ï¿½</a>
 							<a class="dropdown-item"
-								href="<%=request.getContextPath()%>/frontend/member/memberCenter/sellerMemberCenter.jsp">½æ®a¤¤¤ß</a>
+								href="<%=request.getContextPath()%>/frontend/member/memberCenter/sellerMemberCenter.jsp">ï¿½ï¿½aï¿½ï¿½ï¿½ï¿½</a>
 							<a class="dropdown-item"
-								href="<%=request.getContextPath()%>/frontend/chat/index.jsp">²á²á</a>
+								href="<%=request.getContextPath()%>/frontend/chat/index.jsp">ï¿½ï¿½ï¿½</a>
 							<a class="dropdown-item"
-								href="<%=request.getContextPath()%>/frontend/sec_items/shoppingCart.jsp">ÁÊª«¨®</a>
+								href="<%=request.getContextPath()%>/frontend/sec_items/shoppingCart.jsp">ï¿½Êªï¿½ï¿½ï¿½</a>
 							<div class="dropdown-divider"></div>
 							<a class="dropdown-item"
-								href="<%=request.getContextPath()%>/member/MemberServlet.do?action=logout">µn¥X</a>
+								href="<%=request.getContextPath()%>/member/MemberServlet.do?action=logout">ï¿½nï¿½X</a>
 						</div></li>
 					<%
 					} else {
 					%>
 					<li class="nav-item me-3"><a class="nav-link text-dark"
-						href="<%=request.getContextPath()%>/frontend/member/login.jsp">µn¤J</a></li>
+						href="<%=request.getContextPath()%>/frontend/member/login.jsp">ï¿½nï¿½J</a></li>
 					<%
 					}
 					%>
@@ -129,9 +131,9 @@
 		integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
 		crossorigin="anonymous"></script>
 
-	<!-- ¤WºÝ¾ÉÄý¦Cµ²§ô--------------------------------------- -->
+	<!-- ï¿½Wï¿½Ý¾ï¿½ï¿½ï¿½Cï¿½ï¿½ï¿½ï¿½--------------------------------------- -->
 
-	<!-- °¼Ãä¾ÉÄý¦C¶}©l--------------------------------------- -->
+	<!-- ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Cï¿½}ï¿½l--------------------------------------- -->
 
 	
 
@@ -142,13 +144,13 @@
 				<div class="sb-sidenav-menu">
 					<div class="nav">
 						<!-- ------------------------------------------------------------------------------------------------- -->
-						<div class="sb-sidenav-menu-heading">½æ®aºÞ²z±M°Ï</div>
+						<div class="sb-sidenav-menu-heading">ï¿½ï¿½aï¿½Þ²zï¿½Mï¿½ï¿½</div>
 						<a class="nav-link collapsed" href="#" data-bs-toggle="collapse"
 							data-bs-target="#collapseLayouts" aria-expanded="false"
 							aria-controls="collapseLayouts">
 							<div class="sb-nav-link-icon">
 								<i class="fas fa-home"></i>
-							</div> ¯²¸î¬ÛÃöºÞ²z
+							</div> ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Þ²z
 							<div class="sb-sidenav-collapse-arrow">
 								<i class="fas fa-angle-down"></i>
 							</div>
@@ -156,10 +158,10 @@
 						<div class="collapse" id="collapseLayouts"
 							aria-labelledby="headingOne" data-bs-parent="#sidenavAccordion">
 							<nav class="sb-sidenav-menu-nested nav">
-								 <a class="nav-link" href="layout-static.html">¥Ó½Ð¦¨¬°©ÐªF</a>
-                                    <a class="nav-link" href="layout-static.html">©Ð·½ºÞ²z</a>
-                                    <a class="nav-link" href="<%=request.getContextPath()%>/frontend/ren_appointment/listRenAppByLDD.jsp">¹w¬ù³æºÞ²z</a>
-                                    <a class="nav-link" href="layout-sidenav-light.html">¯²¸î³æºÞ²z</a>
+								 <a class="nav-link" href="layout-static.html">ï¿½Ó½Ð¦ï¿½ï¿½ï¿½ï¿½ÐªF</a>
+                                    <a class="nav-link" href="layout-static.html">ï¿½Ð·ï¿½ï¿½Þ²z</a>
+                                    <a class="nav-link" href="<%=request.getContextPath()%>/frontend/ren_appointment/listRenAppByLDD.jsp">ï¿½wï¿½ï¿½ï¿½Þ²z</a>
+                                    <a class="nav-link" href="layout-sidenav-light.html">ï¿½ï¿½ï¿½ï¿½ï¿½Þ²z</a>
 							</nav>
 						</div>
 						<!-- ------------------------------------------------------------------------------------------------- -->
@@ -168,7 +170,7 @@
 							aria-controls="collapsePages">
 							<div class="sb-nav-link-icon">
 								<i class="fas fa-couch"></i>
-							</div> ¤G¤â¬ÛÃöºÞ²z
+							</div> ï¿½Gï¿½ï¿½ï¿½ï¿½ï¿½Þ²z
 							<div class="sb-sidenav-collapse-arrow">
 								<i class="fas fa-angle-down"></i>
 							</div>
@@ -176,8 +178,8 @@
 						<div class="collapse" id="collapsePages"
 							aria-labelledby="headingTwo" data-bs-parent="#sidenavAccordion">
 							<nav class="sb-sidenav-menu-nested nav">
-								  <a class="nav-link" href="<%=request.getContextPath()%>/frontend/sec_items/select_page.jsp">°Ó«~ºÞ²z</a>
-                                    <a class="nav-link" href="<%=request.getContextPath()%>/frontend/sec_ord/listAllSecOrd.jsp">­q³æºÞ²z</a>
+								  <a class="nav-link" href="<%=request.getContextPath()%>/frontend/sec_items/select_page.jsp">ï¿½Ó«~ï¿½Þ²z</a>
+                                    <a class="nav-link" href="<%=request.getContextPath()%>/frontend/sec_ord/listAllSecOrd.jsp">ï¿½qï¿½ï¿½Þ²z</a>
 							</nav>
 						</div>
 						<!-- ------------------------------------------------------------------------------------------------- -->
@@ -186,7 +188,7 @@
 							aria-controls="collapsePages">
 							<div class="sb-nav-link-icon">
 								<i class="fas fa-wrench"></i>
-							</div> ªA°È¬ÛÃöºÞ²z
+							</div> ï¿½Aï¿½È¬ï¿½ï¿½ï¿½Þ²z
 							<div class="sb-sidenav-collapse-arrow">
 								<i class="fas fa-angle-down"></i>
 							</div>
@@ -194,9 +196,9 @@
 						<div class="collapse" id="collapsePages2"
 							aria-labelledby="headingThree" data-bs-parent="#sidenavAccordion">
 							<nav class="sb-sidenav-menu-nested nav">
-								<a class="nav-link" href="layout-static.html">ªA°ÈºÞ²z</a>
-                                    <a class="nav-link" href="layout-sidenav-light.html">»Ý¨D³æºÞ²z</a>
-                                    <a class="nav-link" href="layout-sidenav-light.html">­q³æºÞ²z</a>
+								<a class="nav-link" href="layout-static.html">ï¿½Aï¿½ÈºÞ²z</a>
+                                    <a class="nav-link" href="layout-sidenav-light.html">ï¿½Ý¨Dï¿½ï¿½Þ²z</a>
+                                    <a class="nav-link" href="layout-sidenav-light.html">ï¿½qï¿½ï¿½Þ²z</a>
 							</nav>
 						</div>
 						<!-- ------------------------------------------------------------------------------------------------- -->
@@ -205,18 +207,18 @@
 
 			</nav>
 		</div>
-<!-- main ¶}©l--------------------------------------------------------------------------------- -->
+<!-- main ï¿½}ï¿½l--------------------------------------------------------------------------------- -->
 		<div id="layoutSidenav_content">
 			<main>
 				<div class="container-fluid px-4">
-<!-- ¶ë­¶­±±q³o¸Ì¶}©l--------------------------------------------------------------------------------- -->
+<!-- ï¿½ë­¶ï¿½ï¿½ï¿½qï¿½oï¿½Ì¶}ï¿½l--------------------------------------------------------------------------------- -->
 
 
-	<h3>½æ®a­q³æ½s¸¹¬d¸ß:</h3>
+	<h3>ï¿½ï¿½aï¿½qï¿½ï¿½sï¿½ï¿½ï¿½dï¿½ï¿½:</h3>
 
-	<%-- ¿ù»~ªí¦C --%>
+	<%-- ï¿½ï¿½~ï¿½ï¿½C --%>
 	<c:if test="${not empty errorMsgs}">
-		<font style="color: red">½Ð­×¥¿¥H¤U¿ù»~:</font>
+		<font style="color: red">ï¿½Ð­×¥ï¿½ï¿½Hï¿½Uï¿½ï¿½~:</font>
 		<ul>
 			<c:forEach var="message" items="${errorMsgs}">
 				<li style="color: red">${message}</li>
@@ -232,12 +234,12 @@
 
 <li>
 		<FORM METHOD="post" ACTION="<%=request.getContextPath()%>/sec_ord/GetSecOrdBySellerServlet.do">
-			<b><font color=blue>¿ï¾Ü­q³æ½s¸¹:</font></b> 
+			<b><font color=blue>ï¿½ï¿½Ü­qï¿½ï¿½sï¿½ï¿½:</font></b> 
 			<select size="1" name="shOrdID">
 			<c:forEach var="secOrdVO" items="${secOrdSvc.all}">
 				<option value="${secOrdVO.shOrdID}">${secOrdVO.shOrdID}
 			</c:forEach>
-			</select> <input type="submit" value="°e¥X"> <input type="hidden"
+			</select> <input type="submit" value="ï¿½eï¿½X"> <input type="hidden"
 				name="action" value="getOne_For_Display">
 		</FORM>
 
@@ -246,23 +248,23 @@
 
 
 
-		<h3>½æ®a­q³æ¬d¸ß:</h3>
+		<h3>ï¿½ï¿½aï¿½qï¿½ï¿½dï¿½ï¿½:</h3>
 	
 
 	<ul>
 	<td>
 			  <FORM METHOD="post" ACTION="<%=request.getContextPath()%>/sec_ord/GetSecOrdBySellerServlet.do" style="margin-bottom: 0px;">
-			    <input type="submit" value="½æ®a­q³æ¬d¸ß"> 
+			    <input type="submit" value="ï¿½ï¿½aï¿½qï¿½ï¿½dï¿½ï¿½"> 
 			    <input type="hidden" name="shSellerID" value="${memberVO.memID}">
 			    <input type="hidden" name="action" value="listSecOrd_ByShSellererID"></FORM>
 			</td>
 
 	</ul>
-<!-- ¶ë­¶­±±q³o¸Ìµ²§ô--------------------------------------------------------------------------------- -->
+<!-- ï¿½ë­¶ï¿½ï¿½ï¿½qï¿½oï¿½Ìµï¿½ï¿½ï¿½--------------------------------------------------------------------------------- -->
 				</div>
 			</main>
 		</div>
-<!-- main µ²§ô--------------------------------------------------------------------------------- -->
+<!-- main ï¿½ï¿½ï¿½ï¿½--------------------------------------------------------------------------------- -->
 	</div>
 
 
@@ -277,7 +279,7 @@
 	<script src="https://cdn.jsdelivr.net/npm/simple-datatables@latest"></script>
 	<script src="js/datatables-simple-demo.js"></script>
 
-	<!-- °¼Ãä¾ÉÄý¦Cµ²§ô--------------------------------------- -->
+	<!-- ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Cï¿½ï¿½ï¿½ï¿½--------------------------------------- -->
 	<main></main>
 </body>
 </html>

@@ -7,7 +7,11 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 <!-- <link rel="stylesheet" href="frontend/chat/friendchat.css" type="text/css" /> -->
 
+<%
+	Integer memID = (Integer)session.getAttribute("memID");
+	String memUsername = (String)session.getAttribute("memUsername");
 
+%>
 
 <style type="text/css">
 * {
@@ -139,7 +143,7 @@ ul li{
 
 
 
-<title>最大私人聊天室</title>
+<title>EASY SPACE</title>
 </head>
 <body onload="connect();" onunload="disconnect();">
 	<h3 id="statusOutput" class="statusOutput"></h3>

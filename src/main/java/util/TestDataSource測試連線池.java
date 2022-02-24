@@ -15,7 +15,7 @@ public class TestDataSource測試連線池 extends HttpServlet {
 	public void doGet(HttpServletRequest req, HttpServletResponse res)
 			throws ServletException, IOException {
 
-		res.setContentType("text/plain; charset=Big5");
+		res.setContentType("text/plain; charset=UTF-8");
 		PrintWriter out = res.getWriter();
 
 		try {

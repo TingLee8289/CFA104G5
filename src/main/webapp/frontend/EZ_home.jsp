@@ -20,7 +20,7 @@
 </head>
 <body>
 <jsp:include page="/frontend/EZ_nav.jsp"/>
-	<nav class="navbar navbar-light bg-white  navbar-expand-md ">
+	<nav class="navbar navbar-light bg-white  navbar-expand-md " style="padding-top: 45px;">
 		<div class="container">
 			<div class="text-left" style="padding:20px;">
 				<a href="<%= request.getContextPath()%>/frontend/EZ_home.jsp"> <img src="<%=request.getContextPath() %>/images/cmn/index/EASYSPACE.png" height="100px" alt="image">

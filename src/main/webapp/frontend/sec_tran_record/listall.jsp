@@ -11,7 +11,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>交易紀錄</title>
+<title>EASY SPACE</title>
 </head>
 <body>
 	<%

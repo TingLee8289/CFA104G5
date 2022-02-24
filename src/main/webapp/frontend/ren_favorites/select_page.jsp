@@ -3,7 +3,7 @@
 
 <html>
 <head>
-<title>Ren_Favorites: Home</title>
+<title>EASY SPACE</title>
 
 <style>
   table#table-1 {

@@ -1,3 +1,6 @@
+<%@page import="ezs.ren_landlord.model.RenLandlordVO"%>
+<%@page import="ezs.ren_landlord.model.RenLandlordService"%>
+<%@page import="ezs.ren_landlord.model.RenLandlordDAO"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
@@ -6,15 +9,28 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 
 
+<%
+	Integer ldd_mem_Id = (Integer)session.getAttribute("memID");
+	System.out.println(ldd_mem_Id);
+	RenAppointmentService renAppSvc = new RenAppointmentService();
+	RenLandlordService renLddSvc = new RenLandlordService();
+	Integer aptLddId = renLddSvc.findByMEM(ldd_mem_Id);
+	List<RenAppointmentVO> list = renAppSvc.getAllLDD(aptLddId);
+	pageContext.setAttribute("list",list);	
+%>
+
+
 <jsp:useBean id="memSvc" scope="page" class="ezs.member.model.MemberService" />
 <jsp:useBean id="renLisSvc" scope="page" class="ezs.ren_listing.model.RenListingService" />
 <%-- <jsp:useBean id="listRenAppByMEM" scope="request" type="java.util.List<RenAppointmentVO>" /> --%>
-<jsp:useBean id="listRenAppByLDD" scope="request" type="java.util.List<RenAppointmentVO>" />
+<%-- <jsp:useBean id="listRenAppByLDD" scope="request" type="java.util.List<RenAppointmentVO>" /> --%>
+
+
 
 <html>
 <head>
 <script src="https://kit.fontawesome.com/1c2ccc4859.js" crossorigin="anonymous"></script>
-<title>房東 - 預約訂單管理</title>
+<title>EASY SPACE</title>
 
 <style>
   table#table-1 {
@@ -75,7 +91,7 @@
 		<th>取消預約</th>
 		<th>刪除預約單</th>
 	</tr>
-	<c:forEach var="renAppointmentVO" items="${listRenAppByLDD}">
+	<c:forEach var="renAppointmentVO" items="${list}">
 		<tr align='center' valign='middle'>
 			<td>${renAppointmentVO.aptId}</td>
 			<td><c:forEach var="memVO" items="${memSvc.all}">
@@ -130,6 +146,7 @@
 <!-- 					<input type="submit" value="修改">  -->
 					<input type="hidden" name="aptId" value="${renAppointmentVO.aptId}"> 
 					<input type="hidden" name="action" value="LDDgetOne_For_Update">
+					<input type="hidden" name="requestURL" value="<%=request.getServletPath()%>">
 					<button id ="submit" onclick="submit"><i class="fa-solid fa-pen-to-square"></i></button> 
 				</FORM>
 				</c:if>
@@ -151,7 +168,7 @@
 				<FORM METHOD="post" ACTION="<%=request.getContextPath()%>/RenAppointmentServlet.do" style="margin-bottom: 0px;">
 <!-- 					<input type="submit" value="刪除預約單">  -->
 					<input type="hidden" name="aptId" value="${renAppointmentVO.aptId}"> 
-					<input type="hidden" name="action" value="delete">
+					<input type="hidden" name="action" value="LDDdelete">
 					<button id ="submit" onclick="submit"><i class="fa-solid fa-trash"></i></button> 
 				
 				</FORM>

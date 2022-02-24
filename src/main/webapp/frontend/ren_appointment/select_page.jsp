@@ -3,7 +3,7 @@
 
 <html>
 <head>
-<title>RenAppointment : Home</title>
+<title>EASY SPACE</title>
 
 <style>
   table#table-1 {
@@ -28,7 +28,7 @@
 
 </head>
 <body bgcolor='white'>
-<jsp:include page="/frontend/EZ_header.jsp"></jsp:include>
+
 
 <table id="table-1">
    <tr><td><h3>RenAppointment : Home</h3></td></tr>
@@ -49,7 +49,6 @@
 </c:if>
 
 <ul>
-<!--   <li><a href='listAllRenAppointment.jsp'>List</a> all RenAppointments.  <br><br></li> -->
   
   <jsp:useBean id="renAppSvc" scope="page" class="ezs.ren_appointment.model.RenAppointmentService" />
  
@@ -71,7 +70,7 @@
   <li>
      <FORM METHOD="post" ACTION="<%=request.getContextPath()%>/RenAppointmentServlet.do" >
        <b>查詢</b>
-       <select size="1" name="apt_mem_id">
+       <select size="1" name="aptMemId">
          <c:forEach var="renAppointmentVO" items="${renAppSvc.all}" > 
           <option value="${renAppointmentVO.aptMemId}">${renAppointmentVO.aptMemId}
          </c:forEach>   

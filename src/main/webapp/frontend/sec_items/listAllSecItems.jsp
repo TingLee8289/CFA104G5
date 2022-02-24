@@ -17,6 +17,7 @@ pageContext.setAttribute("list", list);
 
 <html>
 <head>
+
 <meta charset="utf-8" />
 <meta http-equiv="X-UA-Compatible" content="IE=edge" />
 <meta name="viewport"
@@ -223,6 +224,7 @@ pageContext.setAttribute("list", list);
 				<div class="container-fluid px-4">
 <!-- 塞頁面從這裡開始--------------------------------------------------------------------------------- -->
 <title>所有商品列表</title>
+
 
 <style>
 table#table-1 {

@@ -14,7 +14,7 @@
 <html>
 <head>
 <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
-<title>預約訂單資料修改</title>
+<title>EASY SPACE</title>
 
 
 <style>
@@ -127,6 +127,7 @@ th, td {
 		<input type="hidden" name="aptLddId" value="<%=renAppointmentVO.getAptLddId()%>">
 		<input type="hidden" name="aptLisId" value="<%=renAppointmentVO.getAptLisId()%>">
 		<input type="hidden" name="aptTime" value="<%=renAppointmentVO.getAptTime()%>">
+		<input type="hidden" name="requestURL" value="<%=request.getParameter("requestURL")%>">
 		<input type="submit" value="送出修改">
 		
 	</FORM>

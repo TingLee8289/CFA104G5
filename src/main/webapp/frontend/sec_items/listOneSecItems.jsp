@@ -17,6 +17,7 @@ SecItemsVO secItemsVO = (SecItemsVO) request.getAttribute("secItemsVO"); //EmpSe
 <!DOCTYPE html>
 <html>
 <head>
+
 <meta charset="utf-8" />
 <meta http-equiv="X-UA-Compatible" content="IE=edge" />
 <meta name="viewport"
@@ -223,7 +224,8 @@ SecItemsVO secItemsVO = (SecItemsVO) request.getAttribute("secItemsVO"); //EmpSe
 				<div class="container-fluid px-4">
 <!-- 塞頁面從這裡開始--------------------------------------------------------------------------------- -->
 
-<title>查詢單一商品</title>
+<title>EASY SPACE</title>
+
 
 <style>
 table#table-1 {

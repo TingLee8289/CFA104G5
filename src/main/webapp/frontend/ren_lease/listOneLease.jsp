@@ -21,7 +21,7 @@ pageContext.setAttribute("list",list);
 
 <html>
 <head>
-<title>租賃單資料 - listOnelease.jsp</title>
+<title>EASY SPACE</title>
 
 
 
