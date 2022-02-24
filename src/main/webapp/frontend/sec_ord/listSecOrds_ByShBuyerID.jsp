@@ -17,6 +17,7 @@ Set<SecOrdVO> listSecOrds_ByShBuyerID = secOrdSvc.getSecOrdByShBuyerID(memID);
 <meta name="viewport"
 	content="width=device-width, initial-scale=1, shrink-to-fit=no" />
 <title>EASY SPACE</title>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
 <link
 	href="https://cdn.jsdelivr.net/npm/simple-datatables@latest/dist/style.css"
 	rel="stylesheet" />
