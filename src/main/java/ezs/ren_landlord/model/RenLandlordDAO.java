@@ -20,6 +20,7 @@ public class RenLandlordDAO implements RenLandlordDAO_interface {
 	private static final String INSERT_STMT = "INSERT INTO `CFA104G5`.`REN_LANDLORD` (ldd_mem_id,ldd_pic) VALUES (?,?)";
 	private static final String GET_ALL_STMT = "SELECT * FROM `CFA104G5`.`REN_LANDLORD`";
 	private static final String GET_ONE_STMT = "SELECT ldd_id,ldd_mem_id,ldd_approval FROM `CFA104G5`.`REN_LANDLORD` WHERE ldd_id = ?";
+	private static final String GET_ONE_STMT_by_memid= "SELECT ldd_id,ldd_mem_id,ldd_approval FROM `CFA104G5`.`REN_LANDLORD` WHERE ldd_mem_id = ?";
 	private static final String DELETE = "DELETE FROM `CFA104G5`.`REN_LANDLORD` WHERE ldd_id = ?";
 	private static final String UPDATE = "UPDATE `CFA104G5`.`REN_LANDLORD` set ldd_mem_id =?, ldd_approval=? WHERE ldd_id =?";
 	private static final String UPDATESTATUS = "UPDATE `member` set mem_landlord = ? where mem_id =?";
@@ -154,38 +155,37 @@ public class RenLandlordDAO implements RenLandlordDAO_interface {
 		}
 		return list;
 	}
-	
-	public Integer findByMEM(Integer lddMemId) {
-		RenLandlordVO renLandlordVO = null;
-		System.out.println("check one");
 
-		System.out.println(lddMemId);
+//
+	@Override
+	public List<RenLandlordVO> findByMemID(Integer lddmemID ) {
+		List<RenLandlordVO> list = new ArrayList<RenLandlordVO>();
+			RenLandlordVO renLandlordVO = null;
 
-		try {
-			con = ds.getConnection();
-			pstmt = con.prepareStatement(GET_BY_MEMID);
+			try {
+				con = ds.getConnection();
+				pstmt = con.prepareStatement(GET_ONE_STMT_by_memid);
 
-			pstmt.setInt(1, lddMemId);
+				pstmt.setInt(1, lddmemID);
 
-			rs = pstmt.executeQuery();
-			System.out.println("check again");
+				rs = pstmt.executeQuery();
 
-			System.out.println(lddMemId);
-
-
-			while (rs.next()) {
-				renLandlordVO = new RenLandlordVO();
-				System.out.println("check three");
-				renLandlordVO.setLddMemId(rs.getInt("ldd_mem_id"));
-				renLandlordVO.setLddApproval(rs.getInt("ldd_approval"));
-				renLandlordVO.setLddId(rs.getInt("ldd_id"));
+				while (rs.next()) {
+					renLandlordVO = new RenLandlordVO();
+					renLandlordVO.setLddId(rs.getInt("ldd_id"));
+					renLandlordVO.setLddMemId(rs.getInt("ldd_mem_Id"));
+					renLandlordVO.setLddApproval(rs.getInt("ldd_approval"));
+					list.add(renLandlordVO);
+				}
+			} catch (SQLException se) {
+				se.printStackTrace();
+			} finally {
+				Util.closeResource(con, pstmt, rs);
 			}
-		} catch (SQLException se) {
-			se.printStackTrace();
-		} finally {
-			Util.closeResource(con, pstmt, rs);
+			return list;
 		}
-		return renLandlordVO.getLddId();
-	}
 
+
+	
 }
+

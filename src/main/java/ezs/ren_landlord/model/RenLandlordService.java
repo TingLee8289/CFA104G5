@@ -42,6 +42,9 @@ public class RenLandlordService {
 	public RenLandlordVO getOneLandlord(Integer lddId) {
 		return dao.findByPrimaryKey(lddId);
 	}
+	public List<RenLandlordVO> getOneLandlordbymemid(Integer lddMemId) {
+		return dao.findByMemID(lddMemId);
+	}
 
 	public List<RenLandlordVO> getAll() {
 		return dao.getAll();

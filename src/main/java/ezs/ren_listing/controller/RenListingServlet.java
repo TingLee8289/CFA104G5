@@ -406,7 +406,7 @@ if("listRenListing_ByLisLddID".equals(action)) {
 				String url = "/frontend/ren_listing/listOneListing.jsp";
 				RequestDispatcher successView = req.getRequestDispatcher(url); // 修改成功後,轉交listOneEmp.jsp
 				successView.forward(req, res);
-				System.out.print(renListingVO);
+//				System.out.print(renListingVO);
 				/***************************其他可能的錯誤處理*************************************/
 			} catch (Exception e) {
 				e.printStackTrace();
@@ -635,7 +635,7 @@ if("listRenListing_ByLisLddID".equals(action)) {
 				/***************************2.開始刪除資料***************************************/
 				RenListingService renListingSvc = new RenListingService();
 				RenListingPicService renListingPicSvc = new RenListingPicService();
-				renListingSvc.deleteRenListing(lisID);
+			
 				
 				renListingPicSvc.deleteRenListingPic(lspLisID);
 				
