@@ -39,6 +39,9 @@ public class MemberServlet extends HttpServlet {
 
 			List<String> errorMsgs = new LinkedList<String>();
 			req.setAttribute("errorMsgs", errorMsgs);
+			
+			List<String> repo = new LinkedList<String>();
+			req.setAttribute("repo", repo);
 			try {
 
 				/*************************** 1.接收請求參數 - 輸入格式的錯誤處理 **********************/
@@ -69,15 +72,16 @@ public class MemberServlet extends HttpServlet {
 					errorMsgs.add("帳號或密碼有誤，請重新輸入");
 				}
 				if(memberVO.getMemSupReported() >= 5) {// *************被檢舉次數****************
-					errorMsgs.add("該帳號被檢舉次數已達上限，如有相關問題清洽客服人員");
+					repo.add("該帳號被檢舉次數已達上限，如有相關問題清洽客服人員");
 				}
+				
 				if(memberVO.getMemStatus() == 0) {// *************帳號未開通****************
-					errorMsgs.add("該帳號尚未開通，請先進行驗證後再登入");
+					errorMsgs.add("●該帳號尚未開通，請先進行驗證後再登入");
 				}
 				
 			
 				// Send the use back to the form, if there were errors
-				if (!errorMsgs.isEmpty()) {
+				if (!errorMsgs.isEmpty() || !repo.isEmpty()) {
 					RequestDispatcher failureView = req.getRequestDispatcher("/frontend/member/login.jsp");
 					failureView.forward(req, res);
 					return;// 程式中斷
