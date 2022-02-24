@@ -4,8 +4,8 @@
 <%@ page import="ezs.ren_lease.model.*"%>
 <%@ page import="ezs.member.model.*"%>
 
-<%-- <% request.setAttribute("memID", 7); 
-%> --%>
+<%--  <% request.setAttribute("memID", 7); 
+%>  --%>
 <%
 MemberService memberSvc = new MemberService();
 Integer memID = (Integer)(session.getAttribute("memID"));
@@ -183,10 +183,10 @@ System.out.println(list1.size());
 						<div class="collapse" id="collapseLayouts"
 							aria-labelledby="headingOne" data-bs-parent="#sidenavAccordion">
 							<nav class="sb-sidenav-menu-nested nav">
-								 <a class="nav-link" href="layout-static.html">申請成為房東</a>
-                                    <a class="nav-link" href="layout-static.html">房源管理</a>
+								 <a class="nav-link" href="<%=request.getContextPath()%>/frontend/ren_landlord/applyToLandlord.jsp">申請成為房東</a>
+                                    <a class="nav-link" href="<%=request.getContextPath()%>/front/ren_listing/listingView.jsp">房源管理</a>
                                     <a class="nav-link" href="<%=request.getContextPath()%>/frontend/ren_appointment/listRenAppByLDD.jsp">預約單管理</a>
-                                    <a class="nav-link" href="layout-sidenav-light.html">租賃單管理</a>
+                                    <a class="nav-link" href="<%=request.getContextPath()%>/frontend/ren_lease/select_page.jsp">租賃單管理</a>
 							</nav>
 						</div>
 						<!-- ------------------------------------------------------------------------------------------------- -->
@@ -268,7 +268,7 @@ System.out.println(list1.size());
 		<th>租賃訂單狀態</th>
 		<th>租賃開始時間</th>
 		<th>租賃結束時間</th>
-		<th>租約照片<th>
+		<th>租約照片</th>
 		<th>租賃訂單成立時間</th>
 		<th>刪除</th>
 	</tr>
@@ -288,7 +288,7 @@ System.out.println(list1.size());
 			<td>${renLeaseVO.lseStatus}</td>
 			<td>${renLeaseVO.lseStart}</td>
 			<td>${renLeaseVO.lseEnd}</td>
-			<td><img src="<%= request.getContextPath() %>/ren_lease/LeasePicReader.do?lseId=${renLeaseVO.lseId}" width="80px" height="80px" class="item-images" style=" margin: auto;"></td>
+			<td><img src="<%= request.getContextPath() %>/ren_lease/LeasePicReader.do?lseId=${renLeaseVO.lseId}" width="250px" height="250px" class="item-images" style=" margin: auto;"></td>
 			<td>${renLeaseVO.lseTimestamp}</td> 
 			
 <%-- 			<td>

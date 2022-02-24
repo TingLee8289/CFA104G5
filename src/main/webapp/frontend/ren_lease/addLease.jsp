@@ -6,8 +6,8 @@
 <%@ page import="ezs.ren_listing.model.*"%>
 <%@ page import="java.util.*"%>
 
-<% request.setAttribute("memID", 6); 
-%>
+<%-- <% request.setAttribute("memID", 6); 
+%> --%>
 
 
  <%	RenLeaseService renLeaseSvc = new RenLeaseService();
@@ -17,8 +17,8 @@
 	RenLeaseVO renLeaseVO =new RenLeaseVO(); 
 	MemberService memberSvc = new MemberService();
 	
-	Integer memID = (Integer)(request.getAttribute("memID"));//6
-	MemberVO memberVO= memberSvc.getOneMember(memID); //6
+	Integer memID = (Integer)(session.getAttribute("memID"));
+	MemberVO memberVO= memberSvc.getOneMember(memID); 
 	pageContext.setAttribute("memberVO", memberVO);
 	
  	for(RenLeaseVO renLeaseVO1 : list) {
@@ -198,10 +198,10 @@ pageContext.setAttribute("list1", list1);
 						<div class="collapse" id="collapseLayouts"
 							aria-labelledby="headingOne" data-bs-parent="#sidenavAccordion">
 							<nav class="sb-sidenav-menu-nested nav">
-								 <a class="nav-link" href="layout-static.html">申請成為房東</a>
-                                    <a class="nav-link" href="layout-static.html">房源管理</a>
+								 <a class="nav-link" href="<%=request.getContextPath()%>/frontend/ren_landlord/applyToLandlord.jsp">申請成為房東</a>
+                                    <a class="nav-link" href="<%=request.getContextPath()%>/front/ren_listing/listingView.jsp">房源管理</a>
                                     <a class="nav-link" href="<%=request.getContextPath()%>/frontend/ren_appointment/listRenAppByLDD.jsp">預約單管理</a>
-                                    <a class="nav-link" href="layout-sidenav-light.html">租賃單管理</a>
+                                    <a class="nav-link" href="<%=request.getContextPath()%>/frontend/ren_lease/select_page.jsp">租賃單管理</a>
 							</nav>
 						</div>
 						<!-- ------------------------------------------------------------------------------------------------- -->
@@ -252,7 +252,9 @@ pageContext.setAttribute("list1", list1);
 			</nav>
 		</div>
 
-<body bgcolor='white'>
+<div id="layoutSidenav_content">
+			<main>
+				<div class="container-fluid px-4">
 
 <table id="table-1">
 	<tr><td>
@@ -417,8 +419,9 @@ pageContext.setAttribute("list1", list1);
             const img = document.createElement('img');
             const hr = document.createElement('hr');
 
-            img.setAttribute('style', 'display:block;max-height:300px;position:absolute;');
-
+            img.setAttribute('style', 'display:block;max-height:150px;max-weight:200px;position:relative;');
+            
+       
             div.appendChild(img);
 
             inputBtn.addEventListener('input', (e) => {

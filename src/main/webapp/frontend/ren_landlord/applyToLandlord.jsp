@@ -7,6 +7,7 @@
 <%-- <%
 request.setAttribute("memID", 1); 
 %> --%>
+
 <%
 Integer memID = (Integer) session.getAttribute("memID");
 RenLandlordVO renLandlordVO = new RenLandlordVO();
@@ -174,10 +175,10 @@ MemberVO memVO = memSvc.getOneMember(memID);
 						<div class="collapse" id="collapseLayouts"
 							aria-labelledby="headingOne" data-bs-parent="#sidenavAccordion">
 							<nav class="sb-sidenav-menu-nested nav">
-								 <a class="nav-link" href="layout-static.html">申請成為房東</a>
-                                    <a class="nav-link" href="layout-static.html">房源管理</a>
+								 <a class="nav-link" href="<%=request.getContextPath()%>/frontend/ren_landlord/applyToLandlord.jsp">申請成為房東</a>
+                                    <a class="nav-link" href="<%=request.getContextPath()%>/front/ren_listing/listingView.jsp">房源管理</a>
                                     <a class="nav-link" href="<%=request.getContextPath()%>/frontend/ren_appointment/listRenAppByLDD.jsp">預約單管理</a>
-                                    <a class="nav-link" href="layout-sidenav-light.html">租賃單管理</a>
+                                    <a class="nav-link" href="<%=request.getContextPath()%>/frontend/ren_lease/select_page.jsp">租賃單管理</a>
 							</nav>
 						</div>
 						<!-- ------------------------------------------------------------------------------------------------- -->
@@ -231,7 +232,7 @@ MemberVO memVO = memSvc.getOneMember(memID);
 		<div id="layoutSidenav_content">
 			<main>
 				<div class="container-fluid px-4">
-									<h1 class="_3iiDCN">申請成為房東</h1>
+									<h1 >申請成為房東</h1>
 									<div class="TQG40c">上傳身分證以供審核</div>
 									<div style="height: 36px;">
 										<%-- 錯誤表列 --%>
@@ -253,7 +254,7 @@ MemberVO memVO = memSvc.getOneMember(memID);
 													type="file" accept="image/*" style="display: block;"
 													name="lddPic" value="<%= (renLandlordVO==null)? "" : renLandlordVO.getLddPic() %>">
 											</div>
-											<!-- 這邊控制傳送至Servlet -->
+											
 											<input type="hidden" name="action" value="insert">
 											<input type="hidden" name="lddMemId" value= "<%= memID %>">
 											<div class="_31PFen">

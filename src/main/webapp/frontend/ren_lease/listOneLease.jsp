@@ -45,7 +45,38 @@ pageContext.setAttribute("list",list);
 	position: fixed;
 }
 </style>
+<style>
+  table#table-1 {
+	background-color: #CCCCFF;
+    border: 2px solid black;
+    text-align: center;
+  }
+  table#table-1 h4 {
+    color: red;
+    display: block;
+    margin-bottom: 1px;
+  }
+  h4 {
+    color: blue;
+    display: inline;
+  }
+</style>
 
+<style>
+  table {
+	width: 800px;
+	background-color: white;
+	margin-top: 5px;
+	margin-bottom: 5px;
+  }
+  table, th, td {
+    border: 1px solid #CCCCFF;
+  }
+  th, td {
+    padding: 5px;
+    text-align: center;
+  }
+</style>
 
 
 <script src="https://kit.fontawesome.com/1c2ccc4859.js" crossorigin="anonymous"></script>
@@ -220,7 +251,7 @@ pageContext.setAttribute("list",list);
 		<th>租賃訂單狀態</th>
 		<th>租賃開始時間</th>
 		<th>租賃結束時間</th>
-		<th>租約照片<th>
+		<th>租約照片</th>
 		<th>租賃訂單成立時間</th>
 	</tr>
 	<tr>
@@ -237,7 +268,7 @@ pageContext.setAttribute("list",list);
 		<td><%=renLeaseVO.getLseStatus()%></td>
 		<td><%=renLeaseVO.getLseStart()%></td>
 		<td><%=renLeaseVO.getLseEnd()%></td>
-		<td><img src="<%= request.getContextPath() %>/ren_lease/LeasePicReader.do?lseId=${renLeaseVO.lseId}" width="40%" height="40%" class="item-images" style=" margin: auto;"></td>
+		<td><img src="<%= request.getContextPath() %>/ren_lease/LeasePicReader.do?lseId=${renLeaseVO.lseId}" width="250px" height="250px" class="item-images" style=" margin: auto;"></td>
 		<td><%=renLeaseVO.getLseTimestamp()%></td>
 	</tr>
 </table>
