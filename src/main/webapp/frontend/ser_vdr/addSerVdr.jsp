@@ -1,7 +1,7 @@
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ page import="ezs.ser_vdr.model.*"%>
-<% session.setAttribute("memID", 16);%>
+<%-- <% session.setAttribute("memID", 16);%> --%>
 <%
 Integer memID = (Integer)session.getAttribute("memID");
 SerVdrVO servdrVO = (SerVdrVO) request.getAttribute("servdrVO");
