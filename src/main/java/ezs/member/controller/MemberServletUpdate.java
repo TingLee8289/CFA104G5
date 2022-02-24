@@ -210,9 +210,7 @@ public class MemberServletUpdate extends HttpServlet {
 			}
 			
 			String memUsername = new String(req.getParameter("memUsername"));
-			Integer memRedCount = new Integer(req.getParameter("memRedCount"));
-			Integer memRedScore = new Integer(req.getParameter("memRedScore"));
-		
+			
 
 //				byte[] memHeadshot = null;
 //				Collection<Part> parts = req.getParts();
@@ -261,8 +259,7 @@ public class MemberServletUpdate extends HttpServlet {
 			memberVO.setMemVatno(memVatno);
 			memberVO.setMemHeadshot(memHeadshot);
 			memberVO.setMemUsername(memUsername);
-			memberVO.setMemRedCount(memRedCount);
-			memberVO.setMemRedScore(memRedScore);
+			
 
 			if (!errorMsgs.isEmpty()) {
 				req.setAttribute("memberVO", memberVO);
@@ -273,11 +270,11 @@ public class MemberServletUpdate extends HttpServlet {
 			/*************************** 2.開始新增資料 ***************************************/
 			MemberService memberSvc = new MemberService();
 			memberVO = memberSvc.updateMember(memID, memPassword, memName, memPhone, memAddress, memEmail, memHeadshot,
-					memVatno);
+					memVatno, memUsername);
 
 			/*************************** 3.新增完成,準備轉交(Send the Success view) ***********/
 			req.setAttribute("memberVO", memberVO);
-			String url = "/frontend/member/listOne1Member.jsp";
+			String url = "/frontend/member/listOneMember.jsp";
 			RequestDispatcher successView = req.getRequestDispatcher(url);
 			successView.forward(req, res);
 

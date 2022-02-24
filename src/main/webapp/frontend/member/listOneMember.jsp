@@ -94,17 +94,7 @@ text-align: center;
 	</tr>
 	</c:if>
 
-	<tr>
-		<th id="test">評價均分:</th>
-		<td>
-					<c:choose>
-						<c:when test="${(memberVO.memRedCount) == 0}">尚無評分</c:when>
-						<c:otherwise>
-							<fmt:formatNumber type="number" maxFractionDigits="1" 
-								value="${(memberVO.memRedScore/memberVO.memRedCount)}"/>
-						</c:otherwise>
-					</c:choose></td>
-	</tr>
+
 	<tr>
 	<td><form method="post" action="<%= request.getContextPath() %>/member/MemberServletUpdate.do">
 						<input type="submit" value="修改"> 
