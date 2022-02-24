@@ -22,7 +22,7 @@ public class RenLeaseDAO implements RenLeaseDAO_interface {
 
 //	private static final String GET_PERSONAL = "SELECT lse_id,lse_mem_id,lse_lis_id,lse_ldd_id,lse_status,lse_timestamp,lse_start,lse_end,lse_price,lse_leasememid FROM `CFA104G5`.`REN_LEASE` WHERE lse_mem_id = ?";
 
-	private static final String GET_ONE_MEM = "SELECT * FROM `CFA104G5`.`REN_LEASE` WHERE lse_mem_id = ?";
+	private static final String GET_ONE_MEM = "SELECT * FROM `CFA104G5`.`REN_LEASE` WHERE lse_leasememid = ?";
 
 	private static  DataSource ds = null;
 	static {
@@ -170,13 +170,13 @@ public class RenLeaseDAO implements RenLeaseDAO_interface {
 	
 	
 	@Override
-	public List<RenLeaseVO> getAllMEM(Integer lseMemId) {
+	public List<RenLeaseVO> getAllMEM(Integer lseLeaseMemId) {
 		List<RenLeaseVO> list = new ArrayList<RenLeaseVO>();
 		RenLeaseVO renLeaseVO = null;
 		try {
 			con = ds.getConnection();
 			pstmt = con.prepareStatement(GET_ONE_MEM);
-			pstmt.setInt(1, lseMemId);
+			pstmt.setInt(1, lseLeaseMemId);
 			rs = pstmt.executeQuery();
 			
 			while (rs.next()) {

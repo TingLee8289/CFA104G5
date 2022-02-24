@@ -56,8 +56,7 @@ figure img {
 					class="fas fa-user fa-fw"></i></a>
 				<ul class="dropdown-menu dropdown-menu-end"
 					aria-labelledby="navbarDropdown">
-<!-- 					<li><hr class="dropdown-divider" /></li> -->
-					<li><a class="dropdown-item" href="<%= request.getContextPath()%>//admin_emp/AdminEmpServlet.do?action=logout">登出</a></li>
+					<li><a class="dropdown-item" href="<%= request.getContextPath()%>/admin_emp/AdminEmpServlet.do?action=logout">登出</a></li>
 				</ul></li>
 		</ul>
 	</nav>
@@ -165,7 +164,7 @@ figure img {
 		<div id="layoutSidenav_content">
 			<main>
 				<div class="container-fluid px-4">
-					<h1 class="mt-4">Easy Space 後台管理系統</h1>
+					<h1 class="mt-4">EASY SPACE 後台管理系統</h1>
 					<ol class="breadcrumb mb-4">
 						<li class="breadcrumb-item active">Easy Space Easy Life</li>
 					</ol>

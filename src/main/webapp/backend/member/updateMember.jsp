@@ -21,8 +21,6 @@
 <link href="<%=request.getContextPath()%>/css/styles.css" rel="stylesheet" />
 <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/js/all.min.js" crossorigin="anonymous"></script>
 
- 
-<title>EASY SPACE</title>
 
 <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
 <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
@@ -147,11 +145,6 @@ text-align: center;
                         <h1 class="mt-4">會員資料管理</h1>
 
 <!--       ***********************code從這行開始************************************** -->
-      <table id="table-1">
-	<tr><td>
-		 <h3>${memberVO.memID}- ${memberVO.memUsername} 會員資料</h3>
-	</td></tr>
-</table>
 
 <%-- 錯誤表列 --%>
 <c:if test="${not empty errorMsgs}">

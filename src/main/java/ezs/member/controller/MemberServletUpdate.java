@@ -185,6 +185,10 @@ public class MemberServletUpdate extends HttpServlet {
 			/*************************** 1.接收請求參數 - 輸入格式的錯誤處理 **********************/
 
 			try {
+				
+				String memPhoneReg = "^09[0-9]{8}$";
+				String memEmailReg = "^\\w+((-\\w+)|(\\.\\w+))*\\@[A-Za-z0-9]+((\\.|-)[A-Za-z0-9]+)*\\.[A-Za-z]+$";
+				
 			Integer memID = new Integer(req.getParameter("memID").trim());
 
 			String memPassword = req.getParameter("memPassword");
@@ -199,6 +203,8 @@ public class MemberServletUpdate extends HttpServlet {
 			String memPhone = req.getParameter("memPhone");
 			if (memPhone == null || memPhone.trim().length() == 0) {
 				errorMsgs.add("電話請勿空白");
+			}else if (!memPhone.trim().matches(memPhoneReg)) {
+				errorMsgs.add("電話格式不符，請重新輸入");
 			}
 			String memAddress = req.getParameter("memAddress");
 			if (memAddress == null || memAddress.trim().length() == 0) {
@@ -207,6 +213,8 @@ public class MemberServletUpdate extends HttpServlet {
 			String memEmail = req.getParameter("memEmail");
 			if (memEmail == null || memEmail.trim().length() == 0) {
 				errorMsgs.add("email請勿空白");
+			}else if (!memEmail.trim().matches(memEmailReg)){
+				errorMsgs.add("email格式不符，請重新輸入");
 			}
 			
 			String memUsername = new String(req.getParameter("memUsername"));

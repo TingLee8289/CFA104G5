@@ -29,7 +29,7 @@ html, body {
 
 .panel {
 	float: right;
-	border: 2px solid #0078ae;
+	border: 2px solid #cbcbd4;
 	border-radius: 5px;
 	width: 50%;
 }

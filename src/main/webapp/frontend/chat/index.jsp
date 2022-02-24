@@ -9,7 +9,7 @@ html, body {
 	font: 15px verdana, Times New Roman, arial, helvetica, sans-serif, Microsoft JhengHei;
 	width: 90%;
 	height: 90%;
-	background: #eeeeda;
+	background: rgb(177, 221, 196);
 }
 
 #userName {
@@ -32,8 +32,8 @@ html, body {
 }
 
 .button {
-	background-color: #0078ae;
-	color: #ffffff;
+	background-color: #cbcbd4;
+	color: #272424;
 	border-radius: 5px;
 	position: absolute;
 	width: 100px;
@@ -49,9 +49,9 @@ html, body {
 </head>
 <body>
 	<div id="outPopUp">
-		<h1 align="center">聊天室</h1>
+		<h1 align="center">聊聊</h1>
 		<form id="myForm" action="<%=request.getContextPath() %>/NameServlet.do" method="POST">
-			<input id="userName" name="userName" class="text-field" type="text" placeholder="Input user name" /> 
+			<input id="userName" name="userName" class="text-field" type="text" placeholder="輸入會員帳號 開始聊天吧!" /> 
 			<input type="submit" id="send" class="button" value="送出" onclick="sendName();" />
 		</form>
 	</div>

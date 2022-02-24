@@ -32,13 +32,12 @@ public class RenLeaseServletMEM extends HttpServlet {
 
 			List<String> errorMsgs = new LinkedList<String>();
 			req.setAttribute("errorMsgs", errorMsgs);
-			System.out.println("hhhhhh");
-
+			
 //			try {
 				/***************************1.接收請求參數 - 輸入格式的錯誤處理**********************/
-				String str = req.getParameter("lseMemId");
+				String str = req.getParameter("lseLeaseMemId");
 				if (str == null || (str.trim()).length() == 0) {
-					errorMsgs.add("請ssjskjskjs輸入會員編號");
+					errorMsgs.add("請輸入會員編號");
 				}
 				if (!errorMsgs.isEmpty()) {
 					RequestDispatcher failureView = req
@@ -47,9 +46,9 @@ public class RenLeaseServletMEM extends HttpServlet {
 					return;//程式中斷
 				}
 				
-				Integer lseMemId = null;
+				Integer lseLeaseMemId = null;
 				try {
-					lseMemId = new Integer(str);
+					lseLeaseMemId = new Integer(str);
 				} catch (Exception e) {
 					errorMsgs.add("會員編號格式不正確");
 				}
@@ -87,6 +86,62 @@ public class RenLeaseServletMEM extends HttpServlet {
 //			}
 		}
 		
+		if ("MEMgetOne".equals(action)) { 
+			List<String> errorMsgs = new LinkedList<String>();
+			req.setAttribute("errorMsgs", errorMsgs);
+
+			try {
+				/***************************1.接收請求參數 - 輸入格式的錯誤處理**********************/
+				String str = req.getParameter("lseId");
+				if (str == null || (str.trim()).length() == 0) {
+					errorMsgs.add("請輸入租賃單編號");
+				}
+				if (!errorMsgs.isEmpty()) {
+					RequestDispatcher failureView = req
+							.getRequestDispatcher("/frontend/ren_lease/MEMlistOneLease.jsp");
+					failureView.forward(req, res);
+					return;//程式中斷
+				}
+				
+				Integer lseId = null;
+				try {
+					lseId = new Integer(str);
+				} catch (Exception e) {
+					errorMsgs.add("租賃單編號格式不正確");
+				}
+				if (!errorMsgs.isEmpty()) {
+					RequestDispatcher failureView = req
+							.getRequestDispatcher("/frontend/ren_lease/MEMlistOneLease.jsp");
+					failureView.forward(req, res);
+					return;//程式中斷
+				}
+				/***************************2.開始查詢資料*****************************************/
+				RenLeaseService renLeaseSvc = new RenLeaseService();
+				RenLeaseVO renLeaseVO = renLeaseSvc.getOneRenLease(lseId);
+
+				if (renLeaseVO == null) {
+					errorMsgs.add("查無資料");
+				}
+				if (!errorMsgs.isEmpty()) {
+					RequestDispatcher failureView = req
+							.getRequestDispatcher("/frontend/ren_lease/MEMlistOneLease.jsp");
+					failureView.forward(req, res);
+					return;//程式中斷
+				}
+				/***************************3.查詢完成,準備轉交(Send the Success view)*************/
+				req.setAttribute("renLeaseVO", renLeaseVO);
+				String url = "/frontend/ren_lease/MEMlistOneLease.jsp";
+				RequestDispatcher successView = req.getRequestDispatcher(url);
+				successView.forward(req, res);
+
+				/***************************其他可能的錯誤處理*************************************/
+			} catch (Exception e) {
+				errorMsgs.add("無法取得資料:" + e.getMessage());
+				RequestDispatcher failureView = req
+						.getRequestDispatcher("/frontend/ren_lease/MEMlistOneLease.jsp");
+				failureView.forward(req, res);
+			}
+		}
 
 		
 		
