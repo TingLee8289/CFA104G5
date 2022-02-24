@@ -10,8 +10,8 @@ public interface SecItemsDAO_interface {
     public SecItemsVO findByPrimaryKey(Integer shSellerID, Integer shID);
     public List<SecItemsVO> findByShCategory(Integer shSellerID,Integer shCateID);
    
-    public List<SecItemsVO> getAll(Integer shSellerID);
-    public List<SecItemsVO> getAll2();
+    public List<SecItemsVO> getAll();
+    public List<SecItemsVO> getAll2(Integer shSellerID);
     public List<SecItemsVO> findByStatus(Integer shSellerID,Integer shStatus);
 }
 

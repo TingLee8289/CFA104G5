@@ -50,7 +50,7 @@ public class UpdateSerQuoByVdrServlet extends HttpServlet {
 		if ("update".equals(action)) {
 			List<String> errorMsgs = new LinkedList<String>();
 			req.setAttribute("errorMsgs", errorMsgs);
-//			try {
+			try {
 				// 接收請求參數
 				Integer quoID = Integer.valueOf(req.getParameter("quoID"));
 				
@@ -75,9 +75,7 @@ public class UpdateSerQuoByVdrServlet extends HttpServlet {
 					errorMsgs.add("請輸入日期!");
 				}
 				String quoItem = req.getParameter("quoItem").trim();
-				System.out.println(quoItem);
 				BigDecimal quoTotalPrice = new BigDecimal(req.getParameter("quoTotalPrice"));
-				System.out.println(req.getParameter("quoTotalPrice"));
 				
 				SerQuoVO serQuoVO = new SerQuoVO();
 				serQuoVO.setQuoID(quoID);
@@ -98,16 +96,16 @@ public class UpdateSerQuoByVdrServlet extends HttpServlet {
 				// 2. addquo
 				SerQuoService serQuoSvc = new SerQuoService();
 				serQuoVO = serQuoSvc.updateSerQuo(quoID, quoStatus, quoDmdID, quoVdrID, quoDate, quoExpiryDate, quoItem, quoTotalPrice);
-				// 3.新增完成，轉交
+				// 3.更新完成，轉交
 				String url = "/frontend/ser_quo/getQuoByVdrID.jsp";
 				RequestDispatcher successView = req.getRequestDispatcher(url); // 新增成功後轉交listAllEmp.jsp
 				successView.forward(req, res);
 
-//			} catch (Exception e) {
-//				errorMsgs.add("修改資料失敗:" + e.getMessage());
-//				RequestDispatcher failureView = req.getRequestDispatcher("/backend/ser/serQuo/updateSerQuo.jsp");
-//				failureView.forward(req, res);
-//			}
+			} catch (Exception e) {
+				errorMsgs.add("修改資料失敗:" + e.getMessage());
+				RequestDispatcher failureView = req.getRequestDispatcher("/backend/ser/serQuo/updateSerQuo.jsp");
+				failureView.forward(req, res);
+			}
 		}
 
 	}

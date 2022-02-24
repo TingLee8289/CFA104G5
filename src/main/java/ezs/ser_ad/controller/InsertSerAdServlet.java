@@ -34,7 +34,7 @@ public class InsertSerAdServlet extends HttpServlet {
 			// send the ErrorPage view.
 			req.setAttribute("errorMsgs", errorMsgs);
 
-//			try {
+			try {
 				/*********************** 1.接收請求參數 - 輸入格式的錯誤處理 *************************/
 				Integer adVdrID = Integer.valueOf(req.getParameter("adVdrID"));
 
@@ -57,13 +57,13 @@ public class InsertSerAdServlet extends HttpServlet {
 //					errorMsgs.add("服務內容: 只能是中文、數字, 且長度必需在10到20之間");
 //				}
 
-				InputStream in = req.getPart("adPic").getInputStream();// 廠商可以不上傳照片
+//				InputStream in = req.getPart("adPic").getInputStream();// 廠商可以不上傳照片
 				byte[] adPic = null;
-				if (in.available() != 0) {
-					adPic = new byte[in.available()];
-					in.read(adPic);
-					in.close();
-				}
+//				if (in.available() != 0) {
+//					adPic = new byte[in.available()];
+//					in.read(adPic);
+//					in.close();
+//				}
 
 				SerAdVO serAdVO = new SerAdVO();
 				serAdVO.setAdVdrID(adVdrID);
@@ -86,18 +86,17 @@ public class InsertSerAdServlet extends HttpServlet {
 				serAdSvc.addSerAd(adVdrID, adStatus, adSerClaID, adDist, adTxt, adPic);
 
 				/*************************** 3.新增完成,準備轉交(Send the Success view) ***********/
-				String url = "/frontend/ser_ad/serAdHome.jsp";
+				String url = "/frontend/ser_ad/listAllSerAd.jsp";
 				RequestDispatcher successView = req.getRequestDispatcher(url); // 新增成功後轉交listAllEmp.jsp
 				successView.forward(req, res);
 
 				/*************************** 其他可能的錯誤處理 **********************************/
-//			} catch (Exception e) {
-//				errorMsgs.add(e.getMessage());
-//				RequestDispatcher failureView = req.getRequestDispatcher("/frontend/ser_ad/addSerAd.jsp");
-//				failureView.forward(req, res);
+			} catch (Exception e) {
+				errorMsgs.add(e.getMessage());
+				RequestDispatcher failureView = req.getRequestDispatcher("/frontend/ser_ad/addSerAd.jsp");
+				failureView.forward(req, res);
 			}
 		}
 
 	}
-
-
+}

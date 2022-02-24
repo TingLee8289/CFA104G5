@@ -42,7 +42,8 @@ public MemberVO addMember(String memUsername, String memPassword, String memName
 
 
 	public MemberVO updateMember(Integer memID, String memPassword, String memName,
-			String memPhone, String memAddress, String memEmail, byte[] memheadshot, String memVatno) {
+			String memPhone, String memAddress, String memEmail, byte[] memheadshot, 
+			String memVatno, String memUsername) {
 		MemberVO memberVO = new MemberVO();
 
 		memberVO.setMemID(memID);
@@ -53,6 +54,7 @@ public MemberVO addMember(String memUsername, String memPassword, String memName
 		memberVO.setMemEmail(memEmail);
 		memberVO.setMemHeadshot(memheadshot);
 		memberVO.setMemVatno(memVatno);
+		memberVO.setMemUsername(memUsername);
 		dao.update(memberVO);
 
 		return memberVO;

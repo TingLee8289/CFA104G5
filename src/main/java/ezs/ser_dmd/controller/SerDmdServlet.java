@@ -298,7 +298,7 @@ public class SerDmdServlet extends HttpServlet {
 				// Send the use back to the form, if there were errors
 				if (!errorMsgs.isEmpty()) {
 					req.setAttribute("serDmdVO", serDmdVO); // 含有輸入格式錯誤的VO物件,也存入req
-					RequestDispatcher failureView = req.getRequestDispatcher("/backend/ser/serDmd/addSerDmd.jsp");
+					RequestDispatcher failureView = req.getRequestDispatcher("/frontend/ser_dmd/addSerDmd.jsp");
 					failureView.forward(req, res);
 					return;
 				}
@@ -316,7 +316,7 @@ public class SerDmdServlet extends HttpServlet {
 			} catch (Exception e) {
 				e.printStackTrace();
 				errorMsgs.add(e.getMessage());
-				RequestDispatcher failureView = req.getRequestDispatcher("/backend/ser/serDmd/addSerDmd.jsp");
+				RequestDispatcher failureView = req.getRequestDispatcher("/frontend/ser_dmd/addSerDmd.jsp");
 				failureView.forward(req, res);
 			}
 
@@ -337,14 +337,14 @@ public class SerDmdServlet extends HttpServlet {
 				serDmdSvc.deleteSerDmd(dmdID);
 
 				/*************************** 3.刪除完成,準備轉交(Send the Success view) ***********/
-				String url = "/backend/ser/serDmd/listAllSerDmd.jsp";
+				String url = "/frontend/ser_dmd/getByDmdMemID.jsp";
 				RequestDispatcher successView = req.getRequestDispatcher(url);// 刪除成功後,轉交回送出刪除的來源網頁
 				successView.forward(req, res);
-
+				
 				/*************************** 其他可能的錯誤處理 **********************************/
 			} catch (Exception e) {
 				errorMsgs.add("刪除資料失敗:" + e.getMessage());
-				RequestDispatcher failureView = req.getRequestDispatcher("/backend/ser/serDmd/listAllSerDmd.jsp");
+				RequestDispatcher failureView = req.getRequestDispatcher("/frontend/ser_dmd/getByDmdMemID.jsp");
 				failureView.forward(req, res);
 			}
 		}

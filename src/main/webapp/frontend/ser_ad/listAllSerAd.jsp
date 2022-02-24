@@ -5,7 +5,7 @@
 <%@ page import="java.util.*"%>
 <%@ page import="ezs.ser_ad.model.*"%>
 <%-- 此頁練習採用 EL 的寫法取值 --%>
-<%session.setAttribute("memID", 2);%>
+
 <%
 SerAdService serAdSvc = new SerAdService();
 List<SerAdVO> list = serAdSvc.getAll();
@@ -65,7 +65,7 @@ pageContext.setAttribute("serClaVO", serClaVO);
     margin-bottom: 1px;
   }
   h4 {
-    color: blue;
+    color: black;
     display: inline;
   }
 </style>
@@ -78,7 +78,7 @@ pageContext.setAttribute("serClaVO", serClaVO);
 	margin-bottom: 5px;
   }
   table, th, td {
-    border: 1px solid #CCCCFF;
+    border: 0px solid #CCCCFF;
   }
   th, td {
     padding: 5px;
@@ -284,7 +284,7 @@ pageContext.setAttribute("serClaVO", serClaVO);
 							<th>服務內容</th>
 							<th>服務案例圖片</th>
 							<th></th>
-							<th></th>
+						
 
 						</tr>
 					</thead>
@@ -302,10 +302,10 @@ pageContext.setAttribute("serClaVO", serClaVO);
 								<td>${serAdVO.adSerClaID}</td>
 								<td>${serAdVO.adDist}</td>
 								<td>${serAdVO.adTxt}</td>
-								<td><img
+							<%--	<td><img
 									src="<%=request.getContextPath()%>/ser_ad/DBGifReader4.do?ad_vdr_id=${serAdVO.adVdrID}&ad_ser_cla_id=${serAdVO.adSerClaID}"
 									width=200px></td>
-								<%--  ad_cla_id=${serAdVO.adClaID}--%>
+								  ad_cla_id=${serAdVO.adClaID}--%>
 
 								<td>
 									<FORM METHOD="post"
@@ -317,7 +317,7 @@ pageContext.setAttribute("serClaVO", serClaVO);
 										<input type="hidden" name="action" value="getOne_For_Update">
 									</FORM>
 								</td>
-								<td>
+							 	<td>
 									<FORM METHOD="post"
 										ACTION="<%=request.getContextPath()%>/frontend/ser_ad/DeleteSerAdServlet.do"
 										style="margin-bottom: 0px;">
@@ -326,7 +326,7 @@ pageContext.setAttribute("serClaVO", serClaVO);
 											type="hidden" name="adSerClaID" value="${serAdVO.adSerClaID}">
 										<input type="hidden" name="action" value="delete">
 									</FORM>
-								</td>
+								</td> 
 							</tr>
 								</c:if>
 							

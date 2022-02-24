@@ -68,6 +68,10 @@ text-align: center;
 		<td>${memberVO.memUsername}</td>
 	</tr>
 	<tr>
+		<th id="test">密碼:</th>
+		<td>${memberVO.memPassword}</td>
+	</tr>
+	<tr>
 		<th id="test">姓名:</th>
 		<td>${memberVO.memName}</td>
 	</tr>
@@ -85,22 +89,12 @@ text-align: center;
 	</tr>
 	<c:if test="${memberVO.memSupplier == 1}">
 	<tr>
-		<th id="test">會員統一編號:</th>
+		<th id="test">統一編號:</th>
 		<td>${memberVO.memVatno}</td>
 	</tr>
 	</c:if>
 
-	<tr>
-		<th id="test">評價均分:</th>
-		<td>
-					<c:choose>
-						<c:when test="${(memberVO.memRedCount) == 0}">尚無評分</c:when>
-						<c:otherwise>
-							<fmt:formatNumber type="number" maxFractionDigits="1" 
-								value="${(memberVO.memRedScore/memberVO.memRedCount)}"/>
-						</c:otherwise>
-					</c:choose></td>
-	</tr>
+
 	<tr>
 	<td><form method="post" action="<%= request.getContextPath() %>/member/MemberServletUpdate.do">
 						<input type="submit" value="修改"> 
