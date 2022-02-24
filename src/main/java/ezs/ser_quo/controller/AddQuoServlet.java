@@ -13,6 +13,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import ezs.ser_dmd.model.SerDmdService;
 import ezs.ser_quo.model.*;
 
 @WebServlet("/ser_quo/AddQuoServlet.do")
@@ -70,7 +71,9 @@ public class AddQuoServlet extends HttpServlet {
 				//2. addquo
 				SerQuoService serQuoSvc = new SerQuoService();
 				serQuoVO= serQuoSvc.addSerQuo(quoStatus, quoDmdID, quoVdrID, quoDate, quoExpiryDate, quoItem, quoTotalPrice);
-						//3.新增完成，轉交
+				SerDmdService serDmdSvc= new SerDmdService();	
+				serDmdSvc.setDmdStatus(quoDmdID);
+				//3.新增完成，轉交
 				String url = "/frontend/ser_dmd/getByDmdMemID.jsp";
 				RequestDispatcher successView = req.getRequestDispatcher(url); // 新增成功後轉交listAllEmp.jsp
 				successView.forward(req, res);

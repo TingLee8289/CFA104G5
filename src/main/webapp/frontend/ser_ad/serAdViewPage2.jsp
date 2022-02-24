@@ -204,7 +204,7 @@ pageContext.setAttribute("serClaList", serClaList);
    		}
 		
 		.header{
-			position: fixed;
+/* 			position: fixed; */
 			margin-top: 0px;
 			background-color: rgb(239,239,239);
 			z-index:995;
@@ -295,20 +295,6 @@ pageContext.setAttribute("serClaList", serClaList);
 		</div>
 	</div>
     
-    
-	
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
     <aside class="probootstrap-aside js-probootstrap-aside aside">
       <a href="#" class="probootstrap-close-menu js-probootstrap-close-menu d-md-none"><span class="oi oi-arrow-left"></span> Close</a>
       <div class="probootstrap-site-logo probootstrap-animate" data-animate-effect="fadeInLeft">
@@ -344,7 +330,7 @@ pageContext.setAttribute("serClaList", serClaList);
    <main class="main">
 
 		<c:forEach var="serAdVO" items="${serAdVO}">
-
+			<c:if test="${serAdVO.adStatus==1}">
 			<div class="container">
 				<div class="card d-flex row flex-row p-4" style="min-width: 800px;">
 					<div class="company-img col-3">
@@ -384,6 +370,13 @@ pageContext.setAttribute("serClaList", serClaList);
 									<i class="bi bi-trophy">服務地區:${serAdVO.adDist}</i> 
 								</div>
 								<div>
+									<i>
+									<c:forEach var="serVdrVO" items="${serVdrList}">
+							 			<c:if test="${serAdVO.adVdrID==serVdrVO.vdrID}">
+	                   						 聯絡電話:${serVdrVO.vdrTel}
+                    					</c:if>
+									</c:forEach >
+									</i><br>
 									<i class="bi bi-check-circle-fill" style="color: DodgerBlue;">
 									<c:forEach var="serVdrVO" items="${serVdrList}">
 							 			<c:if test="${serAdVO.adVdrID==serVdrVO.vdrID}">
@@ -424,7 +417,7 @@ pageContext.setAttribute("serClaList", serClaList);
 					</div>
 				</div>
 			</div>
-
+				</c:if>
 			</c:forEach>
 		
 
