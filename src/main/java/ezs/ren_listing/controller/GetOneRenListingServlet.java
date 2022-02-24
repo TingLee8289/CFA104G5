@@ -48,7 +48,8 @@ public class GetOneRenListingServlet extends HttpServlet {
 				}
 				if(!errorMsgs.isEmpty()) {
 					RequestDispatcher failureView = req
-							.getRequestDispatcher("/frontend/ren_listing/listAllListing.jsp");					failureView.forward(req, res);
+//							.getRequestDispatcher("/frontend/ren_listing/listAllListing.jsp");					failureView.forward(req, res);
+							.getRequestDispatcher("/frontend/ren_listing/listingView.jsp");					failureView.forward(req, res);
 					return;
 				}
 				
@@ -61,7 +62,7 @@ public class GetOneRenListingServlet extends HttpServlet {
 				
 				if (!errorMsgs.isEmpty()) {
 					RequestDispatcher failureView = req
-							.getRequestDispatcher("/frontend/ren_listing/listAllListing.jsp");					failureView.forward(req, res);
+							.getRequestDispatcher("/frontend/ren_listing/listingView.jsp");					failureView.forward(req, res);
 					return;
 				}
 				/**********************2.開始查詢資料*************************/
@@ -73,14 +74,16 @@ public class GetOneRenListingServlet extends HttpServlet {
 				
 				if(!errorMsgs.isEmpty()) {
 					RequestDispatcher failureView = req
-							.getRequestDispatcher("/frontend/ren_listing/listAllListing.jsp");
+//							.getRequestDispatcher("/frontend/ren_listing/listAllListing.jsp");
+					.getRequestDispatcher("/frontend/ren_listing/listingView.jsp");
 					failureView.forward(req, res);
 					return;
 				}
 				
 				/********************3.查詢完成,準備轉交*****************/
 				req.setAttribute("renListingVO", renListingVO);
-				String url = "/frontend/ren_listing/listOneListing.jsp";
+//				String url = "/frontend/ren_listing/listOneListing.jsp";
+				String url = "/frontend/ren_listing/listOneListingView.jsp";
 				RequestDispatcher successView = req.getRequestDispatcher(url);
 				successView.forward(req, res);
 				
@@ -90,7 +93,8 @@ public class GetOneRenListingServlet extends HttpServlet {
 			} catch (Exception e) {
 				errorMsgs.add("無法取得資料:" + e.getMessage());
 				RequestDispatcher failureView = req
-						.getRequestDispatcher("/frontend/ren_listing/listAllListing.jsp");
+						.getRequestDispatcher("/frontend/ren_listing/listingView.jsp");
+//				.getRequestDispatcher("/frontend/ren_listing/listAllListing.jsp");
 				failureView.forward(req, res);
 			}
 		}

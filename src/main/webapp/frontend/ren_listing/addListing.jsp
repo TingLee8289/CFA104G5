@@ -1,8 +1,21 @@
+<%@page import="ezs.ren_landlord.model.RenLandlordService"%>
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
 <%@ page import="ezs.ren_listing.model.*"%>
 <%@ page import="ezs.ren_listing_pic.model.*" %>
+<%@ page import="ezs.ren_landlord.model.*" %>
+
+<%-- <%Integer memID = (Integer) session.getAttribute("memID"); --%>
+// 	Integer lddMemID = memID;
+//  	RenLandlordService renLandlordSvc = new RenLandlordService();
+// 	List <RenLandlordVO> renLandlordList = renLandlordSvc.getOneLandlordbymemid(lddMemID); 
+// 	pageContext.setAttribute("renLandlordList", renLandlordList);
+	
+	
+<%-- %> --%>
+<%-- <% List<RenLandlordVO>  OneMenDmdList = renLandlordSvc.getOneLandlordbymemid(lddMemId); --%>
+<%--  pageContext.setAttribute("OneMenDmdList",OneMenDmdList);%> --%>
 
 <%
   RenListingVO renListingVO = (RenListingVO) request.getAttribute("renListingVO");
@@ -76,7 +89,9 @@
 	<tr>
 		<td>房東ID<font color = red><b>*</b></font></td>
 		<td><input type="TEXT" name="lisLddID" maxlength="25" size="45"
-			value="<%= (renListingVO==null)? "輸入房東ID": renListingVO.getLisLddID() %>"/></td>
+			value="<%= (renListingVO==null)? "輸入房東ID": renListingVO.getLisLddID() %>"/>
+		
+		</td>
 	</tr>
 	<jsp:useBean id= "renRoomtypeSvc" scope="page" class="ezs.ren_roomtype.model.RenRoomtypeService"/>
 	<tr>

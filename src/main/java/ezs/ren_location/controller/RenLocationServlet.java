@@ -45,7 +45,8 @@ public class RenLocationServlet extends HttpServlet {
 				/*************************** 3.查詢完成,準備轉交(Send the Success view) ************/
 				HttpSession session = req.getSession();
 				session.setAttribute("listRenListing_ByLisAreaID", set1);    // 資料庫取出的list物件,存入request				
-				String url = "/frontend/ren_location/listListing_ByLisAreaID.jsp";
+//				String url = "/frontend/ren_location/listListing_ByLisAreaID.jsp";
+				String url = "/frontend/ren_listing/listingViewByLocation.jsp";
 				System.out.println(set1);
 				RequestDispatcher successView = req.getRequestDispatcher(url);
 				successView.forward(req, res);
@@ -53,7 +54,7 @@ public class RenLocationServlet extends HttpServlet {
                  }catch (Exception e) {
                 	 errorMsgs.add("無法取得資料:" + e.getMessage());
      				RequestDispatcher failureView = req
-     						.getRequestDispatcher("/frontend/ren_listing/listing_select_page.jsp");
+     						.getRequestDispatcher("/frontend/ren_listing/listingView.jsp");
      				failureView.forward(req, res);
      			}				
 			}
