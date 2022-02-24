@@ -29,7 +29,7 @@ public class MemberDAO implements MemberDAO_interface {
 	private static final String Search = "SELECT * FROM `CFA104G5`.`MEMBER` WHERE (MEM_USERNAME,MEM_PASSWORD) = (?,?)";
 
 	private static final String UPDATE = "UPDATE `CFA104G5`.`MEMBER` SET MEM_PASSWORD = ?,MEM_NAME =?,MEM_PHONE=?,MEM_ADDRESS=?"
-			+ ",MEM_EMAIL=?,MEM_HEADSHOT=?,MEM_VATNO=?, MEM_USERNAME=?, MEM_RED_COUNT=?,MEM_Red_SCORE=?  WHERE MEM_ID = ?";
+			+ ",MEM_EMAIL=?,MEM_HEADSHOT=?,MEM_VATNO=?, MEM_USERNAME=? WHERE MEM_ID = ?";
 	private static final String ADM_UPDATE = "UPDATE `CFA104G5`.`MEMBER` SET MEM_LANDLORD= ?,MEM_SUPPLIER=?,MEM_SELLER=?,"
 			+ "MEM_STATUS=?,MEM_REPORTED=?,MEM_SUP_REPORTED=?, MEM_USERNAME=?, MEM_NAME=?,MEM_PHONE=?,MEM_ADDRESS=?,MEM_EMAIL=?, MEM_RED_COUNT=?, MEM_Red_SCORE=? WHERE MEM_ID = ?";
 //	private static final String ADM_UPDATE = "UPDATE `CFA104G5`.`MEMBER` SET MEM_LANDLORD= ?,MEM_SUPPLIER=?,MEM_SELLER=?,"
@@ -111,13 +111,9 @@ public class MemberDAO implements MemberDAO_interface {
 			pstmt.setString(5, memberVO.getMemEmail());
 			pstmt.setBytes(6, memberVO.getMemHeadshot());
 			pstmt.setString(7, memberVO.getMemVatno());
-			pstmt.setString(8, memberVO.getMemVatno());
-			pstmt.setString(9, memberVO.getMemVatno());
-			pstmt.setString(10, memberVO.getMemVatno());
+			pstmt.setString(8, memberVO.getMemUsername());
 			
-			
-			
-			pstmt.setInt(11, memberVO.getMemID());
+			pstmt.setInt(9, memberVO.getMemID());
 
 			pstmt.executeUpdate();
 

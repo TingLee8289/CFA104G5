@@ -94,17 +94,7 @@ text-align: center;
 			<td><input type="TEXT" name="memVatno" size="8" value="<%=memberVO.getMemVatno()%>" /></td>
 		</tr>
 		</c:if>
-		<tr>
-		<th id="test">評價均分:</th>
-		<td>
-					<c:choose>
-						<c:when test="${(memberVO.memRedCount) == 0}">尚無評分</c:when>
-						<c:otherwise>
-							<fmt:formatNumber type="number" maxFractionDigits="1" 
-								value="${(memberVO.memRedScore/memberVO.memRedCount)}"/>
-						</c:otherwise>
-					</c:choose></td>
-	</tr>
+
 		<tr>
 			<th id="test">個人頭像:</th>
 			<td>
@@ -128,9 +118,7 @@ text-align: center;
 <br>
 <input type="hidden" name="action" value="update">
 <input type="hidden" name="memID" value="<%=memberVO.getMemID()%>">
-<input type="hidden" name="memPassword" value="<%=memberVO.getMemPassword()%>">
-<input type="hidden" name="memRedCount" value="<%=memberVO.getMemRedCount()%>">
-<input type="hidden" name="memRedScore" value="<%=memberVO.getMemRedScore()%>">
+<input type="hidden" name="memUsername" value="<%=memberVO.getMemUsername()%>">
 <input type="submit" value="送出修改">
 </FORM>
 		
