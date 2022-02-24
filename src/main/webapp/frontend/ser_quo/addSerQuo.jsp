@@ -236,14 +236,7 @@ SerQuoVO serQuoVO = (SerQuoVO) request.getAttribute("serQuoVO");
 <!-- 塞頁面從這裡開始--------------------------------------------------------------------------------- -->
 
 <div style="margin-top:100px;">
-<table id="table-1" style="margin:0 auto;">
-		<tr>
-			<td>
-				<h3>投遞需求單</h3>
-			</td>
-			
-		</tr>
-	</table>
+
 
 
 
@@ -256,19 +249,27 @@ SerQuoVO serQuoVO = (SerQuoVO) request.getAttribute("serQuoVO");
 			</c:forEach>
 		</ul>
 	</c:if>
-
+	<h3 style="margin-left:90px;">投遞需求單</h3>
 	<FORM METHOD="post" ACTION="<%=request.getContextPath()%>/ser_quo/AddQuoServlet.do" name="form1" style="margin-left: 86px;">
 		<table>
 			
 			
 			<tr>
-				<td>需求單ID:<font color=red><b>*</b></font></td>
+				<td>需求單編號:<font color=red></font></td>
 				<td>
 					<select size="1" name="quoDmdID">
 						<c:forEach var="serDmdVO" items="${OneMemDmdList}">
 							<c:choose>
 					 			<c:when test="${serDmdVO.dmdStatus!=2}">
-									<option value="${serDmdVO.dmdID}">${serDmdVO.dmdID}</option>
+									<option value="${serDmdVO.dmdID}">
+										${serDmdVO.dmdID}
+									<jsp:useBean id="serCla" scope="page" class="ezs.ser_cla.model.SerClaService" />
+										<c:forEach var="serClaVO" items="${serCla.all}">
+											<c:if test="${serDmdVO.dmdSerClaID==serClaVO.serClaID}">
+											${serClaVO.serClaName}
+											</c:if>
+										</c:forEach>
+									</option>
 								</c:when>
 							</c:choose>
 						</c:forEach>
@@ -277,10 +278,26 @@ SerQuoVO serQuoVO = (SerQuoVO) request.getAttribute("serQuoVO");
 			</tr>
 
 
-
+			<jsp:useBean id="serVdrVO" scope="page" class="ezs.ser_vdr.model.SerVdrService" />
 			<tr>
 				<td>廠商編號:</td>
-				<td><input type="TEXT" name="quoVdrID" size="1" value="${quoVdrID}" disabled/></td>
+				<td>
+					<c:forEach var="serVdrVO" items="${serVdrVO.all}">
+								<c:if test="${quoVdrID==serVdrVO.vdrID}">
+											${serVdrVO.vdrName}
+								</c:if>
+					</c:forEach>
+				</td>
+			</tr>
+			<tr>
+				<td>廠商編號:</td>
+				<td>
+					<c:forEach var="serVdrVO" items="${serVdrVO.all}">
+								<c:if test="${quoVdrID==serVdrVO.vdrID}">
+											${serVdrVO.vdrIntro}
+								</c:if>
+					</c:forEach>
+				</td>
 			</tr>
 
 
