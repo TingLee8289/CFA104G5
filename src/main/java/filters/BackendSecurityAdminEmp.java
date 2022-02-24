@@ -13,7 +13,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import ezs.admin_priv.model.*;
 
-public class BackendSecurity implements Filter{
+public class BackendSecurityAdminEmp implements Filter{
 	private FilterConfig config;
 
 	public void init(FilterConfig config) {
