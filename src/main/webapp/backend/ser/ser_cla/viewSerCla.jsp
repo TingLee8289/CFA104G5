@@ -188,7 +188,7 @@ pageContext.setAttribute("list", list);
 				<div class="container-fluid px-4">
 					<h1 class="mt-4">檢視服務類別</h1>
 				</div>
-				<a href="<%=request.getContextPath()%>/backend/ser/ser_cla/select_page.jsp">回首頁</a>
+			 	
 						
 
 				<%-- 錯誤表列 --%>
@@ -200,7 +200,7 @@ pageContext.setAttribute("list", list);
 						</c:forEach>
 					</ul>
 				</c:if>
-
+<a href="<%=request.getContextPath()%>/backend/ser/ser_cla/select_page.jsp">上一頁</a>  
 				<div class="container">
 					<div class="row">
 						<table class="table table-hover table-striped" id="cssTable">
@@ -211,8 +211,9 @@ pageContext.setAttribute("list", list);
 								</tr>
 							</thead>
 							<tbody>
-								<%@ include file="page1.file"%>
-
+								
+							<%@ include file="page1.file"%>	
+								<%-- 	<marquee>輸入要跑的文字</marquee> --%>
 								<c:forEach var="serClaVO" items="${list}" begin="<%=pageIndex%>"
 									end="<%=pageIndex+rowsPerPage-1%>">
 
@@ -225,6 +226,7 @@ pageContext.setAttribute("list", list);
 								</c:forEach>
 							</tbody>
 						</table>
+						<a href="<%=request.getContextPath()%>/backend/ser/ser_cla/select_page.jsp">上一頁</a>  
 					</div>
 				</div>
 			</main>

@@ -273,11 +273,7 @@ SerAdVO serAdVO = (SerAdVO) request.getAttribute("serAdVO");
 				class="ezs.ser_vdr.model.SerVdrService" />
 			<tr>
 				<td>廠商編號:<font color=red><b>*</b></font></td>
-				<td><select size="1" name="adVdrID">
-						<c:forEach var="serVdrVO" items="${servdrSvc.all}">
-							<option value="${serVdrVO.vdrID}"${(serAdVO.adVdrID==serVdrVO.vdrID)? 'selected':'' }>${serVdrVO.vdrID}
-						</c:forEach>
-				</select></td>
+				<td><input  name="adVdrID" size="45" value=${memID} readonly="readonly" /></td>
 			</tr>
 			<tr>
 				<%-- <td>刊登狀態:</td>--%>
@@ -312,14 +308,14 @@ SerAdVO serAdVO = (SerAdVO) request.getAttribute("serAdVO");
 					value="<%=(serAdVO == null) ? "翻修工程級衛浴整修" : serAdVO.getAdTxt()%>" /></td>
 			</tr>
 
-			<tr>
+			<%-- <tr>
 				<td>服務案例圖片:</td>
 				<td><input type="file" id="upfiles" name="adPic" accept="image/gif, image/jpeg, image/png" multiple="multiple" />
 				<div id="previews">
 						<p>圖片預覽</p>
 					</div>
 			
-			</tr>
+			</tr> --%>
 
 
 
@@ -329,8 +325,9 @@ SerAdVO serAdVO = (SerAdVO) request.getAttribute("serAdVO");
 
 
 		</table>
-		<br> <input type="hidden" name="action" value="insert"> <input
-			type="submit" value="送出新增">
+		<br> <input type="hidden" name="action" value="insert"> 
+		
+		<input type="submit" value="送出新增">
 	</FORM>
 	
 	
