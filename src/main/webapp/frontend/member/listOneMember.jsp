@@ -17,48 +17,29 @@
 <html>
 <head>
 <title>EASY SPACE</title>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.css" integrity="sha256-46qynGAkLSFpVbEBog43gvNhfrOj+BmwXdxFgVK/Kvc=" crossorigin="anonymous" />
+<link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+<script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>   
+<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 
 <style>
-  table#table-1 {
-	background-color: #CCCCFF;
-    border: 2px solid black;
+#test{
+ color: white;
+    background-color: #212529;
+    border-color: #32383e;
     text-align: center;
-  }
-  table#table-1 h4 {
-    color: red;
-    display: block;
-    margin-bottom: 1px;
-  }
-  h4 {
-    color: blue;
-    display: inline;
-  }
-</style>
+    vertical-align: middle;
+}
 
-<style>
-  table {
-	width: 800px;
-	background-color: white;
-	margin-top: 5px;
-	margin-bottom: 5px;
-  }
-  table, th, td {
-    border: 1px solid #CCCCFF;
-  }
-  th, td {
-    padding: 5px;
-    text-align: center;
-  }
+table td {
+text-align: center;
+}
 </style>
 
 </head>
 <body bgcolor='white'>
 
-<table id="table-1">
-	<tr><td>
-		 <h3>${memberVO.memID}- ${memberVO.memUsername} 會員資料</h3>
-	</td></tr>
-</table>
+
 
 <%-- 錯誤表列 --%>
 <c:if test="${not empty errorMsgs}">
@@ -70,59 +51,47 @@
 	</ul>
 </c:if>
 
-<table>
+<div class="container">
+	    <div class="row">
+		    <table class="table table-hover table-striped">
+
 	<tr>
-		<td>會員頭像</td>
+		<th id="test">會員頭像</th>
 		<td><img src="<%=request.getContextPath()%>/DBGifReader?mem_ID=${memberVO.memID}" height=200px width=200px></td>
 	</tr>
 	<tr>			
-		<td>會員編號:</td>
+		<th id="test">會員編號:</th>
 		<td>${memberVO.memID}</td>
 	</tr>
 	<tr>
-		<td>帳號:</td>
+		<th id="test">帳號:</th>
 		<td>${memberVO.memUsername}</td>
 	</tr>
 	<tr>
-		<td>姓名:</td>
+		<th id="test">姓名:</th>
 		<td>${memberVO.memName}</td>
 	</tr>
 	<tr>
-		<td>電話:</td>
+		<th id="test">電話:</th>
 		<td>${memberVO.memPhone}</td>
 	</tr>
 	<tr>
-		<td>地址:</td>
+		<th id="test">地址:</th>
 		<td>${memberVO.memAddress}</td>
 	</tr>
 	<tr>
-		<td>email:</td>
+		<th id="test">email:</th>
 		<td>${memberVO.memEmail}</td>
 	</tr>
 	<c:if test="${memberVO.memSupplier == 1}">
 	<tr>
-		<td>會員統一編號:</td>
+		<th id="test">會員統一編號:</th>
 		<td>${memberVO.memVatno}</td>
 	</tr>
 	</c:if>
-<!-- 	<tr> -->
-<!-- 		<td>評價總數:</td> -->
-<%-- 		<td>${memberVO.memRevCount}</td> --%>
-<!-- 	</tr> -->
-<!-- 	<tr> -->
-<!-- 		<td>評價總分:</td> -->
-<%-- 		<td>${memberVO.memRevScore}</td> --%>
-<!-- 	</tr> -->
+
 	<tr>
-		<td>被評價總數:</td>
-		<td>${memberVO.memRedCount}</td>
-	</tr>
-	<tr>
-		<td>被評價總分:</td>
-		<td>${memberVO.memRedScore}</td>
-	</tr>
-	<tr>
-		<td>被評價均分:</td>
+		<th id="test">評價均分:</th>
 		<td>
 					<c:choose>
 						<c:when test="${(memberVO.memRedCount) == 0}">尚無評分</c:when>
@@ -142,89 +111,10 @@
 
 
 </table>
+</div>
+    </div>
 
 </body>
 
-
-
-
-<footer>
-    <section class="ccc website-map pt-5">
-      <div class="container">
-        <div class="row">
-          <div class="footer-company-address col-xs-6 col-sm-3">
-            <address class="color-light-20">
-              1600 Amphitheatre Parkway
-              <br> Mountain View, CA 94043
-            </address>
-          </div>
-          <div class="footer-about-us col-xs-6 col-sm-3">
-            <h4 class="my-2">關於我們</h4>
-            <ul class="list-unstyled list-light text-light">
-              <li>
-                <a href="#">品牌故事</a>
-              </li>
-              <li>
-                <a href="#">最新消息</a>
-              </li>
-              <li>
-                <a href="#">連絡我們</a>
-              </li>
-            </ul>
-          </div>
-          <br style="clear:both" class="hidden-sm-up">
-          <div class="footer-service col-xs-6 col-sm-3">
-            <h4 class="my-2">功能服務</h4>
-            <ul class="list-unstyled list-light">
-              <li>
-                <a href="#">空間租賃</a>
-              </li>
-              <li>
-                <a href="#">空間服務</a>
-              </li>
-              <li>
-                <a href="#">二手交易商城</a>
-              </li>
-
-            </ul>
-          </div>
-          <div class="footer-center col-xs-6 col-sm-3">
-            <h4 class="my-2">會員中心</h4>
-            <ul class="list-unstyled list-light">
-              <li>
-                <a href="#">會員註冊</a>
-              </li>
-              <li>
-                <a href="#">忘記密碼</a>
-              </li>
-            </ul>
-          </div>
-        </div>
-        <hr>
-        <div class="footer-copyright row f-flex justify-content-between">
-          <div class="col-md-8 text-xs-center text-left my-1">
-            <p class="mt-1 text-muted"> © Copyright 2021 • All Rights
-              Reserved |
-              <a class=" " href="#">Disclaimer</a> |
-              <a class=" " href="#">Contact</a>
-            </p>
-          </div>
-        </div>
-      </div>
-    </section>
-    <section class="kkkk company-mail pt-3 bg-gray">
-      <div class="container">
-        <div class="row text-center justify-content-center">
-          <div class="col-12 col-md-8 col-lg-7">
-            <p class="text-h2">support@website.com</p>
-            <p class="text-h3">Fusce dapibus, tellus ac cursus commodo, tortor
-              mauris condimentum nibh, ut fermentum massa justo sit amet risus.
-            </p>
-          </div>
-        </div>
-      </div>
-    </section>
-  </footer>
-</div>
 </html>
 
