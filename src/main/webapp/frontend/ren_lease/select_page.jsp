@@ -4,8 +4,9 @@
 <%@ page import="ezs.ren_lease.model.*"%>
 <%@ page import="ezs.member.model.*"%>
 
-<% request.setAttribute("memID", 6); 
-%>
+<% request.setAttribute("memID", 7); 
+%> 
+
  <%	
  	
 	RenLeaseVO renLeaseVO =new RenLeaseVO();
@@ -55,20 +56,28 @@
 			</c:forEach>
 		</ul>
 	</c:if>
+	
 
 	<ul>
 		<li>
-				<b>查看所有的租賃單</b>
-		<a href='<%=request.getContextPath()%>/frontend/ren_lease/listAllLease.jsp'>點我</a> 
-				</li>
+		<form action="<%=request.getContextPath()%>/ren_lease/RenLeaseServlet.do">
+			<b>查看所有的租賃單</b>
+			<input type="hidden" name="lseMemId"  value="${renLeaseVO.lseMemId}">
+				<input type="hidden" name="action" value="getAllLease">
+				<input type="submit" value="送出">
+			</form></li>
+				
+
  		<li>
 			<FORM METHOD="post" ACTION="<%=request.getContextPath()%>/ren_lease/RenLeaseServlet.do">
 				<b>輸入租賃單編號 :</b>
 				<input type="text" name="lseId">
+				<input type=hidden name="lseMemId"  value="${renLeaseVO.lseMemId}">
 				<input type="hidden" name="action" value="getOne_For_Display">
 				<input type="submit" value="送出">
 			</FORM>
 		</li>
+				
 
 		<jsp:useBean id="renLeaseSvc" scope="page"
 			class="ezs.ren_lease.model.RenLeaseService" />

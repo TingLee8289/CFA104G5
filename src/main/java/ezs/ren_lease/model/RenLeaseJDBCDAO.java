@@ -169,6 +169,12 @@ public class RenLeaseJDBCDAO implements RenLeaseDAO_interface {
 		}
 		return list;
 	}
+
+	@Override
+	public List<RenLeaseVO> getAllLease(Integer lse_mem_id) {
+		// TODO Auto-generated method stub
+		return null;
+	}
 	
 
 }

@@ -3,18 +3,18 @@
 <%@ page import="java.util.*"%>
 <%@ page import="ezs.ren_landlord.model.*"%>
 <%@ page import="ezs.member.model.*"%>
+
+<%-- <%
+request.setAttribute("memID", 1); 
+%> --%>
 <%
-request.setAttribute("memID", 1); // 測試用，之後get方法要改成session.get...
-%>
-<%
-Integer memID = (Integer) request.getAttribute("memID");
+Integer memID = (Integer) session.getAttribute("memID");
 RenLandlordVO renLandlordVO = new RenLandlordVO();
 MemberService memSvc = new MemberService();
 RenLandlordService renLandlordSvc = new RenLandlordService();
 MemberVO memVO = memSvc.getOneMember(memID);
 %>
 
-<%-- <%= fMemVO==null %> --%>
 <!DOCTYPE html>
 <html lang="zh-Hant">
 
