@@ -10,14 +10,13 @@ import java.util.List;
 
 import util.Util;
 
-
 public class SerDmdJDBCDAO implements SerDmdDAO_interface {
 	public static final String INSERT_STMT = "INSERT INTO ser_dmd(dmd_id,dmd_status,dmd_mem_id,dmd_ser_cla_id,dmd_name,dmd_tel,dmd_mail,dmd_county,dmd_region,dmd_address,dmd_space_class,dmd_square,dmd_budget,dmd_intro,dmd_pic) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
 	public static final String UPDATE = "UPDATE ser_dmd SET dmd_status = ?,dmd_mem_id = ?,dmd_ser_cla_id = ?,dmd_name = ?,dmd_tel = ?,dmd_mail = ?,dmd_county = ?,dmd_region = ?,dmd_address = ?,dmd_space_class = ?,dmd_square = ?,dmd_budget = ?,dmd_intro = ?,dmd_pic = ? WHERE dmd_id = ?";
 	public static final String DELETE = "DELETE FROM ser_dmd WHERE dmd_id = ?";
 	public static final String FIND_BY_DMDID = "SELECT * FROM serDmdVO WHERE dmd_id = ?";
 	public static final String GET_ALL = "SELECT * FROM ser_dmd";
-
+	public static final String SET_DMD_STATUS = "UPDATE `CFA104G5`.`SER_DMD` SET `DMD_STATUS` = '1' WHERE `DMD_ID` = ?";
 	static {
 		try {
 			Class.forName(Util.DRIVER);
@@ -26,7 +25,7 @@ public class SerDmdJDBCDAO implements SerDmdDAO_interface {
 		}
 
 	}
-	
+
 	Connection con = null;
 	PreparedStatement pstmt = null;
 	ResultSet rs = null;
@@ -53,8 +52,7 @@ public class SerDmdJDBCDAO implements SerDmdDAO_interface {
 			pstmt.setInt(13, serDmdVO.getDmdBudget());
 			pstmt.setString(14, serDmdVO.getDmdIntro());
 			pstmt.setBytes(15, serDmdVO.getDmdPic());
-			
-			
+
 			pstmt.executeUpdate();
 
 		} catch (SQLException e) {
@@ -87,7 +85,7 @@ public class SerDmdJDBCDAO implements SerDmdDAO_interface {
 			pstmt.setString(13, serDmdVO.getDmdIntro());
 			pstmt.setBytes(14, serDmdVO.getDmdPic());
 			pstmt.setInt(15, serDmdVO.getDmdID());
-			
+
 			pstmt.executeUpdate();
 
 		} catch (SQLException e) {
@@ -107,7 +105,7 @@ public class SerDmdJDBCDAO implements SerDmdDAO_interface {
 			pstmt = con.prepareStatement(DELETE);
 
 			pstmt.setInt(1, dmdID);
-			
+
 			pstmt.executeUpdate();
 
 		} catch (SQLException e) {
@@ -205,4 +203,19 @@ public class SerDmdJDBCDAO implements SerDmdDAO_interface {
 		return null;
 	}
 
+	@Override
+	public void setDmdStatus(Integer dmdID) {
+		try {
+			con = DriverManager.getConnection(Util.URL, Util.USER, Util.PASSWORD);
+			pstmt = con.prepareStatement(SET_DMD_STATUS);
+
+			pstmt.setInt(1, dmdID);
+			pstmt.executeUpdate();
+		} catch (SQLException se) {
+			se.printStackTrace();
+		} finally {
+			Util.closeResource(con, pstmt, rs);
+		}
+
+	}
 }

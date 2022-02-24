@@ -49,4 +49,8 @@ public class RenLandlordService {
 	public List<RenLandlordVO> getAll() {
 		return dao.getAll();
 	}
+	
+	public Integer findByMEM(Integer lddMemId) {
+		return dao.findByMEM(lddMemId);
+	}
 }

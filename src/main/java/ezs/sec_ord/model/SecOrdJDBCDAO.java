@@ -30,8 +30,8 @@ public class SecOrdJDBCDAO implements SecOrdDAO_interface {
 			+ "WHERE sh_ord_id = ?";
 	private static final String GET_ONE_STMT = "SELECT * FROM `CFA104G5`.`SEC_ORD` WHERE sh_ord_id = ?";
 	private static final String GET_ALL_STMT = "SELECT * FROM `CFA104G5`.`SEC_ORD` ORDER BY sh_ord_id";
-	private static final String GET_ALL_BY_MEMID_STMT = "SELECT * FROM `CFA104G5`.`SEC_ORD` WHERE sh_buyerid = ? ORDER BY sh_date desc;";
-	private static final String GET_ALL_BY_SELLERID_STMT = "SELECT * FROM `CFA104G5`.`SEC_ORD` WHERE sh_sellerid = ? ORDER BY sh_date desc;";
+	private static final String GET_ALL_BY_MEMID_STMT = "SELECT * FROM `CFA104G5`.`SEC_ORD` WHERE sh_buyerid = ? ORDER BY sh_ord_id desc;";
+	private static final String GET_ALL_BY_SELLERID_STMT = "SELECT * FROM `CFA104G5`.`SEC_ORD` WHERE sh_sellerid = ? ORDER BY sh_ord_id desc;";
 	private static final String UPDATE_COMPLETE_ORDER_STMT = "UPDATE `CFA104G5`.`SEC_ORD` SET sh_ord_status = 7 WHERE sh_ord_id = ?; ";
 	private static final String UPDATE_REFUND_ORDER_STMT = "UPDATE `CFA104G5`.`SEC_ORD` SET sh_ord_status = 6 WHERE sh_ord_id = ?; ";
 //	private static final String GET_ORD_DETAILS_STMT = "SELECT * FROM `CFA104G5`.`SEC_ORD` s JOIN `CFA104G5`.`SEC_ORD_DETAILS` s1 ON s.sh_ord_id = s1.sh_ord_id";
@@ -308,6 +308,8 @@ public class SecOrdJDBCDAO implements SecOrdDAO_interface {
 			Util.closeResource(con, pstmt, rs);
 		}
 		return set;
+		
+	
 
 	}
 
@@ -407,14 +409,14 @@ public class SecOrdJDBCDAO implements SecOrdDAO_interface {
 			ResultSet rs = pstmt.getGeneratedKeys();
 			if (rs.next()) {
 				next_secOrdno = rs.getString(1);
-				System.out.println("自增主鍵值= " + next_secOrdno + "(剛新增成功的訂單編號)");
+//				System.out.println("自增主鍵值= " + next_secOrdno + "(剛新增成功的訂單編號)");
 			} else {
 				System.out.println("未取得自增主鍵值");
 			}
 			rs.close();
 			// 再同時新增訂單明細
 			SecOrdDetailsJDBCDAO dao = new SecOrdDetailsJDBCDAO();
-			System.out.println("list.size()-A=" + list.size());
+//			System.out.println("list.size()-A=" + list.size());
 			for (SecOrdDetailsVO aSecOrdDetails : list) {
 				aSecOrdDetails.setShOrdID(Integer.valueOf(next_secOrdno));
 				dao.insert2(aSecOrdDetails, con);
@@ -423,8 +425,8 @@ public class SecOrdJDBCDAO implements SecOrdDAO_interface {
 			// 2●設定於 pstmt.executeUpdate()之後
 			con.commit();
 			con.setAutoCommit(true);
-			System.out.println("list.size()-B=" + list.size());
-			System.out.println("新增訂單編號" + next_secOrdno + "時,共有訂單明細" + list.size() + "筆同時被新增");
+//			System.out.println("list.size()-B=" + list.size());
+//			System.out.println("新增訂單編號" + next_secOrdno + "時,共有訂單明細" + list.size() + "筆同時被新增");
 
 			// Handle any SQL errors
 		} catch (SQLException se) {

@@ -14,7 +14,7 @@ pageContext.setAttribute("funlist", funList);
 <html>
 <head>
 <meta charset="UTF-8">
-<title>新增管理員</title>
+<title>EASY SPACE</title>
 </head>
 <body>
 <a href="<%=request.getContextPath()%>/backend/adminEmp/adminEmp.jsp">回首頁</a>

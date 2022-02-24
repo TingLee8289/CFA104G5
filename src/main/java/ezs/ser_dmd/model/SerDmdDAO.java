@@ -22,7 +22,7 @@ public class SerDmdDAO implements SerDmdDAO_interface {
 	public static final String FIND_BY_DMD_MEMID = "SELECT * FROM ser_dmd WHERE dmd_mem_id = ?";
 	
 	public static final String GET_ALL = "SELECT * FROM ser_dmd";
-
+	public static final String SET_DMD_STATUS ="UPDATE `CFA104G5`.`SER_DMD` SET `DMD_STATUS` = '1' WHERE `DMD_ID` = ?";
 	// 一個應用程式中,針對一個資料庫 ,共用一個DataSource即可
 		private static DataSource ds = null;
 		static {
@@ -245,6 +245,22 @@ public class SerDmdDAO implements SerDmdDAO_interface {
 		}
 
 		return serDmdVOList;
+	}
+	
+	@Override
+	public void setDmdStatus(Integer dmdID) {
+		try {
+			con = ds.getConnection();
+			pstmt = con.prepareStatement(SET_DMD_STATUS);
+
+			pstmt.setInt(1, dmdID);
+			pstmt.executeUpdate();
+		} catch (SQLException se) {
+			se.printStackTrace();
+		} finally {
+			Util.closeResource(con, pstmt, rs);
+		}
+		
 	}
 
 }

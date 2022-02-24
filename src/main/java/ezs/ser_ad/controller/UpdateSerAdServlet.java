@@ -86,7 +86,7 @@ public class UpdateSerAdServlet extends HttpServlet {
 
 				/*************************** 3.修改完成,準備轉交(Send the Success view) *************/
 				req.setAttribute("serAdVO", serAdVO); // 資料庫update成功後,正確的的empVO物件,存入req
-				String url = "/frontend/ser_ad/listOneSerAd.jsp";
+				String url = "/frontend/ser_ad/listAllSerAd.jsp";
 				RequestDispatcher successView = req.getRequestDispatcher(url); // 修改成功後,轉交listOneEmp.jsp
 				successView.forward(req, res);
 

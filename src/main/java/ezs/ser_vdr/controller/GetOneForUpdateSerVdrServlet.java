@@ -36,14 +36,14 @@ public class GetOneForUpdateSerVdrServlet extends HttpServlet {
 			try {
 				/*************************** 1.接收請求參數 ****************************************/
 				Integer vdrID = new Integer(req.getParameter("vdrID"));
-
+				System.out.println(vdrID);
 				/*************************** 2.開始查詢資料 ****************************************/
 				SerVdrService serVdrSvc = new SerVdrService();
 				SerVdrVO serVdrVO = serVdrSvc.getoneSerVdr(vdrID);
 
 				/*************************** 3.查詢完成,準備轉交(Send the Success view) ************/
 				req.setAttribute("serVdrVO", serVdrVO); // 資料庫取出的empVO物件,存入req
-				String url = "/frontend/ser_vdr/update_SerVdr_input.jsp";
+				String url = "/frontend/ser_vdr/updateVdr.jsp";
 				RequestDispatcher successView = req.getRequestDispatcher(url);// 成功轉交 update_emp_input.jsp
 				successView.forward(req, res);
 

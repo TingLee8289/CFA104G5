@@ -3,9 +3,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ page import="java.util.*"%>
 <%@ page import="ezs.ser_quo.model.*"%>
-<%
-session.setAttribute("memID", 5);
-%>
+<%-- <%session.setAttribute("memID", 5);%> --%>
 <%
 Integer memID = (Integer) session.getAttribute("memID");
 SerQuoService serQuoSvc = new SerQuoService();
@@ -17,7 +15,7 @@ pageContext.setAttribute("vdrQuoList", vdrQuoList);
 <html>
 <head>
 <meta charset="UTF-8">
-<title>廠商估價單管理</title>
+<title>EASY SPACE</title>
 <link
 	href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css"
 	rel="stylesheet"
@@ -41,7 +39,7 @@ pageContext.setAttribute("vdrQuoList", vdrQuoList);
 				<table
 					class="table table-striped table-hover align-middle text-center caption-top">
 					<caption>
-						<h2>所有估價單資料</h2>
+						<h2>所有接受報價估價單</h2>
 					</caption>
 					<thead class="table-success">
 						<tr class="text-nowrap">
@@ -53,7 +51,7 @@ pageContext.setAttribute("vdrQuoList", vdrQuoList);
 							<th>有效限期</th>
 							<th>估價項目</th>
 							<th>估價總價</th>
-							<th>修改</th>
+							<th></th>
 						</tr>
 					</thead>
 					<tbody id="show-list">
@@ -78,7 +76,7 @@ pageContext.setAttribute("vdrQuoList", vdrQuoList);
 								<td>${serQuoVO.quoItem}</td>
 								<td>${serQuoVO.quoTotalPrice}</td>
 								<td>
-									<FORM METHOD="post" ACTION="<%=request.getContextPath()%>/frontend/ser_ord/addSerOrd.jsp" style="margin-bottom: 0px;">
+									<FORM METHOD="post" ACTION="<%=request.getContextPath()%>/frontend/ser_ord/addSerOrd3.jsp" style="margin-bottom: 0px;">
 										<input type="submit" value="新增訂單"> 
 										<input type="hidden" name="quoID" value="${serQuoVO.quoID}"> 
 									</FORM>

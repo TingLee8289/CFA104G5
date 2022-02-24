@@ -14,7 +14,7 @@ pageContext.setAttribute("serOrdList", serOrdList);
 
 <html>
 <head>
-<title>所有訂單資料</title>
+<title>EASY SPACE</title>
 <link
 	href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css"
 	rel="stylesheet"

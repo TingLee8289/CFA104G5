@@ -19,6 +19,7 @@ public class RenLandlordJDBCDAO implements RenLandlordDAO_interface {
 	private static final String UPDATE = "UPDATE `CFA104G5`.`REN_LANDLORD` set ldd_mem_id =?, ldd_approval=? WHERE ldd_id = ?";
 	private static final String UPDATESTATUS = "UPDATE `member` set mem_landlord = ? where mem_id =?";
 
+	private static final String GET_BY_MEMID = "SELECT * FROM `CFA104G5`.`REN_LANDLORD` WHERE ldd_mem_id = ?";
 	
 	static {
 		try {
@@ -153,6 +154,31 @@ public class RenLandlordJDBCDAO implements RenLandlordDAO_interface {
 		} finally {
 			Util.closeResource(con, pstmt, rs);
 		}		
+	}
+	
+	public Integer findByMEM(Integer lddMemId) {
+		RenLandlordVO renLandlordVO = null;
+
+		try {
+			con = DriverManager.getConnection(Util.URL, Util.USER, Util.PASSWORD);
+			pstmt = con.prepareStatement(GET_BY_MEMID);
+
+			pstmt.setInt(1, lddMemId);
+
+			rs = pstmt.executeQuery();
+
+			while (rs.next()) {
+				renLandlordVO = new RenLandlordVO();
+				renLandlordVO.setLddMemId(rs.getInt("ldd_mem_Id"));
+				renLandlordVO.setLddApproval(rs.getInt("ldd_approval"));
+				renLandlordVO.setLddId(rs.getInt("ldd_id"));
+			}
+		} catch (SQLException se) {
+			se.printStackTrace();
+		} finally {
+			Util.closeResource(con, pstmt, rs);
+		}
+		return renLandlordVO.getLddId();
 	}
 
 	@Override

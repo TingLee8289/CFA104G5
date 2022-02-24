@@ -3,7 +3,7 @@
 
 <html>
 <head>
-<title>Ezs Service Qoutation: Home</title>
+<title>EASY SPACE</title>
 
 
 

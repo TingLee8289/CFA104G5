@@ -7,7 +7,7 @@
 <meta charset="UTF-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Document</title>
+<title>EASY SPACE</title>
 <link
 	href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
 	rel="stylesheet" id="bootstrap-css">
@@ -231,6 +231,14 @@ a {
 			</c:forEach>
 		</ul>
 	</c:if>
+	<%-- 檢舉錯誤表列 --%>
+	<c:if test="${not empty repo}">
+		<ul>
+			<c:forEach var="message" items="${repo}">
+				<p style="color: red">${message}</p>
+			</c:forEach>
+		</ul>
+	</c:if>
 
 
 	<div class="login-wrap">
@@ -265,14 +273,17 @@ a {
 
 				</div>
 				<div class="for-pwd-htm">
+				<form id="resetForm" ACTION="<%=request.getContextPath()%>/member/ForgetPasswordServlet.do" method="post">
 					<div class="group">
-						<label for="user" class="label">請輸入Email</label> <input id="user"
-							type="text" class="input">
+						<label for="email" class="label">請輸入Email</label> 
+						<input type="text" class="input" name="email" id="email">
+						<input type="hidden" name="action"	value="reset_Password_Email">
 					</div>
 					<div class="group">
 						<input type="submit" class="button" value="重置密碼">
 					</div>
 					<div class="hr"></div>
+				</form>
 				</div>
 			</div>
 		</div>

@@ -4,13 +4,11 @@
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="UTF-8">
-<title>login</title>
 <meta charset="utf-8" />
 <meta http-equiv="X-UA-Compatible" content="IE=edge" />
 <meta name="viewport"
 	content="width=device-width, initial-scale=1, shrink-to-fit=no" />
-<title>EASY SPACE 後台</title>
+<title>EASY SPACE後台管理系統</title>
 <link href="<%=request.getContextPath()%>/css/backendLogin.css"
 	rel="stylesheet" />
 <script
@@ -22,27 +20,8 @@
 
 
 
-	<form METHOD="post"
-		ACTION="<%=request.getContextPath()%>/admin_emp/AdminEmpServlet.do">
-		<b>帳號:</b> <input type="text" name="admUsername"> <b>密碼:</b> <input
-			type="password" name="admPassword"> <input type="hidden"
-			name="action" value="getOne_For_Display"> <input
-			type="submit" value="送出">
-	</form>
-	帳號:
-	<b>BOSS</b>
-	<br> 密碼:
-	<b>boss123</b>
-	<br>
-	<%-- 錯誤表列 --%>
-	<c:if test="${not empty errorMsgs}">
-		<font style="color: red">請修正以下錯誤:</font>
-		<ul>
-			<c:forEach var="message" items="${errorMsgs}">
-				<p style="color: red">${message}</p>
-			</c:forEach>
-		</ul>
-	</c:if>
+
+	
 
 	<div id="layoutAuthentication">
 		<div id="layoutAuthentication_content">
@@ -74,12 +53,12 @@
 											<label for="inputPassword">密碼</label>
 
 										</div>
-										<div class="form-check mb-3">
+										<div class="form-check mb-3" style='padding-left:0'>
 											
 											<%-- 錯誤表列 --%>
 											<c:if test="${not empty errorMsgs}">
 													<c:forEach var="message" items="${errorMsgs}">
-														<p  style="color: red">${message}</p>
+														<p style='text-align:center;color: red'>${message}</p>
 													</c:forEach>
 											</c:if>
 										</div>

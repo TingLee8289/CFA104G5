@@ -242,6 +242,7 @@
 						</div>
 						<div class="group">
 							<input type="hidden" name="action" value="verify"> 
+							<input type="hidden" name="memUsername" value="${memberVO.memUsername}"> 
 							<input type="submit" class="button" value="送出">
 						</div>
 					</form>

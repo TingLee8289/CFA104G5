@@ -3,9 +3,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ page import="java.util.*"%>
 <%@ page import="ezs.ser_ord.model.*"%>
-<%
-session.setAttribute("memID", 5);
-%>
+<%-- <%session.setAttribute("memID", 5);%> --%>
 <%
 Integer memID = (Integer) session.getAttribute("memID");
 SerOrdService serOrdSvc = new SerOrdService();
@@ -17,7 +15,7 @@ pageContext.setAttribute("vdrOrdList", vdrOrdList);
 <html>
 <head>
 <meta charset="UTF-8">
-<title>前台廠商訂單管理</title>
+<title>EASY SPACE</title>
 <link
 	href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css"
 	rel="stylesheet"
@@ -44,7 +42,7 @@ pageContext.setAttribute("vdrOrdList", vdrOrdList);
 						<h2>廠商檢視訂單資料</h2>
 						<h4>
 							<a
-								href="<%=request.getContextPath()%>/frontend/ser_ord/serOrdHome.jsp">回首頁</a>
+								href="<%=request.getContextPath()%>/frontend/member/memberCenter/sellerMemberCenter.jsp">回賣家中心</a>
 						</h4>
 					</caption>
 					<thead class="table-success">

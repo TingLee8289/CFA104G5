@@ -27,7 +27,7 @@
 <html>
 <head>
 
-<title>房源資料 - listOneListing.jsp</title>
+<title>EASY SPACE</title>
 
 <style>
   table#table-1 {

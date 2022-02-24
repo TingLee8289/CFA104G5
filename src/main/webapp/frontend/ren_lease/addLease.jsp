@@ -43,7 +43,7 @@ pageContext.setAttribute("list1", list1);
 <html>
 <head>
 <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
-<title>新增租賃單 - addLease.jsp</title>
+<title>EASY SPACE</title>
 </head>
 
 <body bgcolor='white'>

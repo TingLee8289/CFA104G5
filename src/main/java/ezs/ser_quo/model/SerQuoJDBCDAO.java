@@ -220,4 +220,6 @@ public class SerQuoJDBCDAO implements SerQuoDAO_interface {
 		}
 		return list;
 	}
+
+	
 }

@@ -125,9 +125,9 @@ public class AddOrdServlet extends HttpServlet {
 				SerOrdService serOrdSvc = new SerOrdService();
 				serOrdVO = serOrdSvc.addSerOrd(ordStatus, ordPayStatus, ordDmdID, ordQuoID, ordMemID, ordVdrID, ordSerClaID, ordMemVatno, ordVdrVatno, ordClnName, ordClnTel, ordWorkDate, ordCounty, ordDist, ordAddr, ordItem, ordTotalPrice, ordPrePay, ordPayType, ordPayDate, ordFpay, ordFpayType, ordFpayDate, ordBuyerScore, ordBuyerTxt, ordVdrScore, ordVdrTxt, ordNote);
 						
-						
+				
 				// 3.新增完成，轉交
-				String url = "/frontend/ser_ord/serOrdHome.jsp";
+				String url = "/frontend/ser_ord/getOrdByVdrID.jsp";
 				RequestDispatcher successView = req.getRequestDispatcher(url); // 新增成功後轉交listAllEmp.jsp
 				successView.forward(req, res);
 			} catch (Exception e) {

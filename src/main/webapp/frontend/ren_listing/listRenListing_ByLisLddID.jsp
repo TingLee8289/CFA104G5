@@ -20,7 +20,7 @@
 <head>
 <head>
 <meta charset="UTF-8">
-<title>房東房源管理 - listRenListing_ByLisLddID.jsp</title>
+<title>EASY SPACE</title>
 <style>
   table#table-1 {
 	background-color: #CCCCFF;
@@ -56,7 +56,7 @@
 
 </head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>EASY SPACE</title>
 </head>
 <body bgcolor="white">
 <table id="table-1">

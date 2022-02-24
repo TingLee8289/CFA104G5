@@ -150,55 +150,10 @@ header {
 </style>
 </head>
 <body>
-	<!-- 	header 開始------------------------------------------------------ -->
-	<header>
-			<div class="container">
-				<div class="navbar d-flex flex-nowrap py-3">
-					<a href="<%=request.getContextPath()%>/frontend/EZ_home.jsp"> <img
-						src="<%= request.getContextPath()%>/images/cmn/index/EASYSPACE.png"
-						alt="brand-logo-image" class=" brand-logo" style="height: 130px">
-					</a>
-					<div class="function-link d-flex flex-column col-10 bd-highlight">
-						<div
-							class="pages-login d-flex flex-row align-items-center col-12 justify-content-between mx-auto">
-							<ul
-								class="nav nav-items justify-content-between align-items-center col-9">
-								<li class="nav-item">
-									<a class="nav-link" role="button" href="<%= request.getContextPath()%>">房屋租賃</a>
-								</li>
-								<li class="nav-item">
-									<a class="nav-link" href="<%= request.getContextPath()%>/frontend/ser_ad/serAdViewPage.jsp">居家服務</a>
-								</li>
-								<li class="nav-item">
-									<a class="nav-link" href="<%= request.getContextPath()%>">二手家電</a>
-								</li>
-								
-								<li class="nav-item">
-									<a class="nav-link" href="<%= request.getContextPath()%>/frontend/member/memberCenter/memberCenter.jsp">會員中心</a>
-								</li>
-								
-							</ul>
-							<div class="nav-menu-shopping-bag d-flex col-3 justify-content-sm-end  align-items-center">
-								
-								<a href="#"><i class="bi bi-cart3 mx-2"
-									style="font-size: 3rem; color: #8C4E37;"></i></a> <a class="btn"
-									href="#" role="button" style="background-color: #FD9843">會員登入</a>
-							</div>
 
-						</div>
-						<form class="form-inline col-12 mx-auto mt-3">
-							<div class="input-group">
-								<input type="text" name="keyword" class="form-control"
-									id="searchinput" aria-describedby="search-input"
-									placeholder="Search" value="">
-								<button type="submit" class="btn btn-primary "
-									id="search-button" style="background-color: #1AA179">開始搜尋</button>
-							</div>
-						</form>
-					</div>
-				</div>
-			</div>
-		</header>
+<jsp:include page="/frontend/EZ_nav.jsp" />
+	<!-- 	header 開始------------------------------------------------------ -->
+	
 	<!-- 	header 結束------------------------------------------------------ -->
 	<!-- 	側邊欄 開始-------------------------------------------------------- -->
 	<aside class="aside">
@@ -284,7 +239,6 @@ header {
 							<div class="p-2 w-70 company-profile d-inline-block text-truncate" style="max-width: 500px;">
 								<p class="text-nowrap">${serAdVO.adTxt}</p>
 							</div>
-<!-- 							<button type="button" class="btn btn-outline-success text-nowrap">投遞需求單</button> -->
 							<a href="<%=request.getContextPath()%>/frontend/ser_quo/addSerQuo.jsp?quoVdrID=${serAdVO.adVdrID}" class="btn btn-outline-success text-nowrap">投遞需求單</a>
 						</div>
 
@@ -363,8 +317,7 @@ header {
 				</div>
 			</section>
 		</footer>
-	<script
-		src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 	<script src="http://code.jquery.com/jquery-3.6.0.min.js"></script>
 	<script>
       $(function(){
@@ -375,7 +328,7 @@ header {
 		
         console.log(location.href.indexOf('serAdViewPage.jsp'));
         if(location.href.indexOf('serAdViewPage.jsp') > -1) {
-        	$("#Cla2").trigger('click');
+        	$("#Cla1").trigger('click');
         }
       });
 </script>

@@ -25,6 +25,8 @@ public class RenLandlordDAO implements RenLandlordDAO_interface {
 	private static final String UPDATE = "UPDATE `CFA104G5`.`REN_LANDLORD` set ldd_mem_id =?, ldd_approval=? WHERE ldd_id =?";
 	private static final String UPDATESTATUS = "UPDATE `member` set mem_landlord = ? where mem_id =?";
 
+	private static final String GET_BY_MEMID = "SELECT ldd_id, ldd_mem_id, ldd_approval FROM `CFA104G5`.`REN_LANDLORD` WHERE ldd_mem_id = ?";
+
 	private static  DataSource ds = null;
 	static {
 		try {
@@ -153,6 +155,7 @@ public class RenLandlordDAO implements RenLandlordDAO_interface {
 		}
 		return list;
 	}
+
 //
 	@Override
 	public List<RenLandlordVO> findByMemID(Integer lddmemID ) {
@@ -182,7 +185,6 @@ public class RenLandlordDAO implements RenLandlordDAO_interface {
 			return list;
 		}
 
-	
 
 	
 }

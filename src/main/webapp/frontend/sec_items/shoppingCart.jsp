@@ -484,6 +484,8 @@
     </style>
 </head>
 <body>
+
+<jsp:include page="/frontend/EZ_nav.jsp" />
 	<% @SuppressWarnings("unchecked")
 	Vector<SecItem> buylist = (Vector<SecItem>) session.getAttribute("shoppingcart");%>
 	
@@ -585,10 +587,19 @@
                 <li class="totalRow"><span class="label">運費</span><span class="value">$0</span></li>
                 <li class="totalRow final"><span class="label">總金額</span><span class="value">$<%=total%></span></li>
           		<li class="totalRow">
+          		
+          		<%
+          			if (total.compareTo(new BigDecimal(0))==1){
+          		%>
+          		
               	<form name="checkoutForm" action="<%= request.getContextPath() %>/sec_items/ShoppingServlet.do" method="POST">
 		        	<input type="hidden" name="action"  value="CHECKOUT"> 
 		            <input type="submit" value="前往結帳" id="checkoutbtn">
 		        </form>
+		        
+		        <%
+          			}
+		        %>
 		        </li>
           </ul>
         </div>

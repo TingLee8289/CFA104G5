@@ -38,7 +38,7 @@ public class GetSerClaServlet extends HttpServlet {
 				}
 				// Send the use back to the form, if there were errors
 				if (!errorMsgs.isEmpty()) {
-					RequestDispatcher failureView = req.getRequestDispatcher("/backend/ser/ser_cla/select_page.jsp");
+					RequestDispatcher failureView = req.getRequestDispatcher("/backend/ser/ser_cla/readSerCla.jsp");
 					failureView.forward(req, res);
 					return;// 程式中斷
 				}
@@ -47,11 +47,11 @@ public class GetSerClaServlet extends HttpServlet {
 				try {
 					serClaID = new Integer(str);
 				} catch (Exception e) {
-					errorMsgs.add("服務類別編號格式不正確");
+					errorMsgs.add("服務類別編號格式不正確，請重新輸入數字");
 				}
 				// Send the use back to the form, if there were errors
 				if (!errorMsgs.isEmpty()) {
-					RequestDispatcher failureView = req.getRequestDispatcher("/backend/ser/ser_cla/select_page.jsp");
+					RequestDispatcher failureView = req.getRequestDispatcher("/backend/ser/ser_cla/readSerCla.jsp");
 					failureView.forward(req, res);
 					return;// 程式中斷
 				}
@@ -64,7 +64,7 @@ public class GetSerClaServlet extends HttpServlet {
 				}
 				// Send the use back to the form, if there were errors
 				if (!errorMsgs.isEmpty()) {
-					RequestDispatcher failureView = req.getRequestDispatcher("/backend/ser/ser_cla/select_page.jsp");
+					RequestDispatcher failureView = req.getRequestDispatcher("/backend/ser/ser_cla/readSerCla.jsp");
 					failureView.forward(req, res);
 					return;// 程式中斷
 				}

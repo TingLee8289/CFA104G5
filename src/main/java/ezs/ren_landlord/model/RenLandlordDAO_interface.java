@@ -10,5 +10,7 @@ public interface RenLandlordDAO_interface {
     public RenLandlordVO findByPrimaryKey(Integer lddId);
     public List<RenLandlordVO> findByMemID(Integer lddMemId);
     public List<RenLandlordVO> getAll();
+    
+    public Integer findByMEM(Integer lddMemId);
 }
 

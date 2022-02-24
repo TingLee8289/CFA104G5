@@ -32,13 +32,15 @@ public class ShoppingServlet extends HttpServlet {
 		List<SecItem> buylist = (Vector<SecItem>) session.getAttribute("shoppingcart");
 		String action = req.getParameter("action");
 
-		if (!action.equals("CHECKOUT")) {
+		
+// 新增或刪除商品
+		if (!"CHECKOUT".equals(action)) {
 
-			if (action.equals("DELETE")) {
+			if ("DELETE".equals(action)) {
 				String del = req.getParameter("del");
 				int d = Integer.parseInt(del);
 				buylist.remove(d);
-			} else if (action.equals("ADD")) {
+			} else if ("ADD".equals(action)) {
 				SecItem asecItem = getSecItem(req);
 
 				if (buylist == null) {
@@ -60,7 +62,19 @@ public class ShoppingServlet extends HttpServlet {
 			rd.forward(req, res);
 		}
 
+//	結帳
 		else if (action.equals("CHECKOUT")) {
+			
+			/*************************** 0.確認使用者已登入 ****************************************/
+			try{
+				session.getAttribute("memID").toString();
+			} catch (Exception e) {
+				RequestDispatcher failureView = req.getRequestDispatcher("/frontend/member/login.jsp");
+				failureView.forward(req, res);
+				return;
+			}
+			
+			/*************************** 1.接收請求參數 ****************************************/
 			if (buylist!= null) {
 				BigDecimal total = new BigDecimal(BigInteger.ZERO, 0); // 此行相當於 Integer total = 0;
 				for (int i = 0; i < buylist.size(); i++) {
@@ -74,6 +88,7 @@ public class ShoppingServlet extends HttpServlet {
 				String url = "/frontend/sec_items/Checkout.jsp";
 				RequestDispatcher rd = req.getRequestDispatcher(url);
 				rd.forward(req, res);
+				
 			} else {
 				String url = "/frontend/sec_items/shoppingCart.jsp";
 				RequestDispatcher rd = req.getRequestDispatcher(url);

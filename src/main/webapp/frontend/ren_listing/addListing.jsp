@@ -27,7 +27,7 @@
 <html>
 <head>
 <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
-<title>刊登房源 - addListing.jsp</title>
+<title>EASY SPACE</title>
 <style>
   table#table-1 {
 	background-color: #c27f29;

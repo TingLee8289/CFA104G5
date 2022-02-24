@@ -1,21 +1,30 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+<%@page import="ezs.ren_listing.model.RenListingService"%>
+<%@page import="ezs.member.model.MemberService"%>
+<%@page import="ezs.ren_landlord.model.RenLandlordService"%>
+<%@page import="ezs.member.model.MemberVO"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ page import="ezs.ren_appointment.model.*"%>
 <%@ page import="java.util.*"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 
+<%
+	Integer aptMemId = (Integer)session.getAttribute("memID");
+	RenAppointmentService renAppSvc = new RenAppointmentService();
+    List<RenAppointmentVO> list = renAppSvc.getAllMEM(aptMemId);
+    pageContext.setAttribute("list",list);
+ 
+%>
+
 <jsp:useBean id="memSvc" scope="page" class="ezs.member.model.MemberService" />
 <jsp:useBean id="renLDDSvc" scope="page" class="ezs.ren_landlord.model.RenLandlordService" />
 <jsp:useBean id="renLisSvc" scope="page" class="ezs.ren_listing.model.RenListingService" />
-<jsp:useBean id="listRenAppByMEM" scope="request" type="java.util.List<RenAppointmentVO>" />
-<%-- <jsp:useBean id="listRenAppByLDD" scope="request" type="java.util.List<RenAppointmentVO>" /> --%>
 
 
 <html>
 <head>
 <script src="https://kit.fontawesome.com/1c2ccc4859.js" crossorigin="anonymous"></script>
-<title>會員 - 預約訂單</title>
+<title>EASY SPACE</title>
 
 <style>
   table#table-1 {
@@ -52,16 +61,13 @@
 
 </head>
 <body bgcolor='white'>
-<jsp:include page="/frontend/EZ_header.jsp"></jsp:include>
-
-
+<% %>
 <table id="table-1">
 	<tr><td>
 		 <h3>房客預約訂單管理</h3>
 		 <h4><a href="<%=request.getContextPath()%>/frontend/ren_appointment/select_page.jsp">回首頁</a></h4>
 	</td></tr>
 </table>
-
 
 <table>
 	<tr>
@@ -76,7 +82,7 @@
 		<th>取消預約</th>
 		<th>刪除預約單</th>
 	</tr>
-	<c:forEach var="renAppointmentVO" items="${listRenAppByMEM}">
+	<c:forEach var="renAppointmentVO" items="${list}">
 		<tr align='center' valign='middle'>
 			<td>${renAppointmentVO.aptId}</td>		
 			
@@ -135,6 +141,7 @@
 <!-- 					<input type="submit" value="修改">  -->
 					<input type="hidden" name="aptId" value="${renAppointmentVO.aptId}"> 
 					<input type="hidden" name="action" value="getOne_For_Update">
+					<input type="hidden" name="requestURL" value="<%=request.getServletPath()%>">
 					<button id ="submit" onclick="submit"><i class="fa-solid fa-pen-to-square"></i></button> 
 				</FORM></c:if>
 			</td>
@@ -163,6 +170,5 @@
 		</tr>
 	</c:forEach>
 </table>
-<jsp:include page="/frontend/EZ_footer.jsp"></jsp:include>
 </body>
 </html>

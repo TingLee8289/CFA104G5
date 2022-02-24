@@ -10,7 +10,7 @@ SerQuoVO serQuoVO = (SerQuoVO) request.getAttribute("serQuoVO");
 <html>
 <head>
 <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
-<title>估價單資料修改 - updateSerQuo.jsp</title>
+<title>EASY SPACE</title>
 
 <style>
   table#table-1 {
@@ -231,8 +231,10 @@ SerQuoVO serQuoVO = (SerQuoVO) request.getAttribute("serQuoVO");
 			</tr>
 			<tr>
 				<td>估價項目:</td>
-				<td><input type="TEXT" name="quoItem" size="8"
-					value="<%=serQuoVO.getQuoItem()%>" /></td>
+				<td>
+				<textarea name="quoItem"rows="4" cols="50" >${ serQuoVO.quoItem}</textarea>
+				
+				</td>
 			</tr>
 			<tr>
 				<td>估價總金額:</td>

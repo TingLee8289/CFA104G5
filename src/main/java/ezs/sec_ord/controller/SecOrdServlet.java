@@ -36,6 +36,10 @@ public class SecOrdServlet extends HttpServlet {
 
 		req.setCharacterEncoding("UTF-8");
 		String action = req.getParameter("action");
+		
+		res.setHeader("Cache-Control", "no-store");
+		res.setHeader("Pragma", "no-cache");
+		res.setDateHeader("Expires", 0);
 
 // 買家會員查詢自己的訂單
 		if ("listSecOrd_ByShBuyerID".equals(action)) {
@@ -46,7 +50,7 @@ public class SecOrdServlet extends HttpServlet {
 			try {
 				/*************************** 1.接收請求參數 ****************************************/
 				HttpSession session = req.getSession();
-				Integer shBuyerID = Integer.valueOf((String)session.getAttribute("memID"));
+				Integer shBuyerID = Integer.valueOf(session.getAttribute("memID").toString());
 
 				/*************************** 2.開始查詢資料 ****************************************/
 				SecOrdService secOrdSvc = new SecOrdService();
@@ -79,9 +83,9 @@ public class SecOrdServlet extends HttpServlet {
 				List<SecOrdDetailsVO> list = secOrdDetailsSvc.findByShOrdID(shOrdID);
 				
 				/*************************** 3.查詢完成,準備轉交(Send the Success view) ************/
-				req.setAttribute("listSecOrdDetails_ByShOrdID", list); // 資料庫取出的list物件,存入request
+				req.setAttribute("list", list); // 資料庫取出的list物件,存入request
 				
-				String url = "/frontend/sec_ord/listSecOrdDetails_ByShOrdID.jsp";
+				String url = "/frontend/sec_ord/listSecOrdDetails_ByShOrdID_ShBuyer.jsp";
 				RequestDispatcher successView = req.getRequestDispatcher(url);
 				successView.forward(req, res);
 				
@@ -90,7 +94,7 @@ public class SecOrdServlet extends HttpServlet {
 				throw new ServletException(e);
 			}
 		}
-// 買家會員新增訂單
+// 買家會員結帳並新增訂單 (接收來自Checkout.jsp請求)
 
 		if ("insert".equals(action)) {
 
@@ -98,9 +102,17 @@ public class SecOrdServlet extends HttpServlet {
 			req.setAttribute("errorMsgs", errorMsgs);
 			HttpSession session = req.getSession();
 			
+				/*************************** 0.確認使用者已登入 ****************************************/
+			try{
+				String memID = session.getAttribute("memID").toString();
+			} catch (Exception e) {
+				RequestDispatcher failureView = req.getRequestDispatcher("/frontend/member/login.jsp");
+				failureView.forward(req, res);
+				return;
+			}
+			
+			/*************************** 1.接收請求參數 ****************************************/
 			try {
-				/*************************** 1.接收請求參數 ****************************************/
-				
 				String shRecipName = (String) req.getParameter("shRecipName");
 				if (shRecipName == null || shRecipName.trim().length() == 0) {
 					errorMsgs.add("收件人姓名請勿空白");
@@ -114,11 +126,11 @@ public class SecOrdServlet extends HttpServlet {
 				
 				Integer shPostcode = null;
 				try {
-					shPostcode = Integer.valueOf(req.getParameter("shPostcode"));
-				} catch (Exception e) {
-					errorMsgs.add("郵遞區號格式不正確");
+					shPostcode = Integer.valueOf(req.getParameter("shRecipPhone"));
+				} catch (Exception e){
+					errorMsgs.add("郵遞區號請勿空白");
 				}
-				
+					
 				String shCounty = (String) req.getParameter("shCounty");
 					if (shCounty == null || shCounty.trim().length() == 0) {
 						errorMsgs.add("縣市請勿空白");
@@ -182,7 +194,7 @@ public class SecOrdServlet extends HttpServlet {
 				}
 				
 				dao.insertWithSecOrdDetails(secOrdVO, testList);
-				
+				session.removeAttribute("shoppingcart");
 
 				/*************************** 3.新增完成,準備轉交(Send the Success view) ************/
 

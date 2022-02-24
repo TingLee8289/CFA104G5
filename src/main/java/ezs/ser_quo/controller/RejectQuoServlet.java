@@ -43,7 +43,7 @@ public class RejectQuoServlet extends HttpServlet {
 						serQuoVO.getQuoDate(), serQuoVO.getQuoExpiryDate(), serQuoVO.getQuoItem(),
 						serQuoVO.getQuoTotalPrice());
 				// 3.新增完成，轉交
-				String url = "/frontend/ser_quo/findByQuoDmdID.jsp";
+				String url = "/frontend/ser_dmd/getByDmdMemID.jsp";
 				RequestDispatcher successView = req.getRequestDispatcher(url); // 新增成功後轉交listAllEmp.jsp
 				successView.forward(req, res);
 				// 其他錯誤處理

@@ -23,7 +23,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>本區域房源</title>
+<title>EASY SPACE</title>
 <style>
   table#table-2 {
 	background-color: #CCCCFF;

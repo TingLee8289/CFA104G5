@@ -25,7 +25,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>所有房源資料 - listingAllListing.jsp</title>
+<title>EASY SPACE</title>
 <style>
   table#table-1 {
 	background-color: #CCCCFF;

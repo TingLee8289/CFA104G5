@@ -24,7 +24,7 @@
 <html>
 <head>
 <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
-<title>新增預約訂單</title>
+<title>EASY SPACE</title>
 
 <style>
   table#table-1 {

@@ -24,13 +24,13 @@
    		}
 		
 		.header{
-			display: flex;
+			position: fixed;
+			margin-top: 0px;
 			background-color: rgb(239,239,239);
-			position:fixed;
-			z-index:9999;
+			z-index:995;
 			width:100%;		
-			margin-top: 40px;	
-			border:1px solid black;
+ 			margin-top: 19px;	 
+/* 			border:1px solid black; */
 
 		}
 		
@@ -48,7 +48,7 @@
 		
 		#logo{
 			max-height: 60px;
-			margin: auto 0px;
+			margin: auto 20px;
 		}
 		
 		
@@ -62,7 +62,7 @@
 
 	<div class="header">
 		<div class="header">
-			<div class="col-2 pl-md-0 text-left" style="display: inline-block;">
+			<div class="col-2 pl-md-0 text-left" style="display: inline-block; width:100px">
 				<a href="<%=request.getContextPath()%>/frontend/EZ_home.jsp"> 
 				<img src="<%=request.getContextPath()%>/images/cmn/index/EASYSPACE.png" alt="image" id="logo">
 				</a>
