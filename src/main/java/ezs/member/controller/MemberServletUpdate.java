@@ -172,7 +172,7 @@ public class MemberServletUpdate extends HttpServlet {
 
 			} catch (Exception e) {
 				errorMsgs.add("無法取得要修改的資料:" + e.getMessage());
-				RequestDispatcher failureView = req.getRequestDispatcher("/frontend/member/listAllMember.jsp");
+				RequestDispatcher failureView = req.getRequestDispatcher("/frontend/member/listOneMember.jsp");
 				failureView.forward(req, res);
 			}
 		}
@@ -208,6 +208,11 @@ public class MemberServletUpdate extends HttpServlet {
 			if (memEmail == null || memEmail.trim().length() == 0) {
 				errorMsgs.add("email請勿空白");
 			}
+			
+			String memUsername = new String(req.getParameter("memUsername"));
+			Integer memRedCount = new Integer(req.getParameter("memRedCount"));
+			Integer memRedScore = new Integer(req.getParameter("memRedScore"));
+		
 
 //				byte[] memHeadshot = null;
 //				Collection<Part> parts = req.getParts();
@@ -269,7 +274,7 @@ public class MemberServletUpdate extends HttpServlet {
 
 			/*************************** 3.新增完成,準備轉交(Send the Success view) ***********/
 			req.setAttribute("memberVO", memberVO);
-			String url = "/frontend/member/listAllMember.jsp";
+			String url = "/frontend/member/listOne1Member.jsp";
 			RequestDispatcher successView = req.getRequestDispatcher(url);
 			successView.forward(req, res);
 
