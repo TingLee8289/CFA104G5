@@ -6,9 +6,10 @@
 
 
 <%
-	Integer memID = (Integer)session.getAttribute("memID");
+	Integer lseMemId = (Integer)session.getAttribute("memID");
+	System.out.println(lseMemId);
 	RenLeaseService renLeaseSvc = new RenLeaseService();
-    List<RenLeaseVO> list = renLeaseSvc.getAllMEM(memID);
+    List<RenLeaseVO> list = renLeaseSvc.getAllMEM(lseMemId);
     pageContext.setAttribute("list",list);
 
 %>
@@ -41,7 +42,7 @@
 					</tr>
 					</thead>
 					<tbody id="show-list">		
-					<c:forEach var="RenLeaseVO" items="${list}" >
+					<c:forEach var="renLeaseVO" items="${list}" >
 					<tr>
 						<td>${renLeaseVO.lseId}</td>
 		<td>${renLeaseVO.lseMemId}</td>
