@@ -6,16 +6,16 @@
 <%@ page import="ezs.ren_listing_pic.model.*" %>
 <%@ page import="ezs.ren_landlord.model.*" %>
 
-<%-- <%Integer memID = (Integer) session.getAttribute("memID"); --%>
-// 	Integer lddMemID = memID;
-//  	RenLandlordService renLandlordSvc = new RenLandlordService();
-// 	List <RenLandlordVO> renLandlordList = renLandlordSvc.getOneLandlordbymemid(lddMemID); 
-// 	pageContext.setAttribute("renLandlordList", renLandlordList);
+<%--  <%Integer memID = (Integer) session.getAttribute("memID"); --%>
+//  	Integer lddMemID = memID;
+//   	RenLandlordService renLandlordSvc = new RenLandlordService();
+//  	List <RenLandlordVO> renLandlordList = renLandlordSvc.getOneLandlordbymemid(lddMemID); 
+//  	pageContext.setAttribute("renLandlordList", renLandlordList);
 	
 	
-<%-- %> --%>
-<%-- <% List<RenLandlordVO>  OneMenDmdList = renLandlordSvc.getOneLandlordbymemid(lddMemId); --%>
-<%--  pageContext.setAttribute("OneMenDmdList",OneMenDmdList);%> --%>
+<%--  %>  --%>
+<%--  <% List<RenLandlordVO>  OneMenDmdList = renLandlordSvc.getOneLandlordbymemid(lddMemId); --%>
+<%--   pageContext.setAttribute("OneMenDmdList",OneMenDmdList);%>  --%>
 
 <%
   RenListingVO renListingVO = (RenListingVO) request.getAttribute("renListingVO");

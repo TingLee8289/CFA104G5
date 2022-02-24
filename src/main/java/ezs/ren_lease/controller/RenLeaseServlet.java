@@ -18,6 +18,7 @@ import ezs.ren_lease.model.RenLeaseVO;
 
 @WebServlet("/ren_lease/RenLeaseServlet.do")
 @MultipartConfig
+
 public class RenLeaseServlet extends HttpServlet {
 	public void doGet(HttpServletRequest req, HttpServletResponse res)
 			throws ServletException, IOException {
@@ -54,6 +55,8 @@ public class RenLeaseServlet extends HttpServlet {
 				} catch (Exception e) {
 					errorMsgs.add("租賃單編號格式不正確");
 				}
+				
+				
 				if (!errorMsgs.isEmpty()) {
 					RequestDispatcher failureView = req
 							.getRequestDispatcher("/frontend/ren_lease/select_page.jsp");
@@ -88,46 +91,49 @@ public class RenLeaseServlet extends HttpServlet {
 			}
 		}
 		
-//		if ("getOne".equals(action)) { // 來自select_page.jsp的請求
-//
-//			List<String> errorMsgs = new LinkedList<String>();
-//			req.setAttribute("errorMsgs", errorMsgs);
-//
-//			try {
-//				/***************************1.接收請求參數 - 輸入格式的錯誤處理**********************/
-//				if (!errorMsgs.isEmpty()) {
-//					RequestDispatcher failureView = req
-//							.getRequestDispatcher("/frontend/ren_lease/select_page.jsp");
-//					failureView.forward(req, res);
-//					return;//程式中斷
-//				}
-//				/***************************2.開始查詢資料*****************************************/
-//				RenLeaseService renLeaseSvc = new RenLeaseService();
-//				List<RenLeaseVO> renLeaseVO = renLeaseSvc.getOne();
-//
-//				if (renLeaseVO == null) {
-//					errorMsgs.add("查無資料");
-//				}
-//				if (!errorMsgs.isEmpty()) {
-//					RequestDispatcher failureView = req
-//							.getRequestDispatcher("/frontend/ren_lease/select_page.jsp");
-//					failureView.forward(req, res);
-//					return;//程式中斷
-//				}
-//				/***************************3.查詢完成,準備轉交(Send the Success view)*************/
-//				req.setAttribute("renLeaseVO", renLeaseVO); // 資料庫取出的empVO物件,存入req
-//				String url = "/frontend/ren_lease/listAllLease.jsp";
-//				RequestDispatcher successView = req.getRequestDispatcher(url); // 成功轉交 listOneEmp.jsp
-//				successView.forward(req, res);
-//
-//				/***************************其他可能的錯誤處理*************************************/
-//			} catch (Exception e) {
-//				errorMsgs.add("無法取得資料:" + e.getMessage());
-//				RequestDispatcher failureView = req
-//						.getRequestDispatcher("/frontend/ren_lease/select_page.jsp");
-//				failureView.forward(req, res);
-//			}
-//		}
+		if ("getAllLease".equals(action)) { // 來自select_page.jsp的請求
+
+			List<String> errorMsgs = new LinkedList<String>();
+			req.setAttribute("errorMsgs", errorMsgs);
+			Integer lseMemId = new Integer(req.getParameter("lseMemId"));
+			try {
+				/***************************1.接收請求參數 - 輸入格式的錯誤處理**********************/
+				if (!errorMsgs.isEmpty()) {
+					RequestDispatcher failureView = req
+							.getRequestDispatcher("/frontend/ren_lease/select_page.jsp");
+					failureView.forward(req, res);
+					return;//程式中斷
+				}
+				lseMemId = new Integer(lseMemId);
+				/***************************2.開始查詢資料*****************************************/
+				RenLeaseService renLeaseSvc = new RenLeaseService();
+				List<RenLeaseVO> renLeaseVO = renLeaseSvc.getAllLease(lseMemId);
+				if (renLeaseVO == null) {
+					errorMsgs.add("查無資料");
+				}
+				
+				
+				
+				if (!errorMsgs.isEmpty()) {
+					RequestDispatcher failureView = req
+							.getRequestDispatcher("/frontend/ren_lease/select_page.jsp");
+					failureView.forward(req, res);
+					return;//程式中斷
+				}
+				/***************************3.查詢完成,準備轉交(Send the Success view)*************/
+				req.setAttribute("renLeaseVO", renLeaseVO); // 資料庫取出的empVO物件,存入req
+				String url = "/frontend/ren_lease/listAllLease.jsp";
+				RequestDispatcher successView = req.getRequestDispatcher(url); // 成功轉交 listOneEmp.jsp
+				successView.forward(req, res);
+
+				/***************************其他可能的錯誤處理*************************************/
+			} catch (Exception e) {
+				errorMsgs.add("無法取得資料:" + e.getMessage());
+				RequestDispatcher failureView = req
+						.getRequestDispatcher("/frontend/ren_lease/select_page.jsp");
+				failureView.forward(req, res);
+			}
+		}
 		
 		
 	//		
@@ -327,7 +333,6 @@ public class RenLeaseServlet extends HttpServlet {
 				failureView.forward(req, res);
 			}
 		}
-		
 		
 		if ("delete".equals(action)) { // 來自listAllEmp.jsp
 

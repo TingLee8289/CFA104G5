@@ -8,9 +8,9 @@
 <%
 Integer memID = (Integer) session.getAttribute("memID");
 SecItemsService secItemsSvc = new SecItemsService();
-
 List<SecItemsVO> list = secItemsSvc.getAll2(memID);
-pageContext.setAttribute("list", list);
+List<SecItemsVO> list2 = secItemsSvc.getAll();
+pageContext.setAttribute("list2", list2);
 %>
 
 
@@ -311,7 +311,7 @@ th, td {
 		</tr>
 		<!-- 	分頁功能 -->
 		<%@ include file="page1.file"%>
-		<c:forEach var="secItemsVO" items="${list}" begin="<%=pageIndex%>"
+		<c:forEach var="secItemsVO" items="${list2}" begin="<%=pageIndex%>"
 			end="<%=pageIndex+rowsPerPage-1%>">
 
 			<tr>
