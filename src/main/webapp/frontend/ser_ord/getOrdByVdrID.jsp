@@ -42,7 +42,7 @@ pageContext.setAttribute("vdrOrdList", vdrOrdList);
 						<h2>廠商檢視訂單資料</h2>
 						<h4>
 							<a
-								href="<%=request.getContextPath()%>/frontend/ser_ord/serOrdHome.jsp">回首頁</a>
+								href="<%=request.getContextPath()%>/frontend/member/memberCenter/sellerMemberCenter.jsp">回賣家中心</a>
 						</h4>
 					</caption>
 					<thead class="table-success">

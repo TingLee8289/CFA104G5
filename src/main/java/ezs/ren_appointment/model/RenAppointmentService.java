@@ -59,6 +59,15 @@ public class RenAppointmentService {
 		return dao.getAll(map);
 	}
 	
+	public List<RenAppointmentVO> getAllLDD(Integer aptLddId){
+		return dao.getAllLDD(aptLddId);
+	}
+	
+	public List<RenAppointmentVO> getAllMEM(Integer aptMemId){
+		return dao.getAllMEM(aptMemId);
+	}
+
+	
 
 
 }
