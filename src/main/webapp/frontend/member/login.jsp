@@ -219,18 +219,10 @@ a {
 </style>
 </head>
 <body>
-<%-- 	<jsp:include page="/frontend/EZ_LoginHeader.jsp" /> --%>
+	<%-- 	<jsp:include page="/frontend/EZ_LoginHeader.jsp" /> --%>
 
 
-	<%-- 錯誤表列 --%>
-	<c:if test="${not empty errorMsgs}">
-		<front style="color: red">請修正以下錯誤:</front>
-		<ul>
-			<c:forEach var="message" items="${errorMsgs}">
-				<p style="color: red">${message}</p>
-			</c:forEach>
-		</ul>
-	</c:if>
+
 
 
 
@@ -252,8 +244,8 @@ a {
 								type="password" class="input" data-type="password" name="psw">
 						</div>
 						<div class="group">
-							<input type="submit" class="button" value="登入">
-							<input type="hidden" name="action" value="getOne_For_Display">
+							<input type="submit" class="button" value="登入"> <input
+								type="hidden" name="action" value="getOne_For_Display">
 						</div>
 					</form>
 					<div class="group">
@@ -266,20 +258,33 @@ a {
 
 				</div>
 				<div class="for-pwd-htm">
-				<form id="resetForm" ACTION="<%=request.getContextPath()%>/member/ForgetPasswordServlet.do" method="post">
-					<div class="group">
-						<label for="email" class="label">請輸入Email</label> 
-						<input type="text" class="input" name="email" id="email">
-						<input type="hidden" name="action"	value="reset_Password_Email">
-					</div>
-					<div class="group">
-						<input type="submit" class="button" value="重置密碼">
-					</div>
-					<div class="hr"></div>
-				</form>
+					<form id="resetForm"
+						ACTION="<%=request.getContextPath()%>/member/ForgetPasswordServlet.do"
+						method="post">
+						<div class="group">
+							<label for="email" class="label">請輸入Email</label> <input
+								type="text" class="input" name="email" id="email"> <input
+								type="hidden" name="action" value="reset_Password_Email">
+						</div>
+						<div class="group">
+							<input type="submit" class="button" value="重置密碼">
+						</div>
+						<div class="hr"></div>
+					</form>
 				</div>
 			</div>
 		</div>
+	</div>
+	<div style="text-align: center; background-color: gray; width: 400px; margin: auto;">
+		<%-- 錯誤表列 --%>
+		<c:if test="${not empty errorMsgs}">
+			<front style="color: red">請修正以下錯誤:</front>
+			<ul>
+				<c:forEach var="message" items="${errorMsgs}">
+					<p style="color: red">${message}</p>
+				</c:forEach>
+			</ul>
+		</c:if>
 	</div>
 </body>
 </html>
