@@ -10,12 +10,12 @@ public class RenLandlordService {
 		dao = new RenLandlordDAO();
 	}
 
-	public RenLandlordVO addLandlord(Integer lddMemId,Integer lddApproval) {
+	public RenLandlordVO addLandlord(Integer lddMemId,byte[] lddPic) {
 
 		RenLandlordVO renLandlordVO = new RenLandlordVO();
 
 		renLandlordVO.setLddMemId(lddMemId);
-		renLandlordVO.setLddApproval(lddApproval);
+		renLandlordVO.setLddPic(lddPic);
 
 		dao.insert(renLandlordVO);
 

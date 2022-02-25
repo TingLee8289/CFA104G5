@@ -270,7 +270,7 @@
 			</form></li>
 				
 
- 		<li>
+<%--  		<li>
 			<FORM METHOD="post" ACTION="<%=request.getContextPath()%>/ren_lease/RenLeaseServlet.do">
 				<b>輸入租賃單編號 :</b>
 				<input type="text" name="lseId">
@@ -278,7 +278,7 @@
 				<input type="hidden" name="action" value="getOne_For_Display">
 				<input type="submit" value="送出">
 			</FORM>
-		</li>
+		</li> --%>
 				
 
 		<jsp:useBean id="renLeaseSvc" scope="page"
