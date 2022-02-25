@@ -290,7 +290,7 @@
 		
 		function showItems(data){
 			
-				console.log(data)
+// 				console.log(data)
 			$("#item_list").html("");
 			$("#item_list").html(data);
 		}
