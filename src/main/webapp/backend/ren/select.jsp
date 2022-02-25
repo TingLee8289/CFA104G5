@@ -135,7 +135,7 @@
 </c:if>
 
 
-  <a href='listAllLandlord.jsp'>List</a> all landlords  <br><br>
+ <h4> <a href='listAllLandlord.jsp'><b>查詢</b></a>全部房東<br><br></h4>
   
   <jsp:useBean id="renlandlordSvc" scope="page" class="ezs.ren_landlord.model.RenLandlordService" />
    
