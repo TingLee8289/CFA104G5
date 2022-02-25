@@ -47,6 +47,25 @@
 		<filter-name>FronendLoginFilter</filter-name>
 		<url-pattern>/frontend/member/memberCenter/sellerMemberCenter.jsp</url-pattern>
 		<url-pattern>/frontend/member/memberCenter/buyerMemberCenter.jsp</url-pattern>
+		<url-pattern>/frontend/member/updateMember.jsp</url-pattern>
+		<url-pattern>/frontend/member/listOneMember.jsp</url-pattern>
+		<url-pattern>/frontend/ren_favorites/listOneRenFavorites.jsp</url-pattern>
+		<url-pattern>/frontend/ren_favorites/addRenFavorites.jsp</url-pattern>
+		<url-pattern>/frontend/chat/chat.jsp</url-pattern>
+		<url-pattern>/frontend/chat/index.jsp</url-pattern>
+		<url-pattern>/frontend/ren_appointment/LDDlistOneRenAppointment.jsp</url-pattern>
+		<url-pattern>/frontend/ren_appointment/LDDupdate_ren_appointment_input.jsp</url-pattern>
+		<url-pattern>/frontend/ren_appointment/listRenAppByLDD.jsp</url-pattern>
+		<url-pattern>/frontend/ren_lease/MEMlistOneLease.jsp</url-pattern>
+		<url-pattern>/frontend/ren_appointment/update_ren_appointment_input.jsp</url-pattern>
+		<url-pattern>/frontend/ren_appointment/listRenAppByMEM.jsp</url-pattern>
+		<url-pattern>/frontend/ren_appointment/listOneRenAppointment.jsp</url-pattern>
+		<url-pattern>/frontend/ren_appointment/addRenAppointment.jsp</url-pattern>
+		<url-pattern>/frontend/ser_quo/addSerQuo.jsp</url-pattern>
+		<url-pattern>/frontend/sec_ord/listSecOrds_ByShBuyerID.jsp</url-pattern>
+		<url-pattern>/frontend/sec_ord/listSecOrdDetails_ByShOrdID_ShBuyer.jsp</url-pattern>
+		<url-pattern>/frontend/sec_items/select_page.jsp</url-pattern>
+		<url-pattern>/frontend/sec_ord/listAllSecOrd.jsp</url-pattern>
 		<dispatcher>REQUEST</dispatcher>
 		<dispatcher>FORWARD</dispatcher>
 		<dispatcher>INCLUDE</dispatcher>
