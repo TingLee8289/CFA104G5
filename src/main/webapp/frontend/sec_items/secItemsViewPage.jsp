@@ -204,16 +204,16 @@
 <!-- 	         	 	</form> -->
 	         	 	
 <!-- 	         	 		對的版本但很醜 -->
-	         	 	<form method="get" action="<%=request.getContextPath() %>/frontend/sec_items/secItemsViewPageAJAX.jsp">
-		         	 	<button type="button" id="Cate${secCategoryVO.shCateID}">${secCategoryVO.shCateName}</button>
-		         	 	<input type="hidden" name="shCateID" value="${secCategoryVO.shCateID}">
-	         	 	</form>
+<%-- 	         	 	<form method="get" action="<%=request.getContextPath() %>/frontend/sec_items/secItemsViewPageAJAX.jsp"> --%>
+<%-- 		         	 	<button type="button" id="Cate${secCategoryVO.shCateID}">${secCategoryVO.shCateName}</button> --%>
+<%-- 		         	 	<input type="hidden" name="shCateID" value="${secCategoryVO.shCateID}"> --%>
+<!-- 	         	 	</form> -->
 
 <!-- 						不對的版本但很美 -->
-<!-- 						<form> -->
-<%-- 	         	 			<a style="text-decoration:none;" href="<%=request.getContextPath() %>/frontend/sec_items/secItemsViewPageAJAX.jsp?shCateID=${secCategoryVO.shCateID}">${secCategoryVO.shCateName} --%>
-<!-- 	         	 			</a> -->
-<!-- 	         	 		</form> -->
+						<form>
+	         	 			<a style="text-decoration:none;" href="<%=request.getContextPath() %>/frontend/sec_items/secItemsViewPageAJAX.jsp?shCateID=${secCategoryVO.shCateID}">${secCategoryVO.shCateName}
+	         	 			</a>
+	         	 		</form>
 
 	         	 </li>  
 	        </c:forEach>
