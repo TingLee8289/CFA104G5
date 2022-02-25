@@ -210,13 +210,13 @@ RenLandlordVO renLandlordVO = (RenLandlordVO) request.getAttribute("renLandlordV
            						<table class="table table-hover table-striped">
               				
 							<tr>
-								<th id="test">房東編號:<font color=red><b>*</b></font></th>
+								<th id="test">房東編號:<font color=red></font></th>
 								<td><%=renLandlordVO.getLddId()%></td>
 							</tr>
 							<tr>
 								<th id="test">會員編號:</th>
-								<td><input type="TEXT" name="lddMemId" size="45"
-									value="<%=renLandlordVO.getLddMemId()%>" /></td>
+								<td><%=renLandlordVO.getLddMemId()%></td>
+								
 							</tr>
 							<tr>
 								<th id="test">審核狀態:</th>
@@ -232,9 +232,9 @@ RenLandlordVO renLandlordVO = (RenLandlordVO) request.getAttribute("renLandlordV
 						</table></div>
 
 						<br> <input type="hidden" name="action" value="update">
-						<input type="hidden" name="lddId"
-							value="<%=renLandlordVO.getLddId()%>"> <input
-							type="submit" value="送出修改">
+						<input type="hidden" name="lddMemId" value="<%=renLandlordVO.getLddMemId()%>"/>
+						<input type="hidden" name="lddId" value="<%=renLandlordVO.getLddId()%>"> 
+						<input type="submit" value="送出修改">
 					</FORM>
 
 				</div>
