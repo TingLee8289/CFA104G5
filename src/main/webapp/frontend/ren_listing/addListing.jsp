@@ -5,22 +5,36 @@
 <%@ page import="ezs.ren_listing.model.*"%>
 <%@ page import="ezs.ren_listing_pic.model.*" %>
 <%@ page import="ezs.ren_landlord.model.*" %>
+<%@ page import="java.util.List" %>
 
-<%--  <%Integer memID = (Integer) session.getAttribute("memID"); --%>
-//  	Integer lddMemID = memID;
-//   	RenLandlordService renLandlordSvc = new RenLandlordService();
-//  	List <RenLandlordVO> renLandlordList = renLandlordSvc.getOneLandlordbymemid(lddMemID); 
-//  	pageContext.setAttribute("renLandlordList", renLandlordList);
-	
-	
-<%--  %>  --%>
+<%-- <%--  <%  Integer memID = (Integer) session.getAttribute("memID");   --%> 
+<!-- //  	Integer lddMemId = Integer.valueOf(request.getParameter("lddMemId")); -->
+<!-- //    	RenLandlordService renLandlordSvc = new RenLandlordService(); -->
+<!-- //    	List<RenLandlordVO>  OneMenDmdList = renLandlordSvc.getOneLandlordbymemid(lddMemId);  -->
+<!-- //   	pageContext.setAttribute("OneMenDmdList",OneMenDmdList); -->
+<!-- //   	pageContext.setAttribute("lddMemId",lddMemId);  	 -->
+<%-- <%--  %> --%> 
+
+<%-- <%-- <% --%> 
+<!-- // RenFavoritesVO renFavoritesVO = (RenFavoritesVO) request.getAttribute("renFavoritesVO"); -->
+<!-- // Integer memID = (Integer)session.getAttribute("memID"); -->
+<!-- // RenFavoritesService renFavSvc = new RenFavoritesService(); -->
+<!-- // String favLisId = (String) request.getParameter("favLisId"); -->
+<!-- // pageContext.setAttribute("favLisId", favLisId); -->
+<%-- <%-- %> --%> 
+
 <%--  <% List<RenLandlordVO>  OneMenDmdList = renLandlordSvc.getOneLandlordbymemid(lddMemId); --%>
 <%--   pageContext.setAttribute("OneMenDmdList",OneMenDmdList);%>  --%>
 
-<%
-  RenListingVO renListingVO = (RenListingVO) request.getAttribute("renListingVO");
-
-%>
+<% 
+   RenListingVO renListingVO = (RenListingVO) request.getAttribute("renListingVO");
+   %>
+<%-- <%-- <% --%> 
+<!-- // Integer memID = (Integer)session.getAttribute("memID"); -->
+<!-- //  RenListingService renListingSvc = new RenListingService(); -->
+<!-- //  Integer lisLddID = Integer.valueOf( request.getParameter("lisLddID")); -->
+<!-- //  pageContext.setAttribute(name, value); -->
+<%-- <%--  %>  --%> 
 <%= renListingVO == null %>
 
 <!DOCTYPE html>
@@ -89,7 +103,7 @@
 	<tr>
 		<td>房東ID<font color = red><b>*</b></font></td>
 		<td><input type="TEXT" name="lisLddID" maxlength="25" size="45"
-			value="<%= (renListingVO==null)? "輸入房東ID": renListingVO.getLisLddID() %>"/>
+			value="${lddMemId}"/>
 		
 		</td>
 	</tr>

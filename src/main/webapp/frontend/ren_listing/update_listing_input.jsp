@@ -73,18 +73,18 @@ RenListingPicVO renListingPicVO = (RenListingPicVO) request.getAttribute("renLis
 <table>
 	<tr>
 		<td>房源編號:</td>
-		<td><%=renListingVO.getLisID()%></td>
+		<td><%=(renListingVO == null) ? "" : renListingVO.getLisID()%></td>
 	</tr>
 	<tr>
 		<td>房東編號:</td>
-		<td><input type="TEXT" name="lisLddID" size="45" value="<%=renListingVO.getLisLddID()%>" /></td>
+		<td><input type="TEXT" name="lisLddID" size="45" value="<%=(renListingVO == null) ? "" : renListingVO.getLisLddID()%>" /></td>
 	</tr>
 	<jsp:useBean id= "renRoomtypeSvc" scope="page" class="ezs.ren_roomtype.model.RenRoomtypeService"/>
 	<tr>
 		<td>房屋類型<font color = red><b>*</b></font></td>
 			<td><select size="1" name="lisRtID">
 			<c:forEach var="renRoomtypeVO" items="${renRoomtypeSvc.all}">
-				<option value="${renRoomtypeVO.rtID}" ${(renListingVO.lisRtID == renRoomtypeVO.rtID)? 'selected':'' } >${renRoomtypeVO.rtType}
+				<option value="${renRoomtypeVO.rtID}" (renListingVO.lisRtID == renRoomtypeVO.rtID)? 'selected':''>${renRoomtypeVO.rtType}
 			</c:forEach>
 		</select></td>
 	<jsp:useBean id= "renLocationSvc" scope="page" class="ezs.ren_location.model.RenLocationService"/>
@@ -92,62 +92,62 @@ RenListingPicVO renListingPicVO = (RenListingPicVO) request.getAttribute("renLis
 		<td>區域<font color = red><b>*</b></font></td>
 			<td><select size="1" name="lisAreaID">
 				<c:forEach var="renLocationVO" items="${renLocationSvc.all}">
-					<option value="${renLocationVO.locID}" ${(renListingVO.lisAreaID == renLocationVO.locID)? 'selected':'' } >${renLocationVO.locCity}${renLocationVO.locDist}
+					<option value="${renLocationVO.locID}" (renListingVO.lisAreaID == renLocationVO.locID)? 'selected':''>${renLocationVO.locCity}${renLocationVO.locDist}
 				</c:forEach>
 		</select></td>
 	<tr>
 		<td>詳細地址<font color=red><b>*</b></font></td>
-		<td><input type="TEXT" name="lisAddress" size="45" value="<%=renListingVO.getLisAddress()%>" /></td>
+		<td><input type="TEXT" name="lisAddress" size="45" value="<%=(renListingVO == null) ? "" :renListingVO.getLisAddress()%>" /></td>
 	</tr>
 	<tr>
 		<td>樓層<font color=red><b>*</b></font></td>
-		<td><input type="TEXT" name="lisFlr" size="45" value="<%=renListingVO.getLisFlr()%>" /></td>
+		<td><input type="TEXT" name="lisFlr" size="45" value="<%=(renListingVO == null) ? "" :renListingVO.getLisFlr()%>" /></td>
 	</tr>
 	<tr>
 		<td>房源標題<font color=red><b>*</b></font></td>
 		<td><input type="TEXT" name="lisTitle" maxlength="25" size="45"
-			value="<%=renListingVO.getLisTitle()%>"/></td>
+			value="<%=(renListingVO == null) ? "" : renListingVO.getLisTitle()%>"/></td>
 	</tr>
 	<tr>
 		<td>房源介紹<font color=red><b>*</b></font></td>
 		<td><input type="TEXT" name="lisAbt" size="45"	
-			value="<%=renListingVO.getLisAbt()%>"/></td>
+			value="<%=(renListingVO == null) ? "" : renListingVO.getLisAbt()%>"/></td>
 	</tr>
 	<tr>
 		<td>坪數<font color=red><b>*</b></font></td>
 		<td><input type="TEXT" name="lisSqft" size="45"	
-			value="<%=renListingVO.getLisSqft()%>"/></td>
+			value="<%=(renListingVO == null) ? "" : renListingVO.getLisSqft()%>"/></td>
 	</tr>
 	<tr>
 		<td>房屋格局<font color = red><b>*</b></font></td>
 		<td>房間數<font color=red><b>*</b></font></td>
 		<td><input type="TEXT" name="lisRmNo" size="45"	
-			value="<%=renListingVO.getLisRmNo()%>"/></td>
+			value="<%=(renListingVO == null) ? "" : renListingVO.getLisRmNo()%>"/></td>
 	</tr>
 	<tr>
 		<td>廳數	<font color=red><b>*</b></font></td>
 		<td><input type="TEXT" name="lisCmnArea" size="45"	
-			value="<%=renListingVO.getLisCmnArea()%>"/></td>
+			value="<%=(renListingVO == null) ? "" : renListingVO.getLisCmnArea()%>"/></td>
 	</tr>
 	<tr>	
 		<td>衛數	<font color=red><b>*</b></font></td>
 		<td><input type="TEXT" name="lisBrNo" size="45"	
-			value="<%=renListingVO.getLisBrNo()%>"/></td>
+			value="<%=(renListingVO == null) ? "" : renListingVO.getLisBrNo()%>"/></td>
 	</tr>
 	<tr>	
 		<td>租金	<font color=red><b>*</b></font></td>
 		<td><input type="TEXT" name="lisRent" size="45"	
-			value="<%=renListingVO.getLisRent()%>"/></td>
+			value="<%=(renListingVO == null) ? "" : renListingVO.getLisRent()%>"/></td>
 	</tr>
 	<tr>	
 		<td>管理費<font color=red><b>*</b></font></td>
 		<td><input type="TEXT" name="lisMngFee" size="45"	
-			value="<%=renListingVO.getLisMngFee()%>"/>元/月，無請填0</td>
+			value="<%=(renListingVO == null) ? "" : renListingVO.getLisMngFee()%>"/>元/月，無請填0</td>
 	</tr>
 	<tr>	
 		<td>停車費<font color=red><b>*</b></font></td>
 		<td><input type="TEXT" name="lisPfee" size="45"	
-			value="<%=renListingVO.getLisPfee()%>"/>元/月，無請填0</td>
+			value="<%=(renListingVO == null) ? "" : renListingVO.getLisPfee()%>"/>元/月，無請填0</td>
 	</tr>
 	<tr>
 		<td>房屋其他條件</td>	
@@ -329,7 +329,7 @@ RenListingPicVO renListingPicVO = (RenListingPicVO) request.getAttribute("renLis
 </table>
 <br>
 <input type="hidden" name="action" value="update">
-<input type="hidden" name="lisID" value="<%=renListingVO.getLisID()%>">
+<input type="hidden" name="lisID" value="<%=(renListingVO == null) ? "" : renListingVO.getLisID()%>">
 <input type="submit" value="送出修改">
 </FORM>
 </body>

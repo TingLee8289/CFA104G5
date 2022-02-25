@@ -57,7 +57,7 @@ public class GetOneRenListingServlet extends HttpServlet {
 				try {
 					lisID = new Integer(str);
 				} catch (Exception e) {
-					errorMsgs.add("房源ID格式不正確");
+					errorMsgs.add("房源編號格式不正確");
 				}
 				
 				if (!errorMsgs.isEmpty()) {
