@@ -26,10 +26,11 @@ public class AdminEmpService {
 		return adminEmpVO;
 	}
 	
-	public AdminEmpVO updateAdminEmp(String admUsername,String admPassword,Integer admStatus) {
+	public AdminEmpVO updateAdminEmp(Integer adminID,String admUsername,String admPassword,Integer admStatus) {
 		
 		AdminEmpVO adminEmpVO = new AdminEmpVO();
 		
+		adminEmpVO.setAdmID(adminID);
 		adminEmpVO.setAdmUsername(admUsername);
 		adminEmpVO.setAdmPassword(admPassword);
 		adminEmpVO.setAdmStatus(admStatus);

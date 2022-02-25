@@ -6,6 +6,7 @@
 <%@ page import="java.util.*"%>
 <%@page import="ezs.admin_func.model.AdminFuncService"%>
 <%@page import="ezs.admin_func.model.AdminFuncVO"%>
+<%@page import="ezs.admin_emp.model.*"%>
 <jsp:useBean id="adminFunSvc" scope="page"
 	class="ezs.admin_func.model.AdminFuncService" />
 
@@ -269,14 +270,17 @@ pageContext.setAttribute("funList", funList);
 												type="hidden" name="admID" value="${adminEmpVO.admID}">
 												<input type="hidden" name="action" value="update"></td>
 										</FORM>
-										<td>
+										<td style="text-align:center">
 											<FORM METHOD="post"
 												ACTION="<%=request.getContextPath()%>/admin_priv/AdminPrivServlet.do"
 												style="margin-bottom: 0px;">
 												<input type="submit" value="刪除"> <input
 													type="hidden" name="admID" value="${adminEmpVO.admID}">
 												<input type="hidden" name="action" value="delete">
-											</FORM>
+											</FORM><br><form action="<%=request.getContextPath()%>/admin_emp/AdminEmpServlet.do">
+											<input type="submit" value="更改管理員資料" >
+											<input type="hidden" name="admID" value="${adminEmpVO.admID}">
+											<input type="hidden" name="action" value="getOne_For_Update"></form>
 										</td>
 									</tr>
 								</c:forEach>
