@@ -1,4 +1,5 @@
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ page import="ezs.sec_items.model.*"%>
 <%@ page import="ezs.sec_pics.model.*"%>
@@ -231,7 +232,7 @@ SecItemsService secItemsSvc = new SecItemsService();
 			<main>
 				<div class="container-fluid px-4">
 <!-- 塞頁面從這裡開始--------------------------------------------------------------------------------- -->
-<title>查詢單一狀態商品</title>
+<title>EASY SPACE</title>
 
 <style>
 table#table-1 {
@@ -274,11 +275,12 @@ th, td {
 <body bgcolor='white'>
 
 
-	<h4>查詢商品狀態</h4>
+<!-- 	<h4>查詢商品狀態</h4> -->
 	<table id="table-1">
 		<tr>
 			<td>
-				<h3>單一狀態商品 - listOneSecItemStatus.jsp</h3>
+				<h3>查詢商品狀態 </h3>
+<!-- 				- listOneSecItemStatus.jsp -->
 				<h4>
 					<a
 						href="<%=request.getContextPath()%>/frontend/sec_items/select_page.jsp">
@@ -314,11 +316,18 @@ th, td {
 
 			<tr>
 				<td>${vo.shCateID}</td>
-				<td>${vo.shStatus}</td>
+<%-- 				<td>${vo.shStatus}</td> --%>
+				<td><c:if test="${vo.shStatus == 0}">取消訂單</c:if> <c:if
+						test="${vo.shStatus == 1}">待出貨</c:if> <c:if
+						test="${vo.shStatus == 2}">已出貨</c:if> </td>
+					
+				
+				
 				<td>${vo.shID}</td>
 				<td>${vo.shSellerID}</td>
 				<td>${vo.shName}</td>
-				<td>${vo.shPrice}</td>
+				<td><fmt:formatNumber value="${vo.shPrice}" pattern="###,###"/></td>
+<%-- 				<td>${vo.shPrice}</td> --%>
 				<td>${vo.shQTY}</td>
 				<td>${vo.shSize}</td>
 				<td>${vo.shDescription}</td>

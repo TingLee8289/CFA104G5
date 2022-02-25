@@ -6,14 +6,9 @@
 
 <%
 SecItemsVO secItemsVO = (SecItemsVO) request.getAttribute("secItemsVO"); //EmpServlet.java(Concroller), 存入req的empVO物件
+Integer memID = (Integer) session.getAttribute("memID");
 %>
-<%-- <% --%>
-// Integer memID = (Integer) session.getAttribute("memID");
-// SecItemsService secItemsSvc = new SecItemsService();
 
-// SecItemsVO secItemsVO = secItemsSvc.getAll(memID);
-// pageContext.setAttribute("list", list);
-<%-- %> --%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -272,7 +267,8 @@ th, td {
 	<table id="table-1">
 		<tr>
 			<td>
-				<h3>單一商品 - ListOneSecItems.jsp</h3>
+				<h3>單一商品 </h3>
+<!-- 				- ListOneSecItems.jsp -->
 				<h4>
 					<a
 						href="<%=request.getContextPath()%>/frontend/sec_items/select_page.jsp">

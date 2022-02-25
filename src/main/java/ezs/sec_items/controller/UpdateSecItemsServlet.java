@@ -41,7 +41,7 @@ public class UpdateSecItemsServlet extends HttpServlet {
 			// Store this set in the request scope, in case we need to
 			// send the ErrorPage view.
 			req.setAttribute("errorMsgs", errorMsgs);
-
+			System.out.println(action);
 //			try {
 				/*************************** 1.接收請求參數 - 輸入格式的錯誤處理 **********************/
 				Integer shID = Integer.valueOf(req.getParameter("shID").trim());
@@ -164,13 +164,13 @@ public class UpdateSecItemsServlet extends HttpServlet {
 
 				SecPicsService secPicsSvc = new SecPicsService();
 				secPicsSvc.updateSecPics(shID, shPic);
-				
+				System.out.println("2"+ shID);
 				/*************************** 3.修改完成,準備轉交(Send the Success view) *************/
 				req.setAttribute("secItemsVO", secItemsVO); // 資料庫update成功後,正確的的empVO物件,存入req
 				String url = "/frontend/sec_items/listOneSecItems.jsp";
 				RequestDispatcher successView = req.getRequestDispatcher(url); // 修改成功後,轉交listOneEmp.jsp
 				successView.forward(req, res);
-
+				System.out.println("3"+secItemsVO);
 				/*************************** 其他可能的錯誤處理 *************************************/
 //			最外面的catch是因為要讓錯誤產生時候還能導回該頁面
 //			} catch (Exception e) {

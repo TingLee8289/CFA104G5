@@ -335,7 +335,9 @@ th, td {
 
 								<tr>
 									<td>${vo.shCateID}</td>
-									<td>${vo.shStatus}</td>
+									<td><c:if test="${vo.shStatus == 0}">取消訂單</c:if> <c:if
+											test="${vo.shStatus == 1}">待出貨</c:if> <c:if
+											test="${vo.shStatus == 2}">已出貨</c:if></td>
 									<td>${vo.shID}</td>
 									<td>${vo.shSellerID}</td>
 									<td>${vo.shName}</td>

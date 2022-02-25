@@ -6,6 +6,7 @@
 
 
 <%
+Integer memID = (Integer) session.getAttribute("memID");
 SecItemsVO secItemsVO = (SecItemsVO) request.getAttribute("secItemsVO");
 %>
 <!DOCTYPE html>
@@ -310,49 +311,49 @@ th, td {
 			<tr>
 <!-- 				<td>賣家ID:</td> -->
 				<td><input type="hidden" name="shSellerID" size="45"
-					value="<%=(secItemsVO == null) ? "1" : secItemsVO.getShSellerID()%>" /></td>
+					value="${memID}" /></td>
 			</tr>
 			<tr>
 				<td>商品名稱:<font color=red><b>*</b></font></td>
 				<td><input type="TEXT" name="shName" size="45"
-					value="<%=(secItemsVO == null) ? "國際牌13公斤滾筒洗衣機" : secItemsVO.getShName()%>" /></td>
+					value="${secItemsVO.shName}" /></td>
 			</tr>
 
 
 			<tr>
 				<td>價格:<font color=red><b>*</b></font></td>
 				<td><input type="TEXT" name="shPrice" size="45"
-					value="<%=(secItemsVO == null) ? "12000" : secItemsVO.getShPrice()%>" /></td>
+					value="<%=(secItemsVO == null) ? "" : secItemsVO.getShPrice()%>" /></td>
 			</tr>
 			<tr>
 				<td>數量:<font color=red><b>*</b></font></td>
 				<td><input type="TEXT" name="shQTY" size="45"
-					value="<%=(secItemsVO == null) ? "1" : secItemsVO.getShQTY()%>" /></td>
+					value="<%=(secItemsVO == null) ? "" : secItemsVO.getShQTY()%>" /></td>
 			</tr>
 			<tr>
 				<td>尺寸:<font color=red><b>*</b></font></td>
 				<td><input type="TEXT" name="shSize" size="45"
-					value="<%=(secItemsVO == null) ? "長67寬82高103(cm)" : secItemsVO.getShSize()%>" /></td>
+					value="<%=(secItemsVO == null) ? "" : secItemsVO.getShSize()%>" /></td>
 			</tr>
 			<tr>
 				<td>簡介:<font color=red><b>*</b></font></td>
 				<td><input type="TEXT" name="shDescription" size="45"
-					value="<%=(secItemsVO == null) ? "國際牌13公斤滾筒洗衣機" : secItemsVO.getShDescription()%>" /></td>
+					value="<%=(secItemsVO == null) ? "" : secItemsVO.getShDescription()%>" /></td>
 			</tr>
 			<tr>
 				<td>新舊程度:<font color=red><b>*</b></font></td>
 				<td><input type="TEXT" name="shCondition" size="45"
-					value="<%=(secItemsVO == null) ? "八成新" : secItemsVO.getShCondition()%>" /></td>
+					value="<%=(secItemsVO == null) ? "" : secItemsVO.getShCondition()%>" /></td>
 			</tr>
 			<tr>
 				<td>已使用時間:<font color=red><b>*</b></font></td>
 				<td><input type="TEXT" name="shTime" size="45"
-					value="<%=(secItemsVO == null) ? "一年" : secItemsVO.getShTime()%>" /></td>
+					value="<%=(secItemsVO == null) ? "" : secItemsVO.getShTime()%>" /></td>
 			</tr>
 			<tr>
 				<td>保固:<font color=red><b>*</b></font></td>
 				<td><input type="TEXT" name="shGuarantee" size="45"
-					value="<%=(secItemsVO == null) ? " 一年" : secItemsVO.getShGuarantee()%>" /></td>
+					value="<%=(secItemsVO == null) ? "" : secItemsVO.getShGuarantee()%>" /></td>
 			</tr>
 
 
@@ -364,12 +365,12 @@ th, td {
 			<tr>
 				<td>所在縣市:<font color=red><b>*</b></font></td>
 				<td><input type="TEXT" name="shCounty" size="45"
-					value="<%=(secItemsVO == null) ? "桃園市" : secItemsVO.getShCounty()%>" /></td>
+					value="<%=(secItemsVO == null) ? "" : secItemsVO.getShCounty()%>" /></td>
 			</tr>
 			<tr>
 				<td>所在鄉鎮區:<font color=red><b>*</b></font></td>
 				<td><input type="TEXT" name="shDist" size="45"
-					value="<%=(secItemsVO == null) ? "中壢區" : secItemsVO.getShDist()%>" /></td>
+					value="<%=(secItemsVO == null) ? "" : secItemsVO.getShDist()%>" /></td>
 			</tr>
 
 			<tr>

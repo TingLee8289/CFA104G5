@@ -38,6 +38,7 @@ public class GetSecOrdBySellerServlet extends HttpServlet {
 
 			List<String> errorMsgs = new LinkedList<String>();
 			req.setAttribute("errorMsgs", errorMsgs);
+			System.out.println(action);
 			try {
 
 				/*************************** 1.接收請求參數 - 輸入格式的錯誤處理 **********************/
@@ -81,6 +82,8 @@ public class GetSecOrdBySellerServlet extends HttpServlet {
 					failureView.forward(req, res);
 					return;// 程式中斷
 				}
+				System.out.println("查詢"+ shOrdID);
+				
 
 				/*************************** 3.查詢完成,準備轉交(Send the Success view) *************/
 				req.setAttribute("secOrdVO", secOrdVO); // 資料庫取出的secOrdVO物件,存入req
@@ -112,7 +115,8 @@ System.out.println(shSellerID);
 				/*************************** 2.開始查詢資料 ****************************************/
 				SecOrdService secOrdSvc = new SecOrdService();
 				Set<SecOrdVO> set = secOrdSvc.getSecOrdByShSellerID(shSellerID);
-				System.out.println(shSellerID);
+System.out.println(shSellerID);
+System.out.println(set.size());
 				/*************************** 3.查詢完成,準備轉交(Send the Success view) ************/
 				session.setAttribute("listSecOrd_ByShSellererID", set); // 資料庫取出的list物件,存入request
 
@@ -122,6 +126,7 @@ System.out.println(shSellerID);
 System.out.println(successView);
 				/*************************** 其他可能的錯誤處理 ***********************************/
 			} catch (Exception e) {
+				e.printStackTrace();
 				throw new ServletException(e);
 			}
 		}

@@ -46,13 +46,14 @@ public class GetSecOrdDetailsBySellerServlet extends HttpServlet {
 				/*************************** 2.開始查詢資料 ****************************************/
 				SecOrdService secOrdSvc = new SecOrdService();
 				Set<SecOrdDetailsVO> set = secOrdSvc.getSecAllOrdDeatails(shOrdID);
-					System.out.println(shOrdID);				
+					System.out.println(shOrdID);
+					System.out.println("shOrdID"+set.size());
 				/*************************** 3.查詢完成,準備轉交(Send the Success view) ************/
 				req.setAttribute("list", set); // 資料庫取出的list物件,存入request
 
 				String url = null;
 				if ("listSecOrdDetails_BySecOrd_A".equals(action)) 
-					url = "/frontend/sec_ord/listSecOrdDetails_ByShOrdID.jsp"; // 成功轉交
+					url = "/frontend/sec_ord/listSecOrdDetails.jsp"; // 成功轉交
 				
 															// /frontend/sec_ord/listSecOrdDetails_BySecOrd.jsp
 				else if ("listSecOrdDetails_BySecOrd_B".equals(action)) 
