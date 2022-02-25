@@ -277,27 +277,27 @@
  <tr>
   <td>案場詳細地址:<font color=red><b>*</b></font></td>
   <td><input type="TEXT" name="dmdAddress" size="50"
-    value="<%= (serDmdVO==null)? "是鄰里123號" : serDmdVO.getDmdAddress() %>"/></td>
+    value="<%= (serDmdVO==null)? "大林里123號" : serDmdVO.getDmdAddress() %>"/></td>
  </tr>
  <tr>
   <td>空間類別:<font color=red><b>*</b></font></td>
   <td><input type="TEXT" name="dmdSpaceClass" size="20"
-    value="<%= (serDmdVO==null)? "豪窄" : serDmdVO.getDmdSpaceClass() %>"/></td>
+    value="<%= (serDmdVO==null)? "公寓" : serDmdVO.getDmdSpaceClass() %>"/></td>
  </tr>
  <tr>
   <td>坪數:<font color=red><b>*</b></font></td>
   <td><input type="TEXT" name="dmdSquare" 
-    value="<%= (serDmdVO==null)? "500" : serDmdVO.getDmdSquare() %>"/></td>
+    value="<%= (serDmdVO==null)? "5" : serDmdVO.getDmdSquare() %>"/></td>
  </tr>
  <tr>
   <td>預算:</td>
   <td><input type="TEXT" name="dmdBudget" 
-    value="<%= (serDmdVO==null)? "50" : serDmdVO.getDmdBudget() %>"/></td>
+    value="<%= (serDmdVO==null)? "500" : serDmdVO.getDmdBudget() %>"/></td>
  </tr>
  <tr>
   <td>需求簡介:</td>
   <td>
-  <textarea name="dmdIntro"rows="4" cols="50" ><%= (serDmdVO==null)? "搞裡頭" : serDmdVO.getDmdIntro() %></textarea>
+  <textarea name="dmdIntro"rows="4" cols="50" ><%= (serDmdVO==null)? "水龍頭漏水" : serDmdVO.getDmdIntro() %></textarea>
      </td>
  </tr>
  <tr>
