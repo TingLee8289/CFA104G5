@@ -1,34 +1,38 @@
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
-<%@ page import="java.util.*"%>
-<%@ page import="ezs.sec_ord_details.model.*"%>
+
 <%@ page import="ezs.sec_ord.model.*"%>
-<!DOCTYPE html>
-<%
-SecOrdService secOrdSvc = new SecOrdService();
-Integer memID = (Integer) session.getAttribute("memID");
-Set<SecOrdVO> listAllSecOrd = secOrdSvc.getSecOrdByShSellerID(memID);
+<%@ page import="ezs.sec_ord_details.model.*"%>
+
+<jsp:useBean id="list" scope="request"
+	type="java.util.Set<SecOrdDetailsVO>" />
+<!-- 於EL此行可省略 -->
+<jsp:useBean id="secOrdSvc" scope="page"
+	class="ezs.sec_ord.model.SecOrdService" />
+
+<%@ page import="java.util.*"%>
+<% 
+	Integer memID = (Integer) session.getAttribute("memID");
 %>
+
+
+<!DOCTYPE html>
 
 <html>
 <head>
+
+
 <meta charset="utf-8" />
 <meta http-equiv="X-UA-Compatible" content="IE=edge" />
 <meta name="viewport"
 	content="width=device-width, initial-scale=1, shrink-to-fit=no" />
 <title>EASY SPACE</title>
-<link
-	href="https://cdn.jsdelivr.net/npm/simple-datatables@latest/dist/style.css"
-	rel="stylesheet" />
-<link href="<%=request.getContextPath()%>/css/member.center.styles.css"
-	rel="stylesheet" />
-<script
-	src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/js/all.min.js"></script>
-<link rel="stylesheet"
-	href=" https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css ">
-<link rel="stylesheet"
-	href="https://use.fontawesome.com/releases/v5.2.0/css/all.css">
+<link href="https://cdn.jsdelivr.net/npm/simple-datatables@latest/dist/style.css" rel="stylesheet" />
+<link href="<%=request.getContextPath()%>/css/member.center.styles.css"	rel="stylesheet" />
+<script	src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/js/all.min.js"></script>
+<link rel="stylesheet"href=" https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css ">
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.2.0/css/all.css">
+
 
 <style>
 #nav {
@@ -41,43 +45,38 @@ Set<SecOrdVO> listAllSecOrd = secOrdSvc.getSecOrdByShSellerID(memID);
 }
 </style>
 <style>
-table#table-1 {
-	background-color: #FFE8BF;
-	border: 2px solid black;
-	text-align: center;
-}
-
-table#table-1 h4 {
-	color: red;
-	display: block;
-	margin-bottom: 1px;
-}
-
-h4 {
-	color: blue;
-	display: inline;
-}
+  table#table-1 {
+	background-color: #CCCCFF;
+    border: 2px solid black;
+    text-align: center;
+  }
+  table#table-1 h4 {
+    color: red;
+    display: block;
+    margin-bottom: 1px;
+  }
+  h4 {
+    color: blue;
+    display: inline;
+  }
 </style>
 
 <style>
-table {
-	width: 1000px;
+  table {
+	width: 800px;
 	background-color: white;
 	margin-top: 5px;
 	margin-bottom: 5px;
-}
-
-table, th, td {
-	border: 1px solid #FFE8BF;
-}
-
-th, td {
-	padding: 5px;
-	text-align: center;
-}
+  }
+  table, th, td {
+    border: 1px solid #CCCCFF;
+  }
+  th, td {
+    padding: 5px;
+    text-align: center;
+  }
 </style>
-<script src="https://kit.fontawesome.com/1c2ccc4859.js"
-	crossorigin="anonymous"></script>
+<script src="https://kit.fontawesome.com/1c2ccc4859.js" crossorigin="anonymous"></script>
 
 </head>
 <body class="sb-nav-fixed">
@@ -95,7 +94,7 @@ th, td {
 					<li class="nav-item active me-3"><a class="nav-link text-dark"
 						href="<%=request.getContextPath()%>/frontend/EZ_home.jsp">首頁 </a></li>
 					<li class="nav-item me-3"><a class="nav-link text-dark"
-						href="#">租賃服務</a></li>
+						href="<%=request.getContextPath()%>/frontend/ren_listing/listAllListing.jsp">租賃服務</a></li>
 					<li class="nav-item me-3"><a class="nav-link text-dark"
 						href="<%=request.getContextPath()%>/frontend/sec_items/secItemsViewPage.jsp">二手家電</a>
 					</li>
@@ -103,9 +102,9 @@ th, td {
 						href="<%=request.getContextPath()%>/frontend/ser_ad/serAdViewPage.jsp">居家服務</a>
 					</li>
 
+
 					<%
 					String memUsername = (String) session.getAttribute("memUsername");
-
 					if (memUsername != null) {
 					%>
 					<li class="nav-item dropdown"><a class="nav-link text-dark"
@@ -151,17 +150,20 @@ th, td {
 	<!-- 上端導覽列結束--------------------------------------- -->
 
 	<!-- 側邊導覽列開始--------------------------------------- -->
-
-
-
 	<div id="layoutSidenav">
 		<div id="layoutSidenav_nav">
 			<nav class="sb-sidenav accordion sb-sidenav-dark"
 				id="sidenavAccordion">
 				<div class="sb-sidenav-menu">
 					<div class="nav">
+						<div class="sb-sidenav-menu-heading">管理專區</div>
+						<a class="nav-link" href="<%= request.getContextPath() %>/frontend/member/listOneMember.jsp">
+							<div class="sb-nav-link-icon">
+								<i class="fas fa-tachometer-alt"></i>
+							</div> 會員資料管理
+						</a>
 						<!-- ------------------------------------------------------------------------------------------------- -->
-						<div class="sb-sidenav-menu-heading">賣家管理專區</div>
+						<div class="sb-sidenav-menu-heading">買家管理專區</div>
 						<a class="nav-link collapsed" href="#" data-bs-toggle="collapse"
 							data-bs-target="#collapseLayouts" aria-expanded="false"
 							aria-controls="collapseLayouts">
@@ -175,11 +177,9 @@ th, td {
 						<div class="collapse" id="collapseLayouts"
 							aria-labelledby="headingOne" data-bs-parent="#sidenavAccordion">
 							<nav class="sb-sidenav-menu-nested nav">
-								<a class="nav-link" href="layout-static.html">申請成為房東</a> <a
-									class="nav-link" href="layout-static.html">房源管理</a> <a
-									class="nav-link"
-									href="<%=request.getContextPath()%>/frontend/ren_appointment/listRenAppByLDD.jsp">預約單管理</a>
-								<a class="nav-link" href="layout-sidenav-light.html">租賃單管理</a>
+								<a class="nav-link" href="<%=request.getContextPath()%>/frontend/ren_appointment/listRenAppByMEM.jsp">預約單管理</a>
+                                    <a class="nav-link" href="<%=request.getContextPath()%>/frontend/ren_lease/MEMlistOneLease.jsp">租賃單管理</a>
+                                    <a class="nav-link" href="<%=request.getContextPath()%>/frontend/ren_favorites/listOneRenFavorites.jsp">收藏房源管理</a>
 							</nav>
 						</div>
 						<!-- ------------------------------------------------------------------------------------------------- -->
@@ -188,7 +188,7 @@ th, td {
 							aria-controls="collapsePages">
 							<div class="sb-nav-link-icon">
 								<i class="fas fa-couch"></i>
-							</div> 二手相關管理
+							</div> 二手家電管理
 							<div class="sb-sidenav-collapse-arrow">
 								<i class="fas fa-angle-down"></i>
 							</div>
@@ -196,10 +196,7 @@ th, td {
 						<div class="collapse" id="collapsePages"
 							aria-labelledby="headingTwo" data-bs-parent="#sidenavAccordion">
 							<nav class="sb-sidenav-menu-nested nav">
-								<a class="nav-link"
-									href="<%=request.getContextPath()%>/frontend/sec_items/select_page.jsp">商品管理</a>
-								<a class="nav-link"
-									href="<%=request.getContextPath()%>/frontend/sec_ord/listAllSecOrd.jsp">訂單管理</a>
+								<a class="nav-link" href="<%=request.getContextPath()%>/sec_ord/SecOrdServlet.do?action=listSecOrd_ByShBuyerID">二手訂單管理</a>
 							</nav>
 						</div>
 						<!-- ------------------------------------------------------------------------------------------------- -->
@@ -208,7 +205,7 @@ th, td {
 							aria-controls="collapsePages">
 							<div class="sb-nav-link-icon">
 								<i class="fas fa-wrench"></i>
-							</div> 服務相關管理
+							</div> 居家服務專區
 							<div class="sb-sidenav-collapse-arrow">
 								<i class="fas fa-angle-down"></i>
 							</div>
@@ -216,9 +213,8 @@ th, td {
 						<div class="collapse" id="collapsePages2"
 							aria-labelledby="headingThree" data-bs-parent="#sidenavAccordion">
 							<nav class="sb-sidenav-menu-nested nav">
-								<a class="nav-link" href="layout-static.html">服務管理</a> <a
-									class="nav-link" href="layout-sidenav-light.html">需求單管理</a> <a
-									class="nav-link" href="layout-sidenav-light.html">訂單管理</a>
+								<a class="nav-link" href="<%=request.getContextPath()%>/frontend/ser_dmd/getByDmdMemID.jsp">需求單/報價單管理</a>
+                                    <a class="nav-link" href="<%=request.getContextPath()%>/frontend/ser_ord/getOrdByMemID.jsp">服務訂單管理</a>
 							</nav>
 						</div>
 						<!-- ------------------------------------------------------------------------------------------------- -->
@@ -227,74 +223,13 @@ th, td {
 
 			</nav>
 		</div>
-		<!-- main 開始--------------------------------------------------------------------------------- -->
+<!-- main 開始--------------------------------------------------------------------------------- -->
 		<div id="layoutSidenav_content">
 			<main>
 				<div class="container-fluid px-4">
-					<!-- 塞頁面從這裡開始--------------------------------------------------------------------------------- -->
+<!-- 塞頁面從這裡開始--------------------------------------------------------------------------------- -->
 
 
-					<html>
-<head>
-
-
-<title>EASY SPACE</title>
-
-
-<style>
-table#table-1 {
-	background-color: #FFE5B5;
-	border: 2px solid black;
-	text-align: center;
-}
-
-table#table-1 h4 {
-	color: red;
-	display: block;
-	margin-bottom: 1px;
-}
-
-h4 {
-	color: blue;
-	display: inline;
-}
-</style>
-
-<style>
-table {
-	width: 1000px;
-	background-color: white;
-	margin-top: 5px;
-	margin-bottom: 5px;
-}
-
-table, th, td {
-	border: 1px solid #CCCCFF;
-}
-
-th, td {
-	padding: 5px;
-	text-align: center;
-}
-</style>
-
-</head>
-<body bgcolor='white'>
-
-	<!-- 	<h4>此頁練習採用 EL 的寫法取值:</h4> -->
-	<table id="table-1">
-		<tr>
-			<td>
-				<h3>所有訂單</h3>
-				<h4>
-					<a
-						href="<%=request.getContextPath()%>/frontend/sec_ord/listAllSecOrd.jsp"><img
-						src="<%=request.getContextPath()%>/images/cmn/index/EASYSPACE.png"
-						width="100" height="60" border="0">回查詢首頁</a>
-				</h4>
-			</td>
-		</tr>
-	</table>
 
 	<%-- 錯誤表列 --%>
 	<c:if test="${not empty errorMsgs}">
@@ -308,103 +243,42 @@ th, td {
 
 	<table>
 		<tr>
-			<th>商品訂單編號</th>
-			<th>買家編號</th>
-			<th>賣家編號</th>
-			<th>收件地址郵遞區號</th>
-			<th>收件縣市</th>
-			<th>收件鄉鎮區</th>
-			<th>收件地址</th>
-			<th>付款方式</th>
-			<th>訂單狀態</th>
-			<th>商品價格</th>
-			<th>訂單日期</th>
-			<!-- 			<th>買家評價賣家星數</th> -->
-			<!-- 			<th>買家評價賣家內容</th> -->
-			<!-- 			<th>賣家評價買家星數</th> -->
-			<!-- 			<th>賣家評價買家內容</th> -->
-			<!-- 			<th>撥款日期</th> -->
-			<!-- 			<th>買家備註</th> -->
-			<th>修改</th>
-			<th>取消訂單<font color=red></font></th>
-			<th>查詢訂單明細</th>
+			<th>訂單編號</th>
+			<th>商品編號</th>
+			<th>商品名稱</th>
+			<th>訂單金額</th>
+			<th>商品數量</th>
+
 		</tr>
 
-		<c:forEach var="secOrdVO" items="${listSecOrd_ByShSellererID}">
+
+		<c:forEach var="secOrdDetailsVO"
+			items="${list}">
 			<tr>
-				<td>${secOrdVO.shOrdID}</td>
-				<td>${secOrdVO.shBuyerID}</td>
-				<td>${secOrdVO.shSellerID}</td>
-				<td>${secOrdVO.shPostcode}</td>
-				<td>${secOrdVO.shCounty}</td>
-				<td>${secOrdVO.shDist}</td>
-				<td>${secOrdVO.shRoad}</td>
-
-				<td><c:if test="${secOrdVO.shPayment == 11}">信用卡</c:if> <c:if
-						test="${secOrdVO.shPayment == 12}">匯款</c:if></td>
-
-
-				<td><c:if test="${secOrdVO.shOrdStatus == 8}">取消訂單</c:if> <c:if
-						test="${secOrdVO.shOrdStatus == 2}">待出貨</c:if> <c:if
-						test="${secOrdVO.shOrdStatus == 3}">已出貨</c:if> <c:if
-						test="${secOrdVO.shOrdStatus == 6}">退款審核中</c:if> <c:if
-						test="${secOrdVO.shOrdStatus == 7}">訂單完成</c:if></td>
-
-
-				<td><fmt:formatNumber value="${secOrdVO.shPrice}"
-						pattern="###,###" /></td>
-				<td>${secOrdVO.shDate}</td>
-				<%-- 				<td>${secOrdVO.shBuyerScore}</td> --%>
-				<%-- 				<td>${secOrdVO.shBuyerTXT}</td> --%>
-				<%-- 				<td>${secOrdVO.shSellerScore}</td> --%>
-				<%-- 				<td>${secOrdVO.shSellerTXT}</td> --%>
-				<%-- 				<td>${secOrdVO.shAPPDate}</td> --%>
-				<%-- 				<td>${secOrdVO.shNotes}</td> --%>
-				<td>
-					<FORM METHOD="post"
-						ACTION="<%=request.getContextPath()%>/sec_ord/UpdateSecOrdBySellerServlet.do"
-						style="margin-bottom: 0px;">
-						<input type="submit" value="修改"> <input type="hidden"
-							name="shOrdID" value="${secOrdVO.shOrdID}"> <input
-							type="hidden" name="action" value="getOne_For_Update">
-					</FORM>
-				</td>
-				<td>
-					<FORM METHOD="post"
-						ACTION="<%=request.getContextPath()%>/sec_ord/GetSecOrdDetailsBySellerServlet.do"
-						style="margin-bottom: 0px;">
-						<input type="submit" value="取消訂單"> <input type="hidden"
-							name="shOrdID" value="${secOrdVO.shOrdID}"> <input
-							type="hidden" name="action" value="delete_secord">
-					</FORM>
-				</td>
-				<td>
-					<FORM METHOD="post"
-						ACTION="<%=request.getContextPath()%>/sec_ord/GetSecOrdDetailsBySellerServlet.do"
-						style="margin-bottom: 0px;">
-						<input type="submit" value="送出查詢"> <input type="hidden"
-							name="shOrdID" value="${secOrdVO.shOrdID}"> <input
-							type="hidden" name="action" value="listSecOrdDetails_BySecOrd_A">
-					</FORM>
-				</td>
+				<td>${secOrdDetailsVO.shOrdID}</td>
+				<td>${secOrdDetailsVO.shID}</td>
+				<td>${secOrdDetailsVO.shName}</td>
+				<td>${secOrdDetailsVO.shPrice}</td>
+				<td>${secOrdDetailsVO.shQty}</td>
 			</tr>
 		</c:forEach>
+
+
+
+
+
 	</table>
 
 
-	<%
-	if (request.getAttribute("listSecOrdDetails") != null) {
-	%>
-	<jsp:include page="listSecOrdDetails.jsp" />
-	<%
-	}
-	%>
 
-	<!-- 塞頁面從這裡結束--------------------------------------------------------------------------------- -->
+
+
+
+<!-- 塞頁面從這裡結束--------------------------------------------------------------------------------- -->
 				</div>
 			</main>
 		</div>
-		<!-- main 結束--------------------------------------------------------------------------------- -->
+<!-- main 結束--------------------------------------------------------------------------------- -->
 	</div>
 
 
@@ -421,5 +295,6 @@ th, td {
 
 	<!-- 側邊導覽列結束--------------------------------------- -->
 	<main></main>
+
 </body>
 </html>

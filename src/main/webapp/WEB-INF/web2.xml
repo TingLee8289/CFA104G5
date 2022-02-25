@@ -1,0 +1,145 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns="http://xmlns.jcp.org/xml/ns/javaee"
+	xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_4_0.xsd"
+	id="WebApp_ID" version="4.0">
+	<display-name>CFA104G5_2</display-name>
+	<welcome-file-list>
+		<welcome-file>index.html</welcome-file>
+		<welcome-file>index.htm</welcome-file>
+		<welcome-file>index.jsp</welcome-file>
+		<welcome-file>default.html</welcome-file>
+		<welcome-file>default.htm</welcome-file>
+		<welcome-file>default.jsp</welcome-file>
+	</welcome-file-list>
+
+	<resource-ref>
+		<description>DB Connection</description>
+		<res-ref-name>jdbc/CFA104G5</res-ref-name>
+		<res-type>javax.sql.DataSource</res-type>
+		<res-auth>Container</res-auth>
+	</resource-ref>
+	
+	<filter>
+		<filter-name>BackendLoginFilter</filter-name>
+		<filter-class>filters.BackendLoginFilter</filter-class>
+	</filter>
+	<filter-mapping>
+		<filter-name>BackendLoginFilter</filter-name>
+		<url-pattern>/backend/index.jsp</url-pattern>
+		<url-pattern>/backend/adminEmp/*</url-pattern>
+		<url-pattern>/backend/member/*</url-pattern>
+		<url-pattern>/backend/ren/*</url-pattern>
+		<url-pattern>/backend/sec_items/*</url-pattern>
+		<url-pattern>/backend/ser/*</url-pattern>
+		<dispatcher>REQUEST</dispatcher>
+		<dispatcher>FORWARD</dispatcher>
+		<dispatcher>INCLUDE</dispatcher>
+		<dispatcher>ERROR</dispatcher>
+		<dispatcher>ASYNC</dispatcher>
+	</filter-mapping>
+<!-- 	<filter> -->
+<!-- 		<filter-name>FronendLoginFilter</filter-name> -->
+<!-- 		<filter-class>filters.FrontendLoginFilter</filter-class> -->
+<!-- 	</filter> -->
+<!-- 	<filter-mapping> -->
+<!-- 		<filter-name>FronendLoginFilter</filter-name> -->
+<!-- 		<url-pattern>/frontend/member/memberCenter/sellerMemberCenter.jsp</url-pattern> -->
+<!-- 		<url-pattern>/frontend/member/memberCenter/buyerMemberCenter.jsp</url-pattern> -->
+<!-- 		<dispatcher>REQUEST</dispatcher> -->
+<!-- 		<dispatcher>FORWARD</dispatcher> -->
+<!-- 		<dispatcher>INCLUDE</dispatcher> -->
+<!-- 		<dispatcher>ERROR</dispatcher> -->
+<!-- 		<dispatcher>ASYNC</dispatcher> -->
+<!-- 	</filter-mapping> -->
+	<filter>
+		<filter-name>BackendSecurityAdminEmp</filter-name>
+		<filter-class>filters.BackendSecurityAdminEmp</filter-class>
+	</filter>
+	<filter-mapping>
+		<filter-name>BackendSecurityAdminEmp</filter-name>
+		<url-pattern>/backend/adminEmp/*</url-pattern>
+		<dispatcher>REQUEST</dispatcher>
+		<dispatcher>FORWARD</dispatcher>
+		<dispatcher>INCLUDE</dispatcher>
+		<dispatcher>ERROR</dispatcher>
+		<dispatcher>ASYNC</dispatcher>
+	</filter-mapping>
+	<filter>
+		<filter-name>BackendSecurityMember</filter-name>
+		<filter-class>filters.BackendSecurityMember</filter-class>
+	</filter>
+	<filter-mapping>
+		<filter-name>BackendSecurityMember</filter-name>
+		<url-pattern>/backend/member/*</url-pattern>
+		<dispatcher>REQUEST</dispatcher>
+		<dispatcher>FORWARD</dispatcher>
+		<dispatcher>INCLUDE</dispatcher>
+		<dispatcher>ERROR</dispatcher>
+		<dispatcher>ASYNC</dispatcher>
+	</filter-mapping>
+	<filter>
+		<filter-name>BackendSecurityRen</filter-name>
+		<filter-class>filters.BackendSecurityRen</filter-class>
+	</filter>
+	<filter-mapping>
+		<filter-name>BackendSecurityRen</filter-name>
+		<url-pattern>/backend/ren/*</url-pattern>
+		<dispatcher>REQUEST</dispatcher>
+		<dispatcher>FORWARD</dispatcher>
+		<dispatcher>INCLUDE</dispatcher>
+		<dispatcher>ERROR</dispatcher>
+		<dispatcher>ASYNC</dispatcher>
+	</filter-mapping>
+	<filter>
+		<filter-name>BackendSecuritySerRepo</filter-name>
+		<filter-class>filters.BackendSecuritySerRepo</filter-class>
+	</filter>
+	<filter-mapping>
+		<filter-name>BackendSecuritySerRepo</filter-name>
+		<url-pattern>/backend/ser/ser_repo/*</url-pattern>
+		<dispatcher>REQUEST</dispatcher>
+		<dispatcher>FORWARD</dispatcher>
+		<dispatcher>INCLUDE</dispatcher>
+		<dispatcher>ERROR</dispatcher>
+		<dispatcher>ASYNC</dispatcher>
+	</filter-mapping>
+	<filter>
+		<filter-name>BackendSecuritySerAD</filter-name>
+		<filter-class>filters.BackendSecuritySerAD</filter-class>
+	</filter>
+	<filter-mapping>
+		<filter-name>BackendSecuritySerAD</filter-name>
+		<url-pattern>/backend/ser/serAd/*</url-pattern>
+		<dispatcher>REQUEST</dispatcher>
+		<dispatcher>FORWARD</dispatcher>
+		<dispatcher>INCLUDE</dispatcher>
+		<dispatcher>ERROR</dispatcher>
+		<dispatcher>ASYNC</dispatcher>
+	</filter-mapping>
+	<filter>
+		<filter-name>BackendSecuritySerCla</filter-name>
+		<filter-class>filters.BackendSecuritySerCla</filter-class>
+	</filter>
+	<filter-mapping>
+		<filter-name>BackendSecuritySerCla</filter-name>
+		<url-pattern>/backend/ser/ser_cla/*</url-pattern>
+		<dispatcher>REQUEST</dispatcher>
+		<dispatcher>FORWARD</dispatcher>
+		<dispatcher>INCLUDE</dispatcher>
+		<dispatcher>ERROR</dispatcher>
+		<dispatcher>ASYNC</dispatcher>
+	</filter-mapping>
+	<filter>
+		<filter-name>setCharacterEncoding</filter-name>
+		<filter-class>filters.SetCharacterEncodingFilter</filter-class>
+		<init-param>
+			<param-name>encoding</param-name>
+			<param-value>UTF-8</param-value>
+		</init-param>
+	</filter>
+	<filter-mapping>
+		<filter-name>setCharacterEncoding</filter-name>
+		<url-pattern>/*</url-pattern>
+	</filter-mapping>
+</web-app>

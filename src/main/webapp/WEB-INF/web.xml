@@ -1,61 +1,61 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-	xmlns="http://xmlns.jcp.org/xml/ns/javaee"
-	xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_4_0.xsd"
-	id="WebApp_ID" version="4.0">
-	<display-name>CFA104G5_2</display-name>
-	<welcome-file-list>
-		<welcome-file>index.html</welcome-file>
-		<welcome-file>index.htm</welcome-file>
-		<welcome-file>index.jsp</welcome-file>
-		<welcome-file>default.html</welcome-file>
-		<welcome-file>default.htm</welcome-file>
-		<welcome-file>default.jsp</welcome-file>
-	</welcome-file-list>
+ xmlns="http://xmlns.jcp.org/xml/ns/javaee"
+ xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_4_0.xsd"
+ id="WebApp_ID" version="4.0">
+ <display-name>CFA104G5_2</display-name>
+ <welcome-file-list>
+  <welcome-file>index.html</welcome-file>
+  <welcome-file>index.htm</welcome-file>
+  <welcome-file>index.jsp</welcome-file>
+  <welcome-file>default.html</welcome-file>
+  <welcome-file>default.htm</welcome-file>
+  <welcome-file>default.jsp</welcome-file>
+ </welcome-file-list>
 
-	<resource-ref>
-		<description>DB Connection</description>
-		<res-ref-name>jdbc/CFA104G5</res-ref-name>
-		<res-type>javax.sql.DataSource</res-type>
-		<res-auth>Container</res-auth>
-	</resource-ref>
-	
-	<filter>
-		<filter-name>LoginFilter</filter-name>
-		<filter-class>filters.BackendLoginFilter</filter-class>
-	</filter>
-	<filter-mapping>
-		<filter-name>LoginFilter</filter-name>
-		<url-pattern>/backend/loginsucess.jsp</url-pattern>
-		<dispatcher>REQUEST</dispatcher>
-		<dispatcher>FORWARD</dispatcher>
-		<dispatcher>INCLUDE</dispatcher>
-		<dispatcher>ERROR</dispatcher>
-		<dispatcher>ASYNC</dispatcher>
-	</filter-mapping>
-	<filter>
-		<filter-name>FronendLoginFilter</filter-name>
-		<filter-class>filters.FrontendLoginFilter</filter-class>
-	</filter>
-	<filter-mapping>
-		<filter-name>FronendLoginFilter</filter-name>
-		<url-pattern>/frontend/member/loginsuccess.jsp</url-pattern>
-		<dispatcher>REQUEST</dispatcher>
-		<dispatcher>FORWARD</dispatcher>
-		<dispatcher>INCLUDE</dispatcher>
-		<dispatcher>ERROR</dispatcher>
-		<dispatcher>ASYNC</dispatcher>
-	</filter-mapping>
-	<filter>
-		<filter-name>setCharacterEncoding</filter-name>
-		<filter-class>filters.SetCharacterEncodingFilter</filter-class>
-		<init-param>
-			<param-name>encoding</param-name>
-			<param-value>UTF-8</param-value>
-		</init-param>
-	</filter>
-	<filter-mapping>
-		<filter-name>setCharacterEncoding</filter-name>
-		<url-pattern>/*</url-pattern>
-	</filter-mapping>
+ <resource-ref>
+  <description>DB Connection</description>
+  <res-ref-name>jdbc/CFA104G5</res-ref-name>
+  <res-type>javax.sql.DataSource</res-type>
+  <res-auth>Container</res-auth>
+ </resource-ref>
+ 
+ <filter>
+  <filter-name>LoginFilter</filter-name>
+  <filter-class>filters.BackendLoginFilter</filter-class>
+ </filter>
+ <filter-mapping>
+  <filter-name>LoginFilter</filter-name>
+  <url-pattern>/backend/loginsucess.jsp</url-pattern>
+  <dispatcher>REQUEST</dispatcher>
+  <dispatcher>FORWARD</dispatcher>
+  <dispatcher>INCLUDE</dispatcher>
+  <dispatcher>ERROR</dispatcher>
+  <dispatcher>ASYNC</dispatcher>
+ </filter-mapping>
+ <filter>
+  <filter-name>FronendLoginFilter</filter-name>
+  <filter-class>filters.FrontendLoginFilter</filter-class>
+ </filter>
+ <filter-mapping>
+  <filter-name>FronendLoginFilter</filter-name>
+  <url-pattern>/frontend/member/loginsuccess.jsp</url-pattern>
+  <dispatcher>REQUEST</dispatcher>
+  <dispatcher>FORWARD</dispatcher>
+  <dispatcher>INCLUDE</dispatcher>
+  <dispatcher>ERROR</dispatcher>
+  <dispatcher>ASYNC</dispatcher>
+ </filter-mapping>
+ <filter>
+  <filter-name>setCharacterEncoding</filter-name>
+  <filter-class>filters.SetCharacterEncodingFilter</filter-class>
+  <init-param>
+   <param-name>encoding</param-name>
+   <param-value>UTF-8</param-value>
+  </init-param>
+ </filter>
+ <filter-mapping>
+  <filter-name>setCharacterEncoding</filter-name>
+  <url-pattern>/*</url-pattern>
+ </filter-mapping>
 </web-app>

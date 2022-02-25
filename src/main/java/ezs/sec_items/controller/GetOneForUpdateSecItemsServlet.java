@@ -43,13 +43,13 @@ public class GetOneForUpdateSecItemsServlet extends HttpServlet {
 			// Store this set in the request scope, in case we need to
 			// send the ErrorPage view.
 			req.setAttribute("errorMsgs", errorMsgs);
-
+System.out.println(action);
 			try {
 				/*************************** 1.接收請求參數 ****************************************/
 				Object seller = session.getAttribute("memID");
 
 				Integer shSellerID = (Integer) seller;
-				System.out.println(shSellerID);
+System.out.println(shSellerID);
 				
 				
 				
@@ -58,13 +58,13 @@ public class GetOneForUpdateSecItemsServlet extends HttpServlet {
 				/*************************** 2.開始查詢資料 ****************************************/
 				SecItemsService secItemsSvc = new SecItemsService();
 				SecItemsVO secItemsVO = secItemsSvc.getOneSecItems(shSellerID,shID);
-
+System.out.println("=>>>>>>>>>>>>>>>"+secItemsVO);
 				/*************************** 3.查詢完成,準備轉交(Send the Success view) ************/
 				req.setAttribute("secItemsVO", secItemsVO); // 資料庫取出的secItems物件,存入req
 				String url = "/frontend/sec_items/update_secItems_input.jsp";
 				RequestDispatcher successView = req.getRequestDispatcher(url);// 成功轉交 update_emp_input.jsp
 				successView.forward(req, res);
-
+System.out.println("=>>>"+successView);
 				/*************************** 其他可能的錯誤處理 **********************************/
 			} catch (Exception e) {
 				e.printStackTrace();
