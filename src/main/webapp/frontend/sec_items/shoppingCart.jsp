@@ -511,7 +511,7 @@
 	            	<div class="infoWrap"> 
 	              		<div class="cartSection info">
 	             			<img src="#" alt="" class="itemImg" />
-			                <p class="itemNumber">#QUE-007544-002</p>
+<!-- 			                <p class="itemNumber">#QUE-007544-002</p> -->
 			                <h3 class="product-name"><%=order.getShName()%></h3>
 			                <p> <input type="text"  class="qty" placeholder="<%=order.getShQTY()%>"/> x $<%=order.getShPrice()%></p>
 			                <p class="stockStatus"> In Stock</p>

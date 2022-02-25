@@ -126,7 +126,7 @@ public class SecOrdServlet extends HttpServlet {
 				
 				Integer shPostcode = null;
 				try {
-					shPostcode = Integer.valueOf(req.getParameter("shRecipPhone"));
+					shPostcode = Integer.valueOf(req.getParameter("shPostcode"));
 				} catch (Exception e){
 					errorMsgs.add("郵遞區號請勿空白");
 				}

@@ -13,6 +13,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import ezs.member.model.MemberService;
+import ezs.member.model.MemberVO;
 import redis.clients.jedis.Jedis;
 
 @WebServlet("/member/MemberVerificationServlet.do")
@@ -27,11 +28,13 @@ public class MemberVerificationServlet extends HttpServlet {
 
 		req.setCharacterEncoding("UTF-8");
 		String action = req.getParameter("action");
+		
 		HttpSession session = req.getSession();
-		String memUserName = (String) session.getAttribute("memUsername");
+		MemberVO memberVO = (MemberVO) session.getAttribute("memberVO");
+		String memUsername = memberVO.getMemUsername();
 		String verifCode = req.getParameter("verifCode");
 		
-		System.out.println(memUserName);
+		System.out.println(memUsername);
 		System.out.println(verifCode);
 
 		if ("verify".equals(action)) {
@@ -51,12 +54,12 @@ public class MemberVerificationServlet extends HttpServlet {
 
 			/*************************** 2.開始查詢資料 *****************************************/
 			Jedis jedis = new Jedis("localhost", 6379);
-			System.out.println(jedis.get(memUserName));
+			System.out.println(jedis.get(memUsername));
 			
 			// 處理輸入驗證碼正確的情況
-			if (verifCode.equals(jedis.get(memUserName))) {
+			if (verifCode.equals(jedis.get(memUsername))) {
 				MemberService memberSvc = new MemberService();
-				memberSvc.verifyMember(memUserName);
+				memberSvc.verifyMember(memUsername);
 				jedis.close();
 				
 				String url = "/frontend/member/login.jsp";
@@ -78,7 +81,12 @@ public class MemberVerificationServlet extends HttpServlet {
 		}
 
 		if ("resent".equals(action)) {
-
+			
+			
+			
+			
+			
+			
 		}
 
 	}
