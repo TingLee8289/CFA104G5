@@ -337,8 +337,7 @@ SerVdrVO servdrVO = (SerVdrVO) request.getAttribute("servdrVO");
 			<tr>
 				<td>廠商簡介:</td>
 				<td>
-				<textarea name="vdrIntro" rows="4" cols="50" font-size: 0 style='text-align:left;'>
-				<%=(servdrVO == null) ? "新吉防水工程本以熱誠親切的態度提供免費報價及專業的諮詢。秉持「品質與服務」的信念為客戶立場著想，圓滿解決客戶居家漏水的問題。樹立公司良好口碑，以達到永續經營之目標！" : servdrVO.getVdrIntro()%></textarea> </td>
+				<textarea name="vdrIntro" rows="4" cols="50" font-size: 0 style='text-align:left;'><%=(servdrVO == null) ? "新吉防水工程本以熱誠親切的態度提供免費報價及專業的諮詢。秉持「品質與服務」的信念為客戶立場著想，圓滿解決客戶居家漏水的問題。樹立公司良好口碑，以達到永續經營之目標！" : servdrVO.getVdrIntro()%></textarea> </td>
 			</tr>
 			
 			
