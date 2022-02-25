@@ -279,7 +279,7 @@ MemberVO memVO = memSvc.getOneMember(memID);
             const img = document.createElement('img');
             const hr = document.createElement('hr');
 
-            img.setAttribute('style', 'display:block;max-height:300px;position:absolute;');
+            img.setAttribute('style', 'display:block;max-height:250px;max-weight:350px;position:relative;');
 
             div.appendChild(img);
 
@@ -298,34 +298,7 @@ MemberVO memVO = memSvc.getOneMember(memID);
             return div;
         }
         
-        const wrapper2 = document.querySelector('#wrapper2');
-        const block2 = genSelectImgBlock2();
-        wrapper2.appendChild(block2);
-
-        function genSelectImgBlock2() {
-            const div2 = document.createElement('div');
-            const inputBtn2 = document.querySelector('#put2');
-            const img2 = document.createElement('img');
-            const hr2 = document.createElement('hr');
-
-            img2.setAttribute('style', 'display:block;max-height:300px;position:absolute;');
-
-            div2.appendChild(img2);
-
-            inputBtn2.addEventListener('input', (e) => {
-                const url = URL.createObjectURL(inputBtn2.files[0]);
-                console.log(url);
-                if (url) { 
-                    img2.setAttribute('src', url);
-                    if (blockArray[blockArray.length - 1] === div2) {
-                        const block = genSelectImgBlock();
-                        wrapper2.appendChild(block);
-                    }
-                }
-            });
-
-            return div2;
-        }
+       
         
     </script>
 				</div>

@@ -20,7 +20,6 @@ lse_mem_id = memID;
 RenLeaseService renLeaseSrv =new RenLeaseService();
 List<RenLeaseVO> list1= renLeaseSrv.getAllLease(lse_mem_id);
 pageContext.setAttribute("list", list1);
-System.out.println(list1.size());
 
 %>
 

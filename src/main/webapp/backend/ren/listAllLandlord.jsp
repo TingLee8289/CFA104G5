@@ -249,7 +249,7 @@ pageContext.setAttribute("list2", list2);
 					</c:forEach></td>
 				<td><img
 					src="<%= request.getContextPath() %>/ren_landlord/LddPicReader?lddId=${renLandlordVO.lddId}"
-					width="130" height="150" class="item-images" style="margin: auto;"></td>
+					width="350px" height="200px" class="item-images" style="margin: auto;"></td>
 
 				<td><c:if test="${renLandlordVO.lddApproval == 0}">審核中</c:if> <c:if
 						test="${renLandlordVO.lddApproval == 1}">審核未過</c:if> <c:if
@@ -267,7 +267,8 @@ pageContext.setAttribute("list2", list2);
 					<FORM METHOD="post"
 						ACTION="<%=request.getContextPath()%>/ren_landlord/RenLandlordServlet.do"
 						style="margin-bottom: 0px;">
-						<input type="submit" value="刪除"> <input type="hidden"
+						<input type="submit" value="刪除"> 
+						<input type="hidden"
 							name="lddId" value="${renLandlordVO.lddId}"> <input
 							type="hidden" name="action" value="delete">
 					</FORM>
@@ -281,36 +282,30 @@ pageContext.setAttribute("list2", list2);
 
 
 </div>
-</main>
-<footer class="py-4 bg-light mt-auto">
-	<div class="container-fluid px-4">
-		<div class="d-flex align-items-center justify-content-between small">
-			<div class="text-muted">Copyright &copy; EASY SPACE 2021</div>
-			<div>
-				<a href="#">Privacy Policy</a> &middot; <a href="#">Terms &amp;
-					Conditions</a>
-			</div>
-		</div>
-	</div>
-</footer>
-</div>
-</div>
-<script
-	src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
-	crossorigin="anonymous"></script>
-<script src="js/scripts.js"></script>
-<script
-	src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.min.js"
-	crossorigin="anonymous"></script>
-<script src="assets/demo/chart-area-demo.js"></script>
-<script src="assets/demo/chart-bar-demo.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/simple-datatables@latest"
-	crossorigin="anonymous"></script>
-<script src="js/datatables-simple-demo.js"></script>
-
+              </main>
+                <footer class="py-4 bg-light mt-auto">
+                    <div class="container-fluid px-4">
+                        <div class="d-flex align-items-center justify-content-between small">
+                            <div class="text-muted">Copyright &copy; EASY SPACE 2021</div>
+                            <div>
+                                <a href="#">Privacy Policy</a>
+                                &middot;
+                                <a href="#">Terms &amp; Conditions</a>
+                            </div>
+                        </div>
+                    </div>
+                </footer>
+            </div>
+        </div>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
+        <script src="js/scripts.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.min.js" crossorigin="anonymous"></script>
+        <script src="assets/demo/chart-area-demo.js"></script>
+        <script src="assets/demo/chart-bar-demo.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/simple-datatables@latest" crossorigin="anonymous"></script>
+        <script src="js/datatables-simple-demo.js"></script>
+   
 
 
 </body>
-
-
 </html>
