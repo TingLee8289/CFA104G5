@@ -215,7 +215,7 @@ public class RenFavoritesServlet extends HttpServlet {
 				renFavoritesVO = renFavSvc.addRenFav(favLisId, favMemId, favAddTime);
 
 				/*************************** 3.新增完成,準備轉交(Send the Success view) ***********/
-				String url = "/frontend/ren_favorites/select_page.jsp";
+				String url = "/frontend/ren_favorites/listOneRenFavorites.jsp";
 				RequestDispatcher successView = req.getRequestDispatcher(url); // 新增成功後轉交listAllRenFavorites.jsp
 				successView.forward(req, res);
 
