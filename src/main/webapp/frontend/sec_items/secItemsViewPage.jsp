@@ -179,6 +179,10 @@
         width: 100%;
       }
     </style>
+<!--     sweetAlert -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/6.10.3/sweetalert2.css" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/6.10.3/sweetalert2.js" type="text/javascript"></script>
+<!--     sweetAlert -->
   </head>
   <body>
   	<jsp:include page="/frontend/EZ_nav.jsp"/>
@@ -196,18 +200,21 @@
             <li class="probootstrap-animate active" data-animate-effect="fadeInLeft"><a href="<%=request.getContextPath() %>/frontend/sec_items/secItemsViewPage.jsp">瀏覽全部商品</a></li>
             	<c:forEach var="secCategoryVO" items="${secCategorylist}">
 	         	 <li class="probootstrap-animate" data-animate-effect="fadeInLeft">
-<!-- 	         	 	<form> -->
+<!-- 	         	 		嘗試修改的版本 -->
+<%-- 	         	 	<form method="get" action="<%=request.getContextPath() %>/frontend/sec_items/secItemsViewPageAJAX.jsp"> --%>
 <%-- 	         	 		<a style="text-decoration:none;" href="<%=request.getContextPath() %>/frontend/sec_items/secItemsViewPageAJAX.jsp"> --%>
-<%-- 	         	 		<input type="button" value="${secCategoryVO.shCateName}"> --%>
-<%-- 	         	 		<input type="hidden" name="shCateID" value="${secCategoryVO.shCateID}"> --%>
+<%-- 	         	 		${secCategoryVO.shCateName} --%>
 <!-- 	         	 		</a> -->
+<%-- 	         	 		<input type="hidden" name="shCateID" value="${secCategoryVO.shCateID}"> --%>
 <!-- 	         	 	</form> -->
+	         	 	
 	         	 	
 <!-- 	         	 		對的版本但很醜 -->
 <%-- 	         	 	<form method="get" action="<%=request.getContextPath() %>/frontend/sec_items/secItemsViewPageAJAX.jsp"> --%>
 <%-- 		         	 	<button type="button" id="Cate${secCategoryVO.shCateID}">${secCategoryVO.shCateName}</button> --%>
 <%-- 		         	 	<input type="hidden" name="shCateID" value="${secCategoryVO.shCateID}"> --%>
 <!-- 	         	 	</form> -->
+
 
 <!-- 						不對的版本但很美 -->
 						<form>
@@ -247,7 +254,7 @@
 					<c:forEach var="secItemsVO" items="${secItemslist}">
 						<c:if test="${secItemsVO.shID==secPicsVO.shID}">
 							<form method="post" action="<%=request.getContextPath()%>/sec_items/ShoppingServlet.do">
-								<input type="submit" value="加入購物車" class="btn btn-outline-success text-nowrap">
+								<input type="submit" value="加入購物車" class="btn btn-outline-success text-nowrap" id="btn1">
 								<input type="hidden" name="shID" value="${secItemsVO.shID}">
 								<input type="hidden" name="shName" value="${secItemsVO.shName}">
 								<input type="hidden" name="shPrice" value="${secItemsVO.shPrice}">
@@ -296,6 +303,7 @@
 			}
 		});
 	});
+	
 	$('#Cate2').click(function() {
 		$.ajax({
 			type: "get",
@@ -351,6 +359,26 @@
   <script src="js/jquery.waypoints.min.js"></script>
   <script src="js/imagesloaded.pkgd.min.js"></script>
   <script src="js/main.js"></script>
+    
+    
+<!--     sweetAlert -->
+    
+<!--     <script type="text/javascript"> -->
+//         var btn1 = document.getElementById('btn1');
+
+//         btn1.addEventListener('click', function() {
+//             swal('已加入購物車', '', 'success')
+
+//             .then(function(){
+//             		var delay = 2000 // 凍結 2 秒
+//             	    var end = +new Date() + delay
+//             	    while(new Date() < end) {
+//             	    }
+//             	})
+//         });
+<!--     </script> -->
+<!--     sweetAlert -->
+    
     
   </body>
 </html>
