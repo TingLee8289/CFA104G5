@@ -220,19 +220,11 @@
 
 <body>
 
-<c:if test="${not empty errorMsgs}">
-	<font style="color:red">請修正以下錯誤:</font>
-	<ul>
-		<c:forEach var="message" items="${errorMsgs}">
-			<li style="color:red">${message}</li>
-		</c:forEach>
-	</ul>
-</c:if>
 
 	<div class="login-wrap">
 		<div class="verify-html">
 			<input id="tab-2" type="radio" name="tab" class="for-pwd">
-			<label for="tab-2" class="tab">已將驗證碼發送至您信箱</label>
+			<label for="tab-2" class="tab">已將驗證碼發送至您的信箱</label>
 			<div class="login-form">
 
 				<div class="for-pwd-htm">
@@ -242,7 +234,6 @@
 						</div>
 						<div class="group">
 							<input type="hidden" name="action" value="verify"> 
-							<input type="hidden" name="memUsername" value="${memberVO.memUsername}"> 
 							<input type="submit" class="button" value="送出">
 						</div>
 					</form>
@@ -253,6 +244,21 @@
 						</div>
 					</form>
 					<div class="hr"></div>
+					
+<!-- 提示訊息列------------------------------------------------------------- -->
+					<div style="background-color: gray;">
+						<c:if test="${not empty errorMsgs}">
+							<div style="margin: 0px auto;">
+								<font style="color: red">請修正以下錯誤:</font>
+								<ul style="list-style-type: none;">
+									<c:forEach var="message" items="${errorMsgs}">
+										<li style="color: red">${message}</li>
+									</c:forEach>
+								</ul>
+							</div>
+						</c:if>
+					</div>
+<!-- 提示訊息列------------------------------------------------------------- -->					
 				</div>
 			</div>
 		</div>

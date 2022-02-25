@@ -35,11 +35,11 @@ public class InsertSerRepoServlet extends HttpServlet {
 				/*********************** 1.接收請求參數 - 輸入格式的錯誤處理 *************************/
 
 				
-				Integer rpOrdID = new Integer(req.getParameter("rpOrdID").trim());
-				Integer rpMemID = new Integer(req.getParameter("rpMemID").trim());
+				Integer rpOrdID = new Integer(req.getParameter("rpOrdID"));
+				Integer rpMemID = new Integer(req.getParameter("rpMemID"));
 
 				String rpTxt = req.getParameter("rpTxt").trim();
-				String txtReg = "^[(\\u4e00-\\u9fa5)(0-9)]{5,50}$";
+				String txtReg = "^[(\\u4e00-\\u9fa5)]{5,50}$";
 				if (rpTxt == null || rpTxt.trim().length() == 0) {
 					errorMsgs.add("檢舉內容請勿空白");
 				}else if (!rpTxt.trim().matches(txtReg)) { // 以下練習正則(規)表示式(regular-expression)
@@ -67,7 +67,8 @@ public class InsertSerRepoServlet extends HttpServlet {
 				// Send the use back to the form, if there were errors
 				if (!errorMsgs.isEmpty()) {
 					req.setAttribute("serRepVO", serRepVO); // 含有輸入格式錯誤的empVO物件,也存入req
-					RequestDispatcher failureView = req.getRequestDispatcher("/backend/ser/ser_repo/addSerRepo.jsp");
+					req.setAttribute("ordID", rpOrdID);
+					RequestDispatcher failureView = req.getRequestDispatcher("/frontend/ser_repo/addSerRepo.jsp");
 					failureView.forward(req, res);
 					return;
 				}
@@ -77,7 +78,7 @@ public class InsertSerRepoServlet extends HttpServlet {
 				serRepoSvc.addSerRepo(rpOrdID, rpMemID, rpTxt, rpDate, rpStatus);
 
 				/*************************** 3.新增完成,準備轉交(Send the Success view) ***********/
-				String url = "/frontend/ser_repo/serRepoHome.jsp";
+				String url = "/frontend/member/memberCenter/buyerMemberCenter.jsp";
 				RequestDispatcher successView = req.getRequestDispatcher(url); // 新增成功後轉交listAllEmp.jsp
 				successView.forward(req, res);
 
@@ -85,7 +86,7 @@ public class InsertSerRepoServlet extends HttpServlet {
 			} catch (Exception e) {
 				e.printStackTrace();
 				errorMsgs.add(e.getMessage());
-				RequestDispatcher failureView = req.getRequestDispatcher("/backend/ser/ser_repo/addSerRepo.jsp");
+				RequestDispatcher failureView = req.getRequestDispatcher("/frontend/ser_repo/addSerRepo.jsp");
 				failureView.forward(req, res);
 			}
 		}

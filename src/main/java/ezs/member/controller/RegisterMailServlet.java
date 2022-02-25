@@ -17,6 +17,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import ezs.member.model.MemberVO;
 import redis.clients.jedis.Jedis;
@@ -31,7 +32,9 @@ public class RegisterMailServlet extends HttpServlet {
 	
 	protected void doPost(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
 		
-		MemberVO memberVO = (MemberVO) req.getAttribute("memberVO");
+		HttpSession session = req.getSession();
+		MemberVO memberVO = (MemberVO) session.getAttribute("memberVO");
+		System.out.println(memberVO.getMemUsername());
 		RegisterMailServlet registerMailServlet = new RegisterMailServlet();
 
 		String to = memberVO.getMemEmail();
@@ -55,7 +58,6 @@ public class RegisterMailServlet extends HttpServlet {
 		RegisterMailServlet mailService = new RegisterMailServlet();
 		mailService.sendMail(to, subject, messageText);
 		
-		req.setAttribute("memberVO", memberVO);
 		String url = "/frontend/member/memberVerificationPage.jsp";
 		RequestDispatcher successView = req.getRequestDispatcher(url); 
 		successView.forward(req, res);

@@ -39,7 +39,8 @@ public class InsertSerVdrServlet extends HttpServlet {
 				/*********************** 1.接收請求參數 - 輸入格式的錯誤處理 *************************/
 				Integer vdrID = Integer.valueOf(req.getParameter("vdrID"));
 				
-				Byte vdrStatus =  Byte.valueOf(req.getParameter("vdrStatus"));//debug有問題 !!
+				
+				Byte vdrStatus =  Byte.valueOf(req.getParameter("vdrStatus"));
 				
 				
 
@@ -140,6 +141,15 @@ public class InsertSerVdrServlet extends HttpServlet {
 				
 			
 
+
+				/*************************** 2.開始新增資料 ***************************************/
+				SerVdrService servdrSvc = new SerVdrService();
+				try {
+					servdrSvc.addSerVdr(vdrID, vdrStatus, vdrName, vdrTel, vdrVatno, vdrCounty, vdrDist, vdrAddr, vdrOpen, vdrIntro, vdrPic, vdrRevCount, vdrRevScore);
+				} catch(RuntimeException e) {
+					errorMsgs.add("廠商已重複註冊");
+				}
+				
 				// Send the use back to the form, if there were errors
 				if (!errorMsgs.isEmpty()) {
 					req.setAttribute("serVdrVO", serVdrVO); // 含有輸入格式錯誤的empVO物件,也存入req
@@ -148,12 +158,8 @@ public class InsertSerVdrServlet extends HttpServlet {
 					return;
 				}
 
-				/*************************** 2.開始新增資料 ***************************************/
-				SerVdrService servdrSvc = new SerVdrService();
-				servdrSvc.addSerVdr(vdrID, vdrStatus, vdrName, vdrTel, vdrVatno, vdrCounty, vdrDist, vdrAddr, vdrOpen, vdrIntro, vdrPic, vdrRevCount, vdrRevScore);
-
 				/*************************** 3.新增完成,準備轉交(Send the Success view) ***********/
-				String url = "/frontend/ser_vdr/listAllSerVdr.jsp";
+				String url = "/frontend/ser_vdr/listOneSerVdr.jsp";
 				RequestDispatcher successView = req.getRequestDispatcher(url); // 新增成功後轉交listAllEmp.jsp
 				successView.forward(req, res);
 

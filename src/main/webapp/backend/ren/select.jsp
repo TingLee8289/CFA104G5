@@ -135,7 +135,7 @@
 </c:if>
 
 
-  <a href='listAllLandlord.jsp'>List</a> all landlords  <br><br>
+ <h4> <a href='listAllLandlord.jsp'><b>查詢</b></a>全部房東<br><br></h4>
   
   <jsp:useBean id="renlandlordSvc" scope="page" class="ezs.ren_landlord.model.RenLandlordService" />
    
@@ -143,6 +143,7 @@
      <FORM METHOD="post" ACTION="<%=request.getContextPath()%>/ren_landlord/RenLandlordServlet.do" >
        <b>選擇房東編號:</b>
        <select size="1" name="lddId">
+       <option value=''>請選擇</option>
          <c:forEach var="renLandlordVO" items="${renlandlordSvc.all}" > 
           <option value="${renLandlordVO.lddId}">${renLandlordVO.lddId}
          </c:forEach>   

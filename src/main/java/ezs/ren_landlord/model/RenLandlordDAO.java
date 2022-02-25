@@ -156,7 +156,37 @@ public class RenLandlordDAO implements RenLandlordDAO_interface {
 		return list;
 	}
 
-//
+	
+	public Integer findByMEM(Integer lddMemId) {
+		RenLandlordVO renLandlordVO = null;
+		
+		try {
+			con = ds.getConnection();
+			pstmt = con.prepareStatement(GET_BY_MEMID);
+			pstmt.setInt(1, lddMemId);
+
+			rs = pstmt.executeQuery();
+
+			while (rs.next()) {
+				renLandlordVO = new RenLandlordVO();
+				renLandlordVO.setLddId(rs.getInt("ldd_id"));
+				renLandlordVO.setLddMemId(rs.getInt("ldd_mem_Id"));
+				renLandlordVO.setLddApproval(rs.getInt("ldd_approval"));
+			}
+		} catch (SQLException se) {
+			se.printStackTrace();
+		} finally {
+			Util.closeResource(con, pstmt, rs);
+		}
+		return renLandlordVO.getLddId();
+	}
+
+
+
+			
+			
+			
+			
 	@Override
 	public List<RenLandlordVO> findByMemID(Integer lddmemID ) {
 		List<RenLandlordVO> list = new ArrayList<RenLandlordVO>();

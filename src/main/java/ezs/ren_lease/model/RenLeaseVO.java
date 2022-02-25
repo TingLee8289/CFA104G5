@@ -23,7 +23,6 @@ public class RenLeaseVO  implements Serializable  {
 	private Integer	lseLeaseMemId; 
 
 	public RenLeaseVO() {
-		super();
 	}
 
 	public Integer getLseId() {

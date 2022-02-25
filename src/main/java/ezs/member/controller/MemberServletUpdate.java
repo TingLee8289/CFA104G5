@@ -185,6 +185,10 @@ public class MemberServletUpdate extends HttpServlet {
 			/*************************** 1.接收請求參數 - 輸入格式的錯誤處理 **********************/
 
 			try {
+				
+				String memPhoneReg = "^09[0-9]{8}$";
+				String memEmailReg = "^\\w+((-\\w+)|(\\.\\w+))*\\@[A-Za-z0-9]+((\\.|-)[A-Za-z0-9]+)*\\.[A-Za-z]+$";
+				
 			Integer memID = new Integer(req.getParameter("memID").trim());
 
 			String memPassword = req.getParameter("memPassword");
@@ -199,6 +203,8 @@ public class MemberServletUpdate extends HttpServlet {
 			String memPhone = req.getParameter("memPhone");
 			if (memPhone == null || memPhone.trim().length() == 0) {
 				errorMsgs.add("電話請勿空白");
+			}else if (!memPhone.trim().matches(memPhoneReg)) {
+				errorMsgs.add("電話格式不符，請重新輸入");
 			}
 			String memAddress = req.getParameter("memAddress");
 			if (memAddress == null || memAddress.trim().length() == 0) {
@@ -207,12 +213,12 @@ public class MemberServletUpdate extends HttpServlet {
 			String memEmail = req.getParameter("memEmail");
 			if (memEmail == null || memEmail.trim().length() == 0) {
 				errorMsgs.add("email請勿空白");
+			}else if (!memEmail.trim().matches(memEmailReg)){
+				errorMsgs.add("email格式不符，請重新輸入");
 			}
 			
 			String memUsername = new String(req.getParameter("memUsername"));
-			Integer memRedCount = new Integer(req.getParameter("memRedCount"));
-			Integer memRedScore = new Integer(req.getParameter("memRedScore"));
-		
+			
 
 //				byte[] memHeadshot = null;
 //				Collection<Part> parts = req.getParts();
@@ -260,6 +266,8 @@ public class MemberServletUpdate extends HttpServlet {
 			memberVO.setMemEmail(memEmail);
 			memberVO.setMemVatno(memVatno);
 			memberVO.setMemHeadshot(memHeadshot);
+			memberVO.setMemUsername(memUsername);
+			
 
 			if (!errorMsgs.isEmpty()) {
 				req.setAttribute("memberVO", memberVO);
@@ -270,11 +278,11 @@ public class MemberServletUpdate extends HttpServlet {
 			/*************************** 2.開始新增資料 ***************************************/
 			MemberService memberSvc = new MemberService();
 			memberVO = memberSvc.updateMember(memID, memPassword, memName, memPhone, memAddress, memEmail, memHeadshot,
-					memVatno);
+					memVatno, memUsername);
 
 			/*************************** 3.新增完成,準備轉交(Send the Success view) ***********/
 			req.setAttribute("memberVO", memberVO);
-			String url = "/frontend/member/listOne1Member.jsp";
+			String url = "/frontend/member/listOneMember.jsp";
 			RequestDispatcher successView = req.getRequestDispatcher(url);
 			successView.forward(req, res);
 
@@ -328,10 +336,17 @@ public class MemberServletUpdate extends HttpServlet {
 
 			Byte memStatus = new Byte(req.getParameter("memStatus"));
 			Integer memReported = new Integer(req.getParameter("memReported"));
+			if (memReported == null) {
+				errorMsgs.add("被檢舉數請勿空白");
+			}
+			
 			Byte memLandlord = new Byte(req.getParameter("memLandlord"));
 			Byte memSupplier = new Byte(req.getParameter("memSupplier"));
 			Byte memSeller = new Byte(req.getParameter("memSeller"));
 			Integer memSupReported = new Integer(req.getParameter("memSupReported"));
+			if (memSupReported == null) {
+				errorMsgs.add("廠商被檢舉數請勿空白");
+			}
 
 			String memUsername = new String(req.getParameter("memUsername"));
 			String memName = new String(req.getParameter("memName"));

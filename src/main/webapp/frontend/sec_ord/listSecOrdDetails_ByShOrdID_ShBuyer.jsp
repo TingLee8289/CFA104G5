@@ -249,8 +249,8 @@
 
 	<table>
 		<tr>
-			<th>訂單編號</th>
-			<th>商品編號</th>
+<!-- 			<th>訂單編號</th> -->
+<!-- 			<th>商品編號</th> -->
 			<th>商品名稱</th>
 			<th>訂單金額</th>
 			<th>商品數量</th>
@@ -261,8 +261,8 @@
 		<c:forEach var="secOrdDetailsVO"
 			items="${list}">
 			<tr>
-				<td>${secOrdDetailsVO.shOrdID}</td>
-				<td>${secOrdDetailsVO.shID}</td>
+<%-- 				<td>${secOrdDetailsVO.shOrdID}</td> --%>
+<%-- 				<td>${secOrdDetailsVO.shID}</td> --%>
 				<td>${secOrdDetailsVO.shName}</td>
 				<td>${secOrdDetailsVO.shPrice}</td>
 				<td>${secOrdDetailsVO.shQty}</td>

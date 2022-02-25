@@ -542,7 +542,7 @@ public class RenAppointmentServlet extends HttpServlet {
 				renAppointmentVO = renAppSvc.addRenApp(aptMemId, aptLddId, aptLisId, aptStatus, aptTime, aptTimestamp);
 
 				/*************************** 3.新增完成,準備轉交(Send the Success view) ***********/
-				String url = "/frontend/ren_appointment/select_page.jsp";
+				String url = "/frontend/ren_appointment/listRenAppByMEM.jsp";
 				RequestDispatcher successView = req.getRequestDispatcher(url);
 				successView.forward(req, res);
 

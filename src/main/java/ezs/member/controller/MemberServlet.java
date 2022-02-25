@@ -70,12 +70,9 @@ public class MemberServlet extends HttpServlet {
 				MemberVO memberVO = memberserivce.Search(memUsername, memPassword);
 				if (memberVO == null) {
 					errorMsgs.add("帳號或密碼有誤，請重新輸入");
-				}
-				if(memberVO.getMemSupReported() >= 5) {// *************被檢舉次數****************
-					repo.add("該帳號被檢舉次數已達上限，如有相關問題清洽客服人員");
-				}
-				
-				if(memberVO.getMemStatus() == 0) {// *************帳號未開通****************
+				} else if(memberVO.getMemSupReported() >= 5) {// *************被檢舉次數****************
+					errorMsgs.add("該帳號被檢舉次數已達上限，如有相關問題清洽客服人員");
+				} else if(memberVO.getMemStatus() == 0) {// *************帳號未開通****************
 					errorMsgs.add("●該帳號尚未開通，請先進行驗證後再登入");
 				}
 				
@@ -199,19 +196,21 @@ public class MemberServlet extends HttpServlet {
 				memberVO = memberSvc.addMember(memUsername, memPassword, memName, memPhone, memAddress, memEmail,
 						memPID, memHeadshot);
 				
-				SerVdrService serVdrSvc = new SerVdrService();
+//				SerVdrService serVdrSvc = new SerVdrService();
 //				serVdrSvc.addSerVdr(memID, 0, null, null, null, null, null, null, null, null, null, null, null);
 				
 				/*************************** 3.新增完成,準備轉交(Send the Success view) ***********/
 //				<法一> 存在session
-//				HttpSession session = req.getSession();
-//				session.setAttribute("memberVO", memberVO);
-//				System.out.println(memberVO.getMemUsername());
-				
-//				<法二> 先暫放在req
-				req.setAttribute("memberVO", memberVO);
+				HttpSession session = req.getSession();
+				session.setAttribute("memberVO", memberVO);
+				System.out.println(memberVO.getMemUsername());
 				RequestDispatcher successView = req.getRequestDispatcher("/member/RegisterMailServlet.do"); 
 				successView.forward(req, res);
+				
+//				<法二> 先暫放在req
+//				req.setAttribute("memberVO", memberVO);
+//				RequestDispatcher successView = req.getRequestDispatcher("/member/RegisterMailServlet.do"); 
+//				successView.forward(req, res);
 
 			} catch (Exception e) {
 				errorMsgs.add(e.getMessage());
