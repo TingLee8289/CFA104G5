@@ -328,13 +328,37 @@ th, td {
 												</FORM>
 											</td>
 											<td>
-												<FORM METHOD="post"
-													ACTION="<%=request.getContextPath()%>/sec_ord/SecOrdServlet.do"
-													style="margin-bottom: 0px;">
-													<input type="submit" value="完成訂單"> <input
-														type="hidden" name="secOrdID" value="${secOrdVO.shOrdID}">
-													<input type="hidden" name="action" value="completeOrder">
-												</FORM>
+												<c:choose>
+													<c:when test="${(secOrdVO.shOrdStatus) == 2}">
+														<FORM METHOD="post"
+															ACTION="<%=request.getContextPath()%>/sec_ord/SecOrdServlet.do"
+															style="margin-bottom: 0px;">
+															<input type="submit" value="完成訂單"> <input
+																type="hidden" name="secOrdID" value="${secOrdVO.shOrdID}">
+															<input type="hidden" name="action" value="completeOrder">
+														</FORM>
+													</c:when>
+													<c:when test="${(secOrdVO.shOrdStatus) == 3}">
+														<FORM METHOD="post"
+															ACTION="<%=request.getContextPath()%>/sec_ord/SecOrdServlet.do"
+															style="margin-bottom: 0px;">
+															<input type="submit" value="完成訂單"> <input
+																type="hidden" name="secOrdID" value="${secOrdVO.shOrdID}">
+															<input type="hidden" name="action" value="completeOrder">
+														</FORM>
+													</c:when>
+													<c:otherwise>
+													</c:otherwise>
+												</c:choose>
+													
+<!-- 													<FORM METHOD="post" -->
+<%-- 														ACTION="<%=request.getContextPath()%>/sec_ord/SecOrdServlet.do" --%>
+<!-- 														style="margin-bottom: 0px;"> -->
+<!-- 														<input type="submit" value="完成訂單"> <input -->
+<%-- 															type="hidden" name="secOrdID" value="${secOrdVO.shOrdID}"> --%>
+<!-- 														<input type="hidden" name="action" value="completeOrder"> -->
+<!-- 													</FORM> -->
+												
 											</td>
 											<td>
 												<FORM METHOD="post"
