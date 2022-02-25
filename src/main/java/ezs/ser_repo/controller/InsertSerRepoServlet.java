@@ -43,7 +43,7 @@ public class InsertSerRepoServlet extends HttpServlet {
 				if (rpTxt == null || rpTxt.trim().length() == 0) {
 					errorMsgs.add("檢舉內容請勿空白");
 				}else if (!rpTxt.trim().matches(txtReg)) { // 以下練習正則(規)表示式(regular-expression)
-					errorMsgs.add("請重新輸入檢舉內容，最少五個字");
+					errorMsgs.add("請重新輸入檢舉內容，只能為中文，最少五個字");
 				}
 
 				java.sql.Date rpDate = null;

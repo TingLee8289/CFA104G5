@@ -175,7 +175,7 @@ SerClaVO serClaVO = (SerClaVO) request.getAttribute("serClaVO");
 			<td>
 				<h4>
 					<a
-						href="<%=request.getContextPath()%>/backend/ser/ser_cla/select_page.jsp">回首頁</a>
+						href="<%=request.getContextPath()%>/backend/ser/ser_cla/select_page.jsp">上一頁</a>
 				</h4>
 			</td>
 		</tr>

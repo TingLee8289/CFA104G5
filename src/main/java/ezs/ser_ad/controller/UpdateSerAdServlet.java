@@ -56,13 +56,13 @@ public class UpdateSerAdServlet extends HttpServlet {
 					errorMsgs.add("服務內容: 只能是中文、數字, 且長度必需在5到500字之間");
 				}
 
-				InputStream in = req.getPart("adPic").getInputStream();// 廠商可以不上傳照片
+//				InputStream in = req.getPart("adPic").getInputStream();// 廠商可以不上傳照片
 				byte[] adPic = null;
-				if (in.available() != 0) {
-					adPic = new byte[in.available()];
-					in.read(adPic);
-					in.close();
-				}
+//				if (in.available() != 0) {
+//					adPic = new byte[in.available()];
+//					in.read(adPic);
+//					in.close();
+//				}
 
 				SerAdVO serAdVO = new SerAdVO();
 				serAdVO.setAdVdrID(adVdrID);

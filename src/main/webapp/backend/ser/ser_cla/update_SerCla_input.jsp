@@ -175,11 +175,11 @@ figure img {
 					
 <table id="table-1">
 	<tr><td>
-		 <h4><a href="<%=request.getContextPath()%>/backend/ser/ser_cla/select_page.jsp">回首頁</a></h4>
+		 <h4><a href="<%=request.getContextPath()%>/backend/ser/ser_cla/select_page.jsp">前一頁</a></h4>
 	</td></tr>
 </table>
 
-<h3>資料修改:</h3>
+
 
 <%-- 錯誤表列 --%>
 <c:if test="${not empty errorMsgs}">

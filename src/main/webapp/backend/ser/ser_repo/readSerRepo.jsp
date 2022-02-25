@@ -176,7 +176,7 @@
 		<div id="layoutSidenav_content">
 			<main>
 				<div class="container-fluid px-4">
-					<h1 class="mt-4">Easy Space 後台管理系統</h1></div>
+					<h1 class="mt-4">檢舉管理系統</h1></div>
 
 	<ul>
 	<li>
