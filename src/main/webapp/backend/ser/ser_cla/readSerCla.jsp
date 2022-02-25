@@ -180,7 +180,7 @@
 					<h1 class="mt-4">服務類別管理</h1>
 		
 					<a
-						href="<%=request.getContextPath()%>/backend/ser/ser_cla/select_page.jsp">回首頁</a>
+						href="<%=request.getContextPath()%>/backend/ser/ser_cla/select_page.jsp">上一頁</a>
 				
 <%-- 錯誤表列 --%>
 <c:if test="${not empty errorMsgs}">

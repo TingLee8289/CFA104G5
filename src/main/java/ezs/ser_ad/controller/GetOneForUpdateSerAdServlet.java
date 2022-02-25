@@ -32,7 +32,7 @@ public class GetOneForUpdateSerAdServlet extends HttpServlet {
 			// send the ErrorPage view.
 			req.setAttribute("errorMsgs", errorMsgs);
 
-//			try {
+			try {
 				/*************************** 1.接收請求參數 ****************************************/
 				Integer adVdrID = new Integer(req.getParameter("adVdrID"));
 				Integer adSerClaID = new Integer(req.getParameter("adSerClaID"));
@@ -48,11 +48,11 @@ public class GetOneForUpdateSerAdServlet extends HttpServlet {
 				successView.forward(req, res);
 
 				/*************************** 其他可能的錯誤處理 **********************************/
-//			} catch (Exception e) {
-//				errorMsgs.add("無法取得要修改的資料:" + e.getMessage());
-//				RequestDispatcher failureView = req.getRequestDispatcher("/frontend/ser_ad/listAllSerAd.jsp");
-//				failureView.forward(req, res);
+			} catch (Exception e) {
+				errorMsgs.add("無法取得要修改的資料:" + e.getMessage());
+				RequestDispatcher failureView = req.getRequestDispatcher("/frontend/ser_ad/listAllSerAd.jsp");
+				failureView.forward(req, res);
 			}
 		}
-	}
+	}}
 

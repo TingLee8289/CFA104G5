@@ -218,10 +218,10 @@ pageContext.setAttribute("list", list);
 								<td>${serAdVO.adSerClaID}</td>
 								<td>${serAdVO.adDist}</td>
 								<td>${serAdVO.adTxt}</td>
-								<td><img
+							<%--	<td><img
 									src="<%=request.getContextPath()%>/ser_ad/DBGifReader4.do?ad_vdr_id=${serAdVO.adVdrID}&ad_ser_cla_id=${serAdVO.adSerClaID}"
 									width=200px></td>
-								<%--  ad_cla_id=${serAdVO.adClaID}--%>
+								  ad_cla_id=${serAdVO.adClaID}--%>
 								
 								<td>
 									<FORM METHOD="post"
@@ -233,7 +233,7 @@ pageContext.setAttribute("list", list);
 										<input type="hidden" name="action" value="getOne_For_Update">
 									</FORM>
 								</td>
-								<td>
+							<%--	<td>
 									<FORM METHOD="post"
 										ACTION="<%=request.getContextPath()%>/ser_ad/BackDeleteSerAdServlet.do"
 										style="margin-bottom: 0px;">
@@ -242,7 +242,7 @@ pageContext.setAttribute("list", list);
 											type="hidden" name="adSerClaID" value="${serAdVO.adSerClaID}">
 										<input type="hidden" name="action" value="delete">
 									</FORM>
-								</td>
+								</td>  --%>
 
 								
 							</tr>

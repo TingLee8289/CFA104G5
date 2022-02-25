@@ -212,17 +212,16 @@ pageContext.setAttribute("list", list);
 							</thead>
 							<tbody>
 								
-							<%@ include file="page1.file"%>	
-								<%-- 	<marquee>輸入要跑的文字</marquee> --%>
-								<c:forEach var="serClaVO" items="${list}" begin="<%=pageIndex%>"
-									end="<%=pageIndex+rowsPerPage-1%>">
+						 	<%@ include file="page1.file"%>	
+								 <%-- 	<marquee>輸入要跑的文字</marquee> --%>
+								<c:forEach var="serClaVO" items="${list}" >
 
 									<tr>
 										<td>${serClaVO.serClaID}</td>
 										<td>${serClaVO.serClaName}</td>
 
 
-									</tr>
+								<% %>	</tr>
 								</c:forEach>
 							</tbody>
 						</table>

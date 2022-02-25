@@ -3,6 +3,7 @@
 <%@ page import="ezs.ser_ad.model.*"%>
 
 <%
+Integer memID = (Integer)session.getAttribute("memID");
 SerAdVO serAdVO = (SerAdVO) request.getAttribute("serAdVO");
 %>
 
@@ -325,6 +326,7 @@ SerAdVO serAdVO = (SerAdVO) request.getAttribute("serAdVO");
 
 		</table>
 		<br> <input type="hidden" name="action" value="insert"> 
+		<input type="hidden" name="adVdrID" size="10" value="${memID}"/>
 		
 		<input type="submit" value="送出新增">
 	</FORM>

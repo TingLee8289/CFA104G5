@@ -189,7 +189,7 @@ pageContext.setAttribute("list", list);
 			<main>
 				<div class="container-fluid px-4">
 					<h1 class="mt-4">所有服務類別</h1>
-					<a href="<%=request.getContextPath()%>/backend/ser/ser_cla/select_page.jsp">回首頁</a>
+					<a href="<%=request.getContextPath()%>/backend/ser/ser_cla/select_page.jsp">上一頁</a>
 </div>
 				<div class="container">
 					<div class="row">

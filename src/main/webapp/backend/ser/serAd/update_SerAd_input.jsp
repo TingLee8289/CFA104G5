@@ -236,14 +236,14 @@ SerAdVO serAdVO = (SerAdVO) request.getAttribute("serAdVO"); //EmpServlet.java (
 				<td><%=serAdVO.getAdTxt()%></td>
 			</tr>
 
-			<tr>
+		<%-- 	<tr>
 				<th id="test">服務案例圖片:</th>
 				<td><input type="file" id="upfiles" name="adPic"
 					accept="image/gif, image/jpeg, image/png" multiple="multiple" />
 					<div id="previews">
 		
 					</div> 
-			</tr>
+			</tr> --%>
 
 
 
@@ -257,7 +257,7 @@ SerAdVO serAdVO = (SerAdVO) request.getAttribute("serAdVO"); //EmpServlet.java (
 		<input type="hidden" name="adStatus" value="<%=serAdVO.getAdStatus()%>">
 		<input type="hidden" name="adDist" value="<%=serAdVO.getAdDist()%>">
 		<input type="hidden" name="adTxt" value="<%=serAdVO.getAdTxt()%>">
-		
+		<input type="hidden" name="adPic" value="<%=serAdVO.getAdPic()%>">
 		 <input type="submit" value="送出修改">
 	</FORM>
 </div>

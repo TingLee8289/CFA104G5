@@ -212,11 +212,11 @@ SerAdVO serAdVO = (SerAdVO) request.getAttribute("serAdVO"); //EmpServlet.java(C
 							<th id="test">服務內容</th>
 							<td><%=serAdVO.getAdTxt()%></td>
 						</tr>
-						<tr>
+				<%--		<tr>
 							<th id="test">服務案例圖片</th>
 							<td><img src="<%=request.getContextPath()%>/ser_ad/DBGifReader4.do?ad_vdr_id=${serAdVO.adVdrID}&ad_ser_cla_id=${serAdVO.adSerClaID}"
 								width=200px></td>
-						</tr>
+						</tr>  --%>
 					</table></div>
 						
 							

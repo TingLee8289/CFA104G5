@@ -147,7 +147,7 @@ public class InsertSerVdrServlet extends HttpServlet {
 				try {
 					servdrSvc.addSerVdr(vdrID, vdrStatus, vdrName, vdrTel, vdrVatno, vdrCounty, vdrDist, vdrAddr, vdrOpen, vdrIntro, vdrPic, vdrRevCount, vdrRevScore);
 				} catch(RuntimeException e) {
-					errorMsgs.add("廠商已重複註冊");
+					errorMsgs.add("該廠商編號已重複註冊");
 				}
 				
 				// Send the use back to the form, if there were errors
