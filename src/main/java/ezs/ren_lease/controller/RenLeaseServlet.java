@@ -78,7 +78,7 @@ public class RenLeaseServlet extends HttpServlet {
 				}
 				/***************************3.查詢完成,準備轉交(Send the Success view)*************/
 				req.setAttribute("renLeaseVO", renLeaseVO);
-				String url = "/frontend/ren_lease/MEMcheckOne.jsp";
+				String url = "/frontend/ren_lease/listOneLease.jsp";
 				RequestDispatcher successView = req.getRequestDispatcher(url);
 				successView.forward(req, res);
 
