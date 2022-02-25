@@ -39,12 +39,12 @@ public class InsertSerRepoServlet extends HttpServlet {
 				Integer rpMemID = new Integer(req.getParameter("rpMemID"));
 
 				String rpTxt = req.getParameter("rpTxt").trim();
-//				String txtReg = "^[(\\u4e00-\\u9fa5)(0-9)]{5,50}$";
-//				if (rpTxt == null || rpTxt.trim().length() == 0) {
-//					errorMsgs.add("檢舉內容請勿空白");
-//				}else if (!rpTxt.trim().matches(txtReg)) { // 以下練習正則(規)表示式(regular-expression)
-//					errorMsgs.add("請重新輸入檢舉內容，最少五個字");
-//				}
+				String txtReg = "^[(\\u4e00-\\u9fa5)]{5,50}$";
+				if (rpTxt == null || rpTxt.trim().length() == 0) {
+					errorMsgs.add("檢舉內容請勿空白");
+				}else if (!rpTxt.trim().matches(txtReg)) { // 以下練習正則(規)表示式(regular-expression)
+					errorMsgs.add("請重新輸入檢舉內容，最少五個字");
+				}
 
 				java.sql.Date rpDate = null;
 				try {
@@ -67,7 +67,8 @@ public class InsertSerRepoServlet extends HttpServlet {
 				// Send the use back to the form, if there were errors
 				if (!errorMsgs.isEmpty()) {
 					req.setAttribute("serRepVO", serRepVO); // 含有輸入格式錯誤的empVO物件,也存入req
-					RequestDispatcher failureView = req.getRequestDispatcher("/backend/ser/ser_repo/addSerRepo.jsp");
+					req.setAttribute("ordID", rpOrdID);
+					RequestDispatcher failureView = req.getRequestDispatcher("/frontend/ser_repo/addSerRepo.jsp");
 					failureView.forward(req, res);
 					return;
 				}
@@ -85,7 +86,7 @@ public class InsertSerRepoServlet extends HttpServlet {
 			} catch (Exception e) {
 				e.printStackTrace();
 				errorMsgs.add(e.getMessage());
-				RequestDispatcher failureView = req.getRequestDispatcher("/backend/ser/ser_repo/addSerRepo.jsp");
+				RequestDispatcher failureView = req.getRequestDispatcher("/frontend/ser_repo/addSerRepo.jsp");
 				failureView.forward(req, res);
 			}
 		}

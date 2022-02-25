@@ -55,9 +55,12 @@ public class SerVdrDAO implements SerVdrDAO_interface {
 			pstmt.setInt(13, serVdrVO.getVdrRevScore());
 
 			pstmt.executeUpdate();
+			
+			
 
 		} catch (SQLException e) {
 			e.printStackTrace();
+			throw new RuntimeException();
 		} finally {
 			if (pstmt != null) {
 				try {

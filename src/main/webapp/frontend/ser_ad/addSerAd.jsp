@@ -269,11 +269,10 @@ SerAdVO serAdVO = (SerAdVO) request.getAttribute("serAdVO");
 		ACTION="InsertSerAdServlet.do" name="form1">
 		<table>
 
-			<jsp:useBean id="servdrSvc" scope="page"
-				class="ezs.ser_vdr.model.SerVdrService" />
+			
 			<tr>
 				<td>廠商編號:<font color=red><b>*</b></font></td>
-				<td><input  name="adVdrID" size="45" value=${memID} readonly="readonly" /></td>
+				<td><input type="TEXT" name="adVdrID" size="45" value="${memID}" disabled /></td>
 			</tr>
 			<tr>
 				<%-- <td>刊登狀態:</td>--%>
