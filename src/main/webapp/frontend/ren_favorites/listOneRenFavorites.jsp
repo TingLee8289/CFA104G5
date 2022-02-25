@@ -275,18 +275,19 @@ RenListingPicVO renListingPicVO = (RenListingPicVO) request.getAttribute("renLis
 		</tr></thead>
 		        <tbody>
 		<c:forEach var="renFavoritesVO" items="${list}">
+					
 			<tr align='center' valign='middle'>
 				<td>${renFavoritesVO.favLisId}</td>
 				<td><img src="<%=request.getContextPath()%>/DBGifReader4?fav_lis_id=${renFavoritesVO.favLisId}" height=100px width=150px></td>
 				
-				
-				<td><c:forEach var="renLisVO" items="${renLisSvc.all}">
+				<td>
+		<a href="<%=request.getContextPath()%>/frontend/ren_listing/GetOneRenListingServlet.do?lisID=${renFavoritesVO.favLisId}&action=getOne_For_Display_A">
+				<c:forEach var="renLisVO" items="${renLisSvc.all}">
                     <c:if test="${renFavoritesVO.favLisId==renLisVO.lisID}">
 	                    ${renLisVO.lisTitle}
                     </c:if>
-               		 </c:forEach>
+               		 </c:forEach></a>
 				</td>
-
 				<td>
 					<FORM METHOD="post" ACTION="<%=request.getContextPath()%>/RenFavoritesServlet.do" style="margin-bottom: 0px;">
 						<button id ="submit" onclick="submit"><i class="fa-solid fa-trash"></i></button> 
