@@ -1,4 +1,4 @@
-<%@ page contentType="text/html; charset=UTF-8" pageEncoding="Big5"%>
+<%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ page import="ezs.sec_ord.model.*"%>
 <!DOCTYPE html>
@@ -64,7 +64,7 @@
 
 </head>
 <body class="sb-nav-fixed">
-	<!-- �W�ݾ���C�}�l--------------------------------------- -->
+	<!-- 嚙磕嚙豎橘蕭嚙踝蕭C嚙罷嚙締--------------------------------------- -->
 	<div class="navbar navbar-expand-lg navbar-dark" id="nav">
 		<div class="container">
 			<button class="navbar-toggler" type="button"
@@ -76,14 +76,14 @@
 			<div class="collapse navbar-collapse" id="navbarTogglerDemo03">
 				<ul class="navbar-nav ms-auto me-sm-2 mt-2 mt-lg-0">
 					<li class="nav-item active me-3"><a class="nav-link text-dark"
-						href="<%=request.getContextPath()%>/frontend/EZ_home.jsp">���� </a></li>
+						href="<%=request.getContextPath()%>/frontend/EZ_home.jsp">嚙踝蕭嚙踝蕭 </a></li>
 					<li class="nav-item me-3"><a class="nav-link text-dark"
-						href="#">����A��</a></li>
+						href="#">嚙踝蕭嚙踝蕭A嚙踝蕭</a></li>
 					<li class="nav-item me-3"><a class="nav-link text-dark"
-						href="<%=request.getContextPath()%>/frontend/sec_items/secItemsViewPage.jsp">�G��a�q</a>
+						href="<%=request.getContextPath()%>/frontend/sec_items/secItemsViewPage.jsp">嚙瘦嚙踝蕭a嚙緬</a>
 					</li>
 					<li class="nav-item me-3"><a class="nav-link text-dark"
-						href="<%=request.getContextPath()%>/frontend/ser_ad/serAdViewPage.jsp">�~�a�A��</a>
+						href="<%=request.getContextPath()%>/frontend/ser_ad/serAdViewPage.jsp">嚙羯嚙窮嚙璀嚙踝蕭</a>
 					</li>
 
 					<%
@@ -101,22 +101,22 @@
 							class="fa fa-angle-down   "></i></a>
 						<div class="dropdown-menu" aria-labelledby="navbarDropdown">
 							<a class="dropdown-item"
-								href="<%=request.getContextPath()%>/frontend/member/memberCenter/buyerMemberCenter.jsp">�|���</a>
+								href="<%=request.getContextPath()%>/frontend/member/memberCenter/buyerMemberCenter.jsp">嚙罵嚙踝蕭嚙�</a>
 							<a class="dropdown-item"
-								href="<%=request.getContextPath()%>/frontend/member/memberCenter/sellerMemberCenter.jsp">��a����</a>
+								href="<%=request.getContextPath()%>/frontend/member/memberCenter/sellerMemberCenter.jsp">嚙踝蕭a嚙踝蕭嚙踝蕭</a>
 							<a class="dropdown-item"
-								href="<%=request.getContextPath()%>/frontend/chat/index.jsp">���</a>
+								href="<%=request.getContextPath()%>/frontend/chat/index.jsp">嚙踝蕭嚙�</a>
 							<a class="dropdown-item"
-								href="<%=request.getContextPath()%>/frontend/sec_items/shoppingCart.jsp">�ʪ���</a>
+								href="<%=request.getContextPath()%>/frontend/sec_items/shoppingCart.jsp">嚙褊迎蕭嚙踝蕭</a>
 							<div class="dropdown-divider"></div>
 							<a class="dropdown-item"
-								href="<%=request.getContextPath()%>/member/MemberServlet.do?action=logout">�n�X</a>
+								href="<%=request.getContextPath()%>/member/MemberServlet.do?action=logout">嚙緯嚙碼</a>
 						</div></li>
 					<%
 					} else {
 					%>
 					<li class="nav-item me-3"><a class="nav-link text-dark"
-						href="<%=request.getContextPath()%>/frontend/member/login.jsp">�n�J</a></li>
+						href="<%=request.getContextPath()%>/frontend/member/login.jsp">嚙緯嚙皚</a></li>
 					<%
 					}
 					%>
@@ -131,9 +131,9 @@
 		integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
 		crossorigin="anonymous"></script>
 
-	<!-- �W�ݾ���C����--------------------------------------- -->
+	<!-- 嚙磕嚙豎橘蕭嚙踝蕭C嚙踝蕭嚙踝蕭--------------------------------------- -->
 
-	<!-- �������C�}�l--------------------------------------- -->
+	<!-- 嚙踝蕭嚙踝蕭嚙踝蕭嚙瘠嚙罷嚙締--------------------------------------- -->
 
 	
 
@@ -144,13 +144,13 @@
 				<div class="sb-sidenav-menu">
 					<div class="nav">
 						<!-- ------------------------------------------------------------------------------------------------- -->
-						<div class="sb-sidenav-menu-heading">��a�޲z�M��</div>
+						<div class="sb-sidenav-menu-heading">嚙踝蕭a嚙豬理嚙瞎嚙踝蕭</div>
 						<a class="nav-link collapsed" href="#" data-bs-toggle="collapse"
 							data-bs-target="#collapseLayouts" aria-expanded="false"
 							aria-controls="collapseLayouts">
 							<div class="sb-nav-link-icon">
 								<i class="fas fa-home"></i>
-							</div> �������޲z
+							</div> 嚙踝蕭嚙踝蕭嚙踝蕭嚙豬理
 							<div class="sb-sidenav-collapse-arrow">
 								<i class="fas fa-angle-down"></i>
 							</div>
@@ -158,10 +158,10 @@
 						<div class="collapse" id="collapseLayouts"
 							aria-labelledby="headingOne" data-bs-parent="#sidenavAccordion">
 							<nav class="sb-sidenav-menu-nested nav">
-								 <a class="nav-link" href="layout-static.html">�ӽЦ����ЪF</a>
-                                    <a class="nav-link" href="layout-static.html">�з��޲z</a>
-                                    <a class="nav-link" href="<%=request.getContextPath()%>/frontend/ren_appointment/listRenAppByLDD.jsp">�w���޲z</a>
-                                    <a class="nav-link" href="layout-sidenav-light.html">�����޲z</a>
+								 <a class="nav-link" href="layout-static.html">嚙諉請佗蕭嚙踝蕭嚙請東</a>
+                                    <a class="nav-link" href="layout-static.html">嚙請瘀蕭嚙豬理</a>
+                                    <a class="nav-link" href="<%=request.getContextPath()%>/frontend/ren_appointment/listRenAppByLDD.jsp">嚙緩嚙踝蕭嚙豬理</a>
+                                    <a class="nav-link" href="layout-sidenav-light.html">嚙踝蕭嚙踝蕭嚙豬理</a>
 							</nav>
 						</div>
 						<!-- ------------------------------------------------------------------------------------------------- -->
@@ -170,7 +170,7 @@
 							aria-controls="collapsePages">
 							<div class="sb-nav-link-icon">
 								<i class="fas fa-couch"></i>
-							</div> �G�����޲z
+							</div> 嚙瘦嚙踝蕭嚙踝蕭嚙豬理
 							<div class="sb-sidenav-collapse-arrow">
 								<i class="fas fa-angle-down"></i>
 							</div>
@@ -178,8 +178,8 @@
 						<div class="collapse" id="collapsePages"
 							aria-labelledby="headingTwo" data-bs-parent="#sidenavAccordion">
 							<nav class="sb-sidenav-menu-nested nav">
-								  <a class="nav-link" href="<%=request.getContextPath()%>/frontend/sec_items/select_page.jsp">�ӫ~�޲z</a>
-                                    <a class="nav-link" href="<%=request.getContextPath()%>/frontend/sec_ord/listAllSecOrd.jsp">�q��޲z</a>
+								  <a class="nav-link" href="<%=request.getContextPath()%>/frontend/sec_items/select_page.jsp">嚙諉品嚙豬理</a>
+                                    <a class="nav-link" href="<%=request.getContextPath()%>/frontend/sec_ord/listAllSecOrd.jsp">嚙緬嚙踝蕭瑊z</a>
 							</nav>
 						</div>
 						<!-- ------------------------------------------------------------------------------------------------- -->
@@ -188,7 +188,7 @@
 							aria-controls="collapsePages">
 							<div class="sb-nav-link-icon">
 								<i class="fas fa-wrench"></i>
-							</div> �A�Ȭ���޲z
+							</div> 嚙璀嚙褓穿蕭嚙踝蕭瑊z
 							<div class="sb-sidenav-collapse-arrow">
 								<i class="fas fa-angle-down"></i>
 							</div>
@@ -196,9 +196,9 @@
 						<div class="collapse" id="collapsePages2"
 							aria-labelledby="headingThree" data-bs-parent="#sidenavAccordion">
 							<nav class="sb-sidenav-menu-nested nav">
-								<a class="nav-link" href="layout-static.html">�A�Ⱥ޲z</a>
-                                    <a class="nav-link" href="layout-sidenav-light.html">�ݨD��޲z</a>
-                                    <a class="nav-link" href="layout-sidenav-light.html">�q��޲z</a>
+								<a class="nav-link" href="layout-static.html">嚙璀嚙褓管理</a>
+                                    <a class="nav-link" href="layout-sidenav-light.html">嚙豎求嚙踝蕭瑊z</a>
+                                    <a class="nav-link" href="layout-sidenav-light.html">嚙緬嚙踝蕭瑊z</a>
 							</nav>
 						</div>
 						<!-- ------------------------------------------------------------------------------------------------- -->
@@ -207,18 +207,18 @@
 
 			</nav>
 		</div>
-<!-- main �}�l--------------------------------------------------------------------------------- -->
+<!-- main 嚙罷嚙締--------------------------------------------------------------------------------- -->
 		<div id="layoutSidenav_content">
 			<main>
 				<div class="container-fluid px-4">
-<!-- �뭶���q�o�̶}�l--------------------------------------------------------------------------------- -->
+<!-- 嚙趟頁嚙踝蕭嚙緬嚙緻嚙諒開嚙締--------------------------------------------------------------------------------- -->
 
 
-	<h3>��a�q��s���d��:</h3>
+	<h3>嚙踝蕭a嚙緬嚙踝蕭s嚙踝蕭嚙範嚙踝蕭:</h3>
 
-	<%-- ��~��C --%>
+	<%-- 嚙踝蕭~嚙踝蕭C --%>
 	<c:if test="${not empty errorMsgs}">
-		<font style="color: red">�Эץ��H�U��~:</font>
+		<font style="color: red">嚙請修伐蕭嚙瘡嚙磊嚙踝蕭~:</font>
 		<ul>
 			<c:forEach var="message" items="${errorMsgs}">
 				<li style="color: red">${message}</li>
@@ -234,12 +234,12 @@
 
 <li>
 		<FORM METHOD="post" ACTION="<%=request.getContextPath()%>/sec_ord/GetSecOrdBySellerServlet.do">
-			<b><font color=blue>��ܭq��s��:</font></b> 
+			<b><font color=blue>嚙踝蕭颩q嚙踝蕭s嚙踝蕭:</font></b> 
 			<select size="1" name="shOrdID">
 			<c:forEach var="secOrdVO" items="${secOrdSvc.all}">
 				<option value="${secOrdVO.shOrdID}">${secOrdVO.shOrdID}
 			</c:forEach>
-			</select> <input type="submit" value="�e�X"> <input type="hidden"
+			</select> <input type="submit" value="嚙箴嚙碼"> <input type="hidden"
 				name="action" value="getOne_For_Display">
 		</FORM>
 
@@ -248,23 +248,23 @@
 
 
 
-		<h3>��a�q��d��:</h3>
+		<h3>嚙踝蕭a嚙緬嚙踝蕭d嚙踝蕭:</h3>
 	
 
 	<ul>
 	<td>
 			  <FORM METHOD="post" ACTION="<%=request.getContextPath()%>/sec_ord/GetSecOrdBySellerServlet.do" style="margin-bottom: 0px;">
-			    <input type="submit" value="��a�q��d��"> 
+			    <input type="submit" value="嚙踝蕭a嚙緬嚙踝蕭d嚙踝蕭"> 
 			    <input type="hidden" name="shSellerID" value="${memberVO.memID}">
 			    <input type="hidden" name="action" value="listSecOrd_ByShSellererID"></FORM>
 			</td>
 
 	</ul>
-<!-- �뭶���q�o�̵���--------------------------------------------------------------------------------- -->
+<!-- 嚙趟頁嚙踝蕭嚙緬嚙緻嚙諒蛛蕭嚙踝蕭--------------------------------------------------------------------------------- -->
 				</div>
 			</main>
 		</div>
-<!-- main ����--------------------------------------------------------------------------------- -->
+<!-- main 嚙踝蕭嚙踝蕭--------------------------------------------------------------------------------- -->
 	</div>
 
 
@@ -279,7 +279,7 @@
 	<script src="https://cdn.jsdelivr.net/npm/simple-datatables@latest"></script>
 	<script src="js/datatables-simple-demo.js"></script>
 
-	<!-- �������C����--------------------------------------- -->
+	<!-- 嚙踝蕭嚙踝蕭嚙踝蕭嚙瘠嚙踝蕭嚙踝蕭--------------------------------------- -->
 	<main></main>
 </body>
 </html>
