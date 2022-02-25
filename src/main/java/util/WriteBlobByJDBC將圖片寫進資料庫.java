@@ -24,21 +24,21 @@ public class WriteBlobByJDBC將圖片寫進資料庫 {
 
 			// 請先到SQL下指令找出你的PIC欄位
 
-//			pstmt = con.prepareStatement("UPDATE sec_pics SET sh_pic = ? WHERE sh_pic_id = ? ");
-//
-//			File file = new File("src/main/webapp/images/sec/sh_pic/");
-//			File[] listFile = file.listFiles();
-//			for (int i = 0; i < file.listFiles().length; i++) {
-//				String url = listFile[i].toString();
-//				System.out.println(url);
-//				// 2. setBytes 萬用做法
-//				byte[] pic = getPictureByteArray(url);
-//				pstmt.setBytes(1, pic);
-//				pstmt.setInt(2, i+1);
-//				pstmt.executeUpdate();
-//			}
-//
-//			System.out.println("二手商品圖片新增成功");
+			pstmt = con.prepareStatement("UPDATE sec_pics SET sh_pic = ? WHERE sh_pic_id = ? ");
+
+			File file = new File("src/main/webapp/images/sec/sh_pic/");
+			File[] listFile = file.listFiles();
+			for (int i = 0; i < file.listFiles().length; i++) {
+				String url = listFile[i].toString();
+				System.out.println(url);
+				// 2. setBytes 萬用做法
+				byte[] pic = getPictureByteArray(url);
+				pstmt.setBytes(1, pic);
+				pstmt.setInt(2, i+1);
+				pstmt.executeUpdate();
+			}
+
+			System.out.println("二手商品圖片新增成功");
 			
 			pstmt = con.prepareStatement("UPDATE Member SET mem_Headshot = ? WHERE mem_ID = ? ");
 
