@@ -191,7 +191,7 @@ public class RenLandlordServlet extends HttpServlet {
 //						renLandlordVO = renLandlordSvc.addLandlord(lddMemId, lddPic);
 						
 						/***************************3.新增完成,準備轉交(Send the Success view)***********/
-						String url = "/backend/ren/select.jsp";
+						String url = "/frontend/member/memberCenter/sellerMemberCenter.jsp";
 						RequestDispatcher successView = req.getRequestDispatcher(url); // 新增成功後轉交listAllEmp.jsp
 						successView.forward(req, res);				
 						
