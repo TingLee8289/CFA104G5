@@ -3,20 +3,20 @@
 <%@ page import="ezs.sec_ord.model.*"%>
 <!DOCTYPE html>
 
+<!-- xx -->
 <html>
 <head>
-
 <meta charset="utf-8" />
 <meta http-equiv="X-UA-Compatible" content="IE=edge" />
 <meta name="viewport"
 	content="width=device-width, initial-scale=1, shrink-to-fit=no" />
 <title>EASY SPACE</title>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
 <link href="https://cdn.jsdelivr.net/npm/simple-datatables@latest/dist/style.css" rel="stylesheet" />
 <link href="<%=request.getContextPath()%>/css/member.center.styles.css"	rel="stylesheet" />
 <script	src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/js/all.min.js"></script>
 <link rel="stylesheet"href=" https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css ">
 <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.2.0/css/all.css">
-
 
 <style>
 #nav {
@@ -30,7 +30,7 @@
 </style>
 <style>
   table#table-1 {
-	background-color: #CCCCFF;
+	background-color: navajowhite;
     border: 2px solid black;
     text-align: center;
   }
@@ -64,7 +64,7 @@
 
 </head>
 <body class="sb-nav-fixed">
-	<!-- 嚙磕嚙豎橘蕭嚙踝蕭C嚙罷嚙締--------------------------------------- -->
+	<!-- 上端導覽列開始--------------------------------------- -->
 	<div class="navbar navbar-expand-lg navbar-dark" id="nav">
 		<div class="container">
 			<button class="navbar-toggler" type="button"
@@ -76,14 +76,14 @@
 			<div class="collapse navbar-collapse" id="navbarTogglerDemo03">
 				<ul class="navbar-nav ms-auto me-sm-2 mt-2 mt-lg-0">
 					<li class="nav-item active me-3"><a class="nav-link text-dark"
-						href="<%=request.getContextPath()%>/frontend/EZ_home.jsp">嚙踝蕭嚙踝蕭 </a></li>
+						href="<%=request.getContextPath()%>/frontend/EZ_home.jsp">首頁 </a></li>
 					<li class="nav-item me-3"><a class="nav-link text-dark"
-						href="#">嚙踝蕭嚙踝蕭A嚙踝蕭</a></li>
+						href="#">租賃服務</a></li>
 					<li class="nav-item me-3"><a class="nav-link text-dark"
-						href="<%=request.getContextPath()%>/frontend/sec_items/secItemsViewPage.jsp">嚙瘦嚙踝蕭a嚙緬</a>
+						href="<%=request.getContextPath()%>/frontend/sec_items/secItemsViewPage.jsp">二手家電</a>
 					</li>
 					<li class="nav-item me-3"><a class="nav-link text-dark"
-						href="<%=request.getContextPath()%>/frontend/ser_ad/serAdViewPage.jsp">嚙羯嚙窮嚙璀嚙踝蕭</a>
+						href="<%=request.getContextPath()%>/frontend/ser_ad/serAdViewPage.jsp">居家服務</a>
 					</li>
 
 					<%
@@ -101,22 +101,22 @@
 							class="fa fa-angle-down   "></i></a>
 						<div class="dropdown-menu" aria-labelledby="navbarDropdown">
 							<a class="dropdown-item"
-								href="<%=request.getContextPath()%>/frontend/member/memberCenter/buyerMemberCenter.jsp">嚙罵嚙踝蕭嚙�</a>
+								href="<%=request.getContextPath()%>/frontend/member/memberCenter/buyerMemberCenter.jsp">會員中心</a>
 							<a class="dropdown-item"
-								href="<%=request.getContextPath()%>/frontend/member/memberCenter/sellerMemberCenter.jsp">嚙踝蕭a嚙踝蕭嚙踝蕭</a>
+								href="<%=request.getContextPath()%>/frontend/member/memberCenter/sellerMemberCenter.jsp">賣家中心</a>
 							<a class="dropdown-item"
-								href="<%=request.getContextPath()%>/frontend/chat/index.jsp">嚙踝蕭嚙�</a>
+								href="<%=request.getContextPath()%>/frontend/chat/index.jsp">聊聊</a>
 							<a class="dropdown-item"
-								href="<%=request.getContextPath()%>/frontend/sec_items/shoppingCart.jsp">嚙褊迎蕭嚙踝蕭</a>
+								href="<%=request.getContextPath()%>/frontend/sec_items/shoppingCart.jsp">購物車</a>
 							<div class="dropdown-divider"></div>
 							<a class="dropdown-item"
-								href="<%=request.getContextPath()%>/member/MemberServlet.do?action=logout">嚙緯嚙碼</a>
+								href="<%=request.getContextPath()%>/member/MemberServlet.do?action=logout">登出</a>
 						</div></li>
 					<%
 					} else {
 					%>
 					<li class="nav-item me-3"><a class="nav-link text-dark"
-						href="<%=request.getContextPath()%>/frontend/member/login.jsp">嚙緯嚙皚</a></li>
+						href="<%=request.getContextPath()%>/frontend/member/login.jsp">登入</a></li>
 					<%
 					}
 					%>
@@ -131,9 +131,9 @@
 		integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
 		crossorigin="anonymous"></script>
 
-	<!-- 嚙磕嚙豎橘蕭嚙踝蕭C嚙踝蕭嚙踝蕭--------------------------------------- -->
+	<!-- 上端導覽列結束--------------------------------------- -->
 
-	<!-- 嚙踝蕭嚙踝蕭嚙踝蕭嚙瘠嚙罷嚙締--------------------------------------- -->
+	<!-- 側邊導覽列開始--------------------------------------- -->
 
 	
 
@@ -144,13 +144,13 @@
 				<div class="sb-sidenav-menu">
 					<div class="nav">
 						<!-- ------------------------------------------------------------------------------------------------- -->
-						<div class="sb-sidenav-menu-heading">嚙踝蕭a嚙豬理嚙瞎嚙踝蕭</div>
+						<div class="sb-sidenav-menu-heading">賣家管理專區</div>
 						<a class="nav-link collapsed" href="#" data-bs-toggle="collapse"
 							data-bs-target="#collapseLayouts" aria-expanded="false"
 							aria-controls="collapseLayouts">
 							<div class="sb-nav-link-icon">
 								<i class="fas fa-home"></i>
-							</div> 嚙踝蕭嚙踝蕭嚙踝蕭嚙豬理
+							</div> 租賃相關管理
 							<div class="sb-sidenav-collapse-arrow">
 								<i class="fas fa-angle-down"></i>
 							</div>
@@ -158,10 +158,10 @@
 						<div class="collapse" id="collapseLayouts"
 							aria-labelledby="headingOne" data-bs-parent="#sidenavAccordion">
 							<nav class="sb-sidenav-menu-nested nav">
-								 <a class="nav-link" href="layout-static.html">嚙諉請佗蕭嚙踝蕭嚙請東</a>
-                                    <a class="nav-link" href="layout-static.html">嚙請瘀蕭嚙豬理</a>
-                                    <a class="nav-link" href="<%=request.getContextPath()%>/frontend/ren_appointment/listRenAppByLDD.jsp">嚙緩嚙踝蕭嚙豬理</a>
-                                    <a class="nav-link" href="layout-sidenav-light.html">嚙踝蕭嚙踝蕭嚙豬理</a>
+								 <a class="nav-link" href="layout-static.html">申請成為房東</a>
+                                    <a class="nav-link" href="layout-static.html">房源管理</a>
+                                    <a class="nav-link" href="<%=request.getContextPath()%>/frontend/ren_appointment/listRenAppByLDD.jsp">預約單管理</a>
+                                    <a class="nav-link" href="layout-sidenav-light.html">租賃單管理</a>
 							</nav>
 						</div>
 						<!-- ------------------------------------------------------------------------------------------------- -->
@@ -170,7 +170,7 @@
 							aria-controls="collapsePages">
 							<div class="sb-nav-link-icon">
 								<i class="fas fa-couch"></i>
-							</div> 嚙瘦嚙踝蕭嚙踝蕭嚙豬理
+							</div> 二手相關管理
 							<div class="sb-sidenav-collapse-arrow">
 								<i class="fas fa-angle-down"></i>
 							</div>
@@ -178,8 +178,8 @@
 						<div class="collapse" id="collapsePages"
 							aria-labelledby="headingTwo" data-bs-parent="#sidenavAccordion">
 							<nav class="sb-sidenav-menu-nested nav">
-								  <a class="nav-link" href="<%=request.getContextPath()%>/frontend/sec_items/select_page.jsp">嚙諉品嚙豬理</a>
-                                    <a class="nav-link" href="<%=request.getContextPath()%>/frontend/sec_ord/listAllSecOrd.jsp">嚙緬嚙踝蕭瑊z</a>
+								  <a class="nav-link" href="<%=request.getContextPath()%>/frontend/sec_items/select_page.jsp">商品管理</a>
+                                    <a class="nav-link" href="<%=request.getContextPath()%>/frontend/sec_ord/listAllSecOrd.jsp">訂單管理</a>
 							</nav>
 						</div>
 						<!-- ------------------------------------------------------------------------------------------------- -->
@@ -188,7 +188,7 @@
 							aria-controls="collapsePages">
 							<div class="sb-nav-link-icon">
 								<i class="fas fa-wrench"></i>
-							</div> 嚙璀嚙褓穿蕭嚙踝蕭瑊z
+							</div> 服務相關管理
 							<div class="sb-sidenav-collapse-arrow">
 								<i class="fas fa-angle-down"></i>
 							</div>
@@ -196,9 +196,13 @@
 						<div class="collapse" id="collapsePages2"
 							aria-labelledby="headingThree" data-bs-parent="#sidenavAccordion">
 							<nav class="sb-sidenav-menu-nested nav">
-								<a class="nav-link" href="layout-static.html">嚙璀嚙褓管理</a>
-                                    <a class="nav-link" href="layout-sidenav-light.html">嚙豎求嚙踝蕭瑊z</a>
-                                    <a class="nav-link" href="layout-sidenav-light.html">嚙緬嚙踝蕭瑊z</a>
+                                    <a class="nav-link" href="<%=request.getContextPath()%>/frontend/ser_vdr/update_SerVdr_input.jsp">成為廠商</a>
+                                    <a class="nav-link" href="<%=request.getContextPath()%>/frontend/ser_vdr/listOneSerVdr.jsp">檢視廠商基本資料</a>
+                                    <a class="nav-link" href="<%=request.getContextPath()%>/frontend/ser_ad/addSerAd.jsp">刊登服務</a>
+                                    <a class="nav-link" href="<%=request.getContextPath()%>/frontend/ser_ad/listAllSerAd.jsp">檢視服務</a>
+                                    <a class="nav-link" href="<%=request.getContextPath()%>/frontend/ser_quo/getQuoByVdrID.jsp">需求單管理</a>
+                                    <a class="nav-link" href="<%=request.getContextPath()%>/frontend/ser_ord/findQuoBeforeByVdrID.jsp">新增訂單</a>
+                                    <a class="nav-link" href="<%=request.getContextPath()%>/frontend/ser_ord/getOrdByVdrID.jsp">檢視訂單</a>
 							</nav>
 						</div>
 						<!-- ------------------------------------------------------------------------------------------------- -->
@@ -207,18 +211,18 @@
 
 			</nav>
 		</div>
-<!-- main 嚙罷嚙締--------------------------------------------------------------------------------- -->
+<!-- main 開始--------------------------------------------------------------------------------- -->
 		<div id="layoutSidenav_content">
 			<main>
 				<div class="container-fluid px-4">
-<!-- 嚙趟頁嚙踝蕭嚙緬嚙緻嚙諒開嚙締--------------------------------------------------------------------------------- -->
+<!-- 塞頁面從這裡開始--------------------------------------------------------------------------------- -->
 
 
-	<h3>嚙踝蕭a嚙緬嚙踝蕭s嚙踝蕭嚙範嚙踝蕭:</h3>
+<!-- 	<h3>賣家訂單編號查詢:</h3> -->
 
-	<%-- 嚙踝蕭~嚙踝蕭C --%>
+	<%-- 錯誤表列 --%>
 	<c:if test="${not empty errorMsgs}">
-		<font style="color: red">嚙請修伐蕭嚙瘡嚙磊嚙踝蕭~:</font>
+		<font style="color: red">請修正以下錯誤:</font>
 		<ul>
 			<c:forEach var="message" items="${errorMsgs}">
 				<li style="color: red">${message}</li>
@@ -226,40 +230,43 @@
 		</ul>
 	</c:if>
 
-
+<%-- 查詢賣家訂單  --%>
 	<jsp:useBean id="secOrdSvc" scope="page"
 		class="ezs.sec_ord.model.SecOrdService" />
 		
-		
+<!-- 	<ul> -->
+<!-- 		<li><a href='listSecOrdsByShSeller.jsp'>搜尋</a> 查詢賣家訂單 <br> <br></li>	 -->
 
-<li>
-		<FORM METHOD="post" ACTION="<%=request.getContextPath()%>/sec_ord/GetSecOrdBySellerServlet.do">
-			<b><font color=blue>嚙踝蕭颩q嚙踝蕭s嚙踝蕭:</font></b> 
-			<select size="1" name="shOrdID">
-			<c:forEach var="secOrdVO" items="${secOrdSvc.all}">
-				<option value="${secOrdVO.shOrdID}">${secOrdVO.shOrdID}
-			</c:forEach>
-			</select> <input type="submit" value="嚙箴嚙碼"> <input type="hidden"
-				name="action" value="getOne_For_Display">
-		</FORM>
+<!-- <li> -->
+<%-- 		<FORM METHOD="post" ACTION="<%=request.getContextPath()%>/sec_ord/GetSecOrdDetailsBySellerServlet.do"> --%>
+<!-- 			<b><font color=blue>選擇訂單編號:</font></b>  -->
+<!-- 			<select size="1" name="shOrdID"> -->
+<%-- 			<c:forEach var="secOrdVO" items="${secOrdSvc.all}"> --%>
+<%-- 				<option value="${secOrdVO.shOrdID}">${secOrdVO.shOrdID} --%>
+<%-- 			</c:forEach> --%>
+<!-- 			</select> <input type="submit" value="送出"> <input type="hidden" -->
+<!-- 				name="action" value="listSecOrdDetails_BySecOrd_A"> -->
+<!-- 		</FORM> -->
 
-	</li>
-
-
+<!-- 	</li> -->
 
 
-		<h3>嚙踝蕭a嚙緬嚙踝蕭d嚙踝蕭:</h3>
+
+
+		<h3>賣家訂單查詢:</h3>
 	
 
 	<ul>
 	<td>
 			  <FORM METHOD="post" ACTION="<%=request.getContextPath()%>/sec_ord/GetSecOrdBySellerServlet.do" style="margin-bottom: 0px;">
-			    <input type="submit" value="嚙踝蕭a嚙緬嚙踝蕭d嚙踝蕭"> 
+			    <input type="submit" value="查詢"> 
 			    <input type="hidden" name="shSellerID" value="${memberVO.memID}">
 			    <input type="hidden" name="action" value="listSecOrd_ByShSellererID"></FORM>
 			</td>
 
 	</ul>
+
+
 <!-- 嚙趟頁嚙踝蕭嚙緬嚙緻嚙諒蛛蕭嚙踝蕭--------------------------------------------------------------------------------- -->
 				</div>
 			</main>
@@ -280,6 +287,10 @@
 	<script src="js/datatables-simple-demo.js"></script>
 
 	<!-- 嚙踝蕭嚙踝蕭嚙踝蕭嚙瘠嚙踝蕭嚙踝蕭--------------------------------------- -->
-	<main></main>
+<!-- 	<main></main> -->
+
+
+</body>
+</html>
 </body>
 </html>
