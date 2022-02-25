@@ -137,5 +137,9 @@ public class SecItemsService {
 		return dao.findByStatus(shSellerID, shStatus);
 	}
 	
+	public SecItemsVO getOneSecItemsByShID(Integer shID) {
+		return dao.getOneSecItemsByShID(shID);
+	}
+	
 	
 }

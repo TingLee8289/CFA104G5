@@ -8,6 +8,7 @@ public interface SecItemsDAO_interface {
     public void update(SecItemsVO secItemsVO);
     public void delete(Integer shID);
     public SecItemsVO findByPrimaryKey(Integer shSellerID, Integer shID);
+    public SecItemsVO getOneSecItemsByShID(Integer shID);
     public List<SecItemsVO> findByShCategory(Integer shSellerID,Integer shCateID);
    
     public List<SecItemsVO> getAll();

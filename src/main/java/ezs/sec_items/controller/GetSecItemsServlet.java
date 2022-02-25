@@ -32,7 +32,8 @@ public class GetSecItemsServlet extends HttpServlet {
 		req.setCharacterEncoding("UTF-8");
 		String action = req.getParameter("action");
 		HttpSession session = req.getSession(); // 取得session
-		if ("getOne_For_Display".equals(action)) { // 來自select_page.jsp的請求
+// 來自select_page.jsp的請求		
+if ("getOne_For_Display".equals(action)) { 
 
 			List<String> errorMsgs = new LinkedList<String>();
 			// Store this set in the request scope, in case we need to
@@ -108,20 +109,10 @@ public class GetSecItemsServlet extends HttpServlet {
 		if ("getOneItem_For_Display".equals(action)) { 
 			
 			List<String> errorMsgs = new LinkedList<String>();
-			// Store this set in the request scope, in case we need to
-			// send the ErrorPage view.
 			req.setAttribute("errorMsgs", errorMsgs);
 			try {
 				
 				/*************************** 1.接收請求參數 - 輸入格式的錯誤處理 **********************/
-				
-				Object seller = session.getAttribute("memID");
-
-				Integer shSellerID = (Integer) seller;
-				System.out.println(shSellerID);
-				
-				
-				
 				
 				String str = req.getParameter("shID");
 				if (str == null || (str.trim()).length() == 0) {
@@ -141,8 +132,6 @@ public class GetSecItemsServlet extends HttpServlet {
 					errorMsgs.add("商品編號格式不正確");
 				}
 				
-				
-				
 				// Send the use back to the form, if there were errors
 				if (!errorMsgs.isEmpty()) {
 					RequestDispatcher failureView = req.getRequestDispatcher("/frontend/sec_items/listOneSecItems.jsp");
@@ -152,7 +141,7 @@ public class GetSecItemsServlet extends HttpServlet {
 				
 				/*************************** 2.開始查詢資料 *****************************************/
 				SecItemsService secItemsSvc = new SecItemsService();
-				SecItemsVO secItemsVO = secItemsSvc.getOneSecItems(shSellerID, shID);
+				SecItemsVO secItemsVO = secItemsSvc.getOneSecItemsByShID(shID);
 				if (secItemsVO == null) {
 					errorMsgs.add("查無資料");
 				}
