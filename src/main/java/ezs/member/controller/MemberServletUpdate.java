@@ -336,10 +336,17 @@ public class MemberServletUpdate extends HttpServlet {
 
 			Byte memStatus = new Byte(req.getParameter("memStatus"));
 			Integer memReported = new Integer(req.getParameter("memReported"));
+			if (memReported == null) {
+				errorMsgs.add("被檢舉數請勿空白");
+			}
+			
 			Byte memLandlord = new Byte(req.getParameter("memLandlord"));
 			Byte memSupplier = new Byte(req.getParameter("memSupplier"));
 			Byte memSeller = new Byte(req.getParameter("memSeller"));
 			Integer memSupReported = new Integer(req.getParameter("memSupReported"));
+			if (memSupReported == null) {
+				errorMsgs.add("廠商被檢舉數請勿空白");
+			}
 
 			String memUsername = new String(req.getParameter("memUsername"));
 			String memName = new String(req.getParameter("memName"));

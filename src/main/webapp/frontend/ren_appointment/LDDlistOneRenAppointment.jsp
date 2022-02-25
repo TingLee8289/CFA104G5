@@ -274,10 +274,11 @@ RenAppointmentVO renAppointmentVO = (RenAppointmentVO) request.getAttribute("ren
 		</tr>
 		<tr>
 			<th id="test">房源:</th>
-			<td><c:forEach var="renLisVO" items="${renLisSvc.all}">
+			<td><a href="<%=request.getContextPath()%>/frontend/ren_listing/GetOneRenListingServlet.do?lisID=${renAppointmentVO.aptLisId}&action=getOne_For_Display_A">
+		<c:forEach var="renLisVO" items="${renLisSvc.all}">
 					<c:if test="${renAppointmentVO.aptLisId==renLisVO.lisID}">
 	                    【${renLisVO.lisID}】 - ${renLisVO.lisTitle}
-                    </c:if></c:forEach></td>
+                    </c:if></c:forEach></a></td>
 		</tr>
 		<tr>
 			<th id="test">預約單狀態:</th>

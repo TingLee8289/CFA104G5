@@ -300,11 +300,13 @@
 									value="${(memVO.memRedScore/memVO.memRedCount)}"/>
 							</c:otherwise></c:choose></c:if> </c:forEach> </c:if> </c:forEach></td>
 			
-			<td><c:forEach var="renLisVO" items="${renLisSvc.all}">
+			<td><a href="<%=request.getContextPath()%>/frontend/ren_listing/GetOneRenListingServlet.do?lisID=${renAppointmentVO.aptLisId}&action=getOne_For_Display_A">
+		
+			<c:forEach var="renLisVO" items="${renLisSvc.all}">
                     <c:if test="${renAppointmentVO.aptLisId==renLisVO.lisID}">
 	                    【${renLisVO.lisID}】 - ${renLisVO.lisTitle}
                     </c:if>
-                </c:forEach>
+                </c:forEach></a>
 			</td>
 			
 			<td>

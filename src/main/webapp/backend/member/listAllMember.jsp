@@ -38,9 +38,11 @@ pageContext.setAttribute("list", list);
 </head>
 
 <body class="sb-nav-fixed">
+
 	<nav class="sb-topnav navbar navbar-expand navbar-dark bg-dark">
 		<!-- Navbar Brand-->
-		<a class="navbar-brand ps-3" href="index.html">EASY SPACE</a>
+		<a class="navbar-brand ps-3"
+			href="<%=request.getContextPath()%>/backend/index.jsp">EASY SPACE</a>
 		<!-- Sidebar Toggle-->
 		<button class="btn btn-link btn-sm order-1 order-lg-0 me-4 me-lg-0"
 			id="sidebarToggle" href="#!">
@@ -76,7 +78,8 @@ pageContext.setAttribute("list", list);
 				<div class="sb-sidenav-menu">
 					<div class="nav">
 						<div class="sb-sidenav-menu-heading">後台管理專區</div>
-						<a class="nav-link" href="<%=request.getContextPath()%>/backend/adminEmp/adminEmp.jsp">
+						<a class="nav-link"
+							href="<%=request.getContextPath()%>/backend/adminEmp/adminEmp.jsp">
 							<div class="sb-nav-link-icon">
 								<i class="fas fa-tachometer-alt"></i>
 							</div> 員工管理
@@ -96,8 +99,10 @@ pageContext.setAttribute("list", list);
 						<div class="collapse" id="collapseLayouts"
 							aria-labelledby="headingOne" data-bs-parent="#sidenavAccordion">
 							<nav class="sb-sidenav-menu-nested nav">
-								<a class="nav-link" href="<%=request.getContextPath()%>/backend/index.jsp">審核房源</a> <a
-									class="nav-link" href="<%=request.getContextPath()%>/backend/ren/select.jsp">審核房東</a>
+								<a class="nav-link"
+									href="<%=request.getContextPath()%>/backend/index.jsp">審核房源</a>
+								<a class="nav-link"
+									href="<%=request.getContextPath()%>/backend/ren/select.jsp">審核房東</a>
 							</nav>
 						</div>
 						<!-- ------------------------------------------------------------------------------------------------- -->
@@ -114,8 +119,10 @@ pageContext.setAttribute("list", list);
 						<div class="collapse" id="collapsePages"
 							aria-labelledby="headingTwo" data-bs-parent="#sidenavAccordion">
 							<nav class="sb-sidenav-menu-nested nav">
-								<a class="nav-link" href="<%=request.getContextPath()%>/backend/index.jsp">退款審核</a> <a
-									class="nav-link" href="<%=request.getContextPath()%>/backend/sec_items/secitems.jsp">商品下架</a>
+								<a class="nav-link"
+									href="<%=request.getContextPath()%>/backend/index.jsp">退款審核</a>
+								<a class="nav-link"
+									href="<%=request.getContextPath()%>/backend/sec_items/secitems.jsp">商品下架</a>
 							</nav>
 						</div>
 						<!-- ------------------------------------------------------------------------------------------------- -->
