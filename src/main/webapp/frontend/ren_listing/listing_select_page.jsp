@@ -5,7 +5,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>EASY SPACE</title>
+<title>找租屋</title>
 
 <style>
   table#table-1 {
@@ -47,31 +47,31 @@
 </c:if>
 
 <ul>
-	<li>瀏覽房源<a href='listAllListing.jsp'>List</a> </li>
+<!-- 	<li>瀏覽房源<a href='listAllListing.jsp'>List</a> </li> -->
 
-    <li>
-      <FORM METHOD="post" ACTION="RenListingServlet.do">
-      	<b>輸入房源ID:</b>
-      	<input type="text" name="lisID">
-      	<input type="hidden" name="action" value="getOne_For_Display">
-        <input type="submit" name="送出">      
-      </FORM>
-     </li>
+<!--     <li> -->
+<!--       <FORM METHOD="post" ACTION="RenListingServlet.do"> -->
+<!--       	<b>輸入房源ID:</b> -->
+<!--       	<input type="text" name="lisID"> -->
+<!--       	<input type="hidden" name="action" value="getOne_For_Display"> -->
+<!--         <input type="submit" name="送出">       -->
+<!--       </FORM> -->
+<!--      </li> -->
      
-     <jsp:useBean id="renListingSvc" scope="page" class="ezs.ren_listing.model.RenListingService"/>
+<%--      <jsp:useBean id="renListingSvc" scope="page" class="ezs.ren_listing.model.RenListingService"/> --%>
      
-     <li>
-     	<FORM METHOD="post" ACTION="RenListingServlet.do">
-     	  <b>選擇房源ID:</b>
-     	  <select size="1" name="lisID">
-     		<c:forEach var="renListingVO" items="${renListingSvc.all}">
-     		  <option value="${renListingVO.lisID}">${renListingVO.lisID}
-     		</c:forEach>
-     	  </select>
-     	  <input type="hidden" name="action" value="getOne_For_Display">
-     	  <input type="submit" value="送出">
-       </FORM>
-	</li>     
+<!--      <li> -->
+<!--      	<FORM METHOD="post" ACTION="RenListingServlet.do"> -->
+<!--      	  <b>選擇房源ID:</b> -->
+<!--      	  <select size="1" name="lisID"> -->
+<%--      		<c:forEach var="renListingVO" items="${renListingSvc.all}"> --%>
+<%--      		  <option value="${renListingVO.lisID}">${renListingVO.lisID} --%>
+<%--      		</c:forEach> --%>
+<!--      	  </select> -->
+<!--      	  <input type="hidden" name="action" value="getOne_For_Display"> -->
+<!--      	  <input type="submit" value="送出"> -->
+<!--        </FORM> -->
+<!-- 	</li>      -->
      <li>
      	<FORM METHOD="post" ACTION="RenListingServlet.do">
      	  <b>房東管理選擇房東ID:</b>
@@ -93,7 +93,6 @@
      	  <input type="submit" value="送出">
        </FORM>
 	</li>
-
 </ul>
 
 <h3>我要刊登</h3>

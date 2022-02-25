@@ -209,11 +209,20 @@
           <ul>
             <li class="probootstrap-animate active" data-animate-effect="fadeInLeft"><a href="<%=request.getContextPath() %>/frontend/ren_listing/listingView.jsp">瀏覽租屋案件</a></li>
             <li>
-      <FORM METHOD="post" ACTION="RenListingServlet.do">
+      <FORM METHOD="post" ACTION="GetOneRenListingServlet.do">
       	<b>輸入房源ID:</b>
       	<input type="text" name="lisID">
-      	<input type="hidden" name="action" value="getOne_For_Display">
-        <input type="submit" name="送出">      
+      	<input type="hidden" name="action" value="getOne_For_Display_A">
+        <input type="submit" name="送出">
+        <%-- 錯誤表列 --%>
+<c:if test="${not empty errorMsgs}">
+	<font style="color:red"></font>
+	<ul>
+		<c:forEach var="message" items="${errorMsgs}">
+			<li style="color:red">${message}</li>
+		</c:forEach>
+	</ul>
+</c:if>      
       </FORM>
      </li>
      
@@ -228,8 +237,18 @@
      	  </select>
      	  <input type="hidden" name="action" value="listLocations_BylisAreaID">
      	  <input type="submit" value="送出">
+     	  <%-- 錯誤表列 --%>
+<c:if test="${not empty errorMsgs}">
+	<font style="color:red"></font>
+	<ul>
+		<c:forEach var="message" items="${errorMsgs}">
+			<li style="color:red">${message}</li>
+		</c:forEach>
+	</ul>
+</c:if>
        </FORM>
 	</li>
+	
           </ul>
         </nav>
       </div>

@@ -3,23 +3,18 @@
 <%@ page import="java.util.*"%>
 <%@ page import="ezs.ren_listing.model.*"%>
 <%@ page import="ezs.ren_roomtype.model.*"%>
-<%@ page import="ezs.ren_location.model.*"%>
-<%@ page import="ezs.ren_listing_pic.model.*"%>
-<%@ page import="ezs.ren_location.model.RenLocationVO"%>
-<%@ page import="ezs.ren_location.model.RenLocationService"%>
 <%@ page import="ezs.ren_roomtype.model.RenRoomtypeVO"%>
 <%@ page import="ezs.ren_roomtype.model.RenRoomtypeService"%>
 
-<% 
-	Set<RenListingVO> set1 = (Set<RenListingVO>)session.getAttribute("listRenListing_ByLisAreaID"); 
-	pageContext.setAttribute("set1", set1);
+<%
+	Set<RenListingVO> set = (Set<RenListingVO>)session.getAttribute("listRenListing_ByLisLddID"); 
+	pageContext.setAttribute("set", set);
 %>
 
 <jsp:useBean id="renRoomtypeSvc" scope="page" class="ezs.ren_roomtype.model.RenRoomtypeService" />
 <jsp:useBean id="renLocationSvc" scope="page" class="ezs.ren_location.model.RenLocationService" />
 <jsp:useBean id="renLandlordSvc" scope="page" class="ezs.ren_landlord.model.RenLandlordService" />
-<jsp:useBean id="memberSvc" scope="page" class="ezs.member.model.MemberService" /> 
-
+<jsp:useBean id="memberSvc" scope="page" class="ezs.member.model.MemberService" />
 <!DOCTYPE html>
 <html>
 <head>
@@ -236,13 +231,12 @@
       <main class="main">
 		<ul class="item_list" id="item_list">
 
-			<c:forEach var="renListingVO" items="${set1}">
-				<li style="list-style: none;">
+			<c:forEach var="renListingVO" items="${set}">
 				<li style="list-style: none;">
 					<a href="<%=request.getContextPath()%>/frontend/ren_listing/GetOneRenListingServlet.do?lisID=${renListingVO.lisID}&action=getOne_For_Display_A">
 						<div class="img_block">
 							<img src="<%=request.getContextPath()%>/ren_listing/RenListing_pic_ReaderServlet.do?LIS_ID=${renListingVO.lisID}" width = 200px>
-						</div>
+						</div> 
 								<span class="item_text">房源編號:${renListingVO.lisID}</span>
 								<span class="item_text">${renListingVO.lisTitle}</span>
 								<span class="item_text"><c:forEach var="renRoomtypeVO" items="${renRoomtypeSvc.all}">
@@ -255,28 +249,34 @@
                     											<c:if test="${renListingVO.lisAreaID==renLocationVO.locID}">
 	                    												${renLocationVO.locCity}${renLocationVO.locDist}
                     											</c:if>
-                										</c:forEach></span>                				
-                				<span class="item_text">地址:${renListingVO.lisAddress}</span>
+                										</c:forEach>
+                				</span>
+								<span class="item_text">地址:${renListingVO.lisAddress}</span>
 								<span class="item_text">坪數:${renListingVO.lisSqft}</span>
 								<span class="item_text">樓層:${renListingVO.lisFlr}</span>
 								<span class="item_text">${renListingVO.lisRmNo}房</span>
 								<span class="item_text">${renListingVO.lisCmnArea}廳</span>
 								<span class="item_text">${renListingVO.lisBrNo}衛</span>
 								<span class="item_price">租金${renListingVO.lisRent}</span>
-						
+							
 					</a> 
-			    </li>
-			 </c:forEach>
+					
+				</li>
+			</c:forEach>
+
 		</ul>
+		
+		
 		<div class="container-fluid d-md-none">
         <div class="row">
           <div class="col-md-12">
-            <p>&copy; 2022 <a href="#">EASY SPACE</a><br> All Rights Reserved. Designed by CFA104G5</p>
+            <p>&copy; 2022 <a href="#">EASY SPACE</a> <br> All Rights Reserved. Designed by CFA104G5</p>
           </div>
         </div>
       </div>
-		</main>
-		<script src="<%=request.getContextPath() %>/js/jquery-3.2.1.slim.min.js"></script>
+	</main>
+
+<script src="<%=request.getContextPath() %>/js/jquery-3.2.1.slim.min.js"></script>
     <script src="<%=request.getContextPath() %>/js/popper.min.js"></script>
     <script src="<%=request.getContextPath() %>/js/bootstrap.min.js"></script>
     <script src="<%=request.getContextPath() %>/js/owl.carousel.min.js"></script>
@@ -284,6 +284,6 @@
     <script src="<%=request.getContextPath() %>/js/imagesloaded.pkgd.min.js"></script>
     <script src="<%=request.getContextPath() %>/js/imagesloaded.pkgd.min.js"></script>
     <script src="<%=request.getContextPath() %>/js/main.js"></script>
-		
+
 </body>
 </html>

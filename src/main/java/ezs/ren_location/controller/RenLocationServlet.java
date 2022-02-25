@@ -38,10 +38,21 @@ public class RenLocationServlet extends HttpServlet {
 			try {
 				/*****************1.接收請求參數_輸入格式的錯誤處理******************/
 				Integer lisAreaID = new Integer(req.getParameter("lisAreaID"));
-				System.out.print(1234);
+//				System.out.print(1234);
 				/*************************** 2.開始查詢資料 ****************************************/
 				RenLocationService renLocationSvc = new RenLocationService();
 				Set<RenListingVO> set1 = renLocationSvc.getRenListingByLisAreaID(lisAreaID);
+				if (set1 == null) {
+					errorMsgs.add("查無資料請查詢別區");
+				}
+				
+				if(!errorMsgs.isEmpty()) {
+					RequestDispatcher failureView = req
+							.getRequestDispatcher("/frontend/ren_listing/listingView.jsp");
+									
+					failureView.forward(req, res);
+					return;
+				}
 				/*************************** 3.查詢完成,準備轉交(Send the Success view) ************/
 				HttpSession session = req.getSession();
 				session.setAttribute("listRenListing_ByLisAreaID", set1);    // 資料庫取出的list物件,存入request				

@@ -125,7 +125,7 @@ if("listRenListing_ByLisLddID".equals(action)) {
 				}
 				if(!errorMsgs.isEmpty()) {
 					RequestDispatcher failureView = req
-							.getRequestDispatcher("/frontend/ren_listing/listing_select_page.jsp");
+							.getRequestDispatcher("/frontend/ren_listing/listingView.jsp");
 					failureView.forward(req, res);
 					return;
 				}
@@ -139,7 +139,7 @@ if("listRenListing_ByLisLddID".equals(action)) {
 				
 				if (!errorMsgs.isEmpty()) {
 					RequestDispatcher failureView = req
-							.getRequestDispatcher("/frontend/ren_listing/listing_select_page.jsp");
+							.getRequestDispatcher("/frontend/ren_listing/listingView.jsp");
 					failureView.forward(req, res);
 					return;
 				}
@@ -152,7 +152,7 @@ if("listRenListing_ByLisLddID".equals(action)) {
 				
 				if(!errorMsgs.isEmpty()) {
 					RequestDispatcher failureView = req
-							.getRequestDispatcher("/frontend/ren_listing/listing_select_page.jsp");
+							.getRequestDispatcher("/frontend/ren_listing/listingView.jsp");
 					failureView.forward(req, res);
 					return;
 				}
@@ -162,7 +162,7 @@ if("listRenListing_ByLisLddID".equals(action)) {
 				/********************3.查詢完成,準備轉交*****************/
 				HttpSession session = req.getSession();
 				session.setAttribute("listRenListing_ByLisLddID", set);
-				String url = "/frontend/ren_listing/listRenListing_ByLisLddID.jsp";
+				String url = "/frontend/ren_listing/listingViewByLddID.jsp";
 				RequestDispatcher successView = req.getRequestDispatcher(url);
 				successView.forward(req, res);
 				
@@ -602,7 +602,7 @@ if("listRenListing_ByLisLddID".equals(action)) {
 			renListingSvc.addRenListing(renListingPicVO);
 			
 			/*****************************3.新增完成，準備轉交(send the Success view)*********/
-			String url = "/frontend/ren_listing/listAllListing.jsp";
+			String url = "/frontend/ren_listing/listingView.jsp";
 			RequestDispatcher successView = req.getRequestDispatcher(url); // 新增成功後轉交listAllListing.jsp
 			successView.forward(req, res);
 			
@@ -638,6 +638,7 @@ if("listRenListing_ByLisLddID".equals(action)) {
 			
 				
 				renListingPicSvc.deleteRenListingPic(lspLisID);
+				renListingSvc.deleteRenListing(lisID);
 				
 				/***************************3.刪除完成,準備轉交(Send the Success view)***********/								
 				String url = "/frontend/ren_listing/listAllListing.jsp";

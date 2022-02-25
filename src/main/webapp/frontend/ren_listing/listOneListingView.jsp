@@ -228,10 +228,10 @@
 
 	
 	<li>
-      <FORM METHOD="post" ACTION="RenListingServlet.do">
+      <FORM METHOD="post" ACTION="GetOneRenListingServlet.do">
       	<b>輸入房源ID:</b>
       	<input type="text" name="lisID">
-      	<input type="hidden" name="action" value="getOne_For_Display">
+      	<input type="hidden" name="action" value="getOne_For_Display_A">
         <input type="submit" name="送出">      
       </FORM>
      </li>
