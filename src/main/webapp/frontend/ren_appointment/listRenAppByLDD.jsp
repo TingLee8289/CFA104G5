@@ -317,7 +317,10 @@
 				<c:if test="${renAppointmentVO.aptStatus == 2}">已取消</c:if>
 				<c:if test="${renAppointmentVO.aptStatus == 3}">預約時間已變更</c:if>
 			</td>
-			<td>${renAppointmentVO.aptTime}</td>	
+			<td><c:set value="${renAppointmentVO.aptTime}" var="dateString" />
+			<fmt:parseDate value="${dateString}" var="dateObject"
+                pattern="yyyy-MM-dd HH:mm" />
+                <fmt:formatDate value="${dateObject}" pattern="yyyy-MM-dd HH:mm" /></td>	
 			
 			<td>
 			<c:if test="${renAppointmentVO.aptStatus != 2 and renAppointmentVO.aptStatus != 1}">

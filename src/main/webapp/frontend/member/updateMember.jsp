@@ -280,7 +280,7 @@ text-align: center;
 		</tr>
 		<tr>
 			<th id="test">密碼:</th>
-			<td><input type="TEXT" name="memPassword" size="20" value="<%=memberVO.getMemPassword()%>" /></td>
+			<td><input type="password" name="memPassword" size="20" value="<%=memberVO.getMemPassword()%>" /></td>
 		</tr>
 		<tr>
 			<th id="test">姓名:</th>

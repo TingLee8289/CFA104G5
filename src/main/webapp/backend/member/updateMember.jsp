@@ -238,8 +238,10 @@ text-align: center;
 		<th id="test">會員狀態:</th>		
 		<td>
 			<select size="1" name="memStatus">
-				<option value="0" id="memStatus0">未驗證</option>
+<%-- 				<option value="${memberVO.memStatus}">${memberVO.memStatus} --%>
+				
 				<option value="1" id="memStatus1">已驗證</option>
+				<option value="0" id="memStatus0">未驗證</option>
 				<option value="2" id="memStatus2">停權</option>
 			</select></td>
 	</tr>
@@ -278,16 +280,16 @@ text-align: center;
 		<th id="test">廠商身分:</th>
 		<td>
 			<select size="1" name="memSupplier">
-				<option value="0" id="memSupplier0">停權</option>
 				<option value="1" id="memSupplier1">啟用</option>
+				<option value="0" id="memSupplier0">停權</option>
 			</select></td>
 	</tr>
 	<tr>
 		<th id="test">賣家身分:</th>
 		<td>
 			<select size="1" name="memSeller">
-				<option value="0" id="memSeller0">停權</option>
 				<option value="1" id="memSeller1">啟用</option>
+				<option value="0" id="memSeller0">停權</option>
 			</select></td>
 	</tr>
 	<tr>

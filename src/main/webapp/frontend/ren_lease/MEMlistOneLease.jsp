@@ -2,6 +2,8 @@
 <%@ page import="ezs.ren_lease.model.*"%>
 <%@ page import="java.util.*"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%-- 此頁暫練習採用 Script 的寫法取值 --%>
 
 
@@ -291,7 +293,11 @@
 						</td>
 						<td>${renLeaseVO.lseStart}</td>
 						<td>${renLeaseVO.lseEnd}</td>
-						<td>${renLeaseVO.lseTimestamp}</td>
+						<td>
+						<c:set value="${renLeaseVO.lseTimestamp}" var="dateString" />
+			<fmt:parseDate value="${dateString}" var="dateObject"
+                pattern="yyyy-MM-dd HH:mm" />
+                <fmt:formatDate value="${dateObject}" pattern="yyyy-MM-dd HH:mm" /></td>
 <!-- 						<td> -->
 <%-- 							<FORM METHOD="post" ACTION="<%=request.getContextPath()%>/ren_lease/RenLeaseServletMEM.do" style="margin-bottom: 0px;"> 				 --%>
 <%-- 					<input type="hidden" name="lseId" value="${renLeaseVO.lseId}">  --%>
