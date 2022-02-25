@@ -21,6 +21,7 @@ public class SecItemsJNDIDAO implements SecItemsDAO_interface {
 	private static final String DELETE_STMT = "DELETE FROM `CFA104G5`.`SEC_ITEMS` WHERE sh_id = ?";
 	private static final String UPDATE_STMT = "UPDATE `CFA104G5`.`SEC_ITEMS` SET sh_cate_id=?, sh_name=?, sh_price=?, sh_qty=?, sh_size=?, sh_description=?, sh_condition=?, sh_time=?, sh_guarantee=?, sh_county=?, sh_dist=? WHERE sh_id = ?";
 	private static final String GET_ONE_STMT = "SELECT * FROM `CFA104G5`.`SEC_ITEMS` WHERE sh_sellerid =? AND sh_id = ?";
+	private static final String GET_ONE_STMT2 = "SELECT * FROM `CFA104G5`.`SEC_ITEMS` WHERE sh_id = ?";
 	private static final String GET_ALL_STMT2 = "SELECT * FROM `CFA104G5`.`SEC_ITEMS` WHERE sh_sellerid = ? ORDER BY sh_id DESC";
 	private static final String GET_ALL_STMT = "SELECT * FROM `CFA104G5`.`SEC_ITEMS` ORDER BY sh_id DESC";
 	private static final String GET_BY_CATE_STMT = "SELECT * FROM `CFA104G5`.`SEC_ITEMS` WHERE sh_sellerid =? AND sh_cate_id=?";
@@ -307,6 +308,42 @@ public class SecItemsJNDIDAO implements SecItemsDAO_interface {
 		}
 		return list;
 		
+	}
+
+	@Override
+	public SecItemsVO getOneSecItemsByShID(Integer shID) {
+		SecItemsVO secItemsVO = null;
+
+		try {
+			con = ds.getConnection();
+			pstmt = con.prepareStatement(GET_ONE_STMT2);
+			pstmt.setInt(1, shID);
+			rs = pstmt.executeQuery();
+
+			while (rs.next()) {
+				secItemsVO = new SecItemsVO();
+				secItemsVO.setShID(rs.getInt("sh_id"));
+				secItemsVO.setShCateID(rs.getInt("sh_cate_id"));
+				secItemsVO.setShSellerID(rs.getInt("sh_sellerid"));
+				secItemsVO.setShName(rs.getString("sh_name"));
+				secItemsVO.setShPrice(rs.getBigDecimal("sh_price"));
+				secItemsVO.setShQTY(rs.getInt("sh_qty"));
+				secItemsVO.setShSize(rs.getString("sh_size"));
+				secItemsVO.setShDescription(rs.getString("sh_description"));
+				secItemsVO.setShCondition(rs.getString("sh_condition"));
+				secItemsVO.setShTime(rs.getString("sh_time"));
+				secItemsVO.setShGuarantee(rs.getString("sh_guarantee"));
+				secItemsVO.setShStatus(rs.getInt("sh_status"));
+				secItemsVO.setShCounty(rs.getString("sh_county"));
+				secItemsVO.setShDist(rs.getString("sh_dist"));
+			}
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			Util.closeResource(con, pstmt, rs);
+		}
+		return secItemsVO;
 	}
 
 //	@Override
