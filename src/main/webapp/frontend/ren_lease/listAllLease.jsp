@@ -183,7 +183,7 @@ pageContext.setAttribute("list", list1);
 							aria-labelledby="headingOne" data-bs-parent="#sidenavAccordion">
 							<nav class="sb-sidenav-menu-nested nav">
 								 <a class="nav-link" href="<%=request.getContextPath()%>/frontend/ren_landlord/applyToLandlord.jsp">申請成為房東</a>
-                                    <a class="nav-link" href="<%=request.getContextPath()%>/front/ren_listing/listingView.jsp">房源管理</a>
+                                    <a class="nav-link" href="<%=request.getContextPath()%>/frontend/ren_listing/listingView.jsp">房源管理</a>
                                     <a class="nav-link" href="<%=request.getContextPath()%>/frontend/ren_appointment/listRenAppByLDD.jsp">預約單管理</a>
                                     <a class="nav-link" href="<%=request.getContextPath()%>/frontend/ren_lease/select_page.jsp">租賃單管理</a>
 							</nav>
