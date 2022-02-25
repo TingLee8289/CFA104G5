@@ -3,6 +3,8 @@
 <%@ page import="ezs.ren_appointment.model.*"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+
 <%
 RenAppointmentVO renAppointmentVO = (RenAppointmentVO) request.getAttribute("renAppointmentVO");
 %>
@@ -290,7 +292,12 @@ RenAppointmentVO renAppointmentVO = (RenAppointmentVO) request.getAttribute("ren
 		</tr>
 		<tr>
 			<th id="test">預約時間:</th>
-			<td>${renAppointmentVO.aptTime}</td>
+			<td>
+			<c:set value="${renAppointmentVO.aptTime}" var="dateString" />
+			<fmt:parseDate value="${dateString}" var="dateObject"
+                pattern="yyyy-MM-dd HH:mm" />
+                <fmt:formatDate value="${dateObject}" pattern="yyyy-MM-dd HH:mm" />
+			</td>
 		</tr>
 		</table></div></div>
 		

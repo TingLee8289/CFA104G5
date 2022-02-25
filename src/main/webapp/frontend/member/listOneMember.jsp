@@ -270,10 +270,10 @@ text-align: center;
 		<th id="test">帳號:</th>
 		<td>${memberVO.memUsername}</td>
 	</tr>
-	<tr>
-		<th id="test">密碼:</th>
-		<td>${memberVO.memPassword}</td>
-	</tr>
+<!-- 	<tr> -->
+<!-- 		<th id="test">密碼:</th> -->
+<%-- 		<td>${memberVO.memPassword}</td> --%>
+<!-- 	</tr> -->
 	<tr>
 		<th id="test">姓名:</th>
 		<td>${memberVO.memName}</td>
@@ -302,6 +302,7 @@ text-align: center;
 	<td><form method="post" action="<%= request.getContextPath() %>/member/MemberServletUpdate.do">
 						<input type="submit" value="修改"> 
 						<input type="hidden" name="memID" value="${memberVO.memID}"> 
+						<input type="hidden" name="memPassword" value="${memberVO.memPassword}"> 
 						<input type="hidden" name="action" value="getOne_For_Update">
 					</form></td>
 	</tr>
