@@ -6,32 +6,48 @@
 <%@ page import="ezs.sec_category.model.*"%>
 
 <%
+	Integer shCateID = Integer.valueOf(request.getParameter("shCateID"));
 	SecPicsService secPicsSvc = new SecPicsService();
-	List<SecPicsVO> secPicslist = secPicsSvc.getEachFirst();
+	List<SecPicsVO> secPicslist = secPicsSvc.getByShCateID(shCateID);
 	pageContext.setAttribute("secPicslist", secPicslist);
 	
 	SecCategoryService secCategorySvc = new SecCategoryService();
 	List<SecCategoryVO> secCategorylist = secCategorySvc.getAll();
 	pageContext.setAttribute("secCategorylist", secCategorylist);
 	
+	
 	SecItemsService secItemsSvc = new SecItemsService();
-	List<SecItemsVO> secItemslist = secItemsSvc.getAll();
+	List<SecItemsVO> secItemslist = secItemsSvc.getByCategory2(shCateID);
 	pageContext.setAttribute("secItemslist", secItemslist);
 
 %>
 
 <!DOCTYPE html>
 <html>
-<head>
-    <meta charset="utf-8">
+  <head>
     <title>EASY SPACE</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
-    <style>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="Free HTML5 Website Template by ProBootstrap.com" />
+    <meta name="keywords" content="free bootstrap 4, free bootstrap 4 template, free website templates, free html5, free template, free website template, html5, css3, mobile first, responsive" />
+    <meta name="author" content="ProBootstrap.com" />
+    
+<!--  版面css import 開始-->
+    <link rel="stylesheet" href="<%=request.getContextPath() %>/css/bootstrap.min.css">
+    <link rel="stylesheet" href="<%=request.getContextPath() %>/css/open-iconic-bootstrap.min.css">
+    <link rel="stylesheet" href="<%=request.getContextPath() %>/css/owl.carousel.min.css">
+    <link rel="stylesheet" href="<%=request.getContextPath() %>/css/owl.theme.default.min.css">
+    <link rel="stylesheet" href="<%=request.getContextPath() %>/css/icomoon.css">
+    <link rel="stylesheet" href="<%=request.getContextPath() %>/css/animate.css">
+    <link rel="stylesheet" href="<%=request.getContextPath() %>/css/viewPage.css">
+<!--  版面css import 結束-->
+<!--  版面css 開始-->    
+<style>
       *{
         box-sizing: border-box;
       }
       :root{
-        --header-height: 60px;
+        --header-height: 100px;
         --aside-width: 180px;
       }
       body{
@@ -56,9 +72,9 @@
       }
       /* ==================== aside 區域 ==================== */
       aside.aside{
-        border: 1px solid blue;
+/*         border: 1px solid blue; */
         position: fixed;
-        top: var(--header-height)+100px;
+        top: var(--header-height)+100px; 
         left: 0;
         height: calc(100% - var(--header-height));
         width: var(--aside-width);
@@ -66,6 +82,7 @@
         overflow-y: auto;
         padding: 20px 0;
         transition: all 1s;
+        margin-top: 1
       }
       aside.aside button.btn_hamburger{
         display: none;
@@ -91,7 +108,7 @@
       }
       aside.aside > nav.nav > ul.nav_list > li > a{
         display: inline-block;
-        border: 1px solid lightblue;
+/*         border: 1px solid lightblue; */
         width: 100%;
         padding: 3px 10px;
       }
@@ -105,6 +122,7 @@
         background-color: white;
         min-height: calc(100vh - var(--header-height));
         transition: all 1s;
+        margin-top: 80px;
       }
       @media screen and (max-width: 767px){
         main.main{
@@ -163,43 +181,57 @@
         width: 100%;
       }
     </style>
-</head>
-<body>
-<!-- 	header 開始------------------------------------------------------ -->
-    <header class="header">
-      <button type="button" class="btn_hamburger">按鈕</button>這是 header
-    </header>
-<!-- 	header 結束------------------------------------------------------ -->
-<!-- 	側邊欄 開始-------------------------------------------------------- -->
-    <aside class="aside">
-      <nav class="nav">
-        <button type="button" class="btn_hamburger">按鈕</button>
-        <ul class="nav_list">
-	        <c:forEach var="secCategoryVO" items="${secCategorylist}">
-	         	 <li>
-	         	 	<form method="get" action="<%=request.getContextPath() %>/frontend/sec_items/secItemsViewPageAJAX.jsp">
-		         	 	<button type="button" id="Cate${secCategoryVO.shCateID}">${secCategoryVO.shCateName}</button>
-		         	 	<input type="hidden" name="shCateID" value="${secCategoryVO.shCateID}">
-	         	 	</form>
+<!--  版面css 結束-->   
+<!--     sweetAlert -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/6.10.3/sweetalert2.css" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/6.10.3/sweetalert2.js" type="text/javascript"></script>
+<!--     sweetAlert -->
+
+  </head>
+  <body>
+  	<jsp:include page="/frontend/EZ_nav.jsp"/>
+    <jsp:include page="/frontend/EZ_LoginHeader.jsp" />
+    <aside class="probootstrap-aside js-probootstrap-aside aside">
+      <a href="#" class="probootstrap-close-menu js-probootstrap-close-menu d-md-none"><span class="oi oi-arrow-left"></span> Close</a>
+      <div class="probootstrap-site-logo probootstrap-animate" data-animate-effect="fadeInLeft">
+        
+        <a href="<%=request.getContextPath() %>/frontend/sec_items/secItemsViewPage.jsp" class="mb-2 d-block probootstrap-logo">二手家電</a>
+<!--         <p class="mb-0">這是說明文字這是說明文字這是說明文字這是說明文字 </p> -->
+      </div>
+      <div class="probootstrap-overflow">
+        <nav class="probootstrap-nav">
+          <ul>
+            <li class="probootstrap-animate active" data-animate-effect="fadeInLeft"><a href="<%=request.getContextPath() %>/frontend/sec_items/secItemsViewPage.jsp">瀏覽全部商品</a></li>
+            <c:forEach var="secCategoryVO" items="${secCategorylist}">
+	         	 <li class="probootstrap-animate" data-animate-effect="fadeInLeft">
+						<form>
+	         	 			<a style="text-decoration:none;" href="<%=request.getContextPath() %>/frontend/sec_items/secItemsViewPageTemp.jsp?shCateID=${secCategoryVO.shCateID}">${secCategoryVO.shCateName}
+	         	 			</a>
+	         	 		</form>
+
 	         	 </li>  
 	        </c:forEach>
-        </ul>
-      </nav>
+	        
+          </ul>
+        </nav>
+      </div>
     </aside>
-    
+
 <!-- 	側邊欄 結束-------------------------------------------------------- -->
 <!-- 	main 開始-------------------------------------------------------- -->
-
-    <main class="main">
+      <div class="probootstrap-bar">
+        <a href="#" class="probootstrap-toggle js-probootstrap-toggle" style="margin-left:20px;"><span class="oi oi-menu"></span></a>
+        <div class="probootstrap-main-site-logo"></div>
+      </div>
+    <main role="main" class="main">
 		<ul class="item_list" id="item_list">
 			<c:forEach var="secPicsVO" items="${secPicslist}">
-				<li>
+				<li style="list-style: none;">
 					<a href="<%=request.getContextPath()%>/sec_items/GetSecItemsServlet.do?shID=${secPicsVO.shID}&action=getOneItem_For_Display">
 						<div class="img_block">
 							<img style="margin: 0px auto;"
 								src="<%= request.getContextPath()%>/sec_pics/SecPicsReader.do?sh_id=${secPicsVO.shID}">
-						</div> 
-						<c:forEach var="secItemsVO" items="${secItemslist}">
+						</div> <c:forEach var="secItemsVO" items="${secItemslist}">
 							<c:if test="${secItemsVO.shID==secPicsVO.shID}">
 								<span class="item_text">${secItemsVO.shName}</span>
 								<span class="item_price">$${secItemsVO.shPrice}</span>
@@ -209,7 +241,7 @@
 					<c:forEach var="secItemsVO" items="${secItemslist}">
 						<c:if test="${secItemsVO.shID==secPicsVO.shID}">
 							<form method="post" action="<%=request.getContextPath()%>/sec_items/ShoppingServlet.do">
-								<input type="submit" value="加入購物車">
+								<input type="submit" value="加入購物車" class="btn btn-outline-success text-nowrap" id="btn1">
 								<input type="hidden" name="shID" value="${secItemsVO.shID}">
 								<input type="hidden" name="shName" value="${secItemsVO.shName}">
 								<input type="hidden" name="shPrice" value="${secItemsVO.shPrice}">
@@ -220,21 +252,38 @@
 					</c:forEach>
 				</li>
 			</c:forEach>
-
 		</ul>
-	</main>
+
+
+
+	      <div class="container-fluid d-md-none">
+	        <div class="row">
+	          <div class="col-md-12">
+	            <p>&copy; 2022 <a href="#">EASY SPACE</a> <br> All Rights Reserved. Designed by CFA104G5</p>
+	          </div>
+	        </div>
+	      </div>
+
+    </main>
+
 <!-- 	main 結束-------------------------------------------------------- -->
+
+ <!--     jQuery&AJAX -->
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <script src="http://code.jquery.com/jquery-3.6.0.min.js"></script>
-<script>
-      $(function(){
+<!--     jQuery&AJAX -->   
 
-        $("button.btn_hamburger").on("click", function(){
-          $("aside.aside").toggleClass("-on");
-        });
+    <script src="<%=request.getContextPath() %>/js/jquery-3.2.1.slim.min.js"></script>
+    <script src="<%=request.getContextPath() %>/js/popper.min.js"></script>
+    <script src="<%=request.getContextPath() %>/js/bootstrap.min.js"></script>
+    <script src="<%=request.getContextPath() %>/js/owl.carousel.min.js"></script>
+    <script src="<%=request.getContextPath() %>/js/jquery.waypoints.min.js"></script>
+    <script src="<%=request.getContextPath() %>/js/imagesloaded.pkgd.min.js"></script>
+    <script src="<%=request.getContextPath() %>/js/imagesloaded.pkgd.min.js"></script>
+    <script src="<%=request.getContextPath() %>/js/main.js"></script>
 
-      });
-</script>
+
+
 <script>
 		$('#Cate1').click(function() {
 			$.ajax({
@@ -292,6 +341,15 @@
 			$("#item_list").html(data);
 		}
 </script>
-<!-- 	main 結束-------------------------------------------------------- -->
-</body>
+  <script src="js/jquery-3.2.1.slim.min.js"></script>
+  <script src="js/popper.min.js"></script>
+  <script src="js/bootstrap.min.js"></script>
+  <script src="js/owl.carousel.min.js"></script>
+  <script src="js/jquery.waypoints.min.js"></script>
+  <script src="js/imagesloaded.pkgd.min.js"></script>
+  <script src="js/main.js"></script>
+    
+    
+    
+  </body>
 </html>

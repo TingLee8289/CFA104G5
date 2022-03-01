@@ -133,6 +133,10 @@ public class SecItemsService {
 		return dao.findByShCategory(shSellerID, shCateID);
 	}
 	
+	public List<SecItemsVO> getByCategory2(Integer shCateID) {
+		return dao.findByShCategory2(shCateID);
+	}
+	
 	public List<SecItemsVO> getByStatus(Integer shSellerID, Integer shStatus) {
 		return dao.findByStatus(shSellerID, shStatus);
 	}

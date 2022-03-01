@@ -51,5 +51,9 @@ public class SecPicsService {
 	public List<SecPicsVO> getByShID(Integer shID) {
 		return dao.getByShID(shID);
 	}
+	
+	public List<SecPicsVO> getByShCateID(Integer shCateID) {
+		return dao.getByShCateID(shCateID);
+	}
 
 }

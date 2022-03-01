@@ -94,6 +94,14 @@ public MemberVO addMember(String memUsername, String memPassword, String memName
 	public MemberVO searchEmail(String memEmail) {
 		return dao.searchEmail(memEmail);
 	}
+	
+	public MemberVO searchUsername(String memUsername) {
+		return dao.searchUsername(memUsername);
+	}
+	
+	public MemberVO searchPID(String memPID) {
+		return dao.searchPID(memPID);
+	}
 
 	public MemberVO updateMemberADM(Integer memID, Byte memLandlord, Byte memSupplier, Byte memSeller,
 			Byte memStatus, Integer memReported, Integer memSupReported,
