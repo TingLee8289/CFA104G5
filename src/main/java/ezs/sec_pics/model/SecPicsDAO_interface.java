@@ -10,4 +10,5 @@ public interface SecPicsDAO_interface {
 	    public List<SecPicsVO> getAll();
 	    public List<SecPicsVO> getEachItemFirstPic();
 	    public List<SecPicsVO> getByShID(Integer shID);
+	    public List<SecPicsVO> getByShCateID(Integer shCateID);
 }

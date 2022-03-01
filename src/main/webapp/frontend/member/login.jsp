@@ -278,7 +278,7 @@ a {
 	<div style="text-align: center; background-color: gray; width: 400px; margin: auto;">
 		<%-- 錯誤表列 --%>
 		<c:if test="${not empty errorMsgs}">
-			<front style="color: red">請修正以下錯誤:</front>
+<!-- 			<front style="color: red">請修正以下錯誤:</front> -->
 			<ul>
 				<c:forEach var="message" items="${errorMsgs}">
 					<p style="color: red">${message}</p>

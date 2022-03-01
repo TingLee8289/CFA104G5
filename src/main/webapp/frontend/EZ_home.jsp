@@ -3,9 +3,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="UTF-8">
 <title>EASY SPACE</title>
-<meta charset="UTF-8">
 
 <meta charset="utf-8">
 <meta name="viewport"

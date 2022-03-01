@@ -310,11 +310,11 @@
 		</form>
 		<%-- 錯誤表列 --%>
 		<c:if test="${not empty errorMsgs}">
-			<div style="margin: 0px auto;">
-				<font style="color: red">請修正以下錯誤:</font>
+			<div style="margin: 0px auto; ">
+<!-- 				<font style="color: #F96;">請修正以下錯誤:</font> -->
 				<ul style="list-style-type: none;">
 					<c:forEach var="message" items="${errorMsgs}">
-						<li style="color: red">${message}</li>
+						<li style="color: #F96;">${message}</li>
 					</c:forEach>
 				</ul>
 			</div>

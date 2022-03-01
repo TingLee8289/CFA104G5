@@ -38,10 +38,16 @@ public class MemberDAO implements MemberDAO_interface {
 
 	private static final String VERIFY_MEM_STMT = "UPDATE `CFA104G5`.`MEMBER` SET mem_status = 1 WHERE mem_username = ?;";
 
-	private static final String SEARCH_EMAIL = "SELECT * FROM `CFA104G5`.`MEMBER` WHERE MEM_EMAIL = ?";	
+	private static final String SEARCH_EMAIL = "SELECT * FROM `CFA104G5`.`MEMBER` WHERE mem_email = ?";	
 
 	private static final String UPDATE_PASSWORD = "UPDATE `CFA104G5`.`MEMBER` SET mem_password= ? WHERE mem_id = ?";
 
+	private static final String SEARCH_USERNAME = "SELECT * FROM `CFA104G5`.`MEMBER` WHERE mem_username = ?";	
+
+	private static final String SEARCH_PID = "SELECT * FROM `CFA104G5`.`MEMBER` WHERE mem_pid = ?";	
+
+	
+	
 	private static DataSource ds = null;
 	static {
 		try {
@@ -396,6 +402,68 @@ public class MemberDAO implements MemberDAO_interface {
 			Util.closeResource(con, pstmt, rs);
 
 		}
+
+	}
+	
+	@Override
+	public MemberVO searchUsername(String memUsername) {
+		MemberVO memberVO = null;
+
+		try {
+
+			con = ds.getConnection();
+			pstmt = con.prepareStatement(SEARCH_USERNAME);
+			pstmt.setString(1, memUsername);
+			rs = pstmt.executeQuery();
+
+			while (rs.next()) {
+			
+				memberVO = new MemberVO();
+				memberVO.setMemEmail(rs.getString("MEM_EMAIL"));
+				
+				memberVO.setMemName(rs.getString("MEM_NAME"));
+				
+				memberVO.setMemID(rs.getInt("MEM_ID"));
+			}
+
+		} catch (SQLException se) {
+			se.printStackTrace();
+		} finally {
+			Util.closeResource(con, pstmt, rs);
+
+		}
+		return memberVO;
+
+	}
+	
+	@Override
+	public MemberVO searchPID(String memPID) {
+		MemberVO memberVO = null;
+
+		try {
+
+			con = ds.getConnection();
+			pstmt = con.prepareStatement(SEARCH_PID);
+			pstmt.setString(1, memPID);
+			rs = pstmt.executeQuery();
+
+			while (rs.next()) {
+			
+				memberVO = new MemberVO();
+				memberVO.setMemEmail(rs.getString("MEM_EMAIL"));
+				
+				memberVO.setMemName(rs.getString("MEM_NAME"));
+				
+				memberVO.setMemID(rs.getInt("MEM_ID"));
+			}
+
+		} catch (SQLException se) {
+			se.printStackTrace();
+		} finally {
+			Util.closeResource(con, pstmt, rs);
+
+		}
+		return memberVO;
 
 	}
 }

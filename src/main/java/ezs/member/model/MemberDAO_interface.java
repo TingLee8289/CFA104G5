@@ -2,6 +2,8 @@ package ezs.member.model;
 
 import java.util.List;
 
+import ezs.admin_emp.model.AdminEmpVO;
+
 public interface MemberDAO_interface {
   
 	public void insert(MemberVO memberVO);
@@ -23,6 +25,12 @@ public interface MemberDAO_interface {
 	public void updateADM(MemberVO memberVO);
 
 	public void updateMemberPassword(MemberVO memberVO);
+	
+	public MemberVO searchUsername(String memUsername);
+	
+	public MemberVO searchPID(String memPID);
+	
+	
     
 
 }

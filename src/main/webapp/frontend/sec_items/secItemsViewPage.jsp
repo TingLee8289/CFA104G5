@@ -30,16 +30,16 @@
     <meta name="keywords" content="free bootstrap 4, free bootstrap 4 template, free website templates, free html5, free template, free website template, html5, css3, mobile first, responsive" />
     <meta name="author" content="ProBootstrap.com" />
     
-
+<!--  版面css import 開始-->
     <link rel="stylesheet" href="<%=request.getContextPath() %>/css/bootstrap.min.css">
     <link rel="stylesheet" href="<%=request.getContextPath() %>/css/open-iconic-bootstrap.min.css">
-    
     <link rel="stylesheet" href="<%=request.getContextPath() %>/css/owl.carousel.min.css">
     <link rel="stylesheet" href="<%=request.getContextPath() %>/css/owl.theme.default.min.css">
-
     <link rel="stylesheet" href="<%=request.getContextPath() %>/css/icomoon.css">
     <link rel="stylesheet" href="<%=request.getContextPath() %>/css/animate.css">
     <link rel="stylesheet" href="<%=request.getContextPath() %>/css/viewPage.css">
+<!--  版面css import 結束-->
+<!--  版面css 開始-->    
 <style>
       *{
         box-sizing: border-box;
@@ -179,10 +179,12 @@
         width: 100%;
       }
     </style>
+<!--  版面css 結束-->   
 <!--     sweetAlert -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/6.10.3/sweetalert2.css" />
     <script src="https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/6.10.3/sweetalert2.js" type="text/javascript"></script>
 <!--     sweetAlert -->
+
   </head>
   <body>
   	<jsp:include page="/frontend/EZ_nav.jsp"/>
@@ -198,12 +200,12 @@
         <nav class="probootstrap-nav">
           <ul>
             <li class="probootstrap-animate active" data-animate-effect="fadeInLeft"><a href="<%=request.getContextPath() %>/frontend/sec_items/secItemsViewPage.jsp">瀏覽全部商品</a></li>
-            	<c:forEach var="secCategoryVO" items="${secCategorylist}">
+            <c:forEach var="secCategoryVO" items="${secCategorylist}">
 	         	 <li class="probootstrap-animate" data-animate-effect="fadeInLeft">
 <!-- 	         	 		嘗試修改的版本 -->
-<%-- 	         	 	<form method="get" action="<%=request.getContextPath() %>/frontend/sec_items/secItemsViewPageAJAX.jsp"> --%>
-<%-- 	         	 		<a style="text-decoration:none;" href="<%=request.getContextPath() %>/frontend/sec_items/secItemsViewPageAJAX.jsp"> --%>
-<%-- 	         	 		${secCategoryVO.shCateName} --%>
+<%--  	         	 	<form id="CateForm" method="get" action="<%=request.getContextPath() %>/frontend/sec_items/secItemsViewPageAJAX.jsp"> --%>
+<%-- 	         	 		<a id="Cate${secCategoryVO.shCateID}" style="text-decoration:none;" href="#"> --%>
+<%-- 	         	 			${secCategoryVO.shCateName} --%>
 <!-- 	         	 		</a> -->
 <%-- 	         	 		<input type="hidden" name="shCateID" value="${secCategoryVO.shCateID}"> --%>
 <!-- 	         	 	</form> -->
@@ -218,7 +220,7 @@
 
 <!-- 						不對的版本但很美 -->
 						<form>
-	         	 			<a style="text-decoration:none;" href="<%=request.getContextPath() %>/frontend/sec_items/secItemsViewPageAJAX.jsp?shCateID=${secCategoryVO.shCateID}">${secCategoryVO.shCateName}
+	         	 			<a style="text-decoration:none;" href="<%=request.getContextPath() %>/frontend/sec_items/secItemsViewPageTemp.jsp?shCateID=${secCategoryVO.shCateID}">${secCategoryVO.shCateName}
 	         	 			</a>
 	         	 		</form>
 
@@ -281,6 +283,11 @@
 
 <!-- 	main 結束-------------------------------------------------------- -->
 
+ <!--     jQuery&AJAX -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script src="http://code.jquery.com/jquery-3.6.0.min.js"></script>
+<!--     jQuery&AJAX -->   
+
     <script src="<%=request.getContextPath() %>/js/jquery-3.2.1.slim.min.js"></script>
     <script src="<%=request.getContextPath() %>/js/popper.min.js"></script>
     <script src="<%=request.getContextPath() %>/js/bootstrap.min.js"></script>
@@ -293,64 +300,61 @@
 
 
 <script>
-	$('#Cate1').click(function() {
-		$.ajax({
-			type: "get",
-			url: "<%= request.getContextPath()%>/frontend/sec_items/secItemsViewPageAJAX.jsp",
-			data: {"shCateID": 1},
-			success: function(data){
-				showItems(data);
-			}
+		$('#Cate1').click(function() {
+			$.ajax({
+				type: "get",
+				url: "<%= request.getContextPath()%>/frontend/sec_items/secItemsViewPageAJAX.jsp",
+				data: {"shCateID": 1},
+				success: function(data){
+					showItems(data);
+				}
+			});
 		});
-	});
-	
-	$('#Cate2').click(function() {
-		$.ajax({
-			type: "get",
-			url: "<%= request.getContextPath()%>/frontend/sec_items/secItemsViewPageAJAX.jsp",
-			data: {"shCateID": 2},
-			success: function(data){
-				showItems(data);
-			}
+		$('#Cate2').click(function() {
+			$.ajax({
+				type: "get",
+				url: "<%= request.getContextPath()%>/frontend/sec_items/secItemsViewPageAJAX.jsp",
+				data: {"shCateID": 2},
+				success: function(data){
+					showItems(data);
+				}
+			});
 		});
-	});
-	$('#Cate3').click(function() {
-		$.ajax({
-			type: "get",
-			url: "<%= request.getContextPath()%>/frontend/sec_items/secItemsViewPageAJAX.jsp",
-			data: {"shCateID": 3},
-			success: function(data){
-				showItems(data);
-			}
+		$('#Cate3').click(function() {
+			$.ajax({
+				type: "get",
+				url: "<%= request.getContextPath()%>/frontend/sec_items/secItemsViewPageAJAX.jsp",
+				data: {"shCateID": 3},
+				success: function(data){
+					showItems(data);
+				}
+			});
 		});
-	});
-	$('#Cate4').click(function() {
-		$.ajax({
-			type: "get",
-			url: "<%= request.getContextPath()%>/frontend/sec_items/secItemsViewPageAJAX.jsp",
-			data: {"shCateID": 4},
-			success: function(data){
-				showItems(data);
-			}
+		$('#Cate4').click(function() {
+			$.ajax({
+				type: "get",
+				url: "<%= request.getContextPath()%>/frontend/sec_items/secItemsViewPageAJAX.jsp",
+				data: {"shCateID": 4},
+				success: function(data){
+					showItems(data);
+				}
+			});
 		});
-	});
-	$('#Cate5').click(function() {
-		$.ajax({
-			type: "get",
-			url: "<%= request.getContextPath()%>/frontend/sec_items/secItemsViewPageAJAX.jsp",
-			data: {"shCateID": 5},
-			success: function(data){
-				showItems(data);
-			}
+		$('#Cate5').click(function() {
+			$.ajax({
+				type: "get",
+				url: "<%= request.getContextPath()%>/frontend/sec_items/secItemsViewPageAJAX.jsp",
+				data: {"shCateID": 5},
+				success: function(data){
+					showItems(data);
+				}
+			});
 		});
-	});
-	
-	
-	function showItems(data){
-		
-		$("#item_list").html("");
-		$("#item_list").html(data);
-	}
+		function showItems(data){
+// 				console.log(data)
+			$("#item_list").html("");
+			$("#item_list").html(data);
+		}
 </script>
   <script src="js/jquery-3.2.1.slim.min.js"></script>
   <script src="js/popper.min.js"></script>
@@ -364,21 +368,22 @@
 <!--     sweetAlert -->
     
 <!--     <script type="text/javascript"> -->
-//         var btn1 = document.getElementById('btn1');
+<!-- //         var btn1 = document.getElementById('btn1'); -->
 
-//         btn1.addEventListener('click', function() {
-//             swal('已加入購物車', '', 'success')
+<!-- //         btn1.addEventListener('click', function() { -->
+<!-- //             swal('已加入購物車', '', 'success') -->
 
-//             .then(function(){
-//             		var delay = 2000 // 凍結 2 秒
-//             	    var end = +new Date() + delay
-//             	    while(new Date() < end) {
-//             	    }
-//             	})
-//         });
+<!-- //             .then(function(){ -->
+<!-- //             		var delay = 2000 // 凍結 2 秒 -->
+<!-- //             	    var end = +new Date() + delay -->
+<!-- //             	    while(new Date() < end) { -->
+<!-- //             	    } -->
+<!-- //             	}) -->
+<!-- //         }); -->
 <!--     </script> -->
 <!--     sweetAlert -->
-    
+
+
     
   </body>
 </html>

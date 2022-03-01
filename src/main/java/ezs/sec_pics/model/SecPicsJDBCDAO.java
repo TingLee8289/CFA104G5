@@ -10,12 +10,6 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-import javax.activation.DataSource;
-import javax.naming.Context;
-import javax.naming.InitialContext;
-import javax.naming.NamingException;
-import javax.servlet.annotation.WebServlet;
-
 import util.Util;
 
 public class SecPicsJDBCDAO implements SecPicsDAO_interface {
@@ -28,7 +22,8 @@ public class SecPicsJDBCDAO implements SecPicsDAO_interface {
 	private static final String GET_ALL_STMT = "SELECT * FROM `CFA104G5`.`SEC_PICS` ORDER BY sh_pic_id";
 	private static final String GET_EACH_FIRST_STMT ="SELECT * FROM (select *, row_number() over (partition by sh_id order by sh_pic_id asc) sn from sec_pics) r where r.sn=1";
 	private static final String GET_BY_SHID_STMT = "SELECT * FROM `CFA104G5`.`SEC_PICS` WHERE sh_id = ?";
-	
+	private static final String GET_BY_SHCATEID_STMT = "SELECT * FROM CFA104G5.`sec_pics` pic JOIN `sec_items` items ON pic.sh_id=items.sh_id WHERE sh_cate_id = ?";
+
 	
 	static {
 		try {
@@ -195,6 +190,32 @@ public class SecPicsJDBCDAO implements SecPicsDAO_interface {
 			pstmt.setInt(1, shID);
 			rs = pstmt.executeQuery();
 
+			while (rs.next()) {
+				secPicsVO = new SecPicsVO();
+				secPicsVO.setShPicID(rs.getInt("sh_pic_id"));
+				secPicsVO.setShID(rs.getInt("sh_id"));
+				secPicsVO.setShPic(rs.getBytes("sh_pic"));
+				list.add(secPicsVO);
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			Util.closeResource(con, pstmt, rs);
+		}
+		return list;
+	}
+	
+	@Override
+	public List<SecPicsVO> getByShCateID(Integer shCateID) {
+		List<SecPicsVO> list = new ArrayList<SecPicsVO>();
+		SecPicsVO secPicsVO = null;
+		
+		try {
+			con = DriverManager.getConnection(Util.URL, Util.USER, Util.PASSWORD);
+			pstmt = con.prepareStatement(GET_BY_SHCATEID_STMT);
+			pstmt.setInt(1, shCateID);
+			rs = pstmt.executeQuery();
+			
 			while (rs.next()) {
 				secPicsVO = new SecPicsVO();
 				secPicsVO.setShPicID(rs.getInt("sh_pic_id"));
