@@ -299,12 +299,12 @@ text-align: center;
 			<td><input type="TEXT" name="memEmail" size="50" value="<%=memberVO.getMemEmail()%>" /></td>
 		</tr>
 		
-		<c:if test="${memberVO.memSupplier == 1}">
-		<tr>
-			<th id="test">統一編號:</th>
-			<td><input type="TEXT" name="memVatno" size="8" value="<%=memberVO.getMemVatno()%>" /></td>
-		</tr>
-		</c:if>
+<%-- 		<c:if test="${memberVO.memSupplier == 1}"> --%>
+<!-- 		<tr> -->
+<!-- 			<th id="test">統一編號:</th> -->
+<%-- 			<td><input type="TEXT" name="memVatno" size="8" value="<%=memberVO.getMemVatno()%>" /></td> --%>
+<!-- 		</tr> -->
+<%-- 		</c:if> --%>
 
 		<tr>
 			<th id="test">個人頭像:</th>
@@ -330,6 +330,7 @@ text-align: center;
 <input type="hidden" name="action" value="update">
 <input type="hidden" name="memID" value="<%=memberVO.getMemID()%>">
 <input type="hidden" name="memUsername" value="<%=memberVO.getMemUsername()%>">
+<input type="hidden" name="memVatno" value="<%=memberVO.getMemVatno()%>">
 <input type="submit" value="送出修改">
 </FORM>
 		

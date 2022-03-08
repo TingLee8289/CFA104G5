@@ -324,7 +324,7 @@
 			</td>		
 				
 			<td>
-			<c:if test="${renAppointmentVO.aptStatus != 2 and renAppointmentVO.aptStatus != 1}">
+			<c:if test="${renAppointmentVO.aptStatus != 0 and renAppointmentVO.aptStatus != 2 and renAppointmentVO.aptStatus != 1}">
 				<FORM METHOD="post" ACTION="<%=request.getContextPath()%>/RenAppointmentServlet.do" style="margin-bottom: 0px;">
 <!-- 					<input type="submit" value="確認"> 			 -->
 					<input type="hidden" name="aptId" value="${renAppointmentVO.aptId}"> 

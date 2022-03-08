@@ -145,32 +145,32 @@ public class RenLeaseServletMEM extends HttpServlet {
 
 		
 		
-//		if ("delete".equals(action)) { // 來自listAllEmp.jsp
-//
-//			List<String> errorMsgs = new LinkedList<String>();
-//			req.setAttribute("errorMsgs", errorMsgs);
-//	
-//			try {
-//				/***************************1.接收請求參數***************************************/
-//				Integer lseId = new Integer(req.getParameter("lseId"));
-//				
-//				/***************************2.開始刪除資料***************************************/
-//				RenLeaseService renLeaseSvc = new RenLeaseService();
-//				renLeaseSvc.deleteRenLease(lseId);
-//				
-//				/***************************3.刪除完成,準備轉交(Send the Success view)***********/								
-//				String url = "/frontend/ren_lease/MEMlistOneLease.jsp";
-//				RequestDispatcher successView = req.getRequestDispatcher(url);// 刪除成功後,轉交回送出刪除的來源網頁
-//				successView.forward(req, res);
-//				
-//				/***************************其他可能的錯誤處理**********************************/
-//			} catch (Exception e) {
-//				errorMsgs.add("刪除資料失敗:"+e.getMessage());
-//				RequestDispatcher failureView = req
-//						.getRequestDispatcher("/frontend/ren_lease/MEMlistOneLease.jsp");
-//				failureView.forward(req, res);
-//			}
-//		}
+		if ("delete".equals(action)) { // 來自listAllEmp.jsp
+
+			List<String> errorMsgs = new LinkedList<String>();
+			req.setAttribute("errorMsgs", errorMsgs);
+	
+			try {
+				/***************************1.接收請求參數***************************************/
+				Integer lseId = new Integer(req.getParameter("lseId"));
+				
+				/***************************2.開始刪除資料***************************************/
+				RenLeaseService renLeaseSvc = new RenLeaseService();
+				renLeaseSvc.deleteRenLease(lseId);
+				
+				/***************************3.刪除完成,準備轉交(Send the Success view)***********/								
+				String url = "/frontend/ren_lease/MEMlistOneLease.jsp";
+				RequestDispatcher successView = req.getRequestDispatcher(url);// 刪除成功後,轉交回送出刪除的來源網頁
+				successView.forward(req, res);
+				
+				/***************************其他可能的錯誤處理**********************************/
+			} catch (Exception e) {
+				errorMsgs.add("刪除資料失敗:"+e.getMessage());
+				RequestDispatcher failureView = req
+						.getRequestDispatcher("/frontend/ren_lease/MEMlistOneLease.jsp");
+				failureView.forward(req, res);
+			}
+		}
 	}
 
 }
