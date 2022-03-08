@@ -22,6 +22,7 @@
 
 <html>
 <head>
+<script src="https://kit.fontawesome.com/1c2ccc4859.js" crossorigin="anonymous"></script>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.css" integrity="sha256-46qynGAkLSFpVbEBog43gvNhfrOj+BmwXdxFgVK/Kvc=" crossorigin="anonymous" />
 <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
 <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>   
@@ -250,7 +251,7 @@
 			<main>
 				<div class="container-fluid px-4">
 <!-- 塞頁面從這裡開始--------------------------------------------------------------------------------- -->
-<h3>租賃訂單管理</h3>
+<h3>租賃訂單</h3>
 
 <div class="container-fluid m-3 mx-auto">
 	
@@ -262,11 +263,13 @@
 						<th>租賃訂單編號</th>
 						<th>房源</th>
 						<th>房東</th>
+						<th>房租</th>
 						<th>租賃訂單狀態</th>
 						<th>租賃開始時間</th>
 						<th>租賃結束時間</th>						
 						<th>租賃訂單成立時間</th>
 <!-- 						<th>查看</th> -->
+<th>刪除</th>
 					</tr>
 					</thead>
 					<tbody>		
@@ -285,6 +288,7 @@
 	                   						【${memVO.memID}】 - ${memVO.memUsername}
 	                    				</c:if> </c:forEach>
                     			</c:if> </c:forEach></td>
+                    	<td>${renLeaseVO.lsePrice}</td>
                     	<td>
 							<c:if test="${renLeaseVO.lseStatus == 0}">待確認租屋</c:if> 
 							<c:if test="${renLeaseVO.lseStatus == 1}">已確認租屋</c:if>
@@ -298,13 +302,13 @@
 			<fmt:parseDate value="${dateString}" var="dateObject"
                 pattern="yyyy-MM-dd HH:mm" />
                 <fmt:formatDate value="${dateObject}" pattern="yyyy-MM-dd HH:mm" /></td>
-<!-- 						<td> -->
-<%-- 							<FORM METHOD="post" ACTION="<%=request.getContextPath()%>/ren_lease/RenLeaseServletMEM.do" style="margin-bottom: 0px;"> 				 --%>
-<%-- 					<input type="hidden" name="lseId" value="${renLeaseVO.lseId}">  --%>
-<!-- 					<input type="hidden" name="action" value="MEMgetOne"> -->
-<!-- 					<button id ="submit" onclick="submit"><i class="fa-solid fa-check"></i></button>  -->
-<!-- 				</FORM> -->
-<!-- 						</td> -->
+						<td>
+							<FORM METHOD="post" ACTION="<%=request.getContextPath()%>/ren_lease/RenLeaseServletMEM.do" style="margin-bottom: 0px;"> 				
+					<input type="hidden" name="lseId" value="${renLeaseVO.lseId}"> 
+					<button id ="submit" onclick="submit"><i class="fa-solid fa-trash"></i></button> 
+					<input type="hidden" name="action" value="delete">
+				</FORM>
+						</td>
 					</tr>		
 					</c:forEach>
 					</tbody>

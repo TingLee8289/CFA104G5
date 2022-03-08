@@ -290,12 +290,12 @@ text-align: center;
 		<th id="test">email:</th>
 		<td>${memberVO.memEmail}</td>
 	</tr>
-	<c:if test="${memberVO.memSupplier == 1}">
-	<tr>
-		<th id="test">統一編號:</th>
-		<td>${memberVO.memVatno}</td>
-	</tr>
-	</c:if>
+<%-- 	<c:if test="${memberVO.memSupplier == 1}"> --%>
+<!-- 	<tr> -->
+<!-- 		<th id="test">統一編號:</th> -->
+<%-- 		<td>${memberVO.memVatno}</td> --%>
+<!-- 	</tr> -->
+<%-- 	</c:if> --%>
 
 
 	<tr>
@@ -303,6 +303,7 @@ text-align: center;
 						<input type="submit" value="修改"> 
 						<input type="hidden" name="memID" value="${memberVO.memID}"> 
 						<input type="hidden" name="memPassword" value="${memberVO.memPassword}"> 
+						<input type="hidden" name="memVatno" value="${memberVO.memVatno}"> 
 						<input type="hidden" name="action" value="getOne_For_Update">
 					</form></td>
 	</tr>
